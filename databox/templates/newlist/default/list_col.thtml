@@ -1,0 +1,6 @@
+<!-- plugins/databox/templates/newlist/list_col.thtml 20110128 { -->
+
+<dt>{day}{new_img}</dt>
+<dd><a href="{url}">{title}</a>{description}</dd>
+
+<!-- } plugins/databox/templates/newlist/list_col.thtml -->

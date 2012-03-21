@@ -1,0 +1,5 @@
+<!-- plugins/userbox/templates/field/default/col.thtml 20101122 { -->
+    <li>{value_link}&nbsp;({count})
+    &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
+    &nbsp;{value_url}&nbsp;{value}</li>
+<!-- } plugins/userbox/templates/field/default/col.thtml -->

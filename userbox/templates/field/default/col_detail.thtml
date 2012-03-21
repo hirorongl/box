@@ -1,0 +1,4 @@
+<!-- plugins/userbox/templates/field/default/col_detail.thtml 20101122{ -->
+    <li>{data_link}<!-- <a href="{data_url}">{data_title}</a> -->{data_description} (uid: {data_id})
+(username: {data_username}) {data_fullname} {data_description}   {data_datefield}  {data_value}  {zipcode}  {tel}  {additionfield1}    {additionfield2}</li>
+<!-- } plugins/userbox/templates/field/default/col_detail.thtml -->

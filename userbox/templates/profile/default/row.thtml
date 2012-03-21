@@ -1,0 +1,5 @@
+<!-- plugins/userbox/templates/profile/default/row.thtml { -->
+      <tr>
+        {col_var}
+      </tr>
+<!-- } plugins/userbox/templates/profile/default/row.thtml -->

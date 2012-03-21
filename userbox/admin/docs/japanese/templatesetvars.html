@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">UserBox プラグイン</a>
+- 設定</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/userbox/">管理画面</a>
+</p>
+<h1><a href="index.html">UserBox プラグイン</h1>
+
+
+<h2><a name="templatesetvars">テーマ変数</a>(2011/12/28 update　書きかけです)</h2>
+<table>
+<tr>
+	<th style="width:20%">画面</th>
+	<th style="width:20%">【フォルダ】テンプレート</th>
+    <th style="width:60%">テーマ変数</th>
+</tr>
+<tbody>
+<tr >
+<td>
+カテゴリ別件数一覧<br/>
+public_html/category.php<br/>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr class="r2">
+<td  rowspan=2>
+カテゴリ別一覧<br/>
+public_html/category.php?m=id&id=1<br/>
+</td>	
+<td>
+<p>【category】</p>
+list_detail.thtml 
+ navigation_detail.thtml
+ row.thtml
+ col_detail.thtml
+ pagenavigation.thtml
+ </td>
+ <td>
+ site_url
+ this_script
+ home
+ category_top
+ lang_category_list_h2
+ category_name
+ category_code
+ category_description
+ cnt
+ lang_view
+ lin
+ cnt
+ lang_name
+ lang_username
+ lang_id
+ lang_uid
+ lang_username
+ lang_fullname
+ lang_date
+ lang_description
+ lang_addfield
+ blockfooter
+ msg
+
+</td>	
+
+</tr>
+<tr class="r2">
+
+<td>
+【category】col_detail.thtml 
+</td>
+<td>data_link,
+ data_fullname,
+ data_username,
+ data_description,
+ data_id,
+ data_url,
+ data_datefield,
+ data_value,
+ data_user_photo
+ </br><a  href="#notefoot_add" class="note_super" title="">追加項目のテーマ変数</a>
+ </td>
+</tr>
+
+<tr >
+<td>
+追加項目別件数一覧<br/>
+public_html/field.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+
+<tr class="r2">
+<td>
+追加項目別一覧<br/>
+public_html/field.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<td>
+profile一覧<br/>
+public_html/profile.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+
+<tr>
+<td rowspan=4>
+profile<br/>
+public_html/profile.php<br/>
+</td>
+<td>
+【profile】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+site_mail,
+og_title,
+og_image,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+【profile】list_detail.thtml,row.thtml,col_detail.thtml
+</td>
+
+<td>
+xhtml,layout_url,site_admin_url,site_url,
+site_name,site_mail
+draft,
+lang_id,
+id,
+lang_fields,
+lang_field,
+lang_templatesetvar,
+lang_content,
+lang_byusingid,
+lang_byusingcode,
+lang_byusingtemplatesetvar,
+lang_group,
+lang_withlink,
+
+lang_uid
+lang_username
+username
+lang_fullname
+fullname
+
+
+
+lang_imgfile_frd,
+imgfile_frd,
+lang_imgfile_thumb_frd,
+imgfile_thumb_frd,
+lang_basicfields,
+lang_code,
+code,
+lang_title,
+title,
+lang_description,
+description,
+lang_owner,
+owner_name,
+owner_id,
+lang_hits,
+hits,
+lang_category,
+lang_additionfields,
+lang_modified,		
+modified,
+lang_created,
+created,
+lang_uuid,
+uuid,
+lang_udatetime,
+last_modify_uid,
+last_modify_name,
+last_modify_fullname,
+edit
+</br><a  href="#notefoot_add" class="note_super" title="">追加項目のテーマ変数</a>
+</br>currenturl,appid<a id="notetext_1" href="#notefoot_1" class="note_super" title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です">*1</a></br>
+
+
+</td>
+</tr>
+<tr >
+<td>
+【profile】category_row.thtml
+</td>
+<td>
+group_<a  href="#notefoot_categoryid" class="note_super" title="category id">id</a>,
+group_<a  href="#notefoot_categorycode" class="note_super" title="category code">code</a>,
+grouplink<a href="#notefoot_categoryid" class="note_super" title="category id">id</a>,
+grouplink<a  href="#notefoot_categorycode" class="note_super" title="category code">code</a>,<br/>
+categories,
+categorieslink,
+categorieslinkcode,
+categorieslinkid
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+【profile】nohit.thtml
+</td>
+<td>xhtml,
+site_url,
+site_admin_url,
+layout_url,
+lang_nohit</td>
+</tr>
+
+
+
+
+
+<td>
+newlist<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<td>
+myprofile<br/>
+public_html/myprofile/profile.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

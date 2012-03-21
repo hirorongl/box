@@ -1,0 +1,4 @@
+<!-- plugins/databox/templates/category/default/row.thtml { -->
+{grp_var}
+{col_var}
+<!-- } plugins/databox/templates/category/default/row.thtml -->

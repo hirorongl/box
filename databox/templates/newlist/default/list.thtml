@@ -1,0 +1,10 @@
+<!-- plugins/databox/templates/newlist/list.thtml  { -->
+
+<dl>
+{list_col}
+</dl>
+
+<p><a href="{rss_url}">{rss_title}</a></p>
+<p class="more"><a href="{more_url}">{more_title}</a></p>
+
+<!-- } plugins/databox/templates/newlist/list.thtml -->

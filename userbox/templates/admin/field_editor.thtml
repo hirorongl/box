@@ -1,0 +1,158 @@
+<!-- plugins/userbox/templates/admin/field_editor.thtml  20101011 { -->
+
+<div id="userbox_admin">
+{about_thispage}
+<form name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
+
+  <fieldset style="width:94%">
+    <legend>{lang_additionfields}</legend>
+
+    <!-- data -->
+    <table>
+        <!-- id -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_field_id}</th>
+            <td style="width:70%">
+                {id}
+                <input type="hidden" name="id" value="{id}"{xhtml}>
+
+            </td>
+        </tr>
+
+
+
+        <!-- name -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_name}<span class="must">{lang_must}</span></th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="name" value="{name}"{xhtml}>
+            </td>
+        </tr>
+        <!-- templatesetvar -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
+            </td>
+        </tr>
+
+
+        <!-- description -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_description}{help_description}</th>
+            <td style="width:70%">
+                <textarea name="description" style="width:95%" rows="2" id="userbox_description">{description}</textarea>
+            </td>
+        </tr>
+
+        <!-- allow_display  -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_allow_display}{help_allow_display}</th>
+            <td style="width:70%">
+                {list_allow_display}
+            </td>
+        </tr>
+        <!-- allow_edit -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_allow_edit}{help_allow_edit}</th>
+            <td style="width:70%">
+                {list_allow_edit}
+            </td>
+        </tr>
+
+        <!-- type -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_type}{help_type}</th>
+            <td style="width:70%">{list_type}</td>
+        </tr>
+
+        <!-- checkrequried -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_checkrequried}{help_checkrequried}</th>
+            <td style="width:70%">{list_checkrequried}</td>
+        </tr>
+
+
+
+
+        <!-- size -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_size}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="size" value="{size}"{xhtml}>
+            </td>
+        </tr>
+        <!-- maxlength -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_maxlength}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+            </td>
+        </tr>
+        <!-- rows -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_rows}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="rows" value="{rows}"{xhtml}>
+            </td>
+        </tr>
+
+        <!-- br -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_br}{help_br}</th>
+            <td style="width:70%">{list_br}</td>
+        </tr>
+
+        <!-- selection -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_selection}{help_selection}</th>
+            <td style="width:70%">
+                <textarea name="selection"style="width:95%" rows="10" id="userbox_selection">{selection}</textarea>
+            </td>
+        </tr>
+
+        <!-- selectlist -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_selectlist}{help_selectlist}</th>
+            <td style="width:70%">
+                {list_selectlist}
+            </td>
+        </tr>
+
+        <!-- group  -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_group}{help_group}</th>
+            <td style="width:70%">
+                {list_group}
+            </td>
+        </tr>
+
+        <!-- order -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_orderno}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+            </td>
+        </tr>
+
+        <!-- 保存日 -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_udatetime}</th>
+            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
+        </tr>
+
+    </table>
+  </fieldset>
+
+        <!-- 【保存 キャンセル  削除】 -->
+                <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+                <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+                <input type="hidden" value="{code}" name="old_code"{xhtml}>
+                {delete_option}{lang_delete_help}
+                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</form>
+</div>
+
+
+<!-- } plugins/userbox/templates/admin/field_editor.thtml -->
+
