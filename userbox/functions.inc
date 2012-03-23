@@ -402,10 +402,9 @@ function plugin_user_create_userbox ($uid)
     $table2=$_TABLES['USERBOX_addition'];
 
     $uuid=$_USER['uid'];
-    if ($uuid===""){
+    if ($uuid==="" OR $uuid===NULL){
         $uuid=0;
     }
-
 
     $group_id =$_USERBOX_CONF['grp_id_default'];//@@@@@20110613
 
