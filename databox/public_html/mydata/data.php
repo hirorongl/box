@@ -1043,12 +1043,15 @@ function fncSave (
 
         DB_save($_TABLES['DATABOX_base'],$fields,$values);
     }else{
-
+        $modified=date("Y-m-d H:i:s");
+		
         $sql="UPDATE {$_TABLES['DATABOX_base']} set ";
         $sql.=" title = '$title'";
         $sql.=" ,page_title = '$page_title'";
         $sql.=" ,description = '$description'";
-
+		
+        $sql.=" ,modified = '$modified'";
+		
         $sql.=",uuid='$uuid' WHERE id=$id";
 
         DB_query($sql);
