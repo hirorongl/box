@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: backuprestore.php
 // public_html/admin/plugins/databox/backuprestore.php
-// 20111108 tsuchitani AT ivywe DOT co DOT jp
+// 20120327 tsuchitani AT ivywe DOT co DOT jp
 
 // @@@@@追加予定：データのバックアップリストア
 // @@@@@追加予定：データのクリア
@@ -17,7 +17,10 @@ define ('THIS_SCRIPT', 'backuprestore.php');
 require_once('databox_functions.php');
 require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
 
-//
+
+function fncDisply(
+	$pi_name
+)
 // +---------------------------------------------------------------------------+
 // | 画面表示
 // | 書式 fncDisply($pi_name)
@@ -25,7 +28,6 @@ require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
 // | 戻値 nomal:編集画面
 // +---------------------------------------------------------------------------+
 // 20101126
-function fncDisply($pi_name)
 {
     global $_CONF;
     global $LANG_DATABOX_ADMIN;
@@ -106,7 +108,7 @@ $display = '';
 $menuno=6;
 $page_title=$LANG_DATABOX_ADMIN['piname']."backup and restore";
 $display.= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-$display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);
@@ -123,7 +125,7 @@ switch ($action) {
     case $LANG_DATABOX_ADMIN['config_restore'];
         $display.=LIB_Restoreconfig($pi_name,$config);
 		break;
-    case $LANG_ASSIST_ADMIN['config_update']:
+    case $LANG_DATABOX_ADMIN['config_update']:
 		$display.=LIB_Backupconfig($pi_name,"update");
 		$display.=LIB_Deleteconfig($pi_name,$config);
 		$display.=LIB_Initializeconfig($pi_name);

@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: backuprestore.php
 // public_html/admin/plugins/userbox/backuprestore.php
-// 20111108 tsuchitani AT ivywe DOT co DOT jp
+// 20120327 tsuchitani AT ivywe DOT co DOT jp
 
 
 // @@@@@追加予定：データのバックアップリストア
@@ -18,6 +18,9 @@ define ('THIS_SCRIPT', 'backuprestore.php');
 require_once('userbox_functions.php');
 require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
 
+function fncDisply(
+	$pi_name
+)
 // +---------------------------------------------------------------------------+
 // | 画面表示
 // | 書式 fncDisply($pi_name)
@@ -25,7 +28,6 @@ require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
 // | 戻値 nomal:編集画面
 // +---------------------------------------------------------------------------+
 //
-function fncDisply($pi_name)
 {
     global $_CONF;
     global $LANG_USERBOX_ADMIN;
@@ -127,7 +129,7 @@ switch ($action) {
     case $LANG_USERBOX_ADMIN['config_restore'];
         $display.=LIB_Restoreconfig($pi_name,$config);
 		break;
-    case $LANG_ASSIST_ADMIN['config_update']:
+    case $LANG_USERBOX_ADMIN['config_update']:
 		$display.=LIB_Backupconfig($pi_name,"update");
 		$display.=LIB_Deleteconfig($pi_name,$config);
 		$display.=LIB_Initializeconfig($pi_name);
