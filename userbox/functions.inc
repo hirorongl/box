@@ -382,12 +382,11 @@ function plugin_user_delete_userbox ($uid)
 
 // +---------------------------------------------------------------------------+
 // | 機能  ユーザ新規登録                                                      |
-// | 書式 plugin_user_delete_profile                                           |
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-// update20110613
-function plugin_user_create_userbox ($uid)
+// update20120327
+function plugin_user_create_userbox (
+	$uid
+)
 {
 	if  (userbox_isuser($uid)===FALSE){
 		return;
@@ -403,7 +402,7 @@ function plugin_user_create_userbox ($uid)
 
     $uuid=$_USER['uid'];
     if ($uuid==="" OR $uuid===NULL){
-        $uuid=0;
+        $uuid=$uid;
     }
 
     $group_id =$_USERBOX_CONF['grp_id_default'];//@@@@@20110613
