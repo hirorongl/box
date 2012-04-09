@@ -1131,8 +1131,8 @@ function fncSave (
     $fields.=",defaulttemplatesdirectory";//
     $values.=",'$defaulttemplatesdirectory'";
 
-    $fields.=",hits";//
-    $values.=",$hits";
+    //$fields.=",hits";//
+    //$values.=",$hits";
 
     $fields.=",comments";//
     $values.=",$comments";
@@ -1535,6 +1535,7 @@ function fncsendmail (
         if ($numrows > 0) {
 
             $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
 
             $email=$A['email'];
             //下書
@@ -1599,7 +1600,7 @@ function fncsendmail (
             $url.="?";
             if ($_USERBOX_CONF['datacode']){
                 $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="&code=".$A['username'];
             }else{
                 $url.="m=id";
                 $url.="&id=".$A['id'];

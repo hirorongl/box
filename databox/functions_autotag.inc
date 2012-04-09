@@ -229,7 +229,6 @@ function databox_category(
 // | 戻値 nomal:category list
 // +---------------------------------------------------------------------------+
 {
-
     $pi_name="databox";
 
     global $_CONF;
@@ -403,9 +402,11 @@ function databox_category(
     $cnt = DB_numRows ($result);
 
     $pages = 0;
-     if ($perpage > 0) {
+    if ($perpage > 0) {
         $pages = ceil($cnt / $perpage);
     }
+	$offset = ($page - 1) * $perpage;
+    $sql .= " LIMIT $offset, $perpage";
 
     //自動タグでない時　ヘッダ、左ブロック
     if ($autotag==="notautotag"){
@@ -414,72 +415,84 @@ function databox_category(
         } else {
             $page_title = sprintf ('%s ', $category_name);
         }
-        $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title);
-    }
-
-    $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
-    $templates = new Template($tmplfld);
-    $templates->set_file (array (
-        'list' => 'list_detail.thtml',
-        'nav'   => 'navigation_detail.thtml',
-        'row'   => 'row.thtml',
-        'col'   => "col_detail.thtml",
-        'pagenav'  => 'pagenavigation.thtml'
-        ));
-
-
-    //
-    $templates->set_var ('site_url',$_CONF['site_url']);
-    $templates->set_var ('this_script',THIS_SCRIPT);
-
-    //bread
-    $templates->set_var ('home',$LANG_DATABOX['home']);
-
-    $url=$_CONF['site_url']."/databox/category.php";
-    $category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
-    $templates->set_var ('category_top',$category_top);
-
-    $templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_list_h2']);
-
-    $templates->set_var ('category_name',$category_name);
-    $templates->set_var ('category_code',$category_code);
-    $templates->set_var ('category_description',$category_description);
-
-    //page
-    $offset = ($page - 1) * $perpage;
-    $templates->set_var ('cnt', $cnt);
-    $lin1=$offset+1;
-    $lin2=$lin1+$perpage - 1;
-    if ($lin2>$cnt){
-        $lin2=$cnt;
-    }
-
-    //summary navigation
-    $templates->set_var ('lang_view', $LANG_DATABOX['view']);
-    $templates->set_var ('lin', $lin1."-".($lin2));
-    $templates->set_var ('cnt', $cnt);
-
-    $templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
-
-    $templates->set_var ('lang_code', $LANG_DATABOX_ADMIN['code']);
-    $templates->set_var ('lang_id', $LANG_DATABOX_ADMIN['id']);
-
-    //
-    $templates->set_var ('lang_date', $LANG_DATABOX_ADMIN[$datefield]);
-    $templates->set_var ('lang_title', $LANG_DATABOX_ADMIN['title']);
-    $templates->set_var ('lang_description', $LANG_DATABOX_ADMIN['description']);
-    $templates->set_var ('lang_addfield', $addfield_name);
-    // 追加項目のヘッダ
-    $addition_def=DATABOX_getadditiondef($pi_name);
-    //
-
-    $sql .= " LIMIT $offset, $perpage";
+		
+		// Meta Tags
+		$headercode=DATABOX_getheadercode(	
+			"category"
+			,$template
+			,$pi_name
+			,$category_id
+			,$category_name
+			,$category_description
+			,$category_name
+			,$category_description);
+        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+	}
+	
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
-    if ($numrows > 0) {
+	if ($numrows > 0) {
+		
+		
+		
+		
+		
+		
+		$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+		$templates = new Template($tmplfld);
+		$templates->set_file (array (
+			'list' => 'list_detail.thtml',
+			'nav'   => 'navigation_detail.thtml',
+			'row'   => 'row.thtml',
+			'col'   => "col_detail.thtml",
+			'pagenav'  => 'pagenavigation.thtml'
+			));
+
+		//
+		$templates->set_var ('site_url',$_CONF['site_url']);
+		$templates->set_var ('this_script',THIS_SCRIPT);
+
+		//bread
+		$templates->set_var ('home',$LANG_DATABOX['home']);
+
+		$url=$_CONF['site_url']."/databox/category.php";
+		$category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
+		$templates->set_var ('category_top',$category_top);
+
+		$templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_list_h2']);
+
+		$templates->set_var ('category_name',$category_name);
+		$templates->set_var ('category_code',$category_code);
+		$templates->set_var ('category_description',$category_description);
+
+		//page
+		$templates->set_var ('cnt', $cnt);
+		$lin1=$offset+1;
+		$lin2=$lin1+$perpage - 1;
+		if ($lin2>$cnt){
+			$lin2=$cnt;
+		}
+
+		//summary navigation
+		$templates->set_var ('lang_view', $LANG_DATABOX['view']);
+		$templates->set_var ('lin', $lin1."-".($lin2));
+		$templates->set_var ('cnt', $cnt);
+
+		$templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
+
+		$templates->set_var ('lang_code', $LANG_DATABOX_ADMIN['code']);
+		$templates->set_var ('lang_id', $LANG_DATABOX_ADMIN['id']);
+
+		//
+		$templates->set_var ('lang_date', $LANG_DATABOX_ADMIN[$datefield]);
+		$templates->set_var ('lang_title', $LANG_DATABOX_ADMIN['title']);
+		$templates->set_var ('lang_description', $LANG_DATABOX_ADMIN['description']);
+		$templates->set_var ('lang_addfield', $addfield_name);
+		// 追加項目のヘッダ
+		$addition_def=DATABOX_getadditiondef($pi_name);
+		
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
 
@@ -564,12 +577,40 @@ function databox_category(
 
     }else{
         if ($nohitmsg==="yes"){
-            $templates->set_var ('msg', $LANG_DATABOX["nohit"]);
-            //@@@@@@$templates->set_var ('search_link', $LANG_DATABOX['search_link']);//@@@@@
-            $templates->parse ('output', 'list');
-            $content = $templates->finish ($templates->get_var ('output'));
-            $retval .=$content;
-        }
+			$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+			$templates = new Template($tmplfld);
+			$templates->set_file (array (
+                'list' => 'nohit.thtml',
+			));
+			
+			$templates->set_var ('home',$LANG_DATABOX['home']);
+			
+			$url=$_CONF['site_url']."/databox/category.php";
+			$category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
+			$templates->set_var ('category_top',$category_top);
+
+			$templates->set_var ('category_name',$category_name);
+			$templates->set_var ('category_code',$category_code);
+			$templates->set_var ('category_description',$category_description);
+			
+						
+			$templates->set_var('xhtml', XHTML);
+			$templates->set_var('site_url', $_CONF['site_url']);
+			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+			$templates->set_var('layout_url', $_CONF['layout_url']);
+			
+			$templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
+
+			$templates->parse ('output', 'list');
+			$content = $templates->finish ($templates->get_var ('output'));
+			$retval .=$content;
+
+		}
+		
+		
+		
+		
+		
     }
 
     $retval =PLG_replacetags ($retval);
@@ -762,7 +803,6 @@ function databox_field(
     if (is_null($page) OR !isset($page) OR $page == 0) {
         $page = 1;
     }
-
     if ($perpage===0 OR is_null($perpage)){
         $perpage=$_DATABOX_CONF['perpage'];
     }
@@ -1267,6 +1307,13 @@ function databox_count_each_afield(
 }
 
 
+function databox_data(
+    $id=null
+    ,$template=null
+    ,$nohitmsg=""
+    ,$m=""
+    ,$code=null
+)
 // +---------------------------------------------------------------------------+
 // | 機能  データ表示
 // | 書式  databox_data($id,$template,"yes","page")
@@ -1285,15 +1332,8 @@ function databox_count_each_afield(
 // | 戻値 nomal:data
 // +---------------------------------------------------------------------------+
 // 201011201
-function databox_data(
-    $id=null
-    ,$template=null
-    ,$nohitmsg=""
-    ,$m=""
-    ,$code=null
-)
 {
-	
+
     $pi_name="databox";
 
     global $_CONF;
@@ -1349,17 +1389,21 @@ function databox_data(
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";//base
-    $sql .= " ,{$tbl2} AS t2 ";//owner
-    $sql .= " ,{$tbl2} AS t3 ";//last_updateowner
+    //$sql .= " ,{$tbl2} AS t2 ";//owner
+    //$sql .= " ,{$tbl2} AS t3 ";//last_updateowner
+    
+	$sql .= " JOIN {$tbl2} AS t2       ON t.owner_id=t2.uid";//owner
+    $sql .= " LEFT JOIN  {$tbl2} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
     $sql .= " WHERE ";
 	
-    $sql .= " t.owner_id=t2.uid";
-    $sql .= " AND t.uuid=t3.uid";
+    //$sql .= " t.owner_id=t2.uid";
+    //$sql .= " AND t.uuid=t3.uid";
 	
-    if (is_null($id)){//@@@@@
+	if (is_null($id)){//@@@@@
+		$sql .= "1=1";
     }else{
-        $sql .= " AND t.id=".$id;
+        $sql .= " t.id=".$id;
     }
 
 
@@ -1381,7 +1425,7 @@ function databox_data(
         $sql .= " ORDER BY ".$_DATABOX_CONF['datefield'] . " DESC ";
         $sql .= " LIMIT 0 , 1";
     }
-
+	
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -1522,7 +1566,8 @@ function databox_data(
 		
         $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
         $templates->set_var ('udatetime', $A[udatetime]);
-        $templates->set_var ('last_modify_uid', $A['uuid']);
+		$templates->set_var ('last_modify_uid', $A['uuid']);
+		
         $templates->set_var ('last_modify_name', $A['last_modify_name']);
         $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
 		
@@ -1600,7 +1645,7 @@ function databox_data(
         if ($A['draft_flag']!==1){
 
             $id=$A['id'];
-            $hits=DB_getItem($_TABLES['DATABOX_base'],"hits","id={$id}");
+            $hits=DB_getItem($_TABLES['DATABOX_stats'],"hits","id={$id}");
             if (empty($hits)) {
                 $hits=0;
             }

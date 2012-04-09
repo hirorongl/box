@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/field_editor.thtml  20101011 { -->
+<!-- plugins/databox/templates/admin/field_editor.thtml  20120316 { -->
 
 <div id="databox_admin">
 {about_thispage}
@@ -116,14 +116,6 @@
             <th style="width:30%" class="alignright">{lang_selectlist}{help_selectlist}</th>
             <td style="width:70%">
                 {list_selectlist}
-            </td>
-        </tr>
-
-        <!-- group  -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_group}{help_group}</th>
-            <td style="width:70%">
-                {list_group}
             </td>
         </tr>
 

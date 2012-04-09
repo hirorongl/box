@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2011/12/29 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2012/04/06 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -62,7 +62,7 @@
 <td>
 カテゴリ別一覧<br />
 例１：[userbox:category] <br />
-例２：[userbox:category category_id:1 templatedir:aaa nohitmsg:yes perpage:10 page:1 order:id]
+例２：[userbox:category category_id:1 templatedir:aaa nohitmsg:yes perpage:10 page:1 order:id]<br />
 例３：[userbox:category category_code:japan ]<br />
 例４：[userbox:category category_code:japan|america ] カテゴリコードがjapan またはamerica<br />
 例５：[userbox:category category_code:japan|groupA mode:and] カテゴリコードがjapan かつgroupA<br />
@@ -106,6 +106,17 @@ order に指定できるのは、 random date orderno code title description id 
 例１：[userbox:field field_id:99 value:xx ]<br />
 例２：[userbox:field field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
 例３：[userbox:field field_code:xxx value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+</td>
+</tr>
+
+<tr >
+<td>[userbox:msg　メッセージ]</td>
+<td>
+<br />
+例１：[userbox:msg ] すべてのユーザ用メッセージを表示<br />
+例２：[userbox:msg for:draftuser] ドラフトユーザ用メッセージを表示<br />
+例３：[userbox:msg for:alluser]  すべてのユーザ用メッセージを表示<br />
+メッセージの内容は、言語ファイルに記述しています。
 </td>
 </tr>
 

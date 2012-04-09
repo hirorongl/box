@@ -37,7 +37,7 @@
 // +---------------------------------------------------------------------------+
 //
 // $Id: install_defaults.php
-// 20110331
+// 20120403
 
 if (strpos($_SERVER['PHP_SELF'], 'install_defaults.php') !== false) {
     die('This file can not be used on its own!');
@@ -114,6 +114,9 @@ $_USERBOX_DEFAULT['allow_group_update'] = 1;
 //@@@@@
 //（プロフィール） ログインユーザを登録する　default いいえ
 $_USERBOX_DEFAULT['allow_loggedinusers'] =0;//@@@@@@
+
+//デフォルト画像URL
+$_USERBOX_DEFAULT['default_img_url'] = "";
 
 //---（１）新着
 // 新着の期間
@@ -433,6 +436,13 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,0);
 		
+		$c->add(
+            'default_img_url'
+            ,$_USERBOX_DEFAULT['default_img_url']
+            ,'text', 0, 0, NULL, 250, TRUE
+			, $pi_name
+			,0);
+
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
 

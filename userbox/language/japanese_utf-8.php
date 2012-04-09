@@ -11,14 +11,14 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120125
+# Last Update 20120403
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= '情報';
 $LANG_USERBOX_admin_menu['2']= 'プロフィール';
-$LANG_USERBOX_admin_menu['3']= '追加項目';
+$LANG_USERBOX_admin_menu['3']= '追加属性';
 $LANG_USERBOX_admin_menu['4']= 'カテゴリ';
 $LANG_USERBOX_admin_menu['5']= 'グループ';
 $LANG_USERBOX_admin_menu['6']= 'バックアップ＆リストア';
@@ -33,6 +33,13 @@ $LANG_USERBOX_user_menu['2']= 'マイプロフィール';
 $LANG_USERBOX_user_menu['7']= 'マイグループ';
 
 $LANG_USERBOX_user_menu['1']= 'プロフィール確認';
+
+###############################################################################
+$LANG_USERBOX_MSG = array();
+$LANG_USERBOX_MSG['alluser'] = "";
+$LANG_USERBOX_MSG['draftuser'] = 
+ "<a href=\"{$_CONF['site_url']}/userbox/myprofile/profile.php\">"
+."プロフィールを編集してください。</a>";
 
 ###############################################################################
 $LANG_USERBOX = array();
@@ -53,7 +60,7 @@ $LANG_USERBOX['home']="HOME";
 $LANG_USERBOX['view']="表示";
 $LANG_USERBOX['count']="件数";
 $LANG_USERBOX['category_top']="カテゴリ別件数一覧";
-$LANG_USERBOX['field_top']="項目別件数一覧";
+$LANG_USERBOX['field_top']="属性別件数一覧";
 
 $LANG_USERBOX['search_link']="";
 
@@ -184,12 +191,12 @@ $LANG_USERBOX_ADMIN['must'] = '*必須';
 $LANG_USERBOX_ADMIN['enabled'] = '有効';
 $LANG_USERBOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_USERBOX_ADMIN['additionfields'] = '追加項目';
-$LANG_USERBOX_ADMIN['basicfields'] = '基本項目';
+$LANG_USERBOX_ADMIN['additionfields'] = '追加属性';
+$LANG_USERBOX_ADMIN['basicfields'] = '基本属性';
 
 
 $LANG_USERBOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_USERBOX_ADMIN['field_id'] = '項目ID';
+$LANG_USERBOX_ADMIN['field_id'] = '追加属性ID';
 $LANG_USERBOX_ADMIN['name'] = '名称';
 $LANG_USERBOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_USERBOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -198,7 +205,7 @@ $LANG_USERBOX_ADMIN['parent_id'] = '親ID';
 $LANG_USERBOX_ADMIN['parent_flg'] = '親グループ？';
 
 
-$LANG_USERBOX_ADMIN['orderno'] = '順番';
+$LANG_USERBOX_ADMIN['orderno'] = '表示位置';
 
 $LANG_USERBOX_ADMIN['field'] = 'フィールド';
 $LANG_USERBOX_ADMIN['fields'] = 'フィールド';
@@ -241,7 +248,7 @@ $LANG_USERBOX_ADMIN['online'] = 'オンライン';
 $LANG_USERBOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_USERBOX_ADMIN['about_admin_profile'] = 'プロフィールの管理';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_USERBOX_ADMIN['about_admin_field'] = '追加項目の管理';
+$LANG_USERBOX_ADMIN['about_admin_field'] = '追加属性の管理';
 $LANG_USERBOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_USERBOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
 $LANG_USERBOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
@@ -276,6 +283,7 @@ $LANG_USERBOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
 $LANG_USERBOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
 $LANG_USERBOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@
 
+$LANG_USERBOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
 
 $LANG_USERBOX_ADMIN['err_backup_file_not_exist'] = 'バックアップファイルがありません';
 $LANG_USERBOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップファイル書換できません';
@@ -291,7 +299,7 @@ $LANG_USERBOX_ADMIN['err_group_not_exist'] = '対象グループがありませ�
 
 $LANG_USERBOX_ORDER['random']="ランダム";
 $LANG_USERBOX_ORDER['date']="日付順";
-$LANG_USERBOX_ORDER['orderno']="順番順";
+$LANG_USERBOX_ORDER['orderno']="表示位置順";
 $LANG_USERBOX_ORDER['username']=$LANG28[3]."順";
 $LANG_USERBOX_ORDER['fullname']=$LANG28[4]."順";
 $LANG_USERBOX_ORDER['description']="説明順";
@@ -389,7 +397,7 @@ $LANG_USERBOX_TYPE[2] = 'いいえ/はい';
 $LANG_USERBOX_TYPE[3] = '日付　（date picker対応）';
 $LANG_USERBOX_TYPE[4] = '日時　（準備中）';
 $LANG_USERBOX_TYPE[5] = 'メールアドレス';
-$LANG_USERBOX_TYPE[6] = 'url　（準備中）';
+$LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'オプションリスト';
 $LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト';
 $LANG_USERBOX_TYPE[9] = '既定リスト　（準備中）';
@@ -479,6 +487,7 @@ $LANG_confignames['userbox']['grp_id_default'] = 'グループのデフォルト
 $LANG_confignames['userbox']['allow_profile_update'] = 'ユーザにプロフィールの更新を許可する';
 $LANG_confignames['userbox']['allow_group_update'] = 'ユーザにマイグループの更新を許可する';
 $LANG_confignames['userbox']['allow_loggedinusers'] = 'ログインユーザを登録する';
+$LANG_confignames['userbox']['default_img_url'] = 'デフォルト画像URL';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';
@@ -492,7 +501,7 @@ $LANG_tab['userbox'][tab_search] = '検索';
 
 $LANG_fs['userbox'][fs_search] = '検索結果';
 $LANG_confignames['userbox']['include_search'] = 'データを検索する';
-$LANG_confignames['userbox']['additionsearch'] = '検索対象にする追加項目の数';
+$LANG_confignames['userbox']['additionsearch'] = '検索対象にする追加属性の数';
 
 //---(3)
 $LANG_tab['userbox'][tab_permissions] = 'パーミッション';
@@ -531,7 +540,7 @@ $LANG_confignames['userbox']['file_path'] = 'ファイル保存  絶対アドレ
 $LANG_confignames['userbox']['file_size'] = 'ファイルサイズ';
 $LANG_confignames['userbox']['file_type'] = 'ファイルタイプ';
 //---(６)
-$LANG_tab['user']['tab_autotag_permissions'] = '自動タグのパーミッション';
+$LANG_tab['userbox']['tab_autotag_permissions'] = '自動タグのパーミッション';
 $LANG_fs['userbox']['fs_autotag_permissions'] = '自動タグのパーミッション （[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
 $LANG_confignames['userbox']['autotag_permissions_userbox'] = '[userbox: ] パーミッション';
 

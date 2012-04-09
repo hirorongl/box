@@ -119,14 +119,6 @@
             </td>
         </tr>
 
-        <!-- group  -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_group}{help_group}</th>
-            <td style="width:70%">
-                {list_group}
-            </td>
-        </tr>
-
         <!-- order -->
         <tr>
             <th style="width:30%" class="alignright">{lang_orderno}</th>

@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2012/01/19 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2012/04/03 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -29,11 +29,31 @@
     <th style="width:60%">テーマ変数</th>
 </tr>
 <tbody>
-<tr >
-<td   rowspan=2>
+<tr  >
+<td   rowspan=3>
 カテゴリ別件数一覧<br/>
 public_html/category.php<br/>
 </td>
+<td>
+【category】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+site_mail,
+og_title,
+og_image,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+</td>
+</tr>
+
+<tr >
 <td>
 【category】list.thtml,navigation.thtml,row.thtml
 ,col.thtml,pagenavigation.thtml
@@ -54,7 +74,7 @@ blockfooter,
 </td>
 </tr>
 
-<tr>
+<tr >
 <td>
 【category】col.thtml 
 </td>
@@ -73,10 +93,30 @@ count
 
 
 <tr class="r2">
-<td  rowspan=2>
+<td  rowspan=4>
 カテゴリ別一覧<br/>
 public_html/category.php?m=id&id=1<br/>
 </td>	
+<td>
+【category】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+site_mail,
+og_title,
+og_image,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+</td>
+</tr>
+
+<tr class="r2">
 <td>
 【category】
 list_detail.thtml 
@@ -129,6 +169,22 @@ site_url,
  data_user_photo
  </br><a  href="#notefoot_add" class="note_super" title="">追加項目のテーマ変数</a>
  </td>
+</tr>
+<tr class="r2">
+<td>
+【category】nohit.thtml
+</td>
+<td>
+home
+,category_top
+,category_name
+,category_code
+,category_description
+,xhtml
+,site_url
+,site_admin_url
+,layout_url
+,lang_nohit</td>
 </tr>
 
 <tr >

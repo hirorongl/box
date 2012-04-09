@@ -1002,9 +1002,7 @@ function fncsendmail (
 
         if ($numrows > 0) {
 
-			$A = DB_fetchArray ($result);
-			$A = array_map('stripslashes', $A);
-
+            $A = DB_fetchArray ($result);
             $email=$A['email'];
 
             //下書
@@ -1041,7 +1039,7 @@ function fncsendmail (
             $url.="?";
             if ($_USERBOX_CONF['datacode']){
                 $url.="m=code";
-                $url.="&code=".$A['username'];
+                $url.="&code=".$A['code'];
             }else{
                 $url.="m=id";
                 $url.="&id=".$A['id'];

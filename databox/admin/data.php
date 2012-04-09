@@ -1226,8 +1226,8 @@ function fncSave (
     $fields.=",defaulttemplatesdirectory";//
     $values.=",'$defaulttemplatesdirectory'";
 
-    $fields.=",hits";//
-    $values.=",$hits";
+    //$fields.=",hits";//
+    //$values.=",$hits";
 
     $fields.=",comments";//
     $values.=",$comments";

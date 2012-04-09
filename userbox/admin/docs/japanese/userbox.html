@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定</a></h3>
+<h3><a name="public">メイン設定(2012/04/02 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -230,7 +230,7 @@
 </tr>
 
 
-<tr>
+<tr class="r2">
   <td><a name="desc_allow_profile_update">ユーザにプロフィールの更新を許可する(allow_profile_update)</a></td>
   <td>はい(1)</td>
   <td>いいえ(0)にすると、ユーザにプロフィールの更新を許可しません。</td>
@@ -240,12 +240,17 @@
   <td>はい(1)</td>
   <td>いいえ(0)にすると、ユーザにマイグループの更新を許可しません。</td>
 </tr>
-<tr>
+<tr class="r2">
   <td><a name="desc_allow_loggedinusers">ログインユーザを登録する(allow_loggedinusers)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、ログインユーザをUserBoxに登録します。</td>
 </tr>
-
+<tr >
+  <td valign="top"><a name="desc_default_img_url">デフォルト画像URL(default_img_url)</a></td>
+  <td valign="top">　</td>
+  <td valign="top">カテゴリ一覧等のメタタグ設定で使用
+    </td>
+</tr>
 </tbody></table>
 
 <h3><a name="whatsnew">新着情報ブロック</a></h3>

@@ -22,6 +22,10 @@ $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
 //debug 時 true
 $_DATABOX_VERBOSE = false;
 
+//==============================================================================
+function fnclist(
+	$template
+)
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別件数一覧表示
 // | 書式
@@ -29,7 +33,6 @@ $_DATABOX_VERBOSE = false;
 // | 引数　$template　使用するテンプレートフォルダの名前
 // | 戻値
 // +---------------------------------------------------------------------------+
-function fnclist($template)
 {
     global $_CONF;
     global $_TABLES;
@@ -103,10 +106,20 @@ function fnclist($template)
     } else {
         $page_title = sprintf ('%s ', $LANG_DATABOX['category_top']);
     }
-    $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
-    $retval .= DATABOX_siteHeader('DATABOX','',$page_title,$headercode);
+    $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>".LB;
+	
+	// Meta Tags
+	$headercode.=DATABOX_getheadercode(	
+		"category"
+		,$template
+		,$pi_name
+		,0
+		,$_CONF['site_name']
+		,$_CONF['meta_description']
+		,$_CONF['smeta_keywords']
+		,$_CONF['meta_description']);
+    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
 
-    //
 
     $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
     $templates = new Template($tmplfld);
@@ -117,7 +130,6 @@ function fnclist($template)
         'col'   => "col.thtml",
         'pagenav'  => 'pagenavigation.thtml'
         ));
-
 
     //
     $templates->set_var ('site_url',$_CONF['site_url']);

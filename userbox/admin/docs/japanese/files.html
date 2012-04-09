@@ -20,7 +20,7 @@
 </p>
 <h1><a href="index.html">UserBox プラグイン</h1>
 
-<h2><a name="files">ファイル構成</a></h2>
+<h2><a name="files">ファイル構成(2012/04/04update)</a></h2>
 <pre><code>
 -userbox
   ├ admin
@@ -30,6 +30,8 @@
   │ │ │ ├ files.html
   │ │ │ ├ index.html
   │ │ │ ├ install.html
+  │ │ │ ├ tables.html
+  │ │ │ ├ templatesetvars.html
   │ │ │ └ userbox.html
   │ │ │
   │ │ ├ changed-files
@@ -41,11 +43,11 @@
   │ ├ bqckuprestore.php
   │ ├ category.php
   │ ├ field.php
-  │ ├ userbox_functions.php
   │ ├ group.php
   │ ├ index.php
   │ ├ information.php
   │ ├ profile.php
+  │ ├ userbox_functions.php
   │ └ view.php
   │
   ├ custom  (各サイトでご用意ください)
@@ -58,14 +60,15 @@
   │   （指定言語がない場合にも使用されます）
   │
   ├ lib (boxシリーズ共通)
-  │ ├ databox_funcions.inc 
   │ ├ com_getyearformoptions.php 
   │ ├ comj_dlfile.php 
   │ ├ comj_dltbldt.php 
+  │ ├ databox_funcions.inc 
   │ ├ lib_category.php 
   │ ├ lib_configuration.php 
   │ ├ lib_datetimeedit.php 
   │ ├ lib_field.php 
+  │ ├ lib_getfilelist.php 
   │ ├ lib_group.php 
   │ ├ lib_mail_is_mobile.php 
   │ ├ lib_outlog.php 
@@ -88,8 +91,8 @@
   │ ├ category.php
   │ ├ category_group.php
   │ ├ field.php
-  │ ├ profile.php
-  │ └ index.php
+  │ ├ index.php
+  │ └ profile.php
   │
   ├ sql
   │ └ mysql_install.php
@@ -99,33 +102,28 @@
   │ │ ├ backuprestore.thtml
   │ │ ├ category_editor.thtml
   │ │ ├ confirmation.thtml
-  │ │ ├ data_col_detail.thtml
-  │ │ ├ data_editor.thtml
   │ │ ├ field_editor.thtml
   │ │ ├ group_editor.thtml
   │ │ ├ import_url.thtml
   │ │ ├ information.thtml
+  │ │ ├ profile_col_detail.thtml
+  │ │ ├ profile_editor.thtml
   │ │ ├ row.thtml
   │ │ ├ view.thtml
   │ │ └ xml_editor.thtml
   │ │
   │ ├ category
   │ │ └ default
-  │ │    ├ col_detail.thtml
   │ │    ├ col.thtml
+  │ │    ├ col_detail.thtml
   │ │    ├ grp.thtml
-  │ │    ├ list_detail.thtml
+  │ │    ├ headercode.thtml
   │ │    ├ list.thtml
-  │ │    ├ navigation_detail.thtml
-  │ │    ├ navigation.thtml
-  │ │    ├ pagenavigation.thtml
-  │ │    └ row.thtml
-  │ │
-  │ ├ profile
-  │ │ └ default
-  │ │    ├ category_row.thtml
-  │ │    ├ col_detial.thtml
   │ │    ├ list_detail.thtml
+  │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    ├ pagenavigation.thtml
   │ │    └ row.thtml
   │ │
   │ ├ field
@@ -140,30 +138,39 @@
   │ │    ├ pagenavigation.thtml
   │ │    └ row.thtml
   │ │
-  │ ├ mydata
+  │ ├ myprofile
   │ │ └ default
-  │ │    ├ col_detail.thtml
-  │ │    ├ col.thtml
-  │ │    ├ col2.thtml
-  │ │    ├ list_detail.thtml
-  │ │    ├ list.thtml
-  │ │    ├ navigation_detail.thtml
-  │ │    ├ navigation.thtml
-  │ │    ├ pagenavigation.thtml
-  │ │    └ row.thtml
+  │ │    ├ profile_col_detail.thtml
+  │ │    ├ profile_editor.thtml
+  │ │    ├ row.thtml
+  │ │    ├ securitygroup_editor.thtml
+  │ │    ├ securitygroup_group.thtml
+  │ │    └ view.thtml
   │ │
-  │ └ newlist
-  │    └ default
-  │       ├ list_col.thtml
-  │       └ list.thtml
+  │ ├ newlist
+  │ │ └ default
+  │ │    ├ list_col.thtml
+  │ │    └ list.thtml
+  │ │
+  │ └ profile
+  │   └ default
+  │      ├ category_row.thtml
+  │      ├ col_detial.thtml
+  │      ├ headercode.thtml
+  │      ├ list_detail.thtml
+  │      ├ nohit.thtml
+  │      └ row.thtml
+  │ 
   │
   ├ autoinstall.php
   ├ config.php
   ├ configuration_validation.php
+  ├ functions.inc
   ├ functions_autotag.inc  
+  ├ functions_comment.inc  
   ├ functions_feed.inc
   ├ functions_search.inc
-  ├ functions.inc
+  ├ functions_stats.inc
   ├ install_defaults.php
   └ version.php
   

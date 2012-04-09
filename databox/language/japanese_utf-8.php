@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120307
+# Last Update 20120403
 
 ###############################################################################
 ## 管理画面 menu
@@ -334,6 +334,7 @@ $LANG_DATABOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@
 $LANG_DATABOX_ADMIN['err_field_w'] = '当フィールドはすでに登録されています';
 $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されています';
 
+$LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
 
 $LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'バックアップファイルがありません';
 $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップファイル書換できません';
@@ -438,7 +439,7 @@ $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付　（date picker対応）';
 $LANG_DATABOX_TYPE[4] = '日時　（準備中）';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
-$LANG_DATABOX_TYPE[6] = 'url　（準備中）';
+$LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト';
 $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト';
 $LANG_DATABOX_TYPE[9] = '既定リスト　（準備中）';
@@ -518,6 +519,8 @@ $LANG_confignames['databox']['aftersave'] = '保存後の画面遷移 一般画�
 $LANG_confignames['databox']['aftersave_admin'] = '保存後の画面遷移 管理画面';
 
 $LANG_confignames['databox']['grp_id_default'] = 'グループのデフォルト';
+
+$LANG_confignames['databox']['default_img_url'] = 'デフォルト画像URL';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';

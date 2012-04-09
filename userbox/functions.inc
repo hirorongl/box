@@ -4,7 +4,8 @@
 // | UserBox プラグイン                                                        |
 // +---------------------------------------------------------------------------+
 // $Id: plugins/userbox/functions.inc
-//2011622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//20110622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//20120406
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -12,19 +13,23 @@ if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
 
 $pi_name         = 'userbox';
 
-
 //言語ファイル
+//指定の言語を使用、なければ英語.英語がなければ日本語
 $langfile = $_CONF['path'] . "plugins/{$pi_name}/language/"
           . $_CONF['language'] . '.php';
 
 if (file_exists ($langfile)) {
-    require_once ($langfile);
-
+    include_once ($langfile);
 } else {
-    require_once ($_CONF['path'] . "plugins/{$pi_name}/language/japanese_utf-8.php");
+	$w=$_CONF['path'] . "plugins/{$pi_name}/language/english_utf-8.php";
+	if (file_exists($w)){
+		include_once($w);
+	}else{
+		include_once ($_CONF['path'] . "plugins/{$pi_name}/language/japanese_utf-8.php");
+	}
 }
 
-//custom 言語ファイル
+//custom language があれば、それを上書使用します。
 $langfile_custom = $_CONF['path'] . "plugins/{$pi_name}/custom/language/"
           . $_CONF['language'] . '.php';
 
@@ -62,24 +67,27 @@ require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_comment.inc");
 // | Geeklog Plugin API Implementation
 // +---------------------------------------------------------------------------+
 
+function plugin_chkVersion_userbox ()
 // +---------------------------------------------------------------------------+
 // | 現在インストールされているバージョン取得
-// | 書式 plugin_chkVersion_userbox
 // +---------------------------------------------------------------------------+
-function plugin_chkVersion_userbox ()
 {
     global $_USERBOX_CONF;
 
     return $_USERBOX_CONF['version'];
 }
 
-// +---------------------------------------------------------------------------+
-// | 機能  プラグイン更新:バージョンナンバーの更新                             |
-// | 書式 plugin_upgrade_userbox                                               |
-// +---------------------------------------------------------------------------+
 function plugin_upgrade_userbox ()
+// +---------------------------------------------------------------------------+
+// | 機能  プラグイン更新:
+// +---------------------------------------------------------------------------+
 {
-    global $_TABLES, $_USERBOX_CONF;
+	global $_TABLES;
+	global $_USERBOX_CONF;
+	global $_CONF;
+	global $config;
+	
+	$pi_name    = 'userbox';
 
     // the plugin needs these functions so complain when they doesn't exist
     if (!function_exists ('COM_truncate') ||
@@ -87,17 +95,33 @@ function plugin_upgrade_userbox ()
         return 3002;
     }
 
-    // no db changes - just update the version numbers
-    DB_query ("UPDATE {$_TABLES['plugins']} SET pi_version = '{$_USERBOX_CONF['version']}', pi_gl_version = '" . VERSION . "' WHERE pi_name = 'userbox'");
+	$installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
+                                    "pi_name = '{$pi_name}'");
+	$newversion=$_USERBOX_CONF['version'];
+	
+	//update the configuration
+		require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_configuration.php');
+
+		$rt=LIB_Backupconfig($pi_name,"update");
+		$rt=LIB_Deleteconfig($pi_name,$config);
+		$rt=LIB_Initializeconfig($pi_name);
+		$rt=LIB_Restoreconfig($pi_name,$config,"update");
+	
+	//update the version numbers
+	$sql="UPDATE {$_TABLES['plugins']} SET";
+	$sql.=" pi_version = '{$newversion}' ";
+	$sql.=" ,pi_gl_version = '" . VERSION . "'";
+	$sql.="	WHERE pi_name = 'userbox'";
+    DB_query ($sql);
 
     return true;
 }
 
+
+function plugin_autouninstall_userbox ()
 // +---------------------------------------------------------------------------+
 // | 機能  プラグインアンインストール
-// | 書式 plugin_autouninstall_userbox
 // +---------------------------------------------------------------------------+
-function plugin_autouninstall_userbox ()
 {
     // (1) 削除するテーブル
     $out['tables'][]='USERBOX_addition';
@@ -134,9 +158,7 @@ function plugin_autouninstall_userbox ()
 
 /**
 * ☆★現在のユーザは権利があるのをチェック
-*
-* @return        boolean       Returns true if moderator
-*
+* 使用せず
 */
 function plugin_ismoderator_userbox()
 {
@@ -146,22 +168,20 @@ function plugin_ismoderator_userbox()
 
 
 
+function plugin_geticon_userbox ()
 // +---------------------------------------------------------------------------+
 // | 機能  プラグインのアイコン取得
-// | 書式 plugin_geticon_userbox
 // +---------------------------------------------------------------------------+
-function plugin_geticon_userbox ()
 {
     global $_CONF;
 
     return $_CONF['site_url'] . '/userbox/images/icons/userbox.png';
 }
 
+function plugin_cclabel_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  管理画面メニュ
-// | 書式 plugin_cclabel_userbox
 // +---------------------------------------------------------------------------+
-function plugin_cclabel_userbox()
 {
     global $_CONF;
 
@@ -175,13 +195,10 @@ function plugin_cclabel_userbox()
 
 }
 
-// +---------------------------------------------------------------------------+
-// | 機能  管理者メニュ表示
-// | 書式 plugin_getadminoption_usrerbox
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:管理者メニュリンク                                             |
-// +---------------------------------------------------------------------------+
 function plugin_getadminoption_userbox()
+// +---------------------------------------------------------------------------+
+// | 機能  管理者メニュ表示(管理者ブロック)
+// +---------------------------------------------------------------------------+
 {
     global $_CONF;
     global $_TABLES;
@@ -193,19 +210,15 @@ function plugin_getadminoption_userbox()
                       $_CONF['site_admin_url'] . '/plugins/userbox/index.php'
                       ,$cnt);
 
-
     }
     return "";
 
 }
 
+function plugin_getmenuitems_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダメニュリンクを返す                                            |
-// | 書式 plugin_getmenuitems_userbox                                          |
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:ヘッダメニュリンク                                             |
-// +---------------------------------------------------------------------------+
-function plugin_getmenuitems_userbox()
 {
     global $_CONF;
     global $_USER;
@@ -226,14 +239,10 @@ function plugin_getmenuitems_userbox()
     return $menuitems;
 }
 
-// +---------------------------------------------------------------------------+
-// | 機能  User Function ニュリンクを返す
-// | 書式 plugin_getuseroption_userbox
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:User Function メニュリンク
-// +---------------------------------------------------------------------------+
-//
 function plugin_getuseroption_userbox()
+// +---------------------------------------------------------------------------+
+// | 機能  User Function ニュリンクを返す（ユーザブロック）
+// +---------------------------------------------------------------------------+
 {
     global $_CONF;
     global $LANG_USERBOX;
@@ -252,13 +261,10 @@ function plugin_getuseroption_userbox()
 
 }
 
+function plugin_whatsnewsupported_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  新着
-// | 書式 plugin_whatsnewsupported_userbox
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-function plugin_whatsnewsupported_userbox()
 {
     global $_TABLES;
     global $_USERBOX_CONF;
@@ -277,14 +283,11 @@ function plugin_whatsnewsupported_userbox()
     return $retval;
 }
 
+function plugin_getwhatsnew_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  新着
-// | 書式 plugin_getwhatsnew_userbox
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 // @@@@@@再テスト要　日付あたり 件数指定？１５？
-function plugin_getwhatsnew_userbox()
 {
     global $_CONF;
     global $_TABLES;
@@ -351,14 +354,11 @@ function plugin_getwhatsnew_userbox()
 }
 
 
+function plugin_user_delete_userbox ($uid)
 // +---------------------------------------------------------------------------+
 // | 機能  ユーザ削除                                                          |
-// | 書式 plugin_user_delete_profile                                           |
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 // 20110613
-function plugin_user_delete_userbox ($uid)
 {
     global $_TABLES;
 	
@@ -380,19 +380,19 @@ function plugin_user_delete_userbox ($uid)
 
 }
 
-// +---------------------------------------------------------------------------+
-// | 機能  ユーザ新規登録                                                      |
-// +---------------------------------------------------------------------------+
-// update20120327
 function plugin_user_create_userbox (
 	$uid
 )
+// +---------------------------------------------------------------------------+
+// | 機能  ユーザ新規登録                                                      |
+// +---------------------------------------------------------------------------+
+// update20120406
 {
 	if  (userbox_isuser($uid)===FALSE){
 		return;
 	}
 	
-	global $_USERBOX_CONF;//@@@@@20110613
+	global $_USERBOX_CONF;
     global $_TABLES;
     global $_USER;
 	
@@ -405,8 +405,9 @@ function plugin_user_create_userbox (
         $uuid=$uid;
     }
 
-    $group_id =$_USERBOX_CONF['grp_id_default'];//@@@@@20110613
-
+    $group_id =$_USERBOX_CONF['grp_id_default'];
+	$draft_flag=$_USERBOX_CONF['user_draft_default'];//add20120406
+	
     $array = array();
     SEC_setDefaultPermissions($array, $_USERBOX_CONF['default_perm']);
     $perm_owner = $array['perm_owner'];
@@ -418,7 +419,9 @@ function plugin_user_create_userbox (
     $sql.="INSERT INTO {$_TABLES['USERBOX_base']} (".LB;
     $sql.=" `id`,`owner_id`,`modified`,`created`,`released`".LB;
     $sql.=" ,`uuid`".LB;
-    $sql.=" ,`group_id`,`perm_owner`,`perm_group`,`perm_anon`,`perm_members`".LB;
+	$sql.=" ,`group_id`,`perm_owner`,`perm_group`,`perm_anon`,`perm_members`".LB;
+    $sql.=" ,`draft_flag`".LB;
+	
     $sql.=")".LB;
 
     $sql .= " VALUES (".LB;
@@ -429,6 +432,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$perm_group.LB ;
     $sql.=" ,".$perm_anon.LB ;
     $sql.=" ,".$perm_members.LB ;
+    $sql.=" ,".$draft_flag.LB ;
 
     $sql .= ")";
     DB_query ($sql);
@@ -475,13 +479,14 @@ function plugin_user_create_userbox (
     }
 
 }
+
+function plugin_getheadercode_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダコード編集：
 // | jQueryプラグインのjquery_datepickerを使えるようにする
 // | jQueryプラグインが有効であること
 // +---------------------------------------------------------------------------+
 //
-function plugin_getheadercode_userbox()
 {
     global $_PLUGINS;
 	global $_SCRIPTS;
@@ -509,13 +514,14 @@ function plugin_getheadercode_userbox()
 	}
 	return;
 }
+
+function plugin_enablestatechange_userbox ($enable)
 // +---------------------------------------------------------------------------+
 // | 機能  無効←→有効変更された時の処理
 // | フィードの有効無効の変更
 // | User にないデータを削除　UserBox にないデータを追加
 // +---------------------------------------------------------------------------+
 //
-function plugin_enablestatechange_userbox ($enable)
 {
 	global $_CONF;
     global $_TABLES;
@@ -536,13 +542,13 @@ function plugin_enablestatechange_userbox ($enable)
 	}
 }
 
-//PLG_groupChanged
-// @param    int     $grp_id     Group ID
-// @param    string  $mode       type of change: 'new', 'edit', or 'delete'
 function plugin_group_changed_userbox (
 	$grp_id
 	,$mode
 )
+// +---------------------------------------------------------------------------+
+// | 機能  グループを変更した時の処理（mode=new,edit,delete）
+// +---------------------------------------------------------------------------+
 {
 	global $_CONF;
 	
@@ -554,6 +560,9 @@ function plugin_group_changed_userbox (
 function plugin_user_changed_userbox (
 	$uid
 )
+// +---------------------------------------------------------------------------+
+// | 機能  ユーザを変更した時の処理（mode=new,edit,delete）
+// +---------------------------------------------------------------------------+
 {
 	global $_TABLES;
 
@@ -579,10 +588,15 @@ function plugin_configchange_userbox (
 	$group
 	, $changes = array()
 )
+// +---------------------------------------------------------------------------+
+// | 機能  コンフィギュレーション設定を変更した時の処理
+// +---------------------------------------------------------------------------+
 {
     global $_USERBOX_CONF;
 	
-    $need_update = FALSE;
+	//allow_loggedinusers(ログインユーザを登録する)が変更された時は
+	//user を更新する
+	$need_update = FALSE;
 
     if ($group == 'userbox') {
         if (is_array($changes) AND (count($changes) > 0)) {
@@ -604,15 +618,14 @@ function plugin_configchange_userbox (
 		$dummy=userbox_update();
 	}
 }
-/**
-* Provide URL of a documentation file
-*
-* @param   string  $file   documentation file being requested, e.g. 'config'
-* @return  mixed           URL or false when not available
-*/
+
 function plugin_getdocumentationurl_userbox(
 	$file
-) {
+)
+// +---------------------------------------------------------------------------+
+// | 機能  ドキュメント表示（コンフィギュレーション設定画面）
+// +---------------------------------------------------------------------------+
+{
 	global $_CONF;
 
 	static $doc_url = NULL;
@@ -648,16 +661,22 @@ function plugin_getdocumentationurl_userbox(
 */
 function plugin_getconfigtooltip_userbox(
 	$id
-){
+)
+// +---------------------------------------------------------------------------+
+// | 機能  config tooltip hack 使用せず
+// +---------------------------------------------------------------------------+
+{
 	// Use config tooltip hack where tooltip is read from the config documentation
 	return NULL;
 }
 
 
-// userboxuser
 function userbox_isuser(
 	$uid
 )
+// +---------------------------------------------------------------------------+
+// | 機能  UserBox ユーザかどうかの判定を返す　true or false
+// +---------------------------------------------------------------------------+
 {
 	global $_USERBOX_CONF;
 	global $_TABLES;

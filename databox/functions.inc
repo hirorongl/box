@@ -79,16 +79,37 @@ function plugin_upgrade_databox ()
 // | 機能  プラグイン更新:バージョンナンバーの更新                             |
 // +---------------------------------------------------------------------------+
 {
-    global $_TABLES, $_DATABOX_CONF;
-
+	global $_TABLES;
+	global $_DATABOX_CONF;
+	global $_CONF;
+	global $config;
+	
+	$pi_name    = 'databox';
+	
     // the plugin needs these functions so complain when they doesn't exist
     if (!function_exists ('COM_truncate') ||
         !function_exists ('MBYTE_strpos')) {
         return 3002;
     }
+	
+	$installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
+                                    "pi_name = '{$pi_name}'");
+	$newversion=$_DATABOX_CONF['version'];
+	
+	//update the configuration
+		require_once ($_CONF['path'] . 'plugins/databox/lib/lib_configuration.php');
 
-    // no db changes - just update the version numbers
-    DB_query ("UPDATE {$_TABLES['plugins']} SET pi_version = '{$_DATABOX_CONF['version']}', pi_gl_version = '" . VERSION . "' WHERE pi_name = 'databox'");
+		$rt=LIB_Backupconfig($pi_name,"update");
+		$rt=LIB_Deleteconfig($pi_name,$config);
+		$rt=LIB_Initializeconfig($pi_name);
+		$rt=LIB_Restoreconfig($pi_name,$config,"update");
+	
+	//update the version numbers
+	$sql="UPDATE {$_TABLES['plugins']} SET";
+	$sql.=" pi_version = '{$newversion}' ";
+	$sql.=" ,pi_gl_version = '" . VERSION . "'";
+	$sql.="	WHERE pi_name = 'databox'";
+    DB_query ($sql);
 
     return true;
 }

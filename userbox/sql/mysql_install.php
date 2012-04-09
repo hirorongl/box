@@ -1,6 +1,6 @@
 <?php
 // 20101110 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20120117
+// Last Update 20120330
 
 //ADDTION DATA
 $_SQL[] = "
@@ -23,7 +23,6 @@ CREATE TABLE {$_TABLES['USERBOX_base']} (
   `page_title` varchar(128) DEFAULT NULL,
   `description` mediumtext,
   `defaulttemplatesdirectory` varchar(40) NOT NULL DEFAULT '',
-  `hits` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `comments` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `comment_expire` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `commentcode` tinyint(4) NOT NULL DEFAULT '0',
@@ -39,15 +38,12 @@ CREATE TABLE {$_TABLES['USERBOX_base']} (
   `modified` datetime NOT NULL,
   `created` datetime NOT NULL,
   `released` datetime NOT NULL,
-
   `expired` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `orderno` int(2) NOT NULL DEFAULT '0',
-
   `draft_flag` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `hits` (`hits`),
   KEY `modified` (`modified`),
   KEY `created` (`created`),
   KEY `released` (`released`),
@@ -98,8 +94,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_field']} (
   `maxlength` int(11) DEFAULT NULL,
   `rows` int(11) DEFAULT NULL,
   `br` binary(1) DEFAULT NULL,
-  `fieldgroup_id` int(11) DEFAULT NULL,
-   `orderno` int(2) DEFAULT NULL,
+  `orderno` int(2) DEFAULT NULL,
   `allow_display` binary(1) DEFAULT 0,
   `allow_edit` binary(1) DEFAULT 0,
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

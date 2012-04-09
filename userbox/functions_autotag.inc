@@ -11,6 +11,639 @@ if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
     die ('This file can not be used on its own.');
 }
 
+//=====自動タグ=================================================================
+function plugin_autotags_userbox (
+	$op
+	, $content = ''
+	, $autotag = '')
+// +---------------------------------------------------------------------------+
+// | 自動タグ
+// | 書式 plugin_autotags_userbox ($op, $content, $autotag)
+// +---------------------------------------------------------------------------+
+// 20101229
+{
+    global $_TABLES;
+    global $_CONF;
+	global $LANG_USERBOX_autotag_desc;
+	
+    //Option Display
+    if ($op == 'tagname' ) {
+        $tagname[]='userbox';
+		return $tagname;
+	} elseif ($op == 'permission' || $op == 'nopermission') {
+	    if ($op == 'permission') {
+            $flag = true;
+        } else {
+            $flag = false;
+        }
+
+		if (isset($_GROUPS['UserBox Admin'])) {
+			$group_id = $_GROUPS['UserBox Admin'];
+        } else {
+            $group_id = DB_getItem($_TABLES['groups'], 'grp_id',
+                                   "grp_name = 'UserBox Admin'");
+        }
+        $owner_id = SEC_getDefaultRootUser();
+
+		if (COM_getPermTag(
+			$owner_id
+			, $group_id
+			, $_USERBOX_CONF['autotag_permissions_userbox'][0]
+			, $_USERBOX_CONF['autotag_permissions_userbox'][1]
+			, $_USERBOX_CONF['autotag_permissions_userbox'][2]
+			, $_USERBOX_CONF['autotag_permissions_userbox'][3]) == $flag) {
+            return $tagname;
+        }
+
+    } elseif ($op == 'description') {
+        return $LANG_USERBOX_autotag_desc;
+    } else if ($op == 'parse') {
+        //引数チェック
+        $p1 = COM_applyFilter ($autotag['parm1']);
+        $p2 = COM_applyFilter ($autotag['parm2']);
+        $tag = COM_applyFilter ($autotag['tag']);
+        $tagstr = COM_applyFilter ($autotag['tagstr']);
+
+        $p=userbox_parm2($p2);
+
+        //各処理
+        switch( $tag ) {
+            case 'userbox' :
+                switch($p1) {
+                    case 'count':
+                        $rt= userbox_count(
+                            $p['category_id']
+                            ,$p['category_code']
+							,$p['mode']
+                            );
+                        break;
+                    case 'newlist':
+                            if ($p['category_id']<>""){
+                                $m="id";
+                                $categories=$p['category_id'];
+                            }elseif ($p['category_code']<>"") {
+                                $m="code";
+                                $categories=$p['category_code'];
+                            }else{
+                                $m="ALL";
+                                $categories="";
+                            }
+                            $rt= userbox_newlist(
+                            $m
+                            ,$categories
+                            ,$p['rss_file']
+                            ,$p['title_trim_length']
+                            ,$p['intervalday']
+                            ,$p['limitcnt']
+                            ,$p['newmarkday']
+                            ,$p['templatedir']
+                            );
+                        break;
+
+                    case 'profile':
+                        $rt= userbox_profile(
+                            $p['uid']
+                            ,$p['templatedir']
+                            ,$p['nohitmsg']
+                            ,""
+                            ,$p['username']
+                            );
+                        break;
+                    case 'category':
+                        $rt= userbox_category(
+                            "autotag"
+                            ,$p['category_id']
+                            ,$p['templatedir']
+                            ,$p['nohitmsg']
+                            ,$p['perpage']
+                            ,$p['page']
+                            ,$p['order']
+							,$p['category_code']
+							,$p['mode']
+                        );
+                        break;
+                    case 'additioncount':
+                        $rt=userbox_count_each_afield(
+                            $p['templatesetvar']
+                            ,$p['value']
+                            );
+                        break;
+                    case 'lastmodified':
+                        $rt= userbox_grp(
+                            "modified"
+                            ,"max"
+                            ,"lastmodified"
+                            ,$p['category_id']
+                            ,$p['category_code']
+                            );
+                        break;
+                    case 'lastcreated':
+                        $rt= userbox_grp(
+                            "created"
+                            ,"max"
+                            ,"lastcreated"
+                            ,$p['category_id']
+                            ,$p['category_code']
+                            );
+                        break;
+                    case 'field':
+                        $rt= userbox_field(
+                            "autotag"
+                            ,$p['field_id']
+                            ,$p['value']
+                            ,$p['templatedir']
+                            ,$p['nohitmsg']
+                            ,$p['perpage']
+                            ,$p['page']
+                            ,$p['order']
+                            ,$p['field_code']
+                        );
+                        break;
+                    case 'msg':
+                        $rt=userbox_msg($p['for']) ;
+                        break;
+                }
+
+                $content = str_replace ($autotag['tagstr'], $rt, $content);
+                return $content;
+        }
+    }
+}
+
+ 
+
+//第二引数分割
+function userbox_parm2 ($p2)
+{
+    $ary=array();
+    $px = explode (' ', trim ($p2));
+    if (is_array ($px)) {
+        foreach ($px as $part) {
+            $a = explode (':', $part);
+            $ary["{$a[0]}"]=$a[1];
+        }
+    }
+    return $ary;
+
+}
+//=====ブロック関数============================================================
+function phpblock_shownewuserbox()
+// +---------------------------------------------------------------------------+
+// | 機能  ブロック用 新着data一覧出力                                         |
+// | 書式 phpblock_shownewuserbox()                                            |
+// +---------------------------------------------------------------------------+
+{
+    return userbox_newlist();
+}
+//=====専用関数============================================================
+//
+function userbox_category(
+    $autotag
+    ,$category_id=null
+    ,$template=null
+    ,$nohitmsg=""
+    ,$perpage =0
+    ,$page=null
+    ,$order=null
+	,$category_code=null
+	,$mode=''
+
+)
+
+// +---------------------------------------------------------------------------+
+// | 機能  カテゴリ別一覧表示
+// | 書式  userbox_category($id,$template,"yes","page",$perpage)
+// | 書式  userbox_category($p['category_id'],$p['thtml'],$p['nohitmsg']
+// | 書式                    ,"",$p['perpage'],$p['order'],$p['code']
+// +---------------------------------------------------------------------------+
+// | 引数 $category_id:カテゴリid
+// | 引数 $template:使用するテンプレートのフォルダ名
+// | 引数 $nohitmsg      :"yes"の時nohitメッセージ表示
+// | 引数 $m             :"page"の時ヘッダ表示
+// | 引数 $perpage       :1pageあたりの件数、0の時改ページなし
+// | 引数 $order         :順序
+// | 引数 $code          :
+// | 引数 $mode          :ブランク　または　AND
+// +---------------------------------------------------------------------------+
+// | public_html/category.php および　自動タグで使用
+// | ヘッダはコンフィギュレーション設定により表示されない場合があります
+// | idもcodeも指定されない場合は、全カテゴリ
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:category list
+// +---------------------------------------------------------------------------+
+{
+
+    $pi_name="userbox";
+
+    global $_CONF;
+    global $_TABLES;
+
+    global $_USERBOX_CONF;
+    global $LANG_USERBOX;
+    global $LANG_USERBOX_ADMIN;
+	global $LANG28;
+	
+	//ログイン要否チェック
+    if (COM_isAnonUser()){
+        if  ($_CONF['loginrequired']
+                OR ($_USERBOX_CONF['loginrequired'] >1) ){
+            return $LANG_USERBOX['loginrequired'];
+        }
+
+    }
+
+    //-----テーブル
+    $tbl1=$_TABLES['USERBOX_category'] ;
+    $tbl2=$_TABLES['USERBOX_base'] ;
+    $tbl3=$_TABLES['USERBOX_addition'] ;
+	$tbl4=$_TABLES['users'] ;
+	//
+    $tbl5=$_TABLES['USERBOX_def_category'] ;
+	
+	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
+
+	//-----引数チェック
+	$ids="";
+	$idsary=array();
+	if (is_null($category_id) OR $category_id==0){
+		if (is_null($category_code)){
+		}else{
+			$w=explode("|",$category_code);
+			foreach( $w as $val ){
+				if ($ids<>""){
+					$ids.=",";
+				}
+				$w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
+				$idsary[]=$w_id;
+				$ids.=$w_id;
+			}
+		}
+	}else{
+		$ids=$category_id;
+		$idsary[]=$category_id;
+	}
+	
+	//--CATEGORY
+    $category_name="";
+    $defaulttemplatesdirectory = "";
+	if (count($idsary)<>0){
+		
+        for ($i = 0; $i < count($idsary); $i++) {
+			$sql = "SELECT ";
+			$sql .= " name ".LB;
+			$sql .= " ,code ".LB;
+			$sql .= " ,description ".LB;
+			$sql .= " ,defaulttemplatesdirectory".LB;
+			$sql .= " FROM ".LB;
+			$sql .= " {$tbl5} AS t5 ".LB;
+			$sql	 .= " WHERE ".LB;
+			$sql .= " t5.category_id =".$idsary[$i].LB;
+		
+			$result = DB_query ($sql);
+			$numrows = DB_numRows ($result);
+			if ($numrows > 0) {
+				$A = DB_fetchArray ($result);
+				$category_name.=COM_applyFilter($A['name'])." ";
+				$category_description.=COM_applyFilter($A['description'])." ";
+				if ($i==0){
+					$defaulttemplatesdirectory=COM_applyFilter($A['defaulttemplatesdirectory']);
+				}
+			}
+		}
+    }
+
+    if (is_null($template) or ($template==="")){
+        if ($defaulttemplatesdirectory===""){
+            $template="default";
+        }else{
+            $template=$defaulttemplatesdirectory;
+        }
+    }
+	
+	//
+	if (is_null($page) OR !isset($page) OR $page == 0) {
+        $page = 1;
+	}
+    if ($perpage===0 OR is_null($perpage)){
+        $perpage=$_USERBOX_CONF['perpage'];
+    }
+	//
+    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder);
+
+    //-----	
+    $sql = "SELECT ";
+
+    $sql .= " t2.id ".LB;
+    $sql .= " ,t2.description ".LB;
+    $sql .= " ,t2.".$datefield." AS datefield ".LB;
+
+    $sql .= " ,t2.group_id";
+    $sql .= " ,t2.owner_id";
+
+    $sql .= " ,t4.username";
+    $sql .= " ,t4.fullname";
+    $sql .= " ,t4.photo";
+    $sql .= " ,t4.email";
+    if ($addfieldorder){
+        $sql .= " ,t3.value ".LB;
+    }
+	
+	//--FROM
+    $sql .= " FROM ".LB;
+    $sql .= " {$tbl2} AS t2 ".LB;
+    $sql .= " ,{$tbl4} AS t4 ".LB;
+	if ($addfieldorder){
+        $sql .= " ,{$tbl3} AS t3 ".LB;
+    }
+	
+	//--WHERE
+    $sql .= " WHERE ".LB;
+	$sql .= " t2.id=t4.uid ".LB;
+	
+	if (count($idsary)<>0){
+		if (strtoupper($mode)=="AND"){
+			$w="";
+			foreach( $idsary as $val ){
+				if ($w<>""){
+					$w.=" AND ";
+				}
+				$w.=$val." IN (SELECT category_id";
+				$w.=" FROM {$tbl1} AS t1 ";
+				$w.=" WHERE t2.id = t1.id)";
+			}
+		}else{
+			$w= "id IN (SELECT id FROM {$tbl1} ";
+			$w.="WHERE category_id IN ({$ids})) ";
+		}
+		$sql.=" AND ({$w})".LB;
+	}
+	
+    if ($addfieldorder){
+        $sql .= " AND t3.field_id=".$field_id.LB;
+        $sql .= " AND t3.id=t2.id".LB;
+    }
+	//下書データはのぞく
+    $sql .= " AND t2.draft_flag=0".LB;
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND',0,2,"t2");
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())".LB;
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())";
+	
+	//--ORDER
+    $sql .= " ORDER BY ".LB;
+    $sql .= $orderby.LB;
+	
+	//
+    $result = DB_query ($sql);
+    $cnt = DB_numRows ($result);
+
+    $pages = 0;
+     if ($perpage > 0) {
+        $pages = ceil($cnt / $perpage);
+    }
+    $offset = ($page - 1) * $perpage;
+    $sql .= " LIMIT $offset, $perpage";
+
+    //自動タグでない時　ヘッダ、左ブロック
+    if ($autotag==="notautotag"){
+        if ($page > 1) {
+            $page_title = sprintf ('%s (%d)', $category_name, $page);
+        } else {
+            $page_title = sprintf ('%s ', $category_name);
+        }
+		// Meta Tags
+		$headercode=DATABOX_getheadercode(	
+			"category"
+			,$template
+			,$pi_name
+			,$category_id
+			,$category_name
+			,$category_description
+			,$category_name
+			,$category_description);
+        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+    }
+
+
+    $result = DB_query ($sql);
+    $numrows = DB_numRows ($result);
+
+	if ($numrows > 0) {
+		
+		$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+		$templates = new Template($tmplfld);
+		$templates->set_file (array (
+			'list' => 'list_detail.thtml',
+			'nav'   => 'navigation_detail.thtml',
+			'row'   => 'row.thtml',
+			'col'   => "col_detail.thtml",
+			'pagenav'  => 'pagenavigation.thtml'
+			));
+		
+		$templates->set_var ('site_url',$_CONF['site_url']);
+		$templates->set_var ('this_script',THIS_SCRIPT);
+
+		//bread
+		$templates->set_var ('home',$LANG_USERBOX['home']);
+
+		$url=$_CONF['site_url']."/userbox/category.php";
+		$category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
+		$templates->set_var ('category_top',$category_top);
+
+		$templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_list_h2']);
+
+		$templates->set_var ('category_name',$category_name);
+		$templates->set_var ('category_code',$category_code);
+		$templates->set_var ('category_description',$category_description);
+	
+
+		//page
+		$templates->set_var ('cnt', $cnt);
+		$lin1=$offset+1;
+		$lin2=$lin1+$perpage - 1;
+		if ($lin2>$cnt){
+			$lin2=$cnt;
+		}
+
+		//summary navigation
+		$templates->set_var ('lang_view', $LANG_USERBOX['view']);
+		$templates->set_var ('lin', $lin1."-".($lin2));
+		$templates->set_var ('cnt', $cnt);
+
+		$templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
+
+		$templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
+		$templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
+		$templates->set_var ('lang_uid', $LANG28[2]);
+		$templates->set_var ('lang_username', $LANG28[3]);
+		$templates->set_var ('lang_fullname',$LANG28[4]);
+
+		//
+		$templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
+
+		$templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
+		$templates->set_var ('lang_addfield', $addfield_name);
+		// 追加項目のヘッダ
+		$addition_def=DATABOX_getadditiondef($pi_name);
+		//
+		
+        for ($i = 0; $i < $numrows; $i++) {
+            $A = DB_fetchArray ($result);
+
+            $description=COM_applyFilter($A['description']);
+            $username=COM_applyFilter($A['username']);
+            $fullname=COM_applyFilter($A['fullname']);
+            $id=COM_applyFilter($A['id']);
+            $datefield=COM_applyFilter($A['datefield']);
+            $value=COM_applyFilter($A['value']);
+
+            $url=$_CONF['site_url'] . "/userbox/profile.php";
+            $url.="?";
+            //コード使用の時
+            if ($_USERBOX_CONF['datacode']){
+                $url.="m=code";
+                $url.="&code=".$A['username'];
+            }else{
+                $url.="m=id";
+                $url.="&id=".$A['id'];
+            }
+            $url = COM_buildUrl( $url );
+            $link= COM_createLink($username, $url);
+
+
+            $templates->set_var ('data_link', $link);
+
+            $templates->set_var ('fullname', $A['fullname']);
+
+            $templates->set_var ('data_username', $username);
+
+            $templates->set_var ('data_description', $description);
+            $templates->set_var ('data_id', $id);
+            $templates->set_var ('data_url', $url);
+            $templates->set_var ('data_datefield', $datefield);
+			$templates->set_var ('data_value', $value);
+			
+			//
+			
+		    if (isset($A['photo']) && empty($A['photo'])) {
+				$A['photo'] = '(none)'; // user does not have a photo
+				$templates->set_var('data_photo', "");
+			}else{
+				$templates->set_var('data_photo', $A['photo']);
+			}
+			$photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
+			$templates->set_var('data_user_photo', $photo);
+
+
+            //追加項目
+            $group_id = stripslashes($A['group_id']);
+            $owner_id = stripslashes($A['owner_id']);
+            $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
+            $additionfields = DATABOX_getadditiondatas($id,$pi_name);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+
+            //=====
+            $templates->parse ('col_var', 'col', true);
+            $templates->parse ('row_var', 'row', true);
+
+            $templates->set_var ('col_var', '');
+
+        }
+
+        //------------
+        //-----navigation
+        $url = $_CONF['site_url']  . '/';
+        if ($autotag==="notautotag"){
+            $url.=THIS_SCRIPT;
+        }else{
+            $url.="userbox/category.php";
+		}
+		if ($category_code<>""){
+			$url .= "?m=code";
+			$url .= "&code=".$category_code;
+			$url .= "&ands=".$ands;
+			$url .= "&template=".$template;
+			$url .= "&order=";
+		}else{
+			$url .= "?m=id";
+			$url .= "&id=".$category_id;
+			$url .= "&template=".$template;
+			$url .= "&order=";
+		}
+		
+        //-----order navigation
+        userbox_order ($url, $templates, $order) ;
+        //-----page navigation
+        $url .= $order;
+        $templates->set_var ('page_navigation',
+                COM_printPageNavigation ($url, $page, $pages));
+        if ($order==="random"){
+            $templates->set_var ( 'pagenavinone', 'style="display:none;"' );
+        }else{
+            $templates->set_var ( 'pagenavinone', '' );
+        }
+        //------------
+        $templates->parse ('nav_var', 'nav', true);
+
+        $templates->set_var ('blockfooter',COM_endBlock());
+
+        $templates->set_var ('msg', "");
+        //@@@@@@@@$templates->set_var ('search_link', $LANG_USERBOX['search_link']);
+        //@@@@@@@@$templates->set_var ('search_var',"");
+
+        $templates->parse ('output', 'list');
+
+        $content = $templates->finish ($templates->get_var ('output'));
+        $retval .=$content;
+
+    }else{
+        if ($nohitmsg==="yes"){
+			$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+			$templates = new Template($tmplfld);
+			$templates->set_file (array (
+                'list' => 'nohit.thtml',
+			));
+			
+			$templates->set_var ('home',$LANG_USERBOX['home']);
+			
+			$url=$_CONF['site_url']."/userbox/category.php";
+			$category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
+			$templates->set_var ('category_top',$category_top);
+
+			$templates->set_var ('category_name',$category_name);
+			$templates->set_var ('category_code',$category_code);
+			$templates->set_var ('category_description',$category_description);
+						
+			$templates->set_var('xhtml', XHTML);
+			$templates->set_var('site_url', $_CONF['site_url']);
+			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+			$templates->set_var('layout_url', $_CONF['layout_url']);
+			
+			$templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
+
+			$templates->parse ('output', 'list');
+			$content = $templates->finish ($templates->get_var ('output'));
+			$retval .=$content;
+        }
+    }
+
+    $retval =PLG_replacetags ($retval);
+
+    //return $dbg.$retval;
+    return $retval;
+}
+
+
+
+
+
+function userbox_count(
+    $category_id =null
+	,$category_code =null
+	,$mode=''
+)
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示
 // +---------------------------------------------------------------------------+
@@ -20,15 +653,10 @@ if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
 // +---------------------------------------------------------------------------+
 // | 引数 $category_id:カテゴリid　（優先）
 // | 引数 $category_code:カテゴリコード
+// | 引数 $mode          :ブランク　または　AND
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:データ総数、カテゴリ別データ件数
 // +---------------------------------------------------------------------------+
-
-function userbox_count(
-    $category_id =null
-	,$category_code =null
-	,$mode=''
-)
 {
     global $_TABLES;
 
@@ -110,6 +738,15 @@ function userbox_count(
     return $rt;
 
 }
+
+
+function userbox_grp(
+    $field=null
+    ,$function=null
+    ,$format=null
+    ,$category_id =null
+    ,$category_code =null
+)
 // +---------------------------------------------------------------------------+
 // | 機能  集計表示(max min sum)
 // +---------------------------------------------------------------------------+
@@ -125,14 +762,6 @@ function userbox_count(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:データ総数、カテゴリ別データ件数
 // +---------------------------------------------------------------------------+
-
-function userbox_grp(
-    $field=null
-    ,$function=null
-    ,$format=null
-    ,$category_id =null
-    ,$category_code =null
-)
 {
     global $_TABLEdS;
     global $LANG_USERBOX;
@@ -220,6 +849,11 @@ function userbox_grp(
 }
 
 
+
+function userbox_count_each_afield(
+    $templatesetvar=""
+    ,$value=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  指定追加項目の指定データに一致する件数表示
 // +---------------------------------------------------------------------------+
@@ -230,11 +864,6 @@ function userbox_grp(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:指定追加項目の指定データに一致する件数
 // +---------------------------------------------------------------------------+
-
-function userbox_count_each_afield(
-    $templatesetvar=""
-    ,$value=""
-)
 {
     global $_TABLES;
 
@@ -289,182 +918,15 @@ function userbox_count_each_afield(
 
 }
 
-// +---------------------------------------------------------------------------+
-// | 自動タグ
-// | 書式 plugin_autotags_userbox ($op, $content, $autotag)
-// +---------------------------------------------------------------------------+
-// 20101229
 
-function plugin_autotags_userbox ($op, $content = '', $autotag = '')
-{
-    global $_TABLES;
-    global $_CONF;
-	global $LANG_USERBOX_autotag_desc;
-	
-    //Option Display
-    if ($op == 'tagname' ) {
-        $tagname[]='userbox';
-		return $tagname;
-	} elseif ($op == 'permission' || $op == 'nopermission') {
-	    if ($op == 'permission') {
-            $flag = true;
-        } else {
-            $flag = false;
-        }
 
-		if (isset($_GROUPS['UserBox Admin'])) {
-			$group_id = $_GROUPS['UserBox Admin'];
-        } else {
-            $group_id = DB_getItem($_TABLES['groups'], 'grp_id',
-                                   "grp_name = 'UserBox Admin'");
-        }
-        $owner_id = SEC_getDefaultRootUser();
-
-		if (COM_getPermTag(
-			$owner_id
-			, $group_id
-			, $_USERBOX_CONF['autotag_permissions_userbox'][0]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][1]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][2]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][3]) == $flag) {
-            return $tagname;
-        }
-
-    } elseif ($op == 'description') {
-        return $LANG_USERBOX_autotag_desc;
-    } else if ($op == 'parse') {
-        //引数チェック
-        $p1 = COM_applyFilter ($autotag['parm1']);
-        $p2 = COM_applyFilter ($autotag['parm2']);
-        $tag = COM_applyFilter ($autotag['tag']);
-        $tagstr = COM_applyFilter ($autotag['tagstr']);
-
-        $p=userbox_parm2($p2);
-
-        //各処理
-        switch( $tag ) {
-            case 'userbox' :
-                switch($p1) {
-                    case 'count':
-                        $rt= userbox_count(
-                            $p['category_id']
-                            ,$p['category_code']
-							,$p['mode']
-                            );
-                        break;
-                    case 'newlist':
-                            if ($p['category_id']<>""){
-                                $m="id";
-                                $categories=$p['category_id'];
-                            }elseif ($p['category_code']<>"") {
-                                $m="code";
-                                $categories=$p['category_code'];
-                            }else{
-                                $m="ALL";
-                                $categories="";
-                            }
-                            $rt= userbox_newlist(
-                            $m
-                            ,$categories
-                            ,$p['rss_file']
-                            ,$p['title_trim_length']
-                            ,$p['intervalday']
-                            ,$p['limitcnt']
-                            ,$p['newmarkday']
-                            ,$p['thtml']
-                            );
-                        break;
-
-                    case 'profile':
-                        $rt= userbox_profile(
-                            $p['uid']
-                            ,$p['templatedir']
-                            ,$p['nohitmsg']
-                            ,""
-                            ,$p['username']
-                            );
-                        break;
-                    case 'category':
-                        $rt= userbox_category(
-                            "autotag"
-                            ,$p['category_id']
-                            ,$p['templatedir']
-                            ,$p['nohitmsg']
-                            ,$p['perpage']
-                            ,$p['page']
-                            ,$p['order']
-							,$p['category_code']
-							,$p['mode']
-                        );
-                        break;
-                    case 'additioncount':
-                        $rt=userbox_count_each_afield(
-                            $p['templatesetvar']
-                            ,$p['value']
-                            );
-                        break;
-                    case 'lastmodified':
-                        $rt= userbox_grp(
-                            "modified"
-                            ,"max"
-                            ,"lastmodified"
-                            ,$p['category_id']
-                            ,$p['category_code']
-                            );
-                        break;
-                    case 'lastcreated':
-                        $rt= userbox_grp(
-                            "created"
-                            ,"max"
-                            ,"lastcreated"
-                            ,$p['category_id']
-                            ,$p['category_code']
-                            );
-                        break;
-                    case 'field':
-                        $rt= userbox_field(
-                            "autotag"
-                            ,$p['field_id']
-                            ,$p['value']
-                            ,$p['templatedir']
-                            ,$p['nohitmsg']
-                            ,$p['perpage']
-                            ,$p['page']
-                            ,$p['order']
-                            ,$p['field_code']
-                        );
-                        break;
-
-					case 'test':
-                        $rt= userbox_test(
-                           $p['para']
-                        );
-                        break;
-                }
-
-                $content = str_replace ($autotag['tagstr'], $rt, $content);
-                return $content;
-        }
-    }
-}
-
- 
-
-//第二引数分割
-function userbox_parm2 ($p2)
-{
-    $ary=array();
-    $px = explode (' ', trim ($p2));
-    if (is_array ($px)) {
-        foreach ($px as $part) {
-            $a = explode (':', $part);
-            $ary["{$a[0]}"]=$a[1];
-        }
-    }
-    return $ary;
-
-}
-
+function userbox_profile(
+    $id=null
+    ,$template=null
+    ,$nohitmsg=""
+    ,$m=""
+    ,$code=null
+)
 // +---------------------------------------------------------------------------+
 // | 機能  データ表示
 // | 書式  userbox_profile($id,$template,"yes","page")
@@ -483,13 +945,6 @@ function userbox_parm2 ($p2)
 // | 戻値 nomal:profile
 // +---------------------------------------------------------------------------+
 // 20120125
-function userbox_profile(
-    $id=null
-    ,$template=null
-    ,$nohitmsg=""
-    ,$m=""
-    ,$code=null
-)
 {
     $pi_name="userbox";
 
@@ -539,21 +994,24 @@ function userbox_profile(
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";
-    $sql .= " ,{$tbl1} AS t1 ";
-    $sql .= " ,{$tbl1} AS t3 ";//last_updateowner
+    //$sql .= " ,{$tbl1} AS t1 ";
+    //$sql .= " ,{$tbl1} AS t3 ";//last_updateowner
+	$sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
+    $sql .= " LEFT JOIN  {$tbl1} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
     $sql .= " WHERE ";
 
 
     if (is_null($id)){//@@@@@
-        $sql .= " t.id=t1.uid";
+        //$sql .= " t.id=t1.uid";
+		$sql .= "1=1";
 
     }else{
         $sql .= " t.id=".$id;
-        $sql .= " AND t.id=t1.uid";
+        //$sql .= " AND t.id=t1.uid";
 
     }
-	$sql .= " AND t.uuid=t3.uid";
+	//$sql .= " AND t.uuid=t3.uid";
 
     //管理者の時,下書データも含む
     if ( SEC_hasRights('userbox.admin') OR $m==="view") {
@@ -572,6 +1030,8 @@ function userbox_profile(
         $sql .= " ORDER BY ".$_USERBOX_CONF['datefield'] . " DESC ";
         $sql .= " LIMIT 0 , 1";
     }
+	
+	COM_errorLog("[USERBOX] userbox_profile sql={$sql}");//@@@@@
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -780,7 +1240,7 @@ function userbox_profile(
         if ($A['draft_flag']!==1){
 
             $id=$A['id'];
-            $hits=DB_getItem($_TABLES['USERBOX_base'],"hits","id={$id}");
+            $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
             if (empty($hits)) {
                 $hits=0;
             }
@@ -821,414 +1281,19 @@ function userbox_profile(
 
 
 
-// +---------------------------------------------------------------------------+
-// | 機能  カテゴリ別一覧表示
-// | 書式  userbox_category($id,$template,"yes","page",$perpage)
-// | 書式  userbox_category($p['category_id'],$p['thtml'],$p['nohitmsg']
-// | 書式                    ,"",$p['perpage'],$p['order'],$p['code']
-// +---------------------------------------------------------------------------+
-// | 引数 $category_id:カテゴリid
-// | 引数 $template:使用するテンプレートのフォルダ名
-// | 引数 $nohitmsg      :"yes"の時nohitメッセージ表示
-// | 引数 $m             :"page"の時ヘッダ表示
-// | 引数 $perpage       :1pageあたりの件数、0の時改ページなし
-// | 引数 $order         :順序
-// | 引数 $code          :
-// +---------------------------------------------------------------------------+
-// | public_html/category.php および　自動タグで使用
-// | ヘッダはコンフィギュレーション設定により表示されない場合があります
-// | idもcodeも指定されない場合は、全カテゴリ
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:category list
-// +---------------------------------------------------------------------------+
-// 20101129
-function userbox_category(
+function userbox_field(
     $autotag
-    ,$category_id=null
+    ,$field_id=null
+
+    ,$value=""
+
     ,$template=null
     ,$nohitmsg=""
     ,$perpage =0
     ,$page=null
     ,$order=null
-	,$category_code=null
-	,$mode=''
-
+    ,$field_code=null
 )
-{
-
-    $pi_name="userbox";
-
-    global $_CONF;
-    global $_TABLES;
-
-    global $_USERBOX_CONF;
-    global $LANG_USERBOX;
-    global $LANG_USERBOX_ADMIN;
-	global  $LANG28;
-	
-	//ログイン要否チェック
-    if (COM_isAnonUser()){
-        if  ($_CONF['loginrequired']
-                OR ($_USERBOX_CONF['loginrequired'] >1) ){
-            return $LANG_USERBOX['loginrequired'];
-        }
-
-    }
-
-    //-----テーブル
-    $tbl1=$_TABLES['USERBOX_category'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl3=$_TABLES['USERBOX_addition'] ;
-	$tbl4=$_TABLES['users'] ;
-	//
-    $tbl5=$_TABLES['USERBOX_def_category'] ;
-	
-	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
-
-	//-----引数チェック
-	$ids="";
-	$idsary=array();
-	if (is_null($category_id) OR $category_id==0){
-		if (is_null($category_code)){
-		}else{
-			$w=explode("|",$category_code);
-			foreach( $w as $val ){
-				if ($ids<>""){
-					$ids.=",";
-				}
-				$w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
-				$idsary[]=$w_id;
-				$ids.=$w_id;
-			}
-		}
-	}else{
-		$ids=$category_id;
-		$idsary[]=$category_id;
-	}
-	
-	//--CATEGORY
-    $category_name="";
-    $defaulttemplatesdirectory = "";
-	if (count($idsary)<>0){
-		
-        for ($i = 0; $i < count($idsary); $i++) {
-			$sql = "SELECT ";
-			$sql .= " name ".LB;
-			$sql .= " ,code ".LB;
-			$sql .= " ,description ".LB;
-			$sql .= " ,defaulttemplatesdirectory".LB;
-			$sql .= " FROM ".LB;
-			$sql .= " {$tbl5} AS t5 ".LB;
-			$sql	 .= " WHERE ".LB;
-			$sql .= " t5.category_id =".$idsary[$i].LB;
-		
-			$result = DB_query ($sql);
-			$numrows = DB_numRows ($result);
-			if ($numrows > 0) {
-				$A = DB_fetchArray ($result);
-				$category_name.=COM_applyFilter($A['name'])." ";
-				$category_description.=COM_applyFilter($A['description'])." ";
-				if ($i==0){
-					$defaulttemplatesdirectory=COM_applyFilter($A['defaulttemplatesdirectory']);
-				}
-			}
-		}
-    }
-
-    if (is_null($template) or ($template==="")){
-        if ($defaulttemplatesdirectory===""){
-            $template="default";
-        }else{
-            $template=$defaulttemplatesdirectory;
-        }
-    }
-	
-	//
-	if (is_null($page) OR !isset($page) OR $page == 0) {
-        $page = 1;
-	}
-    if ($perpage===0 OR is_null($perpage)){
-        $perpage=$_USERBOX_CONF['perpage'];
-    }
-	//
-    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder);
-
-    //-----	
-    $sql = "SELECT ";
-
-    $sql .= " t2.id ".LB;
-    $sql .= " ,t2.description ".LB;
-    $sql .= " ,t2.".$datefield." AS datefield ".LB;
-
-    $sql .= " ,t2.group_id";
-    $sql .= " ,t2.owner_id";
-
-    $sql .= " ,t4.username";
-    $sql .= " ,t4.fullname";
-    $sql .= " ,t4.photo";
-    $sql .= " ,t4.email";
-    if ($addfieldorder){
-        $sql .= " ,t3.value ".LB;
-    }
-	
-	//--FROM
-    $sql .= " FROM ".LB;
-    $sql .= " {$tbl2} AS t2 ".LB;
-    $sql .= " ,{$tbl4} AS t4 ".LB;
-	if ($addfieldorder){
-        $sql .= " ,{$tbl3} AS t3 ".LB;
-    }
-	
-	//--WHERE
-    $sql .= " WHERE ".LB;
-	$sql .= " t2.id=t4.uid ".LB;
-	
-	if (count($idsary)<>0){
-		if (strtoupper($mode)=="AND"){
-			$w="";
-			foreach( $idsary as $val ){
-				if ($w<>""){
-					$w.=" AND ";
-				}
-				$w.=$val." IN (SELECT category_id";
-				$w.=" FROM {$tbl1} AS t1 ";
-				$w.=" WHERE t2.id = t1.id)";
-			}
-		}else{
-			$w= "id IN (SELECT id FROM {$tbl1} ";
-			$w.="WHERE category_id IN ({$ids})) ";
-		}
-		$sql.=" AND ({$w})".LB;
-	}
-	
-    if ($addfieldorder){
-        $sql .= " AND t3.field_id=".$field_id.LB;
-        $sql .= " AND t3.id=t2.id".LB;
-    }
-	//下書データはのぞく
-    $sql .= " AND t2.draft_flag=0".LB;
-    //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND',0,2,"t2");
-    //公開日以前のデータはのぞく
-    $sql .= " AND (released <= NOW())".LB;
-    //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())";
-	
-	//--ORDER
-    $sql .= " ORDER BY ".LB;
-    $sql .= $orderby.LB;
-	
-	//
-    $result = DB_query ($sql);
-    $cnt = DB_numRows ($result);
-
-    $pages = 0;
-     if ($perpage > 0) {
-        $pages = ceil($cnt / $perpage);
-    }
-
-    //自動タグでない時　ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $category_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $category_name);
-        }
-        $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title);
-    }
-
-    $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
-    $templates = new Template($tmplfld);
-    $templates->set_file (array (
-        'list' => 'list_detail.thtml',
-        'nav'   => 'navigation_detail.thtml',
-        'row'   => 'row.thtml',
-        'col'   => "col_detail.thtml",
-        'pagenav'  => 'pagenavigation.thtml'
-        ));
-
-
-    //
-    $templates->set_var ('site_url',$_CONF['site_url']);
-    $templates->set_var ('this_script',THIS_SCRIPT);
-
-    //bread
-    $templates->set_var ('home',$LANG_USERBOX['home']);
-
-    $url=$_CONF['site_url']."/userbox/category.php";
-    $category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
-    $templates->set_var ('category_top',$category_top);
-
-    $templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_list_h2']);
-
-    $templates->set_var ('category_name',$category_name);
-    $templates->set_var ('category_code',$category_code);
-    $templates->set_var ('category_description',$category_description);
-	
-
-    //page
-    $offset = ($page - 1) * $perpage;
-    $templates->set_var ('cnt', $cnt);
-    $lin1=$offset+1;
-    $lin2=$lin1+$perpage - 1;
-    if ($lin2>$cnt){
-        $lin2=$cnt;
-    }
-
-    //summary navigation
-    $templates->set_var ('lang_view', $LANG_USERBOX['view']);
-    $templates->set_var ('lin', $lin1."-".($lin2));
-    $templates->set_var ('cnt', $cnt);
-
-    $templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
-
-    $templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
-    $templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
-    $templates->set_var ('lang_uid', $LANG28[2]);
-    $templates->set_var ('lang_username', $LANG28[3]);
-    $templates->set_var ('lang_fullname',$LANG28[4]);
-
-    //
-    $templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
-
-    $templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
-    $templates->set_var ('lang_addfield', $addfield_name);
-    // 追加項目のヘッダ
-    $addition_def=DATABOX_getadditiondef($pi_name);
-    //
-
-    $sql .= " LIMIT $offset, $perpage";
-
-    $result = DB_query ($sql);
-    $numrows = DB_numRows ($result);
-
-    if ($numrows > 0) {
-        for ($i = 0; $i < $numrows; $i++) {
-            $A = DB_fetchArray ($result);
-
-            $description=COM_applyFilter($A['description']);
-            $username=COM_applyFilter($A['username']);
-            $fullname=COM_applyFilter($A['fullname']);
-            $id=COM_applyFilter($A['id']);
-            $datefield=COM_applyFilter($A['datefield']);
-            $value=COM_applyFilter($A['value']);
-
-            $url=$_CONF['site_url'] . "/userbox/profile.php";
-            $url.="?";
-            //コード使用の時
-            if ($_USERBOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['username'];
-            }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
-            }
-            $url = COM_buildUrl( $url );
-            $link= COM_createLink($username, $url);
-
-
-            $templates->set_var ('data_link', $link);
-
-            $templates->set_var ('fullname', $A['fullname']);
-
-            $templates->set_var ('data_username', $username);
-
-            $templates->set_var ('data_description', $description);
-            $templates->set_var ('data_id', $id);
-            $templates->set_var ('data_url', $url);
-            $templates->set_var ('data_datefield', $datefield);
-			$templates->set_var ('data_value', $value);
-			
-			//
-			
-		    if (isset($A['photo']) && empty($A['photo'])) {
-				$A['photo'] = '(none)'; // user does not have a photo
-				$templates->set_var('data_photo', "");
-			}else{
-				$templates->set_var('data_photo', $A['photo']);
-			}
-			$photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
-			$templates->set_var('data_user_photo', $photo);
-
-
-            //追加項目
-            $group_id = stripslashes($A['group_id']);
-            $owner_id = stripslashes($A['owner_id']);
-            $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
-            $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
-
-            //=====
-            $templates->parse ('col_var', 'col', true);
-            $templates->parse ('row_var', 'row', true);
-
-            $templates->set_var ('col_var', '');
-
-        }
-
-        //------------
-        //-----navigation
-        $url = $_CONF['site_url']  . '/';
-        if ($autotag==="notautotag"){
-            $url.=THIS_SCRIPT;
-        }else{
-            $url.="userbox/category.php";
-		}
-		if ($category_code<>""){
-			$url .= "?m=code";
-			$url .= "&code=".$category_code;
-			$url .= "&ands=".$ands;
-			$url .= "&template=".$template;
-			$url .= "&order=";
-		}else{
-			$url .= "?m=id";
-			$url .= "&id=".$category_id;
-			$url .= "&template=".$template;
-			$url .= "&order=";
-		}
-		
-        //-----order navigation
-        userbox_order ($url, $templates, $order) ;
-        //-----page navigation
-        $url .= $order;
-        $templates->set_var ('page_navigation',
-                COM_printPageNavigation ($url, $page, $pages));
-        if ($order==="random"){
-            $templates->set_var ( 'pagenavinone', 'style="display:none;"' );
-        }else{
-            $templates->set_var ( 'pagenavinone', '' );
-        }
-        //------------
-        $templates->parse ('nav_var', 'nav', true);
-
-        $templates->set_var ('blockfooter',COM_endBlock());
-
-        $templates->set_var ('msg', "");
-        //@@@@@@@@$templates->set_var ('search_link', $LANG_USERBOX['search_link']);
-        //@@@@@@@@$templates->set_var ('search_var',"");
-
-        $templates->parse ('output', 'list');
-
-        $content = $templates->finish ($templates->get_var ('output'));
-        $retval .=$content;
-
-    }else{
-        if ($nohitmsg==="yes"){
-            $templates->set_var ('msg', $LANG_USERBOX["nohit"]);
-            //@@@@@@$templates->set_var ('search_link', $LANG_USERBOX['search_link']);//@@@@@
-            $templates->parse ('output', 'list');
-            $content = $templates->finish ($templates->get_var ('output'));
-            $retval .=$content;
-        }
-    }
-
-    $retval =PLG_replacetags ($retval);
-
-    //return $dbg.$retval;
-    return $retval;
-}
-
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目データ別一覧表示
 // | 書式
@@ -1249,21 +1314,7 @@ function userbox_category(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:category list
 // +---------------------------------------------------------------------------+
-function userbox_field(
-    $autotag
-    ,$field_id=null
-
-    ,$value=""
-
-    ,$template=null
-    ,$nohitmsg=""
-    ,$perpage =0
-    ,$page=null
-    ,$order=null
-    ,$field_code=null
-)
 {
-
     $pi_name="userbox";
 
     global $_CONF;
@@ -1385,8 +1436,6 @@ function userbox_field(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
-
-
 
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
@@ -1578,13 +1627,21 @@ function userbox_field(
     return $retval;
 }
 
-//userbox_orderby($order,$orderby,$addfieldorder);
 function userbox_orderby(
     $datefield
     ,&$order
     ,&$orderby
     ,&$addfieldorder
 )
+// +---------------------------------------------------------------------------+
+// | 機能  order orderby addfieldorder を編集
+// | 書式  userbox_orderby($order,$orderby,$addfieldorder);
+// +---------------------------------------------------------------------------+
+// | 引数 $datefield
+// | 引数戻値 $order
+// | 引数戻値 $orderby
+// | 引数戻値 $addfieldorder
+// +---------------------------------------------------------------------------+
 {
 
     global $_TABLES;
@@ -1635,6 +1692,16 @@ function userbox_orderby(
 }
 
 
+function userbox_newlist(
+     $m="ALL"
+    ,$categories=""
+    ,$rss_file=""
+    ,$title_trim_length=""
+    ,$intervalday=""
+    ,$limitcnt=""
+    ,$newmarkday=""
+    ,$thtml=null
+)
 // +---------------------------------------------------------------------------+
 // | 機能  ブロック用 新着user一覧出力                                         |
 // | 書式 userbox_newlist                                                      |
@@ -1653,16 +1720,6 @@ function userbox_orderby(
 // | 戻値 nomal:新着user一覧                                                   |
 // +---------------------------------------------------------------------------+
 // update20101124
-function userbox_newlist(
-     $m="ALL"
-    ,$categories=""
-    ,$rss_file=""
-    ,$title_trim_length=""
-    ,$intervalday=""
-    ,$limitcnt=""
-    ,$newmarkday=""
-    ,$thtml=null
-)
 {
 
     global $_USER;
@@ -1892,15 +1949,12 @@ function userbox_newlist(
 
     return $retval;
 }
-// +---------------------------------------------------------------------------+
-// | 機能  ブロック用 新着data一覧出力                                         |
-// | 書式 phpblock_shownewuserbox()                                            |
-// +---------------------------------------------------------------------------+
-function phpblock_shownewuserbox()
-{
-    return userbox_newlist();
-}
 
+function userbox_order(
+    $url=""
+    ,$templates
+    ,$cur_order="id"
+)
 // +---------------------------------------------------------------------------+
 // | 機能 ORDER指定LINK出力
 // | 書式 userbox_order()
@@ -1909,11 +1963,6 @@ function phpblock_shownewuserbox()
 // | 引数 $templates
 // | 引数 $cur_order:
 // +---------------------------------------------------------------------------+
-function userbox_order(
-    $url=""
-    ,$templates
-    ,$cur_order="id"
-)
 {
 global $LANG_USERBOX_ORDER;
 global $_TABLES;
@@ -1980,6 +2029,45 @@ global $_TABLES;
 
     return ;
 
+
+}
+
+
+
+function userbox_msg(
+    $for=""
+)
+// +---------------------------------------------------------------------------+
+// | 機能 メッセージ出力
+// | 書式 userbox_msg()
+// +---------------------------------------------------------------------------+
+// | 引数 $for:誰宛
+// +---------------------------------------------------------------------------+
+{
+global $LANG_USERBOX_MSG;
+global $_USER;
+global $_TABLES;
+	
+	$rt="";
+	$uid=$_USER['uid'];
+	
+	switch ($for) {
+		case '':
+		case 'alluser':
+			$rt=$LANG_USERBOX_MSG['alluser'];
+		    break;
+		case 'draftuser':
+			$draft_flag=DB_getItem($_TABLES['USERBOX_base'], 'draft_flag',
+						"id = '{$uid}'");
+			if ($draft_flag==1){
+				$rt=$LANG_USERBOX_MSG['draftuser'];
+			}
+		    break;
+		default:
+		
+	}
+	
+    return $rt;
 
 }
 

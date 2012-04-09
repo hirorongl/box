@@ -4,13 +4,13 @@
 // |  グループ別カテゴリ別件数一覧、カテゴリ別一覧
 // +---------------------------------------------------------------------------+
 // $Id: public_html/databo/category.php
-define ('THIS_SCRIPT', 'databox/category2.php');
-//define ('THIS_SCRIPT', 'databox/category2test.php');
+define ('THIS_SCRIPT', 'databox/category_group.php');
+//define ('THIS_SCRIPT', 'databox/	test.php');
 
 define ('NEXT_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 //20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20110905
+//20120329
 
 require_once ('../lib-common.php');
 if (!in_array('databox', $_PLUGINS)) {
@@ -23,6 +23,13 @@ $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
 //debug 時 true
 $_DATABOX_VERBOSE = false;
 
+//==============================================================================
+
+function fnclist(
+	$pi_name
+	,$template
+	,$group_id=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  グループ別カテゴリ別件数一覧表示
 // | 書式
@@ -30,7 +37,6 @@ $_DATABOX_VERBOSE = false;
 // | 引数　$template　使用するテンプレートフォルダの名前
 // | 戻値
 // +---------------------------------------------------------------------------+
-function fnclist($template,$group_id="")
 {
     global $_CONF;
     global $_TABLES;
@@ -39,7 +45,6 @@ function fnclist($template,$group_id="")
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
 	
-	$pi_name="databox";
     //-----
     $page = COM_applyFilter($_REQUEST['page'],true);
     if (!isset($page) OR $page == 0) {
@@ -109,7 +114,17 @@ function fnclist($template,$group_id="")
         $page_title = sprintf ('%s ', $LANG_DATABOX['category_top']);
     }
     $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
-    $retval .= DATABOX_siteHeader('DATABOX','',$page_title,$headercode);
+	// Meta Tags
+	$headercode.=DATABOX_getheadercode(	
+		"category"
+		,$template
+		,$pi_name
+		,0
+		,$_CONF['site_name']
+		,$_CONF['meta_description']
+		,$_CONF['smeta_keywords']
+		,$_CONF['meta_description']);
+    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
 
     //
 
@@ -134,7 +149,9 @@ function fnclist($template,$group_id="")
 
     //page
     $offset = ($page - 1) * $perpage;
-    $lin1=$offset+1;
+    $sql .= " LIMIT $offset, $perpage";
+	
+	$lin1=$offset+1;
     $lin2=$lin1+$perpage - 1;
     if ($lin2>$cnt){
         $lin2=$cnt;
@@ -143,13 +160,8 @@ function fnclist($template,$group_id="")
     $templates->set_var ('lin', $lin1."-".($lin2));
     $templates->set_var ('cnt', $cnt);
 
-    //
     $templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
     $templates->set_var ('lang_count', $LANG_DATABOX['count']);
-
-    //
-
-    $sql .= " LIMIT $offset, $perpage";
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -272,6 +284,7 @@ if ($_CONF['url_rewrite']){
     $template=COM_applyFilter(COM_getArgument('template'));
     $page = COM_applyFilter($_REQUEST['page'],true);
     $order = COM_applyFilter($_REQUEST['order']);
+    $mode = COM_applyFilter($_REQUEST['mode']);
 }else{
     $gid = COM_applyFilter($_REQUEST['gid']);
     $gcode = COM_applyFilter($_REQUEST['gcode']);
@@ -280,6 +293,7 @@ if ($_CONF['url_rewrite']){
     $template = COM_applyFilter($_REQUEST['template']);
     $page = COM_applyFilter($_REQUEST['page'],true);
     $order = COM_applyFilter($_REQUEST['order']);
+    $mode = COM_applyFilter($_REQUEST['mode']);
 }
 
 if ($gid===""){
@@ -297,8 +311,6 @@ if ($id===0){
 
 
 //
-
-
 $display = '';
 $page_title=$LANG_DATABOX_ADMIN['piname'];
 
@@ -318,9 +330,13 @@ if (COM_isAnonUser()){
 
 
 if ($id===0) { //一覧
-	$display .= fnclist($template,$gid);
+	if ($code<>""){
+		$display .= data_category("notautotag",$id,$template,"yes",$perpage,$page,$order,$code,$mode);
+	}else{
+		$display .= fnclist($pi_name,$template,$gid);
+	}
 }else{//詳細
-	$display .= databox_category("notautotag",$id,$template,"yes",$perpage,$page,$order,$code);
+	$display .= databox_category("notautotag",$id,$template,"yes",$perpage,$page,$order,$code,$mode);
 }
 
 $display .= DATABOX_siteFooter($pi_name);

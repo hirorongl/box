@@ -37,7 +37,7 @@
 // +---------------------------------------------------------------------------+
 //
 // $Id: install_defaults.php
-// 20110331
+// 20120403
 
 if (strpos($_SERVER['PHP_SELF'], 'install_defaults.php') !== false) {
     die('This file can not be used on its own!');
@@ -116,6 +116,8 @@ $_DATABOX_DEFAULT['admin_draft_default'] = 0;
 //（データ）ユーザの新規登録のドラフトのデフォルト　default はい
 $_DATABOX_DEFAULT['user_draft_default'] = 1;
 
+//デフォルト画像URL
+$_DATABOX_DEFAULT['default_img_url'] = "";
 
 //---（１）新着
 // 新着の期間
@@ -450,7 +452,14 @@ function plugin_initconfig_databox()
 			, $pi_name
 			,0);
 
-        //(1)新着
+        $c->add(
+            'default_img_url'
+            ,$_DATABOX_DEFAULT['default_img_url']
+            ,'text', 0, 0, NULL, 260, TRUE
+			, $pi_name
+			,0);
+		
+		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
         $c->add(
             'fs_whatsnew'

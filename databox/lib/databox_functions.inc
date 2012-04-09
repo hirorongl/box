@@ -6,29 +6,34 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/functions_databox.inc
 //20100818 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//update 20101222
+//update 20120328
 
 
 if (strpos ($_SERVER['PHP_SELF'], 'databox_functions.inc') !== false) {
     die ('This file can not be used on its own.');
 }
 
-
+//==============================================================================
+function DATABOX_nl2br (
+    $text
+) 
 // +---------------------------------------------------------------------------+
 // | 機能 改行をBRに変換
-// | 書式 DATABOX	_nl2br ($text)
+// | 書式 DATABOX_nl2br ($text)
 // +---------------------------------------------------------------------------+
 // | 引数 $text:文字列
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:改行をBRに変換後の文字列
 // +---------------------------------------------------------------------------+
 // copy20100803 from  "hiroron - 改行をBRに変換"
-function DATABOX_nl2br (
-    $text
-) {
+{
     return PLG_replacetags ( str_replace(array("\r\n","\r","\n"), '<br'.XHTML.'>', $text) );
 
 }
+
+function DATABOX_autolink (
+    $text
+)
 // +---------------------------------------------------------------------------+
 // | 機能 urlをリンク変換
 // | 書式 DATABOX_autolink($text)                                              |
@@ -38,14 +43,18 @@ function DATABOX_nl2br (
 // | 戻値 nomal:urlをリンク変換後の文字列                                       |
 // +---------------------------------------------------------------------------+
 // copy20100803 from  "hiroron - 自動リンクを
-function DATABOX_autolink (
-    $text
-) {
+{
     $patterns = array("/(https?|ftp)(:\/\/[[:alnum:]\+\$\;\?\.%,!#~*\/:@&=_-]+)/i");
     $replacements = array("<a href=\"\\1\\2\" target=\"_blank\">\\1\\2</a>");
     return preg_replace($patterns, $replacements, $text);
 }
 
+function DATABOX_codetoid(
+    $code
+    ,$table
+    ,$idname = "id"
+    ,$codename = "code"
+)
 // +---------------------------------------------------------------------------+
 // | 機能  コードをidに変換
 // | 書式 DATABOX_codetoid($code,'DATABOX_base')
@@ -59,12 +68,6 @@ function DATABOX_autolink (
 // | 戻値 nomal:id
 // +---------------------------------------------------------------------------+
 //update20101125
-function DATABOX_codetoid(
-    $code
-    ,$table
-    ,$idname = "id"
-    ,$codename = "code"
-)
 {
     global $_TABLES;
     $retval=DB_getItem( $_TABLES[$table]   ,$idname,$codename."='{$code}'");
@@ -75,6 +78,11 @@ function DATABOX_codetoid(
 }
 
 
+function DATABOX_templatePath (
+    $kind = 'data'
+    ,$template ='default'
+    ,$pi_name= 'databox'
+    )
 // +---------------------------------------------------------------------------+
 // | 機能  テンプレートフォルダパスを取得
 // | 書式 DATABOX_templatePath('data','default','databox')
@@ -87,11 +95,6 @@ function DATABOX_codetoid(
 // | 戻値 :テンプレートフォルダパス
 // +---------------------------------------------------------------------------+
 // 20101115
-function DATABOX_templatePath (
-    $kind = 'data'
-    ,$template ='default'
-    ,$pi_name= 'databox'
-    )
 {
 
     global $_CONF;
@@ -164,6 +167,12 @@ function DATABOX_templatePath (
     return $tmplfld;
 }
 
+function DATABOX_siteHeader (
+    $pi_name= 'databox'
+    ,$kind = ''
+    ,$page_title = ''
+    ,$headercode = ''
+    )
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダを編集
 // | 書式 DATABOX_siteHeader($pi_name,'_admin',$page_title,$headercode)
@@ -177,12 +186,6 @@ function DATABOX_templatePath (
 // | 戻値 :ヘッダ
 // +---------------------------------------------------------------------------+
 // 20110119
-function DATABOX_siteHeader (
-    $pi_name= 'databox'
-    ,$kind = ''
-    ,$page_title = ''
-    ,$headercode = ''
-    )
 {
     global $_CONF;
 
@@ -222,6 +225,13 @@ function DATABOX_siteHeader (
 
     return $display;
 }
+
+
+function DATABOX_siteFooter (
+    $pi_name= 'databox'
+    ,$kind = ''
+    ,$custom=''
+    )
 // +---------------------------------------------------------------------------+
 // | 機能  フッタを編集
 // | 書式 DATABOX_siteFooter($pi_name,'_admin',$custom)
@@ -234,11 +244,6 @@ function DATABOX_siteHeader (
 // | 戻値 : フッタ
 // +---------------------------------------------------------------------------+
 // 20110119
-function DATABOX_siteFooter (
-    $pi_name= 'databox'
-    ,$kind = ''
-    ,$custom=''
-    )
 {
     global $_CONF;
 
@@ -289,6 +294,11 @@ function DATABOX_siteFooter (
 }
 
 
+function DATABOX_getcheckList(
+    $kind
+    ,$selected = ""
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  チェックリスト作成
 // | 書式 DATABOX_getcheckList($kind,$selected = "")
@@ -300,11 +310,6 @@ function DATABOX_siteFooter (
 // | 戻値 nomal:チェックリスト
 // +---------------------------------------------------------------------------+
 //20101116
-function DATABOX_getcheckList(
-    $kind
-    ,$selected = ""
-    ,$pi_name=""
-)
 {
 global $_TABLES;
 
@@ -382,6 +387,11 @@ global $_TABLES;
     return $retval;
 }
 
+function DATABOX_getdatas(
+    $fld
+    ,$tbl
+    ,$where
+)
 // +---------------------------------------------------------------------------+
 // | 機能  複数データ読込                                                      |
 // | 書式 DATABOX_getdatas($fld,$tbl,$where)                                   |
@@ -395,11 +405,6 @@ global $_TABLES;
 // | 戻値 nomal:複数データリスト
 // +---------------------------------------------------------------------------+
 //update20100420
-function DATABOX_getdatas(
-    $fld
-    ,$tbl
-    ,$where
-)
 {
 
     $sql="SELECT {$fld} FROM {$tbl} WHERE {$where}";
@@ -417,6 +422,12 @@ function DATABOX_getdatas(
 }
 
 
+function DATABOX_savedatas(
+    $fld
+    ,$tbl
+    ,$id
+    ,$fldary=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  複数データ書込
 // | 書式 DATABOX_savedatas($fld,$tbl,$id,$fldary)
@@ -429,12 +440,6 @@ function DATABOX_getdatas(
 // | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update20100420
-function DATABOX_savedatas(
-    $fld
-    ,$tbl
-    ,$id
-    ,$fldary=""
-)
 {
 
     global $_TABLES;
@@ -457,6 +462,11 @@ function DATABOX_savedatas(
     return ;
 
 }
+function DATABOX_savecategorydatas(
+    $id
+    ,$fldary
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  複数データ書込(カテゴリ)
 // | 書式 DATABOX_savecategorydatas($fld,$tbl,$id,$fldary)
@@ -468,11 +478,6 @@ function DATABOX_savedatas(
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 //update20100824
-function DATABOX_savecategorydatas(
-    $id
-    ,$fldary
-    ,$pi_name=""
-)
 {
 
     global $_TABLES;
@@ -520,6 +525,11 @@ function DATABOX_savecategorydatas(
 
 }
 //==============================================================================
+function DATABOX_chkuser(
+        $group_id
+        ,$owner_id
+        ,$adminrights="databox.admin"
+)
 // +---------------------------------------------------------------------------+
 // | 機能  ユーザチェック
 // | 書式 $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin")
@@ -543,11 +553,6 @@ function DATABOX_savecategorydatas(
 // | 1111 group owner and admin
 // +---------------------------------------------------------------------------+
 //update20101004 group_id
-function DATABOX_chkuser(
-        $group_id
-        ,$owner_id
-        ,$adminrights="databox.admin"
-)
 {
     global $_USER;
 
@@ -574,6 +579,9 @@ function DATABOX_chkuser(
 
 
 
+function DATABOX_getadditiondef(
+    $pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目定義読込
 // | 書式 DATABOX_getadditiondef($pi_name)
@@ -583,9 +591,6 @@ function DATABOX_chkuser(
 // | 戻値 nomal:追加項目定義
 // +---------------------------------------------------------------------------+
 // 20101116
-function DATABOX_getadditiondef(
-    $pi_name=""
-)
 {
     global $_TABLES;
 
@@ -603,7 +608,7 @@ function DATABOX_getadditiondef(
     $sql.= ",name ";
     $sql.= ",description";
     $sql.= ",type";
-    $sql.= ",fieldgroup_id AS group_id";
+    //$sql.= ",fieldgroup_id AS group_id";
     $sql.= ",selection";
     $sql.= ",selectlist";
     $sql.= ",checkrequried";
@@ -632,7 +637,7 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['allow_display'] = COM_stripslashes($A['allow_display']);
         $rt[$field_id]['allow_edit'] = COM_stripslashes($A['allow_edit']);
         $rt[$field_id]['type'] = COM_stripslashes($A['type']);
-        $rt[$field_id]['group_id'] = COM_stripslashes($A['group_id']);
+        //$rt[$field_id]['group_id'] = COM_stripslashes($A['group_id']);
         $rt[$field_id]['selection'] = COM_stripslashes($A['selection']);
 
         $rt[$field_id]['size'] = COM_stripslashes($A['size']);
@@ -777,6 +782,10 @@ function DATABOX_getadditionsearchdef(
 
 
 
+function DATABOX_getadditiondatas(
+    $id
+    ,$pi_name=""
+    )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目読込
 // | 書式 DATABOX_getadditiondatas($id)
@@ -787,10 +796,6 @@ function DATABOX_getadditionsearchdef(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目リスト                                                 |
 // +---------------------------------------------------------------------------+
-function DATABOX_getadditiondatas(
-    $id
-    ,$pi_name=""
-    )
 {
     global $_TABLES;
 
@@ -834,6 +839,16 @@ function DATABOX_getadditiondatas(
 
 }
 
+
+function DATABOX_getaddtionfieldsEdit(
+    $fields
+    ,$addition_def
+    ,$templates
+    ,$chk_user
+    ,$pi_name=""
+    ,$fields_fnm=""
+    ,$fields_del=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目入力用HTML作成
 // | 書式 DATABOX_getaddtionfieldsEdit
@@ -848,15 +863,7 @@ function DATABOX_getadditiondatas(
 // | 戻値 nomal:追加項目入力用HTML　                                           |
 // +---------------------------------------------------------------------------+
 // 20101206 日付
-function DATABOX_getaddtionfieldsEdit(
-    $fields
-    ,$addition_def
-    ,$templates
-    ,$chk_user
-    ,$pi_name=""
-    ,$fields_fnm=""
-    ,$fields_del=""
-){
+{
 global $_TABLES;
 
     if ($pi_name==""){
@@ -1216,6 +1223,12 @@ function DATABOX_imagehtml(
 }
 
 
+function DATABOX_getaddtionfieldsJS(
+    $fields
+    ,$addition_def
+    ,$chk_user
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目入力用JavaScript作成
 // | 書式 DATABOX_getaddtionfieldsJS
@@ -1230,12 +1243,7 @@ function DATABOX_imagehtml(
 // | 戻値 nomal:追加項目入力用 JavaScript (DatePicker )
 // +---------------------------------------------------------------------------+
 // 20101206 日付
-function DATABOX_getaddtionfieldsJS(
-    $fields
-    ,$addition_def
-    ,$chk_user
-    ,$pi_name=""
-){
+{
 	global $_CONF;
 	//GL のバージョンが1.8.0 より新しくなければおわり
 	if (version_compare(VERSION, '1.8.0') >= 0) {
@@ -1435,6 +1443,12 @@ function DATABOX_getenableexpired(
 }
 
 
+function DATABOX_getaddtionfieldsText(
+    $fields
+    ,$addition_def
+    ,$chk_user
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目TEXT作成
 // | 書式 DATABOX_getaddtionfieldsText
@@ -1448,12 +1462,7 @@ function DATABOX_getenableexpired(
 // | 戻値 nomal:追加項目text
 // +---------------------------------------------------------------------------+
 //update 20100420
-function DATABOX_getaddtionfieldsText(
-    $fields
-    ,$addition_def
-    ,$chk_user
-    ,$pi_name=""
-){
+{
 
     if ($pi_name==""){
         $lang_noyes="LANG_DATABOX_NOYES";
@@ -1550,6 +1559,14 @@ function DATABOX_getaddtionfieldsText(
 }
 
 
+
+function DATABOX_getaddtionfieldsDisp(
+    $fields
+    ,$addition_def
+    ,$templates
+    ,$chk_user
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目表示用HTML作成                                              |
 // | 書式 DATABOX_getaddtionfieldsDisp
@@ -1564,13 +1581,7 @@ function DATABOX_getaddtionfieldsText(
 // | 戻値 nomal:追加項目表示用HTML　                                           |
 // +---------------------------------------------------------------------------+
 //update 20101012 $chk_user
-function DATABOX_getaddtionfieldsDisp(
-    $fields
-    ,$addition_def
-    ,$templates
-    ,$chk_user
-    ,$pi_name=""
-){
+{
     global $_CONF;
 
     if ($pi_name==""){
@@ -1725,11 +1736,14 @@ function DATABOX_getaddtionfieldsDisp(
 					$w=DATABOX_autolink($w);
 					$fieldhtml .= $w;
                     break;
+                case 6://url';
+					$w=DATABOX_autolink($fvalue);
+					$fieldhtml .= $w;
+                    break;
                 case 9://既定リスト　（準備中）';
                 case 4://日時（準備中）
                 case 3://日付（準備中）
                 case 5://メールアドレス　（準備中）';
-                case 6://url　（準備中）';
 
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド
@@ -1784,6 +1798,11 @@ function DATABOX_getaddtionfieldsDisp(
 
 
 
+function DATABOX_getcategoriesText(
+    $id
+    ,$group_id=0
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ表示用HTML作成
 // | 書式 DATABOX_getcategoriesText
@@ -1795,11 +1814,7 @@ function DATABOX_getaddtionfieldsDisp(
 // | 戻値 nomal:カテゴリテキスト
 // +---------------------------------------------------------------------------+
 //20101116
-function DATABOX_getcategoriesText(
-    $id
-    ,$group_id=0
-    ,$pi_name=""
-){
+{
     global $_TABLES;
     global $_CONF;
 
@@ -1891,6 +1906,12 @@ function DATABOX_getcategoriesText(
     return $retval;
 }
 
+function DATABOX_getcategoriesDisp(
+    $id
+    ,$templates
+    ,$group_id=0
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリテキスト作成
 // | 書式 DATABOX_getcategoriesDisp
@@ -1904,12 +1925,7 @@ function DATABOX_getcategoriesText(
 // | 戻値 nomal:カテゴリ表示用HTML
 // +---------------------------------------------------------------------------+
 //20101129
-function DATABOX_getcategoriesDisp(
-    $id
-    ,$templates
-    ,$group_id=0
-    ,$pi_name=""
-){
+{
     global $_TABLES;
     global $_CONF;
 
@@ -2045,7 +2061,12 @@ function DATABOX_getcategoriesDisp(
     return $retval;
 }
 
-//@@@@@
+function DATABOX_getaddtionfields(
+    $id
+    ,$addition_def
+    ,$pi_name
+    ,$field_id=0
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
 // | 書式 DATABOX_getadditionfields($id,$addition_def,$tbl_prefix,$field_id
@@ -2055,12 +2076,7 @@ function DATABOX_getcategoriesDisp(
 // | 戻値 nomal:追加項目値の配列　　　                                          |
 // +---------------------------------------------------------------------------+
 //update 20110204
-function DATABOX_getaddtionfields(
-    $id
-    ,$addition_def
-    ,$pi_name
-    ,$field_id=0
-){
+{
 
     global $_TABLES;
 
@@ -2110,6 +2126,13 @@ function DATABOX_getaddtionfields(
 
     return $retval;
 }
+
+function DATABOX_getfieldvalue(
+    $value
+    ,$type
+    ,$selectionary
+    ,$lang_box_noyes
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
 // | 書式 DATABOX_getfieldvalue($value,$type,$selectionary,$lang_box_noyes)
@@ -2122,14 +2145,7 @@ function DATABOX_getaddtionfields(
 // | 戻値 nomal:追加項目値
 // +---------------------------------------------------------------------------+
 //update 20110204
-function DATABOX_getfieldvalue(
-    $value
-    ,$type
-    ,$selectionary
-    ,$lang_box_noyes
-){
-
-
+{
      switch ($type) {
 
         case 2://いいえ/はい
@@ -2156,6 +2172,12 @@ function DATABOX_getfieldvalue(
 }
 
 
+function DATABOX_saveaddtiondatas(
+    $id
+    ,$fldary = ""
+    ,$addition_def=""
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目書込                                                        |
 // | 書式
@@ -2168,12 +2190,6 @@ function DATABOX_getfieldvalue(
 // | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //
-function DATABOX_saveaddtiondatas(
-    $id
-    ,$fldary = ""
-    ,$addition_def=""
-    ,$pi_name=""
-)
 {
     global $_TABLES;
 
@@ -2200,6 +2216,12 @@ function DATABOX_saveaddtiondatas(
 
 }
 
+function DATABOX_saveaddtiondatas_update(
+    $id
+    ,$fldary = ""
+    ,$addition_def=""
+    ,$pi_name=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目書込 user用
 // | 書式 $rt=DATABOX_saveaddtiondatas_update
@@ -2213,12 +2235,6 @@ function DATABOX_saveaddtiondatas(
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 //
-function DATABOX_saveaddtiondatas_update(
-    $id
-    ,$fldary = ""
-    ,$addition_def=""
-    ,$pi_name=""
-)
 {
     global $_TABLES;
 
@@ -2244,6 +2260,12 @@ function DATABOX_saveaddtiondatas_update(
 
 }
 
+function DATABOX_cleanaddtiondatas(
+    &$fldary
+	,$addition_def
+	,&$fnmary
+	,&$delary
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目clean                                                       |
 // | 書式 DATABOX_cleanadditiondatas($fldary,$typeary)                         |
@@ -2254,12 +2276,6 @@ function DATABOX_saveaddtiondatas_update(
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 //update 20100702
-function DATABOX_cleanaddtiondatas(
-    &$fldary
-	,$addition_def
-	,&$fnmary
-	,&$delary
-)
 {
 
 
@@ -2301,6 +2317,14 @@ function DATABOX_cleanaddtiondatas(
     return $fldary;
 
 }
+
+function DATABOX_checkaddtiondatas(
+    &$fldary
+    ,$addition_def
+    ,$pi_name
+    ,$fldary_fnm=""
+	,$fldary_del=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目check                                                       |
 // | 書式 DATABOX_checkdditiondatas($fldary,$typeary,$pi_data)
@@ -2317,13 +2341,7 @@ function DATABOX_cleanaddtiondatas(
 // | 戻値 nomal:  
 // +---------------------------------------------------------------------------+
 //update
-function DATABOX_checkaddtiondatas(
-    &$fldary
-    ,$addition_def
-    ,$pi_name
-    ,$fldary_fnm=""
-	,$fldary_del=""
-){
+{
 
 	global $LANG04;
     global $_FILES;
@@ -2466,6 +2484,17 @@ function DATABOX_checkaddtiondatas(
                     }
                 }
             }
+            //url
+			if ($addition_def[$field_id]['type']==6){
+				if ($value ===""){
+				}else{
+					
+					if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
+					} else {
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_url']."<br {XHTML}>".LB;
+					}
+                }
+            }
 
 
         }
@@ -2475,6 +2504,14 @@ function DATABOX_checkaddtiondatas(
 
 }
 
+function DATABOX_uploadaddtiondatas(
+    &$fldary
+    ,$addition_def
+	,$pi_name
+	,$id
+    ,$fldary_fnm=""
+    ,$fldary_del=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload
 // | 書式 DATABOX_uploadaddtiondatas($additionfields,$addition_def,$pi_name
@@ -2490,14 +2527,7 @@ function DATABOX_checkaddtiondatas(
 // | 戻値 nomal:  
 // +---------------------------------------------------------------------------+
 //update
-function DATABOX_uploadaddtiondatas(
-    &$fldary
-    ,$addition_def
-	,$pi_name
-	,$id
-    ,$fldary_fnm=""
-    ,$fldary_del=""
-){
+{
 	global $_CONF;
     global $LANG04;
     global $_FILES;
@@ -2569,7 +2599,8 @@ function DATABOX_uploadaddtiondatas_xml(
     ,$addition_def
 	,$pi_name
 	,$id
-){
+)
+{
 	global $_CONF;
     global $LANG04;
     global $_FILES;
@@ -2751,6 +2782,14 @@ function DATABOX_deleteFile (
 	return $rt;
 }
 
+function DATABOX_uploadImageFile (
+	 $imgname
+	,$imgfile
+	,$imgsize
+	,$imgtype
+	,$imgfld
+	,$newfilename
+)
 // +---------------------------------------------------------------------------+
 // | 機能  upload Image File
 // | 書式 DATABOX_uploadImageFile($imgname,$imgfile,$imgsize, $imgtype,$imgfld)
@@ -2764,14 +2803,6 @@ function DATABOX_deleteFile (
 // | 戻値 nomal:  
 // +---------------------------------------------------------------------------+
 //update
-function DATABOX_uploadImageFile (
-	 $imgname
-	,$imgfile
-	,$imgsize
-	,$imgtype
-	,$imgfld
-	,$newfilename
-)
 {
 	$FilePermissions = (int) 0755;
 
@@ -2824,6 +2855,15 @@ function DATABOX_uploadImageFile_xml (
     }
 }
 
+function DATABOX_createthumb(
+	$filename
+	, $W
+	, $H
+	, $W2
+	, $H2
+	, $imgfld_thmb
+	, $imgfld
+)
 // +---------------------------------------------------------------------------+
 // | 機能 uploadfile サムネイル作成
 // | 書式 DATABOX_createthumb($srcfile,$W,$H,$W2,$H2, $thumb_dir,$tmp_dir)
@@ -2837,15 +2877,6 @@ function DATABOX_uploadImageFile_xml (
 // | 戻値 nomal:  
 // +---------------------------------------------------------------------------+
 //update
-function DATABOX_createthumb(
-	$filename
-	, $W
-	, $H
-	, $W2
-	, $H2
-	, $imgfld_thmb
-	, $imgfld
-)
 {
     //$filename = substr($srcfile, strrpos($srcfile,"/")+1);
 	$srcfile=$imgfld.$filename;
@@ -2954,6 +2985,13 @@ function DATABOX_getthumbname(
 }
 //==============================================================================
 
+function DATABOX_getradiolist(
+    $ary
+    ,$fld
+    ,$selected = 0
+    ,$br=""
+    ,$disabled=""
+)
 // +---------------------------------------------------------------------------+
 // | 機能  ラジヲボタン作成
 // | 書式 DATABOX_getradiolist
@@ -2964,13 +3002,7 @@ function DATABOX_getthumbname(
 // | 戻値 nomal:ラジヲボタン                                                   |
 // +---------------------------------------------------------------------------+
 //update 20100420
-function DATABOX_getradiolist(
-    $ary
-    ,$fld
-    ,$selected = 0
-    ,$br=""
-    ,$disabled=""
-)
+
 {
     $retval = '';
 
@@ -3044,6 +3076,14 @@ function DATABOX_getoptionlistary(
 
 
 
+function DATABOX_getoptionlist(
+    $kind
+    ,$selected = 0
+    ,$relno=0
+    ,$pi_name=""
+	,$disabled=""
+	,$selectit=true
+)
 // +---------------------------------------------------------------------------+
 // | 機能  オプションリスト作成                                                |
 // | 書式 profile_getoptionlist($kind)                                           |
@@ -3057,14 +3097,6 @@ function DATABOX_getoptionlistary(
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
 //update 20101122,20110613
-function DATABOX_getoptionlist(
-    $kind
-    ,$selected = 0
-    ,$relno=0
-    ,$pi_name=""
-	,$disabled=""
-	,$selectit=true
-)
 {
 global $_CONF;
 global $_TABLES;
@@ -3115,6 +3147,16 @@ global $_TABLES;
 }
 
 
+
+function DATABOX_dltbldt(
+    $filenm
+    ,$fld
+    ,$tbl
+    ,$where=""
+    ,$order=""
+    ,$pi_name=""
+    ,$addition=false
+)
 // +---------------------------------------------------------------------------+
 // | 機能  テーブルのデータをCSV形式でダウンロードする
 // | 書式 DATABOX_dltbldt($filenm,$fld,$tbl,$where,$order,$type,$pi_name,false);
@@ -3131,16 +3173,6 @@ global $_TABLES;
 // +---------------------------------------------------------------------------+
 //20100910
 //@@@@@ 追加予定　カテゴリも
-
-function DATABOX_dltbldt(
-    $filenm
-    ,$fld
-    ,$tbl
-    ,$where=""
-    ,$order=""
-    ,$pi_name=""
-    ,$addition=false
-)
 {
     global $_CONF;
 
@@ -3260,6 +3292,11 @@ function DATABOX_dltbldt(
     return $retval;
 }
 
+function DATABOX_getfeaturedimage(
+	$id
+	,$pi_name
+	,$mode="imgsrc"
+)
 // +---------------------------------------------------------------------------+
 // | 機能  featuredimage取得
 // | 書式 DATABOX_getfeaturedimage($id,$pi_name)
@@ -3270,11 +3307,6 @@ function DATABOX_dltbldt(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:featuredimage
 // +---------------------------------------------------------------------------+
-function DATABOX_getfeaturedimage(
-	$id
-	,$pi_name
-	,$mode="imgsrc"
-)
 {
 	global $_CONF;
 	global $_TABLES;
@@ -3317,7 +3349,7 @@ function DATABOX_getfeaturedimage(
 
 	return $rt;
 }
-//DATABOX_getheadercode($pi_name,$kind,$template,$id,$title,$meta_description,$meta_keyword,$description);
+
 function DATABOX_getheadercode(
 	$kind
 	,$template
@@ -3327,9 +3359,24 @@ function DATABOX_getheadercode(
 	,$meta_description
 	,$meta_keyword
 	,$description
-	)
+)
+// +---------------------------------------------------------------------------+
+// | 機能 HEADERCODE 編集
+// | 書式 DATABOX_getheadercode("data",$template,$pi_name,$A['id'],$A['title']
+// | 		,$A['meta_description'],$A['meta_keyword'],$A['description']);
+// +---------------------------------------------------------------------------+
+// | 引数 	$kind		"data","category"
+// | 引数 	$template
+// | 引数 	$pi_name
+// | 引数 	$id
+// | 引数 	$title
+// | 引数 	$meta_description
+// | 引数 	$meta_keyword
+// | 引数 	$description
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:HEADERCODE
+// +---------------------------------------------------------------------------+
 {
-	
 	global $_CONF;
 	global $_TABLES;
 	global $_IMAGE_TYPE;
@@ -3358,9 +3405,17 @@ function DATABOX_getheadercode(
 	}
 	$og_description= COM_getTextContent(PLG_replaceTags($og_description));
 		
-	$og_image =DATABOX_getfeaturedimage($id,$pi_name,"url");
-	if ($og_image===""){
-		$og_image=$site_logo;
+	
+	if ($kind==="data"){
+		$og_image =DATABOX_getfeaturedimage($id,$pi_name,"url");
+		if ($og_image===""){
+			$og_image=$site_logo;
+		}
+	}else{
+		$og_image =$box_conf["default_img_url"];
+		if ($og_image===""){
+			$og_image=$site_logo;
+		}
 	}
 	
 	//テンプレートフォルダの設定

@@ -262,7 +262,6 @@ function LIB_Edit(
         // clean 'em up
         $name = COM_applyFilter($_POST['name']);
         $templatesetvar = COM_applyFilter($_POST['templatesetvar']);
-        $fieldgroup_id = COM_applyFilter($_POST['group'],true);
         $type = COM_applyFilter($_POST['type']);
         $description = COM_applyFilter($_POST['description']);
 
@@ -303,8 +302,6 @@ function LIB_Edit(
             $rows = 2;
             $br = 0;
 
-            $fieldgroup_id ="";
-
             $orderno ="";
 
             $uuid=0;
@@ -331,7 +328,6 @@ function LIB_Edit(
             $allow_display = COM_stripslashes($A['allow_display']);
 
             $type = COM_stripslashes($A['type']);
-            $fieldgroup_id = COM_stripslashes($A['fieldgroup_id']);
 
             $selection = COM_stripslashes($A['selection']);
             $selectlist = COM_stripslashes($A['selectlist']);
@@ -441,13 +437,6 @@ function LIB_Edit(
     $templates->set_var('lang_selectlist', $lang_box_admin['selectlist']);
     $list_selectlist=DATABOX_getoptionlist("selectlist",$selectlist,0,$pi_name);
     $templates->set_var ('list_selectlist', $list_selectlist);
-
-
-    //group
-    $templates->set_var('lang_group', $lang_box_admin['group']);
-    $list_group=DATABOX_getoptionlist("group",$fieldgroup_id,0,$pi_name ,"",0);
-    $templates->set_var ('list_group', $list_group);
-
 
     //順序
     $templates->set_var('lang_orderno', $lang_box_admin['orderno']);
@@ -564,9 +553,6 @@ function LIB_Save (
     $br=COM_applyFilter($_POST['br']);
     $br=addslashes (COM_checkHTML (COM_checkWords ($br)));
 
-    $fieldgroup_id=COM_applyFilter($_POST['group']);
-    $fieldgroup_id=addslashes (COM_checkHTML (COM_checkWords ($fieldgroup_id)));
-
     $orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する
     $orderno=COM_applyFilter($orderno,true);
 
@@ -677,9 +663,6 @@ function LIB_Save (
 
     $fields.=",br";
     $values.=",$br";
-
-    $fields.=",fieldgroup_id";
-    $values.=",'$fieldgroup_id'";
 
     $fields.=",orderno";//
     $values.=",'$orderno'";
@@ -865,7 +848,6 @@ $fld['size'] = $lang_box_admin['size'];
 $fld['maxlength'] = $lang_box_admin['maxlength'];
 $fld['rows'] = $lang_box_admin['rows'];
 $fld['br'] = $lang_box_admin['br'];
-$fld['fieldgroup_id'] = $lang_box_admin['group_id'];
 $fld['orderno'] = $lang_box_admin['orderno'];
 
 $fld['udatetime'] = $lang_box_admin['udatetime'];
