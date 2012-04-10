@@ -11,14 +11,14 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120403
+# Last Update 20120410
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '追加項目';
+$LANG_DATABOX_admin_menu['3']= '追加属性';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
 $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
@@ -50,7 +50,7 @@ $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
 $LANG_DATABOX['count']="件数";
 $LANG_DATABOX['category_top']="カテゴリ別件数一覧";
-$LANG_DATABOX['field_top']="項目別件数一覧";
+$LANG_DATABOX['field_top']="属性別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
@@ -201,7 +201,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 バックアップはとりましたか？<{XHTML}br>
 データをクリアします。<{XHTML}br>
 アップロードされたファイルも削除されます。<{XHTML}br>
-追加項目、カテゴリ、グループ削除されません。<{XHTML}br>
+追加属性、カテゴリ、グループ削除されません。<{XHTML}br>
 ';
 
 //<---
@@ -215,11 +215,11 @@ $LANG_DATABOX_ADMIN['must'] = '*必須';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = '追加項目';
-$LANG_DATABOX_ADMIN['basicfields'] = '基本項目';
+$LANG_DATABOX_ADMIN['additionfields'] = '追加属性';
+$LANG_DATABOX_ADMIN['basicfields'] = '基本属性';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = '項目ID';
+$LANG_DATABOX_ADMIN['field_id'] = '追加属性ID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
@@ -227,7 +227,7 @@ $LANG_DATABOX_ADMIN['group_id'] = 'グループID';
 $LANG_DATABOX_ADMIN['parent_id'] = '親ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = '親グループ？';
 
-$LANG_DATABOX_ADMIN['orderno'] = '順番';
+$LANG_DATABOX_ADMIN['orderno'] = '表示位置';
 
 $LANG_DATABOX_ADMIN['field'] = 'フィールド';
 $LANG_DATABOX_ADMIN['fields'] = 'フィールド';
@@ -293,7 +293,7 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = '追加項目の管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = '追加属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成と
@@ -342,7 +342,7 @@ $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップフ�
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="ランダム";
 $LANG_DATABOX_ORDER['date']="日付順";
-$LANG_DATABOX_ORDER['orderno']="順番順";
+$LANG_DATABOX_ORDER['orderno']="表示位置順";
 $LANG_DATABOX_ORDER['code']="コード順";
 $LANG_DATABOX_ORDER['title']="タイトル順";
 $LANG_DATABOX_ORDER['description']="説明順";
@@ -536,7 +536,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にする追加項目の数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にする追加属性の数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';
