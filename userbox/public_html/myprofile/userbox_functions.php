@@ -44,7 +44,7 @@ if (SEC_hasRights ('userbox.edit') ){
 }
 
 //securitygroup
-if ($_USERBOX_CONF['allow_profile_update']===1 AND  $_USERBOX_CONF['allow_group_update']===1){
+if ($_USERBOX_CONF['allow_profile_update']==1 AND  $_USERBOX_CONF['allow_group_update']==1){
     $navbarMenu[$LANG_USERBOX_user_menu['7']]= $url.'securitygroup.php';
 }else{
     if (SEC_hasRights ('userbox.joingroup')){
