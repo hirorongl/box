@@ -237,6 +237,7 @@ function databox_category(
     global $_DATABOX_CONF;
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
+    global $_IMAGE_TYPE;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){

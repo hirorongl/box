@@ -245,6 +245,9 @@ function userbox_category(
 	global $LANG28;
 	global $_USER;
 	
+	global $_IMAGE_TYPE;
+
+	
 	//ログイン要否チェック
     if (COM_isAnonUser()){
         if  ($_CONF['loginrequired']
