@@ -7,6 +7,7 @@
 // $Id: data.php
 // public_html/databox/mydata/data.php
 // 20101208 tsuchitani AT ivywe DOT co DOT jp
+// 20120416 fncsave hits
 
 //@@@@@@追加予定　メールにカテゴリ
 
@@ -1021,8 +1022,8 @@ function fncSave (
         $values.=",'$description'";
 
 
-        $fields.=",hits";//
-        $values.=",$hits";
+//        $fields.=",hits";//
+//        $values.=",$hits";
 
         $fields.=",comments";//
         $values.=",$comments";

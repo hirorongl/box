@@ -6,6 +6,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/userbox/functions_autotag.inc
 //20101223 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//20120416 userbox_category {data_edit}
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -242,6 +243,7 @@ function userbox_category(
     global $LANG_USERBOX;
     global $LANG_USERBOX_ADMIN;
 	global $LANG28;
+	global $_USER;
 	
 	//ログイン要否チェック
     if (COM_isAnonUser()){
@@ -491,6 +493,7 @@ function userbox_category(
 		
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
 
             $description=COM_applyFilter($A['description']);
             $username=COM_applyFilter($A['username']);
@@ -498,6 +501,8 @@ function userbox_category(
             $id=COM_applyFilter($A['id']);
             $datefield=COM_applyFilter($A['datefield']);
             $value=COM_applyFilter($A['value']);
+            $group_id = $A['group_id'];
+            $owner_id = $A['owner_id'];
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -526,7 +531,6 @@ function userbox_category(
 			$templates->set_var ('data_value', $value);
 			
 			//
-			
 		    if (isset($A['photo']) && empty($A['photo'])) {
 				$A['photo'] = '(none)'; // user does not have a photo
 				$templates->set_var('data_photo', "");
@@ -538,12 +542,38 @@ function userbox_category(
 
 
             //追加項目
-            $group_id = stripslashes($A['group_id']);
-            $owner_id = stripslashes($A['owner_id']);
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
-
+			
+			//管理者の時「編集」
+			$templates->set_var ('data_edit', "");
+			if ( SEC_hasRights('userbox.admin')) {
+				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+				$attr = array('title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+				$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+				$attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+				$url = $_CONF['site_admin_url'];
+				$url .= '/plugins/userbox/profile.php';
+				$url .= '?mode=edit';
+				$url .= '&amp;'."id={$id}";
+				$icon = '&nbsp;' ;
+				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+				$templates->set_var ('data_edit', $icon);
+			}else{
+				if ($id===$_USER['uid']){
+					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+					$attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+					$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+					$attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+					$url = $_CONF['site_url'];
+					$url .= '/userbox/myprofile/profile.php';
+					$icon = '&nbsp;' ;
+					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+					$templates->set_var ('data_edit', $icon);
+				}
+			}
+			
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);

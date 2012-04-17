@@ -1,8 +1,21 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20111203{ -->
-    <li>{data_link}<!-- <a href="{data_url}">{data_title}</a> -->{data_description} (uid: {data_id})
-(username: {data_username}) {data_fullname} {data_user_photo}{data_description}   {data_datefield}  {data_value}  {zipcode}  {tel}  {additionfield1}    {additionfield2}
-<br>test<br>
-additionfield10:{additionfield10}<br>
-room_logo:{room_logo}<br>
+<!-- plugins/userbox/templates/category/default/col_detail.thtml 20120416{ -->
+
+<li>
+<span style= "color:green" > &#123;data_link&#125;</span>{data_link}
+<span style= "color:green" > &#123;data_url&#125;</span>{data_url}
+<span style= "color:green" > &#123;data_title&#125;</span>{data_title}
+<span style= "color:green" > &#123;data_id&#125;</span>{data_id}
+<span style= "color:green" > &#123;data_username&#125;</span>{data_username}
+<span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}
+<span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}
+<span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}
+<span style= "color:green" > &#123;data_description&#125;</span>{data_description}
+<span style= "color:green" > &#123;ata_datefield&#125;</span>{data_datefield}
+<span style= "color:green" > &#123;data_value&#125;</span>{data_value}
+<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}
+<span style= "color:green" > &#123;tel&#125;</span>{tel}
+<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}
+<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}
+{data_edit}
 </li>
 <!-- } plugins/userbox/templates/category/default/col_detail.thtml -->

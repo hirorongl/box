@@ -6,7 +6,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/functions_autotag.inc
 //20101008 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20101223
+//20120416 databox_category {data_edit}
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -495,6 +495,7 @@ function databox_category(
 		
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
 
             $title=COM_applyFilter($A['title']);
             $description=COM_applyFilter($A['description']);
@@ -502,20 +503,21 @@ function databox_category(
             $id=COM_applyFilter($A['id']);
             $datefield=COM_applyFilter($A['datefield']);
             $value=COM_applyFilter($A['value']);
+            $group_id = $A['group_id'];
+            $owner_id = $A['owner_id'];
 
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
             //コード使用の時
             if ($_DATABOX_CONF['datacode']){
                 $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="&code=".$code;
             }else{
                 $url.="m=id";
-                $url.="&id=".$A['id'];
+                $url.="&id=".$id;
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($title, $url);
-
 
             $templates->set_var ('data_link', $link);
             $templates->set_var ('data_title', $title);
@@ -526,14 +528,51 @@ function databox_category(
             $templates->set_var ('data_datefield', $datefield);
             $templates->set_var ('data_value', $value);
 
-
             //追加項目
-            $group_id = stripslashes($A['group_id']);
-            $owner_id = stripslashes($A['owner_id']);
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+			
+			//管理者の時「編集」
+			if ( SEC_hasRights('databox.admin')) {
+				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+				$attr = array('title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
+				$editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
+				
+				$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
+				$url = $_CONF['site_admin_url'];
+				$url .= '/plugins/databox/data.php';
+				$url .= '?mode=edit';
+				$url .= '&amp;'."id={$id}";
+				$icon = '&nbsp;' ;
+				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+				$templates->set_var ('data_edit', $icon);
+			}else{
+				$rt=databox_chk_loaddata($id);
+				//編集権限のあるMyData
+				if ( $rt==="OK") {
+					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+					$attr = array('title' => $LANG_DATABOX_ADMIN['edit']);
+					$editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
 
+					$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
+
+					$url = $_CONF['site_url'];
+					$url .= '/databox/mydata/data.php';
+					$url .= '?mode=edit';
+					$url .= '&amp;'."id={$id}";
+
+					$icon = '&nbsp;' ;
+					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+
+					$templates->set_var ('data_edit', $icon);
+				}else{
+					$templates->set_var ('data_edit', "");
+				}
+				
+			}
+
+			
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);
