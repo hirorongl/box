@@ -808,4 +808,55 @@ function userbox_update(
 	return $display;
 }
 
+// +---------------------------------------------------------------------------+
+// | 機能  ログイン時の処理：
+// +---------------------------------------------------------------------------+
+function plugin_user_login_userbox(
+	$uid
+)
+{
+ 	global $_USERBOX_CONF;
+    global $_CONF;
+	
+	//ログインユーザがUserBox登録されていて
+	//説明未登録チェックはいユーザにプロフィールの更新を許可する　場合
+	//説明が登録されていなければ
+	//プロフィール更新画面に遷移する
+	if ($_USERBOX_CONF['descriptionemptycheck']==1
+		AND $_USERBOX_CONF['allow_profile_update']==1) {
+		if (userbox_descriptionemptycheck($uid)==false){
+			$url=$_CONF['site_url'].'/userbox/myprofile/profile.php?mode=desc';
+			$_SERVER['HTTP_REFERER']=$url;
+		}
+	}
+}
+
+// +---------------------------------------------------------------------------+
+// | 機能  UserBox user で　説明が登録されていなければfalseを返す
+// +---------------------------------------------------------------------------+
+function userbox_descriptionemptycheck(
+	$uid
+)
+{
+	global $_TABLES;
+	
+	$return=true;
+	
+	$sql = "SELECT ";
+	$sql .= " description ".LB;
+	$sql .= " FROM ".LB;
+	$sql .= " {$_TABLES['USERBOX_base']} ".LB;
+	$sql .= " WHERE ".LB;
+	$sql .= " id =".$uid.LB;
+	$result = DB_query ($sql);
+	$numrows = DB_numRows ($result);
+	if ($numrows > 0) {
+		$A = DB_fetchArray ($result);
+		if  ($A['description']==""){
+			$return=false;
+		}
+	}
+	
+	return $return;
+}
 ?>

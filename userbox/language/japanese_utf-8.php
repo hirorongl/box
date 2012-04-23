@@ -40,6 +40,9 @@ $LANG_USERBOX_MSG['alluser'] = "";
 $LANG_USERBOX_MSG['draftuser'] = 
  "<a href=\"{$_CONF['site_url']}/userbox/myprofile/profile.php\">"
 ."プロフィールを編集してください。</a>";
+$LANG_USERBOX_MSG['descriptionempty'] = 
+ "<a href=\"{$_CONF['site_url']}/userbox/myprofile/profile.php\">"
+."プロフィールを編集してください。</a>";
 
 ###############################################################################
 $LANG_USERBOX = array();
@@ -261,6 +264,8 @@ $LANG_USERBOX_ADMIN['about_myprofile_securitygroup'] = 'あなたの所属する
 $LANG_USERBOX_ADMIN['err'] = 'エラー';
 $LANG_USERBOX_ADMIN['err_empty'] = 'ファイルがありません';
 
+$LANG_USERBOX_ADMIN['err_profile'] = 'プロフィールを登録してください';
+
 $LANG_USERBOX_ADMIN['err_id'] = 'IDが不正です';
 $LANG_USERBOX_ADMIN['err_name'] = '名前が不正です';
 $LANG_USERBOX_ADMIN['err_templatesetvar'] = 'テーマ変数が不正です';
@@ -268,6 +273,8 @@ $LANG_USERBOX_ADMIN['err_templatesetvar_w'] = 'テーマ変数はすでに使用
 $LANG_USERBOX_ADMIN['err_code_w'] = 'このコードはすでに登録されています';
 $LANG_USERBOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_USERBOX_ADMIN['err_title'] = 'タイトルが入力されていません';
+
+$LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
 
 $LANG_USERBOX_ADMIN['err_selection'] = '選択肢が入力されていません';
 
@@ -488,6 +495,7 @@ $LANG_confignames['userbox']['allow_profile_update'] = 'ユーザにプロフィ
 $LANG_confignames['userbox']['allow_group_update'] = 'ユーザにマイグループの更新を許可する';
 $LANG_confignames['userbox']['allow_loggedinusers'] = 'ログインユーザを登録する';
 $LANG_confignames['userbox']['default_img_url'] = 'デフォルト画像URL';
+$LANG_confignames['userbox']['descriptionemptycheck'] = '説明未登録チェック';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';

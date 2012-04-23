@@ -111,12 +111,16 @@ $_USERBOX_DEFAULT['allow_profile_update'] = 1;
 //（プロフィール）マイグループ更新を許可する　default はい
 $_USERBOX_DEFAULT['allow_group_update'] = 1;
 
-//@@@@@
 //（プロフィール） ログインユーザを登録する　default いいえ
 $_USERBOX_DEFAULT['allow_loggedinusers'] =0;//@@@@@@
 
 //デフォルト画像URL
 $_USERBOX_DEFAULT['default_img_url'] = "";
+
+// 説明入力をチェックする　default いいえ
+$_USERBOX_DEFAULT['descriptionemptycheck'] = 0;
+
+
 
 //---（１）新着
 // 新着の期間
@@ -186,7 +190,6 @@ $_USERBOX_DEFAULT['file_size'] = "";
 $_USERBOX_DEFAULT['file_type'] = array();
 
 
-//@@@@@<----準備中
 //(6) autotag permissions
 $_USERBOX_DEFAULT['autotag_permissions_userbox'] = array (2, 2, 2, 2);
 
@@ -442,6 +445,14 @@ function plugin_initconfig_userbox()
             ,'text', 0, 0, NULL, 250, TRUE
 			, $pi_name
 			,0);
+		
+		$c->add(
+            'descriptionemptycheck'
+            ,$_USERBOX_DEFAULT['descriptionemptycheck']
+            ,'select', 0, 0, 0, 260, true
+			, $pi_name
+			,0);
+		
 
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);

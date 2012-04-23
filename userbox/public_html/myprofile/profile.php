@@ -592,7 +592,7 @@ function fncEdit(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:戻り画面＆メッセージ                                           |
 // +---------------------------------------------------------------------------+
-//20101020-24
+//20110417
 function fncSave (
     $edt_flg
     ,$navbarMenu
@@ -649,9 +649,6 @@ function fncSave (
 	$additionfields=DATABOX_cleanaddtiondatas
 		($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
 
-//            $hits =0;
-//            $comments=0;
-
     //-----
     $type=1;
     $uuid=$_USER['uid'];
@@ -666,7 +663,14 @@ function fncSave (
         if (!is_numeric($id) ){
             $err.=$LANG_USERBOX_ADMIN['err_id']."<br/>".LB;
         }
-    }
+	}
+	
+	//説明必須
+	if ($_USERBOX_CONF['descriptionemptycheck']==1){
+		if (empty($description)){
+			$err.=$LANG_USERBOX_ADMIN['err_description']."<br/>".LB;
+		}
+	}
 
     //----追加項目チェック
     $err.=databox_checkaddtiondatas
@@ -786,7 +790,6 @@ function fncSave (
         $fields.=",released";
         $values.=",'$released'";
 
-        $hits=0;
         $comments=0;
 
         $fields.=",page_title";//
@@ -794,10 +797,6 @@ function fncSave (
 
         $fields.=",description";//
         $values.=",'$description'";
-
-
-        $fields.=",hits";//
-        $values.=",$hits";
 
         $fields.=",comments";//
         $values.=",$comments";
@@ -1002,7 +1001,9 @@ function fncsendmail (
 
         if ($numrows > 0) {
 
-            $A = DB_fetchArray ($result);
+			$A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
+
             $email=$A['email'];
 
             //下書
@@ -1039,7 +1040,7 @@ function fncsendmail (
             $url.="?";
             if ($_USERBOX_CONF['datacode']){
                 $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="&code=".$A['username'];
             }else{
                 $url.="m=id";
                 $url.="&id=".$A['id'];
@@ -1102,7 +1103,7 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
 
 //echo "mode=".$mode."<br>";
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-    OR $mode=="export" OR $mode=="import"  OR $mode=="copy") {
+    OR $mode=="export" OR $mode=="import"  OR $mode=="copy" OR $mode=="desc") {
 }else{
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用

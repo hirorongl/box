@@ -2096,6 +2096,13 @@ global $_TABLES;
 				$rt=$LANG_USERBOX_MSG['draftuser'];
 			}
 		    break;
+		case 'descriptionempty':
+			if ($uid<>0){
+				if (userbox_descriptionemptycheck($uid)==false){
+					$rt=$LANG_USERBOX_MSG['descriptionempty'];
+				}
+			}
+		    break;
 		default:
 		
 	}
