@@ -74,18 +74,19 @@ function plugin_dopluginsearch_databox_data(
     $sql .= " ,t1.description".LB;
     $sql .= ", UNIX_TIMESTAMP(t1.created) AS date".LB;
     $sql .= ", owner_id AS uid ".LB;
-    $sql .= ", hits".LB;
+    $sql .= ", t3.hits".LB;
     $sql .= ", CONCAT('/databox/data.php?id=', t1.id) AS url ".LB;
 
     $sql .= " FROM ";
 
     $sql .= " {$_TABLES['DATABOX_base']} AS t1";
+    $sql .= " ,{$_TABLES['DATABOX_stats']} AS t3";
 
 	$sql .=$rt["sql1"];
 
     $sql .= " WHERE ";
 
-    $sql .= " 1=1 ";
+    $sql .= " t1.id=t3.id";
 
     $sql .= COM_getPermSQL('AND') . ' ';
 

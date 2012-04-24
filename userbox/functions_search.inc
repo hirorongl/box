@@ -74,13 +74,14 @@ function plugin_dopluginsearch_userbox_data(
     $sql .= " ,t1.description".LB;
     $sql .= ", UNIX_TIMESTAMP(t1.created) AS date".LB;
     $sql .= ", owner_id AS uid ".LB;
-    $sql .= ", hits".LB;
-    $sql .= ", CONCAT('/userbox/data.php?id=', t1.id) AS url ".LB;
+    $sql .= ", t3.hits".LB;
+    $sql .= ", CONCAT('/userbox/profile.php?id=', t1.id) AS url ".LB;
 
     $sql .= " FROM ";
 
     $sql .= " {$_TABLES['USERBOX_base']} AS t1";
     $sql .= " ,{$_TABLES['users']} AS t2";
+    $sql .= " ,{$_TABLES['USERBOX_stats']} AS t3";
 
 
 
@@ -89,6 +90,7 @@ function plugin_dopluginsearch_userbox_data(
     $sql .= " WHERE ";
 
     $sql .= " t1.id=t2.uid";
+    $sql .= " AND t1.id=t3.id";
 
     $sql .= COM_getPermSQL('AND') . ' ';
     $sql .=$rt["sql2"];
