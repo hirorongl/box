@@ -3,8 +3,10 @@
 	{about_thispage}
 	<a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a>
 	<a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard">{lang_ref}</a>
-
+	{lang_fieldset}{fieldset_name}({fieldset_id})
+	
 <form enctype="multipart/form-data" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+  <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
 
   <!-- data -->
   <fieldset style="width:94%">

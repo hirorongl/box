@@ -5,8 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/config.php
 //20100818 tsuchitani AT ivywe DOT co DOT  jp http://www.ivywe.co.jp/
-//20111201
-
+//20120509
 $_DATABOX_CONF = array();
 
 $databox_config = config::get_instance();
@@ -33,6 +32,10 @@ $_TABLES['DATABOX_def_xml']    = $_DB_table_prefix . 'databox_def_xml';
 $_TABLES['DATABOX_def_category_name']    = $_DB_table_prefix . 'databox_def_category_name';
 $_TABLES['DATABOX_def_field_name']    = $_DB_table_prefix . 'databox_def_field_name';
 $_TABLES['DATABOX_def_group_name']    = $_DB_table_prefix . 'databox_def_group_name';
+
+//20120509add----->
+$_TABLES['DATABOX_def_fieldset']    = $_DB_table_prefix . 'databox_def_fieldset';
+$_TABLES['DATABOX_def_fieldset_assignments']    = $_DB_table_prefix . 'databox_def_fieldset_assignments';
 
 
 ?>

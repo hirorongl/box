@@ -2,9 +2,9 @@
 <div id="databox_admin">
 {about_thispage}
 <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
-
+{lang_fieldset}{fieldset_name}({fieldset_id})
 <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
-
+    <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
   <!-- data -->
   <fieldset style="width:94%">
     <legend>{lang_basicfields}</legend>

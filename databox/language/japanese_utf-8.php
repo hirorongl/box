@@ -1,7 +1,7 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | DataBox Plugin 0.0.0 for Geeklog 1.7.0                                    |
+// | DataBox Plugin 0.0.0 for Geeklog 1.8.0                                    |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2010 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120410
+# Last Update 20120509
 
 ###############################################################################
 ## 管理画面 menu
@@ -19,6 +19,7 @@ $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
 $LANG_DATABOX_admin_menu['3']= '追加属性';
+$LANG_DATABOX_admin_menu['31']= '属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
 $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
@@ -137,8 +138,13 @@ $LANG_DATABOX_ADMIN['commentcode']='コメント';
 $LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_DATABOX_ADMIN['group']='グループ';
-$LANG_DATABOX_ADMIN['group_id']="グループID";
 $LANG_DATABOX_ADMIN['parent']='親';
+
+$LANG_DATABOX_ADMIN['fieldset']='属性セット';
+$LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
+$LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
+$LANG_DATABOX_ADMIN['fieldlist']="追加属性一覧";
+$LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
 $LANG_DATABOX_ADMIN['allow_display']='表示制限(一般画面)';
 $LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
@@ -223,7 +229,6 @@ $LANG_DATABOX_ADMIN['field_id'] = '追加属性ID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
-$LANG_DATABOX_ADMIN['group_id'] = 'グループID';
 $LANG_DATABOX_ADMIN['parent_id'] = '親ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = '親グループ？';
 
@@ -245,6 +250,7 @@ $LANG_DATABOX_ADMIN['endmessage'] = "処理終了しました";
 $LANG_DATABOX_ADMIN['delete_help_field'] = '削除するとデータも削除されます！';
 $LANG_DATABOX_ADMIN['delete_help_group'] = '登録されているデータがあります。削除できません。';
 $LANG_DATABOX_ADMIN['delete_help_category'] = '登録されているデータがあります。削除できません。親の変更もできません。';
+$LANG_DATABOX_ADMIN['delete_help_fieldset'] = '登録されているデータがあります。削除できません。';
 
 //xmlimport_help
 $LANG_DATABOX_xmlimport['help']=
@@ -295,12 +301,21 @@ $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = '追加属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成と
 ';
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
 
+$LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
+'属性の編集は、追加属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<{XHTML}br>
+追加属性が選択されているときは右側だけに表示されます。<{XHTML}br>
+編集が終わったら、「保存」ボタンをクリックしてください。<{XHTML}br>
+管理画面に戻ります。';
 
+$LANG_DATABOX_ADMIN['inst_newdata'] = 
+'新規登録するデータの属性セットを選択してください。<{XHTML}br>
+';
 
 //ERR
 $LANG_DATABOX_ADMIN['err'] = 'エラー';
@@ -381,6 +396,12 @@ $LANG_DATABOX_MAIL['subject_group'] =
 $LANG_DATABOX_MAIL['message_group']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
+$LANG_DATABOX_MAIL['subject_fieldset'] =
+"【{$_CONF['site_name']}】属性セット更新 by {$_USER['username']}";
+
+$LANG_DATABOX_MAIL['message_fieldset']=
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが更新されました。".LB.LB;
+
 #
 $LANG_DATABOX_MAIL['sig'] = LB
 ."------------------------------------".LB
@@ -405,6 +426,11 @@ $LANG_DATABOX_MAIL['subject_group_delete'] =
 "【{$_CONF['site_name']}】グループ削除 by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_group_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが削除されました。".LB;
+
+$LANG_DATABOX_MAIL['subject_fieldset_delete'] =
+"【{$_CONF['site_name']}】属性セット削除 by {$_USER['username']}";
+$LANG_DATABOX_MAIL['message_fieldset_delete']=
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが削除されました。".LB;
 
 ###############################################################################
 #

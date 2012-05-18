@@ -5,7 +5,7 @@
 // $Id: databox_function.php
 // public_html/admin/plugins/databox/databox_function.php
 // 20100924 tsuchitani AT ivywe DOT co DOT jp
-// 20110905 update
+// 20120509 fieldset add
 
 define ('THIS_PLUGIN', 'databox');
 
@@ -43,6 +43,7 @@ $navbarMenu = array();
 $navbarMenu[$LANG_DATABOX_admin_menu['1']]= $adminurl.'information.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['2']]= $adminurl.'data.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['3']]= $adminurl.'field.php';
+$navbarMenu[$LANG_DATABOX_admin_menu['31']]= $adminurl.'fieldset.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['4']]= $adminurl.'category.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['5']]= $adminurl.'group.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['6']]= $adminurl.'backuprestore.php';

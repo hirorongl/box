@@ -847,7 +847,8 @@ function DATABOX_getaddtionfieldsEdit(
     ,$chk_user
     ,$pi_name=""
     ,$fields_fnm=""
-    ,$fields_del=""
+	,$fields_del=""
+	,$fieldset_id=0
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目入力用HTML作成
@@ -859,6 +860,9 @@ function DATABOX_getaddtionfieldsEdit(
 // | 引数 $templates:
 // | 引数 $chk_user:
 // | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $fields_fnm:
+// | 引数 $fields_del:
+// | 引数 $fieldset_id:
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目入力用HTML　                                           |
 // +---------------------------------------------------------------------------+
@@ -885,7 +889,8 @@ global $_TABLES;
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
 
-
+	$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
+	
     $retval = '';
 
     if (is_array($fields)){
@@ -913,33 +918,37 @@ global $_TABLES;
         $description=$addition_def[$fid]['description'];
 
         $chk=false;
-        $disabled="disabled";
-        if ($chk_user===9999){
-            $chk=true;
-            $disabled="";
-        }else{
-            //編集可能
-            if  ($addition_def[$fid]['allow_edit']==='0') {
-                $chk=true;
-                $disabled="";
-            //グループとadmin権のある人のみ表示
-            }else if ($addition_def[$fid]['allow_edit']==='2'){
-                if  ($chk_user>=1010) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //所有者とadmin権のある人のみ
-            }else if ($addition_def[$fid]['allow_edit']==='3'){
-                if  ($chk_user>=1011) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //編集不可表示のみ
-            }else if ($addition_def[$fid]['allow_edit']==='4'){
-                $chk=true;
-            }
-        }
-
+		$disabled="disabled";
+		
+		if (in_array($fid,$fieldsetfields )) {
+			
+			if ($chk_user===9999){
+				$chk=true;
+				$disabled="";
+			}else{
+				//編集可能
+				if  ($addition_def[$fid]['allow_edit']==='0') {
+					$chk=true;
+					$disabled="";
+				//グループとadmin権のある人のみ表示
+				}else if ($addition_def[$fid]['allow_edit']==='2'){
+					if  ($chk_user>=1010) {
+						$chk=true;
+						$disabled="";
+					}
+				//所有者とadmin権のある人のみ
+				}else if ($addition_def[$fid]['allow_edit']==='3'){
+					if  ($chk_user>=1011) {
+						$chk=true;
+						$disabled="";
+					}
+				//編集不可表示のみ
+				}else if ($addition_def[$fid]['allow_edit']==='4'){
+					$chk=true;
+				}
+			}
+		}
+	
         if ($chk) {
 
             $fieldhtml="";
@@ -2424,11 +2433,6 @@ function DATABOX_checkaddtiondatas(
                     // $imgfile=$figure[ 'tmp_name' ];
 
 
-//echo "name=".$_FILES['afield_fnm']['name'][$field_id]."<br>";
-//echo "tmp_name=". $_FILES['afield_fnm']['tmp_name'][$field_id]."<br>";
-//echo "size=". $_FILES['afield_fnm']['size'][$field_id]."<br>";
-//echo "type=". $_FILES['afield_fnm']['type'][$field_id]."<br>";
-
                      $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
                      $imgsize=$_FILES['afield_fnm']['size'][$field_id];
                      $imgtype=$_FILES['afield_fnm']['type'][$field_id];
@@ -3096,7 +3100,7 @@ function DATABOX_getoptionlist(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
-//update 20101122,20110613
+//update 20101122,20110613,20120525
 {
 global $_CONF;
 global $_TABLES;
@@ -3126,6 +3130,10 @@ global $_TABLES;
         $where="";
         $table=$_TABLES[strtoupper($pi_name).'_def_category'];
         $fields= 'category_id,name,orderno';
+    }else if ($kind=="fieldset"){
+        $where="";
+        $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+        $fields= 'fieldset_id,name,fieldset_id';
     }else{
         $table=$_TABLES[strtoupper($pi_name).'_mst'];
         $where="kind='{$kind}'";
@@ -3450,6 +3458,41 @@ function DATABOX_getheadercode(
 		$retval .= $tpl->finish ($tpl->get_var ('output'));
 	}
 	return $retval;
+}
+
+function DATABOX_getfields(
+	$pi_name
+	, $fieldset_id
+)
+{
+	global $_TABLES;
+	
+	if ($fieldset_id==0){
+		$table=$_TABLES[strtoupper($pi_name).'_def_field'];
+	}else{
+		$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+	}
+	$fields = array();
+
+	// Get a list of additionfields in the selected field
+	$sql  = "SELECT DISTINCT field_id ";
+	$sql  .= " FROM {$table}";
+	
+	if ($fieldset_id<>0){
+		$sql  .= " WHERE  ";
+		$sql  .= " fieldset_id = $fieldset_id";
+	}
+	
+	$result = DB_query ($sql);
+	$num = DB_numRows ($result);
+	
+	if ($num<>0){
+		while ($A = DB_fetchArray($result)) {
+			$fields[] = $A['field_id'];
+		}
+	}
+	
+	return $fields;
 }
 
 ?>

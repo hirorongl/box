@@ -352,9 +352,14 @@ function fncEdit(
         $uuid=$_USER['uid'];
         $udatetime=COM_applyFilter ($_POST['udatetime']);//"";
 
+        $fieldset_id=COM_applyFilter ($_POST['fieldset_id'],true);//"";
 
     }else{
         if (empty($id)) {
+			$fieldset_id=COM_applyFilter ($_POST['fieldset'],true);//"";
+			$fieldset_name=DB_getItem($_TABLES['DATABOX_def_fieldset'],"name","fieldset_id=".$fieldset_id);
+			$fieldset_name=COM_stripslashes($fieldset_name);
+			
 
             $id=0;
 
@@ -436,12 +441,16 @@ function fncEdit(
         }else{
             $sql = "SELECT ";
 
-            $sql .= " *";
-            $sql .= " ,unix_timestamp(modified) AS modified_u ";
-            $sql .= " FROM ";
-            $sql .= $_TABLES['DATABOX_base'];
-            $sql .= " WHERE ";
-            $sql .= " id = $id";
+			$sql .= " t.*".LB;
+			$sql .= " ,t2.name AS fieldset_name".LB;
+			
+			$sql .= " ,unix_timestamp(modified) AS modified_u ";
+			$sql .= " FROM ";
+			$sql .= $_TABLES['DATABOX_base'] ." AS t ".LB;
+			$sql .= ",".$_TABLES['DATABOX_def_fieldset'] ." AS t2 ".LB;
+            $sql .= " WHERE ".LB;
+			$sql .= " id = $id".LB;
+			$sql .= " AND t.fieldset_id = t2.fieldset_id".LB;
 
             //編集権のないデータ はのぞく//@@@@@
             $sql .= COM_getPermSql('AND',0,3);
@@ -450,6 +459,8 @@ function fncEdit(
             $result = DB_query($sql);
 
             $A = DB_fetchArray($result);
+            $fieldset_id = COM_stripslashes($A['fieldset_id']);
+            $fieldset_name = COM_stripslashes($A['fieldset_name']);
 
             $code = COM_stripslashes($A['code']);
             $title=COM_stripslashes($A['title']);
@@ -624,6 +635,11 @@ function fncEdit(
     $templates->set_var('lang_link_public', $LANG_DATABOX_ADMIN['link_public']);
     $templates->set_var('lang_link_list', $LANG_DATABOX_ADMIN['link_list']);
     $templates->set_var('lang_link_detail', $LANG_DATABOX_ADMIN['link_detail']);
+	
+	//field_id
+    $templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
+    $templates->set_var('fieldset_id', $fieldset_id);
+    $templates->set_var('fieldset_name', $fieldset_name);
 
     //id
     $templates->set_var('lang_id', $LANG_DATABOX_ADMIN['id']);
@@ -749,7 +765,7 @@ function fncEdit(
     $templates->set_var('lang_additionfields', $LANG_DATABOX_ADMIN['additionfields']);
     $rt=DATABOX_getaddtionfieldsEdit
         ($additionfields,$addition_def,$templates,$chk_user,$pi_name
-            ,$additionfields_fnm,$additionfields_del);
+            ,$additionfields_fnm,$additionfields_del,$fieldset_id);
     $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,$chk_user,$pi_name);
 
     //保存日時
@@ -840,7 +856,7 @@ function fncSave (
     }else{
         $new_flg=false;
     }
-
+	$fieldset_id = COM_applyFilter ($_POST['fieldset'],true);
     $code = COM_applyFilter($_POST['code']);
     $code = addslashes (COM_checkHTML (COM_checkWords ($code)));
 
@@ -1028,6 +1044,8 @@ function fncSave (
         $fields.=",comments";//
         $values.=",$comments";
 
+		$fields.=",fieldset_id";//
+		$values.=",$fieldset_id";
 
         $fields.=",uuid";
         $values.=",$uuid";
@@ -1261,6 +1279,54 @@ function fncsendmail (
 }
 
 
+function fncNew ()
+{
+	global $_CONF;
+	global $LANG_DATABOX_ADMIN;
+	global $LANG_ADMIN;
+	
+	$pi_name="databox";
+	
+    $retval = '';
+	
+	//-----
+    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["new"], '',
+                               COM_getBlockTemplate ('_admin_block', 'header'));
+	
+    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
+    $templates = new Template($tmplfld);
+    $templates->set_file('editor',"selectset.thtml");
+	
+    $templates->set_var('site_url', $_CONF['site_url']);
+    $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+	
+    $token = SEC_createToken();
+    $retval .= SEC_getTokenExpiryNotice($token);
+    $templates->set_var('gltoken_name', CSRF_TOKEN);
+    $templates->set_var('gltoken', $token);
+    $templates->set_var ( 'xhtml', XHTML );
+
+    $templates->set_var('script', THIS_SCRIPT);
+
+	//fieldset_id
+	$fieldset_id=0;
+	$templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
+	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
+	$templates->set_var ('list_fieldset', $list_fieldset);
+	
+	$templates->set_var ('lang_inst_newdata', $LANG_DATABOX_ADMIN['inst_newdata']);
+	
+    $templates->set_var ('lang_new', $LANG_DATABOX_ADMIN['new']);
+    $templates->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+
+	$templates->parse('output', 'editor');
+    $retval .= $templates->finish($templates->get_var('output'));
+    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+	
+	return $retval;
+}
+
+
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
@@ -1333,6 +1399,18 @@ if (COM_isAnonUser()){
 switch ($mode) {
 
     case 'new':// 新規登録
+        if ($_DATABOX_CONF['allow_data_insert']
+                OR SEC_hasRights('databox.submit')){
+
+            $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+            $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+            $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+            $display .= fncNew();
+            $display .= DATABOX_siteFooter('DATABOX','_admin');
+
+            break;
+        }
+    case 'newedit':// 新規登録
         if ($_DATABOX_CONF['allow_data_insert']
                 OR SEC_hasRights('databox.submit')){
 

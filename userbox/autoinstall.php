@@ -57,8 +57,8 @@ function plugin_autoinstall_userbox($pi_name)
     global $_CONF;
     global $_TABLES;
     global $_DB_table_prefix;
-    require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
-    require_once ($_CONF['path'] . "plugins/{$pi_name}/version.php");
+    include_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
+    include 'version.php';
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,

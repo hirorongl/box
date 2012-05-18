@@ -42,6 +42,7 @@ CREATE TABLE {$_TABLES['DATABOX_base']} (
   `released` datetime NOT NULL,
   `expired` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `orderno` int(2) NOT NULL DEFAULT '0',
+  `fieldset_id` int(11) NOT NULL DEFAULT '0',
   `draft_flag` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
@@ -155,6 +156,41 @@ CREATE TABLE {$_TABLES['DATABOX_stats']} (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM
 ";
+
+//属性セットテーブル
+$_SQL[] = "
+CREATE TABLE {$_TABLES['DATABOX_def_fieldset']} (
+  `fieldset_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `description` mediumtext,
+  `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `uuid` mediumint(8) NOT NULL,
+  PRIMARY KEY (`fieldset_id`)
+) ENGINE=MyISAM
+";
+$_SQL[] = "
+INSERT INTO {$_TABLES['DATABOX_def_fieldset']} (
+`fieldset_id` 
+)
+VALUES (
+'0'
+)";
+
+//属性セット関連
+$_SQL[] = "
+CREATE TABLE {$_TABLES['DATABOX_def_fieldset_assignments']} (
+  `seq` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldset_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  PRIMARY KEY (`seq`),
+  KEY `fieldset_id` (`fieldset_id`)
+) ENGINE=MyISAM
+";
+
+
+
+
+
 
 $pro=$_CONF['path'] . 'plugins/databox/proversion/';
 if (file_exists($pro)) {
