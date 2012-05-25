@@ -186,6 +186,7 @@ $LANG_DATABOX_ADMIN['xml_def'] = 'XML定義';
 $LANG_DATABOX_ADMIN['init'] = '初期化';
 $LANG_DATABOX_ADMIN['list'] = '一覧';
 $LANG_DATABOX_ADMIN['dataclear'] = 'データクリア';
+$LANG_DATABOX_ADMIN['allclear'] = 'ALL クリア';
 
 $LANG_DATABOX_ADMIN['path'] = '絶対パス';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
@@ -209,7 +210,22 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 アップロードされたファイルも削除されます。<{XHTML}br>
 追加属性、カテゴリ、グループ削除されません。<{XHTML}br>
 ';
-
+$LANG_DATABOX_ADMIN['allclearmsg'] = '
+バックアップはとりましたか？<{XHTML}br>
+マスタおよびデータをクリアします。<{XHTML}br>
+アップロードされたファイルも削除されます。<{XHTML}br>
+';
+$LANG_DATABOX_ADMIN['backupmsg'] = 
+"{$_CONF['backup_path']}"."databox/に<{XHTML}br>"
+.'DataBox のデータベースデータをバックアップします。<{XHTML}br>
+アップロードファイルは別途バックアップしてください。<{XHTML}br>
+';
+$LANG_DATABOX_ADMIN['restoremsg'] = 
+"{$_CONF['backup_path']}"."databox/にある"
+.'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>
+DataBox のデータベースデータをリストアします。<{XHTML}br>
+アップロードファイルは別途もどしてください。<{XHTML}br>
+';
 //<---
 
 $LANG_DATABOX_ADMIN['yy'] = '年';
@@ -289,7 +305,6 @@ $LANG_DATABOX_ADMIN['config_restore_help'] = 'バックアップファイルの�
 $LANG_DATABOX_ADMIN['config_update'] = '更新';
 $LANG_DATABOX_ADMIN['config_update_help'] = '最新の仕様に更新します ';
 
-
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
 $LANG_DATABOX_ADMIN['configuration'] = 'コンフィギュレーション設定';
 $LANG_DATABOX_ADMIN['autotags'] = '自動タグ';
@@ -302,9 +317,9 @@ $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = '追加属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成と
-';
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア<br{KHTML}><br{KHTML}>';
+
+
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
@@ -351,8 +366,8 @@ $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されていま�
 
 $LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
 
-$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'バックアップファイルがありません';
-$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップファイル書換できません';
+$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'コンフィギュレーションバックアップファイルがありません<br{KHTML}>';
+$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'コンフィギュレーションバックアップファイル書換できません<br{KHTML}>';
 
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="ランダム";
