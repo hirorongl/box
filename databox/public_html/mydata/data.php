@@ -76,7 +76,9 @@ function fncList()
     }
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true);
-    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+	$header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
+
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
 
@@ -92,8 +94,9 @@ function fncList()
     $sql .= " ,code";
     $sql .= " ,draft_flag";
     $sql .= " ,modified";
-    $sql .= " ,udatetime";
+    $sql .= " ,t.udatetime";
     $sql .= " ,orderno";
+    $sql .= " ,t2.name AS fieldset_name";
 
     $sql .= " ,owner_id";
     $sql .= " ,group_id";
@@ -104,16 +107,17 @@ function fncList()
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
+    $sql .= " ,{$_TABLES['DATABOX_def_fieldset']} AS t2";
     $sql .= " WHERE ";
 
-    $sql .= " 1=1";
+    $sql .= " t.fieldset_id=t2.fieldset_id";
     //編集権のないデータ はのぞく
     $sql .= COM_getPermSql('AND',0,3);
 
     $query_arr = array(
         'table' => 'DATABOX_base',
         'sql' => $sql,
-        'query_fields' => array('id','title','code','draft_flag','orderno'),
+        'query_fields' => array('id','title','code','draft_flag','orderno','t2.name'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');

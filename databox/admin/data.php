@@ -42,6 +42,7 @@ function fncList()
 
     //MENU1:管理画面
     $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
+    $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
     $url2=$_CONF['site_url'] . '/databox/index.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
@@ -50,6 +51,8 @@ function fncList()
     $menu_arr = array (
         array('url' => $url1,
               'text' => $LANG_DATABOX_ADMIN["new"]),
+        array('url' => $url7,
+              'text' => $LANG_DATABOX_ADMIN["changeset"]),
         array('url' => $url2,
               'text' => $LANG_DATABOX['list']),
 
@@ -84,6 +87,7 @@ function fncList()
         array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true),
         array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true),
         array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true),
+        array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true),
         //array('text' => $LANG_DATABOX_ADMIN['modified'], 'field' => 'modified', 'sort' => true),
         array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true),
         array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true)
@@ -100,19 +104,21 @@ function fncList()
     $sql .= " ,code";
     $sql .= " ,draft_flag";
     $sql .= " ,modified";
-    $sql .= " ,udatetime";
+    $sql .= " ,t.udatetime";
     $sql .= " ,orderno";
-
+    $sql .= " ,orderno";
+    $sql .= " ,t2.name AS fieldset_name";
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
+    $sql .= " ,{$_TABLES['DATABOX_def_fieldset']} AS t2";
     $sql .= " WHERE ";
-    $sql .= " 1=1";
+    $sql .= " t.fieldset_id=t2.fieldset_id";
 
     $query_arr = array(
         'table' => 'DATABOX_base',
         'sql' => $sql,
-        'query_fields' => array('id','title','code','draft_flag','orderno'),
+        'query_fields' => array('id','title','code','draft_flag','orderno','t2.name'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
@@ -176,6 +182,15 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             }
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
+            break;
+        //名
+		case 'fieldset_name':
+            $name=COM_applyFilter($A['fieldset_name']);
+            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
+            $url.="?";
+            $url.="mode=changeset";
+            $url.="&amp;id=".$A['id'];
+			$retval = COM_createLink($name,$url);
             break;
         //下書
         case 'draft_flag':
@@ -1758,6 +1773,104 @@ function fncNew ()
 	return $retval;
 }
 
+function fncChangeSet (
+){
+	global $_CONF;
+	global $LANG_DATABOX_ADMIN;
+	global $LANG_ADMIN;
+	global $_TABLES;
+	
+	$pi_name="databox";
+	
+    $retval = '';
+	
+	$id = COM_applyFilter ($_REQUEST['id'], true);
+	//-----
+    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["changeset"], '',
+                               COM_getBlockTemplate ('_admin_block', 'header'));
+	
+    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
+    $templates = new Template($tmplfld);
+    $templates->set_file('editor',"changeset.thtml");
+	
+    $templates->set_var('site_url', $_CONF['site_url']);
+    $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+	
+    $token = SEC_createToken();
+    $retval .= SEC_getTokenExpiryNotice($token);
+    $templates->set_var('gltoken_name', CSRF_TOKEN);
+    $templates->set_var('gltoken', $token);
+    $templates->set_var ( 'xhtml', XHTML );
+
+    $templates->set_var('script', THIS_SCRIPT);
+	
+	$templates->set_var('id', $id);
+	if  ($id==0){
+		$inst=$LANG_DATABOX_ADMIN['inst_changeset0'];
+	}else{
+		$inst=DB_getItem($_TABLES['DATABOX_base'],"title","id=".$id);
+		$inst.=$LANG_DATABOX_ADMIN['inst_changesetx'];
+	}
+	$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
+	$templates->set_var ('lang_inst_changeset', $inst);
+	
+	//fieldset_id
+	$fieldset_id=0;
+	$templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
+	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
+	$templates->set_var ('list_fieldset', $list_fieldset);
+	
+	
+    $templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
+    $templates->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+
+	$templates->parse('output', 'editor');
+    $retval .= $templates->finish($templates->get_var('output'));
+    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+	
+	return $retval;
+}
+
+function fncChangeSetExec (
+)
+{
+    global $_TABLES;
+    global $_USER;
+
+	
+	$fieldset_id = COM_applyFilter ($_REQUEST['fieldset'], true);
+	if  ($fieldset_id==0) {
+		return;
+	}
+	$id = COM_applyFilter ($_REQUEST['id'], true);
+    $uuid=$_USER['uid'];
+	
+	$sql="SELECT id FROM {$_TABLES['DATABOX_base']}  ";
+	$sql .=" WHERE ";
+	if  ($id==0){
+		$sql .="  fieldset_id=0";
+	}else{
+		$sql .="  id=".$id;
+	}	
+	
+	$result = DB_query ($sql);
+
+    $i=0;
+    while( $A = DB_fetchArray( $result ) )    {
+		$A = array_map('stripslashes', $A);
+		
+		$sql="UPDATE {$_TABLES['DATABOX_base']} set ";
+		$sql.="fieldset_id = '$fieldset_id'";
+		$sql.=",uuid='$uuid' WHERE id =".$A['id'] ;
+		
+		DB_query($sql);
+		
+        $i++;
+    }
+
+
+    return;
+}
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
@@ -1789,6 +1902,8 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="delete";
 }else if (($mode == $LANG_DATABOX_ADMIN['new']) && !empty ($LANG_DATABOX_ADMIN['new'])) {
     $mode="newedit";
+}else if (($mode == $LANG_DATABOX_ADMIN['changeset']) && !empty ($LANG_DATABOX_ADMIN['changeset'])) {
+    $mode="changesetexec";
 }
 
 if (isset ($_POST['draftChange'])) {
@@ -1798,7 +1913,9 @@ if (isset ($_POST['draftChange'])) {
 //echo "mode=".$mode."<br>";
 
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-    OR $mode=="export" OR $mode=="import"  OR $mode=="copy") {
+	OR $mode=="export" OR $mode=="import"  OR $mode=="copy"
+	OR $mode=="changeset"
+	) {
 }else{
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用
@@ -1819,6 +1936,11 @@ if ($mode=="drafton") {
 }
 if ($mode=="draftoff") {
     fncchangeDraftAll (0);
+}
+
+if ($mode=="changesetexec") {
+	
+	fncChangeSetExec ();
 }
 
 
@@ -1849,12 +1971,23 @@ switch ($mode) {
         //$display .= fncimport();
         break;
 
+	case 'changeset':// 属性セット変更
+        $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+        $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+        $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+        $display .= fncChangeSet();
+		$display .= DATABOX_siteFooter('DATABOX','_admin');
+
+        break;
+	
 	case 'new':// 新規登録 属性セット選択
         $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= fncNew();
         $display .= DATABOX_siteFooter('DATABOX','_admin');
+
+        break;
 	
 	case 'newedit':// 新規登録編集
 	
@@ -1893,7 +2026,6 @@ switch ($mode) {
         $display .= DATABOX_siteFooter('DATABOX','_admin');
 
         break;
-
 
     default:// 初期表示、一覧表示
 

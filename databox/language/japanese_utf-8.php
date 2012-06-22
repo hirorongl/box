@@ -146,6 +146,15 @@ $LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
 $LANG_DATABOX_ADMIN['fieldlist']="追加属性一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
+$LANG_DATABOX_ADMIN['changeset']='属性セット変更';
+$LANG_DATABOX_ADMIN['inst_changeset0']='属性セットが登録されていないデータの属性セットを変更します。<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changesetx']='の属性セットを変更します。<{XHTML}br>';
+
+$LANG_DATABOX_ADMIN['inst_changeset'] = 
+'変更する属性セットを選択してください。<{XHTML}br>
+';
+
+
 $LANG_DATABOX_ADMIN['allow_display']='表示制限(一般画面)';
 $LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
 
@@ -224,6 +233,14 @@ $LANG_DATABOX_ADMIN['restoremsg'] =
 "{$_CONF['backup_path']}"."databox/にある"
 .'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>
 DataBox のデータベースデータをリストアします。<{XHTML}br>
+アップロードファイルは別途もどしてください。<{XHTML}br>
+';
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = 
+"{$_CONF['backup_path']}"."databox/にある"
+.'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>
+phpMyAdmin でエキスポートしたDataBox のデータベースデータをリストアします。<{XHTML}br>
+phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>
+接頭子が異なる場合は、あらかじめ変換しておいてください。<{XHTML}br>
 アップロードファイルは別途もどしてください。<{XHTML}br>
 ';
 //<---
@@ -332,6 +349,7 @@ $LANG_DATABOX_ADMIN['inst_newdata'] =
 '新規登録するデータの属性セットを選択してください。<{XHTML}br>
 ';
 
+
 //ERR
 $LANG_DATABOX_ADMIN['err'] = 'エラー';
 $LANG_DATABOX_ADMIN['err_empty'] = 'ファイルがありません';
@@ -368,6 +386,8 @@ $LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではない�
 
 $LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'コンフィギュレーションバックアップファイルがありません<br{KHTML}>';
 $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'コンフィギュレーションバックアップファイル書換できません<br{KHTML}>';
+
+$LANG_DATABOX_ADMIN['err_not_exist'] = '存在しません';
 
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="ランダム";
