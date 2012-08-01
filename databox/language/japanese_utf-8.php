@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120509
+# Last Update 20120730
 
 ###############################################################################
 ## 管理画面 menu
@@ -568,6 +568,8 @@ $LANG_confignames['databox']['layout'] = 'レイアウト 一般画面';
 $LANG_confignames['databox']['layout_admin'] = 'レイアウト 管理画面';
 //----------------------
 $LANG_confignames['databox']['mail_to'] = '更新通知先メールアドレス';
+$LANG_confignames['databox']['mail_to_owner'] = '所有者に更新を通知する';
+$LANG_confignames['databox']['mail_to_draft'] = '下書データの更新を通知する';
 $LANG_confignames['databox']['allow_data_update'] = 'ユーザに更新を許可する';
 $LANG_confignames['databox']['allow_data_delete'] = 'ユーザに削除を許可する';
 $LANG_confignames['databox']['allow_data_insert'] = 'ユーザに新規登録を許可する';

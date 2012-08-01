@@ -75,17 +75,14 @@ if ($mode=="export") {
 //
 $menuno=3;
 $display = '';
+$information = array();
 
 //echo "mode=".$mode."<br>";
 switch ($mode) {
     case 'new':// 新規登録
-        $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-        $display .= databox_siteHeader($pi_name,'_admin',$page_title);
-
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_Edit($pi_name,"", $edt_flg,$msg);
-        $display .= databox_siteFooter($pi_name,'_admin');
-
         break;
 
     case 'save':// 保存
@@ -97,44 +94,33 @@ switch ($mode) {
     case 'copy'://コピー
     case 'edit':// 編集
         if (!empty ($id) ) {
-            $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-            $display .= databox_siteHeader($pi_name,'_admin',$page_title);
-
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
                 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             }
             $display .= LIB_Edit($pi_name,$id, $edt_flg,$msg,"",$mode);
-            $display .= databox_siteFooter($pi_name,'_admin');
-
         }
         break;
 
     case 'import':// インポート
-        $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
-        $display .= databox_siteHeader($pi_name,'_admin',$page_title);
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
         $display .= LIB_import($pi_name);
-        $display .= databox_siteFooter($pi_name,'_admin');
-
         break;
 
 
     default:// 初期表示、一覧表示
 
-        $page_title=$LANG_DATABOX_ADMIN['piname'];
-        $display .= databox_siteHeader($pi_name,'_admin',$page_title);
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-
         $display .= LIB_List($pi_name);
-        $display .= databox_siteFooter($pi_name,'_admin');
 
 }
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 
-
-
-echo $display;
+COM_output($display);
 
 ?>

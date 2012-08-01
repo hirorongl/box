@@ -1,5 +1,4 @@
 <?php
-
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
 // | data view
@@ -7,24 +6,26 @@
 // $Id: view.php
 // public_html/databox/mydata/view.php
 // 20110627 tsuchitani AT ivywe DOT co DOT jp
+// 20120720
 
 define ('THIS_SCRIPT', 'databox/mydata/view.php');
 //define ('THIS_SCRIPT', 'databox/mydata/test.php');
 
-//include_once('userbox_functions.php');
-
-//require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_datetimeedit.php');
-//require_once $_CONF['path_system'] . 'lib-user.php';
 require_once('../../lib-common.php');
 
-//ログイン要チェック
+$information = array();
+$display="";
+//############################
+$pi_name    = 'databox';
+//############################
 
+//ログイン要チェック
 if (empty ($_USER['username'])) {
-    $page_title= $LANG_PROFILE[4];
-    $display .= DATABOX_siteHeader('DATABOX','',$page_title);
+    $information['pagetitle']= $LANG_PROFILE[4];
     $display .= SEC_loginRequiredForm();
     $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    echo $display;
+	$display=DATABOX_displaypage($pi_name,'',$display,$information);
+	COM_output($display);
     exit;
 }
 
@@ -44,10 +45,8 @@ if ($_DATABOX_CONF['allow_data_update']==1 ){
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
-function fncview ($id)
+function fncview ($pi_name,$id)
 {
-    $pi_name="databox";
-
 	global $_CONF;
     global $LANG_USERBOX_ADMIN;
 
@@ -80,9 +79,6 @@ function fncview ($id)
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
-//############################
-$pi_name    = 'databox';
-//############################
 $id = null;
 if (isset ($_REQUEST['id'])) {
     $id = COM_applyFilter ($_REQUEST['id'], true);
@@ -97,13 +93,10 @@ if ($id===null) {
 		exit;
 }
 
-$display="";
 
-$page_title=$LANG_DATABOX_ADMIN['piname'];
-$display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-$display .= fncview($id);
-$display .= DATABOX_siteFooter($pi_name,'_admin');
-
-echo $display;
+$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+$display .= fncview($pi_name,$id);
+$display=DATABOX_displaypage($pi_name,'',$display,$information);
+COM_output($display);
 
 ?>

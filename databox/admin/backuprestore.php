@@ -106,8 +106,10 @@ if ($action=="" ) {
 
 $display = '';
 $menuno=6;
-$page_title=$LANG_DATABOX_ADMIN['piname']."backup and restore";
-$display.= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+$information = array();
+
+
+$information['pagetitle']=$LANG_DATABOX_ADMIN['piname']."backup and restore";
 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
@@ -135,8 +137,8 @@ switch ($action) {
 }
 
 $display.=fncDisply($pi_name);
-$display.= DATABOX_siteFooter($pi_name,'_admin');
 
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);
 
 

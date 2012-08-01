@@ -187,6 +187,14 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
     return $retval;
 
 }
+function LIB_Edit(
+    $pi_name
+    ,$id
+    ,$edt_flg
+    ,$msg = ''
+    ,$errmsg=""
+    ,$mode="edit"
+)
 // +---------------------------------------------------------------------------+
 // | 機能  編集画面表示
 // | 書式 LIB_Edit($pi_name,$id , $edt_flg,$msg,$errmsg)
@@ -198,14 +206,6 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:編集画面
 // +---------------------------------------------------------------------------+
-function LIB_Edit(
-    $pi_name
-    ,$id
-    ,$edt_flg
-    ,$msg = ''
-    ,$errmsg=""
-    ,$mode="edit"
-)
 {
     global $_CONF;
     global $_TABLES;
@@ -646,7 +646,7 @@ function LIB_Save (
     $values.=",'$selection'";
 
     $fields.=",selectlist";
-    $values.=",$selectlist";
+    $values.=",'$selectlist'";
 
     $fields.=",checkrequried";
     $values.=",$checkrequried";

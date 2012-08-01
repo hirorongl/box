@@ -1466,6 +1466,7 @@ function databox_data(
         $sql .= " LIMIT 0 , 1";
     }
 	
+	
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 

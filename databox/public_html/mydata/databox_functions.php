@@ -22,12 +22,13 @@ $edt_flg=FALSE;
 $pi_name    = 'databox';
 //############################
 
-$page_title= $LANG_DATABOX['mydata'];
 //ログインチェック
 if (COM_isAnonUser()){
-    $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+	$information = array();
+	$information['pagetitle']=$LANG_DATABOX['mydata'];
+    $display="";
     $display .= SEC_loginRequiredForm();
-    $display .= DATABOX_siteFooter($pi_name);
+	$display=DATABOX_displaypage($pi_name,'',$display,$information);
     COM_output($display);
     exit;
 }

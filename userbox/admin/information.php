@@ -1,5 +1,4 @@
 <?php
-
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
 // | information.php
@@ -7,21 +6,20 @@
 // $Id: information.php
 // public_html/admin/plugins/userbox/information.php
 // 20100910 tsuchitani AT ivywe DOT co DOT jp
-
-// @@@@@追加予定：information.thtml の編集
+// 20120720
 
 define ('THIS_SCRIPT', 'information.php');
 
 include_once('userbox_functions.php');
 
+
+function fncDisplay()
 // +---------------------------------------------------------------------------+
 // | 機能  表示                                                                |
 // | 書式 fncDisplay()                                                         |
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:表示                                                           |
 // +---------------------------------------------------------------------------+
-//20101110
-function fncDisplay()
 {
 
     $pi_name="userbox";
@@ -41,7 +39,6 @@ function fncDisplay()
 	
 	$lang = COM_getLanguageName();
 	$path = 'admin/plugins/userbox/docs/';
-	//$path = 'docs/';
 	if (!file_exists($_CONF['path_html'] . $path . $lang . '/')) {
 		$lang = 'japanese';//'english';
 	}
@@ -79,34 +76,15 @@ function fncDisplay()
 $pi_name    = 'userbox';
 //############################
 
-
-
-if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
-}else{
-    if (!SEC_checkToken()){
-        COM_accessLog("User {$_USER['username']} tried to illegally and failed CSRF checks.");
-        echo COM_refresh($_CONF['site_admin_url'] . '/index.php');
-        exit;
-    }
-}
 $menuno=1;
 $display = '';
+$information = array();
 
-//
-$page_title=$LANG_USERBOX_ADMIN['piname'];
-$display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
-if (isset ($_REQUEST['msg'])) {
-    $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
-                                                  true), $pi_name);
-}
-
+$information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
 $display .=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-
 $display.=fncDisplay();
 
-$display .= DATABOX_siteFooter($pi_name,'_admin');
-
-echo $display;
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
+COM_output($display);
 
 ?>

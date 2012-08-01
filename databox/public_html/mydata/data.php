@@ -384,7 +384,7 @@ function fncEdit(
             $comment_expire_hour=0;
             $comment_expire_minute=0;
 
-            $commentcode =0;
+            $commentcode =-1;
 
             $meta_description ="";
             $meta_keywords ="";
@@ -1205,7 +1205,7 @@ function fncsendmail (
         //URL
         $url=$_CONF['site_url'] . "/databox/data.php";
         $url = COM_buildUrl( $url );
-
+		$A['draft_flag']=0;
     }else{
         $sql = "SELECT ";
 
@@ -1263,21 +1263,30 @@ function fncsendmail (
             $url = COM_buildUrl( $url );
 
         }
-    }
+	}
+	
+	if  (($_DATABOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==0)){
+	}else{
 
-    $message.=$msg.LB;
-    $message.=$url.LB;
-    $message.=$LANG_DATABOX_MAIL['sig'].LB;
+		$message.=$msg.LB;
+		$message.=$url.LB;
+		$message.=$LANG_DATABOX_MAIL['sig'].LB;
 
-    $mail_to=$_DATABOX_CONF['mail_to'];
-    //--- to user
-    if (array_search($_USER['email'],$mail_to)===false){
-        $to=$_USER['email'];
-        COM_mail ($to, $subject, $message);
-    }
-    //--- to admin
-    $to=implode($mail_to,",");
-    COM_mail ($to, $subject, $message);
+		$mail_to=$_DATABOX_CONF['mail_to'];
+		//--- to owner
+		if  ($_DATABOX_CONF['mail_to_owner']==1){
+			$owner_email=DB_getItem($_TABLES['users'],"email","uid=".$A['owner_id']);
+			if (array_search($owner_email,$mail_to)===false){
+				$to=$owner_email;
+				COM_mail ($to, $subject, $message);
+			}
+		}
+		//--- mail_to
+		if  ($mail_to<>""){
+			$to=implode($mail_to,",");
+			COM_mail ($to, $subject, $message);
+		}
+	}
 
     return $retval;
 }
@@ -1381,6 +1390,7 @@ if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="dr
 //
 $menuno=2;
 $display="";
+$information = array();
 
 //ログイン要否チェック
 if (COM_isAnonUser()){
@@ -1406,24 +1416,18 @@ switch ($mode) {
         if ($_DATABOX_CONF['allow_data_insert']
                 OR SEC_hasRights('databox.submit')){
 
-            $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-            $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             $display .= fncNew();
-            $display .= DATABOX_siteFooter('DATABOX','_admin');
-
             break;
         }
     case 'newedit':// 新規登録
         if ($_DATABOX_CONF['allow_data_insert']
                 OR SEC_hasRights('databox.submit')){
 
-            $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-            $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             $display .= fncEdit("", $edt_flg,$msg);
-            $display .= DATABOX_siteFooter('DATABOX','_admin');
-
             break;
         }
     case 'save':// 保存
@@ -1441,8 +1445,7 @@ switch ($mode) {
         }
     case 'edit':// 編集
         if ($id<>""  ) {
-            $page_title=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-            $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
                 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             }
@@ -1452,26 +1455,23 @@ switch ($mode) {
             }else{
                 $display.=$rt;
             }
-            $display .= DATABOX_siteFooter('DATABOX','_admin');
-
         }
         break;
 
     default:// 初期表示、一覧表示
 
-        $page_title=$LANG_DATABOX_ADMIN['piname'];
-        $display .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,'databox');
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 
         $display .= fncList();
-        $display .= DATABOX_siteFooter('DATABOX','_admin');
 
 
 }
 
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 
 COM_output($display);

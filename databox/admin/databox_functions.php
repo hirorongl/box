@@ -22,18 +22,18 @@ $edt_flg=FALSE;
 // 権限チェック
 if (SEC_hasRights('databox.admin')) {
 }else{
+	$information = array();
+	$information['pagetitle']=$MESSAGE[30];
     $display="";
-    $display .= COM_siteHeader('menu', $MESSAGE[30]);
     $display .= COM_startBlock ($MESSAGE[30], '',
                                 COM_getBlockTemplate ('_msg_block', 'header'));
     $display .= $MESSAGE[35];
     $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display .= COM_siteFooter();
 
-    // Log attempt to error.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the databox administration screen.");
 
-    echo $display;
+	$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
+	COM_output($display);
 
     exit;
 }

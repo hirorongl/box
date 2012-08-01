@@ -249,16 +249,17 @@ function fncComment(
 
 		$A = DB_fetchArray ($result);
 		$A = array_map('stripslashes', $A);
-	
-		$delete_option = (SEC_hasRights('userbox.edit') &&
+		if  ($A['commentcode']>=0){
+			$delete_option = (SEC_hasRights('userbox.edit') &&
                     SEC_hasAccess($A['owner_id'], $A['group_id'],
                     $A['perm_owner'], $A['perm_group'], $A['perm_members'],
                     $A['perm_anon']) == 3 ? true : false);
 	
-		require_once $_CONF['path_system'] . 'lib-comment.php';
-		$retval .= CMT_userComments($id, $A['topic'], 'userbox',
+			require_once $_CONF['path_system'] . 'lib-comment.php';
+			$retval .= CMT_userComments($id, $A['topic'], 'userbox',
                                 $order, $mode, 0, $page, false,
                                 $delete_option, $A['commentcode']);
+		}
 	}
 	
 

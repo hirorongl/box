@@ -294,6 +294,92 @@ function DATABOX_siteFooter (
 }
 
 
+//$retval = SP_returnStaticpage($page, $display_mode, $comment_order, $comment_mode, $comment_page, $msg, $query);
+
+function DATABOX_displaypage (
+    $pi_name= 'databox'
+    ,$kind = ''
+    ,$display = ''
+    ,$information = ''
+)
+//$information
+// 'what'  'none' no left blocks are returned
+//         'menu' (default)  right blocks are returned
+// 'pagetitle'     Optional content for the page's <title>
+// 'breadcrumbs'   Optional content for the page's <title>
+// 'headercode'    Optional code to go into the page's <head>
+// 'rightblock'    右ブロックを表示するかどうか　 default is no (-1)
+// 'custom'        An array defining custom function to be used to 
+
+{
+    global $_CONF;
+
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+
+    $layout=$box_conf['layout'.$kind];
+	
+	//全画面表示（ヘッダ・フッタ・ブロックなし）
+	if  ($layout=='blankpage'){
+		
+	}else{
+		switch ($layout) {
+			// ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
+			case 'standard':
+				//$display=COM_siteHeader ('menu', $page_title,$headercode);
+				//$display .= COM_siteFooter(false,$custom);
+				$information['what']='menu';
+				$information['rightblock']=false;
+				break;
+			//ヘッダ・フッタ・左右ブロックあり
+			case 'leftrightblocks':
+				//$display=COM_siteHeader ('menu', $page_title,$headercode);
+				//$display .= COM_siteFooter(true,$custom);
+				$information['what']='menu';
+				$information['rightblock']=true;
+				break;
+			//ヘッダ・フッタ・左ブロックあり（右ブロックなし）
+			case 'leftblocks':
+				//$display=COM_siteHeader ('menu', $page_title,$headercode);
+				$information['what']='menu';
+				$_CONF['show_right_blocks']=0;
+				//$_CONF['left_blocks_in_footer']=0;
+				//$display .= COM_siteFooter(false,$custom);
+				$information['rightblock']=false;
+				break;
+			//ヘッダ・フッタ・右ブロックあり（左ブロックなし）
+			case 'rightblocks':
+				//$display=COM_siteHeader ('none', $page_title,$headercode);
+				$information['what']='none';
+				//$display .= COM_siteFooter(true,$custom);
+				$information['rightblock']=true;
+				break;
+			//ヘッダ・フッタあり（ブロックなし）
+			case 'noblocks':
+				//$display=COM_siteHeader ('none', $page_title,$headercode);
+				$information['what']='none';
+				//$_CONF['show_right_blocks']=0;
+				//$_CONF['left_blocks_in_footer']=0;
+				//$display .= COM_siteFooter(false,$custom);
+				$information['rightblock']=false;
+				break;
+		}
+		
+		//FOR GL2.0.0 
+		if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
+			$display = COM_createHTMLDocument($display,$information);
+		}else{
+			$display = COM_siteHeader ($information['what'], $information['pagetitle']).$display;
+			$display .= COM_siteFooter($information['rightblock']);
+		}
+	}
+
+
+    return $display;
+}
+
+
 function DATABOX_getcheckList(
     $kind
     ,$selected = ""
@@ -3024,6 +3110,14 @@ function DATABOX_getradiolist(
     return $retval;
 }
 
+function DATABOX_getoptionlistary(
+    $ary
+    ,$fld
+    ,$selected = ""
+    ,$pi_name=""
+    ,$disabled=""
+
+)
 // +---------------------------------------------------------------------------+
 // | 機能  オプションリスト作成（配列より）                                    |
 // | 書式 DATABOX_getyesno($no,$fld,$selected)                                 |
@@ -3037,14 +3131,6 @@ function DATABOX_getradiolist(
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
 //update 20101122
-function DATABOX_getoptionlistary(
-    $ary
-    ,$fld
-    ,$selected = ""
-    ,$pi_name=""
-    ,$disabled=""
-
-)
 {
 
     if ($pi_name==""){
@@ -3134,6 +3220,10 @@ global $_TABLES;
         $where="";
         $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
         $fields= 'fieldset_id,name,fieldset_id';
+    }else if ($kind=="selectlist"){
+        $where="";
+        $table=$_TABLES[strtoupper($pi_name).'_mst'];
+        $fields= 'DISTINCT kind,kind,kind';
     }else{
         $table=$_TABLES[strtoupper($pi_name).'_mst'];
         $where="kind='{$kind}'";
