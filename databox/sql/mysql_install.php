@@ -92,7 +92,7 @@ CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `description` mediumtext,
   `type` int(2) NOT NULL DEFAULT '0',
   `selection` mediumtext,
-  `selectlist` int(11) DEFAULT NULL,
+  `selectlist` VARCHAR( 16 ) NULL DEFAULT NULL,
   `checkrequried` binary(1) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `maxlength` int(11) DEFAULT NULL,
@@ -116,6 +116,7 @@ CREATE TABLE {$_TABLES['DATABOX_def_group']} (
   `description` mediumtext,
   `orderno` int(2) DEFAULT NULL,
   `parent_flg` binary(1) NOT NULL DEFAULT '0',
+  `input_type` BINARY(1) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`group_id`)
