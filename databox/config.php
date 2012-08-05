@@ -37,5 +37,7 @@ $_TABLES['DATABOX_def_group_name']    = $_DB_table_prefix . 'databox_def_group_n
 $_TABLES['DATABOX_def_fieldset']    = $_DB_table_prefix . 'databox_def_fieldset';
 $_TABLES['DATABOX_def_fieldset_assignments']    = $_DB_table_prefix . 'databox_def_fieldset_assignments';
 
+//20120805add----->
+$_TABLES['DATABOX_def_fieldset_group']    = $_DB_table_prefix . 'databox_def_fieldset_group';
 
 ?>

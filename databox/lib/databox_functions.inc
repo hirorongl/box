@@ -396,6 +396,7 @@ function DATABOX_getcheckList(
 // | 戻値 nomal:チェックリスト
 // +---------------------------------------------------------------------------+
 //20101116
+// カテゴリ以外で使っているか確認のこと
 {
 global $_TABLES;
 
@@ -2156,6 +2157,126 @@ function DATABOX_getcategoriesDisp(
     return $retval;
 }
 
+function DATABOX_getcategoriesinp(
+	$selected = ""
+	,$fieldset_id=""
+    ,$pi_name=""
+)
+{
+global $_TABLES;
+
+    if ($pi_name==""){
+        $table_def_category=$_TABLES['DATABOX_def_category'];
+		$table_def_group=$_TABLES['DATABOX_def_group'];
+		$table_def_fieldset_group=$_TABLES['DATABOX_def_fieldset_group'];
+        $table_mst=$_TABLES['DATABOX_mst'];
+    }else{
+        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
+        $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
+		$table_def_fieldset_group=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+        $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
+	}
+	
+	//
+    if (is_array($selected)){
+            $S = $selected;
+    }else{
+        if( !empty( $selected ))    {
+            $S = explode( ' ', $selected );
+        }else {
+            $S = array();
+        }
+    }
+	
+	//
+	$retval = '';
+
+    $sql = "SELECT ";
+    $sql .= "m2.group_id".LB;
+	$sql .= ",m2.name AS group_name".LB;
+	$sql .= ",m2.input_type".LB;
+    $sql .= " FROM ".LB;
+	$sql .= " {$table_def_group} AS m2".LB;
+	$sql .= " ,{$table_def_fieldset_group} AS m3".LB;
+	
+    $sql .= " WHERE ".LB;
+	$sql .= " m2.group_id = m3.group_id".LB;
+	if  ($fieldset_id<>0){
+		$sql .= " AND m3.fieldset_id = ".$fieldset_id .LB;
+	}
+	
+	
+    $sql .= " ORDER BY m2.orderno".LB;
+		
+	$result = DB_query( $sql );
+    $nrows = DB_numRows( $result );
+
+	
+    for( $i = 0; $i < $nrows; $i++ )    {
+
+        $A = DB_fetchArray( $result, true );
+		
+		$sql2 = "SELECT ";
+        $sql2 .= " m1.category_id".LB;
+        $sql2 .= ",m1.name".LB;
+        $sql2 .= ",m1.orderno".LB;
+        $sql2 .= " FROM {$table_def_category} AS m1".LB;
+		$sql2 .= " WHERE ".LB;
+		$sql2 .= " m1.categorygroup_id=".$A['group_id'].LB;
+		
+        $sql2 .= " ORDER BY m1.orderno".LB;
+		
+		$result2 = DB_query( $sql2 );
+		$nrows2 = DB_numRows( $result2 );
+		
+		if ($nrows2>0){
+			$retval .="<div id=\"group\">";
+			$retval .=$A['group_name'];
+			$retval .="</div>".LB;
+		
+			if  ($A['input_type']==1){
+				$retval .='<select name="category[]" multiple>'.LB;
+			}
+		
+			for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
+
+				$A2 = DB_fetchArray( $result2, true );
+		
+				$checked=" ";
+				for( $x = 0; $x < sizeof( $S ); $x++ )            {
+					if( $A2['category_id'] == $S[$x] )                {
+						if  ($A['input_type']==0){
+							$checked= ' checked="checked" ';
+						}else{
+							$checked= ' selected ';
+						}
+					}
+				}
+			
+				if  ($A['input_type']==0){
+					$retval .="<nobr>";
+					$retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+					$retval .= '"';
+					$retval .= ' class="clcr" ';
+					$retval .= $checked;
+					$retval .= ' >' . stripslashes( $A2['name'] ) . '</nobr>' . LB;
+				}else{
+					$retval .= '<option value="' . $A2['category_id'] . '"';
+					$retval .= $checked;
+					$retval .= ' >' . stripslashes( $A2['name'] ) ;
+					$retval .= '</option>' . LB;
+				}
+			}
+		
+			if  ($A['input_type']==1){
+				$retval .='</select>';
+			}
+		}
+		
+	}
+
+    return $retval;
+}
 function DATABOX_getaddtionfields(
     $id
     ,$addition_def

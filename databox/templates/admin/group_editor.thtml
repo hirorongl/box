@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/group_editor.thtml 20100818 { -->
+<!-- plugins/databox/templates/admin/group_editor.thtml 20120802 { -->
 
 <div id="databox_admin">
 {about_thispage}
@@ -50,6 +50,11 @@
         <tr>
             <th style="width:30%" class="alignright">{lang_parent_flg}{help_parent_flg}</th>
             <td style="width:70%">{list_parent_flg}</td>
+        </tr>
+        <!-- 入力タイプ -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_input_type}{help_input_type}</th>
+            <td style="width:70%">{list_input_type}</td>
         </tr>
 
         <!-- 保存日 -->

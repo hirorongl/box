@@ -132,6 +132,7 @@ function plugin_autouninstall_databox ()
 	//
     $out['tables'][]='DATABOX_def_fieldset';
     $out['tables'][]='DATABOX_def_fieldset_assignments';
+    $out['tables'][]='DATABOX_def_fieldset_group';
 	//
     $out['tables'][]='DATABOX_def_category_name';
     $out['tables'][]='DATABOX_def_field_name';

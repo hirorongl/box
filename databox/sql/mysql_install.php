@@ -177,7 +177,7 @@ VALUES (
 '0'
 )";
 
-//属性セット関連
+//属性セット 属性関連
 $_SQL[] = "
 CREATE TABLE {$_TABLES['DATABOX_def_fieldset_assignments']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
@@ -188,6 +188,16 @@ CREATE TABLE {$_TABLES['DATABOX_def_fieldset_assignments']} (
 ) ENGINE=MyISAM
 ";
 
+//属性セット グループ関連
+$_SQL[] = "
+CREATE TABLE {$_TABLES['DATABOX_def_fieldset_group']} (
+  `seq` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldset_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`seq`),
+  KEY `fieldset_id` (`fieldset_id`)
+) ENGINE=MyISAM
+";
 
 
 

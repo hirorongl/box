@@ -189,6 +189,10 @@ function LIB_Edit(
     global $$lang_box_noyes;
     $lang_box_noyes=$$lang_box_noyes;
 
+    $lang_box_inputtype="LANG_".strtoupper($pi_name)."_INPUTTYPE";
+    global $$lang_box_inputtype;
+    $lang_box_inputtype=$$lang_box_inputtype;
+
     $table=$_TABLES[strtoupper($pi_name).'_def_group'];
     $table1=$_TABLES[strtoupper($pi_name).'_def_category'];
     $table2=$_TABLES[strtoupper($pi_name).'_def_field'];
@@ -214,6 +218,7 @@ function LIB_Edit(
 
         $orderno = COM_applyFilter ($_POST['orderno']);
         $parent_flg = COM_applyFilter ($_POST['parent_flg'],true);
+        $input_type = COM_applyFilter ($_POST['input_type'],true);
 
         $uuid=$_USER['uid'];
 
@@ -250,6 +255,7 @@ function LIB_Edit(
             $description = COM_stripslashes($A['description']);
             $orderno=COM_stripslashes($A['orderno']);
             $parent_flg=COM_stripslashes($A['parent_flg']);
+            $input_type=COM_stripslashes($A['input_type']);
 
             $uuid = COM_stripslashes($A['uuid']);
             $udatetime=COM_stripslashes($A['udatetime']);
@@ -321,6 +327,10 @@ function LIB_Edit(
     $list_parent_flg=DATABOX_getradiolist ($lang_box_noyes,"parent_flg",$parent_flg);
     $templates->set_var( 'list_parent_flg', $list_parent_flg);
 
+    //入力タイプ
+    $templates->set_var('lang_input_type', $lang_box_admin['input_type']);
+    $list_input_type=DATABOX_getradiolist ($lang_box_inputtype,"input_type",$input_type);
+    $templates->set_var( 'list_input_type', $list_input_type);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $lang_box_admin['udatetime']);
@@ -392,6 +402,10 @@ function LIB_Save (
     $lang_box_admin_menu="LANG_".strtoupper($pi_name)."_admin_menu";
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
+	
+	$lang_box_inputtype="LANG_".strtoupper($pi_name)."_INPUTTYPE";
+    global $$lang_box_inputtype;
+    $lang_box_inputtype=$$lang_box_inputtype;
 
     $table=$_TABLES[strtoupper($pi_name).'_def_group'];
 
@@ -410,6 +424,8 @@ function LIB_Save (
     $description = addslashes (COM_checkHTML (COM_checkWords ($description)));
 
     $parent_flg=COM_applyFilter($_POST['parent_flg'],true);
+	
+	$input_type=COM_applyFilter($_POST['input_type'],true);
 
     $orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する
     $orderno=COM_applyFilter($orderno,true);
@@ -496,6 +512,9 @@ function LIB_Save (
 
     $fields.=",parent_flg";//
     $values.=",$parent_flg";
+	
+    $fields.=",input_type";//
+    $values.=",$input_type";
 
     $fields.=",uuid";
     $values.=",$uuid";

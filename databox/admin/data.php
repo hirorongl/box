@@ -735,7 +735,15 @@ function fncEdit(
     //meta_keywords
     $templates->set_var('lang_meta_keywords', $LANG_DATABOX_ADMIN['meta_keywords']);
     $templates->set_var ('meta_keywords', $meta_keywords);
-
+	
+    //language_id
+    //$templates->set_var('lang_language_id', $LANG_DATABOX_ADMIN['language_id']);
+	//$templates->set_var ('language_id', $language_id);
+	
+    //$optionlist_language_id=COM_optionList ($_TABLES['commentcodes'], 'code,name',$commentcode);
+    //$templates->set_var ('optionlist_language_id', $optionlist_commentcode);
+	
+	
     //hits
     $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
     $templates->set_var ('hits', $hits);
@@ -814,7 +822,8 @@ function fncEdit(
 
     //カテゴリ
     $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-    $checklist_category=DATABOX_getcheckList ("category",$category);
+    //$checklist_category=DATABOX_getcheckList ("category",$category);
+    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox");
     $templates->set_var('checklist_category', $checklist_category);
 
     //追加項目

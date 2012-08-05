@@ -64,6 +64,7 @@ function LIB_List(
     $header_arr[]=array('text' => $lang_box_admin['fieldset_id'], 'field' => 'fieldset_id', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['fieldlist'], 'field' => 'list', 'sort' => false);
+    $header_arr[]=array('text' => $lang_box_admin['grouplist'], 'field' => 'listg', 'sort' => false);
 
     //
     $text_arr = array('has_menu' =>  true,
@@ -148,7 +149,20 @@ function LIB_GetListField(
             $url1.="&amp;id={$A['fieldset_id']}";
             $retval .= '&nbsp;&nbsp;' . COM_createLink($icon_arr['edit'],$url1 );
             break;
+		
+		case 'listg':
+            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
+			$url.="?";
+		
+            $url1=$url."mode=listgroups";
+            $url1.="&amp;id={$A['fieldset_id']}";
+		    $retval = COM_createLink($icon_arr['list'],$url1 );
 
+            $url1=$url."mode=editgroups";
+            $url1.="&amp;id={$A['fieldset_id']}";
+            $retval .= '&nbsp;&nbsp;' . COM_createLink($icon_arr['edit'],$url1 );
+            break;
+		
         //各項目
         default:
             $retval = $fieldvalue;
@@ -801,7 +815,7 @@ function LIB_ListFields(
    //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
     $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
-    $header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
+    //$header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
     $header_arr[]=array('text' => $lang_box_admin['field_id'], 'field' => 'field_id', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['templatesetvar'], 'field' => 'templatesetvar', 'sort' => true);
@@ -809,7 +823,7 @@ function LIB_ListFields(
     //
     $text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
-      'form_url' => $_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT);
+      'form_url' => $_CONF['site_admin_url'] . "/plugins/databox/fieldset.php?mode=listfields&id=".$id);
 
 	//Query
     $sql = "SELECT ".LB;
@@ -876,24 +890,17 @@ function LIB_GetListField_fields(
         //編集アイコン
         case 'editid':
             $retval = "<a href=\"{$_CONF['site_admin_url']}";
-            $retval .= "/plugins/".THIS_SCRIPT;
+            $retval .= "/plugins/databox/field.php";
             $retval .= "?mode=edit";
             $retval .= "&amp;id={$A['field_id']}\">";
             $retval .= "{$icon_arr['edit']}</a>";
-            break;
-        case 'copy':
-            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
-            $url.="?";
-            $url.="mode=copy";
-            $url.="&amp;id={$A['field_id']}";
-            $retval = COM_createLink($icon_arr['copy'],$url);
             break;
         //名
         case 'name':
             if (in_array ($type,$allow_type)){
                 if ($allow_display<2){
                     $name=COM_applyFilter($A['name']);
-                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                    $url=$_CONF['site_url'] . "/databox/field.php";
                     $url.="?";
                     $url.="m=id";
                     $url.="&id=".$A['field_id'];
@@ -906,7 +913,7 @@ function LIB_GetListField_fields(
             if (in_array ($type,$allow_type)){
                 if ($allow_display<2){
                     $name=COM_applyFilter($A['templatesetvar']);
-                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                    $url=$_CONF['site_url'] . "/databox/field.php";
                     $url.="?";
                     $url.="m=code";
                     $url.="&code=".$A['templatesetvar'];
@@ -1070,7 +1077,6 @@ function LIB_selectFields(
 	
 		$sql .= " ORDER BY orderno";
 		$result = DB_query ($sql);
-		
 		while ($A = DB_fetchArray($result)) {
 		
             $field_id = COM_stripslashes($A['field_id']);
@@ -1107,6 +1113,332 @@ function LIB_savefields(
             $field_id = COM_applyFilter($field_id, true);
 			$sql="INSERT INTO {$table} ";
 			$sql.=" (fieldset_id, field_id) VALUES ('$fieldset_id', $field_id)";
+			DB_query($sql);
+		
+		}
+	}
+	$return_page=COM_refresh ($_CONF['site_admin_url']
+		. '/plugins/'.THIS_SCRIPT.'?msg=1');
+			
+    return $return_page;
+
+    //exit;
+}
+
+function LIB_ListGroups(
+	$pi_name
+	,$id
+)
+// +---------------------------------------------------------------------------+
+// | 機能  group一覧表示
+// | 書式 LIB_ListGroups($pi_name,$id)
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $id:
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:一覧
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    global $_TABLES;
+    global $LANG_ADMIN;
+    global $LANG09;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+
+    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+    $table2=$_TABLES[strtoupper($pi_name).'_def_group'];
+	$tables = " {$table} AS t ,{$table2} AS t2";
+
+    require_once( $_CONF['path_system'] . 'lib-admin.php' );
+
+    $retval = '';
+    //MENU1:管理画面
+    $url2=$_CONF['site_url'] . '/admin/plugins/'.$pi_name.'/fieldset.php';
+	
+    $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+
+    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
+                              COM_getBlockTemplate('_admin_block', 'header'));
+
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
+
+   //ヘッダ：編集～
+    $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
+    //$header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
+    $header_arr[]=array('text' => $lang_box_admin['group_id'], 'field' => 'group_id', 'sort' => true);
+    $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
+	
+    //
+    $text_arr = array('has_menu' =>  true,
+      'has_extras'   => true,
+      'form_url' => $_CONF['site_admin_url'] . "/plugins/databox/fieldset.php?mode=listgroups&id=".$id);
+
+	//Query
+    $sql = "SELECT ".LB;
+    $sql .= " t2.group_id".LB;
+    $sql .= " ,t2.name".LB;
+    $sql .= " ,t2.orderno".LB;
+
+    $sql .= " FROM ".$tables.LB;
+	
+    $sql .= " WHERE ".LB;
+    $sql .= " t.fieldset_id=".$id.LB;
+    $sql .= " AND t.group_id=t2.group_id".LB;
+	//
+
+
+    $query_arr = array(
+        'table' => $tables,
+        'sql' => $sql,
+        'query_fields' => array('t2.group_id','name'),
+        'default_filter' => $exclude);
+    //デフォルトソート項目:
+    $defsort_arr = array('field' => 't2.group_id', 'direction' => 'ASC');
+    //List 取得
+    //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
+    //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
+    $retval .= ADMIN_list(
+        $pi_name
+        , "LIB_GetListField_groups"
+        , $header_arr
+        , $text_arr
+        , $query_arr
+        , $defsort_arr
+        );
+
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
+    return $retval;
+}
+
+function LIB_GetListField_Groups(
+	$fieldname
+	, $fieldvalue
+	, $A
+	, $icon_arr
+)
+// +---------------------------------------------------------------------------+
+// | 一覧取得 ADMIN_list で使用
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    $LANG_ACCESS;
+
+    $retval = '';
+
+    switch($fieldname) {
+        //編集アイコン
+        case 'editid':
+            $retval = "<a href=\"{$_CONF['site_admin_url']}";
+            $retval .= "/plugins/databox/group.php";
+            $retval .= "?mode=edit";
+            $retval .= "&amp;id={$A['group_id']}\">";
+            $retval .= "{$icon_arr['edit']}</a>";
+            break;
+        //各項目
+        default:
+            $retval = $fieldvalue;
+            break;
+    }
+
+    return $retval;
+
+
+}
+function LIB_editgroups(
+	$pi_name
+	,$id
+)
+{
+	
+	
+    global $_CONF;
+    global $_TABLES;
+    global $LANG_ADMIN;
+    global $LANG09;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+
+	//global  $_USER;
+	global  $LANG_ACCESS;
+	global  $LANG28;
+
+    require_once $_CONF['path_system'] . 'lib-admin.php';
+
+    $retval = '';
+	
+	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $fieldset_name = DB_getItem($table, 'name', "fieldset_id = $id");
+
+    $fieldset_listing_url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
+	
+    //MENU1:管理画面
+    $url2=$_CONF['site_url'] . '/admin/plugins/'.$pi_name.'/fieldset.php';
+	
+    $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+    $retval .= COM_startBlock($lang_box_admin['admin_list']. " - $fieldset_name", '',
+                              COM_getBlockTemplate('_admin_block', 'header'));
+
+	
+	$function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['inst_fieldsetgroups'],
+        $icon
+    );
+	
+    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
+    $templates = new Template($tmplfld);
+	$templates->set_file('editor',"fieldset_groups.thtml");
+	
+	
+    //--
+	
+	
+	
+    $templates->set_var('site_url', $_CONF['site_url']);
+    $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+
+    $token = SEC_createToken();
+    $retval .= SEC_getTokenExpiryNotice($token);
+    $templates->set_var('gltoken_name', CSRF_TOKEN);
+    $templates->set_var('gltoken', $token);
+	
+	$templates->set_var ( 'xhtml', XHTML );
+
+    $templates->set_var('script', THIS_SCRIPT);
+
+	//
+    $templates->set_var('lang_link_admin', $lang_box_admin['link_admin']);
+    $templates->set_var('lang_link_admin_top', $lang_box_admin['link_admin_top']);
+
+    $templates->set_var('LANG_fieldsetgroups',$lang_box_admin['fieldsetgroups']);
+    $templates->set_var('fieldsetgroups', LIB_selectGroups($pi_name,$id, true));
+	
+	$templates->set_var('LANG_grouplist', $lang_box_admin['grouplist']);
+	$templates->set_var('group_list', LIB_selectGroups($pi_name,$id));
+	
+    $templates->set_var('LANG_add',$LANG_ACCESS['add']);
+    $templates->set_var('LANG_remove',$LANG_ACCESS['remove']);
+    $templates->set_var('lang_save', $LANG_ADMIN['save']);
+    $templates->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+	
+    $templates->set_var('id',$id);
+	
+    $templates->parse('output', 'editor');
+    $retval .= $templates->finish($templates->get_var('output'));
+	
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
+    return $retval;
+}
+function LIB_selectGroups(
+	$pi_name
+	, $fieldset_id
+	, $selected = false)
+{
+	global $_TABLES;
+	
+	$table1=$_TABLES[strtoupper($pi_name).'_def_group'];
+	$table2=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+
+    $retval = '';
+
+	// Get a list of additiongroups in the selected field
+	$sql  = "SELECT DISTINCT group_id ";
+	$sql  .= " FROM {$table2}";
+	$sql  .= " WHERE  ";
+	$sql  .= " fieldset_id = $fieldset_id";
+	$result = DB_query ($sql);
+    $num = DB_numRows ($result);
+	$grouplist="";
+	if ($num<>0){
+		$selectedgroups = array();
+		while ($A = DB_fetchArray($result)) {
+			$selectedgroups[] = $A['group_id'];
+		}
+		$grouplist = '(' . implode (',', $selectedgroups) . ')';
+	}
+	
+	//
+	
+	if  ($selected AND $grouplist==""){
+	}else{
+		$sql = "SELECT DISTINCT group_id,name ";
+		$sql .= " FROM {$table1}";
+		$sql .= " WHERE  group_id<>0 ";
+		$sql .= " AND parent_flg = 0".LB;
+	
+		if ($grouplist<>""){
+			$sql  .= "AND group_id ";
+			if ($selected==FALSE) {
+				$sql .= 'NOT ';
+			}
+			$sql .= "IN {$grouplist} ";
+		}
+	
+		$sql .= " ORDER BY orderno";
+		$result = DB_query ($sql);
+		while ($A = DB_fetchArray($result)) {
+		
+            $group_id = COM_stripslashes($A['group_id']);
+            $name = COM_stripslashes($A['name']);
+			$retval .= '<option value="' . $group_id . '">' . $name . '</option>';
+		}
+	}
+	return $retval;
+}
+
+
+function LIB_savegroups(
+	$pi_name
+	,$fieldset_id
+)
+{
+	global $_CONF;
+	global $_TABLES;
+	
+	$fieldsetgroups=$_POST['groupmembers'];
+	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+
+    $retval = '';
+
+    $updategroups = explode("|", $fieldsetgroups);
+	$updateCount = count($updategroups);
+	if ($updateCount > 0) {
+		$sql="DELETE FROM {$table} ";
+		$sql.=" WHERE fieldset_id = $fieldset_id";
+		DB_query($sql);
+		
+        foreach ($updategroups as $group_id) {
+            $group_id = COM_applyFilter($group_id, true);
+			$sql="INSERT INTO {$table} ";
+			$sql.=" (fieldset_id, group_id) VALUES ('$fieldset_id', $group_id)";
 			DB_query($sql);
 		
 		}

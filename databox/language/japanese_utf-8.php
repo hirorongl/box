@@ -144,6 +144,8 @@ $LANG_DATABOX_ADMIN['fieldset']='属性セット';
 $LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
 $LANG_DATABOX_ADMIN['fieldlist']="追加属性一覧";
+$LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
+$LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
 $LANG_DATABOX_ADMIN['changeset']='属性セット変更';
@@ -264,6 +266,7 @@ $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
 $LANG_DATABOX_ADMIN['parent_id'] = '親ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = '親グループ？';
+$LANG_DATABOX_ADMIN['input_type'] = '入力タイプ';
 
 $LANG_DATABOX_ADMIN['orderno'] = '表示位置';
 
@@ -473,6 +476,11 @@ $LANG_DATABOX_NOYES = array(
     0 => 'いいえ',
     1 => 'はい'
 );
+$LANG_DATABOX_INPUTTYPE = array(
+    0 => 'チェックボックス',
+    1 => 'マルチセレクトリスト'
+);
+
 
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する（orderに指定可能）';

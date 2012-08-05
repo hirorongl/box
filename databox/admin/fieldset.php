@@ -52,6 +52,7 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
 	OR $mode=="export" OR $mode=="import" OR $mode=="copy"
 	OR $mode=="listfields" OR $mode=="editfields" 
+	OR $mode=="listgroups" OR $mode=="editgroups" 
 	) {
 }else{
     if (!SEC_checkToken()){
@@ -97,15 +98,16 @@ switch ($mode) {
         }
         break;
 
-    case 'import':// インポート
+    case 'import':
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
         $display .= LIB_import($pi_name);
         break;
-	case 'listfields':// list fieldes
+	case 'listfields':
 		$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_ListFields($pi_name,$id);
-	case 'editfields':// edit fieldes
+        break;
+	case 'editfields':
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_EditFields($pi_name,$id);
@@ -113,6 +115,24 @@ switch ($mode) {
     case 'savefieldsetfields':// fields 保存
         $display .= LIB_savefields ($pi_name,$id);
         break;
+
+	
+	case 'listgroups':
+		$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+        $display .= LIB_ListGroups($pi_name,$id);
+        break;
+	case 'editgroups':// edit groups
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+        $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+        $display .= LIB_EditGroups($pi_name,$id);
+		break;
+	case 'savefieldsetgroups':// fields 保存
+        $display .= LIB_savegroups ($pi_name,$id);
+        break;
+
+
+
 
     default:// 初期表示、一覧表示
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
