@@ -599,8 +599,8 @@ function LIB_Save (
     }
     //7 = 'オプションリスト';
     //8 = 'ラジオボタンリスト';
-
-    if ($type==7 OR $type==8) {
+	//14= 'マルチセレクトリスト';
+    if ($type==7 OR $type==8 OR $type==14) {
         if  ($selection==""){
             $err.=$lang_box_admin['err_selection']."<br/>".LB;
         }

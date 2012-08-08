@@ -57,6 +57,7 @@ $LANG_DATABOX['search_link']="";
 //$LANG_DATABOX['category_separater']="</li><li>";
 $LANG_DATABOX['category_separater']="、";
 $LANG_DATABOX['category_separater_text']="、";
+$LANG_DATABOX['field_separater']="、";
 
 $LANG_DATABOX['loginrequired'] = '（ログインしてください）';
 
@@ -512,6 +513,8 @@ $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト';
 $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト';
 $LANG_DATABOX_TYPE[9] = '既定リスト　（準備中）';
+$LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト　（準備中）';
+
 
 $LANG_DATABOX_TYPE[11] = '画像（DB保存）';
 $LANG_DATABOX_TYPE[12] = '画像（ファイル保存）';

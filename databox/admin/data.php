@@ -307,7 +307,10 @@ function fncEdit(
 
         $category = $_POST['category'];
 
-        $additionfields=$_POST['afield'];
+		$additionfields=$_POST['afield'];
+		echo "ad18".$additionfields[18]."<br>";
+		echo "ad19".$additionfields[19]."<br>";
+		
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
         $additionfields_del=$_POST['afield_del'];
         $additionfields=DATABOX_cleanaddtiondatas
@@ -1036,7 +1039,8 @@ function fncSave (
     $category = $_POST['category'];
 
     //@@@@@
-    $additionfields=$_POST['afield'];
+	$additionfields=$_POST['afield'];
+	
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
     $dummy=DATABOX_cleanaddtiondatas
@@ -1160,7 +1164,6 @@ function fncSave (
     }
 
     //----追加項目チェック
-
     $err.=DATABOX_checkaddtiondatas
         ($additionfields,$addition_def,$pi_name,$additionfields_fnm,$additionfields_del);
 

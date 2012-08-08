@@ -994,6 +994,7 @@ global $_TABLES;
         $checkrequried=$addition_def[$fid]['checkrequried'];
         $type=$addition_def[$fid]['type'];
         $selectionary=$addition_def[$fid]['selectionary'];
+        $selectlist=$addition_def[$fid]['selectlist'];
 
         $size=$addition_def[$fid]['size'];
         $maxlength=$addition_def[$fid]['maxlength'];
@@ -1083,9 +1084,17 @@ global $_TABLES;
                         $fieldhtml= $LANG_DATABOX_NOYES[$fvalue];
                     }
                     break;
-                case 7://オプションリスト配列//@@@@@@
+				case 7://オプションリスト配列//@@@@@@
+				case 14://マルチセレクトリスト//@@@@@@
                     if ($disabled===""){
-                        $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,"DATABOX", $disabled);
+                        $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
+                    }else{
+                        $selectionary[$fvalue];
+                    }
+                    break;
+				case 9://既定リスト//@@@@@@
+					if ($disabled===""){
+                       $fieldhtml=DATABOX_getoptionlist("selectlist_mst",$fvalue,0,$pi_name,"",0,$selectlist,"afield[".$fid."]");
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -1679,6 +1688,9 @@ function DATABOX_getaddtionfieldsDisp(
 //update 20101012 $chk_user
 {
     global $_CONF;
+	global $_TABLES;
+
+    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
 
     if ($pi_name==""){
         $lang_noyes="LANG_DATABOX_NOYES";
@@ -1692,7 +1704,13 @@ function DATABOX_getaddtionfieldsDisp(
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
+	
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+	$separater=$lang_box['field_separater'];
 
+	
 	$noimage="lib/noimage.jpg";
 
     $retval = '';
@@ -1716,6 +1734,7 @@ function DATABOX_getaddtionfieldsDisp(
         $checkrequried=$addition_def[$fid]['checkrequried'];
         $type=$addition_def[$fid]['type'];
         $selectionary=$addition_def[$fid]['selectionary'];
+        $selectlist=$addition_def[$fid]['selectlist'];
 
         $size=$addition_def[$fid]['size'];
         $maxlength=$addition_def[$fid]['maxlength'];
@@ -1827,6 +1846,14 @@ function DATABOX_getaddtionfieldsDisp(
                 case 8://ラジオボタンリスト//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
+				case 14://multiselectlist
+                    $wkary=explode(":",$fvalue);
+					$wk="";
+					for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+						$wk.=$selectionary[$wkary[$x]].$separater;
+					}
+                    $fieldhtml .= rtrim($wk,$separater);
+					break;
 				case 10:// 複数行テキストフィールド
 					$w=DATABOX_nl2br($fvalue);
 					$w=DATABOX_autolink($w);
@@ -1836,7 +1863,10 @@ function DATABOX_getaddtionfieldsDisp(
 					$w=DATABOX_autolink($fvalue);
 					$fieldhtml .= $w;
                     break;
-                case 9://既定リスト　（準備中）';
+				case 9://既定リスト　（準備中）';//DB_@@@@@@@@@@@
+					$w=DB_getItem( $table_mst   ,"value","id='{$fvalue}'");
+					$fieldhtml .= $w;
+                    break;
                 case 4://日時（準備中）
                 case 3://日付（準備中）
                 case 5://メールアドレス　（準備中）';
@@ -2418,15 +2448,14 @@ function DATABOX_saveaddtiondatas(
     $rt=DB_delete($table,"id",$id);
     if (is_array($fldary)){
 		foreach( $fldary as $field_id => $value ){
-			if ($addition_def[$field_id]['type']=12){
-			}
+			
 			$sql="INSERT INTO {$table} (";
 			$sql.="id, field_id,value ";
 			$sql.=") VALUES (";
 			$sql.="{$id},{$field_id}, '{$value}'";
 			$sql.=")";
 			DB_query($sql);
-			}
+		}
 	}
     return ;
 
@@ -2493,8 +2522,6 @@ function DATABOX_cleanaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update 20100702
 {
-
-
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
             $type=$addition_def[$field_id]['type'];
@@ -2507,7 +2534,10 @@ function DATABOX_cleanaddtiondatas(
                     break;
                 case 2://いいえ/はい
                     $wk=COM_applyFilter($wk,true);
-                    break;
+					break;
+				case 14://multiselectlist//@@@@@@
+                    $wk=implode ($wk,":");
+					break;
                 case 7://オプションリスト配列//@@@@@@
                 case 8://ラジオボタンリスト//@@@@@
                 case 9://既定リスト　（準備中）';
@@ -2706,7 +2736,6 @@ function DATABOX_checkaddtiondatas(
 					}
                 }
             }
-
 
         }
     }
@@ -3231,12 +3260,14 @@ function DATABOX_getradiolist(
     return $retval;
 }
 
+
 function DATABOX_getoptionlistary(
     $ary
     ,$fld
     ,$selected = ""
     ,$pi_name=""
     ,$disabled=""
+    ,$type=""
 
 )
 // +---------------------------------------------------------------------------+
@@ -3248,10 +3279,10 @@ function DATABOX_getoptionlistary(
 // | 引数 $selected:選択値　省略時
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
 // | 引数 $disabled:
+// | 引数 $type:
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
-//update 20101122
 {
 
     if ($pi_name==""){
@@ -3260,19 +3291,36 @@ function DATABOX_getoptionlistary(
         $lang_databox="LANG_".strtoupper($pi_name);
     }
     global $$lang_databox;
-
+	if  ($type==14){
+		//$selectedary=array[];
+		$selectedary=explode(":",$selected);
+	}
+	
     $retval = '';
 
-    $retval .= "<select name='$fld'       $disabled>".LB;
+	$retval .= "<select ";
+	if ($type==14){
+		$retval .= ' name="'.$fld.'[]" ';
+		$retval .= ' multiple ';
+	}else{
+		$retval .= ' name="'.$fld.'"';
+	}
+	$retval .= $disabled.">".LB;
     $retval .= "<option value=0>{$$lang_databox['selectit']}</option>".LB;
 
     for ($i = 0; $i < count($ary); $i++) {
 
         $retval .= "<option value=\"".$i."\"";
-
-        if( $i == $selected ){
+		
+		if  ($type==14){
+			if( in_array($i,$selectedary) ){//@@@@@
                 $retval .= " selected=\"selected\" ";
-        }
+			}
+		}else{
+			if( $i == $selected ){//@@@@@
+                $retval .= " selected=\"selected\" ";
+			}
+		}
         $retval .= ">";
 
         $retval .= $ary[$i];
@@ -3294,16 +3342,20 @@ function DATABOX_getoptionlist(
     ,$pi_name=""
 	,$disabled=""
 	,$selectit=true
+	,$selectlist=""
+	,$fname=""
 )
 // +---------------------------------------------------------------------------+
-// | 機能  オプションリスト作成                                                |
-// | 書式 profile_getoptionlist($kind)                                           |
+// | 機能  オプションリスト作成
+// | 書式 DATABOX_getoptionlist($kind)
+// |	  DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
 // +---------------------------------------------------------------------------+
 // | 引数 $kind:項目種類
 // | 引数 $selected:選択値
-// | 引数
+// | 引数 $relno
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
-// | 引数
+// | 引数 $disabled
+// | 引数 $selectit
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
@@ -3319,10 +3371,15 @@ global $_TABLES;
     }
     global $$lang_box;
     $lang_box=$$lang_box;
-
+	
+	if ($fname==""){
+		$fname=$kind;
+	}
+	
+	
     $retval = '';
 
-	$retval .= "<select name='$kind' $disabled>".LB;
+	$retval .= "<select name='$fname' $disabled>".LB;
 //echo "selectlist=".$selectlist."<br>";
 	if ($selectit){
 //echo "AA<br>";
@@ -3330,7 +3387,7 @@ global $_TABLES;
 	}
 	
     if ($kind=="group"){
-        $where="";
+		$where="";
         $table=$_TABLES[strtoupper($pi_name).'_def_group'];
         $fields= 'group_id,name,orderno';
     }else if ($kind=="parent"){
@@ -3345,6 +3402,11 @@ global $_TABLES;
         $where="";
         $table=$_TABLES[strtoupper($pi_name).'_mst'];
         $fields= 'DISTINCT kind,kind,kind';
+    }else if ($kind=="selectlist_mst"){
+        $table=$_TABLES[strtoupper($pi_name).'_mst'];
+        $where="kind='{$selectlist}'";
+        if ($relno<>0) $where.=" AND relno='{$relno}'";
+        $fields= 'no,value,orderno';
     }else{
         $table=$_TABLES[strtoupper($pi_name).'_mst'];
         $where="kind='{$kind}'";
@@ -3358,8 +3420,8 @@ global $_TABLES;
 
     $retval .= '</select>';
 
-    if ($disabled==="disabled"){
-        $retval .= "  <input type='hidden' name='{$kind}' value='{$selected}'>";
+	if ($disabled==="disabled"){
+        $retval .= "  <input type='hidden' name='{$fname}' value='{$selected}'>";
     }
 
     return $retval;
