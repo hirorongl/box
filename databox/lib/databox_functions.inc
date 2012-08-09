@@ -2260,7 +2260,7 @@ global $_TABLES;
 		$nrows2 = DB_numRows( $result2 );
 		
 		if ($nrows2>0){
-			$retval .="<div id=\"group\">";
+			$retval .="<div class=\"databox_admin_data_title\">";
 			$retval .=$A['group_name'];
 			$retval .="</div>".LB;
 		
