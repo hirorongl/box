@@ -2265,7 +2265,7 @@ global $_TABLES;
 			$retval .="</div>".LB;
 		
 			if  ($A['input_type']==1){
-				$retval .='<select name="category[]" multiple>'.LB;
+				$retval .='<select name="category[]" multiple style="height:10em">'.LB;
 			}
 		
 			for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
