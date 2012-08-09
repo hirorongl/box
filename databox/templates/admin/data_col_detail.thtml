@@ -1,5 +1,4 @@
 <!-- plugins/databox/templates/admin/data_col_detail.thtml  { -->
     <th style="width:10%" class="alignright">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
-    <td style="width:10%; color:green" class="alignleft">{additionfield_templatesetvar}</td>
     <td >{additionfield_value}{additionfield_description}</td>
 <!-- } plugins/databox/templates/admin/default/data_col_detail.thtml -->

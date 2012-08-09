@@ -14,14 +14,12 @@
     <table>
     <tr>
     <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="width:10%; background:#eee; color:green;" class="alignleft">{lang_templatesetvar}</td>
     <td style="background:#eee" class="alignleft">{lang_content}</td>
     </tr>
 
         <!-- id -->
         <tr>
             <th style="width:10%" class="alignright">{lang_id}{help_id}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;id&#125;</td>
             <td >
                 {id}
                 <input type="hidden" name="id" value="{id}"{xhtml}>
@@ -31,7 +29,6 @@
         <!-- DRAFT -->
         <tr>
             <th style="width:10%" class="alignright">{lang_draft}{help_draft}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;draft&#125;</td>
             <td >
                 <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
             </td>
@@ -41,7 +38,6 @@
         <!-- code -->
         <tr>
             <th style="width:10%" class="alignright">{lang_code}{help_code}<span class="must">{lang_must_code}</span>{help_code}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;code&#125;</td>
             <td >
                 <input type="text" size="60" maxlength="160" name="code" value="{code}"{xhtml}>
             </td>
@@ -51,7 +47,6 @@
         <!-- title -->
         <tr>
             <th style="width:10%" class="alignright">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
-            <td style="width:10%; color:green" class="alignleft">&#123;title&#125;</td>
             <td >
                 <input type="text" size="60" maxlength="160" name="title" value="{title}"{xhtml}>
             </td>
@@ -59,7 +54,6 @@
         <!-- page title -->
         <tr>
             <th style="width:10%" class="alignright">{lang_page_title}{help_page_title}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;page_title&#125;</td>
             <td >
                 <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
             </td>
@@ -67,7 +61,6 @@
         <!-- description -->
         <tr>
             <th style="width:10%" class="alignright">{lang_description}{help_description}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;description&#125;</td>
             <td >
                 <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
             </td>
@@ -76,7 +69,6 @@
         <!-- defaulttemplatesdirectory -->
         <tr>
             <th style="width:10%" class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;defaulttemplatesdirectory&#125;</td>
             <td >
                 {select_defaulttemplatesdirectory}
             </td>
@@ -85,14 +77,12 @@
         <!-- category -->
         <tr>
             <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;category&#125;</td>
             <td >{checklist_category}
             </td>
         </tr>
         <!-- meta_description -->
         <tr{hide_meta}>
             <th style="width:10%" class="alignright">{lang_meta_description}{help_meta_description}</th>
-            <td style="width:10%; color:green" class="alignleft">description</th>
             <td >
                 <textarea name="meta_description" style="width:95%" rows="2" id="databox_description">{meta_description}</textarea>
             </td>
@@ -100,7 +90,6 @@
         <!-- meta_keywords -->
         <tr{hide_meta}>
             <th style="width:10%" class="alignright">{lang_meta_keywords}{help_meta_keywords}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;meta_keywords&#125;</td>
             <td >
                 <textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords">{meta_keywords}</textarea>
             </td>
@@ -108,14 +97,12 @@
         <!-- hits -->
         <tr>
             <th style="width:10%" class="alignright">{lang_hits}{help_hits}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;hits&#125;</td>
             <td ><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
             </td>
         </tr>
         <!-- comments -->
         <tr>
             <th style="width:10%" class="alignright">{lang_comments}{help_comments}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;comments&#125;</td>
             <td ><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
             </td>
         </tr>
@@ -123,7 +110,6 @@
         <!-- commentcode -->
         <tr>
             <th style="width:10%" class="alignright">{lang_commentcode}{help_commentcode}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;commentcode&#125;</td>
             <td >
             <select name="commentcode">
                 {optionlist_commentcode}
@@ -134,13 +120,11 @@
         <!-- comment_expire -->
         <tr>
             <th style="width:10%" class="alignright">{lang_comment_expire}{help_comment_expire}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;comment_expire&#125;</td>
             <td >{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
         </tr>
         <!-- 編集日付 -->
         <tr>
             <th style="width:10%" class="alignright">{lang_modified}{help_modified}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;modified&#125;</td>
             <td >{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
 {datetime_modified} </td>
         </tr>
@@ -148,19 +132,16 @@
         <!-- 公開日 -->
         <tr>
             <th style="width:10%" class="alignright">{lang_released}{help_released}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;released&#125;</td>
             <td >{datetime_released} </td>
         </tr>
         <!-- 公開終了日 -->
         <tr>
             <th style="width:10%" class="alignright">{lang_expired}{help_expire}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;expire&#125;</td>
             <td >{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
         </tr>
         <!-- order -->
         <tr>
             <th style="width:30%" class="alignright">{lang_orderno}{help_orderno}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;orderno&#125;</td>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
@@ -175,7 +156,6 @@
     <table>
     <tr>
     <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="width:10%; background:#eee; color:green;" class="alignleft">{lang_templatesetvar}</td>
     <td style="background:#eee" class="alignleft">{lang_content}</td>
     </tr>
         {additionfields}
@@ -188,44 +168,40 @@
     <table>
         <tr>
             <th style="width:20%" class="alignright">{lang_owner}:</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;owner_name&#125;</td>
             <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
             ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
         </tr>
         <tr>
             <th class="alignright">{lang_group}:</th>
-            <td style="width:10%; color:green" class="alignleft"></td>
             <td>{group_dropdown}</td>
         </tr>
         <tr>
             <th class="alignright" style="white-space:nowrap">{lang_permissions}:</th>
-            <td  colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
-            <td colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
             <td>{lang_perm_key}</td>
         </tr>
         <tr>
-            <td colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
             <td>
                 {permissions_editor}
             </td>
         </tr>
         <tr>
-            <td colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
             <td>{lang_permissions_msg}</td>
         </tr>
         <tr><td colspan="3">&nbsp;</td></tr>
         <!-- タイムスタンプ -->
         <tr>
             <th style="width:10%" class="alignright">{lang_udatetime}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;udatetime&#125;</td>
             <td >{udatetime} {lang_uuid}:{uuid}</td>
             <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
         </tr>
         <tr>
             <th style="width:10%" class="alignright">{lang_created}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;created&#125;</td>
             <td >{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
         </tr>
