@@ -1,9 +1,9 @@
-<!-- plugins/databox/templates/category/default/navigation_detail.thtml 20101110{ -->
+<!-- plugins/databox/templates/category/default/navigation_detail.thtml 20120810{ -->
 
 <div id="databox">
 
     <div class='order'>
-        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_tel}|{order_zipcode}
+        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|{order_tel}|{order_zipcode}
     </div>
     <div class='order_random'>{order_random}</div>
     <div class='cur_order'>{cur_order}</div>
