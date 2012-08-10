@@ -723,7 +723,7 @@ function fncEdit(
     $templates->set_var ('description', $description);
     $templates->set_var('lang_defaulttemplatesdirectory', $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']);
 	$templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
-	$select_defaulttemplatesdirectory=fnctemplatesdirectory($pi_name,$defaulttemplatesdirectory);//@@@@@
+	$select_defaulttemplatesdirectory=fnctemplatesdirectory($defaulttemplatesdirectory);//@@@@@
     $templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);//@@@@@
 	
 	$templates->set_var('lang_eyechatchingimage', $LANG_DATABOX_ADMIN['eyechatchingimage']);
