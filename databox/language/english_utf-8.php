@@ -33,7 +33,7 @@ $LANG_DATABOX_user_menu['2']= 'My Data';
 ###############################################################################
 $LANG_DATABOX = array();
 $LANG_DATABOX['list']="List";
-$LANG_DATABOX['selectit']="None selected";
+$LANG_DATABOX['selectit']="Not Selected";
 
 $LANG_DATABOX['data'] = 'Data';
 $LANG_DATABOX['mydata'] = 'My Data';
@@ -138,13 +138,13 @@ $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='AddributesSets';
-$LANG_DATABOX_ADMIN['fieldset_id']="AddributesSetsID";
+$LANG_DATABOX_ADMIN['fieldset']='Addributes Sets';
+$LANG_DATABOX_ADMIN['fieldset_id']="Addributes Sets ID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="Addributes List";
-$LANG_DATABOX_ADMIN['fieldlist']="Add AddributesList";
+$LANG_DATABOX_ADMIN['fieldlist']="Add Addributes List";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
-$LANG_DATABOX_ADMIN['fieldsetlist']='AddributesSetsList';
+$LANG_DATABOX_ADMIN['fieldsetlist']='Addributes Sets List';
 $LANG_DATABOX_ADMIN['changeset']='Change Attribute Set';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
@@ -161,37 +161,37 @@ $LANG_DATABOX_ADMIN['br']='BR(Radio button)';
 
 //
 $LANG_DATABOX_ADMIN['language_id']="Language ID";
-$LANG_DATABOX_ADMIN['owner_id']="OwnerID";
-$LANG_DATABOX_ADMIN['group_id']="GroupID";
+$LANG_DATABOX_ADMIN['owner_id']="Owner ID";
+$LANG_DATABOX_ADMIN['group_id']="Group ID";
 $LANG_DATABOX_ADMIN['perm_owner']="Permission(Owner)";
 $LANG_DATABOX_ADMIN['perm_group']="Permission(Group)";;
 $LANG_DATABOX_ADMIN['perm_members']="Permission(Member)";
 $LANG_DATABOX_ADMIN['perm_anon']="Permission(Guest)";
 //
 
-$LANG_DATABOX_ADMIN['selection']='selection';
-$LANG_DATABOX_ADMIN['selectlist']='selectlist';
-$LANG_DATABOX_ADMIN['checkrequried']='check requried';
+$LANG_DATABOX_ADMIN['selection']='Selection';
+$LANG_DATABOX_ADMIN['selectlist']='Select List';
+$LANG_DATABOX_ADMIN['checkrequried']='Check Requried';
 
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';
-$LANG_DATABOX_ADMIN['modified'] = 'EditDate';
+$LANG_DATABOX_ADMIN['modified'] = 'Modified';
 $LANG_DATABOX_ADMIN['created'] = 'Created';
 $LANG_DATABOX_ADMIN['released'] = 'Released';
-$LANG_DATABOX_ADMIN['expired'] = 'Expired';
+$LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
 
-$LANG_DATABOX_ADMIN['udatetime'] = 'Udatetime';
-$LANG_DATABOX_ADMIN['uuid'] = 'UpdateUser';
+$LANG_DATABOX_ADMIN['udatetime'] = 'Udate time';
+$LANG_DATABOX_ADMIN['uuid'] = 'Update user';
 
 //@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(not yet)';
 $LANG_DATABOX_ADMIN['xml_def'] = 'XML definition';
 $LANG_DATABOX_ADMIN['init'] = 'Initialize';
 $LANG_DATABOX_ADMIN['list'] = 'List';
-$LANG_DATABOX_ADMIN['dataclear'] = 'Clear Data';
-$LANG_DATABOX_ADMIN['allclear'] = 'Clear ALL';
+$LANG_DATABOX_ADMIN['dataclear'] = 'Clear data';
+$LANG_DATABOX_ADMIN['allclear'] = 'Clear all';
 
-$LANG_DATABOX_ADMIN['path'] = 'Absolute Path';
+$LANG_DATABOX_ADMIN['path'] = 'Path';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
@@ -205,7 +205,7 @@ Absolute path (directory  selectしてください.<{XHTML}br>
 logs/databox_xmlimport.log にlog がregist されます.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
-proversion  Initializeします.List  内容はDeleteされます.
+Proversion Initialize. List delete.
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 Backuped?<{XHTML}br>
@@ -216,20 +216,20 @@ added Addributes, Category, Group not deleted.<{XHTML}br>
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
 Backuped?<{XHTML}br>
 master and clear data.<{XHTML}br>
-Uploaded File is Deleted.<{XHTML}br>
+Uploaded file is deleted.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['backupmsg'] = 
-"{$_CONF['backup_path']}"."databox/に<{XHTML}br>"
-.'DataBox  DataベースData Backupします.<{XHTML}br>
+"{$_CONF['backup_path']}"."databox/<{XHTML}br>"
+.'DataBox database is backuped.<{XHTML}br>
 UploadFileは別途Backupしてください.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'Filename  selectしてください.(省略時databox.xml)<{XHTML}br>
+.'Filename  select.(default: databox.xml)<{XHTML}br>
 DataBox  Database Data Restore.<{XHTML}br>
 UploadFileは別途もどしてください.<{XHTML}br>
 ';
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'file name をselectしてください.（省略時databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>アップロードfile は別途もどしてください.<{XHTML}br>';//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'file name をselectしてください.（省略時databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
 
 $LANG_DATABOX_ADMIN['yy'] = 'Year';
 $LANG_DATABOX_ADMIN['mm'] = 'Month';
@@ -238,19 +238,19 @@ $LANG_DATABOX_ADMIN['dd'] = 'Date';
 $LANG_DATABOX_ADMIN['must'] = '*';
 
 $LANG_DATABOX_ADMIN['enabled'] = 'Enabled';
-$LANG_DATABOX_ADMIN['modified_autoupdate'] = 'Auto upddated';
+$LANG_DATABOX_ADMIN['modified_autoupdate'] = 'Auto Upddated';
 
-$LANG_DATABOX_ADMIN['additionfields'] = 'Add Addributes';
-$LANG_DATABOX_ADMIN['basicfields'] = 'Basic Addributes';
+$LANG_DATABOX_ADMIN['additionfields'] = 'Add Attributes';
+$LANG_DATABOX_ADMIN['basicfields'] = 'Basic Attributes';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'Category ID';
-$LANG_DATABOX_ADMIN['field_id'] = 'Add Addributes ID';
+$LANG_DATABOX_ADMIN['field_id'] = 'Add Vddributes ID';
 $LANG_DATABOX_ADMIN['name'] = 'Name';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'Theme Variable';
-$LANG_DATABOX_ADMIN['templatesetvars'] = '  Theme Variable';
+$LANG_DATABOX_ADMIN['templatesetvars'] = 'Theme Variables';
 $LANG_DATABOX_ADMIN['parent_id'] = 'Parent ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = 'Parent Group?';
-$LANG_DATABOX_ADMIN['input_type'] = 'Input type';
+$LANG_DATABOX_ADMIN['input_type'] = 'Input Type';
 $LANG_DATABOX_ADMIN['orderno'] = 'Order';
 
 $LANG_DATABOX_ADMIN['field'] = 'Attribute';
@@ -259,14 +259,14 @@ $LANG_DATABOX_ADMIN['content'] = 'Contents';
 
 $LANG_DATABOX_ADMIN['byusingid'] = 'Use ID';
 $LANG_DATABOX_ADMIN['byusingcode'] = 'Use Code';
-$LANG_DATABOX_ADMIN['byusingtemplatesetvar'] = 'Use ThemeVariable';
+$LANG_DATABOX_ADMIN['byusingtemplatesetvar'] = 'Use Theme Variable';
 
 $LANG_DATABOX_ADMIN['withlink'] = 'With Link';
 
 $LANG_DATABOX_ADMIN['number'] ="Number";
 $LANG_DATABOX_ADMIN['endmessage'] = "Finished";
 //help
-$LANG_DATABOX_ADMIN['delete_help_field'] = 'Data is Delete too!';
+$LANG_DATABOX_ADMIN['delete_help_field'] = 'Data is delete too!';
 $LANG_DATABOX_ADMIN['delete_help_group'] = 'There are data. Can not delete group.';
 $LANG_DATABOX_ADMIN['delete_help_category'] = 'There are data. Can not delete category and parent.';
 $LANG_DATABOX_ADMIN['delete_help_fieldset'] = 'There are data. Can not delete attribute';
@@ -342,7 +342,7 @@ $LANG_DATABOX_ADMIN['err_empty'] = 'File is nothing';
 $LANG_DATABOX_ADMIN['err_invalid'] = 'Invalid data';
 $LANG_DATABOX_ADMIN['err_permission_denied'] = 'Not permitted.';
 
-$LANG_DATABOX_ADMIN['err_id'] = 'IDis not invalid';
+$LANG_DATABOX_ADMIN['err_id'] = 'ID is not invalid';
 $LANG_DATABOX_ADMIN['err_name'] = 'Name is not invalid';
 $LANG_DATABOX_ADMIN['err_templatesetvar'] = 'Theme variableis not invalid';
 $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
