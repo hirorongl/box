@@ -25,7 +25,7 @@ $LANG_DATABOX_admin_menu['6']= 'Backup and Restore';
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
 
 
-## User画面
+## User
 $LANG_DATABOX_user_menu = array();
 $LANG_DATABOX_user_menu['2']= 'My Data';
 
@@ -53,8 +53,8 @@ $LANG_DATABOX['field_top']="Attributes Top";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
-$LANG_DATABOX['category_separater']="、";
-$LANG_DATABOX['category_separater_text']="、";
+$LANG_DATABOX['category_separater']=", ";
+$LANG_DATABOX['category_separater_text']=", ";
 $LANG_DATABOX['field_separater']=" | ";
 $LANG_DATABOX['loginrequired'] = 'Login Required';
 
@@ -136,7 +136,7 @@ $LANG_DATABOX_ADMIN['commentcode']='Comment';
 $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 
 $LANG_DATABOX_ADMIN['group']='Group';
-$LANG_DATABOX_ADMIN['parent']='親';
+$LANG_DATABOX_ADMIN['parent']='Parent';
 
 $LANG_DATABOX_ADMIN['fieldset']='AddributesSets';
 $LANG_DATABOX_ADMIN['fieldset_id']="AddributesSetsID";
@@ -196,46 +196,46 @@ $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
 $LANG_DATABOX_ADMIN['importmsg'] = '
-Absoluteパス(フォルダ、File)またはURL 指定してください。<{XHTML}br>
-フォルダ指定 時は、フォルダ下 xmlFile Importします。<{XHTML}br>
-logs/databox_xmlimport.log にログが記録されます。<{XHTML}br>
+Absolute path (directory , file) or URL selectしてください.<{XHTML}br>
+If directory selected, xml file is imported under the directory.<{XHTML}br>
+logs/databox_xmlimport.log にlog がregist されます.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['exportmsg'] = '
-Absoluteパス(フォルダ) 指定してください。<{XHTML}br>
-logs/databox_xmlimport.log にログが記録されます。<{XHTML}br>
+Absolute path (directory  selectしてください.<{XHTML}br>
+logs/databox_xmlimport.log にlog がregist されます.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
-proversion  Initializeします。「List」 内容はDeleteされます。
+proversion  Initializeします.List  内容はDeleteされます.
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = '
-Backupはとりましたか？<{XHTML}br>
-Data クリアします。<{XHTML}br>
-UploadされたFileもDeleteされます。<{XHTML}br>
-追加Addributes、Category、GroupDeleteされません。<{XHTML}br>
+Backuped?<{XHTML}br>
+clear data now.<{XHTML}br>
+Uploaded file delete, too.<{XHTML}br>
+added Addributes, Category, Group not deleted.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
-Backupはとりましたか？<{XHTML}br>
-マスタおよびData クリアします。<{XHTML}br>
-UploadされたFileもDeleteされます。<{XHTML}br>
+Backuped?<{XHTML}br>
+master and clear data.<{XHTML}br>
+Uploaded File is Deleted.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['backupmsg'] = 
 "{$_CONF['backup_path']}"."databox/に<{XHTML}br>"
-.'DataBox  DataベースData Backupします。<{XHTML}br>
-UploadFileは別途Backupしてください。<{XHTML}br>
+.'DataBox  DataベースData Backupします.<{XHTML}br>
+UploadFileは別途Backupしてください.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'File名 指定してください。(省略時databox.xml)<{XHTML}br>
-DataBox  DataベースData Restoreします。<{XHTML}br>
-UploadFileは別途もどしてください。<{XHTML}br>
+.'Filename  selectしてください.(省略時databox.xml)<{XHTML}br>
+DataBox  Database Data Restore.<{XHTML}br>
+UploadFileは別途もどしてください.<{XHTML}br>
 ';
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>phpMyAdmin でエキスポートしたDataBox のデータベースデータをRestoreします。<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は、あらかじめ変換しておいてください。<{XHTML}br>アップロードファイルは別途もどしてください。<{XHTML}br>';//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'file name をselectしてください.（省略時databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>アップロードfile は別途もどしてください.<{XHTML}br>';//<---
 
 $LANG_DATABOX_ADMIN['yy'] = 'Year';
 $LANG_DATABOX_ADMIN['mm'] = 'Month';
 $LANG_DATABOX_ADMIN['dd'] = 'Date';
 
-$LANG_DATABOX_ADMIN['must'] = '* Required';
+$LANG_DATABOX_ADMIN['must'] = '*';
 
 $LANG_DATABOX_ADMIN['enabled'] = 'Enabled';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = 'Auto upddated';
@@ -249,7 +249,7 @@ $LANG_DATABOX_ADMIN['name'] = 'Name';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'Theme Variable';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  Theme Variable';
 $LANG_DATABOX_ADMIN['parent_id'] = 'Parent ID';
-$LANG_DATABOX_ADMIN['parent_flg'] = 'Parent Group？';
+$LANG_DATABOX_ADMIN['parent_flg'] = 'Parent Group?';
 $LANG_DATABOX_ADMIN['input_type'] = 'Input type';
 $LANG_DATABOX_ADMIN['orderno'] = 'Order';
 
@@ -275,23 +275,23 @@ $LANG_DATABOX_ADMIN['delete_help_fieldset'] = 'There are data. Can not delete at
 $LANG_DATABOX_xmlimport['help']=
 "<br{KHTML}>"
 ."(注！)<br{KHTML}>"
-."assist DataBoxPlugin XMLBatchImportPathは、同一 場所 登録しておいてください  <br{KHTML}>"
+."assist DataBox Plugin XML Batch Import Pathは, same  場所 registしておいてください  <br{KHTML}>"
 ."<br{KHTML}>"
-."assist Plugin xmlImport 実行します <br{KHTML}>"
-."maps:item_10 はCodeに相当内容 登録しておいてください <br{KHTML}>"
-."同一Codeが既に登録済 場合は、Delete 後追加します <br{KHTML}>"
+."assist Plugin xmlImport exitします <br{KHTML}>"
+."maps:item_10 はCodeに相当内容 registしておいてください <br{KHTML}>"
+."same Codeが既にregist済 場合は, Delete 後added します <br{KHTML}>"
 ."<br{KHTML}>"
-."DataBox Plugin xmlImport 実行します <br{KHTML}>"
-."同一Codeが既に登録済 場合は、Delete 後追加します <br{KHTML}>"
-."各々 処理が済んだら、XMLFileはDeleteします <br{KHTML}>"
-."(権限によりDeleteできない場合があります) <br{KHTML}>"
+."DataBox Plugin xmlImport exitします <br{KHTML}>"
+."same Codeが既にregist済 場合は, Delete 後added します <br{KHTML}>"
+."各々 process が済んだら, XMLFileはDeleteします <br{KHTML}>"
+."(paermissionによりDeleteできない場合があります) <br{KHTML}>"
 ."<br{KHTML}>"
-."実行内容はdatabox_xmlimport.log に 記録されます<br{KHTML}>"
+."exit内容はdatabox_xmlimport.log に regist されます<br{KHTML}>"
 
 ;
 $LANG_DATABOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ok'] = 'Done: %d 件<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ng'] = 'Error: %d 件<br{KHTML}>';
+$LANG_DATABOX_ADMIN['cnt_ok'] = 'Done: %d<br{KHTML}>';
+$LANG_DATABOX_ADMIN['cnt_ng'] = 'Error: %d<br{KHTML}>';
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'Configuration';
@@ -326,10 +326,10 @@ $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Backup create and restore<br
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Addributes Editは、追加Addributes名 クリックして「追加」または「Delete」ボタン クリックしてください。<{XHTML}br>
-追加Addributesが選択されているときは右側だけにDisplayされます。<{XHTML}br>
-Editが終わったら、「Save」ボタン クリックしてください。<{XHTML}br>
-Adminに戻ります。';
+'Addributes Edit, added Addributes name click してadd or click Delete Button.<{XHTML}br>
+added Addributesがselect only right side.<{XHTML}br>
+After edit, click Save button.<{XHTML}br>
+Adminにget back.';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
 'Select Addributes Sets for Creat Data<{XHTML}br>
