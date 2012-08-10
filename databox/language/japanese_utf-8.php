@@ -17,7 +17,7 @@
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '追加属性';
+$LANG_DATABOX_admin_menu['3']= '属性';
 $LANG_DATABOX_admin_menu['31']= '属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
@@ -143,7 +143,7 @@ $LANG_DATABOX_ADMIN['parent']='親';
 $LANG_DATABOX_ADMIN['fieldset']='属性セット';
 $LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_DATABOX_ADMIN['fieldlist']="追加属性一覧";
+$LANG_DATABOX_ADMIN['fieldlist']="属性一覧";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
@@ -219,7 +219,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 バックアップはとりましたか?<{XHTML}br>
 データをクリアします。<{XHTML}br>
 アップロードされたファイルも削除されます。<{XHTML}br>
-追加属性、カテゴリ、グループ削除されません。<{XHTML}br>
+属性、カテゴリ、グループ削除されません。<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
 バックアップはとりましたか?<{XHTML}br>
@@ -256,8 +256,8 @@ $LANG_DATABOX_ADMIN['must'] = '*';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = '追加属性';
-$LANG_DATABOX_ADMIN['basicfields'] = '基本属性';
+$LANG_DATABOX_ADMIN['additionfields'] = '属性';
+$LANG_DATABOX_ADMIN['basicfields'] = 'デフォルト属性';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
 $LANG_DATABOX_ADMIN['field_id'] = '属性ID';
@@ -343,8 +343,8 @@ $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成�
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'属性の編集は、追加属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<{XHTML}br>
-追加属性が選択されているときは右側だけに表示されます。<{XHTML}br>
+'属性の編集は、属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<{XHTML}br>
+属性が選択されているときは右側だけに表示されます。<{XHTML}br>
 編集が終わったら、「保存」ボタンをクリックしてください。<{XHTML}br>
 管理画面に戻ります。';
 
@@ -609,7 +609,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にする追加属性の数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にする属性の数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';

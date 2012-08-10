@@ -17,7 +17,7 @@ $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= 'Informations';
 $LANG_DATABOX_admin_menu['2']= 'Data';
 $LANG_DATABOX_admin_menu['3']= 'Attributes';
-$LANG_DATABOX_admin_menu['31']= 'Attributes Sets';
+$LANG_DATABOX_admin_menu['31']= 'Attribute Sets';
 $LANG_DATABOX_admin_menu['4']= 'Categories';
 $LANG_DATABOX_admin_menu['5']= 'Groups';
 $LANG_DATABOX_admin_menu['6']= 'Backup and Restore';
@@ -138,17 +138,17 @@ $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='Attribute Set';
+$LANG_DATABOX_ADMIN['fieldset']='Attribute Sets';
 $LANG_DATABOX_ADMIN['fieldset_id']="Attribute Set ID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="Attributes List";
-$LANG_DATABOX_ADMIN['fieldlist']="Attributes List";
+$LANG_DATABOX_ADMIN['fieldsetfields']="Attribute List";
+$LANG_DATABOX_ADMIN['fieldlist']="Attribute List";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
-$LANG_DATABOX_ADMIN['fieldsetlist']='Attributes Sets List';
-$LANG_DATABOX_ADMIN['changeset']='Change Attribute Set';
+$LANG_DATABOX_ADMIN['fieldsetlist']='Attribute Set List';
+$LANG_DATABOX_ADMIN['changeset']='Change Attribute Sets';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
-$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute set.<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
 $LANG_DATABOX_ADMIN['allow_display']='Display Permission(For users)';
 $LANG_DATABOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
@@ -211,7 +211,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 Backuped?<{XHTML}br>
 clear data now.<{XHTML}br>
 Uploaded file delete, too.<{XHTML}br>
-added Attributes, Category, Group not deleted.<{XHTML}br>
+Attributes, Category, Group not deleted.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
 Backuped?<{XHTML}br>
@@ -231,17 +231,17 @@ UploadFileは別途もどしてください.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'file name をselectしてください.（省略時databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
 
-$LANG_DATABOX_ADMIN['yy'] = 'Year';
-$LANG_DATABOX_ADMIN['mm'] = 'Month';
-$LANG_DATABOX_ADMIN['dd'] = 'Date';
+$LANG_DATABOX_ADMIN['yy'] = '/';
+$LANG_DATABOX_ADMIN['mm'] = '/';
+$LANG_DATABOX_ADMIN['dd'] = ' ';
 
 $LANG_DATABOX_ADMIN['must'] = '*';
 
 $LANG_DATABOX_ADMIN['enabled'] = 'Enabled';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = 'Auto Upddated';
 
-$LANG_DATABOX_ADMIN['additionfields'] = 'Add Attributes';
-$LANG_DATABOX_ADMIN['basicfields'] = 'Basic Attributes';
+$LANG_DATABOX_ADMIN['additionfields'] = 'Attributes';
+$LANG_DATABOX_ADMIN['basicfields'] = 'Default Attributes';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'Category ID';
 $LANG_DATABOX_ADMIN['field_id'] = 'Attribute ID';
@@ -266,10 +266,10 @@ $LANG_DATABOX_ADMIN['withlink'] = 'With Link';
 $LANG_DATABOX_ADMIN['number'] ="Number";
 $LANG_DATABOX_ADMIN['endmessage'] = "Finished";
 //help
-$LANG_DATABOX_ADMIN['delete_help_field'] = 'Data is delete too!';
-$LANG_DATABOX_ADMIN['delete_help_group'] = 'There are data. Can not delete group.';
-$LANG_DATABOX_ADMIN['delete_help_category'] = 'There are data. Can not delete category and parent.';
-$LANG_DATABOX_ADMIN['delete_help_fieldset'] = 'There are data. Can not delete attribute';
+$LANG_DATABOX_ADMIN['delete_help_field'] = '(NOTE: Data removed, too!)';
+$LANG_DATABOX_ADMIN['delete_help_group'] = '(There are data. Can not delete group.)';
+$LANG_DATABOX_ADMIN['delete_help_category'] = '(There are data. Can not delete category and parent.)';
+$LANG_DATABOX_ADMIN['delete_help_fieldset'] = '(There are data. Can not delete attribute.)';
 
 //xmlimport_help
 $LANG_DATABOX_xmlimport['help']=
@@ -309,7 +309,7 @@ $LANG_DATABOX_ADMIN['config_update'] = 'Update';
 $LANG_DATABOX_ADMIN['config_update_help'] = 'Update.';
 
 $LANG_DATABOX_ADMIN['document'] = 'Document';
-$LANG_DATABOX_ADMIN['configuration'] = 'ConfigurationSetting';
+$LANG_DATABOX_ADMIN['configuration'] = 'Configuration Setting';
 $LANG_DATABOX_ADMIN['autotags'] = 'Autotags';
 $LANG_DATABOX_ADMIN['online'] = 'Online';
 
@@ -317,16 +317,16 @@ $LANG_DATABOX_ADMIN['online'] = 'Online';
 $LANG_DATABOX_ADMIN['about_admin_information'] = 'About Autotags';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
-$LANG_DATABOX_ADMIN['about_admin_field'] = 'Attributes Admin';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attributes Sets Adimin';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
 
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Attributes Edit, added Attributes name click してadd or click Delete Button.<{XHTML}br>
+'Attribute Edit, click Attributes name add or click delete button.<{XHTML}br>
 added Attributesがselect only right side.<{XHTML}br>
 After edit, click Save button.<{XHTML}br>
 Adminにget back.';
@@ -567,7 +567,7 @@ $LANG_confignames['databox']['aftersave_admin'] = 'After Save for Admin';
 
 $LANG_confignames['databox']['grp_id_default'] = 'Group Default';
 
-$LANG_confignames['databox']['default_img_url'] = 'DefaultImageURL';
+$LANG_confignames['databox']['default_img_url'] = 'Default Image URL';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'New Information Block';
@@ -611,7 +611,7 @@ $LANG_confignames['databox']['imgfile_type2'] = 'Image File Type';
 $LANG_confignames['databox']['imgfile_frd'] = 'Image Save URL';
 $LANG_confignames['databox']['imgfile_thumb_frd'] = 'Thumbnail Image Save URL';
 
-$LANG_confignames['databox']['imgfile_thumb_ok'] = 'Use Thumbnail ';
+$LANG_confignames['databox']['imgfile_thumb_ok'] = 'Use Thumbnail';
 $LANG_confignames['databox']['imgfile_thumb_w'] = 'Thumbnail Size(w)';
 $LANG_confignames['databox']['imgfile_thumb_h'] = 'Thumbnail Size(h)';
 $LANG_confignames['databox']['imgfile_thumb_w2'] = 'Original Image Size(w2)';
@@ -620,7 +620,7 @@ $LANG_confignames['databox']['imgfile_smallw'] = 'Display Image Max Width';
 
 
 
-$LANG_confignames['databox']['file_path'] = 'File Save  Absolute Address';
+$LANG_confignames['databox']['file_path'] = 'File Save Absolute Path';
 $LANG_confignames['databox']['file_size'] = 'File Size';
 $LANG_confignames['databox']['file_type'] = 'File Type';
 
