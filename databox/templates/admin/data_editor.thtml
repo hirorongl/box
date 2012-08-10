@@ -12,11 +12,6 @@
   <fieldset style="width:94%">
     <legend>{lang_basicfields}</legend>
     <table>
-    <tr>
-    <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="background:#eee" class="alignleft">{lang_content}</td>
-    </tr>
-
         <!-- id -->
         <tr>
             <th style="width:10%" class="alignright">{lang_id}{help_id}</th>
@@ -154,10 +149,6 @@
   <fieldset style="width:94%">
     <legend>{lang_additionfields}</legend>
     <table>
-    <tr>
-    <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="background:#eee" class="alignleft">{lang_content}</td>
-    </tr>
         {additionfields}
     </table>
   </fieldset>
