@@ -1,17 +1,17 @@
-<!-- plugins/databox/templates/admin/fieldset_editor.thtml 20120509 { -->
+<!-- plugins/databox/templates/admin/fieldset_editor.thtml 2012/08/11 { -->
 
 <div id="databox_admin">
 {about_thispage}
 <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
-  <fieldset style="width:94%">
-    <legend>{lang_basicfields}</legend>
+  <fieldset style="width:90%">
+    <legend>Attributes Sets</legend>
 
     <!-- data -->
     <table>
         <!-- id -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_fieldset_id}</th>
+            <th style="vertical-align:top">{lang_fieldset_id}</th>
             <td style="width:70%">
                 {id}
                 <input type="hidden" name="id" value="{id}"{xhtml}>
@@ -19,14 +19,14 @@
         </tr>
        <!-- name -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_name}<span class="must">{lang_must}</span></th>
+            <th style="vertical-align:top">{lang_name}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="name" value="{name}"{xhtml}>
             </td>
         </tr>
         <!-- description -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_description}{help_description}</th>
+            <th style="vertical-align:top" style="vertical-align:top">{lang_description}{help_description}</th>
             <td style="width:70%">
                 <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
             </td>
@@ -34,7 +34,7 @@
 
         <!-- 保存日 -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_udatetime}</th>
+            <th style="vertical-align:top">{lang_udatetime}</th>
             <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
         </tr>
 

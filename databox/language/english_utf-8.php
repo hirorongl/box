@@ -138,13 +138,13 @@ $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='Addributes Sets';
-$LANG_DATABOX_ADMIN['fieldset_id']="Addributes Sets ID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="Addributes List";
-$LANG_DATABOX_ADMIN['fieldlist']="Add Addributes List";
+$LANG_DATABOX_ADMIN['fieldset']='Attribute Set';
+$LANG_DATABOX_ADMIN['fieldset_id']="Attribute Set ID";
+$LANG_DATABOX_ADMIN['fieldsetfields']="Attributes List";
+$LANG_DATABOX_ADMIN['fieldlist']="Attributes List";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
-$LANG_DATABOX_ADMIN['fieldsetlist']='Addributes Sets List';
+$LANG_DATABOX_ADMIN['fieldsetlist']='Attributes Sets List';
 $LANG_DATABOX_ADMIN['changeset']='Change Attribute Set';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
@@ -180,8 +180,8 @@ $LANG_DATABOX_ADMIN['created'] = 'Created';
 $LANG_DATABOX_ADMIN['released'] = 'Released';
 $LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
 
-$LANG_DATABOX_ADMIN['udatetime'] = 'Udate time';
-$LANG_DATABOX_ADMIN['uuid'] = 'Update user';
+$LANG_DATABOX_ADMIN['udatetime'] = 'Modified';
+$LANG_DATABOX_ADMIN['uuid'] = 'Modified by user ID';
 
 //@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(not yet)';
@@ -211,7 +211,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 Backuped?<{XHTML}br>
 clear data now.<{XHTML}br>
 Uploaded file delete, too.<{XHTML}br>
-added Addributes, Category, Group not deleted.<{XHTML}br>
+added Attributes, Category, Group not deleted.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
 Backuped?<{XHTML}br>
@@ -244,7 +244,7 @@ $LANG_DATABOX_ADMIN['additionfields'] = 'Add Attributes';
 $LANG_DATABOX_ADMIN['basicfields'] = 'Basic Attributes';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'Category ID';
-$LANG_DATABOX_ADMIN['field_id'] = 'Add Vddributes ID';
+$LANG_DATABOX_ADMIN['field_id'] = 'Attribute ID';
 $LANG_DATABOX_ADMIN['name'] = 'Name';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'Theme Variable';
 $LANG_DATABOX_ADMIN['templatesetvars'] = 'Theme Variables';
@@ -303,7 +303,7 @@ $LANG_DATABOX_ADMIN['config_init'] = 'Initialize';
 $LANG_DATABOX_ADMIN['config_init_help'] = 'Initialize.';
 
 $LANG_DATABOX_ADMIN['config_restore'] = 'Restore';
-$LANG_DATABOX_ADMIN['config_restore_help'] = 'Restore to Backup File';
+$LANG_DATABOX_ADMIN['config_restore_help'] = 'Restore Backup File';
 
 $LANG_DATABOX_ADMIN['config_update'] = 'Update';
 $LANG_DATABOX_ADMIN['config_update_help'] = 'Update.';
@@ -317,22 +317,22 @@ $LANG_DATABOX_ADMIN['online'] = 'Online';
 $LANG_DATABOX_ADMIN['about_admin_information'] = 'About Autotags';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
-$LANG_DATABOX_ADMIN['about_admin_field'] = 'Added Addribute Admin';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'Attributes Admin';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Addributes Sets Adimin';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Backup create and restore<br{KHTML}><br{KHTML}>';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attributes Sets Adimin';
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
 
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Addributes Edit, added Addributes name click してadd or click Delete Button.<{XHTML}br>
-added Addributesがselect only right side.<{XHTML}br>
+'Attributes Edit, added Attributes name click してadd or click Delete Button.<{XHTML}br>
+added Attributesがselect only right side.<{XHTML}br>
 After edit, click Save button.<{XHTML}br>
 Adminにget back.';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'Select Addributes Sets for Creat Data<{XHTML}br>
+'Select Attributes Sets for Creat Data<{XHTML}br>
 ';
 
 //ERR
@@ -416,10 +416,10 @@ $LANG_DATABOX_MAIL['message_group']=
 "Group was edited by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】Addributes sets was edted by {$_USER['username']}";
+"【{$_CONF['site_name']}】Attributes sets was edted by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"Addributes sets was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+"Attributes sets was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -442,14 +442,14 @@ $LANG_DATABOX_MAIL['message_category_delete']=
 "Category was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
 
 $LANG_DATABOX_MAIL['subject_group_delete'] =
-"【{$_CONF['site_name']}】GroupDelete by {$_USER['username']}";
+"【{$_CONF['site_name']}】Group Delete by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_group_delete']=
 "Group was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
-"【{$_CONF['site_name']}】Addributes sets removed by {$_USER['username']}.";
+"【{$_CONF['site_name']}】Attributes sets removed by {$_USER['username']}.";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
-"Addributes set was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
+"Attributes set was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
 
 ###############################################################################
 #

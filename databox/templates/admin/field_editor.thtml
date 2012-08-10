@@ -1,17 +1,17 @@
-<!-- plugins/databox/templates/admin/field_editor.thtml  20120316 { -->
+<!-- plugins/databox/templates/admin/field_editor.thtml 2012/08/11 { -->
 
 <div id="databox_admin">
 {about_thispage}
 <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
-  <fieldset style="width:94%">
+  <fieldset style="width:90%">
     <legend>{lang_additionfields}</legend>
 
     <!-- data -->
     <table>
         <!-- id -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_field_id}</th>
+            <th style="width:30%; vertical-align:top">{lang_field_id}</th>
             <td style="width:70%">
                 {id}
                 <input type="hidden" name="id" value="{id}"{xhtml}>
@@ -23,14 +23,14 @@
 
         <!-- name -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_name}<span class="must">{lang_must}</span></th>
+            <th style="width:30%; vertical-align:top">{lang_name}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="name" value="{name}"{xhtml}>
             </td>
         </tr>
         <!-- templatesetvar -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
+            <th style="width:30%; vertical-align:top">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
             </td>
@@ -39,7 +39,7 @@
 
         <!-- description -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_description}{help_description}</th>
+            <th style="width:30%; vertical-align:top">{lang_description}{help_description}</th>
             <td style="width:70%">
                 <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
             </td>
@@ -47,14 +47,14 @@
 
         <!-- allow_display  -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_allow_display}{help_allow_display}</th>
+            <th style="width:30%; vertical-align:top">{lang_allow_display}{help_allow_display}</th>
             <td style="width:70%">
                 {list_allow_display}
             </td>
         </tr>
         <!-- allow_edit -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_allow_edit}{help_allow_edit}</th>
+            <th style="width:30%; vertical-align:top">{lang_allow_edit}{help_allow_edit}</th>
             <td style="width:70%">
                 {list_allow_edit}
             </td>
@@ -62,13 +62,13 @@
 
         <!-- type -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_type}{help_type}</th>
+            <th style="width:30%; vertical-align:top">{lang_type}{help_type}</th>
             <td style="width:70%">{list_type}</td>
         </tr>
 
         <!-- checkrequried -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_checkrequried}{help_checkrequried}</th>
+            <th style="width:30%; vertical-align:top">{lang_checkrequried}{help_checkrequried}</th>
             <td style="width:70%">{list_checkrequried}</td>
         </tr>
 
@@ -77,21 +77,21 @@
 
         <!-- size -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_size}</th>
+            <th style="width:30%; vertical-align:top">{lang_size}</th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="size" value="{size}"{xhtml}>
             </td>
         </tr>
         <!-- maxlength -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_maxlength}</th>
+            <th style="width:30%; vertical-align:top">{lang_maxlength}</th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
             </td>
         </tr>
         <!-- rows -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_rows}</th>
+            <th style="width:30%; vertical-align:top">{lang_rows}</th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="rows" value="{rows}"{xhtml}>
             </td>
@@ -99,13 +99,13 @@
 
         <!-- br -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_br}{help_br}</th>
+            <th style="width:30%; vertical-align:top">{lang_br}{help_br}</th>
             <td style="width:70%">{list_br}</td>
         </tr>
 
         <!-- selection -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_selection}{help_selection}</th>
+            <th style="width:30%; vertical-align:top">{lang_selection}{help_selection}</th>
             <td style="width:70%">
                 <textarea name="selection"style="width:95%" rows="10" id="databox_selection">{selection}</textarea>
             </td>
@@ -113,7 +113,7 @@
 
         <!-- selectlist -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_selectlist}{help_selectlist}</th>
+            <th style="width:30%; vertical-align:top">{lang_selectlist}{help_selectlist}</th>
             <td style="width:70%">
                 {list_selectlist}
             </td>
@@ -121,7 +121,7 @@
 
         <!-- order -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_orderno}</th>
+            <th style="width:30%; vertical-align:top">{lang_orderno}</th>
             <td style="width:70%">
                 <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
@@ -129,7 +129,7 @@
 
         <!-- 保存日 -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_udatetime}</th>
+            <th style="width:30%; vertical-align:top">{lang_udatetime}</th>
             <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
         </tr>
 

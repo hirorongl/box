@@ -189,7 +189,7 @@ $LANG_DATABOX_ADMIN['released'] = '公開日';
 $LANG_DATABOX_ADMIN['expired'] = '公開終了日';
 
 $LANG_DATABOX_ADMIN['udatetime'] = 'タイムスタンプ';
-$LANG_DATABOX_ADMIN['uuid'] = '更新ユーザ';
+$LANG_DATABOX_ADMIN['uuid'] = '更新ユーザID';
 
 //@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(準備中)';
@@ -260,7 +260,7 @@ $LANG_DATABOX_ADMIN['additionfields'] = '追加属性';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本属性';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = '追加属性ID';
+$LANG_DATABOX_ADMIN['field_id'] = '属性ID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
@@ -334,7 +334,7 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = '追加属性の管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = '属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア<br{KHTML}><br{KHTML}>';
