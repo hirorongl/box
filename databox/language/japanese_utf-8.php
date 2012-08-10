@@ -10,7 +10,6 @@
 
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
-# もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
 # Last Update 20120730
 
 ###############################################################################
@@ -55,9 +54,9 @@ $LANG_DATABOX['field_top']="属性別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
-$LANG_DATABOX['category_separater']="、";
-$LANG_DATABOX['category_separater_text']="、";
-$LANG_DATABOX['field_separater']="、";
+$LANG_DATABOX['category_separater']=", ";
+$LANG_DATABOX['category_separater_text']=", ";
+$LANG_DATABOX['field_separater']=", ";
 
 $LANG_DATABOX['loginrequired'] = '（ログインしてください）';
 

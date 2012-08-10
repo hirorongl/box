@@ -55,7 +55,7 @@ $LANG_DATABOX['search_link']="";
 //$LANG_DATABOX['category_separater']="</li><li>";
 $LANG_DATABOX['category_separater']="、";
 $LANG_DATABOX['category_separater_text']="、";
-
+$LANG_DATABOX['field_separater']=" | ";
 $LANG_DATABOX['loginrequired'] = 'Login Required';
 
 $LANG_DATABOX['lastmodified'] = '%B/%e/%Y Updated';
@@ -118,34 +118,39 @@ $LANG_DATABOX_ADMIN['code']='Code';
 $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='PageTitle';
 
-$LANG_DATABOX_ADMIN['description']='説明';
+$LANG_DATABOX_ADMIN['description']='Description';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='TemplatesPath';
 
 $LANG_DATABOX_ADMIN['category']='Category';
 
-$LANG_DATABOX_ADMIN['meta_description']='説明文 メタタグ';
+$LANG_DATABOX_ADMIN['meta_description']='META Description';
 
-$LANG_DATABOX_ADMIN['meta_keywords']='キーワード メタタグ';
+$LANG_DATABOX_ADMIN['meta_keywords']='META Keywords';
 
-$LANG_DATABOX_ADMIN['hits']='閲覧数';
+$LANG_DATABOX_ADMIN['hits']='Hits';
 
-$LANG_DATABOX_ADMIN['comments']='コメント数';
+$LANG_DATABOX_ADMIN['comments']='Comment Number';
 
-$LANG_DATABOX_ADMIN['commentcode']='コメント';
+$LANG_DATABOX_ADMIN['commentcode']='Comment';
 
-$LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
+$LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='親';
 
 $LANG_DATABOX_ADMIN['fieldset']='AddributesSets';
 $LANG_DATABOX_ADMIN['fieldset_id']="AddributesSetsID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="Addributesリスト";
-$LANG_DATABOX_ADMIN['fieldlist']="追加AddributesList";
+$LANG_DATABOX_ADMIN['fieldsetfields']="Addributes List";
+$LANG_DATABOX_ADMIN['fieldlist']="Add AddributesList";
+$LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
+$LANG_DATABOX_ADMIN['grouplist']="Category Group List";
 $LANG_DATABOX_ADMIN['fieldsetlist']='AddributesSetsList';
-
-$LANG_DATABOX_ADMIN['allow_display']='Display制限(一般画面)';
-$LANG_DATABOX_ADMIN['allow_edit']='編集制限(User用編集画面)';
+$LANG_DATABOX_ADMIN['changeset']='Change Attribute Set';
+$LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute set.<{XHTML}br>';
+$LANG_DATABOX_ADMIN['allow_display']='Display Permission(For users)';
+$LANG_DATABOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
 $LANG_DATABOX_ADMIN['type']=' Type';
 
@@ -155,38 +160,38 @@ $LANG_DATABOX_ADMIN['rows']='rows(Multi line text )';
 $LANG_DATABOX_ADMIN['br']='BR(Radio button)';
 
 //
-$LANG_DATABOX_ADMIN['language_id']="言語ID";
+$LANG_DATABOX_ADMIN['language_id']="Language ID";
 $LANG_DATABOX_ADMIN['owner_id']="OwnerID";
 $LANG_DATABOX_ADMIN['group_id']="GroupID";
 $LANG_DATABOX_ADMIN['perm_owner']="Permission(Owner)";
 $LANG_DATABOX_ADMIN['perm_group']="Permission(Group)";;
-$LANG_DATABOX_ADMIN['perm_members']="Permission(メンバ)";
+$LANG_DATABOX_ADMIN['perm_members']="Permission(Member)";
 $LANG_DATABOX_ADMIN['perm_anon']="Permission(Guest)";
 //
 
-$LANG_DATABOX_ADMIN['selection']='選択肢';
-$LANG_DATABOX_ADMIN['selectlist']='既定リスト';
-$LANG_DATABOX_ADMIN['checkrequried']='必須チェック';
+$LANG_DATABOX_ADMIN['selection']='selection';
+$LANG_DATABOX_ADMIN['selectlist']='selectlist';
+$LANG_DATABOX_ADMIN['checkrequried']='check requried';
 
-$LANG_DATABOX_ADMIN['draft'] = 'Draft';//'下書';
+$LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';
-$LANG_DATABOX_ADMIN['modified'] = '編集日付';
-$LANG_DATABOX_ADMIN['created'] = '作成日付';
-$LANG_DATABOX_ADMIN['released'] = '公開日';
-$LANG_DATABOX_ADMIN['expired'] = '公開終了日';
+$LANG_DATABOX_ADMIN['modified'] = 'EditDate';
+$LANG_DATABOX_ADMIN['created'] = 'Created';
+$LANG_DATABOX_ADMIN['released'] = 'Released';
+$LANG_DATABOX_ADMIN['expired'] = 'Expired';
 
-$LANG_DATABOX_ADMIN['udatetime'] = 'タイムスタンプ';
-$LANG_DATABOX_ADMIN['uuid'] = '更新User';
+$LANG_DATABOX_ADMIN['udatetime'] = 'Udatetime';
+$LANG_DATABOX_ADMIN['uuid'] = 'UpdateUser';
 
 //@@@@@-->
-$LANG_DATABOX_ADMIN['inpreparation'] = '(準備中)';
-$LANG_DATABOX_ADMIN['xml_def'] = 'XML定義';
-$LANG_DATABOX_ADMIN['init'] = '初期化';
+$LANG_DATABOX_ADMIN['inpreparation'] = '(not yet)';
+$LANG_DATABOX_ADMIN['xml_def'] = 'XML definition';
+$LANG_DATABOX_ADMIN['init'] = 'Initialize';
 $LANG_DATABOX_ADMIN['list'] = 'List';
-$LANG_DATABOX_ADMIN['dataclear'] = 'Dataクリア';
-$LANG_DATABOX_ADMIN['allclear'] = 'ALL クリア';
+$LANG_DATABOX_ADMIN['dataclear'] = 'Clear Data';
+$LANG_DATABOX_ADMIN['allclear'] = 'Clear ALL';
 
-$LANG_DATABOX_ADMIN['path'] = 'Absoluteパス';
+$LANG_DATABOX_ADMIN['path'] = 'Absolute Path';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
@@ -200,7 +205,7 @@ Absoluteパス(フォルダ) 指定してください。<{XHTML}br>
 logs/databox_xmlimport.log にログが記録されます。<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
-proversion  初期化します。「List」 内容はDeleteされます。
+proversion  Initializeします。「List」 内容はDeleteされます。
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = '
 Backupはとりましたか？<{XHTML}br>
@@ -221,14 +226,14 @@ UploadFileは別途Backupしてください。<{XHTML}br>
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
 .'File名 指定してください。(省略時databox.xml)<{XHTML}br>
-DataBox  DataベースData リストアします。<{XHTML}br>
+DataBox  DataベースData Restoreします。<{XHTML}br>
 UploadFileは別途もどしてください。<{XHTML}br>
 ';
-//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>phpMyAdmin でエキスポートしたDataBox のデータベースデータをRestoreします。<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は、あらかじめ変換しておいてください。<{XHTML}br>アップロードファイルは別途もどしてください。<{XHTML}br>';//<---
 
-$LANG_DATABOX_ADMIN['yy'] = '年';
-$LANG_DATABOX_ADMIN['mm'] = '月';
-$LANG_DATABOX_ADMIN['dd'] = '日';
+$LANG_DATABOX_ADMIN['yy'] = 'Year';
+$LANG_DATABOX_ADMIN['mm'] = 'Month';
+$LANG_DATABOX_ADMIN['dd'] = 'Date';
 
 $LANG_DATABOX_ADMIN['must'] = '* Required';
 
@@ -245,7 +250,7 @@ $LANG_DATABOX_ADMIN['templatesetvar'] = 'Theme Variable';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  Theme Variable';
 $LANG_DATABOX_ADMIN['parent_id'] = 'Parent ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = 'Parent Group？';
-
+$LANG_DATABOX_ADMIN['input_type'] = 'Input type';
 $LANG_DATABOX_ADMIN['orderno'] = 'Order';
 
 $LANG_DATABOX_ADMIN['field'] = 'Attribute';
@@ -284,46 +289,46 @@ $LANG_DATABOX_xmlimport['help']=
 ."実行内容はdatabox_xmlimport.log に 記録されます<br{KHTML}>"
 
 ;
-$LANG_DATABOX_ADMIN['jobend'] = '処理終了しました<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ok'] = '成功: %d 件<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ng'] = 'エラー: %d 件<br{KHTML}>';
+$LANG_DATABOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
+$LANG_DATABOX_ADMIN['cnt_ok'] = 'Done: %d 件<br{KHTML}>';
+$LANG_DATABOX_ADMIN['cnt_ng'] = 'Error: %d 件<br{KHTML}>';
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'Configuration';
 
-$LANG_DATABOX_ADMIN['config_backup'] = 'Backup実行';
-$LANG_DATABOX_ADMIN['config_backup_help'] = 'BackupFile 作成します';
+$LANG_DATABOX_ADMIN['config_backup'] = 'Backup';
+$LANG_DATABOX_ADMIN['config_backup_help'] = 'Save Backup File';
 
-$LANG_DATABOX_ADMIN['config_init'] = '初期化実行';
-$LANG_DATABOX_ADMIN['config_init_help'] = '初期値に戻します ';
+$LANG_DATABOX_ADMIN['config_init'] = 'Initialize';
+$LANG_DATABOX_ADMIN['config_init_help'] = 'Initialize.';
 
-$LANG_DATABOX_ADMIN['config_restore'] = 'リストア実行';
-$LANG_DATABOX_ADMIN['config_restore_help'] = 'BackupFile 内容に戻します ';
+$LANG_DATABOX_ADMIN['config_restore'] = 'Restore';
+$LANG_DATABOX_ADMIN['config_restore_help'] = 'Restore to Backup File';
 
-$LANG_DATABOX_ADMIN['config_update'] = '更新';
-$LANG_DATABOX_ADMIN['config_update_help'] = '最新 仕様に更新します ';
+$LANG_DATABOX_ADMIN['config_update'] = 'Update';
+$LANG_DATABOX_ADMIN['config_update_help'] = 'Update.';
 
-$LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
+$LANG_DATABOX_ADMIN['document'] = 'Document';
 $LANG_DATABOX_ADMIN['configuration'] = 'ConfigurationSetting';
 $LANG_DATABOX_ADMIN['autotags'] = 'Autotags';
-$LANG_DATABOX_ADMIN['online'] = 'オンライン';
+$LANG_DATABOX_ADMIN['online'] = 'Online';
 
-//Admin：こ Pageについて
-$LANG_DATABOX_ADMIN['about_admin_information'] = 'Autotagsについて';
-$LANG_DATABOX_ADMIN['about_admin_data'] = 'Data 管理';
-$LANG_DATABOX_ADMIN['about_admin_category'] = 'Category 管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = '追加Addributes 管理';
-$LANG_DATABOX_ADMIN['about_admin_group'] = 'Group 管理';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'AddributesSets 管理';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Backup 作成とリストア<br{KHTML}><br{KHTML}>';
+//Admin
+$LANG_DATABOX_ADMIN['about_admin_information'] = 'About Autotags';
+$LANG_DATABOX_ADMIN['about_admin_data'] = 'Data Admin';
+$LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'Added Addribute Admin';
+$LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Addributes Sets Adimin';
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Backup create and restore<br{KHTML}><br{KHTML}>';
 
 
-$LANG_DATABOX_ADMIN['about_admin_view'] = '一般LoginUserからみたPageはこ ようになります';
+$LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Addributes 編集は、追加Addributes名 クリックして「追加」または「Delete」ボタン クリックしてください。<{XHTML}br>
+'Addributes Editは、追加Addributes名 クリックして「追加」または「Delete」ボタン クリックしてください。<{XHTML}br>
 追加Addributesが選択されているときは右側だけにDisplayされます。<{XHTML}br>
-編集が終わったら、「Save」ボタン クリックしてください。<{XHTML}br>
+Editが終わったら、「Save」ボタン クリックしてください。<{XHTML}br>
 Adminに戻ります。';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
@@ -332,18 +337,18 @@ $LANG_DATABOX_ADMIN['inst_newdata'] =
 
 //ERR
 $LANG_DATABOX_ADMIN['err'] = 'Error';
-$LANG_DATABOX_ADMIN['err_empty'] = 'Fileがありません';
+$LANG_DATABOX_ADMIN['err_empty'] = 'File is nothing';
 
-$LANG_DATABOX_ADMIN['err_invalid'] = 'Dataがありません';
+$LANG_DATABOX_ADMIN['err_invalid'] = 'Invalid data';
 $LANG_DATABOX_ADMIN['err_permission_denied'] = 'Not permitted.';
 
 $LANG_DATABOX_ADMIN['err_id'] = 'IDis not invalid';
 $LANG_DATABOX_ADMIN['err_name'] = 'Name is not invalid';
 $LANG_DATABOX_ADMIN['err_templatesetvar'] = 'Theme variableis not invalid';
 $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
-$LANG_DATABOX_ADMIN['err_code_w'] = 'こ Codeはすでに登録されています';
-$LANG_DATABOX_ADMIN['err_code'] = 'Codeが入力されていません';
-$LANG_DATABOX_ADMIN['err_title'] = 'Titleが入力されていません';
+$LANG_DATABOX_ADMIN['err_code_w'] = 'Code is duplicated';
+$LANG_DATABOX_ADMIN['err_code'] = 'Code input error';
+$LANG_DATABOX_ADMIN['err_title'] = 'Title input error';
 
 $LANG_DATABOX_ADMIN['err_selection'] = 'No selected';
 
@@ -364,9 +369,10 @@ $LANG_DATABOX_ADMIN['err_tag_w'] = 'This tag is already registed.';
 
 $LANG_DATABOX_ADMIN['err_url'] = 'This URL is not invalid address';
 
-$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'ConfigurationBackupFileがありません<br{KHTML}>';
-$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'ConfigurationBackupFile書換できません<br{KHTML}>';
+$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'Configuration backup files non exist.<br{KHTML}>';
+$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'Configuration Backup File non rewritable<br{KHTML}>';
 
+$LANG_DATABOX_ADMIN['err_not_exist'] = 'Not existed';
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="Random Order";
 $LANG_DATABOX_ORDER['date']="Date Order";
@@ -386,10 +392,10 @@ $LANG_DATABOX_XML['base:title']=$LANG_DATABOX_ADMIN['title'];
 
 ###############################################################################
 $LANG_DATABOX_MAIL['subject_data'] =
-"【{$_CONF['site_name']}】Data更新 by %s";
+"【{$_CONF['site_name']}】Data Update by %s";
 
 $LANG_DATABOX_MAIL['message_data']=
-"%sさん(user no.%s)によって、Dataが更新されました。".LB.LB;
+"Updated by %s(user no.%s)".LB.LB;
 
 
 
@@ -398,7 +404,7 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 $LANG_DATABOX_MAIL['subject_category'] =
-"【{$_CONF['site_name']}】Category更新 by {$_USER['username']}.";
+"【{$_CONF['site_name']}】Category Update by {$_USER['username']}.";
 
 $LANG_DATABOX_MAIL['message_category']=
 "Category was edited by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
@@ -451,7 +457,7 @@ $LANG_DATABOX_NOYES = array(
     0 => 'No',
     1 => 'Yes'
 );
-
+$LANG_DATABOX_INPUTTYPE = array(    0 => 'Checkbox',    1 => 'Multi Select List');
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='Display(order)';
 $LANG_DATABOX_ALLOW_DISPLAY[1] ='Login User Display';
@@ -481,8 +487,8 @@ $LANG_DATABOX_TYPE[5] = 'Mail Address';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'Option List';
 $LANG_DATABOX_TYPE[8] = 'Radio Button List';
-$LANG_DATABOX_TYPE[9] = 'Definition List (In preparation)';
-
+$LANG_DATABOX_TYPE[9] = 'Definition List';
+$LANG_DATABOX_TYPE[14] = 'Multiselect';
 $LANG_DATABOX_TYPE[11] = 'Image(DB Save)';
 $LANG_DATABOX_TYPE[12] = 'Image(File Save)';
 $LANG_DATABOX_TYPE[13] = 'File(In Preparation )';
@@ -546,6 +552,8 @@ $LANG_confignames['databox']['layout'] = 'Layout Public';
 $LANG_confignames['databox']['layout_admin'] = 'Layout Admin';
 //----------------------
 $LANG_confignames['databox']['mail_to'] = 'Notify Address';
+$LANG_confignames['databox']['mail_to_owner'] = 'Mail to owner';
+$LANG_confignames['databox']['mail_to_draft'] = 'Notify draft data';
 $LANG_confignames['databox']['allow_data_update'] = 'Permit User Update Data';
 $LANG_confignames['databox']['allow_data_delete'] = 'Permit User Delete Data';
 $LANG_confignames['databox']['allow_data_insert'] = 'Permit User Insert Data';
@@ -635,7 +643,7 @@ $LANG_confignames['databox']['path_xml_out'] = 'XML Export Path';
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
 $LANG_configselects['databox'][1] =array('Yes' => TRUE, 'No' => FALSE);
-$LANG_configselects['databox'][12] =array('AccessDisabled' => 0, 'Display' => 2, 'Display・編集' => 3);
+$LANG_configselects['databox'][12] =array('AccessDisabled' => 0, 'Display' => 2, 'Display・Edit' => 3);
 $LANG_configselects['databox'][13] =array('AccessDisabled' => 0, 'Use' => 2);
 
 $LANG_configselects['databox'][5] =array(
@@ -643,7 +651,7 @@ $LANG_configselects['databox'][5] =array(
     , 'Display By Modified Date' => 'modified'
     , 'Display By Created Date' => 'created');
 
-//$LANG_configselects['databox'][17] =array('Access Denyed' => 0, 'Display' => 2, 'Display・編集' => 3);
+//$LANG_configselects['databox'][17] =array('Access Denyed' => 0, 'Display' => 2, 'Display・Edit' => 3);
 
 $LANG_configselects['databox'][20] =array(
     'Standard' => 'standard'
