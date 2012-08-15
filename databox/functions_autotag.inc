@@ -398,7 +398,6 @@ function databox_category(
 	//--ORDER
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
-
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -1133,6 +1132,9 @@ function databox_orderby(
             $order="date";
             $orderby = $datefield ." DESC";
             break;
+        case "released":
+            $orderby = " released DESC";
+            break;
         case "orderno":
         case "code":
         case "title":
@@ -1601,6 +1603,9 @@ function databox_data(
         //作成日付
         $templates->set_var('lang_created', $LANG_DATABOX_ADMIN['created']);
         $templates->set_var ('created', $A['created']);
+        //公開日
+        $templates->set_var('lang_released', $LANG_DATABOX_ADMIN['released']);
+        $templates->set_var ('released', $A['released']);
 
         $templates->set_var ('lang_uuid', $LANG_DATABOX_ADMIN['uuid']);
         $templates->set_var ('uuid', $uuid);
@@ -2201,6 +2206,7 @@ global $_TABLES;
     $order_ary[]='title';
     $order_ary[]='description';
     $order_ary[]='id';
+    $order_ary[]='released';
 
     $sql="SELECT ";
     $sql.= " field_id ";
@@ -2231,7 +2237,7 @@ global $_TABLES;
             $order=$addfield_ary[$field_id]['templatesetvar'];
             $order_name=$addfield_ary[$field_id]['name'];
             $order_name.=$LANG_DATABOX_ORDER['order'];
-        }else{
+		}else{
             $order=$c;
             $order_name=$LANG_DATABOX_ORDER[$c];
         }
