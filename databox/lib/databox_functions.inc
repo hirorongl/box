@@ -1942,9 +1942,13 @@ function DATABOX_getMstItems(
 	$sql="SELECT * FROM  {$table_mst} WHERE id={$id}";
 	
 	$result = DB_query($sql);
-	$A = DB_fetchArray($result, true);
-	$A = array_map('stripslashes', $A);
-	
+    $numrows = DB_numRows ($result);
+    if ($numrows > 0) {
+		$A = DB_fetchArray($result, true);
+		$A = array_map('stripslashes', $A);
+	}else{
+		$A=array();
+	}
 	return $A;
 }
 
