@@ -1936,7 +1936,11 @@ function DATABOX_getMstItems(
 	,$pi_name
 //DATABOX_getMstItems($id,$pi_name);
 ){
+	if ($id==""){
+		return array();
+	}
 	global $_TABLES;
+	
     $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
 
 	$sql="SELECT * FROM  {$table_mst} WHERE id={$id}";
