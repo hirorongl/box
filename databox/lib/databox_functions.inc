@@ -1690,8 +1690,6 @@ function DATABOX_getaddtionfieldsDisp(
     global $_CONF;
 	global $_TABLES;
 
-    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
-
     if ($pi_name==""){
         $lang_noyes="LANG_DATABOX_NOYES";
     }else{
@@ -1777,7 +1775,7 @@ function DATABOX_getaddtionfieldsDisp(
 			$fieldhtmldisp_tn="";//外画像　画像表示　（準備中）
 			$fieldhtml_noimage="";
             $fieldhtml_tn_noimage="";
- 
+			$mstitems=array();
             switch ($type) {
                 case 12://画像（外記憶）（準備中）
                     $fieldhtml=$fvalue;//ファイル名
@@ -1864,8 +1862,8 @@ function DATABOX_getaddtionfieldsDisp(
 					$fieldhtml .= $w;
                     break;
 				case 9://既定リスト　（準備中）';//DB_@@@@@@@@@@@
-					$w=DB_getItem( $table_mst   ,"value","id='{$fvalue}'");
-					$fieldhtml .= $w;
+					$mstitems=DATABOX_getMstItems($fvalue,$pi_name);;
+					$fieldhtml .= $mstitems['value'];
                     break;
                 case 4://日時（準備中）
                 case 3://日付（準備中）
@@ -1889,7 +1887,13 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value_disp', $fieldhtmldisp);
             $templates->set_var('additionfield_value_noimage', $fieldhtml_noimage);
             $templates->set_var('additionfield_value_tn_noimage', $fieldhtml_tn_noimage);
-
+			
+			
+			$templates->set_var('additionfield_value_:2', $mstitems['value2']);
+            $templates->set_var('additionfield_value_:disp', $mstitems['disp']);
+            $templates->set_var('additionfield_value_:no', $mstitems['no']);
+			
+			
 			$templates->set_var('name_additionfield'.$fid, $name);
 			
             $templates->set_var('name_'.$templatesetvar, $name);
@@ -1900,7 +1904,9 @@ function DATABOX_getaddtionfieldsDisp(
 			$templates->set_var('additionfield'.$fid."_tn_noimage", $fieldhtml_tn_noimage);
 			$templates->set_var('additionfield'.$fid."_disp", $fieldhtmldisp);
 			//@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
-			
+			$templates->set_var('additionfield'.$fid.":2", $mstitems['value2']);
+			$templates->set_var('additionfield'.$fid.":disp", $mstitems['disp']);
+			$templates->set_var('additionfield'.$fid.":no", $mstitems['no']);
 			
 			$templates->set_var($templatesetvar, $fieldhtml);
 			$templates->set_var($templatesetvar."_tn", $fieldhtml_tn);
@@ -1908,7 +1914,9 @@ function DATABOX_getaddtionfieldsDisp(
 			$templates->set_var($templatesetvar."_tn_noimage", $fieldhtml_tn_noimage);
 			$templates->set_var($templatesetvar."_disp", $fieldhtmldisp);
 			//@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
-
+			$templates->set_var($templatesetvar.":2", $mstitems['value2']);
+			$templates->set_var($templatesetvar.":disp", $mstitems['disp']);
+			$templates->set_var($templatesetvar.":no", $mstitems['no']);
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('additionfields', 'row', true);
@@ -1922,6 +1930,23 @@ function DATABOX_getaddtionfieldsDisp(
     return $retval;
 }
 
+//
+function DATABOX_getMstItems(
+	$id
+	,$pi_name
+//DATABOX_getMstItems($id,$pi_name);
+){
+	global $_TABLES;
+    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
+
+	$sql="SELECT * FROM  {$table_mst} WHERE id={$id}";
+	
+	$result = DB_query($sql);
+	$A = DB_fetchArray($result, true);
+	$A = array_map('stripslashes', $A);
+	
+	return $A;
+}
 
 
 function DATABOX_getcategoriesText(
