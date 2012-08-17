@@ -1862,7 +1862,7 @@ function DATABOX_getaddtionfieldsDisp(
 					$fieldhtml .= $w;
                     break;
 				case 9://既定リスト　（準備中）';//DB_@@@@@@@@@@@
-					$mstitems=DATABOX_getMstItems($fvalue,$pi_name);;
+					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
 					$fieldhtml .= $mstitems['value'];
                     break;
                 case 4://日時（準備中）
@@ -1874,10 +1874,6 @@ function DATABOX_getaddtionfieldsDisp(
                 default:
                     $fieldhtml .= $fvalue;
             }
-
-
-
-
 
             $templates->set_var('additionfield_name', $name);
             $templates->set_var('additionfield_templatesetvar', $templatesetvar);
@@ -1932,7 +1928,8 @@ function DATABOX_getaddtionfieldsDisp(
 
 //
 function DATABOX_getMstItems(
-	$id
+	$selectlist
+	,$id
 	,$pi_name
 //DATABOX_getMstItems($id,$pi_name);
 ){
@@ -1943,11 +1940,11 @@ function DATABOX_getMstItems(
 	
     $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
 
-	$sql="SELECT * FROM  {$table_mst} WHERE id={$id}";
+	$sql="SELECT * FROM  {$table_mst} WHERE kind='{$selectlist}' AND no={$id}";
 	
 	$result = DB_query($sql);
     $numrows = DB_numRows ($result);
-    if ($numrows > 0) {
+	if ($numrows > 0) {
 		$A = DB_fetchArray($result, true);
 		$A = array_map('stripslashes', $A);
 	}else{
