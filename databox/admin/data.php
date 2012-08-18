@@ -39,7 +39,34 @@ function fncList()
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
+	
+	//フィルタ
+    if (!empty ($_GET['filter_val'])) {
+        $filter_val = COM_applyFilter($_GET['filter_val']);
+    } elseif (!empty ($_POST['filter_val'])) {
+        $filter_val = COM_applyFilter($_POST['filter_val']);
+    } else {
+        $filter_val = $LANG09[9];
+    }
+    if  ($filter_val==$LANG09[9]){
+        $exclude="";
+    }else{
+        $exclude=" AND t.fieldset_id={$filter_val}";
+    }
 
+    $filter = "{$LANG_DATABOX_ADMIN['fieldset']}:";
+    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<option value='{$LANG09[9]}'";
+
+    if  ($filter_val==$LANG09[9]){
+        $filter .=" selected='selected'";
+    }
+    $filter .=" >{$LANG09[9]}</option>";
+    $filter .= COM_optionList ($_TABLES['DATABOX_def_fieldset']
+                , 'fieldset_id,name', $filter_val,0,"");
+
+    $filter .="</select>";
+	
     //MENU1:管理画面
     $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
     $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
@@ -108,6 +135,7 @@ function fncList()
     $sql .= " ,orderno";
     $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
+    $sql .= " ,t.fieldset_id";
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
@@ -132,7 +160,9 @@ function fncList()
         , $header_arr
         , $text_arr
         , $query_arr
-        , $defsort_arr
+		, $defsort_arr
+        , $filter
+	
         );
 
     $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
