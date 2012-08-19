@@ -522,7 +522,7 @@ function LIB_Save (
 			$target=$box_conf['aftersave_admin'];
 			$message=1;
     }else{
-            $item_url=COM_buildURL($_CONF['site_url'] . $box_conf['top']);
+            $item_url=$_CONF['site_url'] . $box_conf['top'];
             $target=$box_conf['aftersave_admin'];
     }
 
