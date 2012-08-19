@@ -1144,7 +1144,7 @@ function fncSave (
             $item_url=COM_buildURL($url);
             $target='item';
     }else{
-            $item_url=COM_buildURL($_CONF['site_url'] . "/databox/data.php?id=".$id);
+            $item_url=$_CONF['site_url'] . "/databox/data.php?id=".$id;
             $target=$_DATABOX_CONF['aftersave'];
     }
 
