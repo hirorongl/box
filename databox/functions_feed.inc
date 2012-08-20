@@ -131,7 +131,7 @@ function databox_buildSql_feed(
     }
 
 
-    //使用する日付（編集日付or作成日付
+    //使用する日付（編集日付or作成日付or公開日
     $datefield=$_DATABOX_CONF['datefield'];
 
     $limitsql = '';
@@ -189,7 +189,7 @@ function plugin_getfeedcontent_databox(
     global $_DATABOX_CONF;
 	
 	$pi_name="databox";
-    //使用する日付（編集日付or作成日付
+    //使用する日付（編集日付or作成日付or公開日
     $datefield=$_DATABOX_CONF['datefield'];
     //-----
     $tbl1=$_TABLES['DATABOX_base'] ;

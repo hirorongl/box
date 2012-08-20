@@ -293,10 +293,10 @@ function plugin_getwhatsnew_databox()
 
     $retval = '';
 
-    if ($_DATABOX_CONF['hide_whatsnew'] == 'modified') {
-        $datecolumn = 'modified';
-    } else {
+    if ($_DATABOX_CONF['hide_whatsnew'] == 'hide') {
         $datecolumn = 'created';
+    } else {
+        $datecolumn = $_DATABOX_CONF['hide_whatsnew'] ;
     }
 
 

@@ -76,7 +76,7 @@ $_CONF_VALIDATE['databox']['delete_data'] = array(
 );
 
 $_CONF_VALIDATE['databox']['datefield'] = array(
-	'rule' => array('inList', array('modified','created'), true)
+	'rule' => array('inList', array('modified','created','released'), true)
 );
 
 $_CONF_VALIDATE['databox']['meta_tags'] = array(
@@ -131,7 +131,7 @@ $_CONF_VALIDATE['databox']['user_draft_default'] = array(
 $_CONF_VALIDATE['databox']['whatsnew_interval'] = array('rule' => 'numeric');
 
 $_CONF_VALIDATE['databox']['hide_whatsnew'] = array(
-	'rule' => array('inList', array('hide','modified', 'created'), true)
+	'rule' => array('inList', array('hide','modified', 'created','released'), true)
 );
 
 $_CONF_VALIDATE['databox']['title_trim_length'] = array('rule' => 'numeric');

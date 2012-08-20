@@ -230,8 +230,8 @@ function databox_category(
 // +---------------------------------------------------------------------------+
 {
     $pi_name="databox";
-
-    global $_CONF;
+	
+	global $_CONF;
 	global $_TABLES;
 	
     global $_DATABOX_CONF;
@@ -254,8 +254,18 @@ function databox_category(
 	//
     $tbl5=$_TABLES['DATABOX_def_category'] ;
 	
-	$datefield=$_DATABOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
-	
+	//
+	$datefield=$_DATABOX_CONF['datefield'];//使用する日付（編集日付、作成日付、公開日）
+	$new_img=$_DATABOX_CONF['new_img'];
+    if ($new_img==""){
+        $new_img="New!";
+	}
+    $newmarkday=$_DATABOX_CONF['newmarkday'];
+    if ($newmarkday==""){
+        $newmarkday=3;
+    }
+    $chkday=strtotime("- $newmarkday days",time());
+
 	//-----引数チェック
 	$ids="";
 	$idsary=array();
@@ -322,7 +332,7 @@ function databox_category(
         $perpage=$_DATABOX_CONF['perpage'];
     }
 	//
-    $w=databox_orderby($datefield,$order,$orderby,$addfieldorder);
+    $w=databox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
 	
     //-----
     $sql = "SELECT ";
@@ -330,7 +340,8 @@ function databox_category(
     $sql .= " t2.id ".LB;
     $sql .= " ,t2.title ".LB;
     $sql .= " ,t2.code ".LB;
-    $sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.released ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
 
     $sql .= " ,t2.group_id";
@@ -367,7 +378,7 @@ function databox_category(
 				$w.=" WHERE t2.id = t1.id)";
 			}
 		}else{
-			$w= "id IN (SELECT id FROM {$tbl1} ";
+			$w= "t2.id IN (SELECT id FROM {$tbl1} ";
 			$w.="WHERE category_id IN ({$ids})) ";
 		}
 		$sql.=" ({$w})".LB;
@@ -397,8 +408,9 @@ function databox_category(
 
 	//--ORDER
     $sql .= " ORDER BY ".LB;
-    $sql .= $orderby.LB;
-    $result = DB_query ($sql);
+	$sql .= $orderby.LB;
+	
+	$result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
     $pages = 0;
@@ -434,11 +446,6 @@ function databox_category(
     $numrows = DB_numRows ($result);
 
 	if ($numrows > 0) {
-		
-		
-		
-		
-		
 		
 		$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
 		$templates = new Template($tmplfld);
@@ -480,15 +487,13 @@ function databox_category(
 		$templates->set_var ('lin', $lin1."-".($lin2));
 		$templates->set_var ('cnt', $cnt);
 
-		$templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
-
+		//
+		$templates->set_var ('lang_title', $LANG_DATABOX_ADMIN['title']);
 		$templates->set_var ('lang_code', $LANG_DATABOX_ADMIN['code']);
 		$templates->set_var ('lang_id', $LANG_DATABOX_ADMIN['id']);
-
-		//
-		$templates->set_var ('lang_date', $LANG_DATABOX_ADMIN[$datefield]);
-		$templates->set_var ('lang_title', $LANG_DATABOX_ADMIN['title']);
 		$templates->set_var ('lang_description', $LANG_DATABOX_ADMIN['description']);
+		$templates->set_var ('lang_date', $LANG_DATABOX_ADMIN[$datefield]);
+		$templates->set_var ('lang_released', $LANG_DATABOX_ADMIN['released']);
 		$templates->set_var ('lang_addfield', $addfield_name);
 		// 追加項目のヘッダ
 		$addition_def=DATABOX_getadditiondef($pi_name);
@@ -501,7 +506,9 @@ function databox_category(
             $description=COM_applyFilter($A['description']);
             $code=COM_applyFilter($A['code']);
             $id=COM_applyFilter($A['id']);
-            $datefield=COM_applyFilter($A['datefield']);
+			$datefield=COM_applyFilter($A['datefield']);
+			$released=COM_applyFilter($A['released']);
+			
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
@@ -525,8 +532,16 @@ function databox_category(
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
             $templates->set_var ('data_url', $url);
-            $templates->set_var ('data_datefield', $datefield);
+			$templates->set_var ('data_datefield', $datefield);
             $templates->set_var ('data_value', $value);
+			
+			$templates->set_var ('data_released', $released);//@@@@@@
+			
+			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
+				$templates->set_var ('new_img', $new_img);
+			}else{
+				$templates->set_var ('new_img', '');
+			}
 
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
@@ -991,8 +1006,6 @@ function databox_field(
     $templates->set_var ('lin', $lin1."-".($lin2));
     $templates->set_var ('cnt', $cnt);
 
-    $templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
-
     $templates->set_var ('lang_code', $LANG_DATABOX_ADMIN['code']);
     $templates->set_var ('lang_id', $LANG_DATABOX_ADMIN['id']);
 
@@ -1115,7 +1128,8 @@ function databox_orderby(
     $datefield
     ,&$order
     ,&$orderby
-    ,&$addfieldorder
+	,&$addfieldorder
+	,&$field_id
 )
 {
 

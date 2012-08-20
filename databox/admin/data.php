@@ -2008,7 +2008,6 @@ switch ($mode) {
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
 		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncChangeSet();
-		$display .= DATABOX_siteFooter('DATABOX','_admin');
         break;
 	case 'new':// 新規登録 属性セット選択
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
