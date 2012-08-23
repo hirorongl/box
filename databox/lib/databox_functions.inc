@@ -2540,6 +2540,7 @@ function DATABOX_cleanaddtiondatas(
 	,$addition_def
 	,&$fnmary
 	,&$delary
+	,$addslash = true
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目clean                                                       |
@@ -2547,10 +2548,13 @@ function DATABOX_cleanaddtiondatas(
 // +---------------------------------------------------------------------------+
 // | 引数 $fldary:
 // | 引数 $addition_def
+// | 引数 $fnmary
+// | 引数 $delary
+// | 引数 $addslash 
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
-//update 20100702
+//update 20120823
 {
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
@@ -2559,6 +2563,10 @@ function DATABOX_cleanaddtiondatas(
             switch ($type) {
                 case 11:// 図
                     break;
+                case 0:// 一行テキストフィールド
+                    $wk=COM_stripslashes($wk);
+					$wk=COM_checkHTML (COM_checkWords ($wk));
+					break;
                 case 1:// 複数行テキストフィールド(HTML OK)
                     $wk=COM_stripslashes($wk);
                     break;
@@ -2575,18 +2583,21 @@ function DATABOX_cleanaddtiondatas(
                 case 3://日付（準備中）
                 case 5://メールアドレス　（準備中）';
                 case 6://url　（準備中）';
-                case 0:// 一行テキストフィールド
                 case 10:// 複数行テキストフィールド(HTML NG)
                 case 12:// 図
 					$fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
 					$delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
+					$wk=COM_checkHTML (COM_checkWords ($wk));
                     break;
                 default:
                     $wk=COM_applyFilter($wk);
-            }
-            $wk=addslashes (COM_checkHTML (COM_checkWords ($wk)));
-            $fldary[$field_id] =$wk;
+					$wk=COM_checkHTML (COM_checkWords ($wk));
+			}
+			if ($addslash){
+				$wk=addslashes ($wk);
+			}
+			$fldary[$field_id] =$wk;
         }
     }
 

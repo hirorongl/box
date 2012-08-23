@@ -200,7 +200,7 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
         //名
         case 'title':
-            $name=COM_applyFilter($A['title']);
+            $name=COM_stripslashes($A['title']);
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
             if ($_DATABOX_CONF['datacode']){
@@ -301,7 +301,7 @@ function fncEdit(
 
         // clean 'em up
         $code=COM_applyFilter($_POST['code']);
-        $title = COM_applyFilter($_POST['title']);
+        $title = COM_stripslashes($_POST['title']);
         $page_title = COM_applyFilter($_POST['page_title']);
         $description=$_POST['description'];//COM_applyFilter($_POST['description']);
 		$defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);
@@ -338,14 +338,11 @@ function fncEdit(
         $category = $_POST['category'];
 
 		$additionfields=$_POST['afield'];
-		echo "ad18".$additionfields[18]."<br>";
-		echo "ad19".$additionfields[19]."<br>";
 		
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
         $additionfields_del=$_POST['afield_del'];
         $additionfields=DATABOX_cleanaddtiondatas
-            ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
-
+            ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del,false);
         $owner_id = COM_applyFilter ($_POST['owner_id'],true);
         $group_id = COM_applyFilter ($_POST['group_id'],true);
         //
@@ -414,7 +411,7 @@ function fncEdit(
         $uuid=$_USER['uid'];
         $udatetime=COM_applyFilter ($_POST['udatetime']);//"";
 
-        $fieldset_id=COM_applyFilter ($_POST['fieldset_id'],true);//"";
+        $fieldset_id=COM_applyFilter ($_POST['fieldset'],true);//"";
 
     }else{
         if (empty($id)) {
@@ -1023,7 +1020,7 @@ function fncSave (
     $code=COM_applyFilter($_POST['code']);
     $code=addslashes (COM_checkHTML (COM_checkWords ($code)));
 
-    $title = COM_applyFilter($_POST['title']);
+    $title = COM_stripslashes($_POST['title']);
     $title = addslashes (COM_checkHTML (COM_checkWords ($title)));
 
     $page_title = COM_applyFilter($_POST['page_title']);

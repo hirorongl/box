@@ -50,10 +50,10 @@ function fncList()
     //MENU1:管理画面
     $menu_arr = array ();
 
-    if ($_DATABOX_CONF['hide_whatsnew'] == 'modified') {
-        $datecolumn = 'modified';
-    } else {
+    if ($_DATABOX_CONF['hide_whatsnew'] == 'hide') {
         $datecolumn = 'created';
+    } else {
+        $datecolumn = $_DATABOX_CONF['hide_whatsnew'];
     }
 
     //ヘッダ：編集～
@@ -143,7 +143,7 @@ function fncGetListField(
     switch($fieldname) {
         //名
         case 'title':
-            $name=COM_applyFilter($A['title']);
+            $name=COM_stripslashes($A['title']);
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
             if ($_DATABOX_CONF['datacode']){
