@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2012/08/11 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2012/08/28 { -->
 <div id="databox_admin">
 	{about_thispage}
 	| <a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a>
@@ -195,6 +195,7 @@
             <th style="width:30%">{lang_created}</th>
             <td style="width:70%">{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
+            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
         </tr>
 
     </table>

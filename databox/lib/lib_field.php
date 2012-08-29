@@ -311,6 +311,7 @@ function LIB_Edit(
             $sql = "SELECT ";
 
             $sql .= " *";
+			$sql .= " ,UNIX_TIMESTAMP(udatetime) AS udatetime_un".LB;
 
             $sql .= " FROM ";
             $sql .= $table;
@@ -342,7 +343,8 @@ function LIB_Edit(
             $orderno=COM_stripslashes($A['orderno']);
 
             $uuid = COM_stripslashes($A['uuid']);
-            $udatetime=COM_stripslashes($A['udatetime']);
+			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
+			$udatetime = $wary[0];
 
             if ($edt_flg==FALSE) {
                 $delflg=true;
@@ -353,11 +355,6 @@ function LIB_Edit(
         $id=0;
         //作成日付
         $created=0;
-        $created_month=0;
-        $created_day = 0;
-        $created_year = 0;
-        $created_hour = 0;
-        $created_minute = 0;
         //
         $delflg=false;
 
@@ -676,11 +673,6 @@ function LIB_Save (
     $fields.=",uuid";
     $values.=",$uuid";
 
-    $fields.=",udatetime";
-    $values.=",NOW( )";
-    //
-
-
     DB_save($table,$fields,$values);
 
 //    if ($new_flg){
@@ -724,11 +716,9 @@ function LIB_Save (
 
 	$message="";
     if ($box_conf['aftersave_admin']==='no') {
-        $page_title=$lang_box_admin['piname'].$lang_box_admin['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
-        $retval .= LIB_Edit($pi_name,$id, $edt_flg,1,"");
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
+        $retval['display']= LIB_Edit($pi_name,$id, $edt_flg,1,"");
+
         return $retval;
 
     }else if ($box_conf['aftersave_admin']==='list'){

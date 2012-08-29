@@ -241,6 +241,7 @@ function LIB_Edit(
             $sql = "SELECT ";
 
             $sql .= " *";
+			$sql .= " ,UNIX_TIMESTAMP(udatetime) AS udatetime_un".LB;
 
             $sql .= " FROM ";
             $sql .= $table;
@@ -258,7 +259,8 @@ function LIB_Edit(
             $input_type=COM_stripslashes($A['input_type']);
 
             $uuid = COM_stripslashes($A['uuid']);
-            $udatetime=COM_stripslashes($A['udatetime']);
+			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
+			$udatetime = $wary[0];
 
             if ($edt_flg==FALSE) {
                 $delflg=true;

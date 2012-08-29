@@ -77,9 +77,9 @@ function fncList()
     $sql .= " ,title";
     $sql .= " ,code";
     $sql .= " ,draft_flag";
-    $sql .= " ,udatetime";
+    $sql .= " ,UNIX_TIMESTAMP(udatetime) AS udatetime";
     $sql .= " ,orderno";
-    $sql .= " ,".$datecolumn;
+    $sql .= " ,UNIX_TIMESTAMP(".$datecolumn.") AS ".$datecolumn;
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
@@ -156,7 +156,14 @@ function fncGetListField(
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
             break;
-
+		case 'udatetime':
+		case 'modified':
+		case 'created':
+		case 'released':
+			$curtime = COM_getUserDateTimeFormat($A['{$fieldname}']);
+			$retval = $curtime[0];
+			break;
+		
        //各項目
        default:
            $retval = $fieldvalue;

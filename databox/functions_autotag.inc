@@ -343,6 +343,8 @@ function databox_category(
 	$sql .= " ,t2.description ".LB;
 	$sql .= " ,t2.released ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
+	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
@@ -508,6 +510,9 @@ function databox_category(
             $id=COM_applyFilter($A['id']);
 			$datefield=COM_applyFilter($A['datefield']);
 			$released=COM_applyFilter($A['released']);
+			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
+			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
+			
 			
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
@@ -531,11 +536,12 @@ function databox_category(
             $templates->set_var ('data_code', $code);
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
-            $templates->set_var ('data_url', $url);
-			$templates->set_var ('data_datefield', $datefield);
+			$templates->set_var ('data_url', $url);
+
+			$templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
 			
-			$templates->set_var ('data_released', $released);//@@@@@@
+			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
 			
 			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
 				$templates->set_var ('new_img', $new_img);
@@ -1438,7 +1444,13 @@ function databox_data(
 
     //-----
     $sql = "SELECT t.* ";
-
+	
+	$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
+	
     $sql .= " ,t2.username AS owner_name";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
@@ -1612,20 +1624,25 @@ function databox_data(
 
 
         //編集日付
-        $templates->set_var('lang_modified', $LANG_DATABOX_ADMIN['modified']);
-        $templates->set_var ('modified', $A['modified']);
-        //作成日付
+		$templates->set_var('lang_modified', $LANG_DATABOX_ADMIN['modified']);
+		$wary = COM_getUserDateTimeFormat($A['modified_un']);
+        $templates->set_var ('modified',$wary[0]);
+		
+		//作成日付
         $templates->set_var('lang_created', $LANG_DATABOX_ADMIN['created']);
-        $templates->set_var ('created', $A['created']);
+		$wary = COM_getUserDateTimeFormat($A['created_un']);
+        $templates->set_var ('created', $wary[0]);
         //公開日
         $templates->set_var('lang_released', $LANG_DATABOX_ADMIN['released']);
-        $templates->set_var ('released', $A['released']);
+		$wary = COM_getUserDateTimeFormat($A['released_un']);
+        $templates->set_var ('released', $wary[0]);
 
         $templates->set_var ('lang_uuid', $LANG_DATABOX_ADMIN['uuid']);
         $templates->set_var ('uuid', $uuid);
 		
         $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
-        $templates->set_var ('udatetime', $A[udatetime]);
+		$wary = COM_getUserDateTimeFormat($A['udatetime_un']);
+        $templates->set_var ('udatetime', $wary[0]);
 		$templates->set_var ('last_modify_uid', $A['uuid']);
 		
         $templates->set_var ('last_modify_name', $A['last_modify_name']);
