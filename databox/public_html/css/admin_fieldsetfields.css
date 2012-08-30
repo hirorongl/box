@@ -54,3 +54,7 @@ form#admin-fieldsetfields ul.submit {
   clear: left;
   text-align: center;
 }
+
+form#admin-fieldsetfields ul.submit li {
+  display: inline;
+}
