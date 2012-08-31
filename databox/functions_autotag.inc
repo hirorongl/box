@@ -1377,7 +1377,7 @@ function databox_data(
     ,$code=null
 )
 // +---------------------------------------------------------------------------+
-// | 機能  データ表示
+// | 機能  個別データ表示
 // | 書式  databox_data($id,$template,"yes","page")
 // | 書式  databox_data($p['id'],$p['thtml'],$p['nohitmsg'],$p['code']
 // +---------------------------------------------------------------------------+
@@ -1475,19 +1475,20 @@ function databox_data(
     }
 
 
-    //管理者の時,下書データも含む
+	//管理者の時
     if ( SEC_hasRights('databox.admin') OR $m==="view") {
     }else{
-	   $sql .= " AND t.draft_flag=0".LB;
-    }
-    //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND');
-    //公開日以前のデータはのぞく
-    $sql .= " AND (released <= NOW())";
-
-    //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())";
-    //
+		//下書データはのぞく
+		$sql .= " AND t.draft_flag=0".LB;
+		//公開日以前のデータはのぞく
+		$sql .= " AND (released <= NOW())";
+		//公開終了日を過ぎたデータはのぞく
+		$sql .= " AND (expired=0 OR expired > NOW())";
+	}
+	
+	//アクセス権のないデータ はのぞく
+	$sql .= COM_getPermSql('AND');
+	
 
     if (is_null($id)){
         $sql .= " ORDER BY ".$_DATABOX_CONF['datefield'] . " DESC ";
