@@ -82,7 +82,11 @@ switch ($mode) {
         break;
 
     case 'save':// 保存
-        $display .= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
+		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
+        $information['pagetitle']=$retval['title'];
+		$display.=$retval['display'];
+
         break;
     case 'delete':// 削除
         $display .= LIB_delete($pi_name);
