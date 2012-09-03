@@ -53,7 +53,7 @@ $LANG_USERBOX['profile'] = 'プロフィール表示';
 $LANG_USERBOX['myprofile'] = 'マイプロフィール';
 
 $LANG_USERBOX['Norecentnew'] = '新しいプロフィールはありません';
-$LANG_USERBOX['nohit'] = '該当プロフィールはありません';
+$LANG_USERBOX['nohit'] = '表示可能なプロフィールはありません';
 $LANG_USERBOX['nopermission'] = '閲覧できません';
 
 $LANG_USERBOX['more'] = 'もっとみる';
@@ -482,6 +482,8 @@ $LANG_confignames['userbox']['meta_tags'] = 'メタタグを使用する';
 $LANG_confignames['userbox']['layout'] = 'レイアウト 一般画面';
 $LANG_confignames['userbox']['layout_admin'] = 'レイアウト管理画面';
 $LANG_confignames['userbox']['mail_to'] = '更新通知先メールアドレス';
+$LANG_confignames['userbox']['mail_to_owner'] = 'ユーザに更新を通知する';
+$LANG_confignames['userbox']['mail_to_draft'] = '下書データの更新を通知する';
 
 $LANG_confignames['userbox']['user_draft_default'] = 'ユーザ新規登録のドラフトのデフォルト';
 $LANG_confignames['userbox']['dateformat'] = '日付書式　datepicker用';
@@ -566,7 +568,9 @@ $LANG_configselects['userbox'][13] =array('アクセス不可' => 0, '利用す�
 $LANG_configselects['userbox'][5] =array(
     '表示しない' => 'hide'
     , '編集日付によって表示する' => 'modified'
-    , '作成日付によって表示する' => 'created');
+	, '作成日付によって表示する' => 'created'
+	, '公開日によって表示する' => 'released'
+);
 
 //$LANG_configselects['userbox'][17] =array('アクセス不可' => 0, '表示' => 2, '表示・編集' => 3);
 
@@ -578,7 +582,9 @@ $LANG_configselects['userbox'][20] =array(
 //@@@@@
 $LANG_configselects['userbox'][21] =array(
      '編集日付による' => 'modified'
-    , '作成日付による' => 'created');
+	, '作成日付による' => 'created'
+	, '公開日による' => 'released'
+);
 
 $LANG_configselects['userbox'][22] =array(
     'ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）' => 'standard'
@@ -603,6 +609,13 @@ $LANG_configselects['userbox'][9] =array(
     , 'リストを表示する' => 'list'
     , 'ホームを表示する' => 'home'
     , '管理画面トップを表示する' => 'admin'
+    , 'プラグイントップを表示する' => 'plugin'
+        );
+$LANG_configselects['userbox'][25] =array(
+    '画面遷移なし' => 'no'
+    , 'ページを表示する' => 'item'
+    , 'リストを表示する' => 'list'
+    , 'ホームを表示する' => 'home'
     , 'プラグイントップを表示する' => 'plugin'
         );
 

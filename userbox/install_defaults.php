@@ -88,6 +88,11 @@ $_USERBOX_DEFAULT['layout_admin'] = 'standard';
 // メールの送信先
 $_USERBOX_DEFAULT['mail_to'] = array();
 
+//所有者に修正を通知する　default いいえ
+$_USERBOX_DEFAULT['mail_to_owner'] = 0;
+
+//下書データの修正を通知する　default いいえ
+$_USERBOX_DEFAULT['mail_to_draft'] = 0;
 
 
 
@@ -383,30 +388,44 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,0);
         $c->add(
+            'mail_to_owner'
+            ,$_DATABOX_DEFAULT['mail_to_owner']
+            ,'select', 0, 0, 0, 170, true
+			, $pi_name
+			,0);
+		
+        $c->add(
+            'mail_to_draft'
+            ,$_DATABOX_DEFAULT['mail_to_draft']
+            ,'select', 0, 0, 0, 180, true
+			, $pi_name
+			,0);
+		
+        $c->add(
             'user_draft_default'
             ,$_USERBOX_DEFAULT['user_draft_default']
-            ,'select', 0, 0, 0, 170, true
+            ,'select', 0, 0, 0, 190, true
 			, $pi_name
 			,0);
         //
         $c->add(
             'dateformat'
             ,$_USERBOX_DEFAULT['dateformat']
-            ,'text', 0, 0, NULL, 180, TRUE
+            ,'text', 0, 0, NULL, 200, TRUE
 			, $pi_name
 			,0);
 
         $c->add(
             'aftersave'
             ,$_USERBOX_DEFAULT['aftersave']
-            ,'select', 0, 0, 9, 190, true
+            ,'select', 0, 0,25, 210, true
 			, $pi_name
 			,0);
 
         $c->add(
             'aftersave_admin'
             ,$_USERBOX_DEFAULT['aftersave_admin']
-            ,'select', 0, 0, 9, 200, true
+            ,'select', 0, 0, 9, 220, true
 			, $pi_name
 			,0);
 
@@ -414,42 +433,42 @@ function plugin_initconfig_userbox()
         $c->add(
             'grp_id_default'
             ,$_USERBOX_DEFAULT['grp_id_default']
-            ,'select', 0, 0, 24, 210, true
+            ,'select', 0, 0, 24, 230, true
 			, $pi_name
 			,0);
 
         $c->add(
             'allow_profile_update'
             ,$_USERBOX_DEFAULT['allow_profile_update']
-            ,'select', 0, 0, 0, 220, true
+            ,'select', 0, 0, 0, 240, true
 			, $pi_name
 			,0);
 
         $c->add(
             'allow_group_update'
             ,$_USERBOX_DEFAULT['allow_group_update']
-            ,'select', 0, 0, 0, 230, true
+            ,'select', 0, 0, 0, 250, true
 			, $pi_name
 			,0);
 		
 		$c->add(
             'allow_loggedinusers'
             ,$_USERBOX_DEFAULT['allow_loggedinusers']
-            ,'select', 0, 0, 0, 240, true
+            ,'select', 0, 0, 0, 260, true
 			, $pi_name
 			,0);
 		
 		$c->add(
             'default_img_url'
             ,$_USERBOX_DEFAULT['default_img_url']
-            ,'text', 0, 0, NULL, 250, TRUE
+            ,'text', 0, 0, NULL, 270, TRUE
 			, $pi_name
 			,0);
 		
 		$c->add(
             'descriptionemptycheck'
             ,$_USERBOX_DEFAULT['descriptionemptycheck']
-            ,'select', 0, 0, 0, 260, true
+            ,'select', 0, 0, 0, 280, true
 			, $pi_name
 			,0);
 		
