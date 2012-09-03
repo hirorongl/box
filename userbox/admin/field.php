@@ -72,64 +72,52 @@ if ($mode=="export") {
 //
 $menuno=3;
 $display = '';
+$information = array();
 
 //echo "mode=".$mode."<br>";
 switch ($mode) {
     case 'new':// 新規登録
-        $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['new'];
-        $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
         $display .= LIB_Edit($pi_name,"", $edt_flg,$msg);
-        $display .= DATABOX_siteFooter($pi_name,'_admin');
-
         break;
 
     case 'save':// 保存
-        $display .= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
+		$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
+		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
+        $information['pagetitle']=$retval['title'];
+		$display.=$retval['display'];
         break;
+
     case 'delete':// 削除
         $display .= LIB_delete($pi_name);
         break;
     case 'copy'://コピー
     case 'edit':// 編集
         if (!empty ($id) ) {
-            $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-            $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
+            $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
                 $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
             }
             $display .= LIB_Edit($pi_name,$id, $edt_flg,$msg,"",$mode);
-            $display .= DATABOX_siteFooter($pi_name,'_admin');
-
         }
         break;
-
+ 
     case 'import':// インポート
-        $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['import'];
-        $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['import'];
         $display .= LIB_import($pi_name);
-        $display .= DATABOX_siteFooter($pi_name,'_admin');
-
         break;
 
-
     default:// 初期表示、一覧表示
-
-        $page_title=$LANG_USERBOX_ADMIN['piname'];
-        $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-
         $display .= LIB_List($pi_name);
-        $display .= DATABOX_siteFooter($pi_name,'_admin');
 
 }
-
-
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 COM_output($display);
 

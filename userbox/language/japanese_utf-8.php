@@ -377,7 +377,10 @@ $LANG_USERBOX_NOYES = array(
     0 => 'いいえ',
     1 => 'はい'
 );
-
+$LANG_USERBOX_INPUTTYPE = array(
+    0 => 'チェックボックス',
+    1 => 'マルチセレクトリスト'
+);
 $LANG_USERBOX_ALLOW_DISPLAY = array();
 $LANG_USERBOX_ALLOW_DISPLAY[0] ='表示する（orderに指定可能　一覧表示可能）';
 $LANG_USERBOX_ALLOW_DISPLAY[1] ='ログインユーザのみ表示する（一覧表示可能）';
@@ -408,6 +411,7 @@ $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'オプションリスト';
 $LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト';
 $LANG_USERBOX_TYPE[9] = '既定リスト　（準備中）';
+$LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト　（準備中）';
 
 $LANG_USERBOX_TYPE[11] = '画像（DB保存）';
 $LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';
