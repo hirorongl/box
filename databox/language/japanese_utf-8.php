@@ -10,7 +10,8 @@
 
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
-# Last Update 20120810
+# もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
+# Last Update 20120903
 
 ###############################################################################
 ## 管理画面 menu
@@ -40,7 +41,7 @@ $LANG_DATABOX['data'] = 'データ表示';
 $LANG_DATABOX['mydata'] = 'マイデータ';
 
 $LANG_DATABOX['Norecentnew'] = '新しいデータはありません';
-$LANG_DATABOX['nohit'] = '該当データはありません';
+$LANG_DATABOX['nohit'] = '表示可能なデータはありません';
 $LANG_DATABOX['nopermission'] = '閲覧できません';
 
 $LANG_DATABOX['more'] = 'もっとみる';
@@ -721,7 +722,13 @@ $LANG_configselects['databox'][9] =array(
     , 'プラグイントップを表示する' => 'plugin'
 
         );
-
+$LANG_configselects['databox'][25] =array(
+    '画面遷移なし' => 'no'
+    ,'ページを表示する' => 'item'
+    , '一覧を表示する' => 'list'
+    , 'ホームを表示する' => 'home'
+    , 'プラグイントップを表示する' => 'plugin'
+        );
 //
 $LANG_configselects['databox'][24] =array();
     $sql = LB;

@@ -457,7 +457,7 @@ function plugin_initconfig_databox()
         $c->add(
             'aftersave'
             ,$_DATABOX_DEFAULT['aftersave']
-            ,'select', 0, 0, 9, 250, true
+            ,'select', 0, 0, 25, 250, true
 			, $pi_name
 			,0);
 

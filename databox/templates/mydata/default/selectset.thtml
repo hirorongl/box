@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/mydata/default/selectset.thtml 201205015 { -->
-<form action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset" class="basic">
+<!-- plugins/databox/templates/mydata/default/selectset.thtml 20120903 { -->
+<form action="{site_url}/databox/mydata/data.php" method="post" id="admin-selectset" class="basic">
 
     <p class="message">{lang_inst_newdata}</p>
       {lang_fieldset}{list_fieldset}

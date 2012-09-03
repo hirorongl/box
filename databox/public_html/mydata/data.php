@@ -5,29 +5,36 @@
 // | data maintenannce
 // +---------------------------------------------------------------------------+
 // $Id: data.php
-// public_html/admin/plugins/databox/data.php
-// 2010818 tsuchitani AT ivywe DOT co DOT jp
-// 20101207
+// public_html/databox/mydata/data.php
+// 20101208 tsuchitani AT ivywe DOT co DOT jp
+// 20120416 fncsave hits
 
-// @@@@@追加予定：import
-// @@@@@追加予定：export に category
-// @@@@@追加予定：日付入力
+//@@@@@@追加予定　メールにカテゴリ
 
-
-define ('THIS_SCRIPT', 'databox/data.php');
-//define ('THIS_SCRIPT', 'databox/test.php');
+define ('THIS_SCRIPT', 'databox/mydata/data.php');
+//define ('THIS_SCRIPT', 'databox/mydata/test.php');
 
 include_once('databox_functions.php');
-require_once($_CONF['path'] . 'plugins/databox/lib/lib_datetimeedit.php');
 
-function fncList()
+require_once ($_CONF['path'] . 'plugins/databox/lib/lib_datetimeedit.php');
+
+if ($_DATABOX_CONF['allow_data_update']==1 ){
+}else{
+    if (SEC_hasRights ('databox.edit') ){
+	}else{
+		COM_accessLog("User {$_USER['username']} tried to data and failed ");
+		echo COM_refresh($_CONF['site_url'] . '/index.php');
+		exit;
+	}
+}
+
 // +---------------------------------------------------------------------------+
 // | 機能  一覧表示                                                            |
 // | 書式 fncList()                                                            |
-// +---------------------------------------------------------------------------+
+// +---------------------------------------------------------------------------+\
 // | 戻値 nomal:一覧                                                           |
 // +---------------------------------------------------------------------------+
-// 20101021 orderno
+function fncList()
 {
     global $_CONF;
     global $_TABLES;
@@ -35,10 +42,11 @@ function fncList()
     global $LANG09;
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX;
+    global $_DATABOX_CONF;
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
-    $retval = '';
+	$retval = '';
 	
 	//フィルタ
     if (!empty ($_GET['filter_val'])) {
@@ -67,38 +75,18 @@ function fncList()
 
     $filter .="</select>";
 	
+
     //MENU1:管理画面
-    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
+    $url1=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?mode=new';
     $url2=$_CONF['site_url'] . '/databox/index.php';
-    $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
-    $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
-    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-    $menu_arr = array (
-        array('url' => $url1,
-              'text' => $LANG_DATABOX_ADMIN["new"]),
-        array('url' => $url7,
-              'text' => $LANG_DATABOX_ADMIN["changeset"]),
-        array('url' => $url2,
-              'text' => $LANG_DATABOX['list']),
 
-        array('url' => $url3,
-              'text' => $LANG_DATABOX_ADMIN['drafton']),
-        array('url' => $url4,
-              'text' => $LANG_DATABOX_ADMIN['draftoff']),
-
-        array('url' => $url5,
-              'text' => $LANG_DATABOX_ADMIN['export']),
-
-//        array('url' => $url6,
-//              'text' => $LANG_DATABOX_ADMIN['import']),
-
-        array('url' => $_CONF['site_admin_url'],
-              'text' => $LANG_ADMIN['admin_home']));
-
+    if ($_DATABOX_CONF['allow_data_insert']
+            OR SEC_hasRights('databox.submit')){
+        $menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
+    }
+    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
     $retval .= COM_startBlock($LANG_DATABOX_ADMIN['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
+                              COM_getBlockTemplate('_admin_block', 'header'));//@@@@@
     $retval .= ADMIN_createMenu(
         $menu_arr,
         $LANG_DATABOX_ADMIN['instructions'],
@@ -107,22 +95,25 @@ function fncList()
 
 
     //ヘッダ：編集～
-    $header_arr = array(
-        array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true),
-        array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false),
-        array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false),
-        array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true),
-        //array('text' => $LANG_DATABOX_ADMIN['modified'], 'field' => 'modified', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true)
-    );
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
+
+    if ($_DATABOX_CONF['allow_data_insert']
+            OR SEC_hasRights('databox.submit')){
+        $header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
+    }
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true);
+	$header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
+
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
+
     //
     $text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
-      'form_url' => $_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT);
+      'form_url' => $_CONF['site_url'] ."/".THIS_SCRIPT);
 
     //Query
     $sql = "SELECT ";
@@ -133,15 +124,24 @@ function fncList()
     $sql .= " ,modified";
     $sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime";
     $sql .= " ,orderno";
-    $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
     $sql .= " ,t.fieldset_id";
+
+    $sql .= " ,owner_id";
+    $sql .= " ,group_id";
+    $sql .= " ,perm_owner";
+    $sql .= " ,perm_group";
+    $sql .= " ,perm_members";
+    $sql .= " ,perm_anon";
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
     $sql .= " ,{$_TABLES['DATABOX_def_fieldset']} AS t2";
     $sql .= " WHERE ";
+
     $sql .= " t.fieldset_id=t2.fieldset_id";
+    //編集権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND',0,3);
 
     $query_arr = array(
         'table' => 'DATABOX_base',
@@ -151,18 +151,14 @@ function fncList()
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
     //List 取得
-    //ADMIN_list(
-    //       $component, $fieldfunction, $header_arr, $text_arr,
-    //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
     $retval .= ADMIN_list(
         'databox'
         , "fncGetListField"
         , $header_arr
         , $text_arr
         , $query_arr
-		, $defsort_arr
+        , $defsort_arr
         , $filter
-	
         );
 
     $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
@@ -170,99 +166,79 @@ function fncList()
     return $retval;
 }
 
+// +---------------------------------------------------------------------------+
+// | 一覧取得                                                                  |
+// | 書式 plugin_getListField_databox                                          |
+// +---------------------------------------------------------------------------+
 function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
-// +---------------------------------------------------------------------------+
-// | 一覧取得 ADMIN_list で使用
-// +---------------------------------------------------------------------------+
 {
     global $_CONF;
     global $LANG_ACCESS;
     global $_DATABOX_CONF;
+    global $LANG_DATABOX_ADMIN;
 
     $retval = '';
 
-    switch($fieldname) {
-        //編集アイコン
-        case 'editid':
-            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
-            $url.="?";
-            $url.="mode=edit";
-            $url.="&amp;id=".$A['id'];
-            $retval = COM_createLink($icon_arr['edit'],$url);
-            break;
-        case 'copy':
-            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
-            $url.="?";
-            $url.="mode=copy";
-            $url.="&amp;id=".$A['id'];
-            $retval = COM_createLink($icon_arr['copy'],$url);
-            break;
+        switch($fieldname) {
+            //編集アイコン
+            case 'editid':
+                $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                $url.="?";
+                $url.="mode=edit";
+                $url.="&amp;id=".$A['id'];
+                $retval = COM_createLink($icon_arr['edit'],$url);
+                break;
+            case 'copy':
+                $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                $url.="?";
+                $url.="mode=copy";
+                $url.="&amp;id=".$A['id'];
+                $retval = COM_createLink($icon_arr['copy'],$url);
+                break;
 
-        //名
-        case 'title':
-            $name=COM_stripslashes($A['title']);
-            $url=$_CONF['site_url'] . "/databox/data.php";
-            $url.="?";
-            if ($_DATABOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['code'];
-            }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
-            }
-            $url = COM_buildUrl( $url );
-            $retval= COM_createLink($name, $url);
-            break;
-        //名
-		case 'fieldset_name':
-            $name=COM_applyFilter($A['fieldset_name']);
-            $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
-            $url.="?";
-            $url.="mode=changeset";
-            $url.="&amp;id=".$A['id'];
-			$retval = COM_createLink($name,$url);
-            break;
-        //下書
-        case 'draft_flag':
-            if ($A['draft_flag'] == 1) {
-                $switch = 'checked="checked"';
-            } else {
-                $switch = '';
-            }
-            $retval = "<form action=\"{$_CONF['site_admin_url']}";
-            $retval .= "/plugins/".THIS_SCRIPT."\" method=\"post\">";
-            $retval .= "<input type=\"checkbox\" name=\"drafton\" ";
-            $retval .= "onclick=\"submit()\" value=\"{$A['draft_flag']}\" $switch>";
-            $retval .= "<input type=\"hidden\" name=\"draftChange\" ";
-            $retval .= "value=\"{$A['id']}\">";
-
-            $retval .= "<input type=\"hidden\" name=\"".CSRF_TOKEN."\"";
-            $retval .= " value=\"".SEC_createToken()."\"".XHTML.">";
-
-            $retval .= "</form>";
-			break;
-		case 'udatetime':
-			$curtime = COM_getUserDateTimeFormat($A['udatetime']);
-			$retval = $curtime[0];
-			break;
-
-        //各項目
-        default:
-            $retval = $fieldvalue;
-            break;
+            //名
+            case 'title':
+                $name=COM_stripslashes($A['title']);
+                $url=$_CONF['site_url'] . "/databox/data.php";
+                $url.="?";
+                if ($_DATABOX_CONF['datacode']){
+                    $url.="m=code";
+                    $url.="&code=".$A['code'];
+                }else{
+                    $url.="m=id";
+                    $url.="&id=".$A['id'];
+                }
+                $url = COM_buildUrl( $url );
+                $retval= COM_createLink($name, $url);
+                break;
+            //下書
+            case 'draft_flag':
+                if ($A['draft_flag'] == 1) {
+                    $switch = 'checked="checked"';
+                } else {
+                    $switch = '';
+                }
+                $retval = "<form action=\"{$_CONF['site_admin_url']}";
+                $retval .= "/plugins/".THIS_SCRIPT."\" method=\"post\">";
+                $retval .= "<input type=\"checkbox\" name=\"drafton\" ";
+                $retval .= "onclick=\"submit()\" value=\"{$A['draft_flag']}\" $switch disabled>";
+                $retval .= "<input type=\"hidden\" name=\"draftChange\" ";
+                $retval .= "value=\"{$A['id']}\">";
+                $retval .= "</form>";
+				break;
+			case 'udatetime':
+				$curtime = COM_getUserDateTimeFormat($A['udatetime']);
+				$retval = $curtime[0];
+				break;
+            //各項目
+            default:
+                $retval = $fieldvalue;
+                break;
     }
 
     return $retval;
 
 }
-
-function fncEdit(
-    $id
-    ,$edt_flg
-    ,$msg = ''
-    ,$errmsg=""
-    ,$mode="edit"
-)
 // +---------------------------------------------------------------------------+
 // | 機能  編集画面表示                                                        |
 // | 書式 fncEdit($id , $edt_flg,$msg,$errmsg)                                 |
@@ -270,48 +246,47 @@ function fncEdit(
 // | 引数 $id:                                                                 |
 // | 引数 $edt_flg:                                                            |
 // | 引数 $msg:メッセージ番号                                                  |
-// | 引数 $errmsg
-// | 引数 $mode:
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:編集画面                                                       |
 // +---------------------------------------------------------------------------+
-// update 20100927-1020 defaulttemplatesdirectory add
-// update 20110826- eyechatchingimage add
-// update 20120516- fieldset add
+// update 20101207
+function fncEdit(
+    $id
+    , $edt_flg,$msg = ''
+    ,$errmsg=""
+    ,$mode="edit"
+)
 {
 
     $pi_name="databox";
 
     global $_CONF;
     global $_TABLES;
+    global $LANG_DATABOX_ADMIN;
     global $LANG_ADMIN;
     global $MESSAGE;
     global $LANG_ACCESS;
-    global $_USER;
-
     global $_DATABOX_CONF;
-    global $LANG_DATABOX_ADMIN;
-    global $LANG_DATABOX;
+    global $_USER;
 
     $retval = '';
 
+
     $delflg=false;
+
 
     $addition_def=DATABOX_getadditiondef();
 
     //メッセージ表示
     if (!empty ($msg)) {
-        $retval .= COM_showMessage ($msg,'databox');
+        $retval .= COM_showMessage ($msg,$pi_name);
         $retval .= $errmsg;
-
         // clean 'em up
         $code=COM_applyFilter($_POST['code']);
         $title = COM_stripslashes($_POST['title']);
         $page_title = COM_applyFilter($_POST['page_title']);
         $description=$_POST['description'];//COM_applyFilter($_POST['description']);
-		$defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);
-        $eyechatchingimage = COM_applyFilter($_POST['eyechatchingimage']);//@@@@@@
-        $eyechatchingimage_del=COM_applyFilter($_POST['eyechatchingimage_del']);
+        $defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);//@@@@@@
 
         $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
         $hits = COM_applyFilter ($_POST['hits'],true);
@@ -321,7 +296,7 @@ function fncEdit(
         //@@@@@
         $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
         if ($comment_expire_flag===0){
-               $w = mktime(0, 0, 0, date('m'),
+            $w = mktime(0, 0, 0, date('m'),
                date('d') + $_CONF['article_comment_close_days'], date('Y'));
                $comment_expire_year=date('Y', $w);
             $comment_expire_month=date('m', $w);
@@ -338,18 +313,17 @@ function fncEdit(
 
         $meta_description = COM_applyFilter ($_POST['meta_description']);
         $meta_keywords = COM_applyFilter ($_POST['meta_keywords']);
-        $language_id = COM_applyFilter ($_POST['language_id']);
 
         $category = $_POST['category'];
 
-		$additionfields=$_POST['afield'];
-		
+        $additionfields=$_POST['afield'];
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
         $additionfields_del=$_POST['afield_del'];
         $additionfields=DATABOX_cleanaddtiondatas
             ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del,false);
         $owner_id = COM_applyFilter ($_POST['owner_id'],true);
         $group_id = COM_applyFilter ($_POST['group_id'],true);
+
         //
         $array['perm_owner']=$_POST['perm_owner'];
         $array['perm_group']=$_POST['perm_group'];
@@ -406,9 +380,8 @@ function fncEdit(
         //作成日付
         $created = COM_applyFilter ($_POST['created']);
         $created_un = COM_applyFilter ($_POST['created_un']);
-		
-		
-		$orderno = COM_applyFilter ($_POST['orderno']);
+
+        $orderno = COM_applyFilter ($_POST['orderno']);
 
         $uuid=$_USER['uid'];
         $udatetime=COM_applyFilter ($_POST['udatetime']);//"";
@@ -421,15 +394,14 @@ function fncEdit(
 			$fieldset_name=DB_getItem($_TABLES['DATABOX_def_fieldset'],"name","fieldset_id=".$fieldset_id);
 			$fieldset_name=COM_stripslashes($fieldset_name);
 			
+
             $id=0;
 
             $code ="";
             $title ="";
             $description="";
             $defaulttemplatesdirectory=null;
-			$eyechatchingimage=null;
-			$eyechatchingimage_del=null;
-			
+
             $hits =0;
             $comments=0;
 
@@ -446,8 +418,7 @@ function fncEdit(
 
             $meta_description ="";
             $meta_keywords ="";
-			$language_id="";
-			
+
             $category = "";
             $additionfields=array();
             $additionfields_fnm=array();//@@@@@
@@ -455,10 +426,8 @@ function fncEdit(
             $additionfields = DATABOX_getadditiondatas(0,$pi_name);
 
             //
-            $owner_id =$_USER['uid'];//@@@@@
-
-            //$group_id =SEC_getFeatureGroup('databox.admin', $_USER['uid']);;
-            $group_id =$_DATABOX_CONF['grp_id_default'];
+            $owner_id =$_USER['uid'];
+            $group_id =SEC_getFeatureGroup('databox.admin', $_USER['uid']);//??????
 
             $array = array();
             SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_perm']);
@@ -468,7 +437,7 @@ function fncEdit(
             $perm_members = $array['perm_members'];
 
             //
-            $draft_flag=$_DATABOX_CONF['admin_draft_default'];
+            $draft_flag=$_DATABOX_CONF['user_draft_default'];
             //編集日付
             $modified_month = date('m');
             $modified_day = date('d');
@@ -500,10 +469,11 @@ function fncEdit(
             $udatetime="";//"";
 
         }else{
-            $sql = "SELECT ".LB;
+            $sql = "SELECT ";
 
 			$sql .= " t.*".LB;
 			$sql .= " ,t2.name AS fieldset_name".LB;
+			
 			
 			$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un".LB;
 			$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un".LB;
@@ -512,18 +482,20 @@ function fncEdit(
 			$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un".LB;
 			$sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un".LB;
 			
-            $sql .= " FROM ".LB;
+			$sql .= " FROM ";
 			$sql .= $_TABLES['DATABOX_base'] ." AS t ".LB;
 			$sql .= ",".$_TABLES['DATABOX_def_fieldset'] ." AS t2 ".LB;
-			
             $sql .= " WHERE ".LB;
 			$sql .= " id = $id".LB;
 			$sql .= " AND t.fieldset_id = t2.fieldset_id".LB;
-			
+
+            //編集権のないデータ はのぞく//@@@@@
+            $sql .= COM_getPermSql('AND',0,3);
+
+
             $result = DB_query($sql);
 
-			$A = DB_fetchArray($result);
-			
+            $A = DB_fetchArray($result);
             $fieldset_id = COM_stripslashes($A['fieldset_id']);
             $fieldset_name = COM_stripslashes($A['fieldset_name']);
 
@@ -532,13 +504,12 @@ function fncEdit(
             $page_title=COM_stripslashes($A['page_title']);
             $description=COM_stripslashes($A['description']);
             $defaulttemplatesdirectory=COM_stripslashes($A['defaulttemplatesdirectory']);
-			$eyechatchiimage=COM_stripslashes($A['eyechatchimage']);
 
             $hits = COM_stripslashes($A['hits']);
 
             $comments = COM_stripslashes($A['comments']);
             $comment_expire = COM_stripslashes($A['comment_expire']);
-			if ($comment_expire==="0000-00-00 00:00:00"){
+            if ($comment_expire==="0000-00-00 00:00:00"){
                 $comment_expire_flag=0;
                 $w = mktime(0, 0, 0, date('m'),
                    date('d') + $_CONF['article_comment_close_days'], date('Y'));
@@ -573,28 +544,26 @@ function fncEdit(
             $perm_members = COM_stripslashes($A['perm_members']);
             $perm_anon = COM_stripslashes($A['perm_anon']);
 
-            $category = databox_getdatas("category_id",$_TABLES['DATABOX_category'],"id = $id");
+            $category = DATABOX_getdatas("category_id",$_TABLES['DATABOX_category'],"id = $id");
 
-            //@@@@@
+            //追加項目
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             $additionfields_fnm=array();//@@@@@
             $additionfields_del=array();
 
             $draft_flag=COM_stripslashes($A['draft_flag']);
 
-            //編集日
+			//編集日
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['modified_un']));
 			$modified = $wary[1];
-            //$modified = strtotime(COM_stripslashes($A['modified']));
             $modified_month = date('m', $modified);
             $modified_day = date('d', $modified);
             $modified_year = date('Y', $modified);
             $modified_hour = date('H', $modified);
             $modified_minute = date('i', $modified);
-			//公開日
+            //公開日
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['released_un']));
 			$released = $wary[1];
-            //$released = strtotime(COM_stripslashes($A['released']));
             $released_month = date('m', $released);
             $released_day = date('d', $released);
             $released_year = date('Y', $released);
@@ -620,7 +589,7 @@ function fncEdit(
                 $expired_day=date('d', $expired);
                 $expired_hour=date('H', $expired);
                 $expired_minute=date('i', $expired);
-            }
+           }
 
             //作成日付
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['created_un']));
@@ -634,13 +603,17 @@ function fncEdit(
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
 			$udatetime = $wary[0];
 
-            if ($edt_flg==FALSE) {
-                $delflg=true;
+            if ($_DATABOX_CONF['allow_data_delete']){
+                if ($edt_flg==FALSE) {
+                    $delflg=true;
+                }
             }
         }
     }
     if ($mode==="copy"){
         $id=0;
+        $draft_flag=$_DATABOX_CONF['user_draft_default'];
+
         //作成日付
         $created=0;
         //
@@ -648,12 +621,14 @@ function fncEdit(
 
     }
 
+    $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
+
     //-----
     $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['edit'], '',
                                COM_getBlockTemplate ('_admin_block', 'header'));
 
     //template フォルダ
-    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
+    $tmplfld=DATABOX_templatePath('mydata','default','databox');
     $templates = new Template($tmplfld);
 
     $templates->set_file('editor',"data_editor.thtml");
@@ -673,12 +648,11 @@ function fncEdit(
 
     $templates->set_var('about_thispage', $LANG_DATABOX_ADMIN['about_admin_data']);
     $templates->set_var('lang_must', $LANG_DATABOX_ADMIN['must']);
-
     $templates->set_var('site_url', $_CONF['site_url']);
     $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
-	
-	$templates->set_var('lang_ref', $LANG_DATABOX_ADMIN['ref']);
 	$templates->set_var('lang_view', $LANG_DATABOX_ADMIN['view']);
+
+    $templates->set_var('dateformat', $_DATABOX_CONF['dateformat']);
 
     $token = SEC_createToken();
     $retval .= SEC_getTokenExpiryNotice($token);
@@ -688,34 +662,19 @@ function fncEdit(
 
     $templates->set_var('script', THIS_SCRIPT);
 
-    $templates->set_var('dateformat', $_DATABOX_CONF['dateformat']);
-
-    //ビューリンク@@@@@
-    $url=$_CONF['site_url'] . "/databox/data.php";
-    $url.="?";
-    if ($_DATABOX_CONF['datacode']){
-        $url.="m=code";
-        $url.="&code=".$A['code'];
-    }else{
-        $url.="m=id";
-        $url.="&id=".$A['id'];
-    }
-    $url = COM_buildUrl( $url );
-    $view= COM_createLink($LANG_DATABOX['view'], $url);
-    $templates->set_var('view', $view);
-
-//
+    //
     $templates->set_var('lang_link_admin', $LANG_DATABOX_ADMIN['link_admin']);
     $templates->set_var('lang_link_admin_top', $LANG_DATABOX_ADMIN['link_admin_top']);
     $templates->set_var('lang_link_public', $LANG_DATABOX_ADMIN['link_public']);
     $templates->set_var('lang_link_list', $LANG_DATABOX_ADMIN['link_list']);
     $templates->set_var('lang_link_detail', $LANG_DATABOX_ADMIN['link_detail']);
+	
 	//field_id
     $templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
     $templates->set_var('fieldset_id', $fieldset_id);
     $templates->set_var('fieldset_name', $fieldset_name);
-	
-	//id
+
+    //id
     $templates->set_var('lang_id', $LANG_DATABOX_ADMIN['id']);
     //@@@@@ $templates->set_var('help_id', $LANG_DATABOX_ADMIN['help']);
     $templates->set_var('id', $id);
@@ -751,15 +710,7 @@ function fncEdit(
     $templates->set_var('lang_description', $LANG_DATABOX_ADMIN['description']);
     $templates->set_var ('description', $description);
     $templates->set_var('lang_defaulttemplatesdirectory', $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']);
-	$templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
-	$select_defaulttemplatesdirectory=fnctemplatesdirectory($defaulttemplatesdirectory);//@@@@@
-    $templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);//@@@@@
-	
-	$templates->set_var('lang_eyechatchingimage', $LANG_DATABOX_ADMIN['eyechatchingimage']);
-	$templates->set_var ('eyechatchingimage', $eyechatchingimage);
-	$image_eyechatchingimage =DATABOX_imagehtml ("eyechatchingimage",$eyechatchingimage,$eyechatchingimage_del);
-    $templates->set_var ('image_eyechatchingimage', $image_eyechatchingimage);//@@@@@
-
+    $templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
     //meta_description
     $templates->set_var('lang_meta_description', $LANG_DATABOX_ADMIN['meta_description']);
     $templates->set_var ('meta_description', $meta_description);
@@ -767,15 +718,7 @@ function fncEdit(
     //meta_keywords
     $templates->set_var('lang_meta_keywords', $LANG_DATABOX_ADMIN['meta_keywords']);
     $templates->set_var ('meta_keywords', $meta_keywords);
-	
-    //language_id
-    //$templates->set_var('lang_language_id', $LANG_DATABOX_ADMIN['language_id']);
-	//$templates->set_var ('language_id', $language_id);
-	
-    //$optionlist_language_id=COM_optionList ($_TABLES['commentcodes'], 'code,name',$commentcode);
-    //$templates->set_var ('optionlist_language_id', $optionlist_commentcode);
-	
-	
+
     //hits
     $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
     $templates->set_var ('hits', $hits);
@@ -809,7 +752,6 @@ function fncEdit(
         );
     $datetime_comment_expire=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","comment_expire");
     $templates->set_var('datetime_comment_expire', $datetime_comment_expire);
-	$dummy=DATABOX_getenableexpired('comment_expire',$comment_expire_flag,$pi_name);
 
     //編集日
     $templates->set_var ('lang_modified_autoupdate', $LANG_DATABOX_ADMIN['modified_autoupdate']);
@@ -845,25 +787,19 @@ function fncEdit(
         , $expired_hour.":".$expired_minute."::00"
         );
     $datetime_expired=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","expired");
-	$templates->set_var('datetime_expired', $datetime_expired);
-	$dummy=DATABOX_getenableexpired('expired',$expired_flag,$pi_name);
-	
-    //順序
-    $templates->set_var('lang_orderno', $LANG_DATABOX_ADMIN['orderno']);
-    $templates->set_var ('orderno', $orderno);
+    $templates->set_var('datetime_expired', $datetime_expired);
 
     //カテゴリ
     $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-    //$checklist_category=DATABOX_getcheckList ("category",$category);
-    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox");
+    $checklist_category=DATABOX_getcheckList ("category",$category);
     $templates->set_var('checklist_category', $checklist_category);
 
     //追加項目
     $templates->set_var('lang_additionfields', $LANG_DATABOX_ADMIN['additionfields']);
     $rt=DATABOX_getaddtionfieldsEdit
-        ($additionfields,$addition_def,$templates,9999,$pi_name
+        ($additionfields,$addition_def,$templates,$chk_user,$pi_name
             ,$additionfields_fnm,$additionfields_del,$fieldset_id);
-    $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,9999,$pi_name);
+    $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,$chk_user,$pi_name);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
@@ -920,81 +856,7 @@ function fncEdit(
     return $retval;
 }
 
-function fnctemplatesdirectory (
-    $defaulttemplatesdirectory
-)
-{
 
-    global $_CONF;
-    global $_TABLES;
-        //global $_USER ;
-
-    global $_DATABOX_CONF;
-
-    //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
-
-	if ($_DATABOX_CONF['templates']==="theme"){
-        $fd1=$_CONF['path_layout'].$_DATABOX_CONF['themespath']."data/";
-    }else if ($_DATABOX_CONF['templates']==="custom"){
-        $fd1=$_CONF['path'] .'plugins/databox/custom/templates/data/';
-    }else{
-        $fd1=$_CONF['path'] .'plugins/databox/templates/data/';
-    }
-
-    if( is_dir( $fd1)){
-        $fd = opendir( $fd1 );
-        $dirs= array();
-        $i = 1;
-        while(( $dir = @readdir( $fd )) == TRUE )    {
-            if( is_dir( $fd1 . $dir)
-                    && $dir <> '.'
-                    && $dir <> '..'
-                    && $dir <> 'CVS'
-                    && substr( $dir, 0 , 1 ) <> '.' ) {
-                clearstatcache();
-                $dirs[$i] = $dir;
-                $i++;
-            }
-        }
-
-        usort($dirs, 'strcasecmp');
-
-        foreach ($dirs as $dir) {
-            $selection .= '<option value="' . $dir . '"';
-            if ($defaulttemplatesdirectory == $dir) {
-                $selection .= ' selected="selected"';
-            }
-            $words = explode('_', $dir);
-            $bwords = array();
-            foreach ($words as $th) {
-                if ((strtolower($th[0]) == $th[0]) &&
-                    (strtolower($th[1]) == $th[1])) {
-                    $bwords[] = ucfirst($th);
-                } else {
-                    $bwords[] = $th;
-                }
-            }
-            $selection .= '>' . implode(' ', $bwords) . '</option>' . LB;
-        }
-    }else{
-        $selection .= '<option value="default"';
-        $selection .= ' selected="selected"';
-        $selection .= '>Default</option>' . LB;
-    }
-
-    $selection .= '</select>';
-
-    return $selection;
-
-}
-
-function fncSave (
-    $edt_flg
-    ,$navbarMenu
-    ,$menuno
-
-)
 // +---------------------------------------------------------------------------+
 // | 機能  保存                                                                |
 // | 書式 fncSave ($edt_flg)                                                   |
@@ -1002,6 +864,11 @@ function fncSave (
 // | 戻値 nomal:戻り画面＆メッセージ                                           |
 // +---------------------------------------------------------------------------+
 //20101207
+function fncSave (
+    $edt_flg
+    ,$navbarMenu
+    ,$menuno
+)
 {
     $pi_name="databox";
 
@@ -1010,18 +877,22 @@ function fncSave (
     global $_TABLES;
     global $_USER;
     global $_DATABOX_CONF;
-
-    global $_FILES;
-
+    global $LANG_DATABOX_user_menu;
 
     $addition_def=DATABOX_getadditiondef();
 
+    $retval = '';
+
     // clean 'em up
-	$id = COM_applyFilter($_POST['id'],true);
-	
+    $id = COM_applyFilter($_POST['id'],true);
+    if ($id==0){
+        $new_flg=true;
+    }else{
+        $new_flg=false;
+    }
 	$fieldset_id = COM_applyFilter ($_POST['fieldset'],true);
-    $code=COM_applyFilter($_POST['code']);
-    $code=addslashes (COM_checkHTML (COM_checkWords ($code)));
+    $code = COM_applyFilter($_POST['code']);
+    $code = addslashes (COM_checkHTML (COM_checkWords ($code)));
 
     $title = COM_stripslashes($_POST['title']);
     $title = addslashes (COM_checkHTML (COM_checkWords ($title)));
@@ -1032,128 +903,19 @@ function fncSave (
     $description=$_POST['description'];//COM_applyFilter($_POST['description']);
     $description=addslashes (COM_checkHTML (COM_checkWords ($description)));
 
-    $defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
-    $defaulttemplatesdirectory=addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
-	
-    $eyechatchingimage=COM_applyFilter($_POST['eyechatchingimage']);
-    $eyechatchingimage=addslashes (COM_checkHTML (COM_checkWords ($eyechatchingimage)));
-
-    $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
-
-//            $hits =0;
-//            $comments=0;
-
-    $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
-    IF ($comment_expire_flag){
-        $comment_expire_month = COM_applyFilter ($_POST['comment_expire_month'],true);
-        $comment_expire_day = COM_applyFilter ($_POST['comment_expire_day'],true);
-        $comment_expire_year = COM_applyFilter ($_POST['comment_expire_year'],true);
-        $comment_expire_hour = COM_applyFilter ($_POST['comment_expire_hour'],true);
-        $comment_expire_minute = COM_applyFilter ($_POST['comment_expire_minute'],true);
-    }ELSE{
-        $comment_expire_month = 0;
-        $comment_expire_day = 0;
-        $comment_expire_year = 0;
-        $comment_expire_hour = 0;
-        $comment_expire_minute = 0;
-    }
-
-    $commentcode = COM_applyFilter ($_POST['commentcode'],true);
-
-    $meta_description = $_POST['meta_description'];
-    $meta_description = addslashes (COM_checkHTML (COM_checkWords ($meta_description)));
-
-    $meta_keywords = $_POST['meta_keywords'];
-    $meta_keywords = addslashes (COM_checkHTML (COM_checkWords ($meta_keywords)));
-
     $category = $_POST['category'];
 
     //@@@@@
-	$additionfields=$_POST['afield'];
-	
+    $additionfields=$_POST['afield'];
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
-    $dummy=DATABOX_cleanaddtiondatas
+
+    $additionfields=DATABOX_cleanaddtiondatas
         ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
 
-    //
-    $owner_id = COM_applyFilter ($_POST['owner_id'],true);
 
-    $group_id = COM_applyFilter ($_POST['group_id'],true);
-
-    //
-    $array['perm_owner']=$_POST['perm_owner'];
-    $array['perm_group']=$_POST['perm_group'];
-    $array['perm_members']=$_POST['perm_members'];
-    $array['perm_anon']=$_POST['perm_anon'];
-
-    if (is_array($array['perm_owner']) || is_array($array['perm_group']) ||
-            is_array($array['perm_members']) ||
-            is_array($array['perm_anon'])) {
-
-        list($perm_owner, $perm_group, $perm_members, $perm_anon)
-            = SEC_getPermissionValues($array['perm_owner'], $array['perm_group'], $array['perm_members'], $array['perm_anon']);
-
-    } else {
-        $perm_owner   = $array['perm_owner'];
-        $perm_group   = $array['perm_group'];
-        $perm_members = $array['perm_members'];
-        $perm_anon    = $array['perm_anon'];
-    }
-
-
-
-    //編集日付
-    $modified_autoupdate = COM_applyFilter ($_POST['modified_autoupdate'],true);
-    IF ($modified_autoupdate==1){
-        //$udate = date('Ymd');
-        $modified_month = date('m');
-        $modified_day = date('d');
-        $modified_year = date('Y');
-        $modified_hour = date('H');
-        $modified_minute = date('i');
-    }else{
-        $modified_month = COM_applyFilter ($_POST['modified_month'],true);
-        $modified_day = COM_applyFilter ($_POST['modified_day'],true);
-        $modified_year = COM_applyFilter ($_POST['modified_year'],true);
-        $modified_hour = COM_applyFilter ($_POST['modified_hour'],true);
-        $modified_minute = COM_applyFilter ($_POST['modified_minute'],true);
-    }
-    //公開日
-    $released_month = COM_applyFilter ($_POST['released_month'],true);
-    $released_day = COM_applyFilter ($_POST['released_day'],true);
-    $released_year = COM_applyFilter ($_POST['released_year'],true);
-    $released_hour = COM_applyFilter ($_POST['released_hour'],true);
-    $released_minute = COM_applyFilter ($_POST['released_minute'],true);
-
-    //公開終了日
-    $expired_flag = COM_applyFilter ($_POST['expired_flag'],true);
-    IF ($expired_flag){
-        $expired_month = COM_applyFilter ($_POST['expired_month'],true);
-        $expired_day = COM_applyFilter ($_POST['expired_day'],true);
-        $expired_year = COM_applyFilter ($_POST['expired_year'],true);
-        $expired_hour = COM_applyFilter ($_POST['expired_hour'],true);
-        $expired_minute = COM_applyFilter ($_POST['expired_minute'],true);
-    }ELSE{
-        $expired_month = 0;
-        $expired_day = 0;
-        $expired_year = 0;
-        $expired_hour = 0;
-        $expired_minute = 0;
-    }
-	
-	$created = COM_applyFilter ($_POST['created_un']);
-	
-	$orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する
-    $orderno=COM_applyFilter($orderno,true);
-	
-
-    //$name = mb_convert_kana($name,"AKV");
-    //A:半角英数字を全角英数字に変換する
-    //K:半角カタカナを全角カタカナに変換する
-    //V:濁点つきの文字を１文字に変換する (K、H と共に利用する）
-    //$name = str_replace ("'", "’",$name);
-    //$code = mb_convert_kana($code,"a");//全角英数字を半角英数字に変換する
+//            $hits =0;
+//            $comments=0;
 
     //-----
     $type=1;
@@ -1170,89 +932,15 @@ function fncSave (
             $err.=$LANG_DATABOX_ADMIN['err_id']."<br/>".LB;
         }
     }
-    //コード
-    if ($code<>""){
-         $cntsql="SELECT code FROM {$_TABLES['DATABOX_base']} ";
-         $cntsql.=" WHERE ";
-         $cntsql.=" code='{$code}' ";
-         $cntsql.=" AND id<>'{$id}' ";
-         $result = DB_query ($cntsql);
-         $numrows = DB_numRows ($result);
-         if ($numrows<>0 ) {
-             $err.=$LANG_DATABOX_ADMIN['err_code_w']."<br/>".LB;
-         }
-    }
 
     //タイトル必須
     if (empty($title)){
         $err.=$LANG_DATABOX_ADMIN['err_title']."<br/>".LB;
     }
-    //コード必須
-    if ($_DATABOX_CONF['datacode']){
-        if (empty($code)){
-            $err.=$LANG_DATABOX_ADMIN['err_code']."<br/>".LB;
-        }
-    }
 
     //----追加項目チェック
     $err.=DATABOX_checkaddtiondatas
         ($additionfields,$addition_def,$pi_name,$additionfields_fnm,$additionfields_del);
-
-    //編集日付
-    $modified=$modified_year."-".$modified_month."-".$modified_day;
-    if (checkdate($modified_month, $modified_day, $modified_year)==false) {
-       $err.=$LANG_DATABOX_ADMIN['err_modified']."<br/>".LB;
-    }
-    $modified=COM_convertDate2Timestamp(
-        $modified_year."-".$modified_month."-".$modified_day
-        , $modified_hour.":".$modified_minute."::00"
-        );
-
-    //公開日
-    $released=$released_year."-".$released_month."-".$released_day;
-    if (checkdate($released_month, $released_day, $released_year)==false) {
-       $err.=$LANG_DATABOX_ADMIN['err_released']."<br/>".LB;
-    }
-    $released=COM_convertDate2Timestamp(
-        $released_year."-".$released_month."-".$released_day
-        , $released_hour.":".$released_minute."::00"
-		);
-
-
-    //コメント受付終了日時
-    IF ($comment_expire_flag){
-        if (checkdate($comment_expire_month, $comment_expire_day, $comment_expire_year)==false) {
-
-           $err.=$LANG_DATABOX_ADMIN['err_comment_expire']."<br/>".LB;
-        }
-        $comment_expire=COM_convertDate2Timestamp(
-            $comment_expire_year."-".$comment_expire_month."-".$comment_expire_day
-            , $comment_expire_hour.":".$comment_expire_minute."::00"
-            );
-
-    }else{
-        $comment_expire='0000-00-00 00:00:00';
-        //$comment_expire=null;//"";
-
-    }
-
-    //公開終了日
-    IF ($expired_flag){
-        if (checkdate($expired_month, $expired_day, $expired_year)==false) {
-
-           $err.=$LANG_DATABOX_ADMIN['err_expired']."<br/>".LB;
-        }
-        $expired=COM_convertDate2Timestamp(
-            $expired_year."-".$expired_month."-".$expired_day
-            , $expired_hour.":".$expired_minute."::00"
-            );
-        if ($expired<$released) {
-           $err.=$LANG_DATABOX_ADMIN['err_expired']."<br/>".LB;
-        }
-    }else{
-        $expired='0000-00-00 00:00:00';
-        //$expired=null;//"";
-    }
 
     //errorのあるとき
     if ($err<>"") {
@@ -1264,120 +952,166 @@ function fncSave (
     }
     // CHECK　おわり
 
-    if ($id==0){
-        $w=DB_getItem($_TABLES['DATABOX_base'],"max(id)","1=1");
+    //-----
+    // 新規登録時
+    if ($new_flg){
+       $w=DB_getItem($_TABLES['DATABOX_base'],"max(id)","1=1");
         if ($w=="") {
             $w=0;
         }
-		$id=$w+1;
-        $created_month = date('m');
-        $created_day = date('d');
-        $created_year = date('Y');
-        $created_hour = date('H');
-        $created_minute = date('i');
-		$created=COM_convertDate2Timestamp(
-			$created_year."-".$created_month."-".$created_day
-			, $created_hour.":".$created_minute."::00"
-			);
+        $id=$w+1;
     }
 
-    $hits=0;
-    $comments=0;
-
-    $fields="id";
-    $values="$id";
-
-    $fields.=",code";
-    $values.=",'$code'";
-
-    $fields.=",title";//
-    $values.=",'$title'";
-
-    $fields.=",page_title";//
-    $values.=",'$page_title'";
+    $fields=LB."id";
+    $values=LB."$id";
 
 
-    $fields.=",description";//
-    $values.=",'$description'";
+    if ($new_flg){
 
-    $fields.=",defaulttemplatesdirectory";//
-    $values.=",'$defaulttemplatesdirectory'";
+        if  ($_DATABOX_CONF['datacode']){
+            $code="000000".date(Ymdhis);
 
-    //$fields.=",hits";//
-    //$values.=",$hits";
+        }
+        $created=date("Y-m-d H:i:s");
+        $modified=$created;
+        $released=$created;
+        $commentcode =0;
+        $comment_expire='0000-00-00 00:00:00';
+        $expired='0000-00-00 00:00:00';
+        //
 
-    $fields.=",comments";//
-    $values.=",$comments";
+        $defaulttemplatesdirectory=null;
+        $draft_flag =$_DATABOX_CONF['user_draft_default'];
 
-    $fields.=",meta_description";//
-    $values.=",'$meta_description'";
+        //---
+        $meta_description = "";
+        $meta_keywords = "";
+        $owner_id =$_USER['uid'];
+        $group_id =SEC_getFeatureGroup('databox.admin', $_USER['uid']);
 
-    $fields.=",meta_keywords";//
-    $values.=",'$meta_keywords'";
 
-    $fields.=",commentcode";//
-    $values.=",$commentcode";
+        $array = array();
+        SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_perm']);
+        $perm_owner = $array['perm_owner'];
+        $perm_group = $array['perm_group'];
+        $perm_anon = $array['perm_anon'];
+        $perm_members = $array['perm_members'];
 
-	$fields.=",comment_expire";//
-	if ($comment_expire=='0000-00-00 00:00:00'){
-		$values.=",'$comment_expire'";
-	}else{
-		$values.=",FROM_UNIXTIME('$comment_expire')";
-	}
-    $fields.=",language_id";//
-    $values.=",'$language_id'";
+        $draft_flag=$_DATABOX_CONF['user_draft_default'];
 
-    $fields.=",owner_id";
-    $values.=",$owner_id";
+        //-----
 
-    $fields.=",group_id";
-    $values.=",$group_id";
+        $fields.=",defaulttemplatesdirectory";//
+        $values.=",'$defaulttemplatesdirectory'";
 
-    $fields.=",perm_owner";
-    $values.=",$perm_owner";
 
-    $fields.=",perm_group";
-    $values.=",$perm_group";
+        $fields.=",draft_flag";
+        $values.=",$draft_flag";
 
-    $fields.=",perm_members";
-    $values.=",$perm_members";
+        $fields.=",meta_description";//
+        $values.=",'$meta_description'";
 
-    $fields.=",perm_anon";
-    $values.=",$perm_anon";
+        $fields.=",meta_keywords";//
+        $values.=",'$meta_keywords'";
 
-    $fields.=",modified";
-	$values.=",FROM_UNIXTIME('$modified')";
-	
-	if  ($created<>""){
+        $fields.=",commentcode";//
+        $values.=",$commentcode";
+
+        $fields.=",comment_expire";//
+		if ($comment_expire=='0000-00-00 00:00:00'){
+			$values.=",'$comment_expire'";
+		}else{
+			$values.=",FROM_UNIXTIME('$comment_expire')";
+		}
+
+        $fields.=",language_id";//
+        $values.=",'$language_id'";
+
+        $fields.=",owner_id";
+        $values.=",$owner_id";
+
+        $fields.=",group_id";
+        $values.=",$group_id";
+
+        $fields.=",perm_owner";
+        $values.=",$perm_owner";
+
+        $fields.=",perm_group";
+        $values.=",$perm_group";
+
+        $fields.=",perm_members";
+        $values.=",$perm_members";
+
+        $fields.=",perm_anon";
+        $values.=",$perm_anon";
+
+		$fields.=",modified";
+		$values.=",FROM_UNIXTIME('$modified')";
+
 		$fields.=",created";
 		$values.=",FROM_UNIXTIME('$created')";
-	}
-	
-	$fields.=",expired";
-	if ($expired=='0000-00-00 00:00:00'){
-		$values.=",'$expired'";
-	}else{
-		$values.=",FROM_UNIXTIME('$expired')";
-	}
-    $fields.=",released";
-    $values.=",FROM_UNIXTIME('$released')";
 
-    $fields.=",orderno";//
-    $values.=",$orderno";
-	
-    $fields.=",fieldset_id";//
-    $values.=",$fieldset_id";
+        $fields.=",expired";
+		if ($expired=='0000-00-00 00:00:00'){
+			$values.=",'$expired'";
+		}else{
+			$values.=",FROM_UNIXTIME('$expired')";
+		}
 
-    $fields.=",uuid";
-    $values.=",$uuid";
+        $fields.=",released";
+		$values.=",FROM_UNIXTIME('$released')";
 
-    $fields.=",draft_flag";
-    $values.=",$draft_flag";
+        $hits=0;
+        $comments=0;
 
-//    $fields.=",udatetime";
-//    $values.=",NOW( )";
+        $fields.=",code";
+        $values.=",'$code'";
 
-    DB_save($_TABLES['DATABOX_base'],$fields,$values);
+        $fields.=",title";//
+        $values.=",'$title'";
+
+        $fields.=",page_title";//
+        $values.=",'$page_title'";
+
+        $fields.=",description";//
+        $values.=",'$description'";
+
+
+//        $fields.=",hits";//
+//        $values.=",$hits";
+
+        $fields.=",comments";//
+        $values.=",$comments";
+
+		$fields.=",fieldset_id";//
+		$values.=",$fieldset_id";
+
+        $fields.=",uuid";
+        $values.=",$uuid";
+
+        if ($edt_flg){
+            $return_page=$_CONF['site_url'] . "/".THIS_SCRIPT;
+            $return_page.="?id=".$id;
+        }else{
+            $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=1';
+        }
+
+        DB_save($_TABLES['DATABOX_base'],$fields,$values);
+    }else{
+        $modified=date("Y-m-d H:i:s");
+		
+        $sql="UPDATE {$_TABLES['DATABOX_base']} set ";
+        $sql.=" title = '$title'";
+        $sql.=" ,page_title = '$page_title'";
+        $sql.=" ,description = '$description'";
+		
+        $sql.=" ,modified = FROM_UNIXTIME('$modified')";
+		
+        $sql.=",uuid='$uuid' WHERE id=$id";
+
+        DB_query($sql);
+
+    }
 
     //カテゴリ
     //$rt=DATABOX_savedatas("category_id",$_TABLES['DATABOX_category'],$id,$category);
@@ -1387,270 +1121,98 @@ function fncSave (
 	DATABOX_uploadaddtiondatas	
         ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del);
 
-    $rt=DATABOX_saveaddtiondatas
-        ($id,$additionfields,$addition_def,$pi_name);
+    if ($new_flg){
+        $rt=DATABOX_saveaddtiondatas($id,$additionfields,$addition_def,$pi_name);
+    }else{
+        $rt=DATABOX_saveaddtiondatas_update($id,$additionfields,$addition_def,$pi_name);
+    }
 
     $rt=fncsendmail ('data',$id);
 
+//@@@@@ exit;//@@@@@debug 用
 
-//exit;// ＠＠＠＠＠＠debug 用
-
-//    if ($edt_flg){
-//        $return_page=$_CONF['site_url'] . "/".THIS_SCRIPT;
-//        $return_page.="?id=".$id;
-//    }else{
-//        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
-//    }
-
-    if ($_DATABOX_CONF['aftersave_admin']==='no'){
+    if ($_DATABOX_CONF['aftersave']==='no'){
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display']= COM_showMessage (1,'databox');
-        $retval['display'] .= fncEdit($id, $edt_flg,"","");
+        $retval['display'] .= fncEdit($id, $edt_flg,1,$err);
         return $retval;
-		
-	}else if ($_DATABOX_CONF['aftersave_admin']==='list'){
-            $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/data.php";
+
+    }else if ($_DATABOX_CONF['aftersave']==='list'
+          OR $_DATABOX_CONF['aftersave']==='admin' ){
+            $url = $_CONF['site_url'] . "/databox/mydata/data.php";
             $item_url=COM_buildURL($url);
             $target='item';
     }else{
-        $item_url=$_CONF['site_url'] . "/".THIS_SCRIPT."?id=".$id;
-        $target=$_DATABOX_CONF['aftersave_admin'];
+            $item_url=$_CONF['site_url'] . "/databox/data.php?id=".$id;
+            $target=$_DATABOX_CONF['aftersave'];
     }
 
     $return_page = PLG_afterSaveSwitch(
                     $target
                     ,$item_url
-                    ,'databox'
+                    ,$pi_name
                     , 1);
 
     echo $return_page;
 
 
-}
 
-function fncdelete ()
+}
 // +---------------------------------------------------------------------------+
 // | 機能  削除                                                                |
 // | 書式 fncdelete ()                                                         |
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:戻り画面＆メッセージ                                           |
 // +---------------------------------------------------------------------------+
+function fncdelete ()
 {
-    global $_CONF, $_TABLES;
+    global $_CONF;
+    global $_TABLES;
     global $LANG_DATABOX_ADMIN;
 	
 	$pi_name="databox";
+    $id = COM_applyFilter($_POST['id'],true);
+    $title=DB_getItem ($_TABLES['DATABOX_base'], 'title',"id = ".$id);
 	
-	$id = COM_applyFilter($_POST['id'],true);
-    $addition_def=DATABOX_getadditiondef();//@@@@@
+	$addition_def=DATABOX_getadditiondef();//@@@@@
 	$additionfields=$_POST['afield'];//@@@@@
-	
+
     // CHECK
     $err="";
     if ($err<>"") {
-		$retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display']= fncEdit($id, $edt_flg,3,$err);
-
+        $page_title=$LANG_DATABOX_ADMIN['err'];
+        $retval .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+        $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['err'], '',
+                            COM_getBlockTemplate ('_msg_block', 'header'));
+        $retval .= $err;
+        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+        $retval .= DATABOX_siteFooter('DATABOX','_admin');
         return $retval;
+    }
 
-		
-	}
-
+    //
 	$rt=databox_deletedata ($id);
 
     $rt=fncsendmail ('data_delete',$id,$title);
 
-    //exit;// @@@@@debug 用
+    //exit;// debug 用
 
-    //$return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=2';
+    $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=2';
+    return COM_refresh ($return_page);
 
-    //return COM_refresh ($return_page);
-    //echo $return_page;
-	
-	$retval['title']=$LANG_DATABOX_ADMIN['piname'];
-	$retval['display']= COM_showMessage (2,'databox');
-    $retval['display'].= fncList();
 
-    return $retval;
 
 }
-
-
-
-function fncchangeDraft (
-	$id
-)
-// +---------------------------------------------------------------------------+
-// | 機能  DRAFT チェンジ更新                                                  |
-// | 書式 fncchangeDraft ($seqno)                                              |
-// +---------------------------------------------------------------------------+
-// | 引数 $draft_flg :                                                         |
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-{
-    global $_TABLES;
-    global $_USER;
-
-    $id = COM_applyFilter($id,true);
-    $uuid=$_USER['uid'];
-
-    $sql="UPDATE {$_TABLES['DATABOX_base']} set ";
-    if (DB_getItem($_TABLES['DATABOX_base'],"draft_flag", "id=$id")) {
-        $sql.=" draft_flag = '0'";
-    } else {
-        $sql.=" draft_flag = '1'";
-    }
-    $sql.=",uuid='$uuid' WHERE id=$id";
-
-    DB_query($sql);
-    return;
-
-}
-
-function fncchangeDraftAll (
-	$flg
-)
-// +---------------------------------------------------------------------------+
-// | 機能  DRAFT チェンジ更新                                                  |
-// | 書式 fncchangeDraftAll ($flg)                                             |
-// +---------------------------------------------------------------------------+
-// | 引数 $draft_flg :                                                         |
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-{
-    global $_TABLES;
-    global $_USER;
-
-    if ($flg==0) {
-        $nflg=1;
-    }else{
-        $nflg=0;
-    }
-    $uuid=$_USER['uid'];
-
-    $sql="UPDATE {$_TABLES['DATABOX_base']} set ";
-    $sql.="draft_flag = '$flg'";
-    $sql.=",uuid='$uuid' WHERE draft_flag='$nflg'";
-    DB_query($sql);
-    return;
-}
-
-function fncexport ()
-// +---------------------------------------------------------------------------+
-// | 機能  エキスポート                                                        |
-// | 書式 fncexport ()                                                         |
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-{
-global $_CONF,$_TABLES;
-global $LANG_DATABOX_ADMIN;
-//require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
-
-// 項目の見出リスト
-$fld = array ();
-
-
-$fld['id'] = $LANG_DATABOX_ADMIN['id'];
-$fld['code'] = $LANG_DATABOX_ADMIN['code'];
-$fld['title'] = $LANG_DATABOX_ADMIN['title'];
-
-$fld['page_title'] = $LANG_DATABOX_ADMIN['page_title'];
-$fld['description'] = $LANG_DATABOX_ADMIN['description'];
-$fld['comments'] = $LANG_DATABOX_ADMIN['comments'];
-$fld['meta_description'] = $LANG_DATABOX_ADMIN['meta_description'];
-$fld['meta_keywords'] = $LANG_DATABOX_ADMIN['meta_keywords'];
-$fld['commentcode'] = $LANG_DATABOX_ADMIN['commentcode'];
-$fld['comment_expire'] = $LANG_DATABOX_ADMIN['comment_expire'];
-
-// 準備中　$fld['language_id'] = $LANG_DATABOX_ADMIN['language_id'];
-$fld['owner_id'] = $LANG_DATABOX_ADMIN['owner_id'];
-$fld['group_id'] = $LANG_DATABOX_ADMIN['group_id'];
-$fld['perm_owner'] = $LANG_DATABOX_ADMIN['perm_owner'];
-$fld['perm_group'] = $LANG_DATABOX_ADMIN['perm_group'];
-$fld['perm_members'] = $LANG_DATABOX_ADMIN['perm_members'];
-$fld['perm_anon'] = $LANG_DATABOX_ADMIN['perm_anon'];
-
-$fld['modified'] = $LANG_DATABOX_ADMIN['modified'];
-$fld['created'] = $LANG_DATABOX_ADMIN['created'];
-$fld['expired'] = $LANG_DATABOX_ADMIN['expired'];
-$fld['released'] = $LANG_DATABOX_ADMIN['released'];
-
-$fld['orderno'] = $LANG_DATABOX_ADMIN['orderno'];
-
-$fld['draft_flag'] = $LANG_DATABOX_ADMIN['draft'];
-$fld['udatetime'] = $LANG_DATABOX_ADMIN['udatetime'];
-$fld['uuid'] = $LANG_DATABOX_ADMIN['uuid'];
-//-----
-
-//----------------------
-$filenm="databox_data";
-$tbl ="{$_TABLES['DATABOX_base']}";
-$where = "";
-$order = "id";
-$addition=true;
-$tbl_prefix="DATABOX";
-
-
-$rt= DATABOX_dltbldt($filenm,$fld,$tbl,$where,$order,$tbl_prefix,$addition);
-
-
-return $rt;
-}
-
-function fncimport ()
-// +---------------------------------------------------------------------------+
-// | 機能  インポート画面表示                                                  |
-// | 書式 fncimport ()                                                         |
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:                                                               |
-// +---------------------------------------------------------------------------+
-
-{
-    global $_CONF;//, $LANG28;
-    global $LANG_DATABOX_ADMIN;
-
-    $tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
-    $tmpl->set_file(array('import' => 'import.thtml'));
-
-    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
-
-    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
-    $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
-
-    $tmpl->set_var('script', THIS_SCRIPT);
-
-    $tmpl->set_var('importmsg', $LANG_DATABOX_ADMIN['importmsg']);
-    $tmpl->set_var('importfile', $LANG_DATABOX_ADMIN['importfile']);
-    $tmpl->set_var('submit', $LANG_DATABOX_ADMIN['submit']);
-
-    $tmpl->parse ('output', 'import');
-    $import = $tmpl->finish ($tmpl->get_var ('output'));
-
-    $retval="";
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['import'], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
-    $retval .= $import;
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
-
-
-    return $retval;
-}
-
-function fncsendmail (
-    $m=""
-    ,$id=0
-    ,$title=""
-    )
 // +---------------------------------------------------------------------------+
 // | 機能  メール送信                                                          |
 // | 書式 fncsendmail ()                                                       |
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
+function fncsendmail (
+    $m=""
+    ,$id=0
+    ,$title=""
+    )
 {
     global $_CONF;
     global $_TABLES;
@@ -1662,9 +1224,6 @@ function fncsendmail (
     $retval = '';
 
     $site_name=$_CONF['site_name'];
-    $subject= $LANG_DATABOX_MAIL['subject_'.$m];
-	$message=$LANG_DATABOX_MAIL['message_'.$m];
-	
     $subject= sprintf($LANG_DATABOX_MAIL['subject_'.$m],$_USER['username']);
     $message=sprintf($LANG_DATABOX_MAIL['message_'.$m],$_USER['username'],$_USER['uid']);
 
@@ -1698,37 +1257,10 @@ function fncsendmail (
             }
 
             //基本項目
-            $msg.= $LANG_DATABOX_ADMIN['id'].":".$A['code'].LB;
             $msg.= $LANG_DATABOX_ADMIN['code'].":".$A['code'].LB;
             $msg.= $LANG_DATABOX_ADMIN['title'].":".$A['title'].LB;
             $msg.= $LANG_DATABOX_ADMIN['page_title'].":".$A['page_title'].LB;
             $msg.= $LANG_DATABOX_ADMIN['description'].":".$A['description'].LB;
-
-            $msg.= $LANG_DATABOX_ADMIN['hits'].":".$A['hits'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['comments'].":".$A['comments'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['meta_description'].":".$A['meta_description'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['meta_keywords'].":".$A['meta_keywords'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['commentcode'].":".$A['commentcode'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['comment_expire'].":".$A['comment_expire'].LB;
-
-            // 準備中　$msg.=  $LANG_DATABOX_ADMIN['language_id'].":".$A['language_id'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['owner_id'].":".$A['owner_id'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['group_id'].":".$A['group_id'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['perm_owner'].":".$A['perm_owner'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['perm_group'].":".$A['perm_group'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['perm_members'].":".$A['perm_members'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['perm_anon'].":".$A['perm_anon'].LB;
-
-            $msg.= $LANG_DATABOX_ADMIN['modified'].":".$A['modified'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['created'].":".$A['created'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['expired'].":".$A['expired'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['released'].":".$A['released'].LB;
-
-            $msg.= $LANG_DATABOX_ADMIN['orderno'].":".$A['orderno'].LB;
-
-            $msg.= $LANG_DATABOX_ADMIN['draft'].":".$A['draft'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['udatetime'].":".$A['udatetime'].LB;
-            $msg.= $LANG_DATABOX_ADMIN['uuid'].":".$A['uuid'].LB;
 
             //カテゴリ
             $msg.=DATABOX_getcategoriesText($id ,0,"DATABOX");
@@ -1759,10 +1291,11 @@ function fncsendmail (
             $url = COM_buildUrl( $url );
 
         }
-    }
+	}
 	
 	if  (($_DATABOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==0)){
 	}else{
+
 		$message.=$msg.LB;
 		$message.=$url.LB;
 		$message.=$LANG_DATABOX_MAIL['sig'].LB;
@@ -1783,8 +1316,9 @@ function fncsendmail (
 		}
 	}
 
-	return ;
+    return $retval;
 }
+
 
 function fncNew ()
 {
@@ -1800,7 +1334,8 @@ function fncNew ()
     $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["new"], '',
                                COM_getBlockTemplate ('_admin_block', 'header'));
 	
-    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
+    $tmplfld=DATABOX_templatePath('mydata','default',$pi_name);
+
     $templates = new Template($tmplfld);
     $templates->set_file('editor',"selectset.thtml");
 	
@@ -1833,107 +1368,13 @@ function fncNew ()
 	return $retval;
 }
 
-function fncChangeSet (
-){
-	global $_CONF;
-	global $LANG_DATABOX_ADMIN;
-	global $LANG_ADMIN;
-	global $_TABLES;
-	
-	$pi_name="databox";
-	
-    $retval = '';
-	
-	$id = COM_applyFilter ($_REQUEST['id'], true);
-	//-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["changeset"], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-	
-    $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
-    $templates = new Template($tmplfld);
-    $templates->set_file('editor',"changeset.thtml");
-	
-    $templates->set_var('site_url', $_CONF['site_url']);
-    $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
-	
-    $token = SEC_createToken();
-    $retval .= SEC_getTokenExpiryNotice($token);
-    $templates->set_var('gltoken_name', CSRF_TOKEN);
-    $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
 
-    $templates->set_var('script', THIS_SCRIPT);
-	
-	$templates->set_var('id', $id);
-	if  ($id==0){
-		$inst=$LANG_DATABOX_ADMIN['inst_changeset0'];
-	}else{
-		$inst=DB_getItem($_TABLES['DATABOX_base'],"title","id=".$id);
-		$inst.=$LANG_DATABOX_ADMIN['inst_changesetx'];
-	}
-	$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
-	$templates->set_var ('lang_inst_changeset', $inst);
-	
-	//fieldset_id
-	$fieldset_id=0;
-	$templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
-	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
-	$templates->set_var ('list_fieldset', $list_fieldset);
-	
-	
-    $templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
-    $templates->set_var('lang_cancel', $LANG_ADMIN['cancel']);
-
-	$templates->parse('output', 'editor');
-    $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
-	
-	return $retval;
-}
-
-function fncChangeSetExec (
-)
-{
-    global $_TABLES;
-    global $_USER;
-
-	
-	$fieldset_id = COM_applyFilter ($_REQUEST['fieldset'], true);
-	if  ($fieldset_id==0) {
-		return;
-	}
-	$id = COM_applyFilter ($_REQUEST['id'], true);
-    $uuid=$_USER['uid'];
-	
-	$sql="SELECT id FROM {$_TABLES['DATABOX_base']}  ";
-	$sql .=" WHERE ";
-	if  ($id==0){
-		$sql .="  fieldset_id=0";
-	}else{
-		$sql .="  id=".$id;
-	}	
-	
-	$result = DB_query ($sql);
-
-    $i=0;
-    while( $A = DB_fetchArray( $result ) )    {
-		$A = array_map('stripslashes', $A);
-		
-		$sql="UPDATE {$_TABLES['DATABOX_base']} set ";
-		$sql.="fieldset_id = '$fieldset_id'";
-		$sql.=",uuid='$uuid' WHERE id =".$A['id'] ;
-		
-		DB_query($sql);
-		
-        $i++;
-    }
-
-
-    return;
-}
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
+//############################
+$pi_name    = 'databox';
+//############################
 
 // 引数
 if (isset ($_REQUEST['mode'])) {
@@ -1959,23 +1400,15 @@ if (isset($_REQUEST['old_mode'])) {
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";
 }else if (($mode == $LANG_ADMIN['delete']) && !empty ($LANG_ADMIN['delete'])) {
-    $mode="delete";
+	$mode="delete";
 }else if (($mode == $LANG_DATABOX_ADMIN['new']) && !empty ($LANG_DATABOX_ADMIN['new'])) {
     $mode="newedit";
-}else if (($mode == $LANG_DATABOX_ADMIN['changeset']) && !empty ($LANG_DATABOX_ADMIN['changeset'])) {
-    $mode="changesetexec";
 }
 
-if (isset ($_POST['draftChange'])) {
-    $mode='draftChange';
-}
 
 //echo "mode=".$mode."<br>";
-
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-	OR $mode=="export" OR $mode=="import"  OR $mode=="copy"
-	OR $mode=="changeset"
-	) {
+    OR $mode=="export" OR $mode=="import"  OR $mode=="copy") {
 }else{
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用
@@ -1985,89 +1418,92 @@ if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="dr
     }
 }
 
-//DRAFT ON OFF
-if (isset ($_POST['draftChange'])) {
-    fncchangeDraft ($_POST['draftChange']);
-}
-
-//DRAFT 一括ON OFF
-if ($mode=="drafton") {
-    fncchangeDraftAll (1);
-}
-if ($mode=="draftoff") {
-    fncchangeDraftAll (0);
-}
-
-if ($mode=="changesetexec") {
-	
-	fncChangeSetExec ();
-}
-
-
 //
 $menuno=2;
 $display="";
 $information = array();
 
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    $loginrequired=$_DATABOX_CONF['loginrequired'];
+    $loginrequired=$_CONF['loginrequired'];
+
+    if ($loginrequired>0) {
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
+
+}
+
+
+
 //echo "mode=".$mode."<br>";
 switch ($mode) {
-    case 'export':// エキスポート
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['export'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display=fncexport ();
-        break;
-	case 'changeset':// 属性セット変更
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display .= fncChangeSet();
-        break;
-	case 'new':// 新規登録 属性セット選択
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display .= fncNew();
-        break;
-	case 'newedit':// 新規登録編集
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display .= fncEdit("", $edt_flg,$msg);
-        break;
 
+    case 'new':// 新規登録
+        if ($_DATABOX_CONF['allow_data_insert']
+                OR SEC_hasRights('databox.submit')){
+
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+            $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+            $display .= fncNew();
+            break;
+        }
+    case 'newedit':// 新規登録
+        if ($_DATABOX_CONF['allow_data_insert']
+                OR SEC_hasRights('databox.submit')){
+
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+            $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+            $display .= fncEdit("", $edt_flg,$msg);
+            break;
+        }
     case 'save':// 保存
 		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $retval= fncSave ($edt_flg,$navbarMenu,$menuno);
+        $retval= fncSave ($edt_flg ,$navbarMenu ,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
-	
 		break;
+
     case 'delete':// 削除
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $retval= fncdelete();
-        $information['pagetitle']=$retval['title'];
-		$display.=$retval['display'];
+        $display .= fncdelete();
         break;
     case 'copy'://コピー
+        if ($_DATABOX_CONF['allow_data_insert']
+                OR SEC_hasRights('databox.submit')){
+        }else{
+            $id="";
+            $display.=$rt;
+        }
     case 'edit':// 編集
-        if (!empty ($id) ) {
+        if ($id<>""  ) {
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
                 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-			}
-		    $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
+            }
+            $rt=databox_chk_loaddata($id);
+            if ($rt==="OK"){
+                $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
+            }else{
+                $display.=$rt;
+            }
         }
-        break;
-    case 'import':// インポート
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display .= fncimport();
         break;
 
     default:// 初期表示、一覧表示
+
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
-        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,'databox');
         }
+        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+
         $display .= fncList();
+
+
 }
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
