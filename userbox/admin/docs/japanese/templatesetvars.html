@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2012/04/16 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2012/09/05 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -172,6 +172,7 @@ list_detail.thtml
  data_value,
  data_user_photo
  data_edit
+ new_img
  </br><a  href="#notefoot_add" class="note_super" title="">追加属性のテーマ変数</a>
  </td>
 </tr>
@@ -360,6 +361,28 @@ public_html/myprofile/profile.php<br/>
 
 </tbody>
 </table>
+<a class="note_super" href="#notetext_1" id="notefoot_1">*1</a>
+<span class="small">Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。</span><br/>
+
+<a class="note_super" href="#notetext_add" id="#notefoot_add">追加属性のテーマ変数</a>
+<span class="small">
+{additionfield<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield_tn<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield_noimage<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield_tn_noimage<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield_disp<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield:2<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield:no<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
+{additionfield:disp<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}<br/>
+{登録したテーマ変数名}
+{登録したテーマ変数名_tn}
+{登録したテーマ変数名_noimage}
+{登録したテーマ変数名_tn_image}
+{登録したテーマ変数名_tn_noimage}
+{登録したテーマ変数名:2}→既定リストマスタのvalue2
+{登録したテーマ変数名:disp}→既定リストマスタのdisp
+{登録したテーマ変数名:no}→既定リストマスタのno
+</span><br/>
 
 
 <div class="footer">

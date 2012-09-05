@@ -1,6 +1,6 @@
 <?php
 
-if (strpos ($_SERVER['PHP_SELF'], 'lib_group.inc') !== false) {
+if (strpos ($_SERVER['PHP_SELF'], 'lib_group.php') !== false) {
     die ('This file can not be used on its own.');
 }
 
@@ -309,9 +309,6 @@ function LIB_Edit(
     $templates->set_var('lang_group_id', $lang_box_admin['group_id']);
     $templates->set_var('id', $id);
 
-    //基本項目
-    $templates->set_var('lang_basicfields', $lang_box_admin['basicfields']);
-
     //コード、名前＆説明
     $templates->set_var('lang_code', $lang_box_admin['code']);
     $templates->set_var ('code', $code);
@@ -476,13 +473,8 @@ function LIB_Save (
 
     //errorのあるとき
     if ($err<>"") {
-        $page_title=$lang_box_admin['piname'].$lang_box_admin['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
-
-        $retval .= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-
+		$retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
+        $retval['display']= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
         return $retval;
 
     }

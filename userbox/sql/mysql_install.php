@@ -40,6 +40,7 @@ CREATE TABLE {$_TABLES['USERBOX_base']} (
   `released` datetime NOT NULL,
   `expired` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `orderno` int(2) NOT NULL DEFAULT '0',
+  `fieldset_id` int(11) NOT NULL DEFAULT '0',
   `draft_flag` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
@@ -127,18 +128,7 @@ VALUES (
 '0'
 )
 ";
-//XML 定義
-$_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_xml']} (
-  `seq` int(11) NOT NULL AUTO_INCREMENT,
-  `tag` varchar(64) NOT NULL,
-  `value` varchar(64) DEFAULT NULL,
-  `field` varchar(50) NOT NULL,
-  `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uuid` mediumint(8) NOT NULL,
-  PRIMARY KEY (`seq`)
-) ENGINE=MyISAM
-";
+
 
 //マスタ
 $_SQL[] = "
@@ -166,4 +156,45 @@ CREATE TABLE {$_TABLES['USERBOX_stats']} (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM
 ";
+//属性セットテーブル
+$_SQL[] = "
+CREATE TABLE {$_TABLES['USERBOX_def_fieldset']} (
+  `fieldset_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `description` mediumtext,
+  `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `uuid` mediumint(8) NOT NULL,
+  PRIMARY KEY (`fieldset_id`)
+) ENGINE=MyISAM
+";
+$_SQL[] = "
+INSERT INTO {$_TABLES['USERBOX_def_fieldset']} (
+`fieldset_id` 
+)
+VALUES (
+'0'
+)";
+
+//属性セット 属性関連
+$_SQL[] = "
+CREATE TABLE {$_TABLES['USERBOX_def_fieldset_assignments']} (
+  `seq` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldset_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  PRIMARY KEY (`seq`),
+  KEY `fieldset_id` (`fieldset_id`)
+) ENGINE=MyISAM
+";
+
+//属性セット グループ関連
+$_SQL[] = "
+CREATE TABLE {$_TABLES['USERBOX_def_fieldset_group']} (
+  `seq` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldset_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`seq`),
+  KEY `fieldset_id` (`fieldset_id`)
+) ENGINE=MyISAM
+";
+
 ?>

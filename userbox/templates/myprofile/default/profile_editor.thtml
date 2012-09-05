@@ -98,6 +98,7 @@
             <th style="width:10%" class="alignright">{lang_created}</th>
             <td >{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
+            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
         </tr>
 
     </table>

@@ -80,10 +80,9 @@ function fncList()
     $sql = "SELECT ";
     $sql .= " id";
     $sql .= " ,draft_flag";
-    $sql .= " ,udatetime";
+     $sql .= " ,UNIX_TIMESTAMP(udatetime) AS udatetime";
     $sql .= " ,orderno";
-
-    $sql .= " ,".$datecolumn;
+    $sql .= " ,UNIX_TIMESTAMP(".$datecolumn.") AS ".$datecolumn;
 
     $sql .= " ,t1.username";
     $sql .= " ,t1.fullname";
@@ -175,6 +174,14 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($username, $url);
             break;
+		case 'udatetime':
+		case 'modified':
+		case 'created':
+		case 'released':
+			$curtime = COM_getUserDateTimeFormat($A['{$fieldname}']);
+			$retval = $curtime[0];
+			break;
+		
 
         //各項目
         default:

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120403
+# Last Update 20120904
 
 ###############################################################################
 ## 管理画面 menu
@@ -311,6 +311,7 @@ $LANG_USERBOX_ORDER['username']=$LANG28[3]."順";
 $LANG_USERBOX_ORDER['fullname']=$LANG28[4]."順";
 $LANG_USERBOX_ORDER['description']="説明順";
 $LANG_USERBOX_ORDER['id']="登録順";
+$LANG_USERBOX_ORDER['released']="公開日順";
 $LANG_USERBOX_ORDER['order']="順";
 
 

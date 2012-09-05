@@ -214,6 +214,13 @@ function fncEdit(
     }else{
         $sql = "SELECT ";
         $sql .= " t.*";
+			
+		$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un".LB;
+		$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un".LB;
+		$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un".LB;
+		$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un".LB;
+		$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un".LB;
+		$sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un".LB;
 
         $sql .= " ,t1.username";
         $sql .= " ,t1.fullname";
@@ -255,12 +262,13 @@ function fncEdit(
             $comment_expire_minute=0;
         }else{
             $comment_expire_flag=1;
-            $w=strtotime($comment_expire);//COM_convertDate2Timestamp($comment_expire.":00");
-            $comment_expire_year=date('Y', $w);
-            $comment_expire_month=date('m', $w);
-            $comment_expire_day=date('d', $w);
-            $comment_expire_hour=date('H', $w);
-            $comment_expire_minute=date('i', $w);
+			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['comment_expire_un']));
+			$comment_expire = $wary[1];
+            $comment_expire_year=date('Y', $comment_expire);
+            $comment_expire_month=date('m', $comment_expire);
+            $comment_expire_day=date('d', $comment_expire);
+            $comment_expire_hour=date('H', $comment_expire);
+            $comment_expire_minute=date('i', $comment_expire);
         }
 
         $commentcode = COM_stripslashes($A['commentcode']);
@@ -286,14 +294,16 @@ function fncEdit(
         $draft_flag=COM_stripslashes($A['draft_flag']);
 
         //編集日
-        $modified = strtotime(COM_stripslashes($A['modified']));
+		$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['modified_un']));
+		$modified = $wary[1];
         $modified_month = date('m', $modified);
         $modified_day = date('d', $modified);
         $modified_year = date('Y', $modified);
         $modified_hour = date('H', $modified);
         $modified_minute = date('i', $modified);
         //公開日
-        $released = strtotime(COM_stripslashes($A['released']));
+		$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['released_un']));
+		$released = $wary[1];
         $released_month = date('m', $released);
         $released_day = date('d', $released);
         $released_year = date('Y', $released);
@@ -312,32 +322,28 @@ function fncEdit(
             $expired_minute=0;
          }else{
             $expired_flag=1;
-            $w=strtotime($expired);//COM_convertDate2Timestamp($comment_expire.":00");
-            $expired_year=date('Y', $w);
-            $expired_month=date('m', $w);
-            $expired_day=date('d', $w);
-            $expired_hour=date('H', $w);
-            $expired_minute=date('i', $w);
+			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['expired_un']));
+			$expired = $wary[1];
+            $expired_year=date('Y', $expired);
+            $expired_month=date('m', $expired);
+            $expired_day=date('d', $expired);
+            $expired_hour=date('H', $expired);
+            $expired_minute=date('i', $expired);
          }
 
          //作成日付
-         $created = COM_stripslashes($A['created']);
-         $w = strtotime($created);
-         $created_month = date('m', $w);
-         $created_day = date('d', $w);
-         $created_year = date('Y', $w);
-         $created_hour = date('H', $w);
-         $created_minute = date('i', $w);
+		 $wary = COM_getUserDateTimeFormat(COM_stripslashes($A['created_un']));
+		 $created = $wary[0];
+		 $created_un = $wary[1];
 
          $orderno=COM_stripslashes($A['orderno']);
 
          $uuid = COM_stripslashes($A['uuid']);
 
-         $udatetime=COM_stripslashes($A['udatetime']);
+		 $wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
+		 $udatetime = $wary[0];
 
          if ($_CONF['allow_account_delete']){
-
-
              if ($edt_flg==FALSE) {
                  $delflg=true;
              }
@@ -543,6 +549,7 @@ function fncEdit(
     //アクセス権
     $templates->set_var('lang_accessrights',$LANG_ACCESS['accessrights']);
     $templates->set_var('lang_owner', $LANG_ACCESS['owner']);
+    $templates->set_var ('created_un', $created_un);
 
     $owner_name = COM_getDisplayName($owner_id);
     $templates->set_var('owner_name', $owner_name);
@@ -755,7 +762,11 @@ function fncSave (
         $values.=",$commentcode";
 
         $fields.=",comment_expire";//
-        $values.=",'$comment_expire'";
+		if ($comment_expire=='0000-00-00 00:00:00'){
+			$values.=",'$comment_expire'";
+		}else{
+			$values.=",FROM_UNIXTIME('$comment_expire')";
+		}
 
         $fields.=",language_id";//
         $values.=",'$language_id'";
@@ -779,16 +790,20 @@ function fncSave (
         $values.=",$perm_anon";
 
         $fields.=",modified";
-        $values.=",'$modified'";
+		$values.=",FROM_UNIXTIME('$modified')";
 
         $fields.=",created";
-        $values.=",'$created'";
+		$values.=",FROM_UNIXTIME('$created')";
 
         $fields.=",expired";
-        $values.=",'$expired'";
+		if ($expired=='0000-00-00 00:00:00'){
+			$values.=",'$expired'";
+		}else{
+			$values.=",FROM_UNIXTIME('$expired')";
+		}
 
         $fields.=",released";
-        $values.=",'$released'";
+		$values.=",FROM_UNIXTIME('$released')";
 
         $comments=0;
 
@@ -805,8 +820,6 @@ function fncSave (
         $fields.=",uuid";
         $values.=",$uuid";
 
-        $fields.=",udatetime".LB;
-        $values.=",NOW( )".LB;
 
 //        if ($edt_flg){
 //            $return_page=$_CONF['site_url'] . "/".THIS_SCRIPT;

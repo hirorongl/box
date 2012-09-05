@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20110704 { -->
+<!-- plugins/userbox/templates/admin/profile_editor.thtml 20120904 { -->
 
 <div id="userbox_admin">
 	{about_thispage}
@@ -238,15 +238,9 @@
             <td colspan="2">&nbsp;</td>
             <td>{lang_permissions_msg}</td>
         </tr>
-        <tr><td colspan="3">&nbsp;</td></tr>
-    </table>
-  </fieldset>
-  <!-- システム用 -->
-  <fieldset style="width:94%">
-    <legend>{lang_forsystem}</legend>
-    <table>
+        <tr><td colspan="2">&nbsp;</td></tr>
         <!-- タイムスタンプ -->
-        <tr>
+         <tr>
             <th style="width:10%" class="alignright">{lang_udatetime}</th>
             <td style="width:10%; color:green" class="alignleft">&#123;udatetime&#125;</td>
             <td >{udatetime} {lang_uuid}:{uuid}</td>
@@ -257,6 +251,7 @@
             <td style="width:10%; color:green" class="alignleft">&#123;created&#125;</td>
             <td >{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
+            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
         </tr>
 
     </table>

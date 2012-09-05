@@ -266,6 +266,15 @@ function userbox_category(
     $tbl5=$_TABLES['USERBOX_def_category'] ;
 	
 	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
+	$new_img=$_USERBOX_CONF['new_img'];
+    if ($new_img==""){
+        $new_img="New!";
+	}
+    $newmarkday=$_USERBOX_CONF['newmarkday'];
+    if ($newmarkday==""){
+        $newmarkday=3;
+    }
+    $chkday=strtotime("- $newmarkday days",time());
 
 	//-----引数チェック
 	$ids="";
@@ -339,8 +348,11 @@ function userbox_category(
     $sql = "SELECT ";
 
     $sql .= " t2.id ".LB;
-    $sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.released ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
+	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
@@ -487,6 +499,7 @@ function userbox_category(
 
 		//
 		$templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
+		$templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
 
 		$templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
 		$templates->set_var ('lang_addfield', $addfield_name);
@@ -502,7 +515,11 @@ function userbox_category(
             $username=COM_applyFilter($A['username']);
             $fullname=COM_applyFilter($A['fullname']);
             $id=COM_applyFilter($A['id']);
-            $datefield=COM_applyFilter($A['datefield']);
+			$datefield=COM_applyFilter($A['datefield']);
+			$released=COM_applyFilter($A['released']);
+			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
+			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
+
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
@@ -530,8 +547,14 @@ function userbox_category(
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
             $templates->set_var ('data_url', $url);
-            $templates->set_var ('data_datefield', $datefield);
+			$templates->set_var ('data_datefield', $datefield_ary[0]);
 			$templates->set_var ('data_value', $value);
+			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
+			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
+				$templates->set_var ('new_img', $new_img);
+			}else{
+				$templates->set_var ('new_img', '');
+			}
 			
 			//
 		    if (isset($A['photo']) && empty($A['photo'])) {
@@ -961,7 +984,7 @@ function userbox_profile(
     ,$code=null
 )
 // +---------------------------------------------------------------------------+
-// | 機能  データ表示
+// | 機能  個別データ表示
 // | 書式  userbox_profile($id,$template,"yes","page")
 // | 書式  userbox_profile($p['id'],$p['thtml'],$p['nohitmsg'],$p['code']
 // +---------------------------------------------------------------------------+
@@ -1017,7 +1040,14 @@ function userbox_profile(
 
 
     //-----
-    $sql = "SELECT t.* ";
+	$sql = "SELECT t.* ";
+	
+	$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
+
     $sql .= " ,t1.username ";
 	$sql .= " ,t1.fullname ";
 	$sql .= " ,t1.photo ";
@@ -1046,18 +1076,19 @@ function userbox_profile(
     }
 	//$sql .= " AND t.uuid=t3.uid";
 
-    //管理者の時,下書データも含む
+	//管理者の時,
     if ( SEC_hasRights('userbox.admin') OR $m==="view") {
     }else{
+		//下書データはのぞく
        $sql .= " AND t.draft_flag=0".LB;
+		//公開日以前のデータはのぞく
+		$sql .= " AND (released <= NOW())";
+
+		//公開終了日を過ぎたデータはのぞく
+		$sql .= " AND (expired=0 OR expired > NOW())";
     }
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
-    //公開日以前のデータはのぞく
-    $sql .= " AND (released <= NOW())";
-
-    //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())";
 
     if (is_null($id)){
         $sql .= " ORDER BY ".$_USERBOX_CONF['datefield'] . " DESC ";
@@ -1218,16 +1249,23 @@ function userbox_profile(
 
         //編集日付
         $templates->set_var('lang_modified', $LANG_USERBOX_ADMIN['modified']);
-        $templates->set_var ('modified', $A['modified']);
+		$wary = COM_getUserDateTimeFormat($A['modified_un']);
+        $templates->set_var ('modified',$wary[0]);
         //作成日付
         $templates->set_var('lang_created', $LANG_USERBOX_ADMIN['created']);
-        $templates->set_var ('created', $A['created']);
+		$wary = COM_getUserDateTimeFormat($A['created_un']);
+        $templates->set_var ('created', $wary[0]);
+        //公開日
+        $templates->set_var('lang_released', $LANG_DATABOX_ADMIN['released']);
+		$wary = COM_getUserDateTimeFormat($A['released_un']);
+        $templates->set_var ('released', $wary[0]);
 
         $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
         $templates->set_var ('uuid', $uuid);
 
         $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
-        $templates->set_var ('udatetime', $A[udatetime]);
+		$wary = COM_getUserDateTimeFormat($A['udatetime_un']);
+        $templates->set_var ('udatetime', $wary[0]);
         $templates->set_var ('last_modify_uid', $A['uuid']);
         $templates->set_var ('last_modify_name', $A['last_modify_name']);
         $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
@@ -1690,6 +1728,9 @@ function userbox_orderby(
             $order="date";
             $orderby = $datefield ." DESC";
             break;
+        case "released":
+            $orderby = " released DESC";
+            break;
         case "orderno":
         case "code":
         case "title":
@@ -2010,6 +2051,7 @@ global $_TABLES;
     $order_ary[]='fullname';
     $order_ary[]='description';
     $order_ary[]='id';
+    $order_ary[]='released';
 
     $sql="SELECT ";
     $sql.= " field_id ";

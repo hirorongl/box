@@ -541,12 +541,8 @@ function LIB_Save (
 
     //errorのあるとき
     if ($err<>"") {
-        $page_title=$lang_box_admin['piname'].$lang_box_admin['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
-        $retval .= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-
+		$retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
+        $retval['display']= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
         return $retval;
 
     }

@@ -4,7 +4,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 // $Id: plugins/userbox/config.php
-//20110330 tsuchitani AT ivywe DOT co DOT  jp http://www.ivywe.co.jp/
+//20120903 tsuchitani AT ivywe DOT co DOT  jp http://www.ivywe.co.jp/
 
 $_USERBOX_CONF = array();
 
@@ -28,4 +28,8 @@ $_TABLES['USERBOX_mst']    			= $_DB_table_prefix . 'userbox_mst';
 //
 $_TABLES['USERBOX_stats']    		= $_DB_table_prefix . 'userbox_stats';
 
+//20120903add----->
+$_TABLES['USERBOX_def_fieldset']    = $_DB_table_prefix . 'userbox_def_fieldset';
+$_TABLES['USERBOX_def_fieldset_assignments']    = $_DB_table_prefix . 'userbox_def_fieldset_assignments';
+$_TABLES['USERBOX_def_fieldset_group']    = $_DB_table_prefix . 'userbox_def_fieldset_group';
 ?>

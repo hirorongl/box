@@ -1,21 +1,28 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20120416{ -->
+<!-- plugins/userbox/templates/category/default/col_detail.thtml 20120905{ -->
 
 <li>
-<span style= "color:green" > &#123;data_link&#125;</span>{data_link}
-<span style= "color:green" > &#123;data_url&#125;</span>{data_url}
-<span style= "color:green" > &#123;data_title&#125;</span>{data_title}
-<span style= "color:green" > &#123;data_id&#125;</span>{data_id}
-<span style= "color:green" > &#123;data_username&#125;</span>{data_username}
-<span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}
-<span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}
-<span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}
-<span style= "color:green" > &#123;data_description&#125;</span>{data_description}
-<span style= "color:green" > &#123;ata_datefield&#125;</span>{data_datefield}
-<span style= "color:green" > &#123;data_value&#125;</span>{data_value}
-<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}
-<span style= "color:green" > &#123;tel&#125;</span>{tel}
-<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}
-<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}
+<span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
+<span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
+<span style= "color:green" > &#123;data_title&#125;</span>{data_title}&nbsp;
+<span style= "color:green" > &#123;data_id&#125;</span>{data_id}&nbsp;
+<span style= "color:green" > &#123;data_username&#125;</span>{data_username}&nbsp;
+<span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}&nbsp;
+<span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}&nbsp;
+<span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
+<span style= "color:green" > &#123;data_description&#125;</span>{data_description}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span style= "color:green" > &#123;ata_datefield&#125;</span>{data_datefield}&nbsp;
+<span style= "color:green" > &#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
+<span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
+<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
+<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
 {data_edit}
+<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+&nbsp;&nbsp;&nbsp;
+<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
+<span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
+<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
+<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
+
 </li>
 <!-- } plugins/userbox/templates/category/default/col_detail.thtml -->

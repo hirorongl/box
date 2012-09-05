@@ -315,9 +315,6 @@ function LIB_Edit(
     $templates->set_var('lang_fieldset_id', $lang_box_admin['fieldset_id']);
     $templates->set_var('id', $id);
 
-    //基本項目
-    $templates->set_var('lang_basicfields', $lang_box_admin['basicfields']);
-
     //コード、名前＆説明
     $templates->set_var('lang_name', $lang_box_admin['name']);
     $templates->set_var ('name', $name);

@@ -132,8 +132,12 @@ function plugin_autouninstall_userbox ()
     $out['tables'][]='USERBOX_def_group';
     $out['tables'][]='USERBOX_def_xml';
 
-    $out['tables'][]='USERBOX_mst';
     $out['tables'][]='USERBOX_stats';
+    $out['tables'][]='USERBOX_mst';
+	//
+    $out['tables'][]='USERBOX_def_fieldset';
+    $out['tables'][]='USERBOX_def_fieldset_assignments';
+    $out['tables'][]='USERBOX_def_fieldset_group';
 
     // (2) 削除するグループ名
 	$out['groups'][]='UserBox Admin';
@@ -296,13 +300,11 @@ function plugin_getwhatsnew_userbox()
 
     $retval = '';
 
-    if ($_USERBOX_CONF['hide_whatsnew'] == 'modified') {
-        $datecolumn = 'modified';
-    } else {
+    if ($_USERBOX_CONF['hide_whatsnew'] == 'hide') {
         $datecolumn = 'created';
+    } else {
+        $datecolumn = $_USERBOX_CONF['hide_whatsnew'] ;
     }
-
-
     // Get newest pro
     $sql  = "SELECT ";
     $sql .= "t1.id";
