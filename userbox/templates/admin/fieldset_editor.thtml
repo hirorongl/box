@@ -1,8 +1,8 @@
-<!-- plugins/databox/templates/admin/fieldset_editor.thtml 20120905 { -->
+<!-- plugins/userbox/templates/admin/fieldset_editor.thtml 20120905 { -->
 
-<div id="databox_admin">
+<div id="userbox_admin">
 {about_thispage}
-<form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+<form name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
     <legend>Attribute set</legend>
@@ -28,19 +28,19 @@
         <tr>
             <th style="width:30%" class="alignright">{lang_description}{help_description}</th>
             <td style="width:70%">
-                <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+                <textarea name="description" style="width:95%" rows="2" id="userbox_description">{description}</textarea>
             </td>
         </tr>
         <!-- layout -->
         <tr>
-            <th style="width:30%"  class="alignright">{lang_layout}{help_layout}</th>
+            <th style="width:30%">{lang_layout}{help_layout}</th>
             <td style="width:70%">
                 {list_layout}
             </td>
         </tr>
         <!-- defaulttemplatesdirectory -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
+            <th style="width:30%">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
             <td style="width:70%">
                 {select_defaulttemplatesdirectory}
             </td>
@@ -66,5 +66,5 @@
 </div>
 
 
-<!-- } plugins/databox/templates/admin/fieldset.thtml -->
+<!-- } plugins/userbox/templates/admin/fieldset.thtml -->
 

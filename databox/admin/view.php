@@ -70,7 +70,8 @@ function fncview (
 
 	$retval="";
 	$retval.=$view;
-	$retval.= databox_data($id,$template,"","view");
+	$ret= databox_data($id,$template,"","view");
+	$retval.=$ret['display'];
 
 
     return $retval;

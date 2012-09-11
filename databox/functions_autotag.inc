@@ -98,13 +98,14 @@ function plugin_autotags_databox (
                             );
                         break;
                     case 'data':
-                        $rt= databox_data(
+                        $w= databox_data(
                             $p['id']
                             ,$p['templatedir']
                             ,$p['nohitmsg']
                             ,""
                             ,$p['code']
-                            );
+							);
+						$rt=$w['display'];
                         break;
                     case 'category':
                         $rt= databox_category(
@@ -1384,7 +1385,7 @@ function databox_data(
 // | 引数 $id            :
 // | 引数 $template      :テンプレートのdirectory
 // | 引数 $nohitmsg      :"yes"の時nohitメッセージ表示
-// | 引数 $m             :"page"の時ヘッダ表示
+// | 引数 $m             :"page"の時は　レイアウト設定
 // | 引数 $code          :
 // +---------------------------------------------------------------------------+
 // | public_html/data.php および　自動タグで使用
@@ -1393,7 +1394,6 @@ function databox_data(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:data
 // +---------------------------------------------------------------------------+
-// 201011201
 {
 
     $pi_name="databox";
@@ -1409,7 +1409,8 @@ function databox_data(
 	global $LANG_confignames;
 	global $_PLUGINS;
 	
-
+	$layout=$_DATABOX_CONF['layout'];
+	
     //ログイン要否チェック
     if (COM_isAnonUser()){
         if  ($_CONF['loginrequired']
@@ -1435,12 +1436,13 @@ function databox_data(
     }
 
     //-----
-    $retval = '';
+    $display = '';
 
     $tbl=$_TABLES['DATABOX_base'] ;
     $tbl2=$_TABLES['users'] ;
-
-    $addition_def=DATABOX_getadditiondef($pi_name);
+	$tbl4=$_TABLES['DATABOX_def_fieldset'];
+	
+	$addition_def=DATABOX_getadditiondef($pi_name);
 
     //-----
     $sql = "SELECT t.* ";
@@ -1454,12 +1456,18 @@ function databox_data(
     $sql .= " ,t2.username AS owner_name";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
-
+	
+	$sql .= " ,t4.name AS set_name";
+    $sql .= " ,t4.description AS set_description";
+	$sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
+    $sql .= " ,t4.layout AS set_layout";
+	
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";//base
     //$sql .= " ,{$tbl2} AS t2 ";//owner
     //$sql .= " ,{$tbl2} AS t3 ";//last_updateowner
     
+	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
 	$sql .= " JOIN {$tbl2} AS t2       ON t.owner_id=t2.uid";//owner
     $sql .= " LEFT JOIN  {$tbl2} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
@@ -1505,11 +1513,12 @@ function databox_data(
 		$A = array_map('stripslashes', $A);
 		
 		if (is_null($template) or ($template==="")){
-            $defaulttemplatesdirectory = stripslashes($A['defaulttemplatesdirectory']);
-            if ($defaulttemplatesdirectory===""){
+			if  ($A['set_defaulttemplatesdirectory']<>""){
+                $template=$A['set_defaulttemplatesdirectory'];
+			}elseif ($A['defaulttemplatesdirectory']<>""){
+                $template=$A['defaulttemplatesdirectory'];
+			}else{
                 $template="default";
-            }else{
-                $template=$defaulttemplatesdirectory;
             }
         }
 
@@ -1528,7 +1537,10 @@ function databox_data(
         $additionfields = DATABOX_getadditiondatas($id,$pi_name);
 
         //ヘッダ、左ブロック start.............
-        if ($m==="page"){
+		if ($m==="page"){
+			if  ($A['set_layout']<>"0") {
+				$layout=$A['set_layout'];
+			}
 			// Meta Tags
 			$headercode=DATABOX_getheadercode(	
 				"data"
@@ -1539,7 +1551,9 @@ function databox_data(
 				,$A['meta_description']
 				,$A['meta_keyword']
 				,$A['description']);
-            $retval .= DATABOX_siteHeader($pi_name,'',$A['title'],$headercode) ;
+			
+			$title = $A['title'] ;
+
         }
 
 
@@ -1718,7 +1732,7 @@ function databox_data(
         $templates->parse ('output', 'list');
 
         $databox_content = $templates->finish ($templates->get_var ('output'));
-        $retval .=$databox_content;
+        $display=$databox_content;
 
         if ($A['draft_flag']!==1){
 
@@ -1734,9 +1748,6 @@ function databox_data(
         }
 
     }else{
-        if ($m==="page"){
-            $retval .= DATABOX_siteHeader($pi_name) ;
-        }
         if ($nohitmsg==="yes"){
 			$tmplfld=DATABOX_templatePath('data',$template,$pi_name);
 			$templates = new Template($tmplfld);
@@ -1751,13 +1762,17 @@ function databox_data(
 
 			$templates->parse ('output', 'list');
 			$databox_content = $templates->finish ($templates->get_var ('output'));
-			$retval .=$databox_content;
+			$display=$databox_content;
         }
     }
-    $retval =PLG_replacetags ($retval);
-
-
-
+    $display =PLG_replacetags ($display);
+	
+	
+	$retval['display']=$display;
+	$retval['layout']=$layout;
+	$retval['headercode']=$headercode;
+	$retval['title']=$title;
+	
     return $retval;
 }
 

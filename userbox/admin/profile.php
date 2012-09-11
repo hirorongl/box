@@ -802,6 +802,7 @@ function fnctemplatesdirectory (
 
     //
     $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+	$selection .= "<option value=\"\">  </option>".LB;
 
 	if ($_USERBOX_CONF['templates']==="theme"){
         $fd1=$_CONF['path_layout'].$_USERBOX_CONF['themespath']."profile/";

@@ -304,6 +304,7 @@ if ($id===0){
 
 $display = '';
 $page_title= $LANG_DATABOX['data'];
+$information = array();
 
 //ログイン要否チェック
 if (COM_isAnonUser()){
@@ -331,17 +332,23 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
 
 //
 if ($id===0 ) {
-    $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+	$layout=$retval['layout'];
+	$information['pagetitle']=$LANG_DATABOX['data'];
     if (isset ($msg)) {
         $display .= COM_showMessage ($msg,$pi_name);
     }
     $display .= fncList();
 }else{
-    $display .= databox_data($id,$template,"yes","page");
-    $display .= fncComment($id);
+    $retval= databox_data($id,$template,"yes","page");
+	$layout=$retval['layout'];
+	$information['headercode']=$retval['headercode'];
+	$information['pagetitle']=$title;
+	$display =$retval['display'];
+	$display .= fncComment($id);
 	
 }
-$display .= DATABOX_siteFooter($pi_name);
+
+$display=DATABOX_displaypage($pi_name,$layout,$display,$information);
 
 COM_output($display);
 

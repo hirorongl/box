@@ -69,7 +69,8 @@ function fncview ($pi_name,$id)
 
 	$retval="";
 	$retval.=$view;
-	$retval.= databox_data($id,"","","view");
+	$ret= databox_data($id,"","","view");
+	$retval.=$ret['display'];
 
 
     return $retval;

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120904
+# Last Update 20120911
 
 ###############################################################################
 ## 管理画面 menu
@@ -19,6 +19,7 @@ $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= '情報';
 $LANG_USERBOX_admin_menu['2']= 'プロフィール';
 $LANG_USERBOX_admin_menu['3']= '追加属性';
+$LANG_USERBOX_admin_menu['31']= '属性セット';
 $LANG_USERBOX_admin_menu['4']= 'カテゴリ';
 $LANG_USERBOX_admin_menu['5']= 'グループ';
 $LANG_USERBOX_admin_menu['6']= 'バックアップ＆リストア';
@@ -48,6 +49,7 @@ $LANG_USERBOX_MSG['descriptionempty'] =
 $LANG_USERBOX = array();
 $LANG_USERBOX['list']="一覧";
 $LANG_USERBOX['selectit']="指定なし";
+$LANG_USERBOX['byconfig']="コンフィギュレーション設定による";
 
 $LANG_USERBOX['profile'] = 'プロフィール表示';
 $LANG_USERBOX['myprofile'] = 'マイプロフィール';

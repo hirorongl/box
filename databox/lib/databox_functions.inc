@@ -36,7 +36,7 @@ function DATABOX_autolink (
 )
 // +---------------------------------------------------------------------------+
 // | 機能 urlをリンク変換
-// | 書式 DATABOX_autolink($text)                                              |
+// | 書式 DATABOX_autolink($text)
 // +---------------------------------------------------------------------------+
 // | 引数 $text         :文字列                                                |
 // +---------------------------------------------------------------------------+
@@ -185,7 +185,7 @@ function DATABOX_siteHeader (
 // +---------------------------------------------------------------------------+
 // | 戻値 :ヘッダ
 // +---------------------------------------------------------------------------+
-// 20110119
+// 20120910
 {
     global $_CONF;
 
@@ -195,9 +195,13 @@ function DATABOX_siteHeader (
 
 
     $display="";
-
-    $layout=$box_conf['layout'.$kind];
-    switch ($layout) {
+	
+	if  ($kind=="_admin" OR $kind==""){
+		$layout=$box_conf['layout'.$kind];
+	}else{
+		$layout=$kind;
+	}
+	switch ($layout) {
         // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
         case 'standard':
         //ヘッダ・フッタ・左右ブロックあり
@@ -318,7 +322,11 @@ function DATABOX_displaypage (
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    $layout=$box_conf['layout'.$kind];
+	if  ($kind=="_admin" OR $kind==""){
+		$layout=$box_conf['layout'.$kind];
+	}else{
+		$layout=$kind;
+	}
 	
 	//全画面表示（ヘッダ・フッタ・ブロックなし）
 	if  ($layout=='blankpage'){
@@ -620,9 +628,6 @@ function DATABOX_chkuser(
 // +---------------------------------------------------------------------------+
 // | 機能  ユーザチェック
 // | 書式 $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin")
-// | $group_id = stripslashes($A['group_id']);
-// | $owner_id = stripslashes($A['owner_id']);
-// | $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
 // +---------------------------------------------------------------------------+
 // | 引数 $group_id
 // | 引数 $owner_id
@@ -786,7 +791,6 @@ function DATABOX_getselectionary(
 
 }
 
-// 検索用引数作成
 // +---------------------------------------------------------------------------+
 // | 機能  検索用引数作成
 // | 書式 DATABOX_getadditionsearchdef($pi_name)
@@ -2345,11 +2349,12 @@ function DATABOX_getaddtionfields(
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
-// | 書式 DATABOX_getadditionfields($id,$addition_def,$tbl_prefix,$field_id
+// | 書式 DATABOX_getadditionfields($id,$addition_def,$tbl_prefix,$field_id)
 // +---------------------------------------------------------------------------+
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
+
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:追加項目値の配列　　　                                          |
+// | 戻値 nomal:追加項目値の配列
 // +---------------------------------------------------------------------------+
 //update 20110204
 {
@@ -2543,8 +2548,8 @@ function DATABOX_cleanaddtiondatas(
 	,$addslash = true
 )
 // +---------------------------------------------------------------------------+
-// | 機能  追加項目clean                                                       |
-// | 書式 DATABOX_cleanadditiondatas($fldary,$typeary)                         |
+// | 機能  追加項目clean
+// | 書式 DATABOX_cleanadditiondatas($fldary,$typeary)
 // +---------------------------------------------------------------------------+
 // | 引数 $fldary:
 // | 引数 $addition_def
@@ -2613,7 +2618,7 @@ function DATABOX_checkaddtiondatas(
 	,$fldary_del=""
 )
 // +---------------------------------------------------------------------------+
-// | 機能  追加項目check                                                       |
+// | 機能 追加項目check
 // | 書式 DATABOX_checkdditiondatas($fldary,$typeary,$pi_data)
 // | 書式 DATABOX_checkdditiondatas($additionfields,$addition_def,$pi_name
 // | 								,$additionfields_fnm,$additionfields_del)
@@ -3312,15 +3317,15 @@ function DATABOX_getoptionlistary(
 
 )
 // +---------------------------------------------------------------------------+
-// | 機能  オプションリスト作成（配列より）                                    |
-// | 書式 DATABOX_getyesno($no,$fld,$selected)                                 |
+// | 機能  オプションリスト作成（配列より）
+// | 書式 DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
 // +---------------------------------------------------------------------------+
 // | 引数 $ary:
 // | 引数 $fld:
 // | 引数 $selected:選択値　省略時
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
-// | 引数 $disabled:
-// | 引数 $type:
+// | 引数 $disabled:defalt="" 
+// | 引数 $type:defalt="" 14=multiselect
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
@@ -3390,6 +3395,7 @@ function DATABOX_getoptionlist(
 // | 機能  オプションリスト作成
 // | 書式 DATABOX_getoptionlist($kind)
 // |	  DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
+// |	  DATABOX_getoptionlist("group",$categorygroup_id,0,$pi_name,"",0 );
 // +---------------------------------------------------------------------------+
 // | 引数 $kind:項目種類
 // | 引数 $selected:選択値
@@ -3397,6 +3403,8 @@ function DATABOX_getoptionlist(
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
 // | 引数 $disabled
 // | 引数 $selectit
+// | 引数 $selectlist　既定リストの時既定リスト名
+// | 引数 $fname フィールド名
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
@@ -3404,7 +3412,9 @@ function DATABOX_getoptionlist(
 {
 global $_CONF;
 global $_TABLES;
-
+global $LANG_configselects;
+	
+	
     if ($pi_name==""){
         $lang_box="LANG_DATABOX";
     }else{
@@ -3427,38 +3437,59 @@ global $_TABLES;
 		$retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
 	}
 	
-    if ($kind=="group"){
-		$where="";
-        $table=$_TABLES[strtoupper($pi_name).'_def_group'];
-        $fields= 'group_id,name,orderno';
-    }else if ($kind=="parent"){
-        $where="";
-        $table=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $fields= 'category_id,name,orderno';
-    }else if ($kind=="fieldset"){
-        $where="";
-        $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
-        $fields= 'fieldset_id,name,fieldset_id';
-    }else if ($kind=="selectlist"){
-        $where="";
-        $table=$_TABLES[strtoupper($pi_name).'_mst'];
-        $fields= 'DISTINCT kind,kind,kind';
-    }else if ($kind=="selectlist_mst"){
-        $table=$_TABLES[strtoupper($pi_name).'_mst'];
-        $where="kind='{$selectlist}'";
-        if ($relno<>0) $where.=" AND relno='{$relno}'";
-        $fields= 'no,value,orderno';
-    }else{
-        $table=$_TABLES[strtoupper($pi_name).'_mst'];
-        $where="kind='{$kind}'";
-        if ($relno<>0) $where.=" AND relno='{$relno}'";
-        $fields= 'no,value,orderno';
-    }
-    $retval .= COM_optionList (
-        $table
-        , $fields
-        , $selected,2,$where);
+	
+	if ($kind=="layout"){
+		
+		
+		$retval .= "<option value=0>{$lang_box['byconfig']}</option>".LB;
+		$ary=$LANG_configselects[strtolower($pi_name)][22];
+		foreach($ary as $k => $v) {
+			$retval .= "<option value=\"".$v."\"";
+			if( $v == $selected ){//@@@@@
+				$retval .= " selected=\"selected\" ";
+			}
+			$retval .= ">";
 
+			$retval .= $k;
+			$retval .= "</option>".LB;
+			next($ary);
+
+		}
+	}else{
+		if ($kind=="group"){
+			$where="";
+			$table=$_TABLES[strtoupper($pi_name).'_def_group'];
+			$fields= 'group_id,name,orderno';
+		}else if ($kind=="parent"){
+			$where="";
+			$table=$_TABLES[strtoupper($pi_name).'_def_category'];
+			$fields= 'category_id,name,orderno';
+		}else if ($kind=="fieldset"){
+			$where="";
+			$table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+			$fields= 'fieldset_id,name,fieldset_id';
+		}else if ($kind=="selectlist"){
+			$where="";
+			$table=$_TABLES[strtoupper($pi_name).'_mst'];
+			$fields= 'DISTINCT kind,kind,kind';
+		}else if ($kind=="selectlist_mst"){
+			$table=$_TABLES[strtoupper($pi_name).'_mst'];
+			$where="kind='{$selectlist}'";
+			if ($relno<>0) $where.=" AND relno='{$relno}'";
+			$fields= 'no,value,orderno';
+		}else{
+			$table=$_TABLES[strtoupper($pi_name).'_mst'];
+			$where="kind='{$kind}'";
+        if ($relno<>0) $where.=" AND relno='{$relno}'";
+			$fields= 'no,value,orderno';
+		}
+		$retval .= COM_optionList (
+			$table
+			, $fields
+			, $selected,2,$where);
+	}
+	
+	
     $retval .= '</select>';
 
 	if ($disabled==="disabled"){

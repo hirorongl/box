@@ -217,7 +217,6 @@ function LIB_Edit(
     $table2=$_TABLES[strtoupper($pi_name).'_base'];
 
     $retval = '';
-
     $delflg=false;
 
     //メッセージ表示
@@ -228,9 +227,12 @@ function LIB_Edit(
         // clean 'em up
         $code = COM_applyFilter($_POST['code']);
         $name = COM_applyFilter($_POST['name']);
-        $description = $_POST['description'];//COM_applyFilter($_POST['description']);
-
-        $orderno = COM_applyFilter ($_POST['orderno']);
+		$description = $_POST['description'];
+		
+		$defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);
+		$layout = COM_applyFilter($_POST['layout']);
+		
+		$orderno = COM_applyFilter ($_POST['orderno']);
         $parent_flg = COM_applyFilter ($_POST['parent_flg'],true);
 
         $uuid=$_USER['uid'];
@@ -243,6 +245,8 @@ function LIB_Edit(
             $code ="";
             $name ="";
             $description ="";
+			$defaulttemplatesdirectory = "";
+			$layout = "";
 
             $uuid=0;
             $udatetime="";//"";
@@ -263,6 +267,8 @@ function LIB_Edit(
 
             $name = COM_stripslashes($A['name']);
             $description = COM_stripslashes($A['description']);
+            $defaulttemplatesdirectory=COM_stripslashes($A['defaulttemplatesdirectory']);
+            $layout=COM_stripslashes($A['layout']);
 
             $uuid = COM_stripslashes($A['uuid']);
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
@@ -315,11 +321,21 @@ function LIB_Edit(
     $templates->set_var('lang_fieldset_id', $lang_box_admin['fieldset_id']);
     $templates->set_var('id', $id);
 
-    //コード、名前＆説明
+    //コード、名前＆説明etc
     $templates->set_var('lang_name', $lang_box_admin['name']);
     $templates->set_var ('name', $name);
     $templates->set_var('lang_description', $lang_box_admin['description']);
     $templates->set_var ('description', $description);
+	
+	$templates->set_var('lang_defaulttemplatesdirectory', $lang_box_admin['defaulttemplatesdirectory']);
+	$templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
+	$select_defaulttemplatesdirectory=LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"data");	//@@@@@
+	$templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);
+	
+	$templates->set_var('lang_layout', $lang_box_admin['layout']);
+	$templates->set_var ('layout', $layout);
+    $list_layout=DATABOX_getoptionlist("layout",$layout,0,$pi_name,"",0 );//@@@@@
+    $templates->set_var ('list_layout', $list_layout);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $lang_box_admin['udatetime']);
@@ -405,6 +421,12 @@ function LIB_Save (
 
     $description=$_POST['description'];//COM_applyFilter($_POST['description']);
     $description = addslashes (COM_checkHTML (COM_checkWords ($description)));
+	
+	$layout=COM_applyFilter($_POST['layout']);
+    $layout = addslashes (COM_checkHTML (COM_checkWords ($layout)));
+	
+	$defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
+    $defaulttemplatesdirectory = addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
 
     $parent_flg=COM_applyFilter($_POST['parent_flg'],true);
 
@@ -484,7 +506,13 @@ function LIB_Save (
 
     $fields.=",description";
     $values.=",'$description'";
-
+	
+    $fields.=",layout";
+    $values.=",'$layout'";
+	
+    $fields.=",defaulttemplatesdirectory";
+    $values.=",'$defaulttemplatesdirectory'";
+	
     $fields.=",uuid";
     $values.=",$uuid";
 
@@ -1444,6 +1472,87 @@ function LIB_savegroups(
     return $return_page;
 
     //exit;
+}
+// +---------------------------------------------------------------------------+
+// | 機能 テンプレートディレクトリの選択入力ｈｔｍｌ
+// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"data")
+// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"profile")
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+function LIB_templatesdirectory (
+    $pi_name
+	,$defaulttemplatesdirectory
+	,$fld
+){
+
+    global $_CONF;
+    global $_TABLES;
+        global $_USER ;
+
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+
+    //
+    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+	$selection .= "<option value=\"\">  </option>".LB;
+
+    //
+	if ($box_conf['templates']==="theme"){
+		$fd1=$_CONF['path_layout'].$box_conf['themespath'].$fld."/";
+	}else if ($box_conf['templates']==="custom"){
+		$fd1=$_CONF['path'] .'plugins/'.$pi_name.'/custom/templates/'.$fld.'/';
+    }else{
+        $fd1=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$fld.'/';
+    }
+
+
+    if( is_dir( $fd1)){
+        $fd = opendir( $fd1 );
+        $dirs= array();
+        $i = 1;
+        while(( $dir = @readdir( $fd )) == TRUE )    {
+            if( is_dir( $fd1 . $dir)
+                    && $dir <> '.'
+                    && $dir <> '..'
+                    && $dir <> 'CVS'
+                    && substr( $dir, 0 , 1 ) <> '.' ) {
+                clearstatcache();
+                $dirs[$i] = $dir;
+                $i++;
+            }
+        }
+
+        usort($dirs, 'strcasecmp');
+
+        foreach ($dirs as $dir) {
+            $selection .= '<option value="' . $dir . '"';
+            if ($defaulttemplatesdirectory == $dir) {
+                $selection .= ' selected="selected"';
+            }
+            $words = explode('_', $dir);
+            $bwords = array();
+            foreach ($words as $th) {
+                if ((strtolower($th[0]) == $th[0]) &&
+                    (strtolower($th[1]) == $th[1])) {
+                    $bwords[] = ucfirst($th);
+                } else {
+                    $bwords[] = $th;
+                }
+            }
+            $selection .= '>' . implode(' ', $bwords) . '</option>' . LB;
+        }
+    }else{
+        $selection .= '<option value="default"';
+        $selection .= ' selected="selected"';
+        $selection .= '>Default</option>' . LB;
+    }
+
+    $selection .= '</select>';
+
+    return $selection;
+
 }
 
 ?>

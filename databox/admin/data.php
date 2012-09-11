@@ -933,6 +933,7 @@ function fnctemplatesdirectory (
 
     //
     $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+	$selection .= "<option value=\"\">  </option>".LB;
 
 	if ($_DATABOX_CONF['templates']==="theme"){
         $fd1=$_CONF['path_layout'].$_DATABOX_CONF['themespath']."data/";

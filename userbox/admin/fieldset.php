@@ -6,11 +6,11 @@
 // $Id: fieldset.php
 // 20120509 tsuchitani AT ivywe DOT co DOT jp
 
-define ('THIS_SCRIPT', 'databox/fieldset.php');
-//define ('THIS_SCRIPT', 'databox/fieldset.php');
+define ('THIS_SCRIPT', 'userbox/fieldset.php');
+//define ('THIS_SCRIPT', 'userbox/fieldset.php');
 
-require_once('databox_functions.php');
-require_once ($_CONF['path'] . 'plugins/databox/lib/lib_fieldset.php');
+require_once('userbox_functions.php');
+require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_fieldset.php');
 
 
 
@@ -18,7 +18,7 @@ require_once ($_CONF['path'] . 'plugins/databox/lib/lib_fieldset.php');
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 //############################
-$pi_name    = 'databox';
+$pi_name    = 'userbox';
 //############################
 
 // 引数
@@ -141,7 +141,7 @@ switch ($mode) {
     default:// 初期表示、一覧表示
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
-            $display .= COM_showMessage ($msg,$pi_name);
+            $display .= COM_showMessage ($msg,'$pi_name');
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 

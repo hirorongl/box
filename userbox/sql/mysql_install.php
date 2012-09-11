@@ -162,6 +162,8 @@ CREATE TABLE {$_TABLES['USERBOX_def_fieldset']} (
   `fieldset_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `description` mediumtext,
+  `defaulttemplatesdirectory` varchar(40) NOT NULL,
+  `layout` varchar(16) NOT NULL,
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`fieldset_id`)
