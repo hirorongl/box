@@ -141,7 +141,7 @@ switch ($mode) {
     default:// 初期表示、一覧表示
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
-            $display .= COM_showMessage ($msg,'$pi_name');
+            $display .= COM_showMessage ($msg,$pi_name);
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 
