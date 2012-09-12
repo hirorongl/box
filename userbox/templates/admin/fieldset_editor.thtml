@@ -33,14 +33,14 @@
         </tr>
         <!-- layout -->
         <tr>
-            <th style="width:30%">{lang_layout}{help_layout}</th>
+            <th style="width:30%" class="alignright">{lang_layout}{help_layout}</th>
             <td style="width:70%">
                 {list_layout}
             </td>
         </tr>
         <!-- defaulttemplatesdirectory -->
         <tr>
-            <th style="width:30%">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
+            <th style="width:30%"  class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
             <td style="width:70%">
                 {select_defaulttemplatesdirectory}
             </td>
