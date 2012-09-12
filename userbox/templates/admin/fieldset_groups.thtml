@@ -18,15 +18,15 @@ head.appendChild(lnk);
 </script>
 
 
-<form name="fieldsetfields" 
+<form name="fieldsetgroups" 
 		action="{site_admin_url}/plugins/{script}" method="post"
-		id="admin-fieldsetfields"
+		id="admin-fieldsetgroups"
 		 >
 
   <div class="admin_basic">
 	
 	<dl class="sitemembers">
-      <dt><label for="admin-fieldsetfields-fieldFrom">{LANG_grouplist}</label></dt>
+      <dt><label for="admin-fieldsetgroups-fieldFrom">{LANG_grouplist}</label></dt>
       <dd>
 	  <select multiple="multiple" size="10" 
 			onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" 				
