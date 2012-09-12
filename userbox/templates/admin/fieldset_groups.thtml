@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/fieldset_group.thtml 20120912 { -->
+<!-- plugins/userbox/templates/admin/fieldset_group.thtml 20120912 { -->
 <script type="text/JavaScript" 
 		src="{site_url}/javascript/moveusers.js">
 		</script>
@@ -10,7 +10,7 @@ window.onload=function(){
 var lnk=document.createElement("link");
 lnk.setAttribute("rel","stylesheet");
 lnk.setAttribute("type","text/css");
-lnk.setAttribute("href","{site_url}/databox/css/admin_fieldsetgroups.css");
+lnk.setAttribute("href","{site_url}/userbox/css/admin_fieldsetgroups.css");
 var head=document.getElementsByTagName("head").item(0);
 head.appendChild(lnk);
 };
@@ -83,4 +83,4 @@ head.appendChild(lnk);
 
 </form>
 
-<!-- } plugins/databox/templates/admin/fieldset_groups.thtml -->
+<!-- } plugins/userbox/templates/admin/fieldset_groups.thtml -->
