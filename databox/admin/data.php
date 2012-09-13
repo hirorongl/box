@@ -17,7 +17,7 @@
 define ('THIS_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 
-include_once('databox_functions.php');
+require_once('databox_functions.php');
 require_once($_CONF['path'] . 'plugins/databox/lib/lib_datetimeedit.php');
 
 function fncList()
@@ -27,7 +27,6 @@ function fncList()
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:一覧                                                           |
 // +---------------------------------------------------------------------------+
-// 20101021 orderno
 {
     global $_CONF;
     global $_TABLES;
@@ -75,28 +74,15 @@ function fncList()
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-    $menu_arr = array (
-        array('url' => $url1,
-              'text' => $LANG_DATABOX_ADMIN["new"]),
-        array('url' => $url7,
-              'text' => $LANG_DATABOX_ADMIN["changeset"]),
-        array('url' => $url2,
-              'text' => $LANG_DATABOX['list']),
-
-        array('url' => $url3,
-              'text' => $LANG_DATABOX_ADMIN['drafton']),
-        array('url' => $url4,
-              'text' => $LANG_DATABOX_ADMIN['draftoff']),
-
-        array('url' => $url5,
-              'text' => $LANG_DATABOX_ADMIN['export']),
-
-//        array('url' => $url6,
-//              'text' => $LANG_DATABOX_ADMIN['import']),
-
-        array('url' => $_CONF['site_admin_url'],
-              'text' => $LANG_ADMIN['admin_home']));
-
+	
+	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
+    $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["changeset"]);
+    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
+    $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
+    $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
+    $menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+	
     $retval .= COM_startBlock($LANG_DATABOX_ADMIN['admin_list'], '',
                               COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= ADMIN_createMenu(
@@ -106,19 +92,16 @@ function fncList()
     );
 
 
-    //ヘッダ：編集～
-    $header_arr = array(
-        array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true),
-        array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false),
-        array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false),
-        array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true),
-        //array('text' => $LANG_DATABOX_ADMIN['modified'], 'field' => 'modified', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true),
-        array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true)
-    );
+	//ヘッダ：編集～
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
+    $header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
     //
     $text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
@@ -162,7 +145,6 @@ function fncList()
         , $query_arr
 		, $defsort_arr
         , $filter
-	
         );
 
     $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
@@ -213,7 +195,7 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
             break;
-        //名
+        //属性セット名
 		case 'fieldset_name':
             $name=COM_applyFilter($A['fieldset_name']);
             $url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
@@ -2034,7 +2016,7 @@ switch ($mode) {
         break;
 
     case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+		$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $retval= fncSave ($edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
