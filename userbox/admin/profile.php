@@ -91,7 +91,7 @@ function fncList()
     $url2=$_CONF['site_url'] . '/userbox/index.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 
     $menu_arr[]=array('url' => $url7,'text' => $LANG_USERBOX_ADMIN["changeset"]);
@@ -1414,13 +1414,13 @@ function fncchangeDraftAll ($flg)
     return;
 }
 
+function fncexportexec ()
 // +---------------------------------------------------------------------------+
 // | 機能  エキスポート                                                        |
 // | 書式 fncexport ()                                                         |
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
-function fncexport ()
 {
 
 $pi_name="userbox";
@@ -1466,7 +1466,12 @@ $fld['uuid'] = $LANG_USERBOX_ADMIN['uuid'];
 //----------------------
 $filenm=$pi_name."_data";
 $tbl ="{$_TABLES['USERBOX_base']}";
-$where = "";
+$fieldset_id = COM_applyFilter ($_REQUEST['fieldset']);
+if  ($fieldset_id=="all") {
+	$where = "";
+}else{
+	$where = "fieldset_id =".$fieldset_id;
+}		
 $order = "id";
 $addition=true;
 
@@ -1766,6 +1771,62 @@ function fncChangeSetExec (
 
     return;
 }
+function fncexportform (
+)
+// +---------------------------------------------------------------------------+
+// | 機能 エキスポート画面表示
+// | 書式 fncexportform()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+
+	global $_USERBOX_CONF;
+	global $LANG_USERBOX_ADMIN;
+	global $LANG_ADMIN;
+	
+	$pi_name="userbox";
+	
+	//-----
+    $retval .= COM_startBlock ($LANG_USERBOX_ADMIN["export"], '',
+                               COM_getBlockTemplate ('_admin_block', 'header'));
+	
+	//-----
+	$tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
+    $tmpl->set_file(array('exportform' => 'exportform.thtml'));
+
+    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
+
+    $token = SEC_createToken();
+    $retval .= SEC_getTokenExpiryNotice($token);
+    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
+    $tmpl->set_var('gltoken', $token);
+    $tmpl->set_var ( 'xhtml', XHTML );
+ 
+    $tmpl->set_var('script', THIS_SCRIPT);
+	
+    $tmpl->set_var('lang_inst', $LANG_USERBOX_ADMIN['inst_dataexport']);
+	
+	//fieldset_id
+	$fieldset_id="all";
+	$tmpl->set_var('lang_fieldset', $LANG_USERBOX_ADMIN['fieldset']);
+	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"","all" );
+	$tmpl->set_var ('list_fieldset', $list_fieldset);
+	
+    $tmpl->set_var('lang_export', $LANG_USERBOX_ADMIN["export"]);
+    $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+	
+	
+    $tmpl->parse ('output', 'exportform');
+    $exportform = $tmpl->finish ($tmpl->get_var ('output'));
+    $retval .= $exportform;
+	
+	//-----
+	$retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+
+	return $retval;
+}
 
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
@@ -1802,6 +1863,8 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="delete";
 }else if (($mode == $LANG_USERBOX_ADMIN['changeset']) && !empty ($LANG_USERBOX_ADMIN['changeset'])) {
     $mode="changesetexec";
+}else if (($mode == $LANG_USERBOX_ADMIN['export']) && !empty ($LANG_USERBOX_ADMIN['export'])) {
+    $mode="exportexec";
 }
 
 if (isset ($_POST['draftChange'])) {
@@ -1809,9 +1872,17 @@ if (isset ($_POST['draftChange'])) {
 }
 
 //echo "mode=".$mode."<br>";
-if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-    OR $mode=="export" OR $mode=="import"  OR $mode=="copy"
-	OR $mode=="changeset") {
+if ($mode=="" 
+	OR $mode=="edit" 
+	OR $mode=="new" 
+	OR $mode=="drafton" 
+	OR $mode=="draftoff"
+	OR $mode=="exportform" 
+	OR $mode=="exportexec" 
+	OR $mode=="import"  
+	OR $mode=="copy"
+	OR $mode=="changeset"
+	) {
 }else{
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用
@@ -1835,7 +1906,6 @@ if ($mode=="draftoff") {
 }
 
 if ($mode=="changesetexec") {
-	
 	fncChangeSetExec ();
 }
 //
@@ -1843,40 +1913,28 @@ $menuno=2;
 $display="";
 $information = array();
 
-//echo "mode=".$mode."<br>";
 switch ($mode) {
-    case 'export':// エキスポート
+    case 'exportform':// エクスポート　画面
         $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['export'];
-        $display=fncexport ();
+        $display .= fncexportform();
         break;
-    case 'exportform':// エキスポートフォーム表示
-        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['export'];
-        $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-        $display .= fncMenu();
-        //メッセージ表示
-        if (!empty ($msg)) {
-            $display.= COM_startBlock ($LANG_USERBOX_ADMIN['err'], '',
-                               COM_getBlockTemplate ('_msg_block', 'header'))
-                    . $LANG_USERBOX_ADMIN[$msg]
-                    . COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        }
-        $display=fncexportform();
-        //$display .= fncimport();
+    case 'exportexec':// エキスポート実行
+		$display=fncexportexec ();
+		if  ($display=="") {
+			exit;
+		}
         break;
 	case 'changeset':// 属性セット変更
         $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncChangeSet();
         break;
 
     case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $retval= fncSave ($edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
 		break;
     case 'delete':// 削除
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $retval= fncdelete();
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
@@ -1884,9 +1942,6 @@ switch ($mode) {
     case 'edit':// 編集
         if (!empty ($id) ) {
             $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-            if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-            }
             $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
         }
         break;
@@ -1902,10 +1957,9 @@ switch ($mode) {
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
-        $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-
         $display .= fncList();
 }
+$display=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]).$display;
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);
 

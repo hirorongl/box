@@ -72,7 +72,7 @@ function fncList()
     $url2=$_CONF['site_url'] . '/databox/index.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 	
 	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
@@ -1520,7 +1520,7 @@ function fncchangeDraftAll (
     return;
 }
 
-function fncexport ()
+function fncexportexec()
 // +---------------------------------------------------------------------------+
 // | 機能  エキスポート                                                        |
 // | 書式 fncexport ()                                                         |
@@ -1528,7 +1528,8 @@ function fncexport ()
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
 {
-global $_CONF,$_TABLES;
+global $_CONF;
+global $_TABLES;
 global $LANG_DATABOX_ADMIN;
 //require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
 
@@ -1571,13 +1572,23 @@ $fld['uuid'] = $LANG_DATABOX_ADMIN['uuid'];
 //----------------------
 $filenm="databox_data";
 $tbl ="{$_TABLES['DATABOX_base']}";
-$where = "";
+	
+$fieldset_id = COM_applyFilter ($_REQUEST['fieldset']);
+if  ($fieldset_id=="all") {
+	$where = "";
+}else{
+	$where = "fieldset_id =".$fieldset_id;
+}		
+		
 $order = "id";
 $addition=true;
 $tbl_prefix="DATABOX";
+	
+$return_page=$url=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
+$return_page=$url=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT;
 
 
-$rt= DATABOX_dltbldt($filenm,$fld,$tbl,$where,$order,$tbl_prefix,$addition);
+$rt= DATABOX_dltbldt($filenm,$fld,$tbl,$where,$order,$tbl_prefix,$addition,$return_page);
 
 
 return $rt;
@@ -1914,6 +1925,63 @@ function fncChangeSetExec (
 
     return;
 }
+function fncexportform (
+)
+// +---------------------------------------------------------------------------+
+// | 機能 エキスポート画面表示
+// | 書式 fncexportform()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+
+	global $_DATABOX_CONF;
+	global $LANG_DATABOX_ADMIN;
+	global $LANG_ADMIN;
+	
+	$pi_name="databox";
+	
+	//-----
+    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["export"], '',
+                               COM_getBlockTemplate ('_admin_block', 'header'));
+	
+	//-----
+	$tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
+    $tmpl->set_file(array('exportform' => 'exportform.thtml'));
+
+    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
+
+    $token = SEC_createToken();
+    $retval .= SEC_getTokenExpiryNotice($token);
+    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
+    $tmpl->set_var('gltoken', $token);
+    $tmpl->set_var ( 'xhtml', XHTML );
+ 
+    $tmpl->set_var('script', THIS_SCRIPT);
+	
+    $tmpl->set_var('lang_inst', $LANG_DATABOX_ADMIN['inst_dataexport']);
+	
+	//fieldset_id
+	$fieldset_id="all";
+	$tmpl->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
+	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"","all" );
+	$tmpl->set_var ('list_fieldset', $list_fieldset);
+	
+    $tmpl->set_var('lang_export', $LANG_DATABOX_ADMIN["export"]);
+    $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+	
+	
+    $tmpl->parse ('output', 'exportform');
+    $exportform = $tmpl->finish ($tmpl->get_var ('output'));
+    $retval .= $exportform;
+	
+	//-----
+	$retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+
+	return $retval;
+}
+
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
@@ -1947,16 +2015,25 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="newedit";
 }else if (($mode == $LANG_DATABOX_ADMIN['changeset']) && !empty ($LANG_DATABOX_ADMIN['changeset'])) {
     $mode="changesetexec";
+}else if (($mode == $LANG_DATABOX_ADMIN['export']) && !empty ($LANG_DATABOX_ADMIN['export'])) {
+    $mode="exportexec";
 }
 
 if (isset ($_POST['draftChange'])) {
     $mode='draftChange';
 }
 
-//echo "mode=".$mode."<br>";
+//echo "mode1=".$mode."<br>";
 
-if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-	OR $mode=="export" OR $mode=="import"  OR $mode=="copy"
+if ($mode=="" 
+	OR $mode=="edit" 
+	OR $mode=="new" 
+	OR $mode=="drafton" 
+	OR $mode=="draftoff"
+	OR $mode=="exportform" 
+	OR $mode=="exportexec" 
+	OR $mode=="import"  
+	OR $mode=="copy"
 	OR $mode=="changeset"
 	) {
 }else{
@@ -1982,48 +2059,44 @@ if ($mode=="draftoff") {
 }
 
 if ($mode=="changesetexec") {
-	
-	fncChangeSetExec ();
+	fncChangeSetExec();
 }
 
-
 //
-$menuno=2;
 $display="";
+$menuno=2;
 $information = array();
 
-//echo "mode=".$mode."<br>";
 switch ($mode) {
-    case 'export':// エキスポート
+    case 'exportform':// エクスポート　画面
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['export'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $display=fncexport ();
+        $display .= fncexportform();
+        break;
+    case 'exportexec':// エキスポート実行
+		$display=fncexportexec ();
+		if  ($display=="") {
+			exit;
+		}
         break;
 	case 'changeset':// 属性セット変更
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncChangeSet();
         break;
 	case 'new':// 新規登録 属性セット選択
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncNew();
         break;
 	case 'newedit':// 新規登録編集
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncEdit("", $edt_flg,$msg);
         break;
 
     case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $retval= fncSave ($edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
-	
 		break;
     case 'delete':// 削除
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $retval= fncdelete();
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
@@ -2032,27 +2105,22 @@ switch ($mode) {
     case 'edit':// 編集
         if (!empty ($id) ) {
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-            if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-			}
 		    $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
         }
         break;
     case 'import':// インポート
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $display .= fncimport();
         break;
 
     default:// 初期表示、一覧表示
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
-        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,'databox');
         }
         $display .= fncList();
 }
-
+$display=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]).$display;
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 

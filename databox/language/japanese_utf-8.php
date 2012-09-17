@@ -36,6 +36,8 @@ $LANG_DATABOX_user_menu['2']= 'マイデータ';
 $LANG_DATABOX = array();
 $LANG_DATABOX['list']="一覧";
 $LANG_DATABOX['selectit']="指定なし";
+$LANG_DATABOX['selectall']="すべて";
+$LANG_DATABOX['byconfig']="コンフィギュレーション設定による";
 
 $LANG_DATABOX['data'] = 'データ表示';
 $LANG_DATABOX['mydata'] = 'マイデータ';
@@ -123,6 +125,7 @@ $LANG_DATABOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_DATABOX_ADMIN['description']='説明';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
+$LANG_DATABOX_ADMIN['layout']='レイアウト';
 
 $LANG_DATABOX_ADMIN['category']='カテゴリ';
 
@@ -155,6 +158,11 @@ $LANG_DATABOX_ADMIN['inst_changesetx']='の属性セットを変更します。<
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
 '変更する属性セットを選択してください。<{XHTML}br>
+';
+
+$LANG_DATABOX_ADMIN['inst_dataexport'] = 
+'
+エキスポートする属性セットを選択してください。<{XHTML}br>
 ';
 
 
