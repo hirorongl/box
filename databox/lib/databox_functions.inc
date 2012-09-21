@@ -1061,16 +1061,23 @@ global $_TABLES;
 
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
-                    if ($disabled===""){
+				     if ($disabled===""){
+						$cntname="afieldcnt".$fid;
                         $fieldhtml .= "<textarea ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
                         $fieldhtml .= " id=\"DATABOX_afield".$fid."\"";
-                        $fieldhtml .= " ".$disabled." ";
+						$fieldhtml .= " ".$disabled." ";
+						$fieldhtml .= " onKeyup=\"var n=".$maxlength;
+						$fieldhtml .="-this.value.length;var ";
+						$fieldhtml .="s=document.getElementById";
+						$fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
-                        $fieldhtml .= " </textarea>";
+						$fieldhtml .= "</textarea>";
+					    $fieldhtml .="<br {XHTML}><strong>";
+					    $fieldhtml .="<span id='".$cntname."'></span><strong>";
                     }else{
                         $fieldhtml .=$fvalue;
                     }
@@ -2782,7 +2789,21 @@ function DATABOX_checkaddtiondatas(
 					}
                 }
             }
-
+			
+            //textarea
+			if ($addition_def[$field_id]['type']==1 
+					OR $addition_def[$field_id]['type']==10){
+				if ($value ===""){
+				}else{
+					if (mb_strlen($value, 'UTF-8')>$addition_def[$field_id]['maxlength']) {
+						$rt.=$addition_def[$field_id]['name']
+							.$addition_def[$field_id]['maxlength']
+							.$lang_box_admin['err_maxlength']."<br {XHTML}>".LB;
+					}
+                }
+            }
+			
+			
         }
     }
 
@@ -3431,9 +3452,9 @@ global $LANG_configselects;
     $retval = '';
 
 	$retval .= "<select name='$fname' $disabled>".LB;
-//echo "selectlist=".$selectlist."<br>";
-	if ($selectit){
-//echo "AA<br>";
+	if ($selectit==="all"){
+		$retval .= "<option value=\"all\">{$lang_box['selectall']}</option>".LB;
+	}elseif ($selectit){
 		$retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
 	}
 	
@@ -3508,7 +3529,7 @@ function DATABOX_dltbldt(
     ,$where=""
     ,$order=""
     ,$pi_name=""
-    ,$addition=false
+	,$addition=false
 )
 // +---------------------------------------------------------------------------+
 // | 機能  テーブルのデータをCSV形式でダウンロードする
@@ -3574,7 +3595,7 @@ function DATABOX_dltbldt(
         if ($addition_def<>""){
             $s=$addition_def;
             foreach($s as $k1 =>$v1){
-                $w .=$ec.'additionfield'.$k1.$ec.$dm;
+				$w .=$ec.$s[$k1]['templatesetvar'].$ec.$dm;
             }
         }
     }
@@ -3586,7 +3607,7 @@ function DATABOX_dltbldt(
     //-----2行目ヘッダ
     $w="";
     foreach($fld as $k => $v) {
-        $w .=$ec.$v.$ec.$dm;
+        $w .=$ec.$v['name'].$ec.$dm;
     }
     //addition field
     if ($addition){
@@ -3632,17 +3653,19 @@ function DATABOX_dltbldt(
         fputs( $file, $w.LB);
 
     }
-
+	fclose($file);
+	
     $filename=basename($outfile).".csv";
     $dir=dirname($outfile);
 
     header ("Content-Disposition: attachment; filename=$filename");
     header ("Content-type: application/x-csv");
     readfile ($outfile);
-
+	flush();
+	
     $rt=unlink($outfile);
-
-    return $retval;
+	
+    return "";
 }
 
 function DATABOX_getfeaturedimage(
