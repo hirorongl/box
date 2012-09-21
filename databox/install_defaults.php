@@ -125,6 +125,11 @@ $_DATABOX_DEFAULT['user_draft_default'] = 1;
 //デフォルト画像URL
 $_DATABOX_DEFAULT['default_img_url'] = "";
 
+//入力制限文字数
+$_DATABOX_DEFAULT['maxlength_description'] = "1677215";
+$_DATABOX_DEFAULT['maxlength_meta_description'] = "65535";
+$_DATABOX_DEFAULT['maxlength_meta_keywords'] = "65535";
+
 //---（１）新着
 // 新着の期間
 $_DATABOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -479,6 +484,25 @@ function plugin_initconfig_databox()
             'default_img_url'
             ,$_DATABOX_DEFAULT['default_img_url']
             ,'text', 0, 0, NULL, 280, TRUE
+			, $pi_name
+			,0);
+		
+        $c->add(
+            'maxlength_description'
+            ,$_DATABOX_DEFAULT['maxlength_description']
+            ,'text', 0, 0, NULL, 290, TRUE
+			, $pi_name
+			,0);
+        $c->add(
+            'maxlength_meta_description'
+            ,$_DATABOX_DEFAULT['maxlength_meta_description']
+            ,'text', 0, 0, NULL, 300, TRUE
+			, $pi_name
+			,0);
+        $c->add(
+            'maxlength_meta_keywords'
+            ,$_DATABOX_DEFAULT['maxlength_meta_keywords']
+            ,'text', 0, 0, NULL, 310, TRUE
 			, $pi_name
 			,0);
 		

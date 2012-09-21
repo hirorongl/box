@@ -310,6 +310,7 @@ $LANG_USERBOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
 $LANG_USERBOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@
 
 $LANG_USERBOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
+$LANG_USERBOX_ADMIN['err_maxlength'] = '文字以内で入力してください';
 
 $LANG_USERBOX_ADMIN['err_backup_file_not_exist'] = 'バックアップファイルがありません';
 $LANG_USERBOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップファイル書換できません';
@@ -522,6 +523,10 @@ $LANG_confignames['userbox']['allow_group_update'] = 'ユーザにマイグル�
 $LANG_confignames['userbox']['allow_loggedinusers'] = 'ログインユーザを登録する';
 $LANG_confignames['userbox']['default_img_url'] = 'デフォルト画像URL';
 $LANG_confignames['userbox']['descriptionemptycheck'] = '説明未登録チェック';
+
+$LANG_confignames['userbox']['maxlength_description'] = '入力制限文字数　説明';
+$LANG_confignames['userbox']['maxlength_meta_description'] = '入力制限文字数　説明文のメタタグ';
+$LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数　キーワードのメタタグ';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';

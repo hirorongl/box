@@ -125,6 +125,10 @@ $_USERBOX_DEFAULT['default_img_url'] = "";
 // 説明入力をチェックする　default いいえ
 $_USERBOX_DEFAULT['descriptionemptycheck'] = 0;
 
+//入力制限文字数
+$_USERBOX_DEFAULT['maxlength_description'] = "1677215";
+$_USERBOX_DEFAULT['maxlength_meta_description'] = "65535";
+$_USERBOX_DEFAULT['maxlength_meta_keywords'] = "65535";
 
 
 //---（１）新着
@@ -472,6 +476,24 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,0);
 		
+        $c->add(
+            'maxlength_description'
+            ,$_USERBOX_DEFAULT['maxlength_description']
+            ,'text', 0, 0, NULL, 290, TRUE
+			, $pi_name
+			,0);
+        $c->add(
+            'maxlength_meta_description'
+            ,$_USERBOX_DEFAULT['maxlength_meta_description']
+            ,'text', 0, 0, NULL, 300, TRUE
+			, $pi_name
+			,0);
+        $c->add(
+            'maxlength_meta_keywords'
+            ,$_USERBOX_DEFAULT['maxlength_meta_keywords']
+            ,'text', 0, 0, NULL, 310, TRUE
+			, $pi_name
+			,0);
 
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);

@@ -395,6 +395,7 @@ $LANG_DATABOX_ADMIN['err_field_w'] = '当フィールドはすでに登録され
 $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されています';
 
 $LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
+$LANG_DATABOX_ADMIN['err_maxlength'] = '文字以内で入力してください';
 
 $LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'コンフィギュレーションバックアップファイルがありません<br{KHTML}>';
 $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'コンフィギュレーションバックアップファイル書換できません<br{KHTML}>';
@@ -604,6 +605,10 @@ $LANG_confignames['databox']['aftersave_admin'] = '保存後の画面遷移 管�
 $LANG_confignames['databox']['grp_id_default'] = 'グループのデフォルト';
 
 $LANG_confignames['databox']['default_img_url'] = 'デフォルト画像URL';
+
+$LANG_confignames['databox']['maxlength_description'] = '入力制限文字数　説明';
+$LANG_confignames['databox']['maxlength_meta_description'] = '入力制限文字数　説明文のメタタグ';
+$LANG_confignames['databox']['maxlength_meta_keywords'] = '入力制限文字数　キーワードのメタタグ';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';

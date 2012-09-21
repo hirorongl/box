@@ -127,6 +127,9 @@ $_CONF_VALIDATE['userbox']['user_draft_default'] = array(
 );
 
 
+$_CONF_VALIDATE['userbox']['maxlength_description'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['userbox']['maxlength_meta_description'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['userbox']['maxlength_meta_keywords'] = array('rule' => 'numeric');
 
 $_CONF_VALIDATE['userbox']['whatsnew_interval'] = array('rule' => 'numeric');
 
