@@ -630,7 +630,7 @@ function fncEdit(
     //template フォルダ
     $tmplfld=DATABOX_templatePath('mydata','default','databox');
     $templates = new Template($tmplfld);
-
+	
     $templates->set_file('editor',"data_editor.thtml");
 
     $templates->set_file (array (
@@ -645,6 +645,7 @@ function fncEdit(
     } else {
         $templates->set_var('hide_meta', ' style="display:none;"');
     }
+    $templates->set_var('maxlength_description', $_DATABOX_CONF['maxlength_description']);
 
     $templates->set_var('about_thispage', $LANG_DATABOX_ADMIN['about_admin_data']);
     $templates->set_var('lang_must', $LANG_DATABOX_ADMIN['must']);
@@ -937,6 +938,12 @@ function fncSave (
     if (empty($title)){
         $err.=$LANG_DATABOX_ADMIN['err_title']."<br/>".LB;
     }
+	//文字数制限チェック
+	if (mb_strlen($description, 'UTF-8')>$_DATABOX_CONF['maxlength_description']) {
+		$err.=$LANG_DATABOX_ADMIN['description']
+				.$_DATABOX_CONF['maxlength_description']
+				.$LANG_DATABOX_ADMIN['err_maxlength']."<br/>".LB;
+	}
 
     //----追加項目チェック
     $err.=DATABOX_checkaddtiondatas

@@ -373,6 +373,7 @@ function fncEdit(
     } else {
         $templates->set_var('hide_meta', ' style="display:none;"');
     }
+    $templates->set_var('maxlength_description', $_USERBOX_CONF['maxlength_description']);
 
     $templates->set_var('about_thispage', $LANG_USERBOX_ADMIN['about_myprofile_profile']);
     $templates->set_var('lang_must', $LANG_USERBOX_ADMIN['must']);
@@ -677,6 +678,12 @@ function fncSave (
 		if (empty($description)){
 			$err.=$LANG_USERBOX_ADMIN['err_description']."<br/>".LB;
 		}
+	}
+	//文字数制限チェック
+	if (mb_strlen($description, 'UTF-8')>$_USERBOX_CONF['maxlength_description']) {
+		$err.=$LANG_USERBOX_ADMIN['description']
+				.$_USERBOX_CONF['maxlength_description']
+				.$LANG_USERBOX_ADMIN['err_maxlength']."<br/>".LB;
 	}
 
     //----追加項目チェック

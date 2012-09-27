@@ -75,7 +75,7 @@ $display = '';
 $information = array();
 
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
-$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 $display.=fncDisplay();
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);

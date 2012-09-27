@@ -570,6 +570,9 @@ function fncEdit(
     } else {
         $templates->set_var('hide_meta', ' style="display:none;"');
     }
+    $templates->set_var('maxlength_description', $_USERBOX_CONF['maxlength_description']);
+    $templates->set_var('maxlength_meta_description', $_USERBOX_CONF['maxlength_meta_description']);
+    $templates->set_var('maxlength_meta_keywords', $_USERBOX_CONF['maxlength_meta_keywords']);
 
     $templates->set_var('about_thispage', $LANG_USERBOX_ADMIN['about_admin_profile']);
     $templates->set_var('lang_must', $LANG_USERBOX_ADMIN['must']);
@@ -1067,6 +1070,22 @@ function fncSave (
             $err.=$LANG_USERBOX_ADMIN['err_id']."<br {XHTML}>".LB;
         }
     }
+	//文字数制限チェック
+	if (mb_strlen($description, 'UTF-8')>$_USERBOX_CONF['maxlength_description']) {
+		$err.=$LANG_USERBOX_ADMIN['description']
+				.$_USERBOX_CONF['maxlength_description']
+				.$LANG_USERBOX_ADMIN['err_maxlength']."<br/>".LB;
+	}
+	if (mb_strlen($meta_description, 'UTF-8')>$_USERBOX_CONF['maxlength_meta_description']) {
+		$err.=$LANG_USERBOX_ADMIN['meta_description']
+				.$_USERBOX_CONF['maxlength_meta_description']
+				.$LANG_USERBOX_ADMIN['err_maxlength']."<br/>".LB;
+	}
+	if (mb_strlen($meta_keywords, 'UTF-8')>$_USERBOX_CONF['maxlength_meta_keywords']) {
+		$err.=$LANG_USERBOX_ADMIN['meta_keywords']
+				.$_USERBOX_CONF['maxlength_meta_keywords']
+				.$LANG_USERBOX_ADMIN['err_maxlength']."<br/>".LB;
+	}
 
     //----追加項目チェック
     $err.=DATABOX_checkaddtiondatas
@@ -1280,13 +1299,10 @@ function fncSave (
 
 
     if ($_USERBOX_CONF['aftersave_admin']==='no'){
-        $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-        $retval .= DATABOX_siteHeader('USERBOX','_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
-        $retval .= fncEdit($id, $edt_flg,1,"");
-        $retval .= DATABOX_siteFooter('USERBOX','_admin');
-
+		$retval['title']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
+        $retval['display'] .= fncEdit($id, $edt_flg,1,"");
         return $retval;
+		
     }else if ($_USERBOX_CONF['aftersave_admin']==='list'){
             $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/profile.php";
             $item_url=COM_buildURL($url);
@@ -1433,34 +1449,34 @@ global $LANG_USERBOX_ADMIN;
 $fld = array ();
 
 
-$fld['id'] = $LANG_USERBOX_ADMIN['id'];
+$fld['id']['name'] = $LANG_USERBOX_ADMIN['id'];
 
-$fld['page_title'] = $LANG_USERBOX_ADMIN['page_title'];
-$fld['description'] = $LANG_USERBOX_ADMIN['description'];
-$fld['comments'] = $LANG_USERBOX_ADMIN['comments'];
-$fld['meta_description'] = $LANG_USERBOX_ADMIN['meta_description'];
-$fld['meta_keywords'] = $LANG_USERBOX_ADMIN['meta_keywords'];
-$fld['commentcode'] = $LANG_USERBOX_ADMIN['commentcode'];
-$fld['comment_expire'] = $LANG_USERBOX_ADMIN['comment_expire'];
+$fld['page_title']['name'] = $LANG_USERBOX_ADMIN['page_title'];
+$fld['description']['name'] = $LANG_USERBOX_ADMIN['description'];
+$fld['comments']['name'] = $LANG_USERBOX_ADMIN['comments'];
+$fld['meta_description']['name'] = $LANG_USERBOX_ADMIN['meta_description'];
+$fld['meta_keywords']['name'] = $LANG_USERBOX_ADMIN['meta_keywords'];
+$fld['commentcode']['name'] = $LANG_USERBOX_ADMIN['commentcode'];
+$fld['comment_expire']['name'] = $LANG_USERBOX_ADMIN['comment_expire'];
 
 // 準備中　$fld['language_id'] = $LANG_USERBOX_ADMIN['language_id'];
-$fld['owner_id'] = $LANG_USERBOX_ADMIN['owner_id'];
-$fld['group_id'] = $LANG_USERBOX_ADMIN['group_id'];
-$fld['perm_owner'] = $LANG_USERBOX_ADMIN['perm_owner'];
-$fld['perm_group'] = $LANG_USERBOX_ADMIN['perm_group'];
-$fld['perm_members'] = $LANG_USERBOX_ADMIN['perm_members'];
-$fld['perm_anon'] = $LANG_USERBOX_ADMIN['perm_anon'];
+$fld['owner_id']['name'] = $LANG_USERBOX_ADMIN['owner_id'];
+$fld['group_id']['name'] = $LANG_USERBOX_ADMIN['group_id'];
+$fld['perm_owner']['name'] = $LANG_USERBOX_ADMIN['perm_owner'];
+$fld['perm_group']['name'] = $LANG_USERBOX_ADMIN['perm_group'];
+$fld['perm_members']['name'] = $LANG_USERBOX_ADMIN['perm_members'];
+$fld['perm_anon']['name'] = $LANG_USERBOX_ADMIN['perm_anon'];
 
-$fld['modified'] = $LANG_USERBOX_ADMIN['modified'];
-$fld['created'] = $LANG_USERBOX_ADMIN['created'];
-$fld['expired'] = $LANG_USERBOX_ADMIN['expired'];
-$fld['released'] = $LANG_USERBOX_ADMIN['released'];
+$fld['modified']['name'] = $LANG_USERBOX_ADMIN['modified'];
+$fld['created']['name'] = $LANG_USERBOX_ADMIN['created'];
+$fld['expired']['name'] = $LANG_USERBOX_ADMIN['expired'];
+$fld['released']['name'] = $LANG_USERBOX_ADMIN['released'];
 
-$fld['orderno'] = $LANG_USERBOX_ADMIN['orderno'];
+$fld['orderno']['name'] = $LANG_USERBOX_ADMIN['orderno'];
 
-$fld['draft_flag'] = $LANG_USERBOX_ADMIN['draft'];
-$fld['udatetime'] = $LANG_USERBOX_ADMIN['udatetime'];
-$fld['uuid'] = $LANG_USERBOX_ADMIN['uuid'];
+$fld['draft_flag']['name'] = $LANG_USERBOX_ADMIN['draft'];
+$fld['udatetime']['name'] = $LANG_USERBOX_ADMIN['udatetime'];
+$fld['uuid']['name'] = $LANG_USERBOX_ADMIN['uuid'];
 //-----
 
 //----------------------
@@ -1959,7 +1975,7 @@ switch ($mode) {
         }
         $display .= fncList();
 }
-$display=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]).$display;
+$display=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]).$display;
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);
 

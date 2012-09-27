@@ -57,7 +57,9 @@
         <tr>
             <th style="width:30%; vertical-align:top">{lang_description}{help_description}</th>
             <td style="width:70%">
-                <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+				<textarea name="description" style="width:95%" rows="2" id="databox_description"
+				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+				<br {xhtml}><strong><span id='description_cnt'></span><strong>
             </td>
         </tr>
 
@@ -79,14 +81,18 @@
         <tr{hide_meta}>
             <th style="width:30%">{lang_meta_description}{help_meta_description}</th>
             <td style="width:70%">
-                <textarea name="meta_description" style="width:95%" rows="2" id="databox_description">{meta_description}</textarea>
+			<textarea name="meta_description" style="width:95%" rows="2" id="databox_description"
+			onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
+			<br {xhtml}><strong><span id='meta_description_cnt'></span><strong>
             </td>
         </tr>
         <!-- meta_keywords -->
         <tr{hide_meta}>
             <th style="width:30%">{lang_meta_keywords}{help_meta_keywords}</th>
             <td style="width:70%">
-                <textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords">{meta_keywords}</textarea>
+			<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
+			onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
+			<br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
             </td>
         </tr>
         <!-- hits -->
