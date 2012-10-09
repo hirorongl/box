@@ -33,9 +33,10 @@
 データ件数<br />
 例１：[databox:count]<br />
 例２：[databox:count category_id:1]<br />
-例３：[databox:count category_code:japan]<br />
-例４：[databox:count category_code:japan|america] カテゴリコードがjapan またはamerica<br />
-例５：[databox:count category_code:japan|groupA mode:and] カテゴリコードがjapan かつgroupA<br />
+例３：[databox:count category_code:AAA]<br />
+例４：[databox:count category_code:AAA|BBB] カテゴリコードがAAA またはBBB<br />
+例５：[databox:count category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例６：[databox:count category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
 </td>
 </tr>
 
@@ -44,7 +45,7 @@
 <td>
 新着データ<br />
 例１：[databox:newlist]<br />
-例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:aaa category_id:99 category_code:x]<br />
+例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:XXX category_id:99 category_code:XXX]<br />
 </td>
 </tr>
 
@@ -53,7 +54,7 @@
 <td>
 データ<br />
 例１：[databox:data] <br />
-例２：[databox:data id:1 templatedir:aaa nohitmsg:yes]<br />
+例２：[databox:data id:1 templatedir:XXX nohitmsg:yes]<br />
 </td>
 </tr>
 
@@ -62,10 +63,11 @@
 <td>
 カテゴリ別一覧<br />
 例１：[databox:category] <br />
-例２：[databox:category category_id:1 templatedir:aaa nohitmsg:yes perpage:10 page:1 order:id]<br />
-例３：[databox:category category_code:japan ]<br />
-例４：[databox:category category_code:japan|america ] カテゴリコードがjapan またはamerica<br />
-例５：[databox:category category_code:japan|groupA mode:and] カテゴリコードがjapan かつgroupA<br />
+例２：[databox:category category_id:1 templatedir:XXX nohitmsg:yes perpage:10 page:1 order:id]<br />
+例３：[databox:category category_code:AAA ]<br />
+例４：[databox:category category_code:AAA|BBB] カテゴリコードがAAA または BBB<br />
+例５：[databox:category category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例５：[databox:category category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
 order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です <br />
 </td>
 </tr>
@@ -75,7 +77,7 @@ order に指定できるのは、 random date orderno code title description id 
 <td>
 追加項目別件数一覧<br />
 例１：[databox:additioncount] <br />
-例２：[databox:additioncount templatesetvar:xxx value:xxx]<br />
+例２：[databox:additioncount templatesetvar:XXX value:XXX]<br />
 </td>
 </tr>
 
@@ -85,7 +87,7 @@ order に指定できるのは、 random date orderno code title description id 
 <br />
 例１：[databox:lastmodified] <br />
 例２：[databox:lastmodified category_id:1]<br />
-例３：[databox:lastmodified category_code:japan]<br />
+例３：[databox:lastmodified category_code:XXX]<br />
 </td>
 </tr>
 
@@ -95,7 +97,7 @@ order に指定できるのは、 random date orderno code title description id 
 <br />
 例１：[databox:lastcreated] <br />
 例２：[databox:lastcreated category_id:1]<br />
-例３：[databox:lastcreated category_code:japan]<br />
+例３：[databox:lastcreated category_code:XXX]<br />
 </td>
 </tr>
 
