@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2012/08/28 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2012/10/10 { -->
 <div id="databox_admin">
 	{about_thispage}
 	| <a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a>
@@ -94,7 +94,18 @@
 			onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
 			<br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
             </td>
-        </tr>
+		</tr>
+
+
+        <!-- language_id  -->
+        <tr{hide_language_id}>
+            <th style="width:30%">{lang_language_id}{help_language_id}</th>
+            <td style="width:70%">
+			{select_language_id}
+            </td>
+		</tr>
+
+
         <!-- hits -->
         <tr>
             <th style="width:30%">{lang_hits}{help_hits}</th>

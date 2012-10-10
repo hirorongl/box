@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120903
+# Last Update 20120927
 
 ###############################################################################
 ## 管理画面 menu
@@ -89,7 +89,7 @@ $LANG_DATABOX_ADMIN['importfile'] = 'パス';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = '削除';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br {xhtml}>";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br {XHTML}>";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "開始ID";
 $LANG_DATABOX_ADMIN['idto'] = "終了ID";
@@ -153,17 +153,17 @@ $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
 $LANG_DATABOX_ADMIN['changeset']='属性セット変更';
-$LANG_DATABOX_ADMIN['inst_changeset0']='属性セットが登録されていないデータの属性セットを変更します。<{XHTML}br>';
-$LANG_DATABOX_ADMIN['inst_changesetx']='の属性セットを変更します。<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset0']="属性セットが登録されていないデータの属性セットを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['inst_changesetx']="の属性セットを変更します。<br{XHTML}>";
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-'変更する属性セットを選択してください。<{XHTML}br>
-';
+"変更する属性セットを選択してください。<br{XHTML}>
+";
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
-'
-エキスポートする属性セットを選択してください。<{XHTML}br>
-';
+"
+エキスポートする属性セットを選択してください。<br{XHTML}>
+";
 
 
 $LANG_DATABOX_ADMIN['allow_display']='表示制限(一般画面)';
@@ -212,48 +212,48 @@ $LANG_DATABOX_ADMIN['path'] = '絶対パス';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'デフォルト';
-$LANG_DATABOX_ADMIN['importmsg'] = '
-絶対パス（フォルダ、ファイル）またはURLを指定してください。<{XHTML}br>
-フォルダ指定の時は、フォルダ下のxmlファイルをインポートします。<{XHTML}br>
-logs/databox_xmlimport.log　にログが記録されます。<{XHTML}br>
-';
-$LANG_DATABOX_ADMIN['exportmsg'] = '
-絶対パス（フォルダ）を指定してください。<{XHTML}br>
-logs/databox_xmlimport.log　にログが記録されます。<{XHTML}br>
-';
+$LANG_DATABOX_ADMIN['importmsg'] = "
+絶対パス（フォルダ、ファイル）またはURLを指定してください。<br{XHTML}>
+フォルダ指定の時は、フォルダ下のxmlファイルをインポートします。<br{XHTML}>
+logs/databox_xmlimport.log　にログが記録されます。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['exportmsg'] = "
+絶対パス（フォルダ）を指定してください。<br{XHTML}>
+logs/databox_xmlimport.log　にログが記録されます。<br{XHTML}>
+";
 $LANG_DATABOX_ADMIN['initmsg'] = '
 proversion を初期化します。「一覧」の内容は削除されます。
 ';
-$LANG_DATABOX_ADMIN['dataclearmsg'] = '
-バックアップはとりましたか？<{XHTML}br>
-データをクリアします。<{XHTML}br>
-アップロードされたファイルも削除されます。<{XHTML}br>
-追加属性、カテゴリ、グループ削除されません。<{XHTML}br>
-';
-$LANG_DATABOX_ADMIN['allclearmsg'] = '
-バックアップはとりましたか？<{XHTML}br>
-マスタおよびデータをクリアします。<{XHTML}br>
-アップロードされたファイルも削除されます。<{XHTML}br>
-';
+$LANG_DATABOX_ADMIN['dataclearmsg'] = "
+バックアップはとりましたか？<br{XHTML}>
+データをクリアします。<br{XHTML}>
+アップロードされたファイルも削除されます。<br{XHTML}>
+追加属性、カテゴリ、グループ削除されません。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['allclearmsg'] = "
+バックアップはとりましたか？<br{XHTML}>
+マスタおよびデータをクリアします。<br{XHTML}>
+アップロードされたファイルも削除されます。<br{XHTML}>
+";
 $LANG_DATABOX_ADMIN['backupmsg'] = 
-"{$_CONF['backup_path']}"."databox/に<{XHTML}br>"
-.'DataBox のデータベースデータをバックアップします。<{XHTML}br>
-アップロードファイルは別途バックアップしてください。<{XHTML}br>
-';
+"{$_CONF['backup_path']}"."databox/に<br{XHTML}>"
+."DataBox のデータベースデータをバックアップします。<br{XHTML}>
+アップロードファイルは別途バックアップしてください。<br{XHTML}>
+";
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>
-DataBox のデータベースデータをリストアします。<{XHTML}br>
-アップロードファイルは別途もどしてください。<{XHTML}br>
-';
+."ファイル名を指定してください。（省略時databox.xml）<br{XHTML}>
+DataBox のデータベースデータをリストアします。<br{XHTML}>
+アップロードファイルは別途もどしてください。<br{XHTML}>
+";
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'ファイル名を指定してください。（省略時databox.xml）<{XHTML}br>
-phpMyAdmin でエキスポートしたDataBox のデータベースデータをリストアします。<{XHTML}br>
-phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>
-接頭子が異なる場合は、あらかじめ変換しておいてください。<{XHTML}br>
-アップロードファイルは別途もどしてください。<{XHTML}br>
-';
+."ファイル名を指定してください。（省略時databox.xml）<br{XHTML}>
+phpMyAdmin でエキスポートしたDataBox のデータベースデータをリストアします。<br{XHTML}>
+phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
+接頭子が異なる場合は、あらかじめ変換しておいてください。<br{XHTML}>
+アップロードファイルは別途もどしてください。<br{XHTML}>
+";
 //<---
 
 $LANG_DATABOX_ADMIN['yy'] = '年';
@@ -299,25 +299,25 @@ $LANG_DATABOX_ADMIN['delete_help_fieldset'] = '登録されているデータが
 
 //xmlimport_help
 $LANG_DATABOX_xmlimport['help']=
-"<br{KHTML}>"
-."(注！)<br{KHTML}>"
-."assist DataBoxプラグインのXML一括インポートディレクトリは、同一の場所を登録しておいてください  <br{KHTML}>"
-."<br{KHTML}>"
-."assist プラグインのxmlインポートを実行します <br{KHTML}>"
-."maps:item_10 はコードに相当する内容を登録しておいてください <br{KHTML}>"
-."同一コードが既に登録済の場合は、削除の後追加します <br{KHTML}>"
-."<br{KHTML}>"
-."DataBox プラグインのxmlインポートを実行します <br{KHTML}>"
-."同一コードが既に登録済の場合は、削除の後追加します <br{KHTML}>"
-."各々の処理が済んだら、XMLファイルは削除します <br{KHTML}>"
-."(権限により削除できない場合があります） <br{KHTML}>"
-."<br{KHTML}>"
-."実行内容はdatabox_xmlimport.log に 記録されます<br{KHTML}>"
+"<br{XHTML}>"
+."(注！)<br{XHTML}>"
+."assist DataBoxプラグインのXML一括インポートディレクトリは、同一の場所を登録しておいてください  <br{XHTML}>"
+."<br{XHTML}>"
+."assist プラグインのxmlインポートを実行します <br{XHTML}>"
+."maps:item_10 はコードに相当する内容を登録しておいてください <br{XHTML}>"
+."同一コードが既に登録済の場合は、削除の後追加します <br{XHTML}>"
+."<br{XHTML}>"
+."DataBox プラグインのxmlインポートを実行します <br{XHTML}>"
+."同一コードが既に登録済の場合は、削除の後追加します <br{XHTML}>"
+."各々の処理が済んだら、XMLファイルは削除します <br{XHTML}>"
+."(権限により削除できない場合があります） <br{XHTML}>"
+."<br{XHTML}>"
+."実行内容はdatabox_xmlimport.log に 記録されます<br{XHTML}>"
 
 ;
-$LANG_DATABOX_ADMIN['jobend'] = '処理終了しました<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ok'] = '成功: %d 件<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ng'] = 'エラー: %d 件<br{KHTML}>';
+$LANG_DATABOX_ADMIN['jobend'] = "処理終了しました<br{XHTML}>";
+$LANG_DATABOX_ADMIN['cnt_ok'] = "成功: %d 件<br{XHTML}>";
+$LANG_DATABOX_ADMIN['cnt_ng'] = "エラー: %d 件<br{XHTML}>";
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'コンフィギュレーション';
@@ -346,20 +346,20 @@ $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = '追加属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア<br{KHTML}><br{KHTML}>';
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'属性の編集は、追加属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<{XHTML}br>
-追加属性が選択されているときは右側だけに表示されます。<{XHTML}br>
-編集が終わったら、「保存」ボタンをクリックしてください。<{XHTML}br>
-管理画面に戻ります。';
+"属性の編集は、追加属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
+追加属性が選択されているときは右側だけに表示されます。<br{XHTML}>
+編集が終わったら、「保存」ボタンをクリックしてください。<br{XHTML}>
+管理画面に戻ります。";
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'新規登録するデータの属性セットを選択してください。<{XHTML}br>
-';
+"新規登録するデータの属性セットを選択してください。<br{XHTML}>
+";
 
 
 //ERR
@@ -397,8 +397,8 @@ $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されていま�
 $LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
 $LANG_DATABOX_ADMIN['err_maxlength'] = '文字以内で入力してください';
 
-$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'コンフィギュレーションバックアップファイルがありません<br{KHTML}>';
-$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'コンフィギュレーションバックアップファイル書換できません<br{KHTML}>';
+$LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = "コンフィギュレーションバックアップファイルがありません<br{XHTML}>";
+$LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = "コンフィギュレーションバックアップファイル書換できません<br{XHTML}>";
 
 $LANG_DATABOX_ADMIN['err_not_exist'] = '存在しません';
 
@@ -551,7 +551,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count]他 <br{xhtml}>	
+[databox:count]他 <br{XHTML}>	
 詳細は、databoxプラグインのドキュメントを参照してください。
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";

@@ -3460,8 +3460,6 @@ global $LANG_configselects;
 	
 	
 	if ($kind=="layout"){
-		
-		
 		$retval .= "<option value=0>{$lang_box['byconfig']}</option>".LB;
 		$ary=$LANG_configselects[strtolower($pi_name)][22];
 		foreach($ary as $k => $v) {
@@ -3474,7 +3472,20 @@ global $LANG_configselects;
 			$retval .= $k;
 			$retval .= "</option>".LB;
 			next($ary);
+		}
+	}else if ($kind=="language_id"){
+		$retval .= "<option value=0> </option>".LB;
+		$ary=$_CONF['languages'];
+		foreach($ary as $k => $v) {
+			$retval .= "<option value=\"".$k."\"";
+			if( $k == $selected ){//@@@@@
+				$retval .= " selected=\"selected\" ";
+			}
+			$retval .= ">";
 
+			$retval .= $v;
+			$retval .= "</option>".LB;
+			next($ary);
 		}
 	}else{
 		if ($kind=="group"){
@@ -3519,7 +3530,6 @@ global $LANG_configselects;
 
     return $retval;
 }
-
 
 
 function DATABOX_dltbldt(

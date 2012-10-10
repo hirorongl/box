@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/mydata/default/data_editor.thtml 20120829 { -->
+<!-- plugins/databox/templates/mydata/default/data_editor.thtml 20121010 { -->
 <div id="databox_admin">
 {about_thispage}
 <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
@@ -73,7 +73,16 @@
             <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
             <td >{checklist_category}
             </td>
-        </tr>
+		</tr>
+        <!-- language_id  -->
+        <tr{hide_language_id}>
+            <th style="width:10%" class="alignright">{lang_language_id}{help_language_id}</th>
+            <td >
+			{select_language_id}
+            </td>
+		</tr>
+
+
         <!-- タイムスタンプ -->
         <tr>
             <th style="width:10%" class="alignright">{lang_udatetime}</th>

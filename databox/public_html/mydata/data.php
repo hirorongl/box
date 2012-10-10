@@ -313,6 +313,7 @@ function fncEdit(
 
         $meta_description = COM_applyFilter ($_POST['meta_description']);
         $meta_keywords = COM_applyFilter ($_POST['meta_keywords']);
+        $language_id = COM_applyFilter ($_POST['language_id']);
 
         $category = $_POST['category'];
 
@@ -418,6 +419,7 @@ function fncEdit(
 
             $meta_description ="";
             $meta_keywords ="";
+			$language_id="";
 
             $category = "";
             $additionfields=array();
@@ -719,6 +721,19 @@ function fncEdit(
     //meta_keywords
     $templates->set_var('lang_meta_keywords', $LANG_DATABOX_ADMIN['meta_keywords']);
     $templates->set_var ('meta_keywords', $meta_keywords);
+	
+	//language_id
+    if (is_array($_CONF['languages'])) {
+        $templates->set_var('hide_language_id', '');
+		$select_language_id=DATABOX_getoptionlist("language_id",$language_id,0,$pi_name,"",0 );
+    } else {
+        $templates->set_var('hide_language_id', ' style="display:none;"');
+		$select_language_id="";
+    }
+    $templates->set_var('lang_language_id', $LANG_DATABOX_ADMIN['language_id']);
+	$templates->set_var ('language_id', $language_id);
+    $templates->set_var ('select_language_id', $select_language_id);//@@@@@
+	
 
     //hits
     $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
@@ -903,7 +918,10 @@ function fncSave (
 
     $description=$_POST['description'];//COM_applyFilter($_POST['description']);
     $description=addslashes (COM_checkHTML (COM_checkWords ($description)));
-
+	
+	$language_id=COM_applyFilter($_POST['language_id']);
+    $language_id=addslashes (COM_checkHTML (COM_checkWords ($language_id)));
+	
     $category = $_POST['category'];
 
     //@@@@@
@@ -1111,6 +1129,7 @@ function fncSave (
         $sql.=" title = '$title'";
         $sql.=" ,page_title = '$page_title'";
         $sql.=" ,description = '$description'";
+        $sql.=" ,language_id = '$language_id'";
 		
         $sql.=" ,modified = FROM_UNIXTIME('$modified')";
 		

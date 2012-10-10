@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20120904 { -->
+<!-- plugins/userbox/templates/admin/profile_editor.thtml 20121010 { -->
 
 <div id="userbox_admin">
 	{about_thispage}
@@ -16,19 +16,18 @@
     <td style="background:#eee" class="alignleft">{lang_content}</td>
     </tr>
 
-        <!-- uid -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_uid}{help_uid}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;uid&#125;</td>
-            <td >
-                {id}
-
-            </td>
+    <!-- uid -->
+    <tr>
+    <th style="width:20%" class="alignright">{lang_uid}{help_uid}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;uid&#125;</td>
+    <td >
+        {id}
+    </td>
         </tr>
 
         <!-- username -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_username}{help_username}</th>
+            <th style="width:20%" class="alignright">{lang_username}{help_username}</th>
             <td style="width:10%; color:green" class="alignleft">&#123;username&#125;</td>
             <td >
                 {username}
@@ -37,7 +36,7 @@
         </tr>
         <!-- fullname -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_fullname}{help_fullname}</th>
+            <th style="width:20%" class="alignright">{lang_fullname}{help_fullname}</th>
             <td style="width:10%; color:green" class="alignleft">&#123;fullname&#125;</td>
             <td >
                 <input type="fullname" size="60" maxlength="160" name="fullname" value="{fullname}"{xhtml}>
@@ -57,142 +56,148 @@
     <td style="width:10%; background:#eee; color:green;" class="alignleft">{lang_templatesetvar}</td>
     <td style="background:#eee" class="alignleft">{lang_content}</td>
     </tr>
-        <!-- id -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_id}{help_id}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;id&#125;</td>
-            <td >
-                {id}
-                <input type="hidden" name="id" value="{id}"{xhtml}>
+    <!-- id -->
+    <tr>
+    <th style="width:20%" class="alignright">{lang_id}{help_id}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;id&#125;</td>
+    <td >
+        {id}
+        <input type="hidden" name="id" value="{id}"{xhtml}>
+    </td>
+    </tr>
+    <!-- DRAFT -->
+    <tr>
+    <th style="width:20%" class="alignright">{lang_draft}{help_draft}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;draft&#125;</td>
+    <td >
+        <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
+    </td>
+    </tr>
 
-            </td>
-        </tr>
-        <!-- DRAFT -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_draft}{help_draft}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;draft&#125;</td>
-            <td >
-                <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
-            </td>
-        </tr>
+    <!-- page title -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_page_title}{help_page_title}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;page_title&#125;</td>
+    <td >
+        <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+    </td>
+    </tr>
+    <!-- description -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_description}{help_description}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;description&#125;</td>
+    <td >
+	<textarea name="description" style="width:95%" rows="2" id="userbox_description"
+		onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+	<br {xhtml}><strong><span id='description_cnt'></span><strong>
+    </td>
+    </tr>
 
+    <!-- defaulttemplatesdirectory -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;defaulttemplatesdirectory&#125;</td>
+    <td >
+        {select_defaulttemplatesdirectory}
+    </td>
+    </tr>
 
-
-        <!-- page title -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_page_title}{help_page_title}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;page_title&#125;</td>
-            <td >
-                <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
-            </td>
-        </tr>
-        <!-- description -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_description}{help_description}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;description&#125;</td>
-            <td >
-				<textarea name="description" style="width:95%" rows="2" id="userbox_description"
-				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-				<br {xhtml}><strong><span id='description_cnt'></span><strong>
-            </td>
-        </tr>
-
-        <!-- defaulttemplatesdirectory -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;defaulttemplatesdirectory&#125;</td>
-            <td >
-                {select_defaulttemplatesdirectory}
-            </td>
-        </tr>
-
-        <!-- category -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;category&#125;</td>
-            <td >{checklist_category}
-            </td>
-        </tr>
-        <!-- meta_description -->
-        <tr{hide_meta}>
-            <th style="width:10%" class="alignright">{lang_meta_description}{help_meta_description}</th>
-            <td style="width:10%; color:green" class="alignleft">description</th>
-            <td >
-			<textarea name="meta_description" style="width:95%" rows="2" id="userbox_description"
+    <!-- category -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;category&#125;</td>
+    <td >{checklist_category}
+    </td>
+    </tr>
+    <!-- meta_description -->
+    <tr{hide_meta}>
+    <th style="width:10%" class="alignright">{lang_meta_description}{help_meta_description}</th>
+    <td style="width:10%; color:green" class="alignleft">description</th>
+    <td >
+		<textarea name="meta_description" style="width:95%" rows="2" id="userbox_description"
 			onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
 			<br {xhtml}><strong><span id='meta_description_cnt'></span><strong>
-           </td>
-        </tr>
-        <!-- meta_keywords -->
-        <tr{hide_meta}>
-            <th style="width:10%" class="alignright">{lang_meta_keywords}{help_meta_keywords}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;meta_keywords&#125;</td>
-            <td >
-			<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
+    </td>
+    </tr>
+    <!-- meta_keywords -->
+    <tr{hide_meta}>
+    <th style="width:10%" class="alignright">{lang_meta_keywords}{help_meta_keywords}</th>
+	<td style="width:10%; color:green" class="alignleft">&#123;meta_keywords&#125;</td>
+	<td >
+		<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
 			onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
-			<br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
-            </td>
-        </tr>
-        <!-- hits -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_hits}{help_hits}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;hits&#125;</td>
-            <td ><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
-            </td>
-        </tr>
-        <!-- comments -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_comments}{help_comments}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;comments&#125;</td>
-            <td ><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
-            </td>
-        </tr>
+		<br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
+    </td>
+	</tr>
+    <!-- language_id  -->
+    <tr{hide_language_id}>
+    <th style="width:10%" class="alignright">{lang_language_id}{help_language_id}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;language_id&#125;</td>
+    <td >
+		{select_language_id}
+    </td>
+	</tr>
 
-        <!-- commentcode -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_commentcode}{help_commentcode}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;commentcode&#125;</td>
-            <td >
-            <select name="commentcode">
-                {optionlist_commentcode}
-            </select>
-            </td>
-        </tr>
+    <!-- hits -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_hits}{help_hits}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;hits&#125;</td>
+    <td ><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
+    </td>
+    </tr>
+    <!-- comments -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_comments}{help_comments}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;comments&#125;</td>
+    <td ><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
+    </td>
+    </tr>
 
-        <!-- comment_expire -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_comment_expire}{help_comment_expire}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;comment_expire&#125;</td>
-            <td >{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
-        </tr>
-        <!-- 編集日付 -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_modified}{help_modified}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;modified&#125;</td>
-            <td >{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
+    <!-- commentcode -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_commentcode}{help_commentcode}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;commentcode&#125;</td>
+    <td >
+        <select name="commentcode">
+        {optionlist_commentcode}
+        </select>
+    </td>
+    </tr>
+
+    <!-- comment_expire -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_comment_expire}{help_comment_expire}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;comment_expire&#125;</td>
+    <td >{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
+    </tr>
+    <!-- 編集日付 -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_modified}{help_modified}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;modified&#125;</td>
+    <td >{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
 {datetime_modified} </td>
-        </tr>
+    </tr>
 
-        <!-- 公開日 -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_released}{help_released}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;released&#125;</td>
-            <td >{datetime_released} </td>
-        </tr>
-        <!-- 公開終了日 -->
-        <tr>
-            <th style="width:10%" class="alignright">{lang_expired}{help_expire}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;expire&#125;</td>
-            <td >{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
-        </tr>
-        <!-- order -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_orderno}{help_orderno}</th>
-            <td style="width:10%; color:green" class="alignleft">&#123;orderno&#125;</td>
-            <td style="width:70%">
-                <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
-            </td>
-        </tr>
+    <!-- 公開日 -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_released}{help_released}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;released&#125;</td>
+    <td >{datetime_released} </td>
+    </tr>
+    <!-- 公開終了日 -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_expired}{help_expire}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;expire&#125;</td>
+    <td >{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
+    </tr>
+    <!-- order -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_orderno}{help_orderno}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;orderno&#125;</td>
+    <td>
+        <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+    </td>
+    </tr>
 
     </table>
   </fieldset>
@@ -216,7 +221,7 @@
     <legend>{lang_accessrights}</legend>
     <table>
         <tr>
-            <th style="width:20%" class="alignright">{lang_owner}:</th>
+            <th style="width:10%" class="alignright">{lang_owner}:</th>
             <td style="width:10%; color:green" class="alignleft">&#123;owner_name&#125;</td>
             <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
             ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>

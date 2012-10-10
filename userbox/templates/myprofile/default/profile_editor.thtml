@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20110704 { -->
+<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20121010 { -->
 
 <div id="userbox_admin">
 {about_thispage}
@@ -89,8 +89,16 @@
             <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
             <td >{checklist_category}
             </td>
-        </tr>
-        <!-- タイムスタンプ -->
+		</tr>
+
+        <!-- language_id  -->
+        <tr{hide_language_id}>
+            <th style="width:10%" class="alignright">{lang_language_id}{help_language_id}</th>
+            <td >
+			{select_language_id}
+            </td>
+		</tr>
+		<!-- タイムスタンプ -->
         <tr>
             <th style="width:10%" class="alignright">{lang_udatetime}</th>
             <td >{udatetime} {lang_uuid}:{uuid}</td>
