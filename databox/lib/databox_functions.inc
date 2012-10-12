@@ -461,7 +461,7 @@ global $_TABLES;
         $A = DB_fetchArray( $result, true );
         if ($kind="category"){
             if ($old_group_id<>$A['group_id']){
-                $retval .="<div id=\"group\">";
+                $retval .="<div class=\"databox_admin_data_title\">";
                 $retval .=$A['group_name'];
                 $retval .="</div>";
                 $old_group_id=$A['group_id'];
