@@ -18,7 +18,7 @@
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '追加属性';
+$LANG_DATABOX_admin_menu['3']= '属性';
 $LANG_DATABOX_admin_menu['31']= '属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
@@ -27,7 +27,7 @@ $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
 
 
-## ユーザ画面
+## ユーザー画面
 $LANG_DATABOX_user_menu = array();
 $LANG_DATABOX_user_menu['2']= 'マイデータ';
 
@@ -61,7 +61,7 @@ $LANG_DATABOX['category_separater']="、";
 $LANG_DATABOX['category_separater_text']="、";
 $LANG_DATABOX['field_separater']="、";
 
-$LANG_DATABOX['loginrequired'] = '（ログインしてください）';
+$LANG_DATABOX['loginrequired'] = '(ログインしてください)';
 
 $LANG_DATABOX['lastmodified'] = '%Y年%B%e日更新';
 $LANG_DATABOX['lastcreated'] = '%Y年%B%e日追加';
@@ -167,7 +167,7 @@ $LANG_DATABOX_ADMIN['inst_dataexport'] =
 
 
 $LANG_DATABOX_ADMIN['allow_display']='表示制限(一般画面)';
-$LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
+$LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザー用編集画面)';
 
 $LANG_DATABOX_ADMIN['type']='タイプ';
 
@@ -191,14 +191,14 @@ $LANG_DATABOX_ADMIN['selectlist']='既定リスト';
 $LANG_DATABOX_ADMIN['checkrequried']='必須チェック';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
-$LANG_DATABOX_ADMIN['uid'] = 'ユーザID';
+$LANG_DATABOX_ADMIN['uid'] = 'ユーザーID';
 $LANG_DATABOX_ADMIN['modified'] = '編集日付';
 $LANG_DATABOX_ADMIN['created'] = '作成日付';
 $LANG_DATABOX_ADMIN['released'] = '公開日';
 $LANG_DATABOX_ADMIN['expired'] = '公開終了日';
 
 $LANG_DATABOX_ADMIN['udatetime'] = 'タイムスタンプ';
-$LANG_DATABOX_ADMIN['uuid'] = '更新ユーザ';
+$LANG_DATABOX_ADMIN['uuid'] = '更新ユーザー';
 
 //@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(準備中)';
@@ -349,7 +349,7 @@ $LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 
 
-$LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
+$LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
 "属性の編集は、追加属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
@@ -495,16 +495,16 @@ $LANG_DATABOX_INPUTTYPE = array(
 
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する（orderに指定可能）';
-$LANG_DATABOX_ALLOW_DISPLAY[1] ='ログインユーザのみ表示する';
-$LANG_DATABOX_ALLOW_DISPLAY[2] ='グループ(所有者含)とadmin権のある人のみ表示';
-$LANG_DATABOX_ALLOW_DISPLAY[3] ='所有者とadmin権のある人のみ表示';
-$LANG_DATABOX_ALLOW_DISPLAY[4] ='admin権のある人のみ表示';
+$LANG_DATABOX_ALLOW_DISPLAY[1] ='ログインユーザーのみ表示する';
+$LANG_DATABOX_ALLOW_DISPLAY[2] ='グループ(所有者含)とアクセス権のある人のみ表示';
+$LANG_DATABOX_ALLOW_DISPLAY[3] ='所有者とアクセス権のある人のみ表示';
+$LANG_DATABOX_ALLOW_DISPLAY[4] ='アクセス権のある人のみ表示';
 $LANG_DATABOX_ALLOW_DISPLAY[5] = '表示しない';
 
 $LANG_DATABOX_ALLOW_EDIT = array();
 $LANG_DATABOX_ALLOW_EDIT[0] = '編集可';
-$LANG_DATABOX_ALLOW_EDIT[2] = 'グループ(所有者含)とadmin権のある人のみ編集可';
-$LANG_DATABOX_ALLOW_EDIT[3] = '所有者とadmin権のある人のみ編集可';
+$LANG_DATABOX_ALLOW_EDIT[2] = 'グループ(所有者含)とアクセス権のある人のみ編集可';
+$LANG_DATABOX_ALLOW_EDIT[3] = '所有者とアクセス権のある人のみ編集可';
 $LANG_DATABOX_ALLOW_EDIT[4] = '編集不可表示のみ';
 $LANG_DATABOX_ALLOW_EDIT[5] = '編集表示しない';
 
@@ -591,11 +591,11 @@ $LANG_confignames['databox']['layout_admin'] = 'レイアウト 管理画面';
 $LANG_confignames['databox']['mail_to'] = '更新通知先メールアドレス';
 $LANG_confignames['databox']['mail_to_owner'] = '所有者に更新を通知する';
 $LANG_confignames['databox']['mail_to_draft'] = '下書データの更新を通知する';
-$LANG_confignames['databox']['allow_data_update'] = 'ユーザに更新を許可する';
-$LANG_confignames['databox']['allow_data_delete'] = 'ユーザに削除を許可する';
-$LANG_confignames['databox']['allow_data_insert'] = 'ユーザに新規登録を許可する';
+$LANG_confignames['databox']['allow_data_update'] = 'ユーザーに更新を許可する';
+$LANG_confignames['databox']['allow_data_delete'] = 'ユーザーに削除を許可する';
+$LANG_confignames['databox']['allow_data_insert'] = 'ユーザーに新規登録を許可する';
 $LANG_confignames['databox']['admin_draft_default'] = '管理者新規登録のドラフトのデフォルト';
-$LANG_confignames['databox']['user_draft_default'] = 'ユーザ新規登録のドラフトのデフォルト';
+$LANG_confignames['databox']['user_draft_default'] = 'ユーザー新規登録のドラフトのデフォルト';
 
 $LANG_confignames['databox']['dateformat'] = '日付書式　datepicker用';
 
