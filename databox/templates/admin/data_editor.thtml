@@ -1,4 +1,5 @@
 <!-- plugins/databox/templates/admin/data_editor.thtml 2012/10/10 { -->
+
 <div id="databox_admin">
 	{about_thispage}
 	| <a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a>
@@ -14,8 +15,8 @@
     <table style="width:98%">
         <!-- id -->
         <tr>
-            <th style="width:30%">{lang_id}{help_id}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_id}{help_id}</th>
+            <td style="width:75%">
                 {id}
                 <input type="hidden" name="id" value="{id}"{xhtml}>
             </td>
@@ -23,8 +24,8 @@
 
         <!-- DRAFT -->
         <tr>
-            <th style="width:30%">{lang_draft}{help_draft}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_draft}{help_draft}</th>
+            <td style="width:75%">
                 <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
             </td>
         </tr>
@@ -32,8 +33,8 @@
 
         <!-- code -->
         <tr>
-            <th style="width:30%">{lang_code}{help_code}<span class="must">{lang_must_code}</span>{help_code}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_code}{help_code}<span class="must">{lang_must_code}</span>{help_code}</th>
+            <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="code" value="{code}"{xhtml}>
             </td>
         </tr>
@@ -41,22 +42,22 @@
 
         <!-- title -->
         <tr>
-            <th style="width:30%">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
+            <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="title" value="{title}"{xhtml}>
             </td>
         </tr>
         <!-- page title -->
         <tr>
-            <th style="width:30%">{lang_page_title}{help_page_title}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_page_title}{help_page_title}</th>
+            <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
             </td>
         </tr>
         <!-- description -->
         <tr>
-            <th style="width:30%; vertical-align:top">{lang_description}{help_description}</th>
-            <td style="width:70%">
+            <th style="width:25%; vertical-align:top" class="alignright">{lang_description}{help_description}</th>
+            <td style="width:75%">
 				<textarea name="description" style="width:95%" rows="2" id="databox_description"
 				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
 				<br {xhtml}><strong><span id='description_cnt'></span><strong>
@@ -65,22 +66,22 @@
 
         <!-- defaulttemplatesdirectory -->
         <tr>
-            <th style="width:30%">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
+            <td style="width:75%">
                 {select_defaulttemplatesdirectory}
             </td>
         </tr>
 
         <!-- category -->
         <tr>
-            <th style="width:30%">{lang_category}{help_category}</th>
-            <td style="width:70%">{checklist_category}
+            <th style="width:25%" class="alignright">{lang_category}{help_category}</th>
+            <td style="width:75%">{checklist_category}
             </td>
         </tr>
         <!-- meta_description -->
         <tr{hide_meta}>
-            <th style="width:30%">{lang_meta_description}{help_meta_description}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_meta_description}{help_meta_description}</th>
+            <td style="width:75%">
 			<textarea name="meta_description" style="width:95%" rows="2" id="databox_description"
 			onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
 			<br {xhtml}><strong><span id='meta_description_cnt'></span><strong>
@@ -88,8 +89,8 @@
         </tr>
         <!-- meta_keywords -->
         <tr{hide_meta}>
-            <th style="width:30%">{lang_meta_keywords}{help_meta_keywords}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_meta_keywords}{help_meta_keywords}</th>
+            <td style="width:75%">
 			<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
 			onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
 			<br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
@@ -99,8 +100,8 @@
 
         <!-- language_id  -->
         <tr{hide_language_id}>
-            <th style="width:30%">{lang_language_id}{help_language_id}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_language_id}{help_language_id}</th>
+            <td style="width:75%">
 			{select_language_id}
             </td>
 		</tr>
@@ -108,21 +109,21 @@
 
         <!-- hits -->
         <tr>
-            <th style="width:30%">{lang_hits}{help_hits}</th>
-            <td style="width:70%"><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
+            <th style="width:25%" class="alignright">{lang_hits}{help_hits}</th>
+            <td style="width:75%"><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
             </td>
         </tr>
         <!-- comments -->
         <tr>
-            <th style="width:30%">{lang_comments}{help_comments}</th>
-            <td style="width:70%"><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
+            <th style="width:25%" class="alignright">{lang_comments}{help_comments}</th>
+            <td style="width:75%"><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
             </td>
         </tr>
 
         <!-- commentcode -->
         <tr>
-            <th style="width:30%">{lang_commentcode}{help_commentcode}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_commentcode}{help_commentcode}</th>
+            <td style="width:75%">
             <select name="commentcode">
                 {optionlist_commentcode}
             </select>
@@ -131,30 +132,30 @@
 
         <!-- comment_expire -->
         <tr>
-            <th style="width:30%">{lang_comment_expire}{help_comment_expire}</th>
-            <td style="width:70%">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
+            <th style="width:25%" class="alignright">{lang_comment_expire}{help_comment_expire}</th>
+            <td style="width:75%">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
         </tr>
         <!-- 編集日付 -->
         <tr>
-            <th style="width:30%">{lang_modified}{help_modified}</th>
-            <td style="width:70%">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
+            <th style="width:25%" class="alignright">{lang_modified}{help_modified}</th>
+            <td style="width:75%">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
 {datetime_modified} </td>
         </tr>
 
         <!-- 公開日 -->
         <tr>
-            <th style="width:30%">{lang_released}{help_released}</th>
-            <td style="width:70%">{datetime_released} </td>
+            <th style="width:25%" class="alignright">{lang_released}{help_released}</th>
+            <td style="width:75%">{datetime_released} </td>
         </tr>
         <!-- 公開終了日 -->
         <tr>
-            <th style="width:30%">{lang_expired}{help_expire}</th>
-            <td style="width:70%">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
+            <th style="width:25%" class="alignright">{lang_expired}{help_expire}</th>
+            <td style="width:75%">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
         </tr>
         <!-- order -->
         <tr>
-            <th style="width:30%">{lang_orderno}{help_orderno}</th>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">{lang_orderno}{help_orderno}</th>
+            <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
         </tr>
@@ -175,42 +176,42 @@
     <legend>{lang_accessrights}</legend>
     <table style="width:98%">
         <tr>
-            <th style="width:20%">{lang_owner}:</th>
-            <td style="width:70%">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+            <th style="width:25%" class="alignright">{lang_owner}:</th>
+            <td style="width:75%">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
             ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
         </tr>
         <tr>
-            <th style="width:20%">{lang_group}:</th>
-            <td style="width:70%">{group_dropdown}</td>
+            <th style="width:25%" class="alignright">{lang_group}:</th>
+            <td style="width:75%">{group_dropdown}</td>
         </tr>
         <tr>
-            <th style="white-space:nowrap">{lang_permissions}:</th>
-            <td style="width:70%">&nbsp;</td>
+            <th style="width:25%; white-space:nowrap" class="alignright">{lang_permissions}:</th>
+            <td style="width:75%">&nbsp;</td>
         </tr>
         <tr>
-            <th style="width:30%">&nbsp;</td>
-            <td style="width:70%">{lang_perm_key}</td>
+            <th style="width:25%" class="alignright">&nbsp;</td>
+            <td style="width:75%">{lang_perm_key}</td>
         </tr>
         <tr>
-            <th style="width:30%">&nbsp;</td>
-            <td style="width:70%">
+            <th style="width:25%" class="alignright">&nbsp;</td>
+            <td style="width:75%">
                 {permissions_editor}
             </td>
         </tr>
         <tr>
-            <th style="width:30%">&nbsp;</td>
-            <td style="width:70%">{lang_permissions_msg}</td>
+            <th style="width:25%" class="alignright">&nbsp;</td>
+            <td style="width:75%">{lang_permissions_msg}</td>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <!-- タイムスタンプ -->
         <tr>
-            <th style="width:30%">{lang_udatetime}</th>
-            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
+            <th style="width:25%" class="alignright">{lang_udatetime}</th>
+            <td style="width:75%">{udatetime} {lang_uuid}:{uuid}</td>
             <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
         </tr>
         <tr>
-            <th style="width:30%">{lang_created}</th>
-            <td style="width:70%">{created}</td>
+            <th style="width:25%" class="alignright">{lang_created}</th>
+            <td style="width:75%">{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
             <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
         </tr>
@@ -231,4 +232,3 @@
 </div>
 
 <!-- } plugins/databox/templates/admin/data_editor.thtml -->
-
