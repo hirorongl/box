@@ -176,16 +176,16 @@
     <legend>{lang_accessrights}</legend>
     <table style="width:98%">
         <tr>
-            <th style="width:25%" class="alignright">{lang_owner}:</th>
+            <th style="width:25%" class="alignright">{lang_owner}</th>
             <td style="width:75%">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
             ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
         </tr>
         <tr>
-            <th style="width:25%" class="alignright">{lang_group}:</th>
+            <th style="width:25%" class="alignright">{lang_group}</th>
             <td style="width:75%">{group_dropdown}</td>
         </tr>
         <tr>
-            <th style="width:25%; white-space:nowrap" class="alignright">{lang_permissions}:</th>
+            <th style="width:25%; white-space:nowrap" class="alignright">{lang_permissions}</th>
             <td style="width:75%">&nbsp;</td>
         </tr>
         <tr>
