@@ -1,57 +1,60 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// |  追加項目別件数一覧、追加項目別一覧
+// |  アトリビュート別件数一覧、アトリビュート項目別一覧
 // +---------------------------------------------------------------------------+
-// $Id: public_html/databox/field.php
-define ('THIS_SCRIPT', 'databox/field.php');
-//define ('THIS_SCRIPT', 'databox/test.php');
-define ('NEXT_SCRIPT', 'databox/data.php');
-//define ('NEXT_SCRIPT', 'databox/test.php');
+// $Id: public_html/userbox/field.php
+define ('THIS_SCRIPT', 'userbox/attribute.php');
+//define ('THIS_SCRIPT', 'userbox/test.php');
+define ('NEXT_SCRIPT', 'userbox/profile.php');
+//define ('NEXT_SCRIPT', 'userbox/test.php');
 //20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20110905 update
+//20121017 update
 
 require_once ('../lib-common.php');
-if (!in_array('databox', $_PLUGINS)) {
+if (!in_array('userbox', $_PLUGINS)) {
     echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
 
 //debug 時 true
-$_DATABOX_VERBOSE = false;
+$_USERBOX_VERBOSE = false;
+//==============================================================================
 
+function fnclist(
+	$id
+	,$template
+)
 // +---------------------------------------------------------------------------+
-// | 機能  追加項目別件数一覧表示
+// | 機能  アトリビュート別件数一覧表示
 // | 書式
 // +---------------------------------------------------------------------------+
+// | 引数　$id　アトリビュートid(追加項目id)
 // | 引数　$template　使用するテンプレートフォルダの名前
 // | 戻値
 // +---------------------------------------------------------------------------+
-function fnclist($id,$template)
 {
     global $_CONF;
     global $_TABLES;
-    global $_DATABOX_CONF;
+    global $_USER_CONF;
     global $perpage;
-    global $LANG_DATABOX;
-    global $LANG_DATABOX_ADMIN;
-    global $LANG_DATABOX_NOYES;
-
+    global $LANG_USERBOX;
+    global $LANG_USERBOX_ADMIN;
+    global $LANG_USERBOX_NOYES;
+	
     //-----
     $page = COM_applyFilter($_REQUEST['page'],true);
     if (!isset($page) OR $page == 0) {
         $page = 1;
     }
 
-    $pi_name="databox";
+    $pi_name="userbox";
     $field_def=DATABOX_getadditiondef($pi_name);
 
-
     //-----
-    $tbl1=$_TABLES['DATABOX_addition'] ;
-    $tbl2=$_TABLES['DATABOX_base'] ;
-    $tbl3=$_TABLES['DATABOX_def_field'] ;
-
+    $tbl1=$_TABLES['USERBOX_addition'] ;
+    $tbl2=$_TABLES['USERBOX_base'] ;
+    $tbl3=$_TABLES['USERBOX_def_field'] ;
 
     //-----
     $sql = "SELECT ".LB;
@@ -78,7 +81,8 @@ function fnclist($id,$template)
     //TYPE[3] = '日付　（date picker対応）';
     //TYPE[7] = 'オプションリスト';
     //TYPE[8] = 'ラジオボタンリスト';
-    $sql .= " AND t3.type IN (0,2,3,7,8) ".LB;
+	//TYPE[9] = 'オプションリスト(マスタ)　（既定リスト）';
+	$sql .= " AND t3.type IN (0,2,3,7,8,9) ".LB;
 
     //ALLOW_DISPLAY[0] ='表示する（orderに指定可能）';
     //ALLOW_DISPLAY[1] ='ログインユーザのみ表示する';
@@ -93,7 +97,7 @@ function fnclist($id,$template)
     }
 
     //管理者の時,下書データも含む
-    if ( SEC_hasRights('databox.admin')) {
+    if ( SEC_hasRights('userbox.admin')) {
     }else{
        $sql .= " AND t2.draft_flag=0".LB;
     }
@@ -121,30 +125,35 @@ function fnclist($id,$template)
     //@@@@@@ 修正要
 
     if ($id==0){
-        $w=$LANG_DATABOX['field_top'];
+        $w=$LANG_USERBOX['attribute_top'];
+        $attribute_top=$w;
         $field_top="";
-        $field_top2=$w;
         $col="col.thtml";
     }else{
-        $url=$_CONF['site_url']."/databox/field.php";
-        $field_top=":<a href='".$url."'>".$LANG_DATABOX['field_top']."</a>";
-        $field_top2=$field_def[$id]['name'];
-        $w=$field_def[$id]['name'].$LANG_USERBOX['list'];
+        $url=$_CONF['site_url']."/userbox/attribute.php";
+        $attribute_top=":<a href='".$url."'>".$LANG_USERBOX['attribute_top']."</a>";
+        $w=$field_def[$id]['name'].$LANG_USERBOX['countlist'];
+        $field_top=$w;
         $col="col2.thtml";
     }
-
-
     if ($page > 1) {
         $page_title = sprintf ('%s (%d)', $w, $page);
     } else {
         $page_title = sprintf ('%s ', $w);
     }
-    $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
+	$headercode.=DATABOX_getheadercode(	
+		"attribute"
+		,$template
+		,$pi_name
+		,0
+		,$_CONF['site_name']
+		,$_CONF['meta_description']
+		,$_CONF['meta_keywords']
+		,$_CONF['meta_description']);
     $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
-
     //
 
-    $tmplfld=DATABOX_templatePath('field',$template,$pi_name);
+    $tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
     $templates = new Template($tmplfld);
 
 
@@ -161,11 +170,11 @@ function fnclist($id,$template)
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
 
-    $templates->set_var ('home',$LANG_DATABOX['home']);
+    $templates->set_var ('home',$LANG_USERBOX['home']);
 
 
+    $templates->set_var ('attribute_top',$attribute_top);
     $templates->set_var ('field_top',$field_top);
-    $templates->set_var ('field_top2',$field_top2);
 
     //page
     $offset = ($page - 1) * $perpage;
@@ -174,15 +183,13 @@ function fnclist($id,$template)
     if ($lin2>$cnt){
         $lin2=$cnt;
     }
-    $templates->set_var ('lang_view', $LANG_DATABOX['view']);
+    $templates->set_var ('lang_view', $LANG_USERBOX['view']);
     $templates->set_var ('lin', $lin1."-".($lin2));
     $templates->set_var ('cnt', $cnt);
 
     //
-    $templates->set_var ('lang_name', $LANG_DATABOX_ADMIN['name']);
-    $templates->set_var ('lang_count', $LANG_DATABOX['count']);
-
-    //
+    $templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
+    $templates->set_var ('lang_count', $LANG_USERBOX['count']);
 
     $sql .= " LIMIT $offset, $perpage";
 
@@ -203,7 +210,9 @@ function fnclist($id,$template)
                 $value
                 ,$field_def[$fid]['type']
                 ,$field_def[$fid]['selectionary']
-                ,$LANG_DATABOX_NOYES
+				,$LANG_USERBOX_NOYES
+				,$field_def[$fid]['selectlist']
+				,$pi_name
                 );
 
             $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
@@ -259,7 +268,7 @@ function fnclist($id,$template)
         $retval .=$school_content;
 
     }else{
-        $templates->set_var ('msg', $LANG_DATABOX["nohit"]);
+        $templates->set_var ('msg', $LANG_USERBOX["nohit"]);
         $templates->parse ('output', 'list');
         $content = $templates->finish ($templates->get_var ('output'));
         $retval .=$content;
@@ -276,7 +285,7 @@ function fnclist($id,$template)
 // MAIN
 // +---------------------------------------------------------------------------+
 //############################
-$pi_name    = 'databox';
+$pi_name    = 'userbox';
 //############################
 
 
@@ -308,11 +317,11 @@ if ($_CONF['url_rewrite']){
 if ($id===0){
     if ($code<>""){
         $id=DATABOX_codetoid(
-            $code,'DATABOX_def_field',"field_id","templatesetvar");
+            $code,'USERBOX_def_field',"field_id","templatesetvar");
     }
 }
 if ($perpage===0){
-    $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
+    $perpage=$_USERBOX_CONF['perpage']; // 1ページの行数 @@@@@
 }
 
 
@@ -344,7 +353,7 @@ if ($value==="") { //一覧
         $perpage=5;
     }
 
-    $display .= databox_field(
+    $display .= userbox_field(
         "notautotag"
         ,$id
         ,$value

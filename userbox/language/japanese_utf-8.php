@@ -18,7 +18,7 @@
 $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= '情報';
 $LANG_USERBOX_admin_menu['2']= 'プロフィール';
-$LANG_USERBOX_admin_menu['3']= '追加属性';
+$LANG_USERBOX_admin_menu['3']= 'アトリビュート';
 $LANG_USERBOX_admin_menu['31']= '属性セット';
 $LANG_USERBOX_admin_menu['4']= 'カテゴリ';
 $LANG_USERBOX_admin_menu['5']= 'グループ';
@@ -48,6 +48,7 @@ $LANG_USERBOX_MSG['descriptionempty'] =
 ###############################################################################
 $LANG_USERBOX = array();
 $LANG_USERBOX['list']="一覧";
+$LANG_USERBOX['countlist']="別件数一覧";
 $LANG_USERBOX['selectit']="指定なし";
 $LANG_USERBOX['selectall']="すべて";
 $LANG_USERBOX['byconfig']="コンフィギュレーション設定による";
@@ -66,7 +67,7 @@ $LANG_USERBOX['home']="HOME";
 $LANG_USERBOX['view']="表示";
 $LANG_USERBOX['count']="件数";
 $LANG_USERBOX['category_top']="カテゴリ別件数一覧";
-$LANG_USERBOX['field_top']="属性別件数一覧";
+$LANG_USERBOX['attribute_top']="アトリビュート別件数一覧";
 
 $LANG_USERBOX['search_link']="";
 
@@ -152,7 +153,7 @@ $LANG_USERBOX_ADMIN['parent']='親';
 $LANG_USERBOX_ADMIN['fieldset']='属性セット';
 $LANG_USERBOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_USERBOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_USERBOX_ADMIN['fieldlist']="追加属性一覧";
+$LANG_USERBOX_ADMIN['fieldlist']="アトリビュート一覧";
 $LANG_USERBOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_USERBOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_USERBOX_ADMIN['fieldsetlist']='属性セット一覧';
@@ -212,12 +213,12 @@ $LANG_USERBOX_ADMIN['must'] = '*必須';
 $LANG_USERBOX_ADMIN['enabled'] = '有効';
 $LANG_USERBOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_USERBOX_ADMIN['additionfields'] = '追加属性';
-$LANG_USERBOX_ADMIN['basicfields'] = '基本属性';
+$LANG_USERBOX_ADMIN['additionfields'] = 'アトリビュート';
+$LANG_USERBOX_ADMIN['basicfields'] = '基本';
 
 
 $LANG_USERBOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_USERBOX_ADMIN['field_id'] = '追加属性ID';
+$LANG_USERBOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_USERBOX_ADMIN['name'] = '名称';
 $LANG_USERBOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_USERBOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -270,7 +271,7 @@ $LANG_USERBOX_ADMIN['online'] = 'オンライン';
 $LANG_USERBOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_USERBOX_ADMIN['about_admin_profile'] = 'プロフィールの管理';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_USERBOX_ADMIN['about_admin_field'] = '追加属性の管理';
+$LANG_USERBOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_USERBOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_USERBOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
 $LANG_USERBOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';

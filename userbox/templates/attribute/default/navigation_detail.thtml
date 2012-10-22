@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/navigation_detail.thtml 20121019{ -->
+<!-- plugins/userbox/templates/attribute/default/navigation_detail.thtml 20121019{ -->
 
 <div id="userbox">
     <div class='order'>
@@ -14,7 +14,7 @@
   <div style="clear:both"></div>
 
   <ul class="contents" id="list">
-<li> ({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
+<li>({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
 {lang_description}&nbsp;
 {lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
 {lang_released}&nbsp;
@@ -32,5 +32,4 @@
   <div style="clear:both"></div>
 
 </div>
-
-<!-- } plugins/userbox/templates/category/default/navigation_detail.thtml -->
+<!-- } plugins/userbox/templates/attribute/default/navigation_detail.thtml -->

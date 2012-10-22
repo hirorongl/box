@@ -1,6 +1,6 @@
-<!-- plugins/userbox/templates/field/default/navigation.thtml { -->
+<!-- plugins/databox/templates/attribute/default/navigation.thtml 20110204{ -->
 
-<div id="userbox">
+<div id="databox">
 
   <div class='pagenav'>
     {page_navigation}
@@ -21,4 +21,4 @@
 
 </div>
 
-<!-- } plugins/userbox/templates/field/default/navigation.thtml -->
+<!-- } plugins/databox/templates/attribute/default/navigation.thtml -->

@@ -12,6 +12,7 @@
 // @@@@@追加予定：更新したらメール送信 ?
 
 define ('THIS_SCRIPT', 'databox/field.php');
+define ('THIS_SCRIPT2', 'databox/attribute.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 
 

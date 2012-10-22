@@ -1,0 +1,13 @@
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20128120 { -->
+<li>{data_link}<!-- <a href="{data_url}">{data_title}</a> -->
+(id: {data_id})(code: {data_code})&nbsp;
+{data_description}&nbsp;
+{data_datefield}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+{data_released}&nbsp;
+{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+
+{data_edit}
+<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+&nbsp;&nbsp;&nbsp;{zipcode}  {tel}  {additionfield1}{additionfield2}
+</li>
+<!-- } plugins/databox/templates/attribute/default/col_detail.thtml -->

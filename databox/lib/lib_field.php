@@ -40,14 +40,14 @@ function LIB_List(
     $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
     $url2=$_CONF['site_url'] . '/'.$pi_name.'/index.php';
 
-    $url3=$_CONF['site_url'] . '/'.$pi_name.'/field.php';
+    $url3=$_CONF['site_url'] . '/'.$pi_name.'/attribute.php';
 
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 
     $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
     $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
-    $menu_arr[]=array('url' => $url3,'text' => $lang_box['field_top']);
+    $menu_arr[]=array('url' => $url3,'text' => $lang_box['attribute_top']);
 
     $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
     //$menu_arr[]=array('url' => $url6,'text' => $lang_box['export']);
@@ -131,7 +131,7 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
     $type=COM_applyFilter($A['type'],true);
     $allow_display=COM_applyFilter($A['allow_display'],true);
-    $allow_type = array(0,2,3,7,8);
+    $allow_type = array(0,2,3,7,8,9);
 	
     switch($fieldname) {
         //編集アイコン
@@ -154,7 +154,7 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
             if (in_array ($type,$allow_type)){
                 if ($allow_display<2){
                     $name=COM_applyFilter($A['name']);
-                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
                     $url.="?";
                     $url.="m=id";
                     $url.="&id=".$A['field_id'];
@@ -167,7 +167,7 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
             if (in_array ($type,$allow_type)){
                 if ($allow_display<2){
                     $name=COM_applyFilter($A['templatesetvar']);
-                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                    $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
                     $url.="?";
                     $url.="m=code";
                     $url.="&code=".$A['templatesetvar'];
