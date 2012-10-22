@@ -1,8 +1,9 @@
-<!-- plugins/userbox/templates/category/default/navigation_detail.thtml 20121019{ -->
+<!-- plugins/databox/templates/attribute/default/navigation_detail.thtml 20121017{ -->
 
-<div id="userbox">
+<div id="databox">
+
     <div class='order'>
-        {order_date}|{order_orderno}|{order_username}|{order_fullname}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
 {order_tel}|{order_zipcode}
     </div>
     <div class='order_random'>{order_random}</div>
@@ -14,7 +15,7 @@
   <div style="clear:both"></div>
 
   <ul class="contents" id="list">
-<li> ({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
+<li>{lang_title} ({lang_id}) ({lang_code})&nbsp;
 {lang_description}&nbsp;
 {lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
 {lang_released}&nbsp;
@@ -33,4 +34,5 @@
 
 </div>
 
-<!-- } plugins/userbox/templates/category/default/navigation_detail.thtml -->
+
+<!-- } plugins/databox/templates/attribute/default/navigation_detail.thtml -->

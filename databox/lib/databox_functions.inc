@@ -2453,7 +2453,9 @@ function DATABOX_getfieldvalue(
     $value
     ,$type
     ,$selectionary
-    ,$lang_box_noyes
+	,$lang_box_noyes
+	,$selectlist
+	,$pi_name
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
@@ -2468,16 +2470,22 @@ function DATABOX_getfieldvalue(
 // +---------------------------------------------------------------------------+
 //update 20110204
 {
-     switch ($type) {
+	global $_TABLES;
+	
+	switch ($type) {
 
         case 2://いいえ/はい
             $fieldvalue = $lang_box_noyes[$value];
             break;
         case 7://オプションリスト配列//@@@@@@
         case 8://ラジオボタンリスト//@@@@@
-            $fieldvalue.= $selectionary[$value];
+            $fieldvalue= $selectionary[$value];
             break;
-        case 9://既定リスト　（準備中）';
+		case 9://既定リスト　（準備中）';
+		$fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
+					,"value"
+					,"kind='{$selectlist}' AND no={$value}");
+            break;
         case 4://日時（準備中）
         case 3://日付（準備中）
         case 5://メールアドレス　（準備中）';

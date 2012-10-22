@@ -11,6 +11,7 @@
 // @@@@@追加予定：更新したらメール送信 ?
 
 define ('THIS_SCRIPT', 'userbox/field.php');
+define ('THIS_SCRIPT2', 'userbox/attribute.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
 
 require_once('userbox_functions.php');

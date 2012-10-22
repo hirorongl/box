@@ -1,5 +1,4 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20120905{ -->
-
+<!-- plugins/userbox/templates/attribute/default/col_detail.thtml 20121019 { -->
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
 <span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
@@ -24,4 +23,4 @@
 <span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
 
 </li>
-<!-- } plugins/userbox/templates/category/default/col_detail.thtml -->
+<!-- } plugins/userbox/templates/attribute/default/col_detail.thtml -->

@@ -122,8 +122,8 @@ function plugin_autotags_userbox (
 							,$p['category_code']
 							,$p['mode']
                         );
-                        break;
-                    case 'additioncount':
+						break;
+				    case 'attributecount':
                         $rt=userbox_count_each_afield(
                             $p['templatesetvar']
                             ,$p['value']
@@ -146,8 +146,8 @@ function plugin_autotags_userbox (
                             ,$p['category_id']
                             ,$p['category_code']
                             );
-                        break;
-                    case 'field':
+							break;
+                    case 'attribute':
                         $rt= userbox_field(
                             "autotag"
                             ,$p['field_id']
@@ -1355,9 +1355,7 @@ function userbox_profile(
 function userbox_field(
     $autotag
     ,$field_id=null
-
     ,$value=""
-
     ,$template=null
     ,$nohitmsg=""
     ,$perpage =0
@@ -1366,20 +1364,20 @@ function userbox_field(
     ,$field_code=null
 )
 // +---------------------------------------------------------------------------+
-// | 機能  追加項目データ別一覧表示
+// | 機能  アトリビュート別一覧表示
 // | 書式
 // +---------------------------------------------------------------------------+
 // | 引数 $autotag:notautotagの時ヘッダを表示しない
-// | 引数 $field_id:カテゴリid
+// | 引数 $field_id:追加属性id
 // | 引数 $value:表示する項目の値
 // | 引数 $template:使用するテンプレートのフォルダ名
 // | 引数 $nohitmsg      :"yes"の時nohitメッセージ表示
-// | 引数 $m             :"page"の時ヘッダ表示
 // | 引数 $perpage       :1pageあたりの件数、0の時改ページなし
+// | 引数 $page      	 :
 // | 引数 $order         :順序
-// | 引数 $code          :
+// | 引数 $field_code    :
 // +---------------------------------------------------------------------------+
-// | public_html/category.php および　自動タグで使用
+// | public_html/attribute.php および　自動タグで使用
 // | ヘッダはコンフィギュレーション設定により表示されない場合があります
 // | idもcodeも指定されない場合は、全カテゴリ
 // +---------------------------------------------------------------------------+
@@ -1394,6 +1392,7 @@ function userbox_field(
     global $LANG_USERBOX;
     global $LANG_USERBOX_ADMIN;
     global $LANG_USERBOX_NOYES;
+    global $_IMAGE_TYPE;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -1403,6 +1402,23 @@ function userbox_field(
         }
 
     }
+    //-----table assign
+    $tbl1=$_TABLES['USERBOX_addition'] ;
+	$tbl2=$_TABLES['USERBOX_base'] ;
+	$tbl3=$_TABLES['USERBOX_addition'] ;
+    $tbl4=$_TABLES['users'] ;
+	
+	//日付関連
+	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
+	$new_img=$_USERBOX_CONF['new_img'];
+    if ($new_img==""){
+        $new_img="New!";
+	}
+    $newmarkday=$_USERBOX_CONF['newmarkday'];
+    if ($newmarkday==""){
+        $newmarkday=3;
+    }
+    $chkday=strtotime("- $newmarkday days",time());
 
     //-----引数チェック
     if (is_null($value) OR $value==="") {
@@ -1418,15 +1434,15 @@ function userbox_field(
     }
     if ($field_id===0) {
         return;
-    }
+	}
+	
     if ($field_code===""){
-
         $field_code=DB_getItem( $_TABLES['USERBOX_def_field']
                  ,"templatesetvar","field_id={$field_id}");
     }
     $field_def=DATABOX_getadditiondef($pi_name);
     $type=$field_def[$field_id]['type'];
-    $w = array(0,2,3,7,8);
+    $w = array(0,2,3,7,8,9);
     if (in_array ($type,$w)){
     }else{
         return;
@@ -1436,64 +1452,71 @@ function userbox_field(
         $page = 1;
     }
 
-    $field_def=DATABOX_getadditiondef($pi_name);
-
     if ($perpage===0 OR is_null($perpage)){
         $perpage=$_USERBOX_CONF['perpage'];
     }
 
-    $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
 
-    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder);
+    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder,$orderfield_id);
+	$field_def[$field_id]['name'];
+    $field_name=$field_def[$field_id]['name'];
+	$field_templatesetvar=$field_def[$field_id]['templatesetvar'];
+	$field_description=$field_def[$field_id]['description'];
 
-    //-----ページ
-
-    $field_name=DB_getItem( $_TABLES['USERBOX_def_field']
-             ,"name","field_id={$field_id}");
     $fieldvalue=DATABOX_getfieldvalue(
           $value
          ,$field_def[$field_id]['type']
          ,$field_def[$field_id]['selectionary']
          ,$LANG_USERBOX_NOYES
+		 ,$field_def[$field_id]['selectlist']
+		 ,$pi_name
           );
 
 
     if (is_null($template) or ($template==="")){
-         $template="default";
+        $template="default";
     }
 
 
-    //-----table assign
-    $tbl1=$_TABLES['USERBOX_addition'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl4=$_TABLES['users'] ;
     //-----
-
     $sql = "SELECT ";
 
     $sql .= " t2.id ".LB;
-    $sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.description ".LB;
+	$sql .= " ,t2.released ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
+	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
-
     $sql .= " ,t4.username";
-    $sql .= " ,t4.fullname";
+	$sql .= " ,t4.fullname";
+    $sql .= " ,t4.photo";
+    $sql .= " ,t4.email";
+	
+	if ($addfieldorder){
+        $sql .= " ,t3.value ".LB;
+    }
 
-    $sql .= " ,t1.value ".LB;
 
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
     $sql .= " ,{$tbl1} AS t1 ".LB;
     $sql .= " ,{$tbl4} AS t4 ".LB;
+    if ($addfieldorder){
+        $sql .= " ,{$tbl3} AS t3 ".LB;
+    }
 
     $sql .= " WHERE ".LB;
     $sql .= " t1.field_id = ".$field_id.LB;
     $sql .= " AND t1.id = t2.id ".LB;
     $sql .= " AND t1.value = \"".$value."\"".LB;
     $sql .= " AND t2.id=t4.uid ".LB;
-
+    if ($addfieldorder){
+		$sql .= " AND t3.field_id=".$orderfield_id.LB;
+        $sql .= " AND t3.id=t2.id".LB;
+    }
     //管理者の時,下書データも含む
     //if ( SEC_hasRights('userbox.admin')) {
     //}else{
@@ -1518,94 +1541,106 @@ function userbox_field(
     if ($perpage > 0) {
         $pages = ceil($cnt / $perpage);
     }
-
-    //ヘッダ、左ブロック
+    $offset = ($page - 1) * $perpage;
+    $sql .= " LIMIT $offset, $perpage";
+	
+	//ヘッダ、左ブロック
     if ($autotag==="notautotag"){
         if ($page > 1) {
             $page_title = sprintf ('%s (%d)', $field_name, $page);
         } else {
             $page_title = sprintf ('%s ', $field_name);
         }
-        $headercode="<title>".$_CONF['site_name']." - ".$page_title ."</title>";
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title);
+		$headercode=DATABOX_getheadercode(	
+			"attribute"
+			,$template
+			,$pi_name
+			,$field_id
+			,$field_name
+			,$field_description
+			,$field_name
+			,$field_description);
+        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
     }
-
-    $tmplfld=DATABOX_templatePath('field',$template,$pi_name);
-    $templates = new Template($tmplfld);
-    $templates->set_file (array (
-        'list' => 'list_detail.thtml',
-        'nav'   => 'navigation_detail.thtml',
-        'row'   => 'row.thtml',
-        'col'   => "col_detail.thtml",
-        'pagenav'  => 'pagenavigation.thtml'
-        ));
-
-
-    //
-    $templates->set_var ('site_url',$_CONF['site_url']);
-    $templates->set_var ('this_script',THIS_SCRIPT);
-
-    //bread
-    $templates->set_var ('home',$LANG_USERBOX['home']);
-
-    $url=$_CONF['site_url']."/userbox/addition.php";
-    $addition_top=":<a href='".$url."'>".$LANG_USERBOX['addition_top']."</a>";
-    $templates->set_var ('addition_top',$addition_top);
-
-    $url=$_CONF['site_url']."/userbox/field.php";
-    $field_top=":<a href='".$url."'>".$LANG_USERBOX['field_top']."</a>";
-    $templates->set_var ('field_top',$field_top);
-
-    $url=$_CONF['site_url']."/userbox/field.php?m=id&id=".$field_id;
-    $field_top2=":<a href='".$url."'>".$field_name.$LANG_USERBOX['list']."</a>";
-    $templates->set_var ('field_top2',$field_top2);
-
-
-    $templates->set_var ('fieldvalue',$fieldvalue);
-
-
-    //page
-    $offset = ($page - 1) * $perpage;
-    $templates->set_var ('cnt', $cnt);
-    $lin1=$offset+1;
-    $lin2=$lin1+$perpage - 1;
-    if ($lin2>$cnt){
-        $lin2=$cnt;
-    }
-
-    //summary navigation
-    $templates->set_var ('lang_view', $LANG_USERBOX['view']);
-    $templates->set_var ('lin', $lin1."-".($lin2));
-    $templates->set_var ('cnt', $cnt);
-
-    $templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
-
-    $templates->set_var ('lang_code', $LANG_USERBOX_ADMIN['code']);
-    $templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
-
-    //
-    $templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
-    $templates->set_var ('lang_title', $LANG_USERBOX_ADMIN['title']);
-    $templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
-    // 追加項目のヘッダ
+	
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
-
-    $sql .= " LIMIT $offset, $perpage";
+	$url=$_CONF['site_url']."/userbox/attribute.php";
+	$attribute_top=":<a href='".$url."'>".$LANG_USERBOX['attribute_top']."</a>";
+	$url=$_CONF['site_url']."/userbox/attribute.php?m=id&id=".$field_id;
+	$field_top=":<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
+	
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
     if ($numrows > 0) {
+		$tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
+		$templates = new Template($tmplfld);
+		$templates->set_file (array (
+			'list' => 'list_detail.thtml',
+			'nav'   => 'navigation_detail.thtml',
+			'row'   => 'row.thtml',
+			'col'   => "col_detail.thtml",
+			'pagenav'  => 'pagenavigation.thtml'
+			));
+		//
+		$templates->set_var ('site_url',$_CONF['site_url']);
+		$templates->set_var ('this_script',THIS_SCRIPT);
+
+		//bread
+		$templates->set_var ('home',$LANG_USERBOX['home']);
+		$templates->set_var ('attribute_top',$addition_top);
+		$templates->set_var ('field_top',$field_top);
+		
+		$templates->set_var ('field_name',$field_name);
+		$templates->set_var ('field_templatesetvar',$field_templatesetvar);
+		$templates->set_var ('field_description',$field_description);
+
+		$templates->set_var ('fieldvalue',$fieldvalue);
+
+		//page
+		$offset = ($page - 1) * $perpage;
+		$templates->set_var ('cnt', $cnt);
+		$lin1=$offset+1;
+		$lin2=$lin1+$perpage - 1;
+		if ($lin2>$cnt){
+			$lin2=$cnt;
+		}
+
+		//summary navigation
+		$templates->set_var ('lang_view', $LANG_USERBOX['view']);
+		$templates->set_var ('lin', $lin1."-".($lin2));
+		$templates->set_var ('cnt', $cnt);
+
+		$templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
+
+		$templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
+		$templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
+		$templates->set_var ('lang_uid', $LANG28[2]);
+		$templates->set_var ('lang_username', $LANG28[3]);
+		$templates->set_var ('lang_fullname',$LANG28[4]);
+
+		//
+		$templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
+		$templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
+		$templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
 
             $description=COM_applyFilter($A['description']);
             $username=COM_applyFilter($A['username']);
             $fullname=COM_applyFilter($A['fullname']);
             $id=COM_applyFilter($A['id']);
-            $datefield=COM_applyFilter($A['datefield']);
-            $value=COM_applyFilter($A['value']);
+			$datefield=COM_applyFilter($A['datefield']);
+			$released=COM_applyFilter($A['released']);
+			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
+			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
+			
+            $sortvalue=COM_applyFilter($A['value']);
+            $group_id = $A['group_id'];
+            $owner_id = $A['owner_id'];
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -1623,15 +1658,24 @@ function userbox_field(
 
             $templates->set_var ('data_link', $link);
 
-            $templates->set_var ('fullname', $A['fullname']);
+            $templates->set_var ('data_fullname', $fullname);
 
             $templates->set_var ('data_username', $username);
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
-            $templates->set_var ('data_url', $url);
+			$templates->set_var ('data_url', $url);
+			//data_released
             $templates->set_var ('data_datefield', $datefield);
-            $templates->set_var ('data_value', $value);
+			$templates->set_var ('data_value', $sortvalue);
+			
+			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
+
+			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
+				$templates->set_var ('new_img', $new_img);
+			}else{
+				$templates->set_var ('new_img', '');
+			}
 
             //追加項目
             $group_id = stripslashes($A['group_id']);
@@ -1639,6 +1683,45 @@ function userbox_field(
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+			
+			//管理者の時「編集」
+			if ( SEC_hasRights('databox.admin')) {
+				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+				$attr = array('title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+				$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+				
+				$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+				$url = $_CONF['site_admin_url'];
+				$url .= '/plugins/userbox/profile.php';
+				$url .= '?mode=edit';
+				$url .= '&amp;'."id={$id}";
+				$icon = '&nbsp;' ;
+				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+				$templates->set_var ('data_edit', $icon);
+			}else{
+				$rt=databox_chk_loaddata($id);
+				//編集権限のあるMyProfile
+				if ( $rt==="OK") {
+					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+					$attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+					$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+
+					$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+
+					$url = $_CONF['site_url'];
+					$url .= '/databox/myprofile/profile.php';
+					$url .= '?mode=edit';
+					$url .= '&amp;'."id={$id}";
+
+					$icon = '&nbsp;' ;
+					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+
+					$templates->set_var ('data_edit', $icon);
+				}else{
+					$templates->set_var ('data_edit', "");
+				}
+				
+			}
 
             //=====
             $templates->parse ('col_var', 'col', true);
@@ -1685,11 +1768,33 @@ function userbox_field(
 
     }else{
         if ($nohitmsg==="yes"){
-            $templates->set_var ('msg', $LANG_USERBOX["nohit"]);
-            //@@@@@@$templates->set_var ('search_link', $LANG_USERBOX['search_link']);//@@@@@
-            $templates->parse ('output', 'list');
-            $content = $templates->finish ($templates->get_var ('output'));
-            $retval .=$content;
+ 			$tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
+			$templates = new Template($tmplfld);
+			$templates->set_file (array (
+                'list' => 'nohit.thtml',
+			));
+			
+			//bread
+			$templates->set_var ('home',$LANG_USERBOX['home']);
+			$templates->set_var ('attribute_top',$attribute_top);
+			$templates->set_var ('field_top',$field_top);
+			
+			$templates->set_var ('field_name',$field_name);
+			$templates->set_var ('field_templatesetvar',$templatesetvar);
+			$templates->set_var ('field_description',$field_description);
+			
+			$templates->set_var ('fieldvalue',$fieldvalue);
+						
+			$templates->set_var('xhtml', XHTML);
+			$templates->set_var('site_url', $_CONF['site_url']);
+			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+			$templates->set_var('layout_url', $_CONF['layout_url']);
+			
+			$templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
+
+			$templates->parse ('output', 'list');
+			$content = $templates->finish ($templates->get_var ('output'));
+			$retval .=$content;
         }
     }
 
@@ -1702,16 +1807,19 @@ function userbox_orderby(
     $datefield
     ,&$order
     ,&$orderby
-    ,&$addfieldorder
+	,&$addfieldorder
+	,&$field_id
+
 )
 // +---------------------------------------------------------------------------+
-// | 機能  order orderby addfieldorder を編集
-// | 書式  userbox_orderby($order,$orderby,$addfieldorder);
+// | 機能  order orderby addfieldorder $field_id を編集
+// | 書式  userbox_orderby($order,$orderby,$addfieldorder,$field_id);
 // +---------------------------------------------------------------------------+
 // | 引数 $datefield
 // | 引数戻値 $order
 // | 引数戻値 $orderby
 // | 引数戻値 $addfieldorder
+// | 引数戻値 $field_id
 // +---------------------------------------------------------------------------+
 {
 

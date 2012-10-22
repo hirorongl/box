@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2012/10/16 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2012/10/22 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -173,7 +173,7 @@ list_detail.thtml
  data_user_photo
  data_edit
  new_img
- </br><a  href="#notefoot_add" class="note_super" title="">追加属性のテーマ変数</a>
+ </br><a  href="#notefoot_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
  </td>
 </tr>
 <tr class="r2">
@@ -196,25 +196,186 @@ home
 
 
 
+<tr>
+<td rowspan=4>
+アトリビュート別件数一覧<br/>
+public_html/attribute.php<br/>
+(各アトリビュート)別件数一覧<br/>
+public_html/attribute.php?m=id&id=1<br/>
+</td>
+<td>
+【attribute】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+site_mail,
+og_title,
+og_image,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+</td>
+</tr>
+
 <tr >
 <td>
-追加属性別件数一覧<br/>
-public_html/field.php<br/>
+【attribute】list.thtml,navigation.thtml,row.thtml
+,pagenavigation.thtml
 </td>
 <td>
+site_url,
+this_script,
+home,
+attribute_top,
+field_top,
+lang_view,
+lin,
+cnt,
+lang_name,
+lang_count,
+page_navigation,
+blockfooter,
+(msg)
 </td>
-<td></td>
+</tr>
+
+<tr >
+<td>
+【attribute】col.thtml アトリビュート別件数一覧用
+</td>
+<td>
+field_link,
+value_link,
+field_description,
+field_name,
+field_url, 
+value_url, 
+value,
+count
+</td>
+</tr>
+<tr >
+<td>
+【attribute】col2.thtml （各アトリビュート別）件数一覧用
+</td>
+<td>
+value_link,
+field_description,
+field_name,
+field_url, 
+value_url, 
+value,
+count
+</td>
+</tr>
+
+<tr class="r2">
+<td  rowspan=4>
+アトリビュート別一覧<br/>
+public_html/attribute.php?m=id&id=1&value=27<br/>
+</td>
+<td>
+【attribute】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+site_mail,
+og_title,
+og_image,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+</td>
 </tr>
 
 <tr class="r2">
 <td>
-追加属性別一覧<br/>
-public_html/field.php<br/>
+【attribute】
+list_detail.thtml 
+ navigation_detail.thtml
+ row.thtml
+ pagenavigation.thtml
+ </td>
+ <td>
+site_url,
+ this_script,
+ home,
+ attribute_top,
+ field_top,
+ field_name,
+ field_templatesetvar,
+ field_description,
+ fieldvalue,
+
+ lang_view,
+ lin,
+ cnt,
+ lang_name,
+ lang_username,
+ lang_id, 
+ lang_uid,
+ lang_username, 
+ lang_fullname,
+ lang_date,
+ lang_released,
+ lang_description,
+
+ blockfooter,
+ msg
+ 
+</td>	
+</tr>
+
+<tr class="r2">
+
+<td>
+【attribute】col_detail.thtml 
+</td>
+<td>data_link,
+ data_fullname,
+ data_username,
+ 
+ data_description,
+ data_id,
+ data_url,
+ data_released,<br/>
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ new_img (使用する日付と新着マーク表示期間で判定します)<br/>
+ data_value(ソート順に指定されたアトリビュート項目の値),<br/>
+ data_edit
+ </br><a  href="#notefoot_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ </td>
+</tr>
+<tr class="r2">
+<td>
+【attribute】nohit.thtml
 </td>
 <td>
-</td>
-<td></td>
+home
+,attribute_top
+,field_top
+,field_name
+,field_templatesetvar
+,field_description
+,field_value
+,xhtml
+,site_url
+,site_admin_url
+,layout_url
+,lang_nohit</td>
 </tr>
+
+<tr>
 <td>
 profile一覧<br/>
 public_html/profile.php<br/>
@@ -226,8 +387,8 @@ public_html/profile.php<br/>
 
 <tr>
 <td rowspan=4>
-profile<br/>
-public_html/profile.php<br/>
+個別表示<br/>
+public_html/profile.php?m=id&id=2<br/>
 </td>
 <td>
 【profile】headercode.thtml
@@ -306,7 +467,7 @@ last_modify_uid,
 last_modify_name,
 last_modify_fullname,
 edit
-</br><a  href="#notefoot_add" class="note_super" title="">追加属性のテーマ変数</a>
+</br><a  href="#notefoot_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
 </br>currenturl,appid<a id="notetext_1" href="#notefoot_1" class="note_super" title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です">*1</a></br>
 group_<a  href="#notefoot_categoryid" class="note_super" title="category id">id</a>,
 group_<a  href="#notefoot_categorycode" class="note_super" title="category code">code</a>,
@@ -369,7 +530,7 @@ public_html/myprofile/profile.php<br/>
 <a class="note_super" href="#notetext_1" id="notefoot_1">*1</a>
 <span class="small">Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。</span><br/>
 
-<a class="note_super" href="#notetext_add" id="#notefoot_add">追加属性のテーマ変数</a>
+<a class="note_super" href="#notetext_add" id="#notefoot_add">各アトリビュートのテーマ変数</a>
 <span class="small">
 {additionfield<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
 {additionfield_tn<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
@@ -380,9 +541,9 @@ public_html/myprofile/profile.php<br/>
 {additionfield:no<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}
 {additionfield:disp<a  href="#notefoot_fieldid" class="note_super" title="field id">id</a>}<br/>
 {登録したテーマ変数名}
-{登録したテーマ変数名_tn}
+{登録したテーマ変数名_tn}→サムネイルファイル名
 {登録したテーマ変数名_noimage}
-{登録したテーマ変数名_tn_image}
+{登録したテーマ変数名_tn_image}→サムネイルイメージ
 {登録したテーマ変数名_tn_noimage}
 {登録したテーマ変数名:2}→既定リストマスタのvalue2
 {登録したテーマ変数名:disp}→既定リストマスタのdisp

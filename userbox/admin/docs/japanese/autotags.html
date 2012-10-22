@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2012/04/23 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2012/10/22 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -71,11 +71,11 @@ order に指定できるのは、 random date orderno code title description id 
 </tr>
 
 <tr >
-<td>[userbox:additioncount　テンプレートフォルダ　追加項目値]</td>
+<td>[userbox:attributecount　テーマ変数　値]</td>
 <td>
-追加項目別件数一覧<br />
-例１：[userbox:additioncount] <br />
-例２：[userbox:additioncount templatesetvar:xxx value:xxx]<br />
+指定アトリビュートが指定値のデータの件数<br />
+例１：[userbox:attributecount] <br />
+例２：[userbox:attributecount templatesetvar:pref value:27]<br />
 </td>
 </tr>
 
@@ -100,15 +100,14 @@ order に指定できるのは、 random date orderno code title description id 
 </tr>
 
 <tr class="r2">
-<td>[userbox:field　テンプレートフォルダ　追加項目値　ほか例２参照]</td>
-<td>
-<br />
-例１：[userbox:field field_id:99 value:xx ]<br />
-例２：[userbox:field field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
-例３：[userbox:field field_code:xxx value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<td>[userbox:attribute　テンプレートフォルダ　追加項目値　ほか例２参照]
+</td>
+<td>アトリビュート別一覧<br /> 指定アトリビュートが指定値のデータ一覧<br />
+例１：[userbox:attribute field_id:99 value:xx ]<br />
+例２：[userbox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+例３：[userbox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
 </td>
 </tr>
-
 <tr >
 <td>[userbox:msg　メッセージ]</td>
 <td>
