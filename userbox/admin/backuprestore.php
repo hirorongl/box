@@ -108,11 +108,11 @@ if ($action=="" ) {
 
 $display = '';
 $menuno=6;
+$information = array();
 
-$page_title=$LANG_USERBOX_ADMIN['piname']."backup and restore";
-$display.= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
+$information['pagetitle']=$LANG_USERBOX_ADMIN['piname']."backup and restore";
 $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
+
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);
@@ -120,8 +120,10 @@ if (isset ($_REQUEST['msg'])) {
 
 switch ($action) {
     case $LANG_USERBOX_ADMIN['config_init']:
-        $display.=LIB_Deleteconfig($pi_name,$config);
-        $display.=LIB_Initializeconfig($pi_name);
+        $dummy=LIB_Deleteconfig($pi_name,$config);
+        $dummy=LIB_Initializeconfig($pi_name);
+		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/databox/backuprestore.php');
+		exit;
         break;
     case $LANG_USERBOX_ADMIN['config_backup']:
         $display.=LIB_Backupconfig($pi_name);
@@ -130,17 +132,20 @@ switch ($action) {
         $display.=LIB_Restoreconfig($pi_name,$config);
 		break;
     case $LANG_USERBOX_ADMIN['config_update']:
-		$display.=LIB_Backupconfig($pi_name,"update");
-		$display.=LIB_Deleteconfig($pi_name,$config);
-		$display.=LIB_Initializeconfig($pi_name);
-		$display.=LIB_Restoreconfig($pi_name,$config,"update");
-
+		$dummy=LIB_Backupconfig($pi_name,"update");
+		$dummy=LIB_Deleteconfig($pi_name,$config);
+		$dummy=LIB_Initializeconfig($pi_name);
+		$dummy=LIB_Restoreconfig($pi_name,$config,"update");
+		exit;
+        break;
+ 
     default:
 }
 
 $display.=fncDisply($pi_name);
-$display.= DATABOX_siteFooter($pi_name,'_admin');
 
+$display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);
+
 
 ?>

@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: backuprestore.php
 // public_html/admin/plugins/databox/backuprestore.php
-// 20120327 tsuchitani AT ivywe DOT co DOT jp
+// 20121023 tsuchitani AT ivywe DOT co DOT jp
 
 // @@@@@追加予定：データのバックアップリストア
 // @@@@@追加予定：データのクリア
@@ -89,7 +89,6 @@ function fncDisply(
 //############################
 $pi_name    = 'databox';
 //############################
-
 $action ="";
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter($_REQUEST['action'],false);
@@ -108,7 +107,6 @@ $display = '';
 $menuno=6;
 $information = array();
 
-
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname']."backup and restore";
 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 if (isset ($_REQUEST['msg'])) {
@@ -118,8 +116,10 @@ if (isset ($_REQUEST['msg'])) {
 
 switch ($action) {
     case $LANG_DATABOX_ADMIN['config_init']:
-        $display.=LIB_Deleteconfig($pi_name,$config);
-        $display.=LIB_Initializeconfig($pi_name);
+        $dummy=LIB_Deleteconfig($pi_name,$config);
+        $dummy=LIB_Initializeconfig($pi_name);
+		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/databox/backuprestore.php');
+		exit;
         break;
     case $LANG_DATABOX_ADMIN['config_backup']:
         $display.=LIB_Backupconfig($pi_name);
@@ -128,11 +128,13 @@ switch ($action) {
         $display.=LIB_Restoreconfig($pi_name,$config);
 		break;
     case $LANG_DATABOX_ADMIN['config_update']:
-		$display.=LIB_Backupconfig($pi_name,"update");
-		$display.=LIB_Deleteconfig($pi_name,$config);
-		$display.=LIB_Initializeconfig($pi_name);
-		$display.=LIB_Restoreconfig($pi_name,$config,"update");
-
+		$dummy=LIB_Backupconfig($pi_name,"update");
+		$dummy=LIB_Deleteconfig($pi_name,$config);
+		$dummy=LIB_Initializeconfig($pi_name);
+		$dummy=LIB_Restoreconfig($pi_name,$config,"update");
+		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/databox/backuprestore.php');
+		exit;
+        break;
     default:
 }
 
