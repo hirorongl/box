@@ -352,7 +352,7 @@ function DATABOX_displaypage (
 				//$display=COM_siteHeader ('menu', $page_title,$headercode);
 				$information['what']='menu';
 				$_CONF['show_right_blocks']=0;
-				//$_CONF['left_blocks_in_footer']=0;
+				$_CONF['left_blocks_in_footer']=0;
 				//$display .= COM_siteFooter(false,$custom);
 				$information['rightblock']=false;
 				break;
@@ -367,8 +367,8 @@ function DATABOX_displaypage (
 			case 'noblocks':
 				//$display=COM_siteHeader ('none', $page_title,$headercode);
 				$information['what']='none';
-				//$_CONF['show_right_blocks']=0;
-				//$_CONF['left_blocks_in_footer']=0;
+				$_CONF['show_right_blocks']=0;
+				$_CONF['left_blocks_in_footer']=0;
 				//$display .= COM_siteFooter(false,$custom);
 				$information['rightblock']=false;
 				break;
