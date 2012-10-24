@@ -44,6 +44,8 @@ if (strpos($_SERVER['PHP_SELF'], 'install_defaults.php') !== false) {
 }
 
 global $_DATABOX_DEFAULT;
+global $_TABLES;
+
 $_DATABOX_DEFAULT = array();
 
 
@@ -102,7 +104,7 @@ $_DATABOX_DEFAULT['aftersave'] = 'item';
 $_DATABOX_DEFAULT['aftersave_admin'] = 'item';
 
 //グループのデフォルト
-$grp_id =SEC_getFeatureGroup('plugin.install', $_USER['uid']);
+$grp_id =DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='DataBox Admin'");
 $_DATABOX_DEFAULT['grp_id_default'] = $grp_id;
 
 
