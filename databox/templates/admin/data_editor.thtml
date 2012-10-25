@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2012/10/10 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2012/10/24 { -->
 
 <div id="databox_admin">
 	{about_thispage}
@@ -8,6 +8,7 @@
 	
 <form enctype="multipart/form-data" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
   <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+  <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
   <!-- data -->
   <fieldset style="width:90%">
@@ -72,12 +73,6 @@
             </td>
         </tr>
 
-        <!-- category -->
-        <tr>
-            <th style="width:25%" class="alignright">{lang_category}{help_category}</th>
-            <td style="width:75%">{checklist_category}
-            </td>
-        </tr>
         <!-- meta_description -->
         <tr{hide_meta}>
             <th style="width:25%" class="alignright">{lang_meta_description}{help_meta_description}</th>
@@ -160,6 +155,18 @@
             </td>
         </tr>
 
+    </table>
+  </fieldset>
+
+  <!-- category -->
+  <fieldset style="width:90%">
+    <legend>{lang_category}</legend>
+    <table style="width:98%">
+        <tr>
+            <th style="width:25%" class="alignright">{lang_category}{help_category}</th>
+            <td style="width:75%">{checklist_category}
+            </td>
+        </tr>
     </table>
   </fieldset>
 

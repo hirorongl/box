@@ -211,10 +211,13 @@ function fncEdit(
         $uuid=$_USER['uid'];
         $udatetime=COM_applyFilter ($_POST['udatetime']);//"";
 
+        $fieldset_id=COM_applyFilter ($_POST['fieldset'],true);//"";
+        $fieldset_name=COM_applyFilter ($_POST['fieldset_name']);//"";
 
     }else{
         $sql = "SELECT ";
         $sql .= " t.*";
+		$sql .= " ,t2.name AS fieldset_name".LB;
 			
 		$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un".LB;
 		$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un".LB;
@@ -230,14 +233,19 @@ function fncEdit(
         $sql .= " FROM ";
         $sql .= $_TABLES['USERBOX_base'] ." AS t";
         $sql .= ",".$_TABLES['users'] ." AS t1";
+		$sql .= ",".$_TABLES['USERBOX_def_fieldset'] ." AS t2 ".LB;
 
         $sql .= " WHERE ";
         $sql .= " t.id = $id";
         $sql .= " AND t.id = t1.uid";
+		$sql .= " AND t.fieldset_id = t2.fieldset_id".LB;
 
         $result = DB_query($sql);
 
         $A = DB_fetchArray($result);
+		
+		$fieldset_id = COM_stripslashes($A['fieldset_id']);
+        $fieldset_name = COM_stripslashes($A['fieldset_name']);
 
         $code = COM_stripslashes($A['code']);
         $title=COM_stripslashes($A['title']);
@@ -380,6 +388,7 @@ function fncEdit(
     $templates->set_var('lang_must', $LANG_USERBOX_ADMIN['must']);
     $templates->set_var('site_url', $_CONF['site_url']);
     $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+	$templates->set_var('lang_view', $LANG_USERBOX_ADMIN['view']);
 
     $token = SEC_createToken();
     $retval .= SEC_getTokenExpiryNotice($token);
@@ -397,6 +406,11 @@ function fncEdit(
     $templates->set_var('lang_link_public', $LANG_USERBOX_ADMIN['link_public']);
     $templates->set_var('lang_link_list', $LANG_USERBOX_ADMIN['link_list']);
     $templates->set_var('lang_link_detail', $LANG_USERBOX_ADMIN['link_detail']);
+	
+	//fieldset_id
+    $templates->set_var('lang_fieldset', $LANG_USERBOX_ADMIN['fieldset']);
+    $templates->set_var('fieldset_id', $fieldset_id);
+    $templates->set_var('fieldset_name', $fieldset_name);
 
     //id
     $templates->set_var('lang_id', $LANG_USERBOX_ADMIN['id']);
@@ -540,7 +554,7 @@ function fncEdit(
 
     //カテゴリ
     $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-    $checklist_category=DATABOX_getcheckList ("category",$category,$pi_name);
+    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,$pi_name);
     $templates->set_var('checklist_category', $checklist_category);
 
     //追加項目

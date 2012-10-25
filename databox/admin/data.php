@@ -396,6 +396,7 @@ function fncEdit(
         $udatetime=COM_applyFilter ($_POST['udatetime']);//"";
 
         $fieldset_id=COM_applyFilter ($_POST['fieldset'],true);//"";
+        $fieldset_name=COM_applyFilter ($_POST['fieldset_name']);//"";
 
     }else{
         if (empty($id)) {
@@ -696,7 +697,7 @@ function fncEdit(
     $templates->set_var('lang_link_public', $LANG_DATABOX_ADMIN['link_public']);
     $templates->set_var('lang_link_list', $LANG_DATABOX_ADMIN['link_list']);
     $templates->set_var('lang_link_detail', $LANG_DATABOX_ADMIN['link_detail']);
-	//field_id
+	//fieldset_id
     $templates->set_var('lang_fieldset', $LANG_DATABOX_ADMIN['fieldset']);
     $templates->set_var('fieldset_id', $fieldset_id);
     $templates->set_var('fieldset_name', $fieldset_name);
@@ -845,7 +846,6 @@ function fncEdit(
 
     //カテゴリ
     $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-    //$checklist_category=DATABOX_getcheckList ("category",$category);
     $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox");
     $templates->set_var('checklist_category', $checklist_category);
 

@@ -1,10 +1,14 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20121010 { -->
+<!-- plugins/userbox/templates/admin/profile_editor.thtml 20121025 { -->
 
 <div id="userbox_admin">
 	{about_thispage}
-	<a href="{site_admin_url}/plugins/userbox/view.php?id={id}">{lang_ref1}</a>
-	<a href="{site_admin_url}/plugins/userbox/view.php?id={id}&template=standard">{lang_ref2}</a>
+	| <a href="{site_admin_url}/plugins/userbox/view.php?id={id}">{lang_view}</a>
+	| <a href="{site_admin_url}/plugins/userbox/view.php?id={id}&template=standard">{lang_ref}</a>
+	| {lang_fieldset}: {fieldset_name}(id: {fieldset_id})
+
     <form enctype="multipart/form-data" name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
+  <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+  <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
   <!-- data -->
   <fieldset style="width:94%">
@@ -102,13 +106,6 @@
     </td>
     </tr>
 
-    <!-- category -->
-    <tr>
-    <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
-    <td style="width:10%; color:green" class="alignleft">&#123;category&#125;</td>
-    <td >{checklist_category}
-    </td>
-    </tr>
     <!-- meta_description -->
     <tr{hide_meta}>
     <th style="width:10%" class="alignright">{lang_meta_description}{help_meta_description}</th>
@@ -199,6 +196,20 @@
     </td>
     </tr>
 
+    </table>
+</fieldset>
+
+  <!-- category -->
+  <fieldset style="width:94%">
+    <legend>{lang_category}</legend>
+    <table >
+    <!-- category -->
+    <tr>
+    <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
+    <td style="width:10%; color:green" class="alignleft">&#123;category&#125;</td>
+    <td >{checklist_category}
+    </td>
+    </tr>
     </table>
   </fieldset>
 
