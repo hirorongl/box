@@ -1,9 +1,12 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20121016 { -->
+<!-- plugins/databox/templates/data/default/list_detail.thtml 20121029 { -->
 
 <div class="databox">
   <h2>{title}</h2>
   <p>{lang_id}: {id}</p>
-
+  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+     <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
 <!--  基本項目 -->
   <fieldset style="width:94%">
     <legend>{lang_basicfields}</legend>

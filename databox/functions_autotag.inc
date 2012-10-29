@@ -1666,8 +1666,18 @@ function databox_data(
                 'list' => 'list_detail.thtml',
                 'row'   => 'row.thtml',
                 'col'   => "col_detail.thtml",
-            ));
-
+				));
+		
+        $languageid=COM_getLanguageId();
+        $language= COM_getLanguage();
+        $templates->set_var ('languageid', $languageid);
+        $templates->set_var ('language', $language);
+		if ($languageid<>"") {
+			$templates->set_var ('_languageid', "_".$languageid);
+		}else{
+			$templates->set_var ('_languageid', "");
+		}
+		
         $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
         $templates->set_var ('site_url',$_CONF['site_url']);
 		//

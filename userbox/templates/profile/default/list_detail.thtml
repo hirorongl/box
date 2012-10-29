@@ -1,8 +1,12 @@
-<!-- plugins/userbox/templates/profile/default/list_detail.thtml 20121016 { -->
+<!-- plugins/userbox/templates/profile/default/list_detail.thtml 20121029 { -->
 
 <div class="userbox">
   <h2>{title}</h2>
   <p>{lang_id}: {id}</p>
+  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+     <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
 
   <fieldset style="width:94%">
     <legend>Core</legend>
