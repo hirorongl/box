@@ -1525,7 +1525,7 @@ function databox_data(
 
     //-----
 
-    if (is_null($id)){
+    if (is_null($id)  OR ($id==0)){
 		if ($code<>""){
 			if (substr($code,0,4)==="@fb_"){
 				if (function_exists('assistfb_getNestAutotag')) {

@@ -77,6 +77,34 @@ function DATABOX_codetoid(
     return $retval;
 }
 
+function DATABOX_swichlang(
+	$code
+)
+// +---------------------------------------------------------------------------+
+// | 機能  コード多言語対応変換
+// | 書式 DATABOX_swichlang($code)
+// |      xxxx_(言語id) 多言語モードの時に必要があれば言語idを現在の言語idに変換
+// +---------------------------------------------------------------------------+
+// | 引数 $code:コード
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:変換後のコード
+// +---------------------------------------------------------------------------+
+{
+	
+	global $_CONF;
+	$newlanguageid = COM_getLanguageId();
+	if  ($newlanguageid<>""){
+		if  ($code<>""){
+			$lang_len = strlen($newlanguageid);
+			$oldlanguageid=substr($code,-($lang_len));
+			if  (array_key_exists($oldlanguageid, $_CONF['language_files'])){
+				$code = substr_replace($code, $newlanguageid, -$lang_len);
+			}
+		}
+	}
+	return $code;
+}
+
 
 function DATABOX_templatePath (
     $kind = 'data'

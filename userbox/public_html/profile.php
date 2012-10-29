@@ -312,14 +312,7 @@ if ($_CONF['url_rewrite']){
     $template = COM_applyFilter($_REQUEST['template']);
 }
 
-if ($id===0){
-    if ($code<>""){
-        $id=DATABOX_codetoid(
-            $code,'users',"uid","username");
-    }
-}
-
-
+$code=DATABOX_swichlang($code);
 
 $display = '';
 $page_title= $LANG_USERBOX['profile'];
@@ -349,7 +342,7 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
 }
 
 
-if ($id===0 ) {
+if ($id===0 AND $code==="") {
     $page_title=$LANG_USERBOX_ADMIN['piname'];
     $display .= DATABOX_siteHeader($pi_name,'',$page_title);
 
@@ -359,7 +352,7 @@ if ($id===0 ) {
     $display .= fncList();
 
 }else{
-	$display .= userbox_profile($id,$template,"yes","page");
+	$display .= userbox_profile($id,$template,"yes","page",$code);
     $display .= fncComment($id);
 }
 $display .= DATABOX_siteFooter($pi_name);

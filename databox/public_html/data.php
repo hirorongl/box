@@ -263,13 +263,12 @@ function fncComment(
 $pi_name    = 'databox';
 //############################
 
-
-
 // 引数
 $msg = '';
 if (isset ($_REQUEST['msg'])) {
     $msg = COM_applyFilter ($_REQUEST['msg'], true);
 }
+
 
 if ($_CONF['url_rewrite']){
     COM_setArgNames(array('m','arg','template','arg2'));
@@ -281,7 +280,7 @@ if ($_CONF['url_rewrite']){
         $code=COM_applyFilter(COM_getArgument('arg'));
     }elseif ($m==="id"){
         $id=COM_applyFilter(COM_getArgument('arg'),true);
-        $code=0;
+        $code="";
     }else{
         $id = COM_applyFilter($_REQUEST['id'],true);
         $code = COM_applyFilter($_REQUEST['code']);
@@ -290,17 +289,13 @@ if ($_CONF['url_rewrite']){
     $template=COM_applyFilter(COM_getArgument('template'));
 
 }else{
+    $m = COM_applyFilter($_REQUEST['m']);
     $id = COM_applyFilter($_REQUEST['id'],true);
     $code = COM_applyFilter($_REQUEST['code']);
     $template = COM_applyFilter($_REQUEST['template']);
 }
 
-if ($id===0){
-    if ($code<>""){
-        $id=DATABOX_codetoid(
-            $code,'DATABOX_base',"id");
-    }
-}
+$code=DATABOX_swichlang($code);
 
 $display = '';
 $page_title= $LANG_DATABOX['data'];
@@ -331,7 +326,7 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
 }
 
 //
-if ($id===0 ) {
+if ($id===0 AND $code==="") {
 	$layout=$retval['layout'];
 	$information['pagetitle']=$LANG_DATABOX['data'];
     if (isset ($msg)) {
@@ -339,13 +334,12 @@ if ($id===0 ) {
     }
     $display .= fncList();
 }else{
-    $retval= databox_data($id,$template,"yes","page");
+    $retval= databox_data($id,$template,"yes","page",$code);
 	$layout=$retval['layout'];
 	$information['headercode']=$retval['headercode'];
 	$information['pagetitle']=$title;
 	$display =$retval['display'];
 	$display .= fncComment($id);
-	
 }
 
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);

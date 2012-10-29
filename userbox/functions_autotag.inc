@@ -1023,7 +1023,7 @@ function userbox_profile(
         $id=$_USER['uid'];
     }
 
-    if (is_null($id)){
+    if (is_null($id)  OR ($id==0)){
         if ($code<>""){
             $id=DATABOX_codetoid($code,'users',"uid","username");
         }
