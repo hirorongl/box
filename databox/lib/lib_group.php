@@ -138,6 +138,26 @@ function LIB_GetListField(
             $url.="&amp;id={$A['group_id']}";
             $retval = COM_createLink($icon_arr['copy'],$url);
             break;
+        //コード
+        case 'code':
+            $name=COM_applyFilter($A['code']);
+            $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
+            $url.="?";
+            $url.="m=gcode";
+            $url.="&gcode=".$A['code'];
+            $url = COM_buildUrl( $url );
+            $retval= COM_createLink($name, $url);
+            break;
+        //名
+        case 'name':
+            $name=COM_applyFilter($A['name']);
+            $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
+            $url.="?";
+            $url.="m=gid";
+            $url.="&gid=".$A['group_id'];
+            $url = COM_buildUrl( $url );
+            $retval= COM_createLink($name, $url);
+            break;
 
         //各項目
         default:

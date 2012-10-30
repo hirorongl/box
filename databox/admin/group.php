@@ -9,6 +9,7 @@
 
 define ('THIS_SCRIPT', 'databox/group.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
+define ('THIS_SCRIPT2', 'databox/category.php');
 
 require_once('databox_functions.php');
 require_once ($_CONF['path'] . 'plugins/databox/lib/lib_group.php');
