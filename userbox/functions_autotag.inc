@@ -342,7 +342,7 @@ function userbox_category(
         $perpage=$_USERBOX_CONF['perpage'];
     }
 	//
-    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder);
+    $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
 
     //-----	
     $sql = "SELECT ";
@@ -1822,7 +1822,7 @@ function userbox_orderby(
 )
 // +---------------------------------------------------------------------------+
 // | 機能  order orderby addfieldorder $field_id を編集
-// | 書式  userbox_orderby($order,$orderby,$addfieldorder,$field_id);
+// | 書式  userbox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
 // +---------------------------------------------------------------------------+
 // | 引数 $datefield
 // | 引数戻値 $order
