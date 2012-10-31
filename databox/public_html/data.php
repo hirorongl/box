@@ -85,6 +85,7 @@ function fncList()
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
     $sql .= " WHERE ";
     $sql .= " 1=1";
+    $sql .= COM_getLangSQL ('code', 'AND', 't').LB;
 
     //管理者の時,下書データも含む
     //if ( SEC_hasRights('databox.admin')) {

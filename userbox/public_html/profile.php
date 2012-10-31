@@ -92,6 +92,8 @@ function fncList()
     $sql .= " ,{$table1} AS t1";
     $sql .= " WHERE ";
     $sql .= " t.id=t1.uid";
+	$sql .= COM_getLangSQL ('username', 'AND', 't1').LB;
+
 
     //管理者の時,下書データも含む
     //if ( SEC_hasRights('userbox.admin')) {
