@@ -57,6 +57,7 @@ function fnclist(
     $tbl2=$_TABLES['USERBOX_base'] ;
     $tbl3=$_TABLES['USERBOX_def_category'] ;
     $tbl4=$_TABLES['USERBOX_def_group'] ;//@@@@@
+	$tbl5=$_TABLES['users'] ;
 
     //-----
     $sql = "SELECT ".LB;
@@ -67,15 +68,20 @@ function fnclist(
     $sql .= " ,t3.description ".LB;
     $sql .= " ,Count(t1.id) AS count".LB;
     $sql .= " ,t4.name AS group_name ".LB;
+    $sql .= " ,t4.group_id ".LB;
+    $sql .= " ,t4.code AS group_code ".LB;
 
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
     $sql .= " ,{$tbl2} AS t2 ".LB;
     $sql .= " ,{$tbl3} AS t3 ".LB;
     $sql .= " ,{$tbl4} AS t4 ".LB;
+    $sql .= " ,{$tbl5} AS t5 ".LB;
 
     $sql .= " WHERE ".LB;
-    $sql .= " t1.id = t2.id ".LB;
+	$sql .= " t1.id = t2.id ".LB;
+	$sql .= " AND t1.id = t5.uid ".LB;
+	
     $sql .= " AND t1.category_id = t3.category_id ".LB;
 	if ($group_id<>""){
 		$sql .= " AND t3.categorygroup_id = ".$group_id.LB;
@@ -93,6 +99,8 @@ function fnclist(
 
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
+	
+	$sql .= COM_getLangSQL ('username', 'AND', 't5').LB;
 
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.category_id".LB;
@@ -138,13 +146,27 @@ function fnclist(
         'pagenav'  => 'pagenavigation.thtml'
         ));
 
+	$languageid=COM_getLanguageId();
+	$language= COM_getLanguage();
+    $templates->set_var ('languageid', $languageid);
+    $templates->set_var ('language', $language);
+	if ($languageid<>"") {
+		$templates->set_var ('_languageid', "_".$languageid);
+	}else{
+		$templates->set_var ('_languageid', "");
+	}
 
     //
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
 
     $templates->set_var ('home',$LANG_USERBOX['home']);
-    $templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_top']);
+	if ($group_id<>""){
+		$group_name=DB_getItem( $tbl4, 'name',"group_id = ".$group_id);
+		$templates->set_var ('lang_category_list_h2',$group_name.$LANG_USERBOX['category_top']);
+	}else{
+		$templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_top']);
+	}
 
     //page
     $offset = ($page - 1) * $perpage;
@@ -192,6 +214,19 @@ function fnclist(
 
             //=====
 			if ($old_group_name<>$group_name){
+				$url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+				$url.="?";
+				//コード使用の時
+				if ($_DATABOX_CONF['groupcode']){
+					$url.="m=gcode";
+					$url.="&gcode=".$A['group_code'];//@@@@@
+				}else{
+					$url.="m=gid";
+					$url.="&gid=".$A['group_id'];//@@@@@
+				}
+				$url = COM_buildUrl( $url );
+				$link= COM_createLink($group_name, $url);
+				$templates->set_var ('group_link', $link);
 				$templates->set_var ('group_name', $group_name);
 				$templates->parse ('grp_var', 'grp', true);
 				$old_group_name=$group_name;

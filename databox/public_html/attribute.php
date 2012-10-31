@@ -107,6 +107,8 @@ function fnclist(
 
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
+	
+	$sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
 
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.field_id , t1.value". LB;
@@ -164,6 +166,15 @@ function fnclist(
         'pagenav'  => 'pagenavigation.thtml'
         ));
 
+	$languageid=COM_getLanguageId();
+	$language= COM_getLanguage();
+    $templates->set_var ('languageid', $languageid);
+    $templates->set_var ('language', $language);
+	if ($languageid<>"") {
+		$templates->set_var ('_languageid', "_".$languageid);
+	}else{
+		$templates->set_var ('_languageid', "");
+	}
 
     //
     $templates->set_var ('site_url',$_CONF['site_url']);
@@ -216,15 +227,14 @@ function fnclist(
 
             $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
             $url.="?";
-                //$url.="m=code";
-                //$url.="&code=".$A['code'];
-                $url.="m=id";
-                $url.="&id=".$A['field_id'];
+            $url.="m=id";
+            $url.="&id=".$A['field_id'];
+            $url2=$url."&value=".$A['value'];
 
             $url = COM_buildUrl( $url );
             $link= COM_createLink($name, $url);
 
-            $url2=$url."&value=".$A['value'];
+            $url2 = COM_buildUrl( $url2 );
             $link2= COM_createLink($fieldvalue, $url2);
 
             $templates->set_var ('field_link', $link);
@@ -298,17 +308,18 @@ $perpage = COM_applyFilter($_REQUEST['perpage'],true);
 $order = COM_applyFilter($_REQUEST['order']);
 
 if ($_CONF['url_rewrite']){
-    COM_setArgNames(array('m','code','template','arg2'));
+    COM_setArgNames(array('m','code','value','template','arg2'));
     $m=COM_applyFilter(COM_getArgument('m'));
     if ($m==="code"){
-        COM_setArgNames(array('m','code','template','arg2'));
+        COM_setArgNames(array('m','code','value','template','arg2'));
         $id=0;
         $code=COM_applyFilter(COM_getArgument('code'));
     }else{
-        COM_setArgNames(array('m','id','template','arg2'));
+        COM_setArgNames(array('m','id','value','template','arg2'));
         $id=COM_applyFilter(COM_getArgument('id'),true);
         $code=0;
     }
+    $value=COM_applyFilter(COM_getArgument('value'));
     $template=COM_applyFilter(COM_getArgument('template'));
 }
 
@@ -344,14 +355,9 @@ if (COM_isAnonUser()){
 
 }
 
-
 if ($value==="") { //一覧
     $display .= fnclist($id,$template);
 }else{//詳細
-    if ($perpage>5){
-        $perpage=5;
-    }
-
     $display .= databox_field(
         "notautotag"
         ,$id

@@ -408,6 +408,8 @@ function userbox_category(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 	
+	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
+	
 	//--ORDER
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
@@ -458,6 +460,15 @@ function userbox_category(
 			'col'   => "col_detail.thtml",
 			'pagenav'  => 'pagenavigation.thtml'
 			));
+		$languageid=COM_getLanguageId();
+		$language= COM_getLanguage();
+		$templates->set_var ('languageid', $languageid);
+		$templates->set_var ('language', $language);
+		if ($languageid<>"") {
+			$templates->set_var ('_languageid', "_".$languageid);
+		}else{
+			$templates->set_var ('_languageid', "");
+		}
 		
 		$templates->set_var ('site_url',$_CONF['site_url']);
 		$templates->set_var ('this_script',THIS_SCRIPT);
@@ -1539,7 +1550,9 @@ function userbox_field(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
-
+	
+	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
+	
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
 
@@ -1593,6 +1606,17 @@ function userbox_field(
 			'col'   => "col_detail.thtml",
 			'pagenav'  => 'pagenavigation.thtml'
 			));
+		
+		$languageid=COM_getLanguageId();
+		$language= COM_getLanguage();
+		$templates->set_var ('languageid', $languageid);
+		$templates->set_var ('language', $language);
+		if ($languageid<>"") {
+			$templates->set_var ('_languageid', "_".$languageid);
+		}else{
+			$templates->set_var ('_languageid', "");
+		}
+		
 		//
 		$templates->set_var ('site_url',$_CONF['site_url']);
 		$templates->set_var ('this_script',THIS_SCRIPT);

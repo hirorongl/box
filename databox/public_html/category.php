@@ -66,6 +66,8 @@ function fnclist(
     $sql .= " ,t3.description ".LB;
     $sql .= " ,Count(t1.id) AS count".LB;
     $sql .= " ,t4.name AS group_name ".LB;
+    $sql .= " ,t4.group_id ".LB;
+    $sql .= " ,t4.code AS group_code ".LB;
 
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
@@ -89,16 +91,16 @@ function fnclist(
     $sql .= COM_getPermSql('AND',0,2,"t2").LB;
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
-
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
+	
+    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
 
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.category_id".LB;
 
     $sql .= " ORDER BY ".LB;
     $sql .= " t4.orderno,t3.orderno".LB;
-
 
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
@@ -139,14 +141,28 @@ function fnclist(
         'pagenav'  => 'pagenavigation.thtml'
         ));
 
+	$languageid=COM_getLanguageId();
+	$language= COM_getLanguage();
+    $templates->set_var ('languageid', $languageid);
+    $templates->set_var ('language', $language);
+	if ($languageid<>"") {
+		$templates->set_var ('_languageid', "_".$languageid);
+	}else{
+		$templates->set_var ('_languageid', "");
+	}
 
     //
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
 
-    $templates->set_var ('home',$LANG_DATABOX['home']);
-    $templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_top']);
-
+	$templates->set_var ('home',$LANG_DATABOX['home']);
+	if ($group_id<>""){
+		$group_name=DB_getItem( $tbl4, 'name',"group_id = ".$group_id);
+		$templates->set_var ('lang_category_list_h2',$group_name.$LANG_DATABOX['category_top']);
+	}else{
+		$templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_top']);
+	}
+	
     //page
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
@@ -169,6 +185,7 @@ function fnclist(
     if ($numrows > 0) {
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
 			
 			$group_name=COM_applyFilter($A['group_name']);
 
@@ -195,6 +212,19 @@ function fnclist(
 
             //=====
 			if ($old_group_name<>$group_name){
+				$url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+				$url.="?";
+				//コード使用の時
+				if ($_DATABOX_CONF['groupcode']){
+					$url.="m=gcode";
+					$url.="&gcode=".$A['group_code'];//@@@@@
+				}else{
+					$url.="m=gid";
+					$url.="&gid=".$A['group_id'];//@@@@@
+				}
+				$url = COM_buildUrl( $url );
+				$link= COM_createLink($group_name, $url);
+				$templates->set_var ('group_link', $link);
 				$templates->set_var ('group_name', $group_name);
 				$templates->parse ('grp_var', 'grp', true);
 				$old_group_name=$group_name;

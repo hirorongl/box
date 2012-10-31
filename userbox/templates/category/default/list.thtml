@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/list.thtml { -->
+<!-- plugins/userbox/templates/category/default/list.thtml 20121030{ -->
 
 <div id="databox">
 
@@ -6,6 +6,10 @@
 
   <h2>{lang_category_list_h2}</h2>
   <p>{msg}</p>
+  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+     <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
 
   <ul class="contents" id="list">
     {nav_var}

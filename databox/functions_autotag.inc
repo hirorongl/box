@@ -350,7 +350,6 @@ function databox_category(
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
 
-
     if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
@@ -408,6 +407,7 @@ function databox_category(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 
+    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
 
 	//--ORDER
     $sql .= " ORDER BY ".LB;
@@ -460,17 +460,23 @@ function databox_category(
 			'pagenav'  => 'pagenavigation.thtml'
 			));
 
+		$languageid=COM_getLanguageId();
+		$language= COM_getLanguage();
+		$templates->set_var ('languageid', $languageid);
+		$templates->set_var ('language', $language);
+		if ($languageid<>"") {
+			$templates->set_var ('_languageid', "_".$languageid);
+		}else{
+			$templates->set_var ('_languageid', "");
+		}
+
 		//
 		$templates->set_var ('site_url',$_CONF['site_url']);
 		$templates->set_var ('this_script',THIS_SCRIPT);
 
 		//bread
 		$templates->set_var ('home',$LANG_DATABOX['home']);
-
-		$url=$_CONF['site_url']."/databox/category.php";
-		$category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
-		$templates->set_var ('category_top',$category_top);
-
+		
 		$templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_list_h2']);
 
 		$templates->set_var ('category_name',$category_name);
@@ -952,6 +958,7 @@ function databox_field(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 
+    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
 
 
     $sql .= " ORDER BY ".LB;
@@ -1009,6 +1016,17 @@ function databox_field(
 			'col'   => "col_detail.thtml",
 			'pagenav'  => 'pagenavigation.thtml'
 			));
+		
+		$languageid=COM_getLanguageId();
+		$language= COM_getLanguage();
+		$templates->set_var ('languageid', $languageid);
+		$templates->set_var ('language', $language);
+		if ($languageid<>"") {
+			$templates->set_var ('_languageid', "_".$languageid);
+		}else{
+			$templates->set_var ('_languageid', "");
+		}
+
 		//
 		$templates->set_var ('site_url',$_CONF['site_url']);
 		$templates->set_var ('this_script',THIS_SCRIPT);

@@ -1,8 +1,12 @@
-<!-- plugins/userbox/templates/category/default/list_detail.thtml 20120410{ -->
+<!-- plugins/userbox/templates/category/default/list_detail.thtml 20121031{ -->
 
-<div id="databox_outer">
+<div id="userbox_outer">
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
+  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+     <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
 
   <h2><span style= "color:green" > &#123;category_name&#125;</span>{category_name}</h2>
   <p><span style= "color:green" > &#123;category_description&#125;</span>{category_description}</p>
