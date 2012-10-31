@@ -12,7 +12,7 @@
 
 define ('THIS_SCRIPT', 'userbox/group.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
-define ('THIS_SCRIPT2', 'databox/category.php');
+define ('THIS_SCRIPT2', 'userbox/category.php');
 
 require_once('userbox_functions.php');
 require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_group.php');
