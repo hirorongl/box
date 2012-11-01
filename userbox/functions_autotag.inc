@@ -1936,6 +1936,7 @@ function userbox_newlist(
 // +---------------------------------------------------------------------------+
 // update20101124
 {
+    $pi_name="userbox";
 
     global $_USER;
     global $_TABLES;
@@ -2080,6 +2081,7 @@ function userbox_newlist(
             $sql.=" AND t3.code IN ($categories)";
         }
     }
+	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
 
     $sql.=" ORDER BY ".$datefield ." DESC";
     $sql.=" LIMIT $limitcnt";

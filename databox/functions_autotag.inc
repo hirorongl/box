@@ -2264,6 +2264,8 @@ function databox_newlist(
         }
     }
 
+    $sql .= COM_getLangSQL ('code', 'AND', 't1').LB;
+
     $sql.=" ORDER BY ".$datefield ." DESC";
     $sql.=" LIMIT $limitcnt";
 

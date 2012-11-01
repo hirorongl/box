@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20120927
+# Last Update 20121101
 
 ###############################################################################
 ## 管理画面 menu
@@ -48,7 +48,7 @@ $LANG_DATABOX['nohit'] = '表示可能なデータはありません';
 $LANG_DATABOX['nopermission'] = '閲覧できません';
 
 $LANG_DATABOX['more'] = 'もっとみる';
-$LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
+$LANG_DATABOX['day'] = "%Y年%B%e日";
 
 $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
