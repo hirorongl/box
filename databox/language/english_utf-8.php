@@ -125,6 +125,7 @@ $LANG_DATABOX_ADMIN['page_title']='Page Title';
 $LANG_DATABOX_ADMIN['description']='Description';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
 $LANG_DATABOX_ADMIN['layout']='Layout';
+
 $LANG_DATABOX_ADMIN['category']='Category';
 
 $LANG_DATABOX_ADMIN['meta_description']='META Description';
@@ -155,6 +156,11 @@ $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
+
+$LANG_DATABOX_ADMIN['inst_dataexport'] = 
+"
+Select export attribute set.<br{XHTML}>
+";
 
 
 $LANG_DATABOX_ADMIN['allow_display']='Display Permission(For users)';
@@ -583,7 +589,10 @@ $LANG_confignames['databox']['grp_id_default'] = 'Group Default';
 
 $LANG_confignames['databox']['default_img_url'] = 'Default Image URL';
 
-$LANG_confignames['databox']['maxlength_description'] = 'Maxlength description';$LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of description meta';$LANG_confignames['databox']['maxlength_meta_keywords'] = Max length of keywords';//--(1)
+$LANG_confignames['databox']['maxlength_description'] = 'Maxlength description';
+$LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of description meta';
+
+$LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of keywords';//--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'New Information Block';
 $LANG_fs['databox'][fs_whatsnew] = 'New Information Block';
 $LANG_confignames['databox']['whatsnew_interval'] = 'New  Period';
@@ -677,7 +686,8 @@ $LANG_configselects['databox'][20] =array(
 $LANG_configselects['databox'][21] =array(
      'By Modified Date' => 'modified'
     , 'By Created Date' => 'created'
-    , 'Display by Released Date' => 'released');
+    , 'Display by Released Date' => 'released'
+);
 
 $LANG_configselects['databox'][22] =array(
     'Standard' => 'standard'
@@ -690,15 +700,15 @@ $LANG_configselects['databox'][22] =array(
 
 $LANG_configselects['databox'][23] =array(
     'Yes' => 3
-    ,'List and Detail' => 2
-    ,'Only Detaile' => 1
+    , 'List and Detail' => 2
+    , 'Only Detaile' => 1
     , 'No' => 0
     );
 
 
 $LANG_configselects['databox'][9] =array(
     'Same Page Display' => 'no'
-    ,'Page Display' => 'item'
+    , 'Page Display' => 'item'
     , 'List Display' => 'list'
     , 'Home Display' => 'home'
     , 'AdminTop Display' => 'admin'
@@ -706,10 +716,9 @@ $LANG_configselects['databox'][9] =array(
         );
 $LANG_configselects['databox'][25] =array(
     'Same Page Display' => 'no'
-    ,'Page Display' => 'item'
+    , 'Page Display' => 'item'
     , 'List Display' => 'list'
     , 'Home Display' => 'home'
-    , 'AdminTop Display' => 'admin'
     , 'PluginTop Display' => 'plugin'
         );
 //
