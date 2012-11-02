@@ -33,7 +33,10 @@ $LANG_DATABOX_user_menu['2']= 'My Data';
 ###############################################################################
 $LANG_DATABOX = array();
 $LANG_DATABOX['list']="List";
-$LANG_DATABOX['selectit']="Not Selected";
+$LANG_DATABOX['countlist']="Count list";
+$LANG_DATABOX['selectit']="Select";
+$LANG_DATABOX['selectall']="Select all";
+$LANG_DATABOX['byconfig']="By configuration settings";
 
 $LANG_DATABOX['data'] = 'Data';
 $LANG_DATABOX['mydata'] = 'My Data';
@@ -61,7 +64,7 @@ $LANG_DATABOX['loginrequired'] = 'Login Required';
 
 $LANG_DATABOX['lastmodified'] = '%B/%e/%Y Updated';
 $LANG_DATABOX['lastcreated'] = '%B/%e/%Y Created';
-$LANG_DATABOX['deny_msg'] =  'No data or no Permissions.';
+$LANG_DATABOX['deny_msg'] =  'No data or no permissions.';
 
 ###############################################################################
 # admin/plugins/
@@ -121,7 +124,7 @@ $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
-
+$LANG_DATABOX_ADMIN['layout']='Layout';
 $LANG_DATABOX_ADMIN['category']='Category';
 
 $LANG_DATABOX_ADMIN['meta_description']='META Description';
@@ -201,13 +204,13 @@ $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
 $LANG_DATABOX_ADMIN['importmsg'] = '
-Absolute path (directory , file) or URL selectしてください.<{XHTML}br>
-If directory selected, xml file is imported under the directory.<{XHTML}br>
-logs/databox_xmlimport.log にlog がregist されます.<{XHTML}br>
+Absolute path (directory , file) or URL select.<{XHTML}br>
+If directory selected, xml file is imported under the directory.<{XHTML}br
+Log file is logs/databox_xmlimport.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['exportmsg'] = '
-Absolute path (directory  selectしてください.<{XHTML}br>
-logs/databox_xmlimport.log にlog がregist されます.<{XHTML}br>
+Select absolute path (directory).<{XHTML}br>
+Log file is logs/databox_xmlimport.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
 Proversion Initialize. List delete.
@@ -226,15 +229,15 @@ Uploaded file is deleted.<{XHTML}br>
 $LANG_DATABOX_ADMIN['backupmsg'] = 
 "{$_CONF['backup_path']}"."databox/<{XHTML}br>"
 .'DataBox database is backuped.<{XHTML}br>
-UploadFileは別途Backupしてください.<{XHTML}br>
+Backup upload file.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
 .'Filename  select.(default: databox.xml)<{XHTML}br>
 DataBox  Database Data Restore.<{XHTML}br>
-UploadFileは別途もどしてください.<{XHTML}br>
+Restore UploadFile.<{XHTML}br>
 ';
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'file name をselectしてください.（省略時databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
 
 $LANG_DATABOX_ADMIN['yy'] = '/';
 $LANG_DATABOX_ADMIN['mm'] = '/';
@@ -463,7 +466,10 @@ $LANG_DATABOX_NOYES = array(
     0 => 'No',
     1 => 'Yes'
 );
-$LANG_DATABOX_INPUTTYPE = array(    0 => 'Checkbox',    1 => 'Multi Select List');
+$LANG_DATABOX_INPUTTYPE = array(
+    0 => 'Checkbox',
+    1 => 'Multi Select List'
+);
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='Display(order)';
 $LANG_DATABOX_ALLOW_DISPLAY[1] ='Login User Display';
@@ -577,7 +583,7 @@ $LANG_confignames['databox']['grp_id_default'] = 'Group Default';
 
 $LANG_confignames['databox']['default_img_url'] = 'Default Image URL';
 
-//--(1)
+$LANG_confignames['databox']['maxlength_description'] = 'Maxlength description';$LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of description meta';$LANG_confignames['databox']['maxlength_meta_keywords'] = Max length of keywords';//--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'New Information Block';
 $LANG_fs['databox'][fs_whatsnew] = 'New Information Block';
 $LANG_confignames['databox']['whatsnew_interval'] = 'New  Period';
@@ -656,9 +662,9 @@ $LANG_configselects['databox'][13] =array('AccessDisabled' => 0, 'Use' => 2);
 
 $LANG_configselects['databox'][5] =array(
     'Hide' => 'hide'
-    , 'Display By Modified Date' => 'modified'
-    , 'Display By Created Date' => 'created'
-);
+    , 'Display by Modified Date' => 'modified'
+    , 'Display by Created Date' => 'created'
+    , 'Display by Released Date' => 'released');
 
 //$LANG_configselects['databox'][17] =array('Access Denyed' => 0, 'Display' => 2, 'Display・Edit' => 3);
 
@@ -671,7 +677,7 @@ $LANG_configselects['databox'][20] =array(
 $LANG_configselects['databox'][21] =array(
      'By Modified Date' => 'modified'
     , 'By Created Date' => 'created'
-);
+    , 'Display by Released Date' => 'released');
 
 $LANG_configselects['databox'][22] =array(
     'Standard' => 'standard'
@@ -680,7 +686,6 @@ $LANG_configselects['databox'][22] =array(
     , 'No Block' => 'noblocks'
     , 'Left Block' => 'leftblocks'
     , 'Right Block' => 'rightblocks'
-
     );
 
 $LANG_configselects['databox'][23] =array(
@@ -698,9 +703,15 @@ $LANG_configselects['databox'][9] =array(
     , 'Home Display' => 'home'
     , 'AdminTop Display' => 'admin'
     , 'PluginTop Display' => 'plugin'
-
         );
-
+$LANG_configselects['databox'][25] =array(
+    'Same Page Display' => 'no'
+    ,'Page Display' => 'item'
+    , 'List Display' => 'list'
+    , 'Home Display' => 'home'
+    , 'AdminTop Display' => 'admin'
+    , 'PluginTop Display' => 'plugin'
+        );
 //
 $LANG_configselects['databox'][24] =array();
     $sql = LB;
