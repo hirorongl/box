@@ -48,7 +48,7 @@ $LANG_DATABOX['nohit'] = '表示可能なデータはありません';
 $LANG_DATABOX['nopermission'] = '閲覧できません';
 
 $LANG_DATABOX['more'] = 'もっとみる';
-$LANG_DATABOX['day'] = "%Y年%B%e日";
+$LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
 
 $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";

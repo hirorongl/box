@@ -61,7 +61,7 @@ $LANG_USERBOX['nohit'] = '表示可能なプロフィールはありません';
 $LANG_USERBOX['nopermission'] = '閲覧できません';
 
 $LANG_USERBOX['more'] = 'もっとみる';
-$LANG_USERBOX['day'] = "%Y年%B%e日";
+$LANG_USERBOX['day'] = "{$_CONF['shortdate']}";
 
 $LANG_USERBOX['home']="HOME";
 $LANG_USERBOX['view']="表示";

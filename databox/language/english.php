@@ -43,7 +43,7 @@ $LANG_DATABOX['nohit'] = 'No hits';
 $LANG_DATABOX['nopermission'] = 'No Permissions';
 
 $LANG_DATABOX['more'] = 'More';
-$LANG_DATABOX['day'] = "%Y/%m/%d";
+$LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
 
 $LANG_DATABOX['home']="Home";
 $LANG_DATABOX['view']="View";
