@@ -296,7 +296,13 @@ if ($_CONF['url_rewrite']){
     $template = COM_applyFilter($_REQUEST['template']);
 }
 
-$code=DATABOX_swichlang($code);
+$newcode=DATABOX_swichlang($code);
+if  ($code<>$newcode){
+	$ret_url = $_SERVER['REQUEST_URI'];
+	$ret_pos=strpos($ret_url,$code);
+	$ret_url = substr_replace($ret_url, $newcode, $ret_pos);
+	header("Location: $ret_url");
+}
 
 $display = '';
 $page_title= $LANG_DATABOX['data'];
