@@ -88,7 +88,7 @@ function fncList()
 
 	//MENU1:管理画面
     $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
-    $url2=$_CONF['site_url'] . '/userbox/index.php';
+    $url2=$_CONF['site_url'] . '/userbox/list.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';

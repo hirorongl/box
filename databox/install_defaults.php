@@ -67,7 +67,7 @@ $_DATABOX_DEFAULT['datacode']=0;
 //グループ　コードを使用する
 $_DATABOX_DEFAULT['groupcode']=0;
 //DataBox のTOPで表示するプログラム
-$_DATABOX_DEFAULT['top']="/databox/data.php";
+$_DATABOX_DEFAULT['top']="/databox/list.php";
 //テンプレート 一般画面
 $_DATABOX_DEFAULT['templates']="standard";
 //テンプレート 管理画面

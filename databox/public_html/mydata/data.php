@@ -78,7 +78,7 @@ function fncList()
 
     //MENU1:管理画面
     $url1=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/databox/index.php';
+    $url2=$_CONF['site_url'] . '/databox/list.php';
 
     if ($_DATABOX_CONF['allow_data_insert']
             OR SEC_hasRights('databox.submit')){
