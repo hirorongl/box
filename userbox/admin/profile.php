@@ -953,7 +953,7 @@ function fncSave (
     //@@@@@ username fullname
     $username = COM_applyFilter($_POST['username']);
     $username = addslashes (COM_checkHTML (COM_checkWords ($username)));
-    $fullname = COM_applyFilter($_POST['fullname']);
+	$fullname = COM_applyFilter($_POST['fullname']);
     $fullname = addslashes (COM_checkHTML (COM_checkWords ($fullname)));
 
     $page_title = COM_applyFilter($_POST['page_title']);
@@ -1340,8 +1340,18 @@ function fncSave (
             $target='item';
 
     }else{
-        $item_url=COM_buildURL($_CONF['site_url'] . "/".THIS_SCRIPT."?id=".$id);
-        $target=$_USERBOX_CONF['aftersave_admin'];
+        $url=$_CONF['site_url'] . "/userbox/profile.php";
+        $url.="?";
+        //コード使用の時
+        if ($_USERBOX_CONF['datacode']){
+            $url.="m=code";
+            $url.="&code=".$username;
+        }else{
+            $url.="m=id";
+            $url.="&id=".$id;
+		}
+        $item_url = COM_buildUrl( $url );
+		$target=$_USERBOX_CONF['aftersave_admin'];
     }
 
     $return_page = PLG_afterSaveSwitch(
@@ -1350,7 +1360,7 @@ function fncSave (
                     ,'userbox'
                     , 1);
 
-    echo $return_page;
+	echo $return_page;
 
 
 

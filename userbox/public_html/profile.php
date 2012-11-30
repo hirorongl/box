@@ -165,8 +165,7 @@ if  ($code<>$newcode){
 }
 
 $display = '';
-$page_title= $LANG_USERBOX['profile'];
-
+$information = array();
 
 // 'コメントを追加',
 if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
@@ -177,22 +176,27 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
     exit;
 }
 
-
 if ($id===0 AND $code==="") {
-    $page_title=$LANG_USERBOX_ADMIN['piname'];
-    $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-
+	$layout=$_USERBOX_CONF['layout'];
+	$information['pagetitle']=$LANG_USERBOX['profile'];
     if (isset ($msg)) {
         $display .= COM_showMessage ($msg,$pi_name);
     }
 	$display.=$LANG_USERBOX_ADMIN['err_id'];
-
 }else{
-	$display .= userbox_profile($id,$template,"yes","page",$code);
-    $display .= fncComment($id);
-}
-$display .= DATABOX_siteFooter($pi_name);
+	$retval= userbox_profile($id,$template,"yes","page",$code);
+	$layout=$retval['layout'];
+	$information['headercode']=$retval['headercode'];
+	$information['pagetitle']=$retval['title'];
+    if (isset ($msg)) {
+        $display.= COM_showMessage ($msg,$pi_name);
+    }
+	$display.=$retval['display'];
+	$display.= fncComment($id);
 
-echo $display;
+}
+$display=DATABOX_displaypage($pi_name,$layout,$display,$information);
+
+COM_output($display);
 
 ?>

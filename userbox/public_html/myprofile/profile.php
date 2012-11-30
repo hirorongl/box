@@ -925,8 +925,18 @@ function fncSave (
             $item_url=COM_buildURL($_CONF['site_url'] . "/userbox/profile.php?m=id&id=".$id);
             $target='item';
     }else{
-            $item_url=COM_buildURL($_CONF['site_url'] . "/userbox/profile.php?m=id&id=".$id);
-            $target=$_USERBOX_CONF['aftersave'];
+        $url=$_CONF['site_url'] . "/userbox/profile.php";
+        $url.="?";
+        //コード使用の時
+        if ($_USERBOX_CONF['datacode']){
+            $url.="m=code";
+            $url.="&code=".$username;
+        }else{
+            $url.="m=id";
+            $url.="&id=".$id;
+		}
+        $item_url = COM_buildUrl( $url );
+		$target=$_USERBOX_CONF['aftersave_admin'];
     }
 
 // $return_page="";
