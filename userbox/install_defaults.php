@@ -66,7 +66,7 @@ $_USERBOX_DEFAULT['datacode']=0;
 //グループ　コードを使用する
 $_USERBOX_DEFAULT['groupcode']=0;
 //UserBox のTOPで表示するプログラム
-$_USERBOX_DEFAULT['top']="/userbox/profile.php";
+$_USERBOX_DEFAULT['top']="/userbox/list.php";
 //テンプレート 一般画面
 $_USERBOX_DEFAULT['templates']="standard";
 //テンプレート 管理画面

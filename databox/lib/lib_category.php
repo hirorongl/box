@@ -68,7 +68,7 @@ function LIB_List(
 
     //MENU1:管理画面
     $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/databox/index.php';
+    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
     $url3=$_CONF['site_url'] . '/'.$pi_name.'/category.php';
 
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';

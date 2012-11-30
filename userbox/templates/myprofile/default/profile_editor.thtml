@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20121025 { -->
+<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20121130 { -->
 
 <div id="userbox_admin">
 {about_thispage}
@@ -29,7 +29,7 @@
         <tr>
             <th style="width:10%" class="alignright">{lang_username}{help_username}</th>
             <td >
-                {username}
+                {username}  <input type="hidden" name="username" value="{username}"{xhtml}>
 
             </td>
         </tr>

@@ -36,7 +36,7 @@ function LIB_List(
     $retval = '';
     //MENU1:管理画面
     $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/'.$pi_name.'/index.php';
+    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 

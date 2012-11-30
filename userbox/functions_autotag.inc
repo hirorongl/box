@@ -102,13 +102,14 @@ function plugin_autotags_userbox (
                         break;
 
                     case 'profile':
-                        $rt= userbox_profile(
+                        $w= userbox_profile(
                             $p['uid']
                             ,$p['templatedir']
                             ,$p['nohitmsg']
                             ,""
                             ,$p['username']
-                            );
+							);
+						$rt=$w['display'];
                         break;
                     case 'category':
                         $rt= userbox_category(
@@ -1029,6 +1030,8 @@ function userbox_profile(
 	
 	global $LANG_confignames;
 	
+	$layout=$_DATABOX_CONF['layout'];
+
 	//-----
     if (is_null($id) AND (is_null($code))){
         $id=$_USER['uid'];
@@ -1041,11 +1044,12 @@ function userbox_profile(
     }
 
     //-----
-    $retval = '';
+    $display = '';
 
 
     $tbl=$_TABLES['USERBOX_base'] ;
     $tbl1=$_TABLES['users'] ;
+	$tbl4=$_TABLES['DATABOX_def_fieldset'];
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
@@ -1065,11 +1069,17 @@ function userbox_profile(
     $sql .= " ,t1.email";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
+	
+	$sql .= " ,t4.name AS set_name";
+    $sql .= " ,t4.description AS set_description";
+	$sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
+    $sql .= " ,t4.layout AS set_layout";
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";
     //$sql .= " ,{$tbl1} AS t1 ";
     //$sql .= " ,{$tbl1} AS t3 ";//last_updateowner
+	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
 	$sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
     $sql .= " LEFT JOIN  {$tbl1} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
@@ -1139,9 +1149,12 @@ function userbox_profile(
 
         //ヘッダ、左ブロック start.............
 		if ($m==="page"){
-			$page_title= $A['page_title'];
-			if ($page_title===""){
-				$page_title =$A['username'];
+			if  ($A['set_layout']<>"0") {
+				$layout=$A['set_layout'];
+			}
+			$title= $A['page_title'];
+			if ($title===""){
+				$title =$A['username'];
 			}
 			// Meta Tags
 			$headercode=DATABOX_getheadercode(	
@@ -1149,13 +1162,10 @@ function userbox_profile(
 				,$template
 				,$pi_name
 				,$A['id']
-				,$page_title
+				,$title
 				,$A['meta_description']
 				,$A['meta_keyword']
 				,$A['description']);
-            $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
-			
-			
 		}
 
         $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
@@ -1326,7 +1336,7 @@ function userbox_profile(
         $templates->parse ('output', 'list');
 
         $userbox_content = $templates->finish ($templates->get_var ('output'));
-        $retval .=$userbox_content;
+        $display=$userbox_content;
 
         if ($A['draft_flag']!==1){
 
@@ -1342,9 +1352,6 @@ function userbox_profile(
         }
 
     }else{
-        if ($m==="page"){
-            $retval .= DATABOX_siteHeader($pi_name) ;
-        }
         if ($nohitmsg==="yes"){
 			$tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
 			$templates = new Template($tmplfld);
@@ -1359,12 +1366,16 @@ function userbox_profile(
 
 			$templates->parse ('output', 'list');
 			$databox_content = $templates->finish ($templates->get_var ('output'));
-			$retval .=$databox_content;
+			$display =$databox_content;
 			
         }
     }
-    $retval =PLG_replacetags ($retval);
+    $display =PLG_replacetags ($display);
 
+	$retval['display']=$display;
+	$retval['layout']=$layout;
+	$retval['headercode']=$headercode;
+	$retval['title']=$title;
 
 
     return $retval;
