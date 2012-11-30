@@ -177,7 +177,7 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
 }
 //
 if ($id===0 AND $code==="") {
-	$layout=$retval['layout'];
+	$layout=$_DATABOX_CONF['layout'];
 	$information['pagetitle']=$LANG_DATABOX['data'];
     if (isset ($msg)) {
         $display .= COM_showMessage ($msg,$pi_name);
