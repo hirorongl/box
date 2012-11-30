@@ -1425,8 +1425,18 @@ function fncSave (
             $item_url=COM_buildURL($url);
             $target='item';
     }else{
-        $item_url=$_CONF['site_url'] . "/".THIS_SCRIPT."?id=".$id;
-        $target=$_DATABOX_CONF['aftersave_admin'];
+        $url=$_CONF['site_url'] . "/databox/data.php";
+        $url.="?";
+        //コード使用の時
+        if ($_DATABOX_CONF['datacode']){
+            $url.="m=code";
+            $url.="&code=".$code;
+        }else{
+            $url.="m=id";
+            $url.="&id=".$id;
+        }
+        $item_url = COM_buildUrl( $url );
+		$target=$_DATABOX_CONF['aftersave_admin'];
     }
 
     $return_page = PLG_afterSaveSwitch(

@@ -165,9 +165,7 @@ if  ($code<>$newcode){
 }
 
 $display = '';
-$page_title= $LANG_DATABOX['data'];
 $information = array();
-
 
 // 'コメントを追加',
 if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
@@ -177,7 +175,6 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
     echo $display;
     exit;
 }
-
 //
 if ($id===0 AND $code==="") {
 	$layout=$retval['layout'];
@@ -190,9 +187,12 @@ if ($id===0 AND $code==="") {
     $retval= databox_data($id,$template,"yes","page",$code);
 	$layout=$retval['layout'];
 	$information['headercode']=$retval['headercode'];
-	$information['pagetitle']=$title;
-	$display =$retval['display'];
-	$display .= fncComment($id);
+	$information['pagetitle']=$retval['title'];
+    if (isset ($msg)) {
+        $display.= COM_showMessage ($msg,$pi_name);
+    }
+	$display.=$retval['display'];
+	$display.= fncComment($id);
 }
 
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);
