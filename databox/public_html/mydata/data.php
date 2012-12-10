@@ -616,7 +616,8 @@ function fncEdit(
     if ($mode==="copy"){
         $id=0;
         $draft_flag=$_DATABOX_CONF['user_draft_default'];
-
+		$code="";
+		
         //作成日付
         $created=0;
         //
