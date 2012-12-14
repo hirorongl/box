@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2012/10/19 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2012/12/14 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -111,6 +111,19 @@ order に指定できるのは、 random date orderno code title description id 
 </td>
 </tr>
 
+<tr >
+<td>[databox:datalink　id code linktext]
+</td>
+<td>データ個別表示リンク<br /> 
+例１：[databox:datalink id:1 ]<br />
+例２：[databox:datalink code:data1]<br />
+例３：[databox:datalink code:data1 linktext]<br />
+id とcode が共に指定されている場合はidを優先します<br />
+linktext が省略されている場合は、データのタイトルをlinktextとします。該当データがない場合は表示されません。<br />
+linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。該当データがない場合もリンクは表示されます。<br />
+
+</td>
+</tr>
 
 </tbody>
 </table>

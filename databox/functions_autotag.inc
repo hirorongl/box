@@ -61,8 +61,26 @@ function plugin_autotags_databox (
         $p2 = COM_applyFilter ($autotag['parm2']);
         $tag = COM_applyFilter ($autotag['tag']);
         $tagstr = COM_applyFilter ($autotag['tagstr']);
-
-        $p=databox_parm2($p2);
+		
+		$parm2_ary[]="category_id";
+		$parm2_ary[]="category_code";
+		$parm2_ary[]="mode";
+		$parm2_ary[]="rss_file";
+		$parm2_ary[]="title_trim_length";
+		$parm2_ary[]="intervalday";
+		$parm2_ary[]="limitcnt";
+		$parm2_ary[]="newmarkday";
+		$parm2_ary[]="templatedir";
+		$parm2_ary[]="id";
+		$parm2_ary[]="code";
+		$parm2_ary[]="nohitmsg";
+		$parm2_ary[]="perpage";
+		$parm2_ary[]="page";
+		$parm2_ary[]="order";
+		$parm2_ary[]="templatesetvar";
+		$parm2_ary[]="value";
+		$parm2_ary[]="field_id";
+		$p=databox_parm2($p2,$parm2_ary);
 
         //各処理
         switch( $tag ) {
@@ -158,6 +176,13 @@ function plugin_autotags_databox (
                             ,$p['field_code']
                         );
                         break;
+                    case 'datalink':
+                        $rt= databox_datalink(
+                            $p['id']
+                            ,$p['code']
+                            ,$p['lastparm2']
+                        );
+                        break;
 
                 }
 
@@ -170,16 +195,30 @@ function plugin_autotags_databox (
 }
 
 //第二引数分割
-function databox_parm2 ($p2)
+function databox_parm2 ($p2,$parm2_ary)
 {
     $ary=array();
     $px = explode (' ', trim ($p2));
     if (is_array ($px)) {
-        foreach ($px as $part) {
-            $a = explode (':', $part);
-            $ary["{$a[0]}"]=$a[1];
+		foreach ($px as $part) {
+			$a = explode (':', $part);
+			if (in_array($a[0],$parm2_ary)){
+				$ary["{$a[0]}"]=$a[1];
+				$skip++;			
+			}
+		}
+		
+        if (count ($px) > $skip) {
+            for ($i = 0; $i < $skip; $i++) {
+                array_shift ($px);
+            }
+            $ary["lastparm2"] = trim(implode (' ', $px));
         }
-    }
+
+	}else{
+		$lastparm2=trim($p2);
+	}
+	
     return $ary;
 
 }
@@ -2442,6 +2481,31 @@ global $_TABLES;
 
 }
 
-
-
+function databox_datalink(
+    $id
+    ,$code
+    ,$linktext
+)
+{
+	global $_CONF;
+	global $_TABLES;
+	
+	$url="";
+	if ($id<>"") {
+		$url=$_CONF['site_url'].'/databox/data.php?m=id&id='.$id;
+		if  ($linktext==""){
+            $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "id = '$id'"));
+		}
+	}else if ($code<>""){
+		$url=$_CONF['site_url'].'/databox/data.php?m=code&code='.$code;
+		if  ($linktext==""){
+            $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "code = '$code'"));
+		}
+	}
+	if  ($url<>""){
+		$url = COM_buildUrl($url);
+		$url = COM_createLink($linktext, $url);
+	}
+	return $url;
+}
 ?>
