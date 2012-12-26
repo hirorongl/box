@@ -142,6 +142,8 @@ CREATE TABLE {$_TABLES['DATABOX_mst']} (
   `disp` varchar(64) DEFAULT NULL,
   `orderno` int(2) DEFAULT NULL,
   `relno` int(11) DEFAULT NULL,
+  `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `kind` (`kind`,`no`),
   KEY `kind_2` (`kind`,`orderno`)
