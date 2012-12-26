@@ -2497,6 +2497,7 @@ function databox_datalink(
             $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "id = '$id'"));
 		}
 	}else if ($code<>""){
+		$code=DATABOX_swichlang($code);
 		$url=$_CONF['site_url'].'/databox/data.php?m=code&code='.$code;
 		if  ($linktext==""){
             $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "code = '$code'"));
