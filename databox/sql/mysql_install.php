@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 2012328
+// Last Update 20121226
 
 //ADDTION DATA
 $_SQL[] = "
@@ -120,7 +120,7 @@ CREATE TABLE {$_TABLES['DATABOX_def_group']} (
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`group_id`)
-) TYPE=MyISAM  ;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
