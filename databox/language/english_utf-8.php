@@ -396,6 +396,7 @@ $LANG_DATABOX_ORDER['code']="Code Order";
 $LANG_DATABOX_ORDER['title']="Title Order";
 $LANG_DATABOX_ORDER['description']="Description Order";
 $LANG_DATABOX_ORDER['id']="ID order";
+$LANG_DATABOX_ORDER['released']="Released";
 $LANG_DATABOX_ORDER['order']="Order";
 
 ###############################################################################

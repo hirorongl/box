@@ -18,7 +18,7 @@
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= 'アトリビュート';
+$LANG_DATABOX_admin_menu['3']= '属性';
 $LANG_DATABOX_admin_menu['31']='属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
@@ -54,7 +54,7 @@ $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
 $LANG_DATABOX['count']="件数";
 $LANG_DATABOX['category_top']="カテゴリ別件数一覧";
-$LANG_DATABOX['attribute_top']="アトリビュート別件数一覧";
+$LANG_DATABOX['attribute_top']="属性別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
@@ -148,7 +148,7 @@ $LANG_DATABOX_ADMIN['parent']='親';
 $LANG_DATABOX_ADMIN['fieldset']='属性セット';
 $LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
+$LANG_DATABOX_ADMIN['fieldlist']="属性一覧";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
@@ -229,7 +229,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
 データをクリアします。<br{XHTML}>
 アップロードされたファイルも削除されます。<br{XHTML}>
-アトリビュート、カテゴリ、グループ削除されません。<br{XHTML}>
+属性、カテゴリ、グループ削除されません。<br{XHTML}>
 ";
 $LANG_DATABOX_ADMIN['allclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
@@ -266,11 +266,11 @@ $LANG_DATABOX_ADMIN['must'] = '*必須';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
+$LANG_DATABOX_ADMIN['additionfields'] = '属性';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
+$LANG_DATABOX_ADMIN['field_id'] = '属性ID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
@@ -344,7 +344,7 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = '属性の管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
@@ -353,8 +353,8 @@ $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成�
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-"アトリビュートの編集は、アトリビュート名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
-アトリビュートが選択されているときは右側だけに表示されます。<br{XHTML}>
+"属性の編集は、属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
+属性が選択されているときは右側だけに表示されます。<br{XHTML}>
 編集が終わったら、「保存」ボタンをクリックしてください。<br{XHTML}>
 管理画面に戻ります。";
 
@@ -625,7 +625,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にする属性の数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';
