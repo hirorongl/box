@@ -559,7 +559,7 @@ $LANG_confignames['databox']['hidemenu'] = 'Hide Menu';
 $LANG_confignames['databox']['categorycode'] = 'Use Category Code ';
 $LANG_confignames['databox']['datacode'] = 'Use Data Code';
 $LANG_confignames['databox']['groupcode'] = 'Use Group Code';
-$LANG_confignames['databox']['top'] = 'topにDisplayProgram';
+$LANG_confignames['databox']['top'] = 'Program on Frontpage';
 $LANG_confignames['databox']['templates'] = 'Templates Public';
 $LANG_confignames['databox']['templates_admin'] = 'Templates Admin';
 

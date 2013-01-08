@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+
 
 ###############################################################################
-# plugins/databox/language/english_utf-8.php
+# plugins/databox/language/english.php
 
 ###############################################################################
 ## Admin menu
@@ -396,6 +396,7 @@ $LANG_DATABOX_ORDER['code']="Code Order";
 $LANG_DATABOX_ORDER['title']="Title Order";
 $LANG_DATABOX_ORDER['description']="Description Order";
 $LANG_DATABOX_ORDER['id']="ID order";
+$LANG_DATABOX_ORDER['released']="Released";
 $LANG_DATABOX_ORDER['order']="Order";
 
 ###############################################################################
@@ -558,7 +559,7 @@ $LANG_confignames['databox']['hidemenu'] = 'Hide Menu';
 $LANG_confignames['databox']['categorycode'] = 'Use Category Code ';
 $LANG_confignames['databox']['datacode'] = 'Use Data Code';
 $LANG_confignames['databox']['groupcode'] = 'Use Group Code';
-$LANG_confignames['databox']['top'] = 'topにDisplayProgram';
+$LANG_confignames['databox']['top'] = 'Program on Frontpage';
 $LANG_confignames['databox']['templates'] = 'Templates Public';
 $LANG_confignames['databox']['templates_admin'] = 'Templates Admin';
 
