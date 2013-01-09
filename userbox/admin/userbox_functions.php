@@ -46,6 +46,7 @@ $navbarMenu[$LANG_USERBOX_admin_menu['3']]= $adminurl.'field.php';
 $navbarMenu[$LANG_USERBOX_admin_menu['31']]= $adminurl.'fieldset.php';
 $navbarMenu[$LANG_USERBOX_admin_menu['4']]= $adminurl.'category.php';
 $navbarMenu[$LANG_USERBOX_admin_menu['5']]= $adminurl.'group.php';
+$navbarMenu[$LANG_USERBOX_admin_menu['51']]= $adminurl.'mst.php';
 $navbarMenu[$LANG_USERBOX_admin_menu['6']]= $adminurl.'backuprestore.php';
 
 $pro=$_CONF['path'] . 'plugins/userbox/proversion/';
