@@ -563,7 +563,7 @@ function LIB_Save (
         $retval['display']= LIB_Edit($pi_name,$id, $edt_flg,1,"");
         return $retval;
     }else if ($box_conf['aftersave_admin']==='list'){
-            $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/category.php";
+            $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/mst.php";
             $item_url=COM_buildURL($url);
             $target='item';
 			$message=1;
