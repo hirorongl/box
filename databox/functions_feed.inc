@@ -244,11 +244,11 @@ function plugin_getfeedcontent_databox(
         $url.="?";
         //コード使用の時
         if ($_DATABOX_CONF['datacode']){
-            $url.="m=code";
-            $url.="&code=".$A['code'];
+            $url.="code=".$A['code'];
+            $url.="&amp;m=code";
         }else{
-            $url.="m=id";
-            $url.="&id=".$A['id'];
+            $url.="id=".$A['id'];
+            $url.="&amp;m=id";
         }
         $link = COM_buildUrl( $url );
 		$format='html';

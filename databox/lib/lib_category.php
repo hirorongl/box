@@ -188,18 +188,17 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $name=COM_applyFilter($A['code']);
             $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
             $url.="?";
-            $url.="m=code";
-            $url.="&code=".$A['code'];
+            $url.="code=".$A['code'];
+            $url.="&amp;m=code";
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
             break;
-        //名
-        case 'name':
-            $name=COM_applyFilter($A['name']);
+        case 'category_id':
+            $name=COM_applyFilter($A['category_id']);
             $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
             $url.="?";
-            $url.="m=id";
-            $url.="&id=".$A['category_id'];
+            $url.="id=".$A['category_id'];
+            $url.="&amp;m=id";
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
             break;

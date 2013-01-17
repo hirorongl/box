@@ -34,7 +34,8 @@ if (COM_isAnonUser()){
 
 }
 
-function fncList()
+function fncList(
+)
 // +---------------------------------------------------------------------------+
 // | 機能  一覧表示                                                            |
 // | 書式 fncList()                                                            |
@@ -76,9 +77,12 @@ function fncList()
     $header_arr[] = array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN[$datecolumn], 'field' => $datecolumn, 'sort' => true);
     //
-    $text_arr = array('has_menu' =>  true,
+	$text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
-      'form_url' => $_CONF['site_url'] . "/".THIS_SCRIPT);
+      'form_url' => $form_url);
+	$tet_arr['has_menu']=true;
+	$tet_arr['has_extras']=true;
+	$tet_arr['form_url']=$_CONF['site_url'] . "/".THIS_SCRIPT;
 
 
     $sql = "SELECT ";
@@ -94,8 +98,9 @@ function fncList()
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
     $sql .= " WHERE ";
     $sql .= " 1=1";
-    $sql .= COM_getLangSQL ('code', 'AND', 't').LB;
-
+	
+	$sql .= COM_getLangSQL ('code', 'AND', 't').LB;
+	
     //管理者の時,下書データも含む
     //if ( SEC_hasRights('databox.admin')) {
     //}else{
@@ -157,11 +162,11 @@ function fncGetListField(
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
             if ($_DATABOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="code=".$A['code'];
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
@@ -193,6 +198,7 @@ $pi_name    = 'databox';
 
 // 引数
 //order=2&prevorder=orderno&direction=ASC&databoxlistpage=2&q=hotel&query_limit=50
+
 $msg = '';
 if (isset ($_REQUEST['msg'])) {
     $msg = COM_applyFilter ($_REQUEST['msg'], true);
@@ -205,7 +211,7 @@ $layout=$_DATABOX_CONF['layout'];
 if (isset ($msg)) {
     $display .= COM_showMessage ($msg,$pi_name);
 }
-$display .= fncList();
+$display .= fncList($languageid);
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);
 COM_output($display);
 

@@ -446,8 +446,6 @@ function databox_category(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 
-    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
-
 	//--ORDER
     $sql .= " ORDER BY ".LB;
 	$sql .= $orderby.LB;
@@ -568,11 +566,11 @@ function databox_category(
             $url.="?";
             //コード使用の時
             if ($_DATABOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$code;
+                $url.="code=".$code;
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$id;
+                $url.="id=".$id;
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($title, $url);
@@ -655,12 +653,20 @@ function databox_category(
             $url.=THIS_SCRIPT;
         }else{
             $url.="databox/category.php";
-        }
-        $url .= "?m=id";
-        $url .= "&id=".$category_id;
-        $url .= "&template=".$template;
-        $url .= "&order=";
-        //-----order navigation
+		}
+        $url.="?";
+        //コード使用の時
+        if ($_DATABOX_CONF['datacode']){
+            $url.="code=".$category_code;
+            $url.="&amp;m=code";
+		}else{
+			$url .= "id=".$category_id;
+			$url .= "&amp;m=id";
+		}	
+		$url .= "&amp;template=".$template;
+        $url .= "&amp;order=";
+		
+		//-----order navigation
         databox_order ($url, $templates, $order) ;
         //-----page navigation
         $url .= $order;
@@ -997,9 +1003,6 @@ function databox_field(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 
-    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
-
-
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
 
@@ -1039,9 +1042,9 @@ function databox_field(
     //
 	$url=$_CONF['site_url']."/databox/attribute.php";
 	$attribute_top=":<a href='".$url."'>".$LANG_DATABOX['attribute_top']."</a>";
-	$url=$_CONF['site_url']."/databox/attribute.php?m=id&id=".$field_id;
+	$url=$_CONF['site_url']."/databox/attribute.php?";
+	$url.="m=id&amp;id=".$field_id;
 	$field_top=":<a href='".$url."'>".$field_name.$LANG_DATABOX['countlist']."</a>";
-
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -1126,11 +1129,11 @@ function databox_field(
             $url.="?";
             //コード使用の時
             if ($_DATABOX_CONF['datacode'] AND $code<>""){
-                $url.="m=code";
-                $url.="&code=".$code;
+                $url.="code=".$code;
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$id;
+                $url.="id=".$id;
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($title, $url);
@@ -1215,11 +1218,11 @@ function databox_field(
             $url.="databox/attribute.php";
         }
         $url .= "?m=id";
-        $url .= "&id=".$field_id;
-        $url .= "&value=".$value;
-        $url .= "&template=".$template;
-        $url .= "&perpage=".$perpage;
-        $url .= "&order=";
+        $url .= "&amp;id=".$field_id;
+        $url .= "&amp;value=".$value;
+        $url .= "&amp;template=".$template;
+        $url .= "&amp;perpage=".$perpage;
+        $url .= "&amp;order=";
 
         //-----order navigation
         databox_order($url, $templates, $order) ;
@@ -2321,11 +2324,11 @@ function databox_newlist(
         $url.="?";
         //コード使用の時
         if ($_DATABOX_CONF['datacode']){
-            $url.="m=code";
-            $url.="&code=".$A['code'];
+            $url.="code=".$A['code'];
+            $url.="&amp;m=code";
         }else{
-            $url.="m=id";
-            $url.="&id=".$A['id'];
+            $url.="id=".$A['id'];
+            $url.="&amp;m=id";
         }
         $url = COM_buildUrl( $url );
         $link= COM_createLink($title, $url);
@@ -2373,10 +2376,10 @@ function databox_newlist(
         //コード使用の時
         if ($m="code"){
             $more_url.="m=code";
-            $more_url.="&code=".ltrim(rtrim($categories,"'"),"'");
+            $more_url.="&amp;code=".ltrim(rtrim($categories,"'"),"'");
         }else{
             $more_url.="m=id";
-            $more_url.="&id=".ltrim(rtrim($categories,"'"),"'");
+            $more_url.="&amp;id=".ltrim(rtrim($categories,"'"),"'");
         }
         $more_url=$_CONF['site_url'] . "/databox/index.php".$more_url;//@@@@@
     }
@@ -2492,13 +2495,16 @@ function databox_datalink(
 	
 	$url="";
 	if ($id<>"") {
-		$url=$_CONF['site_url'].'/databox/data.php?m=id&id='.$id;
+		$url=$_CONF['site_url']."/databox/data.php?";
+		$url.="m=id&amp;id=".$id;
 		if  ($linktext==""){
             $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "id = '$id'"));
 		}
 	}else if ($code<>""){
 		$code=DATABOX_swichlang($code);
-		$url=$_CONF['site_url'].'/databox/data.php?m=code&code='.$code;
+		$url=$_CONF['site_url']."/databox/data.php?";
+		$url.="code=".$code;
+		$url.="&amp;m=code";
 		if  ($linktext==""){
             $linktext = stripslashes(DB_getItem($_TABLES['DATABOX_base'],'title', "code = '$code'"));
 		}

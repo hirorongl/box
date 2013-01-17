@@ -1,4 +1,4 @@
 <?php
-$_DATABOX_CONF['version'] = '0.0.0.20130109
+$_DATABOX_CONF['version'] = '0.0.0.20130117
 '; // Plugin Version
 ?>

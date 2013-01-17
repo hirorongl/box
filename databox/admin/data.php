@@ -180,18 +180,21 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $retval = COM_createLink($icon_arr['copy'],$url);
             break;
 
-        //名
-        case 'title':
-            $name=COM_stripslashes($A['title']);
+        case 'id':
+            $name=COM_stripslashes($A['id']);
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
-            if ($_DATABOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['code'];
-            }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
-            }
+            $url.="id=".$A['id'];
+            $url.="&amp;m=id";
+            $url = COM_buildUrl( $url );
+            $retval= COM_createLink($name, $url);
+            break;
+        case 'code':
+            $name=COM_stripslashes($A['code']);
+            $url=$_CONF['site_url'] . "/databox/data.php";
+            $url.="?";
+            $url.="code=".$A['code'];
+            $url.="&amp;m=code";
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($name, $url);
             break;
@@ -681,11 +684,11 @@ function fncEdit(
     $url=$_CONF['site_url'] . "/databox/data.php";
     $url.="?";
     if ($_DATABOX_CONF['datacode']){
-        $url.="m=code";
-        $url.="&code=".$A['code'];
+        $url.="code=".$A['code'];
+        $url.="&amp;m=code";
     }else{
-        $url.="m=id";
-        $url.="&id=".$A['id'];
+        $url.="id=".$A['id'];
+        $url.="&amp;m=id";
     }
     $url = COM_buildUrl( $url );
     $view= COM_createLink($LANG_DATABOX['view'], $url);
@@ -1429,11 +1432,11 @@ function fncSave (
         $url.="?";
         //コード使用の時
         if ($_DATABOX_CONF['datacode']){
-            $url.="m=code";
-            $url.="&code=".$code;
+            $url.="code=".$code;
+            $url.="&amp;m=code";
         }else{
-            $url.="m=id";
-            $url.="&id=".$id;
+            $url.="id=".$id;
+            $url.="&amp;m=id";
         }
         $item_url = COM_buildUrl( $url );
 		$target=$_DATABOX_CONF['aftersave_admin'];
@@ -1789,11 +1792,11 @@ function fncsendmail (
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
             if ($_DATABOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="code=".$A['code'];
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
 

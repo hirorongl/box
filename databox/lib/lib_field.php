@@ -149,15 +149,14 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $url.="&amp;id={$A['field_id']}";
             $retval = COM_createLink($icon_arr['copy'],$url);
             break;
-        //名
-        case 'name':
+        case 'field_id':
             if (in_array ($type,$allow_type)){
                 if ($allow_display<2){
-                    $name=COM_applyFilter($A['name']);
+                    $name=COM_applyFilter($A['field_id']);
                     $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
                     $url.="?";
-                    $url.="m=id";
-                    $url.="&id=".$A['field_id'];
+                    $url.="id=".$A['field_id'];
+                    $url.="&amp;m=id";
                     $url = COM_buildUrl( $url );
                     $retval= COM_createLink($name, $url);
                     break;
@@ -169,8 +168,8 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
                     $name=COM_applyFilter($A['templatesetvar']);
                     $url=$_CONF['site_url'] . "/".THIS_SCRIPT2;
                     $url.="?";
-                    $url.="m=code";
-                    $url.="&code=".$A['templatesetvar'];
+                    $url.="code=".$A['templatesetvar'];
+                    $url.="&amp;m=code";
                     $url = COM_buildUrl( $url );
                     $retval= COM_createLink($name, $url);
                     break;

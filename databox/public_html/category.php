@@ -28,7 +28,11 @@ $_DATABOX_VERBOSE = false;
 function fnclist(
 	$pi_name
 	,$template
-	,$group_id=""
+	,$group_id
+	,$perpage
+	,$page
+	,$order
+	,$gcode
 )
 // +---------------------------------------------------------------------------+
 // | 機能  グループ別カテゴリ別件数一覧表示
@@ -45,9 +49,15 @@ function fnclist(
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
 	
+	if ($group_id===""){
+		if ($gcode<>""){
+			$group_id=DATABOX_codetoid(
+			$gcode,'DATABOX_def_group',"group_id");
+		}
+	}
+	
     //-----
-    $page = COM_applyFilter($_REQUEST['page'],true);
-    if (!isset($page) OR $page == 0) {
+    if ($page == 0) {
         $page = 1;
     }
 
@@ -94,14 +104,11 @@ function fnclist(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
 	
-    $sql .= COM_getLangSQL ('code', 'AND', 't2').LB;
-
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.category_id".LB;
 
     $sql .= " ORDER BY ".LB;
     $sql .= " t4.orderno,t3.orderno".LB;
-
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -195,11 +202,11 @@ function fnclist(
             $url.="?";
             //コード使用の時
             if ($_DATABOX_CONF['categorycode']){
-                $url.="m=code";
-                $url.="&code=".$A['code'];
+                $url.="code=".$A['code'];
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$A['category_id'];
+                $url.="id=".$A['category_id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($name, $url);
@@ -216,11 +223,11 @@ function fnclist(
 				$url.="?";
 				//コード使用の時
 				if ($_DATABOX_CONF['groupcode']){
-					$url.="m=gcode";
-					$url.="&gcode=".$A['group_code'];//@@@@@
+					$url.="gcode=".$A['group_code'];//@@@@@
+					$url.="&amp;m=gcode";
 				}else{
-					$url.="m=gid";
-					$url.="&gid=".$A['group_id'];//@@@@@
+					$url.="gid=".$A['group_id'];//@@@@@
+					$url.="&amp;m=gid";
 				}
 				$url = COM_buildUrl( $url );
 				$link= COM_createLink($group_name, $url);
@@ -274,76 +281,9 @@ function fnclist(
 //############################
 $pi_name    = 'databox';
 //############################
-
-
-//引数
-if ($_CONF['url_rewrite']){
-    COM_setArgNames(array('m','arg','template','arg2'));
-    $m=COM_applyFilter(COM_getArgument('m'));
-
-    if ($m==="code"){
-        COM_setArgNames(array('m','code','template','arg2'));
-        $id=0;
-        $code=COM_applyFilter(COM_getArgument('code'));
-		$gid="";
-		$gcode="";
-	}else if ($m==="id"){
-        COM_setArgNames(array('m','id','template','arg2'));
-        $id=COM_applyFilter(COM_getArgument('id'),true);
-        $code="";
-		$gid="";
-		$gcode="";
-    }else if ($m==="gcode"){
-        COM_setArgNames(array('m','gcode','template','arg2'));
-        $gid="";
-        $gcode=COM_applyFilter(COM_getArgument('gcode'));
-		$id=0;
-		$code="";
-    }else if ($m==="gid"){
-        COM_setArgNames(array('m','gid','template','arg2'));
-        $gid=COM_applyFilter(COM_getArgument('gid'),true);
-        $gcode="";
-		$id=0;
-		$code="";
-	}else{
-        $gid=0;
-        $gcode="";
-		$id=0;
-		$code="";
-    }
-    $template=COM_applyFilter(COM_getArgument('template'));
-    $page = COM_applyFilter($_REQUEST['page'],true);
-    $order = COM_applyFilter($_REQUEST['order']);
-    $mode = COM_applyFilter($_REQUEST['mode']);
-}else{
-    $gid = COM_applyFilter($_REQUEST['gid']);
-    $gcode = COM_applyFilter($_REQUEST['gcode']);
-    $id = COM_applyFilter($_REQUEST['id'],true);
-    $code = COM_applyFilter($_REQUEST['code']);
-    $template = COM_applyFilter($_REQUEST['template']);
-    $page = COM_applyFilter($_REQUEST['page'],true);
-    $order = COM_applyFilter($_REQUEST['order']);
-    $mode = COM_applyFilter($_REQUEST['mode']);
-}
-
-if ($gid===""){
-    if ($gcode<>""){
-        $gid=DATABOX_codetoid(
-			$gcode,'DATABOX_def_group',"group_id");
-    }
-}
-if ($id===0){
-    if ($code<>""){
-        $id=DATABOX_codetoid(
-            $code,'DATABOX_def_category',"category_id");
-    }
-}
-
-
 //
 $display = '';
 $page_title=$LANG_DATABOX_ADMIN['piname'];
-
 //ログイン要否チェック
 if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
@@ -355,18 +295,106 @@ if (COM_isAnonUser()){
         COM_output($display);
         exit;
     }
-
 }
 
 
+//引数
+//グループ別)カテゴリ別件数一覧　の引数の順番
+//public_html/category.php?gid=1&m=gid
+//public_html/category.php?gcode=country&m=gcode
+//カテゴリ別一覧の引数の順番
+//public_html/category.php?id=1&m=id
+//public_html/category.php?code=city&m=code
+$url_rewrite = false;
+$q = false;
+$url = $_SERVER["REQUEST_URI"];
+if ($_CONF['url_rewrite']) {
+    $q = strpos($url, '?');
+    if ($q === false) {
+        $url_rewrite = true;
+    }elseif (substr($url, $q - 4, 4) != '.php') {
+        $url_rewrite = true;
+    }
+}
+//
+if ($url_rewrite){
+    COM_setArgNames(array('idcode','m','template'));
+    $m=COM_applyFilter(COM_getArgument('m'));
+    if ($m==="code"){
+        $id=0;
+        $code=COM_applyFilter(COM_getArgument('idcode'));
+		$gid="";
+		$gcode="";
+	}else if ($m==="id"){
+        $id=COM_applyFilter(COM_getArgument('idcode'),true);
+        $code="";
+		$gid="";
+		$gcode="";
+    }else if ($m==="gcode"){
+        $gid="";
+        $gcode=COM_applyFilter(COM_getArgument('idcode'));
+		$id=0;
+		$code="";
+    }else if ($m==="gid"){
+        $gid=COM_applyFilter(COM_getArgument('idcode'),true);
+        $gcode="";
+		$id=0;
+		$code="";
+	}else{
+        $gid=0;
+        $gcode="";
+		$id=0;
+		$code="";
+    }
+    $template=COM_applyFilter(COM_getArgument('template'));
+}else{
+    $gid = COM_applyFilter($_GET['gid']);
+    $gcode = COM_applyFilter($_GET['gcode']);
+    $id = COM_applyFilter($_GET['id'],true);
+    $code = COM_applyFilter($_GET['code']);
+    $template = COM_applyFilter($_GET['template']);
+}
+$page = COM_applyFilter($_GET['page'],true);
+$perpage = COM_applyFilter($_GET['perpage'],true);
+$order = COM_applyFilter($_GET['order']);
+
+if ($perpage===0){
+    $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
+}
+
 if ($id===0) { //一覧
 	if ($code<>""){
-		$display .= data_category("notautotag",$id,$template,"yes",$perpage,$page,$order,$code,$mode);
+		$display .= databox_category(
+			"notautotag"
+			,$id
+			,$template
+			,"yes"
+			,$perpage
+			,$page
+			,$order
+			,$code
+			,$mode);
 	}else{
-		$display .= fnclist($pi_name,$template,$gid);
+		$display .= fnclist(
+			$pi_name
+			,$template
+			,$gid
+			,$perpage
+			,$page
+			,$order
+			,$gcode);
 	}
 }else{//詳細
-	$display .= databox_category("notautotag",$id,$template,"yes",$perpage,$page,$order,$code,$mode);
+	$display .= databox_category(
+		"notautotag"
+		,$id
+		,$template
+		,"yes"
+		,$perpage
+		,$page
+		,$order
+		,$code
+		,$mode);
 }
 
 $display .= DATABOX_siteFooter($pi_name);
