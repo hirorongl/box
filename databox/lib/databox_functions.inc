@@ -2466,11 +2466,12 @@ function DATABOX_getaddtionfields(
 
         $fieldvalue=DATABOX_getfieldvalue(
             $value
-           ,$addition_def[$fid]['type']
-           ,$addition_def[$fid]['selectionary']
-           ,$lang_box_noyes
+			,$addition_def[$fid]['type']
+            ,$addition_def[$fid]['selectionary']
+			,$lang_box_noyes
+			,$addition_def[$fid]['selectlist']
+			,$pi_name
             );
-
         $retval[$fid]=$fieldvalue;
     }
 
@@ -2510,10 +2511,14 @@ function DATABOX_getfieldvalue(
             $fieldvalue= $selectionary[$value];
             break;
 		case 9://既定リスト　（準備中）';
-		$fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
+			if  ($value==""){
+				$fieldvalue="";
+			}else{
+				$fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
 					,"value"
 					,"kind='{$selectlist}' AND no={$value}");
-            break;
+			}
+			break;
         case 4://日時（準備中）
         case 3://日付（準備中）
         case 5://メールアドレス　（準備中）';
