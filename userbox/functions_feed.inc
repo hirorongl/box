@@ -260,11 +260,11 @@ function plugin_getfeedcontent_userbox(
         $url.="?";
         //コード使用の時
        if ($_USERBOX_CONF['datacode']){
-            $url.="m=code";
-            $url.="&code=".$A['username'];
+            $url.="code=".$A['username'];
+            $url.="&amp;m=code";
         }else{
-            $url.="m=id";
-			$url.="&id=".$A['id'];
+			$url.="id=".$A['id'];
+            $url.="&amp;m=id";
 		}
 
         $url = COM_buildUrl( $url );

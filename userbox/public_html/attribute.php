@@ -3,7 +3,7 @@
 // +---------------------------------------------------------------------------+
 // |  アトリビュート別件数一覧、アトリビュート項目別一覧
 // +---------------------------------------------------------------------------+
-// $Id: public_html/userbox/field.php
+// $Id: public_html/userbox/attribute.php
 define ('THIS_SCRIPT', 'userbox/attribute.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
 define ('NEXT_SCRIPT', 'userbox/profile.php');
@@ -20,7 +20,6 @@ if (!in_array('userbox', $_PLUGINS)) {
 //debug 時 true
 $_USERBOX_VERBOSE = false;
 //==============================================================================
-
 function fnclist(
 	$id
 	,$template
@@ -110,8 +109,6 @@ function fnclist(
 
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
-	
-	$sql .= COM_getLangSQL ('username', 'AND', 't5').LB;
 
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.field_id , t1.value". LB;
@@ -230,8 +227,8 @@ function fnclist(
 
             $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
             $url.="?";
-            $url.="m=id";
-            $url.="&id=".$A['field_id'];
+            $url.="id=".$A['field_id'];
+            $url.="&amp;m=id";
             $url2=$url."&value=".$A['value'];
 
             $url = COM_buildUrl( $url );
@@ -299,32 +296,61 @@ function fnclist(
 //############################
 $pi_name    = 'userbox';
 //############################
-
+$display = '';
+$page_title=$LANG_USERBOX_ADMIN['piname'];
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    if  ($_CONF['loginrequired']
+            OR ($_USERBOX_CONF['loginrequired'] === 3)
+            OR ($_USERBOX_CONF['loginrequired'] === 2 AND $id>0) ){
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
+}
 
 //引数
-$id = COM_applyFilter($_REQUEST['id'],true);
-$code = COM_applyFilter($_REQUEST['code']);
-$value = COM_applyFilter($_REQUEST['value']);
-$template = COM_applyFilter($_REQUEST['template']);
-$page = COM_applyFilter($_REQUEST['page'],true);
-$perpage = COM_applyFilter($_REQUEST['perpage'],true);
-$order = COM_applyFilter($_REQUEST['order']);
-
-if ($_CONF['url_rewrite']){
-    COM_setArgNames(array('m','code','value','template','arg2'));
+//(各アトリビュート)別件数一覧 の引数の順番
+//public_html/attribute.php?id=1&m=id
+//public_html/attribute.php?id=xxxx&m=code
+//アトリビュート別一覧の引数の順番
+//public_html/attribute.php?id=1&m=id&value=27&template=yyyy
+//public_html/attribute.php?code=xxxx&m=code&value=27&template=yyyy
+$url_rewrite = false;
+$q = false;
+$url = $_SERVER["REQUEST_URI"];
+if ($_CONF['url_rewrite']) {
+    $q = strpos($url, '?');
+    if ($q === false) {
+        $url_rewrite = true;
+    }elseif (substr($url, $q - 4, 4) != '.php') {
+        $url_rewrite = true;
+    }
+}
+//
+if ($url_rewrite){
+	COM_setArgNames(array('idcode','m','value','template'));
     $m=COM_applyFilter(COM_getArgument('m'));
     if ($m==="code"){
-        COM_setArgNames(array('m','code','value','template','arg2'));
         $id=0;
-        $code=COM_applyFilter(COM_getArgument('code'));
+        $code=COM_applyFilter(COM_getArgument('idcode'));
     }else{
-        COM_setArgNames(array('m','id','value','template','arg2'));
-        $id=COM_applyFilter(COM_getArgument('id'),true);
+        $id=COM_applyFilter(COM_getArgument('idcode'),true);
         $code=0;
-	}
+    }
     $value=COM_applyFilter(COM_getArgument('value'));
     $template=COM_applyFilter(COM_getArgument('template'));
+}else{
+	$id = COM_applyFilter($_GET['id'],true);
+	$code = COM_applyFilter($_GET['code']);
+	$value = COM_applyFilter($_GET['value']);
+	$template = COM_applyFilter($_GET['template']);
 }
+$page = COM_applyFilter($_GET['page'],true);
+$perpage = COM_applyFilter($_GET['perpage'],true);
+$order = COM_applyFilter($_GET['order']);
 
 //@@@@@@!!!
 if ($id===0){
@@ -338,30 +364,11 @@ if ($perpage===0){
 }
 
 
-//
-
-
-$display = '';
-$page_title=$LANG_DATABOX_ADMIN['piname'];
-
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_DATABOX_CONF['loginrequired'] === 3)
-            OR ($_DATABOX_CONF['loginrequired'] === 2 AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
-
-}
-
-
+//(各アトリビュート)別件数一覧
 if ($value==="") { //一覧
     $display .= fnclist($id,$template);
-}else{//詳細
+//アトリビュート別一覧
+}else{
     $display .= userbox_field(
         "notautotag"
         ,$id

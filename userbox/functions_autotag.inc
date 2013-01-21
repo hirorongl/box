@@ -234,7 +234,6 @@ function userbox_category(
 // | 戻値 nomal:category list
 // +---------------------------------------------------------------------------+
 {
-
     $pi_name="userbox";
 
     global $_CONF;
@@ -390,7 +389,7 @@ function userbox_category(
 				$w.=" WHERE t2.id = t1.id)";
 			}
 		}else{
-			$w= "id IN (SELECT id FROM {$tbl1} ";
+			$w= "t2.id IN (SELECT id FROM {$tbl1} ";
 			$w.="WHERE category_id IN ({$ids})) ";
 		}
 		$sql.=" AND ({$w})".LB;
@@ -408,8 +407,6 @@ function userbox_category(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
-	
-	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
 	
 	//--ORDER
     $sql .= " ORDER BY ".LB;
@@ -540,11 +537,11 @@ function userbox_category(
             $url.="?";
             //コード使用の時
             if ($_USERBOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['username'];
+                $url.="code=".$A['username'];
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($username, $url);
@@ -628,19 +625,16 @@ function userbox_category(
         }else{
             $url.="userbox/category.php";
 		}
+		$url .= "?";
 		if ($category_code<>""){
-			$url .= "?m=code";
-			$url .= "&code=".$category_code;
-			$url .= "&ands=".$ands;
-			$url .= "&template=".$template;
-			$url .= "&order=";
+			$url .= "code=".$category_code;
+			$url .= "&amp;m=code";
 		}else{
-			$url .= "?m=id";
-			$url .= "&id=".$category_id;
-			$url .= "&template=".$template;
-			$url .= "&order=";
+			$url .= "id=".$category_id;
+			$url .= "&amp;m=id";
 		}
-		
+		$url .= "&amp;template=".$template;
+		$url .= "&amp;order=";
         //-----order navigation
         userbox_order ($url, $templates, $order) ;
         //-----page navigation
@@ -1562,8 +1556,6 @@ function userbox_field(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
 	
-	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
-	
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
 
@@ -1600,9 +1592,11 @@ function userbox_field(
     //
 	$url=$_CONF['site_url']."/userbox/attribute.php";
 	$attribute_top=":<a href='".$url."'>".$LANG_USERBOX['attribute_top']."</a>";
-	$url=$_CONF['site_url']."/userbox/attribute.php?m=id&id=".$field_id;
+	$url=$_CONF['site_url']."/userbox/attribute.php";
+	$url.="?";
+	$url.="id=".$field_id;
+	$url.="&amp;m=id";
 	$field_top=":<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
-	
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -1690,11 +1684,11 @@ function userbox_field(
             $url.="?";
             //コード使用の時
             if ($_USERBOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['username'];
+                $url.="code=".$A['username'];
+                $url.="&amp;m=code";
             }else{
+                $url.="&amp;id=".$A['id'];
                 $url.="m=id";
-                $url.="&id=".$A['id'];
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($username, $url);
@@ -1782,13 +1776,14 @@ function userbox_field(
             $url.=THIS_SCRIPT;
         }else{
             $url.="userbox/field.php";
-        }
-        $url .= "?m=id";
-        $url .= "&id=".$field_id;
-        $url .= "&value=".$value;
-        $url .= "&template=".$template;
-        $url .= "&perpage=".$perpage;
-        $url .= "&order=";
+		}
+		$url .="?";
+        $url .= "id=".$field_id;
+        $url .= "&amp;m=id";
+        $url .= "&amp;value=".$value;
+        $url .= "&amp;template=".$template;
+        $url .= "&amp;perpage=".$perpage;
+        $url .= "&amp;order=";
         //-----order navigation
         userbox_order ($url, $templates, $order) ;
         //-----page navigation
@@ -1889,6 +1884,10 @@ function userbox_orderby(
         case "description":
         case "id":
             $orderby = " t2.".$order;
+            break;
+        case "username":
+        case "fullname":
+            $orderby = " t4.".$order;
             break;
         default:
             $sql="SELECT ";
@@ -2240,7 +2239,6 @@ global $_TABLES;
             $order=$c;
             $order_name=$LANG_USERBOX_ORDER[$c];
         }
-
 
         if ($order<>"random" AND $order===$cur_order){
             $rt=$order_name;

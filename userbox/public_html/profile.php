@@ -1,8 +1,7 @@
 <?php
-
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | profile.php 表示                                                             |
+// | profile.php 表示
 // +---------------------------------------------------------------------------+
 // $Id: profile.php
 // public_html/userbox/profile.php
@@ -10,7 +9,6 @@
 
 define ('THIS_SCRIPT', 'userbox/profile.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
-
 
 require_once('../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
@@ -21,20 +19,7 @@ if (!in_array('userbox', $_PLUGINS)) {
 //debug 時 true
 $_USERBOX_VERBOSE = false;
 
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_USERBOX_CONF['loginrequired'] === "3")
-            OR ($_USERBOX_CONF['loginrequired'] === "2")
-            OR ($_USERBOX_CONF['loginrequired'] === "1" AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
 
-}
 
 
 function fncComment(
@@ -125,48 +110,63 @@ function fncComment(
 //############################
 $pi_name    = 'userbox';
 //############################
-
-// 引数
-$msg = '';
-if (isset ($_REQUEST['msg'])) {
-    $msg = COM_applyFilter ($_REQUEST['msg'], true);
+$display = '';
+$page_title=$LANG_USERBOX_ADMIN['piname'];
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    if  ($_CONF['loginrequired']
+            OR ($_USERBOX_CONF['loginrequired'] === "3")
+            OR ($_USERBOX_CONF['loginrequired'] === "2")
+            OR ($_USERBOX_CONF['loginrequired'] === "1" AND $id>0) ){
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
 }
-
-if ($_CONF['url_rewrite']){
-    COM_setArgNames(array('m','arg','template','arg2'));
-
+// 引数
+//data.php?id=1&m=id&template=yyyy
+//data.php?code=xxxx_en&m=code&template=yyyy
+$url_rewrite = false;
+$q = false;
+$url = $_SERVER["REQUEST_URI"];
+if ($_CONF['url_rewrite']) {
+    $q = strpos($url, '?');
+    if ($q === false) {
+        $url_rewrite = true;
+    }elseif (substr($url, $q - 4, 4) != '.php') {
+        $url_rewrite = true;
+    }
+}
+//
+if ($url_rewrite){
+	COM_setArgNames(array('idcode','m','template'));
     $m=COM_applyFilter(COM_getArgument('m'));
+    $template=COM_applyFilter(COM_getArgument('template'));
     //code 使用の時
     if ($m==="code"){
         $id=0;
-        $code=COM_applyFilter(COM_getArgument('arg'));
+        $code=COM_applyFilter(COM_getArgument('idcode'));
     }elseif ($m==="id"){
-        $id=COM_applyFilter(COM_getArgument('arg'),true);
-        $code=0;
+        $id=COM_applyFilter(COM_getArgument('idcode'),true);
+        $code="";
     }else{
-        $id = COM_applyFilter($_REQUEST['id'],true);
-        $code = COM_applyFilter($_REQUEST['code']);
-        $template = COM_applyFilter($_REQUEST['template']);
+		$id = 0;
+        $code = "";
     }
-    $template=COM_applyFilter(COM_getArgument('template'));
-
 }else{
-    $id = COM_applyFilter($_REQUEST['id'],true);
-    $code = COM_applyFilter($_REQUEST['code']);
-    $template = COM_applyFilter($_REQUEST['template']);
+    $m = COM_applyFilter($_GET['m']);
+    $id = COM_applyFilter($_GET['id'],true);
+    $code = COM_applyFilter($_GET['code']);
+    $template = COM_applyFilter($_GET['template']);
+}
+$msg = '';
+if (isset ($_GET['msg'])) {
+    $msg = COM_applyFilter ($_GET['msg'], true);
 }
 
-$newcode=DATABOX_swichlang($code);
-if  ($code<>$newcode){
-	$ret_url = $_SERVER['REQUEST_URI'];
-	$ret_pos=strpos($ret_url,$code);
-	$ret_url = substr_replace($ret_url, $newcode, $ret_pos);
-	header("Location: $ret_url");
-}
-
-$display = '';
 $information = array();
-
 // 'コメントを追加',
 if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
     $display .= COM_refresh ($_CONF['site_url'] . '/comment.php?sid='
@@ -192,7 +192,7 @@ if ($id===0 AND $code==="") {
         $display.= COM_showMessage ($msg,$pi_name);
     }
 	$display.=$retval['display'];
-	$display.= fncComment($id);
+	$display.= fncComment($id,$code);
 
 }
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);

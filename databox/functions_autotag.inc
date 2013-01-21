@@ -655,8 +655,7 @@ function databox_category(
             $url.="databox/category.php";
 		}
         $url.="?";
-        //コード使用の時
-        if ($_DATABOX_CONF['datacode']){
+		if ($category_code<>""){
             $url.="code=".$category_code;
             $url.="&amp;m=code";
 		}else{
