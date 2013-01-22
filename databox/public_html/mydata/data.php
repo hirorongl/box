@@ -195,22 +195,24 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
                 $url.="&amp;id=".$A['id'];
                 $retval = COM_createLink($icon_arr['copy'],$url);
                 break;
-
-            //名
-            case 'title':
-                $name=COM_stripslashes($A['title']);
-                $url=$_CONF['site_url'] . "/databox/data.php";
-                $url.="?";
-                if ($_DATABOX_CONF['datacode']){
-                    $url.="m=code";
-                    $url.="&code=".$A['code'];
-                }else{
-                    $url.="m=id";
-                    $url.="&id=".$A['id'];
-                }
-                $url = COM_buildUrl( $url );
-                $retval= COM_createLink($name, $url);
-                break;
+			case 'id':
+				$name=COM_stripslashes($A['id']);
+				$url=$_CONF['site_url'] . "/databox/data.php";
+				$url.="?";
+				$url.="id=".$A['id'];
+				$url.="&amp;m=id";
+				$url = COM_buildUrl( $url );
+				$retval= COM_createLink($name, $url);
+				break;
+			case 'code':
+				$name=COM_stripslashes($A['code']);
+				$url=$_CONF['site_url'] . "/databox/data.php";
+				$url.="?";
+				$url.="code=".$A['code'];
+				$url.="&amp;m=code";
+				$url = COM_buildUrl( $url );
+				$retval= COM_createLink($name, $url);
+				break;
             //下書
             case 'draft_flag':
                 if ($A['draft_flag'] == 1) {
