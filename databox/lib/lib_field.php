@@ -716,7 +716,8 @@ function LIB_Save (
 
         return $retval;
 
-    }else if ($box_conf['aftersave_admin']==='list'){
+	}else if ($box_conf['aftersave_admin']==='list'
+				OR $box_conf['aftersave_admin']==='item'){
             $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/field.php";
             $item_url=COM_buildURL($url);
             $target='item';
