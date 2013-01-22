@@ -80,7 +80,7 @@ switch ($mode) {
         $display .= LIB_Edit($pi_name."", $edt_flg,$msg);
         break;
     case 'save':// 保存
-	    $display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+	    $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
 		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];

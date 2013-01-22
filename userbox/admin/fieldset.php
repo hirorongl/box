@@ -76,13 +76,13 @@ $information = array();
 
 switch ($mode) {
     case 'new':// 新規登録
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_Edit($pi_name,"", $edt_flg,$msg);
         break;
 
     case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+		$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
 		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
@@ -94,25 +94,25 @@ switch ($mode) {
     case 'copy'://コピー
     case 'edit':// 編集
         if (!empty ($id) ) {
-            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
+            $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+                $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
             }
             $display .= LIB_Edit($pi_name,$id, $edt_flg,$msg,"",$mode);
         }
         break;
 
     case 'import':
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['import'];
         $display .= LIB_import($pi_name);
         break;
 	case 'listfields':
-		$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+		$information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_ListFields($pi_name,$id);
         break;
 	case 'editfields':
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_EditFields($pi_name,$id);
         break;
@@ -122,12 +122,12 @@ switch ($mode) {
 
 	
 	case 'listgroups':
-		$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+		$information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_ListGroups($pi_name,$id);
         break;
 	case 'editgroups':// edit groups
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['new'];
         $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_EditGroups($pi_name,$id);
 		break;
@@ -139,7 +139,7 @@ switch ($mode) {
 
 
     default:// 初期表示、一覧表示
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
