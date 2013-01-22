@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2012/11/29 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/01/22 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -35,8 +35,8 @@
 カテゴリ別件数一覧<br/>
 public_html/category.php<br/>
 (グループ別)カテゴリ別件数一覧<br/>
-public_html/category.php?m=gid&gid=1<br/>
-public_html/category.php?m=gcode&gcode=country<br/>
+public_html/category.php?gid=1&amp;m=gid<br/>
+public_html/category.php?gcode=country&amp;m=gcode<br/>
 </td>
 <td>
 【category】headercode.thtml
@@ -106,7 +106,8 @@ count
 <tr class="r2">
 <td  rowspan=4>
 カテゴリ別一覧<br/>
-public_html/category.php?m=id&id=1<br/>
+public_html/category.php?id=1&amp;m=id<br/>
+public_html/category.php?code=city&amp;m=code<br/>
 </td>	
 <td>
 【category】headercode.thtml
@@ -207,7 +208,8 @@ home
 アトリビュート別件数一覧<br/>
 public_html/attribute.php<br/>
 (各アトリビュート)別件数一覧<br/>
-public_html/attribute.php?m=id&id=1<br/>
+public_html/attribute.php?id=1&amp;m=id<br/>
+public_html/attribute.php?code=xxxx&amp;m=code<br/>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -286,7 +288,8 @@ count
 <tr class="r2">
 <td  rowspan=4>
 アトリビュート別一覧<br/>
-public_html/attribute.php?m=id&id=1&value=27<br/>
+public_html/attribute.php?id=1&amp;m=id&amp;value=27&amp;template=yyyy<br/>
+public_html/attribute.php?code=xxxx&amp;m=code&amp;value=27&amp;template=yyyy<br/>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -399,7 +402,8 @@ order=2&prevorder=orderno&direction=ASC&databoxlistpage=2&q=hotel&query_limit=50
 <tr class="r2">
 <td rowspan=3>
 個別表示<br/>
-public_html/data.php?m=id&id=1<br/>
+public_html/data.php?id=1&amp;m=id&amp;template=yyyy<br/>
+public_html/data.php?code=xxxx_en&amp;m=code&amp;template=yyyy<br/>
 </td>
 <td>
 【data】headercode.thtml
@@ -550,9 +554,9 @@ public_html/mydata/data.php<br/>
 {登録したテーマ変数名_noimage}<br/>
 {登録したテーマ変数名_tn_image}→サムネイルイメージ<br/>
 {登録したテーマ変数名_tn_noimage}<br/>
-{登録したテーマ変数名:2}→既定リストマスタのvalue2<br/>
-{登録したテーマ変数名:disp}→既定リストマスタのdisp<br/>
-{登録したテーマ変数名:no}→既定リストマスタのno<br/>
+{登録したテーマ変数名:2}→マスターのvalue2<br/>
+{登録したテーマ変数名:disp}→マスターのdisp<br/>
+{登録したテーマ変数名:no}→マスターのNo.<br/>
 </dd>
 <dt><a class="note_super" name="notetext_id">id</a></dt><dd>管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)</dd>
 <dt><a class="note_super" name="notetext_code">code</a></dt><dd>管理画面で指定したcodeの値</dd>
