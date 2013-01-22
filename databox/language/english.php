@@ -17,9 +17,10 @@ $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= 'Informations';
 $LANG_DATABOX_admin_menu['2']= 'Data';
 $LANG_DATABOX_admin_menu['3']= 'Attributes';
-$LANG_DATABOX_admin_menu['31']= 'Attribute Sets';
+$LANG_DATABOX_admin_menu['31']= 'Type';
 $LANG_DATABOX_admin_menu['4']= 'Categories';
 $LANG_DATABOX_admin_menu['5']= 'Groups';
+$LANG_DATABOX_admin_menu['51']= 'Master';
 $LANG_DATABOX_admin_menu['6']= 'Backup and Restore';
 //
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
@@ -83,7 +84,7 @@ $LANG_DATABOX_ADMIN['drafton'] = 'Draft On All';
 $LANG_DATABOX_ADMIN['draftoff'] = 'Draft Off All';
 $LANG_DATABOX_ADMIN['export'] = 'Export';
 $LANG_DATABOX_ADMIN['import'] = 'Import';
-
+$LANG_DATABOX_ADMIN['sampleimport'] = 'Import sample';
 $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
@@ -116,6 +117,9 @@ $LANG_DATABOX_ADMIN['seq'] = 'SEQ';
 
 $LANG_DATABOX_ADMIN['tag'] = 'TAG';
 $LANG_DATABOX_ADMIN['value'] = 'VALUE';
+$LANG_DATABOX_ADMIN['value2'] = 'VALUE2';
+$LANG_DATABOX_ADMIN['disp'] = 'disp';
+$LANG_DATABOX_ADMIN['relno'] = 'relno';
 
 $LANG_DATABOX_ADMIN['code']='Code';
 
@@ -123,7 +127,7 @@ $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_DATABOX_ADMIN['layout']='Layout';
 
 $LANG_DATABOX_ADMIN['category']='Category';
@@ -143,13 +147,13 @@ $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='Attribute Sets';
-$LANG_DATABOX_ADMIN['fieldset_id']="Attribute Set ID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="Attribute List";
-$LANG_DATABOX_ADMIN['fieldlist']="Attribute List";
+$LANG_DATABOX_ADMIN['fieldset']='Type';
+$LANG_DATABOX_ADMIN['fieldset_id']="Type ID";
+$LANG_DATABOX_ADMIN['fieldsetfields']="Type List";
+$LANG_DATABOX_ADMIN['fieldlist']="Type List";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
-$LANG_DATABOX_ADMIN['fieldsetlist']='Attribute Set List';
+$LANG_DATABOX_ADMIN['fieldsetlist']='Type List';
 
 $LANG_DATABOX_ADMIN['changeset']='Change Attribute Sets';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
@@ -197,7 +201,8 @@ $LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
 $LANG_DATABOX_ADMIN['udatetime'] = 'Modified';
 $LANG_DATABOX_ADMIN['uuid'] = 'Modified by user ID';
 
-//@@@@@-->
+$LANG_DATABOX_ADMIN['kind'] = 'Kind';
+$LANG_DATABOX_ADMIN['no'] = 'No.';//@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(not yet)';
 $LANG_DATABOX_ADMIN['xml_def'] = 'XML definition';
 $LANG_DATABOX_ADMIN['init'] = 'Initialize';
@@ -285,23 +290,23 @@ $LANG_DATABOX_ADMIN['delete_help_field'] = '(NOTE: Data removed, too!)';
 $LANG_DATABOX_ADMIN['delete_help_group'] = '(There are data. Can not delete group.)';
 $LANG_DATABOX_ADMIN['delete_help_category'] = '(There are data. Can not delete category and parent.)';
 $LANG_DATABOX_ADMIN['delete_help_fieldset'] = '(There are data. Can not delete attribute.)';
-
+$LANG_DATABOX_ADMIN['delete_help_mst'] = '(There are registrated data, can\'t remove.)';
 //xmlimport_help
 $LANG_DATABOX_xmlimport['help']=
 "<br{KHTML}>"
 ."(注！)<br{KHTML}>"
-."assist DataBox Plugin XML Batch Import Pathは, same  場所 registしておいてください  <br{KHTML}>"
+."assist DataBox Plugin XML Batch Import Path regist same path.<br{KHTML}>"
 ."<br{KHTML}>"
-."assist Plugin xmlImport exitします <br{KHTML}>"
-."maps:item_10 はCodeに相当内容 registしておいてください <br{KHTML}>"
-."same Codeが既にregist済 場合は, Delete 後added します <br{KHTML}>"
+."assist Plugin xmlImport exit.<br{KHTML}>"
+."maps:item_10 is Code regist.<br{KHTML}>"
+."same code is already regist, delete added.<br{KHTML}>"
 ."<br{KHTML}>"
-."DataBox Plugin xmlImport exitします <br{KHTML}>"
-."same Codeが既にregist済 場合は, Delete 後added します <br{KHTML}>"
-."各々 process が済んだら, XMLFileはDeleteします <br{KHTML}>"
-."(paermissionによりDeleteできない場合があります) <br{KHTML}>"
+."DataBox Plugin xmlImport exit.<br{KHTML}>"
+."same code is already regist, delete added.<br{KHTML}>"
+."rocess, XMLFile Delete.<br{KHTML}>"
+."(paermission delete) <br{KHTML}>"
 ."<br{KHTML}>"
-."exit内容はdatabox_xmlimport.log に regist されます<br{KHTML}>"
+."exit　databox_xmlimport.log regist.<br{KHTML}>"
 
 ;
 $LANG_DATABOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
@@ -336,7 +341,7 @@ $LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
-
+$LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
@@ -388,6 +393,10 @@ $LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'Configuration backup files n
 $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'Configuration Backup File non rewritable<br{KHTML}>';
 
 $LANG_DATABOX_ADMIN['err_not_exist'] = 'Not existed';
+$LANG_DATABOX_ADMIN['err_kind'] = 'Kind error.';
+$LANG_DATABOX_ADMIN['err_no'] = 'no error.';
+$LANG_DATABOX_ADMIN['err_no_w'] = 'This number is already used.';
+
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="Random Order";
 $LANG_DATABOX_ORDER['date']="Date Order";
@@ -591,9 +600,10 @@ $LANG_confignames['databox']['grp_id_default'] = 'Group Default';
 $LANG_confignames['databox']['default_img_url'] = 'Default Image URL';
 
 $LANG_confignames['databox']['maxlength_description'] = 'Maxlength description';
-$LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of description meta';
+$LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of meta description';
+$LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
-$LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of keywords';//--(1)
+//--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'New Information Block';
 $LANG_fs['databox'][fs_whatsnew] = 'New Information Block';
 $LANG_confignames['databox']['whatsnew_interval'] = 'New  Period';
