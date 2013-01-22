@@ -538,7 +538,7 @@ function LIB_Save (
 
 	}else if ($box_conf['aftersave_admin']==='list'
 				OR $box_conf['aftersave_admin']==='item'){
-            $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/group.php";
+            $url = $_CONF['site_admin_url'] . "/plugins/$pi_name/fieldset.php";
             $item_url=COM_buildURL($url);
             $target='item';
 			$message=1;
