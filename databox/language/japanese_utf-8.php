@@ -18,8 +18,8 @@
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '項目';
-$LANG_DATABOX_admin_menu['31']='タイプ';
+$LANG_DATABOX_admin_menu['3']= 'アトリビュート';
+$LANG_DATABOX_admin_menu['31']='属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
 $LANG_DATABOX_admin_menu['51']= 'マスター';
@@ -150,25 +150,25 @@ $LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
 $LANG_DATABOX_ADMIN['group']='グループ';
 $LANG_DATABOX_ADMIN['parent']='親';
 
-$LANG_DATABOX_ADMIN['fieldset']='タイプ';
-$LANG_DATABOX_ADMIN['fieldset_id']="タイプID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="項目リスト";
+$LANG_DATABOX_ADMIN['fieldset']='属性セット';
+$LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
+$LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
 $LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
-$LANG_DATABOX_ADMIN['fieldsetlist']='タイプ一覧';
+$LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
-$LANG_DATABOX_ADMIN['changeset']='タイプ変更';
-$LANG_DATABOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを変更します。<br{XHTML}>";
-$LANG_DATABOX_ADMIN['inst_changesetx']="のタイプを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['changeset']='属性セット変更';
+$LANG_DATABOX_ADMIN['inst_changeset0']="属性セットが登録されていないデータの属性セットを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['inst_changesetx']="の属性セットを変更します。<br{XHTML}>";
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-"変更するタイプを選択してください。<br{XHTML}>
+"変更する属性セットを選択してください。<br{XHTML}>
 ";
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-エキスポートするタイプを選択してください。<br{XHTML}>
+エキスポートする属性セットを選択してください。<br{XHTML}>
 ";
 
 
@@ -356,7 +356,7 @@ $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'タイプの管理';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
@@ -370,7 +370,7 @@ $LANG_DATABOX_ADMIN['inst_fieldsetfields'] =
 管理画面に戻ります。";
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-"新規登録するデータのタイプを選択してください。<br{XHTML}>
+"新規登録するデータの属性セットを選択してください。<br{XHTML}>
 ";
 
 
@@ -386,6 +386,7 @@ $LANG_DATABOX_ADMIN['err_name'] = '名前が不正です';
 $LANG_DATABOX_ADMIN['err_templatesetvar'] = 'テーマ変数が不正です';
 $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'テーマ変数はすでに使用されています';
 $LANG_DATABOX_ADMIN['err_code_w'] = 'このコードはすでに登録されています';
+$LANG_DATABOX_ADMIN['err_code_x'] = 'コードは英数字と.-_のみ入力可能です';
 $LANG_DATABOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_DATABOX_ADMIN['err_title'] = 'タイトルが入力されていません';
 
@@ -462,10 +463,10 @@ $LANG_DATABOX_MAIL['message_group']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】タイプ更新 by {$_USER['username']}";
+"【{$_CONF['site_name']}】属性セット更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが更新されました。".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが更新されました。".LB.LB;
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -493,9 +494,9 @@ $LANG_DATABOX_MAIL['message_group_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが削除されました。".LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
-"【{$_CONF['site_name']}】タイプ削除 by {$_USER['username']}";
+"【{$_CONF['site_name']}】属性セット削除 by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが削除されました。".LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが削除されました。".LB;
 
 ###############################################################################
 #
