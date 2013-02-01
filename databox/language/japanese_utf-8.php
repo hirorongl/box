@@ -168,7 +168,7 @@ $LANG_DATABOX_ADMIN['inst_changeset'] =
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-エキスポートする属性セットを選択してください。<br{XHTML}>
+エクスポートする属性セットを選択してください。<br{XHTML}>
 ";
 
 
@@ -260,7 +260,7 @@ DataBox のデータベースデータをリストアします。<br{XHTML}>
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = 
 "{$_CONF['backup_path']}"."databox/にある"
 ."ファイル名を指定してください。（省略時databox.xml）<br{XHTML}>
-phpMyAdmin でエキスポートしたDataBox のデータベースデータをリストアします。<br{XHTML}>
+phpMyAdmin でエクスポートしたDataBox のデータベースデータをリストアします。<br{XHTML}>
 phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 接頭子が異なる場合は、あらかじめ変換しておいてください。<br{XHTML}>
 アップロードファイルは別途もどしてください。<br{XHTML}>
@@ -693,7 +693,7 @@ $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] パ�
 $LANG_tab['databox']['tab_xml'] = 'profesional版';
 $LANG_fs['databox']['fs_xml'] = '（profesional版）';
 $LANG_confignames['databox']['path_xml'] = 'XML一括インポートディレクトリ';
-$LANG_confignames['databox']['path_xml_out'] = 'XMLエキスポートディレクトリ';
+$LANG_confignames['databox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 
 
 

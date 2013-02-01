@@ -588,7 +588,7 @@ $LANG_confignames['userbox']['autotag_permissions_userbox'] = '[userbox: ] パ�
 $LANG_tab['userbox']['tab_xml'] = 'profesional版';
 $LANG_fs['userbox']['fs_xml'] = 'XML　（profesional版）';
 $LANG_confignames['userbox']['path_xml'] = 'XML一括インポートディレクトリ';
-$LANG_confignames['userbox']['path_xml_out'] = 'XMLエキスポートディレクトリ';
+$LANG_confignames['userbox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['userbox'][0] =array('はい' => 1, 'いいえ' => 0);

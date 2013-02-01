@@ -42,7 +42,7 @@ $LANG_DATABOX['byconfig']="By configuration settings";
 $LANG_DATABOX['data'] = 'Data';
 $LANG_DATABOX['mydata'] = 'My Data';
 
-$LANG_DATABOX['Norecentnew'] = 'New data is none.';
+$LANG_DATABOX['Norecentnew'] = 'No new data.';
 $LANG_DATABOX['nohit'] = 'No hits';
 $LANG_DATABOX['nopermission'] = 'No Permissions';
 
@@ -95,12 +95,12 @@ $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
 
 $LANG_DATABOX_ADMIN['mail1'] = 'Send';
-$LANG_DATABOX_ADMIN['mail2'] = 'Setteing';
+$LANG_DATABOX_ADMIN['mail2'] = 'Setteings';
 
 $LANG_DATABOX_ADMIN['submit'] = 'Submit';
 
 //
-$LANG_DATABOX_ADMIN['link_admin'] = 'Admin:';
+$LANG_DATABOX_ADMIN['link_admin'] = 'Admin';
 $LANG_DATABOX_ADMIN['link_admin_top'] = 'Admin TOP';
 $LANG_DATABOX_ADMIN['link_public'] = '|Public';
 $LANG_DATABOX_ADMIN['link_list'] = 'List';
@@ -155,7 +155,7 @@ $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
 $LANG_DATABOX_ADMIN['fieldsetlist']='Type List';
 
-$LANG_DATABOX_ADMIN['changeset']='Change Attribute Sets';
+$LANG_DATABOX_ADMIN['changeset']='Change Type';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
 
@@ -184,7 +184,7 @@ $LANG_DATABOX_ADMIN['group_id']="Group ID";
 $LANG_DATABOX_ADMIN['perm_owner']="Permission(Owner)";
 $LANG_DATABOX_ADMIN['perm_group']="Permission(Group)";;
 $LANG_DATABOX_ADMIN['perm_members']="Permission(Member)";
-$LANG_DATABOX_ADMIN['perm_anon']="Permission(Guest)";
+$LANG_DATABOX_ADMIN['perm_anon']="Permission(Anonimous)";
 //
 
 $LANG_DATABOX_ADMIN['selection']='Selection';
@@ -604,10 +604,10 @@ $LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of meta
 $LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
 //--(1)
-$LANG_tab['databox'][tab_whatsnew] = 'New Information Block';
-$LANG_fs['databox'][fs_whatsnew] = 'New Information Block';
-$LANG_confignames['databox']['whatsnew_interval'] = 'New  Period';
-$LANG_confignames['databox']['hide_whatsnew'] = 'No New Page Display';
+$LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
+$LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
+$LANG_confignames['databox']['whatsnew_interval'] = 'New Period';
+$LANG_confignames['databox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['databox']['title_trim_length'] = 'Title of Max Length';
 
 
@@ -621,7 +621,7 @@ $LANG_confignames['databox']['additionsearch'] = 'Attributes number for Search';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'Permission';
-$LANG_fs['databox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Guest)';
+$LANG_fs['databox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['databox']['default_permissions'] = 'Permission';
 
 //---(4)
@@ -661,7 +661,7 @@ $LANG_confignames['databox']['file_type'] = 'File Type';
 
 //---(６)
 $LANG_tab['databox']['tab_autotag_permissions'] = 'Autotags Permission';
-$LANG_fs['databox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [1]Group [2]Member [3]Guest)';
+$LANG_fs['databox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] Permission';
 
 //---(９)
@@ -691,14 +691,15 @@ $LANG_configselects['databox'][5] =array(
 $LANG_configselects['databox'][20] =array(
     'Standard' => 'standard'
     , 'Custom' => 'custom'
-    , 'Theme' => 'theme');
+    , 'Theme' => 'theme'
+    );
 
 //@@@@@
 $LANG_configselects['databox'][21] =array(
      'By Modified Date' => 'modified'
     , 'By Created Date' => 'created'
     , 'Display by Released Date' => 'released'
-);
+    );
 
 $LANG_configselects['databox'][22] =array(
     'Standard' => 'standard'
