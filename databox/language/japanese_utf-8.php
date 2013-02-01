@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130109
+# Last Update 20130201
 
 ###############################################################################
 ## 管理画面 menu
@@ -202,6 +202,7 @@ $LANG_DATABOX_ADMIN['modified'] = '編集日付';
 $LANG_DATABOX_ADMIN['created'] = '作成日付';
 $LANG_DATABOX_ADMIN['released'] = '公開日';
 $LANG_DATABOX_ADMIN['expired'] = '公開終了日';
+$LANG_DATABOX_ADMIN['remaingdays'] = '残日数';
 
 $LANG_DATABOX_ADMIN['udatetime'] = 'タイムスタンプ';
 $LANG_DATABOX_ADMIN['uuid'] = '更新ユーザー';

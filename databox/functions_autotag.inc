@@ -382,9 +382,11 @@ function databox_category(
     $sql .= " ,t2.code ".LB;
 	$sql .= " ,t2.description ".LB;
 	$sql .= " ,t2.released ".LB;
+	$sql .= " ,t2.expired ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
 	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
+	$sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
@@ -540,6 +542,8 @@ function databox_category(
 		$templates->set_var ('lang_description', $LANG_DATABOX_ADMIN['description']);
 		$templates->set_var ('lang_date', $LANG_DATABOX_ADMIN[$datefield]);
 		$templates->set_var ('lang_released', $LANG_DATABOX_ADMIN['released']);
+		$templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
+		$templates->set_var ('lang_remaingdays', $LANG_DATABOX_ADMIN['remaingdays']);
 		$templates->set_var ('lang_addfield', $addfield_name);
 		// 追加項目のヘッダ
 		$addition_def=DATABOX_getadditiondef($pi_name);
@@ -554,9 +558,16 @@ function databox_category(
             $id=COM_applyFilter($A['id']);
 			$datefield=COM_applyFilter($A['datefield']);
 			$released=COM_applyFilter($A['released']);
+			$expired=COM_applyFilter($A['expired']);
 			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
 			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
-			
+			if ($expired==="0000-00-00 00:00:00"){
+				$expired_ary=array();
+			}else{	
+				$expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
+			}
+			$curdate_ary =  COM_getUserDateTimeFormat();
+
 			
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
@@ -585,8 +596,15 @@ function databox_category(
 			$templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
 			
-			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
-			
+			$templates->set_var ('data_released', $released_ary[0]);
+			$templates->set_var ('data_expired', $expired_ary[0]);//@@@@@@
+			$remaingdays="";
+			if ($expired<>"0000-00-00 00:00:00") {
+				if  ($expired_ary[1]>=$curdate_ary[1]){
+					$remaingdays=COM_dateDiff( "d", $expired_ary[1], $curdate_ary[1] ) + 1;
+				}
+			}
+			$templates->set_var ('data_remaingdays', $remaingdays);//@@@@@@
 			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
 				$templates->set_var ('new_img', $new_img);
 			}else{

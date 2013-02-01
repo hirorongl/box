@@ -1,9 +1,11 @@
-<!-- plugins/databox/templates/category/default/col_detail.thtml 20128120 { -->
+<!-- plugins/databox/templates/category/default/col_detail.thtml 20130201 { -->
 <li>{data_link}<!-- <a href="{data_url}">{data_title}</a> -->
 (id: {data_id})(code: {data_code})&nbsp;
 {data_description}&nbsp;
 {data_datefield}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
 {data_released}&nbsp;
+{data_expired}&nbsp;
+{data_remaingdays}&nbsp;
 {data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
 {data_edit}
