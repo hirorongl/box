@@ -195,18 +195,20 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $retval = COM_createLink($icon_arr['edit'],$url);
             break;
 
-        //氏名
+        case 'id':
+            $url=$_CONF['site_url'] . "/userbox/profile.php";
+            $url.="?";
+            $url.="id=".$A['id'];
+            $url.="&amp;m=id";
+            $url = COM_buildUrl( $url );
+            $retval= COM_createLink($A['id'], $url);
+            break;
         case 'username':
             $username=COM_applyFilter($A['username']);
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
-            if ($_USERBOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['username'];
-            }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
-            }
+            $url.="code=".$A['username'];
+            $url.="&amp;m=code";
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($username, $url);
             break;
@@ -1167,7 +1169,6 @@ function fncSave (
             $expired_year."-".$expired_month."-".$expired_day
             , $expired_hour.":".$expired_minute."::00"
             );
-        $expired=date("Y-m-d H:i:s",$w);
         if ($expired<$released) {
            $err.=$LANG_USERBOX_ADMIN['err_expired']."<br {XHTML}>".LB;
         }

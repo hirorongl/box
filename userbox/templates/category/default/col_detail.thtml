@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20120905{ -->
+<!-- plugins/userbox/templates/category/default/col_detail.thtml 20130204{ -->
 
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
@@ -8,8 +8,12 @@
 <span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}&nbsp;
 <span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}&nbsp;
 <span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
-<span style= "color:green" > &#123;data_description&#125;</span>{data_description}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
-<span style= "color:green" > &#123;ata_datefield&#125;</span>{data_datefield}&nbsp;
+<span style= "color:green" > &#123;data_description&#125;</span>{data_description}&nbsp;
+<span style= "color:green" > &#123;data_datefield&#125;</span>{data_datefield}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span style= "color:green" > &#123;data_released&#125;</span>{data_released}&nbsp;
+<span style= "color:green" > &#123;data_expired&#125;</span>{data_expired}&nbsp;
+<span style= "color:green" > &#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
+
 <span style= "color:green" > &#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 <span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
 <span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20121101
+# Last Update 20130204
 
 ###############################################################################
 ## 管理画面 menu
@@ -200,6 +200,7 @@ $LANG_USERBOX_ADMIN['modified'] = '編集日付';
 $LANG_USERBOX_ADMIN['created'] = '作成日付';
 $LANG_USERBOX_ADMIN['released'] = '公開日';
 $LANG_USERBOX_ADMIN['expired'] = '公開終了日';
+$LANG_USERBOX_ADMIN['remaingdays'] = '残日数';
 
 $LANG_USERBOX_ADMIN['udatetime'] = 'タイムスタンプ';
 $LANG_USERBOX_ADMIN['uuid'] = '更新ユーザ';
