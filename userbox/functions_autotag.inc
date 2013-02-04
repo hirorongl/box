@@ -1333,16 +1333,16 @@ function userbox_profile(
         $display=$userbox_content;
 
         if ($A['draft_flag']!==1){
-
-            $id=$A['id'];
-            $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
-            if (empty($hits)) {
-                $hits=0;
-            }
-            $fields.="id,hits ";
-            $values.="$id,$hits + 1";
-            DB_save($_TABLES['USERBOX_stats'],$fields,$values);
-
+			if (!SEC_hasRights('userbox.admin')) {
+				$id=$A['id'];
+				$hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
+				if (empty($hits)) {
+					$hits=0;
+				}
+				$fields.="id,hits ";
+				$values.="$id,$hits + 1";
+				DB_save($_TABLES['USERBOX_stats'],$fields,$values);
+			}
         }
 
     }else{

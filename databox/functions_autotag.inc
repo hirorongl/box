@@ -1925,16 +1925,16 @@ function databox_data(
         $display=$databox_content;
 
         if ($A['draft_flag']!==1){
-
-            $id=$A['id'];
-            $hits=DB_getItem($_TABLES['DATABOX_stats'],"hits","id={$id}");
-            if (empty($hits)) {
-                $hits=0;
-            }
-            $fields.="id,hits ";
-            $values.="$id,$hits + 1";
-            DB_save($_TABLES['DATABOX_stats'],$fields,$values);
-
+			if (!SEC_hasRights('databox.admin')) {
+				$id=$A['id'];
+				$hits=DB_getItem($_TABLES['DATABOX_stats'],"hits","id={$id}");
+				if (empty($hits)) {
+					$hits=0;
+				}
+				$fields.="id,hits ";
+				$values.="$id,$hits + 1";
+				DB_save($_TABLES['DATABOX_stats'],$fields,$values);
+			}
         }
 
     }else{
