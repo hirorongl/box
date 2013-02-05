@@ -74,7 +74,8 @@ function fncList(
         $header_arr[] = array('text' => $LANG_DATABOX_ADMIN['id'], 'field' => 'id', 'sort' => true);
     }
 
-    $header_arr[] = array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+	$header_arr[] = array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['remaingdays'], 'field' => 'remaingdays', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN[$datecolumn], 'field' => $datecolumn, 'sort' => true);
     //
 	$text_arr = array('has_menu' =>  true,
@@ -93,6 +94,11 @@ function fncList(
     $sql .= " ,UNIX_TIMESTAMP(udatetime) AS udatetime";
     $sql .= " ,orderno";
     $sql .= " ,UNIX_TIMESTAMP(".$datecolumn.") AS ".$datecolumn;
+	
+	$sql .= " ,(SELECT DATEDIFF(expired , NOW()) ";
+	$sql .= " FROM {$_TABLES['DATABOX_base']} AS t3  ";
+	$sql .= " where   t.id=t3.id AND DATEDIFF(expired , NOW())>0)";
+    $sql .= "	+ 1 AS remaingdays";
 
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
