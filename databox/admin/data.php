@@ -100,6 +100,7 @@ function fncList()
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['code'], 'field' => 'code', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['remaingdays'], 'field' => 'remaingdays', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
     //
@@ -119,7 +120,12 @@ function fncList()
     $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
     $sql .= " ,t.fieldset_id";
-
+	
+	$sql .= " ,(SELECT DATEDIFF(expired , NOW()) ";
+	$sql .= " FROM `gl200_databox_base` AS t3  ";
+	$sql .= " where   t.id=t3.id AND DATEDIFF(expired , NOW())>0)";
+    $sql .= "	+ 1 AS remaingdays";
+	
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
     $sql .= " ,{$_TABLES['DATABOX_def_fieldset']} AS t2";
