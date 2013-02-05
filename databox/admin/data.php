@@ -122,7 +122,7 @@ function fncList()
     $sql .= " ,t.fieldset_id";
 	
 	$sql .= " ,(SELECT DATEDIFF(expired , NOW()) ";
-	$sql .= " FROM `gl200_databox_base` AS t3  ";
+	$sql .= " FROM {$_TABLES['DATABOX_base']} AS t3  ";
 	$sql .= " where   t.id=t3.id AND DATEDIFF(expired , NOW())>0)";
     $sql .= "	+ 1 AS remaingdays";
 	
