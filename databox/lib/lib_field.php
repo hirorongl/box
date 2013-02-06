@@ -578,20 +578,25 @@ function LIB_Save (
         $err.=$lang_box_admin['err_name']."<br/>".LB;
     }
 
-    //テンプレート必須,二重チェック
+    //テーマ変数必須,二重チェック
     if (empty($templatesetvar)){
         $err.=$lang_box_admin['err_templatesetvar']."<br/>".LB;
-    }else{
-        $cntsql="SELECT field_id FROM {$table} ";
-        $cntsql.=" WHERE ";
-        $cntsql.=" templatesetvar='{$templatesetvar}' ";
-        $cntsql.=" AND field_id<>{$id}";
-//echo "cntsql=".$cntsql."<br>";
-        $result = DB_query ($cntsql);
-        $numrows = DB_numRows ($result);
-        if ($numrows<>0 ) {
-            $err.=$lang_box_admin['err_templatesetvar_w']."<br/>".LB;
-        }
+	}else{
+		$templatesetvar=rtrim(ltrim($templatesetvar));
+		$newtemplatesetvar=COM_sanitizeID($templatesetvar,false);
+		if  ($templatesetvar<>$newtemplatesetvar){
+            $err.=$lang_box_admin['err_templatesetvar']."<br/>".LB;
+		}else{
+			$cntsql="SELECT field_id FROM {$table} ";
+			$cntsql.=" WHERE ";
+			$cntsql.=" templatesetvar='{$templatesetvar}' ";
+			$cntsql.=" AND field_id<>{$id}";
+			$result = DB_query ($cntsql);
+			$numrows = DB_numRows ($result);
+			if ($numrows<>0 ) {
+				$err.=$lang_box_admin['err_templatesetvar_w']."<br/>".LB;
+			}
+		}
     }
     //7 = 'オプションリスト';
     //8 = 'ラジオボタンリスト';
