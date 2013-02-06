@@ -1,6 +1,6 @@
 <?php
 // 20101110 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20121226
+// Last Update 20130206
 
 //ADDTION DATA
 $_SQL[] = "
@@ -98,6 +98,9 @@ CREATE TABLE {$_TABLES['USERBOX_def_field']} (
   `orderno` int(2) DEFAULT NULL,
   `allow_display` binary(1) DEFAULT 0,
   `allow_edit` binary(1) DEFAULT 0,
+  `textcheck` binary(1) DEFAULT '0',
+  `textconv` binary(1) DEFAULT '0',
+  `searchtarget` binary(1) DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`field_id`)

@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20121226
+// Last Update 20130206
 
 //ADDTION DATA
 $_SQL[] = "
@@ -98,9 +98,12 @@ CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `maxlength` int(11) DEFAULT NULL,
   `rows` int(11) DEFAULT NULL,
   `br` binary(1) DEFAULT NULL,
-   `orderno` int(2) DEFAULT NULL,
+  `orderno` int(2) DEFAULT NULL,
   `allow_display` binary(1) DEFAULT 0,
   `allow_edit` binary(1) DEFAULT 0,
+  `textcheck` binary(1) DEFAULT '0',
+  `textconv` binary(1) DEFAULT '0',
+  `searchtarget` binary(1) DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`field_id`)
