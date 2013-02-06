@@ -197,6 +197,7 @@ $LANG_DATABOX_ADMIN['modified'] = 'Modified';
 $LANG_DATABOX_ADMIN['created'] = 'Created';
 $LANG_DATABOX_ADMIN['released'] = 'Released';
 $LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
+$LANG_DATABOX_ADMIN['remaingdays'] = 'remaingdays';
 
 $LANG_DATABOX_ADMIN['udatetime'] = 'Modified';
 $LANG_DATABOX_ADMIN['uuid'] = 'Modified by user ID';

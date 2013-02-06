@@ -204,6 +204,7 @@ $LANG_USERBOX_ADMIN['modified'] = 'Modified';
 $LANG_USERBOX_ADMIN['created'] = 'Created';
 $LANG_USERBOX_ADMIN['released'] = 'Released';
 $LANG_USERBOX_ADMIN['expired'] = 'Archive Options';
+$LANG_USERBOX_ADMIN['remaingdays'] = 'remaingdays';
 
 $LANG_USERBOX_ADMIN['udatetime'] = 'Modified';
 $LANG_USERBOX_ADMIN['uuid'] = 'Modified by user ID';
