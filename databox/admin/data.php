@@ -1177,18 +1177,19 @@ function fncSave (
     //コード
 	if ($code<>""){
 		$code=rtrim(ltrim($code));
-        $cntsql="SELECT code FROM {$_TABLES['DATABOX_base']} ";
-        $cntsql.=" WHERE ";
-        $cntsql.=" code='{$code}' ";
-        $cntsql.=" AND id<>'{$id}' ";
-        $result = DB_query ($cntsql);
-        $numrows = DB_numRows ($result);
-        if ($numrows<>0 ) {
-            $err.=$LANG_DATABOX_ADMIN['err_code_w']."<br/>".LB;
-        }
 		$newcode=COM_sanitizeID($code,false);
 		if  ($code<>$newcode){
             $err.=$LANG_DATABOX_ADMIN['err_code_x']."<br/>".LB;
+		}else{
+			$cntsql="SELECT code FROM {$_TABLES['DATABOX_base']} ";
+			$cntsql.=" WHERE ";
+			$cntsql.=" code='{$code}' ";
+			$cntsql.=" AND id<>'{$id}' ";
+			$result = DB_query ($cntsql);
+			$numrows = DB_numRows ($result);
+			if ($numrows<>0 ) {
+				$err.=$LANG_DATABOX_ADMIN['err_code_w']."<br/>".LB;
+			}
 		}
 	}
 
