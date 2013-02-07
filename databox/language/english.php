@@ -198,7 +198,7 @@ $LANG_DATABOX_ADMIN['created'] = 'Created';
 $LANG_DATABOX_ADMIN['released'] = 'Released';
 $LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
 $LANG_DATABOX_ADMIN['remaingdays'] = 'remaingdays';
-
+	
 $LANG_DATABOX_ADMIN['udatetime'] = 'Modified';
 $LANG_DATABOX_ADMIN['uuid'] = 'Modified by user ID';
 
@@ -353,7 +353,7 @@ After edit, click Save button.<{XHTML}br>
 Adminにget back.';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'Select Attributes Sets for Creat Data<{XHTML}br>
+'Select Type for Creat Data<{XHTML}br>
 ';
 
 //ERR
@@ -442,10 +442,10 @@ $LANG_DATABOX_MAIL['message_group']=
 "Group was edited by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】Attributes sets was edted by {$_USER['username']}";
+"【{$_CONF['site_name']}】Type was edted by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"Attributes sets was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+"Type was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -473,7 +473,7 @@ $LANG_DATABOX_MAIL['message_group_delete']=
 "Group was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
-"【{$_CONF['site_name']}】Attributes sets removed by {$_USER['username']}.";
+"【{$_CONF['site_name']}】Type removed by {$_USER['username']}.";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
 "Attributes set was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
 
