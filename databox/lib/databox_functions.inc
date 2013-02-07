@@ -290,11 +290,10 @@ function DATABOX_siteFooter (
     $display="";
 
     $layout=$box_conf['layout'.$kind];
-
     switch ($layout) {
         // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
         case 'standard':
-            $display .= COM_siteFooter(false,$custom);
+		$display .= COM_siteFooter(false,$custom);
             break;
         //ヘッダ・フッタ・左右ブロックあり
         case 'leftrightblocks':
@@ -319,8 +318,6 @@ function DATABOX_siteFooter (
         default:
 
     }
-
-
 
     return $display;
 }
@@ -2861,6 +2858,17 @@ function DATABOX_checkaddtiondatas(
 					if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
 					} else {
                         $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_url']."<br {XHTML}>".LB;
+					}
+                }
+            }
+            //numeric
+			if ($addition_def[$field_id]['type']==15){
+				if ($value ===""){
+				}else{
+					
+					if (is_numeric($value)) {
+					} else {
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_numeric']."<br {XHTML}>".LB;
 					}
                 }
             }

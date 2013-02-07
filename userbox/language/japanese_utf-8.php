@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130204
+# Last Update 20130207
 
 ###############################################################################
 ## 管理画面 menu
@@ -193,6 +193,9 @@ $LANG_USERBOX_ADMIN['selection']='選択肢';
 $LANG_USERBOX_ADMIN['selectlist']='既定リスト';
 $LANG_USERBOX_ADMIN['checkrequried']='必須チェック';
 
+$LANG_USERBOX_ADMIN['textcheck']='テキストフィールドタイプのチェック';
+$LANG_USERBOX_ADMIN['textconv']='テキストフィールドタイプの入力値変換';
+$LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_USERBOX_ADMIN['uid'] = 'ユーザID';
@@ -294,6 +297,7 @@ $LANG_USERBOX_ADMIN['err_templatesetvar_w'] = 'テーマ変数はすでに使用
 $LANG_USERBOX_ADMIN['err_code_w'] = 'このコードはすでに登録されています';
 $LANG_USERBOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_USERBOX_ADMIN['err_title'] = 'タイトルが入力されていません';
+$LANG_USERBOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
 
 $LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
 
@@ -419,12 +423,27 @@ $LANG_USERBOX_ALLOW_EDIT[3] = '所有者とadmin権のある人のみ編集可';
 $LANG_USERBOX_ALLOW_EDIT[4] = '編集不可表示のみ';
 $LANG_USERBOX_ALLOW_EDIT[5] = '編集表示しない';
 
+$LANG_USERBOX_TEXTCHECK = array();
+$LANG_USERBOX_TEXTCHECK[0] = 'ノーチェック';
+$LANG_USERBOX_TEXTCHECK[1] = '半角数字のみ';
+$LANG_USERBOX_TEXTCHECK[2] = '英数字のみ';
+$LANG_USERBOX_TEXTCHECK[3] = '標準IDの範囲内';
+$LANG_USERBOX_TEXTCHECK[4] = '英数字記号のみ';
+
+$LANG_USERBOX_TEXTCONV = array();
+$LANG_USERBOX_TEXTCONV[0] = 'しない';
+$LANG_USERBOX_TEXTCONV[1] = '全角英数字を半角英数字に変換する';
+$LANG_USERBOX_TEXTCONV[2] = '半角英数字を全角に変換する';
+$LANG_USERBOX_TEXTCONV[3] = '半角カタカナを全角に変換する（濁点つきの文字は１文字に変換）';
+$LANG_DATABOX_TEXTCONV[4] = '半角英数字カタカナを全角に変換する';
+
 
 //TYPE （内容の変更不可）
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '一行テキストフィールド';
 $LANG_USERBOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
 $LANG_USERBOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
+$LANG_USERBOX_TYPE[15] = '数値';
 
 $LANG_USERBOX_TYPE[2] = 'いいえ/はい';
 $LANG_USERBOX_TYPE[3] = '日付　（date picker対応）';

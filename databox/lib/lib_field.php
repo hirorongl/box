@@ -241,7 +241,14 @@ function LIB_Edit(
     global $$lang_box_allow_edit;
     $lang_box_allow_edit=$$lang_box_allow_edit;
 
-
+    $lang_box_textcheck="LANG_".strtoupper($pi_name)."_TEXTCHECK";
+    global $$lang_box_textcheck;
+    $lang_box_textcheck=$$lang_box_textcheck;
+	
+    $lang_box_textconv="LANG_".strtoupper($pi_name)."_TEXTCONV";
+    global $$lang_box_textconv;
+    $lang_box_textconv=$$lang_box_textconv;
+	
     $table=$_TABLES[strtoupper($pi_name).'_def_field'];
 
 //        $cur_year = date( 'Y' );
@@ -266,7 +273,11 @@ function LIB_Edit(
 
         $allow_display = COM_applyFilter($_POST['allow_display'],true);
         $allow_edit = COM_applyFilter($_POST['allow_edit'],true);
-
+		
+        $textcheck = COM_applyFilter($_POST['textcheck'],true);
+        $textconv = COM_applyFilter($_POST['textconv'],true);
+        $searchtarget = COM_applyFilter($_POST['searchtarget'],true);
+		
         $selection = COM_applyFilter($_POST['selection']);
         $selectlist = COM_applyFilter($_POST['selectlist']);
         $checkrequried = COM_applyFilter($_POST['checkrequried']);
@@ -289,6 +300,9 @@ function LIB_Edit(
             $description ="";
             $allow_display="";
             $allow_edit="";
+			$textcheck="";
+			$textconv="";
+			$searchtarget="";
 
             $type ="";
 
@@ -326,6 +340,10 @@ function LIB_Edit(
 
             $allow_edit = COM_stripslashes($A['allow_edit']);
             $allow_display = COM_stripslashes($A['allow_display']);
+			
+            $textcheck = COM_stripslashes($A['textcheck']);
+            $textconv = COM_stripslashes($A['textconv']);
+            $searchtarget = COM_stripslashes($A['searchtarget']);
 
             $type = COM_stripslashes($A['type']);
 
@@ -406,7 +424,21 @@ function LIB_Edit(
     $templates->set_var('lang_type', $lang_box_admin['type']);
     $list_type=DATABOX_getradiolist ($lang_box_type,"type",$type,"<br/>");
     $templates->set_var( 'list_type', $list_type);
-
+	
+	//textcheck
+    $templates->set_var('lang_textcheck', $lang_box_admin['textcheck']);
+    $list_textcheck=DATABOX_getradiolist ($lang_box_textcheck,"textcheck",$textcheck,"<br/>");
+    $templates->set_var( 'list_textcheck', $list_textcheck);
+	//textconv
+    $templates->set_var('lang_textconv', $lang_box_admin['textconv']);
+    $list_textconv=DATABOX_getradiolist ($lang_box_textconv,"textconv",$textconv,"<br/>");
+    $templates->set_var( 'list_textconv', $list_textconv);
+	//searchtarget
+    $templates->set_var('lang_searchtarget', $lang_box_admin['searchtarget']);
+    $list_searchtarget=DATABOX_getradiolist ($lang_box_noyes,"searchtarget",$searchtarget,"<br/>");
+    $templates->set_var( 'list_searchtarget', $list_searchtarget);
+	
+	
     //checkrequried
     $templates->set_var('lang_checkrequried', $lang_box_admin['checkrequried']);
     $list_checkrequried=DATABOX_getradiolist ($lang_box_noyes,"checkrequried",$checkrequried);
@@ -530,7 +562,14 @@ function LIB_Save (
     $allow_display=addslashes (COM_checkHTML (COM_checkWords ($allow_display)));
     $allow_edit=COM_applyFilter($_POST['allow_edit']);
     $allow_edit=addslashes (COM_checkHTML (COM_checkWords ($allow_edit)));
-
+	
+    $textcheck=COM_applyFilter($_POST['textcheck']);
+    $textcheck=addslashes (COM_checkHTML (COM_checkWords ($textcheck)));
+    $textconv=COM_applyFilter($_POST['textconv']);
+    $textconv=addslashes (COM_checkHTML (COM_checkWords ($textconv)));
+    $searchtarget=COM_applyFilter($_POST['searchtarget']);
+    $searchtarget=addslashes (COM_checkHTML (COM_checkWords ($searchtarget)));
+	
     $type=COM_applyFilter($_POST['type']);
     $type=addslashes (COM_checkHTML (COM_checkWords ($type)));
     $selection=COM_applyFilter($_POST['selection']);
@@ -669,7 +708,16 @@ function LIB_Save (
 
     $fields.=",allow_edit";
     $values.=",$allow_edit";
-
+	
+	
+    $fields.=",textcheck";
+    $values.=",$textcheck";
+    $fields.=",textconv";
+    $values.=",$textconv";
+    $fields.=",searchtarget";
+    $values.=",$searchtarget";
+	
+	
     $fields.=",uuid";
     $values.=",$uuid";
 

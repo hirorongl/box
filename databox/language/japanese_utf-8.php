@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130201
+# Last Update 20130207
 
 ###############################################################################
 ## 管理画面 menu
@@ -195,6 +195,10 @@ $LANG_DATABOX_ADMIN['perm_anon']="パーミッション（ゲスト）";
 $LANG_DATABOX_ADMIN['selection']='選択肢';
 $LANG_DATABOX_ADMIN['selectlist']='マスターの種別';
 $LANG_DATABOX_ADMIN['checkrequried']='必須チェック';
+
+$LANG_DATABOX_ADMIN['textcheck']='テキストフィールドタイプのチェック';
+$LANG_DATABOX_ADMIN['textconv']='テキストフィールドタイプの入力値変換';
+$LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_DATABOX_ADMIN['uid'] = 'ユーザーID';
@@ -390,6 +394,7 @@ $LANG_DATABOX_ADMIN['err_code_w'] = 'このコードはすでに登録されて�
 $LANG_DATABOX_ADMIN['err_code_x'] = 'コードは英数字と.-_のみ入力可能です';
 $LANG_DATABOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_DATABOX_ADMIN['err_title'] = 'タイトルが入力されていません';
+$LANG_DATABOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
 
 $LANG_DATABOX_ADMIN['err_selection'] = '選択肢が入力されていません';
 
@@ -526,12 +531,26 @@ $LANG_DATABOX_ALLOW_EDIT[3] = '所有者とアクセス権のある人のみ編�
 $LANG_DATABOX_ALLOW_EDIT[4] = '編集不可表示のみ';
 $LANG_DATABOX_ALLOW_EDIT[5] = '編集表示しない';
 
+$LANG_DATABOX_TEXTCHECK = array();
+$LANG_DATABOX_TEXTCHECK[0] = 'ノーチェック';
+$LANG_DATABOX_TEXTCHECK[1] = '半角数字のみ';
+$LANG_DATABOX_TEXTCHECK[2] = '英数字のみ';
+$LANG_DATABOX_TEXTCHECK[3] = '標準IDの範囲内';
+$LANG_DATABOX_TEXTCHECK[4] = '英数字記号のみ';
+
+$LANG_DATABOX_TEXTCONV = array();
+$LANG_DATABOX_TEXTCONV[0] = 'しない';
+$LANG_DATABOX_TEXTCONV[1] = '全角英数字を半角英数字に変換する';
+$LANG_DATABOX_TEXTCONV[2] = '半角英数字を全角に変換する';
+$LANG_DATABOX_TEXTCONV[3] = '半角カタカナを全角に変換する（濁点つきの文字は１文字に変換）';
+$LANG_DATABOX_TEXTCONV[4] = '半角英数字カタカナを全角に変換する';
 
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキストフィールド';
 $LANG_DATABOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
 $LANG_DATABOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
+$LANG_DATABOX_TYPE[15] = '数値';
 
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付　（date picker対応）';
