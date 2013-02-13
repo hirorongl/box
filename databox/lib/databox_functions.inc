@@ -738,6 +738,9 @@ function DATABOX_getadditiondef(
     $sql.= ",allow_display";
     $sql.= ",allow_edit";
 
+    $sql.= ",textcheck";
+    $sql.= ",textconv";
+    $sql.= ",searchtarget";
 
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
@@ -753,7 +756,11 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['description'] = COM_stripslashes($A['description']);
         $rt[$field_id]['allow_display'] = COM_stripslashes($A['allow_display']);
         $rt[$field_id]['allow_edit'] = COM_stripslashes($A['allow_edit']);
-        $rt[$field_id]['type'] = COM_stripslashes($A['type']);
+        $rt[$field_id]['textcheck'] = COM_stripslashes($A['textcheck']);
+		$rt[$field_id]['textconv'] = COM_stripslashes($A['textconv']);
+        $rt[$field_id]['searchtarget'] = COM_stripslashes($A['searchtarget']);
+		
+		$rt[$field_id]['type'] = COM_stripslashes($A['type']);
         //$rt[$field_id]['group_id'] = COM_stripslashes($A['group_id']);
         $rt[$field_id]['selection'] = COM_stripslashes($A['selection']);
 
@@ -867,7 +874,10 @@ function DATABOX_getadditionsearchdef(
     //1: 複数行テキストフィールド
     //10: 複数行テキストフィールド
     $sql.=" AND type IN (0,1,10)";
-
+	
+	//検索対象にする=はい
+	$sql.=" AND searchtarget='1'";
+	
     $sql.=" ORDER  BY  orderno,field_id";
     $sql.=" LIMIT 0 ,".$lmt;
 
@@ -2643,7 +2653,23 @@ function DATABOX_cleanaddtiondatas(
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
             $type=$addition_def[$field_id]['type'];
-            $wk=$value;
+			$textconv=$addition_def[$field_id]['textconv'];
+			$textcheck=$addition_def[$field_id]['textcheck'];
+			$wk=$value;
+			//
+			switch ($type) {
+                case 0:// 一行テキストフィールド
+                case 1:// 複数行テキストフィールド(HTML OK)
+				case 10:// 複数行テキストフィールド(HTML NG)
+				if  (($textconv==10)
+						OR ($textcheck>=11 AND $textcheck<=14)){ //半角チェック;
+						$wk = mb_convert_kana($wk,"ak");
+					}else if ($textconv==20){ //全角に変換する';
+						$wk = mb_convert_kana($wk,"AKV");
+					}
+					break;
+			}
+			//
             switch ($type) {
                 case 11:// 図
                     break;
@@ -2872,6 +2898,32 @@ function DATABOX_checkaddtiondatas(
 					}
                 }
             }
+           //text field
+			if (($addition_def[$field_id]['type']==0)
+					OR ($addition_def[$field_id]['type']==1)
+					OR ($addition_def[$field_id]['type']==10) ){
+				if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
+					if  (!preg_match("/^[0-9]+$/", $value)){
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text1']."<br {XHTML}>".LB;
+					}
+				}else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
+					if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text2']."<br {XHTML}>".LB;
+					}
+				}else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
+					$value=rtrim(ltrim($value));
+					$newvalue=COM_sanitizeID($value);
+					if  ($value<>$newvalue){
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text3']."<br {XHTML}>".LB;
+					}
+					$fldary[$field_id]=$value;
+				}else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
+					if  (!preg_match("/^[!-~]+$/", $value)){
+                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text4']."<br {XHTML}>".LB;
+					}
+				}
+			}
+			
 			
             //textarea
 			if ($addition_def[$field_id]['type']==1 

@@ -11,15 +11,15 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130207
+# Last Update 20130213
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= '情報';
 $LANG_USERBOX_admin_menu['2']= 'プロフィール';
-$LANG_USERBOX_admin_menu['3']= '項目';
-$LANG_USERBOX_admin_menu['31']= 'タイプ';
+$LANG_USERBOX_admin_menu['3']= 'アトリビュート';
+$LANG_USERBOX_admin_menu['31']= '属性セット';
 $LANG_USERBOX_admin_menu['4']= 'カテゴリ';
 $LANG_USERBOX_admin_menu['5']= 'グループ';
 $LANG_USERBOX_admin_menu['6']= 'バックアップ＆リストア';
@@ -67,7 +67,7 @@ $LANG_USERBOX['home']="HOME";
 $LANG_USERBOX['view']="表示";
 $LANG_USERBOX['count']="件数";
 $LANG_USERBOX['category_top']="カテゴリ別件数一覧";
-$LANG_USERBOX['attribute_top']="項目別件数一覧";
+$LANG_USERBOX['attribute_top']="アトリビュート別件数一覧";
 
 $LANG_USERBOX['search_link']="";
 
@@ -150,20 +150,20 @@ $LANG_USERBOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_USERBOX_ADMIN['group']='グループ';
 $LANG_USERBOX_ADMIN['parent']='親';
-$LANG_USERBOX_ADMIN['fieldset']='タイプ';
-$LANG_USERBOX_ADMIN['fieldset_id']="タイプID";
+$LANG_USERBOX_ADMIN['fieldset']='属性セット';
+$LANG_USERBOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_USERBOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_USERBOX_ADMIN['fieldlist']="項目一覧";
+$LANG_USERBOX_ADMIN['fieldlist']="アトリビュート一覧";
 $LANG_USERBOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_USERBOX_ADMIN['grouplist']="カテゴリグループ一覧";
-$LANG_USERBOX_ADMIN['fieldsetlist']='タイプ一覧';
+$LANG_USERBOX_ADMIN['fieldsetlist']='属性セット一覧';
 
-$LANG_USERBOX_ADMIN['changeset']='タイプ変更';
-$LANG_USERBOX_ADMIN['inst_changeset0']='タイプが登録されていないデータのタイプを変更します。<{XHTML}br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='のタイプを変更します。<{XHTML}br>';
+$LANG_USERBOX_ADMIN['changeset']='属性セット変更';
+$LANG_USERBOX_ADMIN['inst_changeset0']='属性セットが登録されていないデータの属性セットを変更します。<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changesetx']='の属性セットを変更します。<{XHTML}br>';
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-'変更するタイプを選択してください。<{XHTML}br>
+'変更する属性セットを選択してください。<{XHTML}br>
 ';
 
 $LANG_USERBOX_ADMIN['allow_display']='表示制限(一般画面)';
@@ -193,8 +193,8 @@ $LANG_USERBOX_ADMIN['selection']='選択肢';
 $LANG_USERBOX_ADMIN['selectlist']='既定リスト';
 $LANG_USERBOX_ADMIN['checkrequried']='必須チェック';
 
-$LANG_USERBOX_ADMIN['textcheck']='テキストフィールドタイプのチェック';
-$LANG_USERBOX_ADMIN['textconv']='テキストフィールドタイプの入力値変換';
+$LANG_USERBOX_ADMIN['textcheck']='入力チェック（テキスト）';
+$LANG_USERBOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
@@ -217,12 +217,12 @@ $LANG_USERBOX_ADMIN['must'] = '*必須';
 $LANG_USERBOX_ADMIN['enabled'] = '有効';
 $LANG_USERBOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_USERBOX_ADMIN['additionfields'] = '項目';
+$LANG_USERBOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_USERBOX_ADMIN['basicfields'] = '基本';
 
 
 $LANG_USERBOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_USERBOX_ADMIN['field_id'] = '項目ID';
+$LANG_USERBOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_USERBOX_ADMIN['name'] = '名称';
 $LANG_USERBOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_USERBOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -275,7 +275,7 @@ $LANG_USERBOX_ADMIN['online'] = 'オンライン';
 $LANG_USERBOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_USERBOX_ADMIN['about_admin_profile'] = 'プロフィールの管理';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_USERBOX_ADMIN['about_admin_field'] = '項目の管理';
+$LANG_USERBOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_USERBOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_USERBOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
 $LANG_USERBOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
@@ -298,6 +298,11 @@ $LANG_USERBOX_ADMIN['err_code_w'] = 'このコードはすでに登録されて�
 $LANG_USERBOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_USERBOX_ADMIN['err_title'] = 'タイトルが入力されていません';
 $LANG_USERBOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
+
+$LANG_USERBOX_ADMIN['err_text1'] = '半角数字のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_text2'] = '英数字のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_text3'] = '半角英数字/-.のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_text4'] = '英数字記号のみ入力可能です';
 
 $LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
 
@@ -425,17 +430,15 @@ $LANG_USERBOX_ALLOW_EDIT[5] = '編集表示しない';
 
 $LANG_USERBOX_TEXTCHECK = array();
 $LANG_USERBOX_TEXTCHECK[0] = 'ノーチェック';
-$LANG_USERBOX_TEXTCHECK[1] = '半角数字のみ';
-$LANG_USERBOX_TEXTCHECK[2] = '英数字のみ';
-$LANG_USERBOX_TEXTCHECK[3] = '標準IDの範囲内';
-$LANG_USERBOX_TEXTCHECK[4] = '英数字記号のみ';
+$LANG_USERBOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
 
 $LANG_USERBOX_TEXTCONV = array();
 $LANG_USERBOX_TEXTCONV[0] = 'しない';
-$LANG_USERBOX_TEXTCONV[1] = '全角英数字を半角英数字に変換する';
-$LANG_USERBOX_TEXTCONV[2] = '半角英数字を全角に変換する';
-$LANG_USERBOX_TEXTCONV[3] = '半角カタカナを全角に変換する（濁点つきの文字は１文字に変換）';
-$LANG_DATABOX_TEXTCONV[4] = '半角英数字カタカナを全角に変換する';
+$LANG_USERBOX_TEXTCONV[10] = '半角に変換する';
+$LANG_USERBOX_TEXTCONV[20] = '全角に変換する';
 
 
 //TYPE （内容の変更不可）

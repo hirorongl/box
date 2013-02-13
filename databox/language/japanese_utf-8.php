@@ -11,15 +11,15 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130207
+# Last Update 20130213
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '項目';
-$LANG_DATABOX_admin_menu['31']='タイプ';
+$LANG_DATABOX_admin_menu['3']= 'アトリビュート';
+$LANG_DATABOX_admin_menu['31']='属性セット';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
 $LANG_DATABOX_admin_menu['51']= 'マスター';
@@ -55,7 +55,7 @@ $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
 $LANG_DATABOX['count']="件数";
 $LANG_DATABOX['category_top']="カテゴリ別件数一覧";
-$LANG_DATABOX['attribute_top']="項目別件数一覧";
+$LANG_DATABOX['attribute_top']="アトリビュート別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
@@ -150,25 +150,25 @@ $LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
 $LANG_DATABOX_ADMIN['group']='グループ';
 $LANG_DATABOX_ADMIN['parent']='親';
 
-$LANG_DATABOX_ADMIN['fieldset']='タイプ';
-$LANG_DATABOX_ADMIN['fieldset_id']="タイプID";
+$LANG_DATABOX_ADMIN['fieldset']='属性セット';
+$LANG_DATABOX_ADMIN['fieldset_id']="属性セットID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_DATABOX_ADMIN['fieldlist']="項目一覧";
+$LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
-$LANG_DATABOX_ADMIN['fieldsetlist']='タイプ一覧';
+$LANG_DATABOX_ADMIN['fieldsetlist']='属性セット一覧';
 
-$LANG_DATABOX_ADMIN['changeset']='タイプ変更';
-$LANG_DATABOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを変更します。<br{XHTML}>";
-$LANG_DATABOX_ADMIN['inst_changesetx']="のタイプを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['changeset']='属性セット変更';
+$LANG_DATABOX_ADMIN['inst_changeset0']="属性セットが登録されていないデータの属性セットを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['inst_changesetx']="の属性セットを変更します。<br{XHTML}>";
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-"変更するタイプを選択してください。<br{XHTML}>
+"変更する属性セットを選択してください。<br{XHTML}>
 ";
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-エクスポートするタイプを選択してください。<br{XHTML}>
+エクスポートする属性セットを選択してください。<br{XHTML}>
 ";
 
 
@@ -196,8 +196,8 @@ $LANG_DATABOX_ADMIN['selection']='選択肢';
 $LANG_DATABOX_ADMIN['selectlist']='マスターの種別';
 $LANG_DATABOX_ADMIN['checkrequried']='必須チェック';
 
-$LANG_DATABOX_ADMIN['textcheck']='テキストフィールドタイプのチェック';
-$LANG_DATABOX_ADMIN['textconv']='テキストフィールドタイプの入力値変換';
+$LANG_DATABOX_ADMIN['textcheck']='入力チェック（テキスト）';
+$LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
@@ -243,7 +243,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
 データをクリアします。<br{XHTML}>
 アップロードされたファイルも削除されます。<br{XHTML}>
-項目、カテゴリ、グループ削除されません。<br{XHTML}>
+アトリビュート、カテゴリ、グループ削除されません。<br{XHTML}>
 ";
 $LANG_DATABOX_ADMIN['allclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
@@ -280,11 +280,11 @@ $LANG_DATABOX_ADMIN['must'] = '*必須';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = '項目';
+$LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = '項目ID';
+$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
@@ -359,9 +359,9 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = '項目の管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'タイプの管理';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = '属性セットの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
@@ -369,13 +369,13 @@ $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-"項目の編集は、項目名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
-項目が選択されているときは右側だけに表示されます。<br{XHTML}>
+"アトリビュートの編集は、アトリビュート名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
+アトリビュートが選択されているときは右側だけに表示されます。<br{XHTML}>
 編集が終わったら、「保存」ボタンをクリックしてください。<br{XHTML}>
 管理画面に戻ります。";
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-"新規登録するデータのタイプを選択してください。<br{XHTML}>
+"新規登録するデータの属性セットを選択してください。<br{XHTML}>
 ";
 
 
@@ -395,6 +395,11 @@ $LANG_DATABOX_ADMIN['err_code_x'] = 'コードは英数字と.-_のみ入力可�
 $LANG_DATABOX_ADMIN['err_code'] = 'コードが入力されていません';
 $LANG_DATABOX_ADMIN['err_title'] = 'タイトルが入力されていません';
 $LANG_DATABOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
+
+$LANG_DATABOX_ADMIN['err_text1'] = '半角数字のみ入力可能です';
+$LANG_DATABOX_ADMIN['err_text2'] = '英数字のみ入力可能です';
+$LANG_DATABOX_ADMIN['err_text3'] = '半角英数字/-.のみ入力可能です';
+$LANG_DATABOX_ADMIN['err_text4'] = '英数字記号のみ入力可能です';
 
 $LANG_DATABOX_ADMIN['err_selection'] = '選択肢が入力されていません';
 
@@ -469,10 +474,10 @@ $LANG_DATABOX_MAIL['message_group']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】タイプ更新 by {$_USER['username']}";
+"【{$_CONF['site_name']}】属性セット更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが更新されました。".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが更新されました。".LB.LB;
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -500,9 +505,9 @@ $LANG_DATABOX_MAIL['message_group_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが削除されました。".LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
-"【{$_CONF['site_name']}】タイプ削除 by {$_USER['username']}";
+"【{$_CONF['site_name']}】属性セット削除 by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが削除されました。".LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、属性セットが削除されました。".LB;
 
 ###############################################################################
 #
@@ -533,17 +538,15 @@ $LANG_DATABOX_ALLOW_EDIT[5] = '編集表示しない';
 
 $LANG_DATABOX_TEXTCHECK = array();
 $LANG_DATABOX_TEXTCHECK[0] = 'ノーチェック';
-$LANG_DATABOX_TEXTCHECK[1] = '半角数字のみ';
-$LANG_DATABOX_TEXTCHECK[2] = '英数字のみ';
-$LANG_DATABOX_TEXTCHECK[3] = '標準IDの範囲内';
-$LANG_DATABOX_TEXTCHECK[4] = '英数字記号のみ';
+$LANG_DATABOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
 
 $LANG_DATABOX_TEXTCONV = array();
 $LANG_DATABOX_TEXTCONV[0] = 'しない';
-$LANG_DATABOX_TEXTCONV[1] = '全角英数字を半角英数字に変換する';
-$LANG_DATABOX_TEXTCONV[2] = '半角英数字を全角に変換する';
-$LANG_DATABOX_TEXTCONV[3] = '半角カタカナを全角に変換する（濁点つきの文字は１文字に変換）';
-$LANG_DATABOX_TEXTCONV[4] = '半角英数字カタカナを全角に変換する';
+$LANG_DATABOX_TEXTCONV[10] = '半角に変換する';
+$LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
@@ -661,7 +664,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にする項目の数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';

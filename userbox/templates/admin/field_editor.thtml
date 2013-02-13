@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/field_editor.thtml  20130207 { -->
+<!-- plugins/userbox/templates/admin/field_editor.thtml  20130213 { -->
 
 <div id="userbox_admin">
 {about_thispage}
@@ -70,15 +70,15 @@
             <th style="width:30%" class="alignright">{lang_searchtarget}{help_searchtarget}</th>
             <td style="width:70%">{list_searchtarget}</td>
         </tr>
-		<!-- テキストフィールドタイプの入力値変換 textconv -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_textconv}{help_textconv}</th>
-            <td style="width:70%">{list_textconv}</td>
-        </tr>
-		<!-- テキストフィールドタイプのチェック textcheck -->
+		<!-- 入力チェック textcheck -->
         <tr>
             <th style="width:30%" class="alignright">{lang_textcheck}{help_textcheck}</th>
             <td style="width:70%">{list_textcheck}</td>
+        </tr>
+		<!-- 入力値変換 textconv -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_textconv}{help_textconv}</th>
+            <td style="width:70%">{list_textconv}</td>
         </tr>
 
 
