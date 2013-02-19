@@ -85,6 +85,7 @@ $LANG_DATABOX_ADMIN['draftoff'] = 'Draft Off All';
 $LANG_DATABOX_ADMIN['export'] = 'Export';
 $LANG_DATABOX_ADMIN['import'] = 'Import';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'Import sample';
+
 $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
@@ -191,6 +192,10 @@ $LANG_DATABOX_ADMIN['selection']='Selection';
 $LANG_DATABOX_ADMIN['selectlist']='Select List';
 $LANG_DATABOX_ADMIN['checkrequried']='Check Requried';
 
+$LANG_DATABOX_ADMIN['textcheck']='入力チェック（テキスト）';
+$LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
+$LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
+
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';
 $LANG_DATABOX_ADMIN['modified'] = 'Modified';
@@ -198,12 +203,14 @@ $LANG_DATABOX_ADMIN['created'] = 'Created';
 $LANG_DATABOX_ADMIN['released'] = 'Released';
 $LANG_DATABOX_ADMIN['expired'] = 'Archive Options';
 $LANG_DATABOX_ADMIN['remaingdays'] = 'remaingdays';
-	
+
 $LANG_DATABOX_ADMIN['udatetime'] = 'Modified';
 $LANG_DATABOX_ADMIN['uuid'] = 'Modified by user ID';
 
 $LANG_DATABOX_ADMIN['kind'] = 'Kind';
 $LANG_DATABOX_ADMIN['no'] = 'No.';//@@@@@-->
+
+//@@@@@-->
 $LANG_DATABOX_ADMIN['inpreparation'] = '(not yet)';
 $LANG_DATABOX_ADMIN['xml_def'] = 'XML definition';
 $LANG_DATABOX_ADMIN['init'] = 'Initialize';
@@ -344,6 +351,7 @@ $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
+
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
@@ -374,9 +382,11 @@ $LANG_DATABOX_ADMIN['err_title'] = 'Title input error';
 $LANG_DATABOX_ADMIN['err_selection'] = 'No selected';
 
 $LANG_DATABOX_ADMIN['err_modified'] = 'Edit date is not invalid.';
+
 $LANG_DATABOX_ADMIN['err_created'] = 'Created date is not invalid.';
 $LANG_DATABOX_ADMIN['err_released'] = 'Published date is not invalid.';
 $LANG_DATABOX_ADMIN['err_expired'] = 'Publish date is not invalid.';
+$LANG_DATABOX_ADMIN['err_expired'] = '公開終了日が不正です';
 
 $LANG_DATABOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
@@ -394,6 +404,7 @@ $LANG_DATABOX_ADMIN['err_backup_file_not_exist'] = 'Configuration backup files n
 $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = 'Configuration Backup File non rewritable<br{KHTML}>';
 
 $LANG_DATABOX_ADMIN['err_not_exist'] = 'Not existed';
+
 $LANG_DATABOX_ADMIN['err_kind'] = 'Kind error.';
 $LANG_DATABOX_ADMIN['err_no'] = 'no error.';
 $LANG_DATABOX_ADMIN['err_no_w'] = 'This number is already used.';
@@ -487,6 +498,8 @@ $LANG_DATABOX_INPUTTYPE = array(
     0 => 'Checkbox',
     1 => 'Multi Select List'
 );
+
+
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='Display(order)';
 $LANG_DATABOX_ALLOW_DISPLAY[1] ='Login User Display';
@@ -502,12 +515,23 @@ $LANG_DATABOX_ALLOW_EDIT[3] = 'Owner and admin can edit.';
 $LANG_DATABOX_ALLOW_EDIT[4] = 'Display Disabled';
 $LANG_DATABOX_ALLOW_EDIT[5] = 'Display';
 
+$LANG_DATABOX_TEXTCHECK = array();
+$LANG_DATABOX_TEXTCHECK[0] = 'ノーチェック';
+$LANG_DATABOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCONV = array();
+$LANG_DATABOX_TEXTCONV[0] = 'しない';
+$LANG_DATABOX_TEXTCONV[10] = '半角に変換する';
+$LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 
 //TYPE (Chenge Disabled)
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_DATABOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
 $LANG_DATABOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
+$LANG_DATABOX_TYPE[15] = '数値';
 
 $LANG_DATABOX_TYPE[2] = 'No/Yes';
 $LANG_DATABOX_TYPE[3] = 'Date (Date Picker)';
