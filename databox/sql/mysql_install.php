@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20130206
+// Last Update 20130213
 
 //ADDTION DATA
 $_SQL[] = "
@@ -83,7 +83,7 @@ CREATE TABLE {$_TABLES['DATABOX_def_category']} (
 ";
 
 
-//項目定義
+//アトリビュート定義
 $_SQL[] = "
 CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `field_id` int(11) NOT NULL,
@@ -101,8 +101,8 @@ CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `orderno` int(2) DEFAULT NULL,
   `allow_display` binary(1) DEFAULT 0,
   `allow_edit` binary(1) DEFAULT 0,
-  `textcheck` binary(1) DEFAULT '0',
-  `textconv` binary(1) DEFAULT '0',
+  `textcheck` binary(2) DEFAULT '0',
+  `textconv` binary(2) DEFAULT '0',
   `searchtarget` binary(1) DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
