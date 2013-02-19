@@ -184,7 +184,12 @@ function fncGetListField(
 			$curtime = COM_getUserDateTimeFormat($A['{$fieldname}']);
 			$retval = $curtime[0];
 			break;
-		
+		case 'remaingdays':
+			if  ($fieldvalue<>""){
+				$retval = "<span class=\"databox_admin_{$fieldvalue}\">";
+				$retval .= "{$fieldvalue}</span>";
+			}
+			break;
        //各項目
        default:
            $retval = $fieldvalue;
