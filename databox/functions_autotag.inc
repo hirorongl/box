@@ -610,6 +610,10 @@ function databox_category(
 			}else{
 				$templates->set_var ('new_img', '');
 			}
+			
+			//カテゴリ@@@@@
+			$templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
+			DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
 
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
