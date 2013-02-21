@@ -1062,6 +1062,7 @@ function userbox_profile(
     $tbl=$_TABLES['USERBOX_base'] ;
     $tbl1=$_TABLES['users'] ;
 	$tbl4=$_TABLES['DATABOX_def_fieldset'];
+	$tbl5=$_TABLES['DATABOX_stats'];
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
@@ -1086,11 +1087,12 @@ function userbox_profile(
     $sql .= " ,t4.description AS set_description";
 	$sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
     $sql .= " ,t4.layout AS set_layout";
+	
+	$sql .= " ,t5.hits";
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";
-    //$sql .= " ,{$tbl1} AS t1 ";
-    //$sql .= " ,{$tbl1} AS t3 ";//last_updateowner
+	$sql .= " JOIN {$tbl5} AS t5       ON t.id=t5.id";
 	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
 	$sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
     $sql .= " LEFT JOIN  {$tbl1} AS t3 ON t.uuid=t3.uid";//last_updateowner
@@ -1099,15 +1101,10 @@ function userbox_profile(
 
 
     if (is_null($id)){//@@@@@
-        //$sql .= " t.id=t1.uid";
 		$sql .= "1=1";
-
     }else{
         $sql .= " t.id=".$id;
-        //$sql .= " AND t.id=t1.uid";
-
     }
-	//$sql .= " AND t.uuid=t3.uid";
 
 	//管理者の時,
     if ( SEC_hasRights('userbox.admin') OR $m==="view") {

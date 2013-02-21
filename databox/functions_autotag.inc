@@ -1621,6 +1621,7 @@ function databox_data(
     $tbl=$_TABLES['DATABOX_base'] ;
     $tbl2=$_TABLES['users'] ;
 	$tbl4=$_TABLES['DATABOX_def_fieldset'];
+	$tbl5=$_TABLES['DATABOX_stats'];
 	
 	$addition_def=DATABOX_getadditiondef($pi_name);
 
@@ -1642,20 +1643,16 @@ function databox_data(
 	$sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
     $sql .= " ,t4.layout AS set_layout";
 	
+	$sql .= " ,t5.hits";
+	
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";//base
-    //$sql .= " ,{$tbl2} AS t2 ";//owner
-    //$sql .= " ,{$tbl2} AS t3 ";//last_updateowner
-    
+	$sql .= " JOIN {$tbl5} AS t5       ON t.id=t5.id";
 	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
 	$sql .= " JOIN {$tbl2} AS t2       ON t.owner_id=t2.uid";//owner
     $sql .= " LEFT JOIN  {$tbl2} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
     $sql .= " WHERE ";
-	
-    //$sql .= " t.owner_id=t2.uid";
-    //$sql .= " AND t.uuid=t3.uid";
-	
 	if (is_null($id)){//@@@@@
 		$sql .= "1=1";
     }else{
