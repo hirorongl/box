@@ -1092,9 +1092,9 @@ function userbox_profile(
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";
-	$sql .= " JOIN {$tbl5} AS t5       ON t.id=t5.id";
 	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
 	$sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
+	$sql .= " LEFT JOIN  {$tbl5} AS t5 ON t.id=t5.id";
     $sql .= " LEFT JOIN  {$tbl1} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
     $sql .= " WHERE ";
