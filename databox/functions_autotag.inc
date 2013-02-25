@@ -80,6 +80,7 @@ function plugin_autotags_databox (
 		$parm2_ary[]="templatesetvar";
 		$parm2_ary[]="value";
 		$parm2_ary[]="field_id";
+		$parm2_ary[]="expired";
 		$p=databox_parm2($p2,$parm2_ary);
 
         //各処理
@@ -125,7 +126,7 @@ function plugin_autotags_databox (
 							);
 						$rt=$w['display'];
                         break;
-                    case 'category':
+					case 'category':
                         $rt= databox_category(
                             "autotag"
                             ,$p['category_id']
@@ -136,6 +137,7 @@ function plugin_autotags_databox (
                             ,$p['order']
 							,$p['category_code']
 							,$p['mode']
+							,$p['expired']
                         );
                         break;
                     case 'attributecount':
@@ -244,7 +246,7 @@ function databox_category(
     ,$order=null
 	,$category_code=null
 	,$mode=''
-
+	,$expired=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別一覧表示
@@ -373,7 +375,10 @@ function databox_category(
     }
 	//
     $w=databox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
-	
+	//
+    if (is_null($expired) or ($expired==="")){
+		$expired="no";
+	}
     //-----
     $sql = "SELECT ";
 
@@ -444,9 +449,11 @@ function databox_category(
     $sql .= COM_getPermSql('AND',0,2,"t2");
 
     //公開日以前のデータはのぞく
-    $sql .= " AND (released <= NOW())".LB;
-    //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())";
+	$sql .= " AND (released <= NOW())".LB;
+	//公開終了日を過ぎたデータはのぞく
+	if  (strtoupper($expired)=="NO"){
+		$sql .= " AND (expired=0 OR expired > NOW())";
+	}
 
 	//--ORDER
     $sql .= " ORDER BY ".LB;

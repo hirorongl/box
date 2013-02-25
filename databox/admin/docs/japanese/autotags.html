@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2012/12/14 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2013/02/25 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -63,12 +63,15 @@
 <td>
 カテゴリ別一覧<br />
 例１：[databox:category] <br />
-例２：[databox:category category_id:1 templatedir:XXX nohitmsg:yes perpage:10 page:1 order:id]<br />
+例２：[databox:category category_id:1 templatedir:XXX nohitmsg:yes perpage:10 page:1 order:id expired:no]<br />
 例３：[databox:category category_code:AAA ]<br />
 例４：[databox:category category_code:AAA|BBB] カテゴリコードがAAA または BBB<br />
 例５：[databox:category category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
 例５：[databox:category category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
+例６：[databox:category category_code:AAA expired:yes]<br />
 order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です <br />
+expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br />
+expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </td>
 </tr>
 

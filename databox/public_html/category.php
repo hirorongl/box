@@ -357,11 +357,10 @@ if ($url_rewrite){
 $page = COM_applyFilter($_GET['page'],true);
 $perpage = COM_applyFilter($_GET['perpage'],true);
 $order = COM_applyFilter($_GET['order']);
-
+$expired = COM_applyFilter($_GET['expired']);
 if ($perpage===0){
     $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
 }
-
 if ($id===0) { //一覧
 	if ($code<>""){
 		$display .= databox_category(
@@ -373,7 +372,9 @@ if ($id===0) { //一覧
 			,$page
 			,$order
 			,$code
-			,$mode);
+			,$mode
+			,$expired
+			);
 	}else{
 		$display .= fnclist(
 			$pi_name
@@ -394,7 +395,9 @@ if ($id===0) { //一覧
 		,$page
 		,$order
 		,$code
-		,$mode);
+		,$mode
+		,$expired
+		);
 }
 
 $display .= DATABOX_siteFooter($pi_name);
