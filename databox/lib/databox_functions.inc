@@ -2902,24 +2902,27 @@ function DATABOX_checkaddtiondatas(
 			if (($addition_def[$field_id]['type']==0)
 					OR ($addition_def[$field_id]['type']==1)
 					OR ($addition_def[$field_id]['type']==10) ){
-				if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
-					if  (!preg_match("/^[0-9]+$/", $value)){
-                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text1']."<br {XHTML}>".LB;
-					}
-				}else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
-					if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
-                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text2']."<br {XHTML}>".LB;
-					}
-				}else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
-					$value=rtrim(ltrim($value));
-					$newvalue=COM_sanitizeID($value);
-					if  ($value<>$newvalue){
-                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text3']."<br {XHTML}>".LB;
-					}
-					$fldary[$field_id]=$value;
-				}else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
-					if  (!preg_match("/^[!-~]+$/", $value)){
-                        $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text4']."<br {XHTML}>".LB;
+				if ($value ===""){
+				}else{
+					if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
+						if  (!preg_match("/^[0-9]+$/", $value)){
+							$rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text1']."<br {XHTML}>".LB;
+						}
+					}else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
+						if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
+							$rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text2']."<br {XHTML}>".LB;
+						}
+					}else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
+						$value=rtrim(ltrim($value));
+						$newvalue=COM_sanitizeID($value);
+						if  ($value<>$newvalue){
+							$rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text3']."<br {XHTML}>".LB;
+						}
+						$fldary[$field_id]=$value;
+					}else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
+						if  (!preg_match("/^[!-~]+$/", $value)){
+							$rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_text4']."<br {XHTML}>".LB;
+						}
 					}
 				}
 			}
