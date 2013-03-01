@@ -64,8 +64,29 @@ function plugin_autotags_userbox (
         $p2 = COM_applyFilter ($autotag['parm2']);
         $tag = COM_applyFilter ($autotag['tag']);
         $tagstr = COM_applyFilter ($autotag['tagstr']);
-
-        $p=userbox_parm2($p2);
+		
+		$parm2_ary[]="category_id";
+		$parm2_ary[]="category_code";
+		$parm2_ary[]="mode";
+		$parm2_ary[]="rss_file";
+		$parm2_ary[]="title_trim_length";
+		$parm2_ary[]="intervalday";
+		$parm2_ary[]="limitcnt";
+		$parm2_ary[]="newmarkday";
+		$parm2_ary[]="templatedir";
+		//$parm2_ary[]="id";
+		$parm2_ary[]="uid";
+		$parm2_ary[]="username";
+		$parm2_ary[]="code";
+		$parm2_ary[]="nohitmsg";
+		$parm2_ary[]="perpage";
+		$parm2_ary[]="page";
+		$parm2_ary[]="order";
+		$parm2_ary[]="templatesetvar";
+		$parm2_ary[]="value";
+		$parm2_ary[]="field_id";
+		$parm2_ary[]="expired";
+        $p=userbox_parm2($p2,$parm2_ary);
 
         //各処理
         switch( $tag ) {
@@ -122,6 +143,7 @@ function plugin_autotags_userbox (
                             ,$p['order']
 							,$p['category_code']
 							,$p['mode']
+							,$p['expired']
                         );
 						break;
 				    case 'attributecount':
@@ -175,16 +197,30 @@ function plugin_autotags_userbox (
  
 
 //第二引数分割
-function userbox_parm2 ($p2)
+function userbox_parm2 ($p2,$parm2_ary)
 {
     $ary=array();
     $px = explode (' ', trim ($p2));
     if (is_array ($px)) {
-        foreach ($px as $part) {
-            $a = explode (':', $part);
-            $ary["{$a[0]}"]=$a[1];
+		foreach ($px as $part) {
+			$a = explode (':', $part);
+			if (in_array($a[0],$parm2_ary)){
+				$ary["{$a[0]}"]=$a[1];
+				$skip++;			
+			}
+		}
+		
+        if (count ($px) > $skip) {
+            for ($i = 0; $i < $skip; $i++) {
+                array_shift ($px);
+            }
+            $ary["lastparm2"] = trim(implode (' ', $px));
         }
-    }
+
+	}else{
+		$lastparm2=trim($p2);
+	}
+	
     return $ary;
 
 }
@@ -209,7 +245,7 @@ function userbox_category(
     ,$order=null
 	,$category_code=null
 	,$mode=''
-
+	,$expired=''
 )
 
 // +---------------------------------------------------------------------------+
@@ -408,7 +444,9 @@ function userbox_category(
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())";
+	if  (strtoupper($expired)=="NO"){
+		$sql .= " AND (expired=0 OR expired > NOW())";
+	}
 	
 	//--ORDER
     $sql .= " ORDER BY ".LB;
@@ -593,6 +631,9 @@ function userbox_category(
 			$photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
 			$templates->set_var('data_user_photo', $photo);
 
+			//カテゴリ@@@@@
+			$templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
+			DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
 
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");

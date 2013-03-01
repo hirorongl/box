@@ -22,7 +22,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/02/04 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/03/01 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -115,6 +115,15 @@ count
 カテゴリ別一覧<br/>
 public_html/category.php?id=1&amp;m=id<br/>
 public_html/category.php?code=city&amp;m=code<br/>
+<br/>
+&page=1&perpage=10<br/>
+&order=random<br/>
+$expired=no<br/>
+<br/>
+order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です<br/>
+<br/>
+expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br/>
+expired:yes 公開終了日を過ぎたデータも表示します。<br/>
 </td>	
 <td>
 【category】headercode.thtml
@@ -200,6 +209,20 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
  data_user_photo
  data_edit
  </br><a  href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ 
+</br>
+group_<a link href="#notetext_id" class="note_super">id</a>,
+group_<a link href="#notetext_code" class="note_super">code</a>,
+grouplink_<a link href="#notetext_id" class="note_super">id</a>,
+grouplink_<a link href="#notetext_code" class="note_super">code</a> 名称を表示<br/>
+
+group_<a link href="#notetext_id" class="note_super">id</a>_code,
+group_<a link href="#notetext_code" class="note_super">code</a>_code,
+grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
+grouplink_<a link href="#notetext_code" class="note_super">code</a>_code コードを表示<br/>
+
+categories,categorieslink,categorieslinkcode,categorieslinkid<br/>
+ 
  </td>
 </tr>
 <tr class="r2">
