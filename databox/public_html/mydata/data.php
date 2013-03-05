@@ -1188,11 +1188,11 @@ function fncSave (
         $url.="?";
         //コード使用の時
         if ($_DATABOX_CONF['datacode']){
-            $url.="m=code";
-            $url.="&code=".$code;
+            $url.="code=".$code;
+            $url.="&amp;m=code";
         }else{
-            $url.="m=id";
-            $url.="&id=".$id;
+            $url.="id=".$id;
+            $url.="&amp;m=id";
         }
         $item_url = COM_buildUrl( $url );
 		$target=$_DATABOX_CONF['aftersave_admin'];
