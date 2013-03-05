@@ -1,11 +1,11 @@
-<!-- plugins/databox/templates/admin/field_editor.thtml  20130213 { -->
+<!-- plugins/databox/templates/admin/field_editor.thtml  20130221 { -->
 
 <div id="databox_admin">
 {about_thispage}
 <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
-    <legend>Addition Fields</legend>
+    <legend>Attribute (addition field)</legend>
 
     <!-- data -->
     <table>

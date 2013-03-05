@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130213
+# Last Update 20130304
 
 ###############################################################################
 ## 管理画面 menu
@@ -19,9 +19,10 @@ $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= '情報';
 $LANG_USERBOX_admin_menu['2']= 'プロフィール';
 $LANG_USERBOX_admin_menu['3']= 'アトリビュート';
-$LANG_USERBOX_admin_menu['31']= '属性セット';
+$LANG_USERBOX_admin_menu['31']= 'タイプ';
 $LANG_USERBOX_admin_menu['4']= 'カテゴリ';
 $LANG_USERBOX_admin_menu['5']= 'グループ';
+$LANG_USERBOX_admin_menu['51']= 'マスター';
 $LANG_USERBOX_admin_menu['6']= 'バックアップ＆リストア';
 
 //
@@ -100,6 +101,10 @@ $LANG_USERBOX_ADMIN['drafton'] = 'ドラフト一括オン';//'下書一括オ�
 $LANG_USERBOX_ADMIN['draftoff'] = 'ドラフト一括オフ';//'下書一括オフ';
 $LANG_USERBOX_ADMIN['export'] = 'エクスポート';
 $LANG_USERBOX_ADMIN['import'] = 'インポート';
+$LANG_USERBOX_ADMIN['sampleimport'] = 'サンプルインポート';
+
+$LANG_USERBOX_ADMIN['importfile'] = 'パス';
+$LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = '削除';
 $LANG_USERBOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br{xhtml}>";
@@ -124,6 +129,14 @@ $LANG_USERBOX_ADMIN['link_detail'] = '詳細ページへ';
 $LANG_USERBOX_ADMIN['id'] = 'ID';
 $LANG_USERBOX_ADMIN['help_id'] ="
 ";
+
+$LANG_USERBOX_ADMIN['seq'] = 'SEQ';
+
+$LANG_USERBOX_ADMIN['tag'] = 'TAG';
+$LANG_USERBOX_ADMIN['value'] = 'VALUE';
+$LANG_USERBOX_ADMIN['value2'] = 'VALUE2';
+$LANG_USERBOX_ADMIN['disp'] = 'disp';
+$LANG_USERBOX_ADMIN['relno'] = 'relno';
 
 $LANG_USERBOX_ADMIN['code']='コード';
 
@@ -150,21 +163,31 @@ $LANG_USERBOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_USERBOX_ADMIN['group']='グループ';
 $LANG_USERBOX_ADMIN['parent']='親';
-$LANG_USERBOX_ADMIN['fieldset']='属性セット';
-$LANG_USERBOX_ADMIN['fieldset_id']="属性セットID";
-$LANG_USERBOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_USERBOX_ADMIN['fieldlist']="アトリビュート一覧";
-$LANG_USERBOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
-$LANG_USERBOX_ADMIN['grouplist']="カテゴリグループ一覧";
-$LANG_USERBOX_ADMIN['fieldsetlist']='属性セット一覧';
 
-$LANG_USERBOX_ADMIN['changeset']='属性セット変更';
-$LANG_USERBOX_ADMIN['inst_changeset0']='属性セットが登録されていないデータの属性セットを変更します。<{XHTML}br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='の属性セットを変更します。<{XHTML}br>';
+$LANG_USERBOX_ADMIN['fieldset']='タイプ';
+$LANG_USERBOX_ADMIN['fieldset_id']="タイプID";
+
+$LANG_USERBOX_ADMIN['fieldsetfields']="アトリビュートの表示と編集";
+$LANG_USERBOX_ADMIN['fieldsetfieldsregistered']="登録されたアトリビュート";
+$LANG_USERBOX_ADMIN['fieldlist']="アトリビュート一覧";
+$LANG_USERBOX_ADMIN['fieldsetgroups']="カテゴリグループの表示と編集";
+$LANG_USERBOX_ADMIN['fieldsetgroupsregistered']="登録されたカテゴリグループ";
+$LANG_USERBOX_ADMIN['grouplist']="カテゴリグループ一覧";
+$LANG_USERBOX_ADMIN['fieldsetlist']='タイプ一覧';
+
+$LANG_USERBOX_ADMIN['registset']='タイプ登録';
+$LANG_USERBOX_ADMIN['changeset']='タイプ変更';
+$LANG_USERBOX_ADMIN['inst_changeset0']='タイプが登録されていないデータのタイプを登録します。<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changesetx']='のタイプを変更します。<{XHTML}br>';
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-'変更する属性セットを選択してください。<{XHTML}br>
+'タイプを選んでください。<{XHTML}br>
 ';
+
+$LANG_USERBOX_ADMIN['inst_dataexport'] = 
+"
+エクスポートするデータのタイプを選択してください。<br{XHTML}>
+";
 
 $LANG_USERBOX_ADMIN['allow_display']='表示制限(一般画面)';
 $LANG_USERBOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
@@ -190,7 +213,7 @@ $LANG_USERBOX_ADMIN['perm_anon']="パーミッション（ゲスト）";
 
 //@@@@@
 $LANG_USERBOX_ADMIN['selection']='選択肢';
-$LANG_USERBOX_ADMIN['selectlist']='既定リスト';
+$LANG_USERBOX_ADMIN['selectlist']='マスターの種別';
 $LANG_USERBOX_ADMIN['checkrequried']='必須チェック';
 
 $LANG_USERBOX_ADMIN['textcheck']='入力チェック（テキスト）';
@@ -207,6 +230,9 @@ $LANG_USERBOX_ADMIN['remaingdays'] = '残日数';
 
 $LANG_USERBOX_ADMIN['udatetime'] = 'タイムスタンプ';
 $LANG_USERBOX_ADMIN['uuid'] = '更新ユーザ';
+
+$LANG_USERBOX_ADMIN['kind'] = '種別';
+$LANG_USERBOX_ADMIN['no'] = 'No.';
 
 $LANG_USERBOX_ADMIN['yy'] = '年';
 $LANG_USERBOX_ADMIN['mm'] = '月';
@@ -226,7 +252,6 @@ $LANG_USERBOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_USERBOX_ADMIN['name'] = '名称';
 $LANG_USERBOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_USERBOX_ADMIN['templatesetvars'] = 'テーマ変数';
-$LANG_USERBOX_ADMIN['group_id'] = 'グループID';
 $LANG_USERBOX_ADMIN['parent_id'] = '親ID';
 $LANG_USERBOX_ADMIN['parent_flg'] = '親グループ？';
 $LANG_USERBOX_ADMIN['input_type'] = '入力タイプ';
@@ -244,10 +269,14 @@ $LANG_USERBOX_ADMIN['byusingtemplatesetvar'] = '登録したテーマ変数を�
 
 $LANG_USERBOX_ADMIN['withlink'] = 'リンク付';
 
+$LANG_USERBOX_ADMIN['number'] ="件";
+$LANG_USERBOX_ADMIN['endmessage'] = "処理終了しました";
 //help
 $LANG_USERBOX_ADMIN['delete_help_field'] = '削除するとデータも削除されます！';
 $LANG_USERBOX_ADMIN['delete_help_group'] = '登録されているデータがあります。削除できません。';
 $LANG_USERBOX_ADMIN['delete_help_category'] = '登録されているデータがあります。削除できません。親の変更もできません。';
+$LANG_USERBOX_ADMIN['delete_help_fieldset'] = '登録されているデータがあります。削除できません。';
+$LANG_USERBOX_ADMIN['delete_help_mst'] = '登録されているデータがあります。削除できません。';
 
 //backup&restore
 $LANG_USERBOX_ADMIN['config'] = 'コンフィギュレーション';
@@ -278,11 +307,16 @@ $LANG_USERBOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_USERBOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_USERBOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_USERBOX_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
+$LANG_USERBOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 $LANG_USERBOX_ADMIN['about_admin_view'] = '一般ログインユーザからみたページはこのようになります';
 
 $LANG_USERBOX_ADMIN['about_myprofile_view'] = '一般ログインユーザからみたあなたのページはこのようになります';
 $LANG_USERBOX_ADMIN['about_myprofile_profile'] = 'あなたのプロフィールの管理';
 $LANG_USERBOX_ADMIN['about_myprofile_securitygroup'] = 'あなたの所属するグループの管理';
+
+$LANG_USERBOX_ADMIN['inst_newdata'] = 
+"新規登録するデータのタイプを選んでください。<br{XHTML}>
+";
 
 //ERR
 $LANG_USERBOX_ADMIN['err'] = 'エラー';
@@ -328,6 +362,9 @@ $LANG_USERBOX_ADMIN['err_backup_file_non_rewritable'] = 'バックアップフ�
 $LANG_USERBOX_ADMIN['err_group_not_exist'] = '対象グループがありません';
 
 
+$LANG_USERBOX_ADMIN['err_kind'] = '種別が不正です。';
+$LANG_USERBOX_ADMIN['err_no'] = 'No. が不正です。';
+$LANG_USERBOX_ADMIN['err_no_w'] = 'このNo. はすでに登録されています。';
 
 ###############################################################################
 //$LANG28 = array(
@@ -378,6 +415,13 @@ $LANG_USERBOX_MAIL['subject_group'] =
 $LANG_USERBOX_MAIL['message_group']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
+$LANG_USERBOX_MAIL['subject_fieldset'] =
+"【{$_CONF['site_name']}】データタイプ更新 by {$_USER['username']}";
+
+$LANG_USERBOX_MAIL['message_fieldset']=
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが更新されました。".LB.LB;
+
+
 #
 $LANG_USERBOX_MAIL['sig'] = LB
 ."------------------------------------".LB
@@ -402,6 +446,12 @@ $LANG_USERBOX_MAIL['subject_group_delete'] =
 "【{$_CONF['site_name']}】グループ削除 by {$_USER['username']}";
 $LANG_USERBOX_MAIL['message_group_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが削除されました。".LB;
+
+$LANG_USERBOX_MAIL['subject_fieldset_delete'] =
+"【{$_CONF['site_name']}】データタイプ削除 by {$_USER['username']}";
+$LANG_USERBOX_MAIL['message_fieldset_delete']=
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが削除されました。".LB;
+
 
 ###############################################################################
 #
@@ -453,10 +503,10 @@ $LANG_USERBOX_TYPE[3] = '日付　（date picker対応）';
 $LANG_USERBOX_TYPE[4] = '日時　（準備中）';
 $LANG_USERBOX_TYPE[5] = 'メールアドレス';
 $LANG_USERBOX_TYPE[6] = 'url';
-$LANG_USERBOX_TYPE[7] = 'オプションリスト';
-$LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト';
-$LANG_USERBOX_TYPE[9] = '既定リスト　（準備中）';
-$LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト　（準備中）';
+$LANG_USERBOX_TYPE[7] = 'オプションリスト（選択肢）';
+$LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
+$LANG_USERBOX_TYPE[9] = 'オプションリスト（マスター）';
+$LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 
 $LANG_USERBOX_TYPE[11] = '画像（DB保存）';
 $LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';

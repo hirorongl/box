@@ -5,7 +5,7 @@
 <form name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
-    <legend>Attribute set</legend>
+    <legend>Data Type (fieldset)</legend>
 
     <!-- data -->
     <table>

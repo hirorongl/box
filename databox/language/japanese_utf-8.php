@@ -11,14 +11,14 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130213
+# Last Update 20130221
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= '属性';
+$LANG_DATABOX_admin_menu['3']= 'アトリビュート';
 $LANG_DATABOX_admin_menu['31']='タイプ';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
@@ -55,7 +55,7 @@ $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
 $LANG_DATABOX['count']="件数";
 $LANG_DATABOX['category_top']="カテゴリ別件数一覧";
-$LANG_DATABOX['attribute_top']="属性別件数一覧";
+$LANG_DATABOX['attribute_top']="アトリビュート別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
@@ -152,23 +152,26 @@ $LANG_DATABOX_ADMIN['parent']='親';
 
 $LANG_DATABOX_ADMIN['fieldset']='タイプ';
 $LANG_DATABOX_ADMIN['fieldset_id']="タイプID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="属性リスト";
-$LANG_DATABOX_ADMIN['fieldlist']="属性一覧";
-$LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループリスト";
+$LANG_DATABOX_ADMIN['fieldsetfields']="アトリビュートの表示と編集";
+$LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="登録されたアトリビュート";
+$LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
+$LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループの表示と編集";
+$LANG_DATABOX_ADMIN['fieldsetgroupsregistered']="登録されたカテゴリグループ";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
 $LANG_DATABOX_ADMIN['fieldsetlist']='タイプ一覧';
 
+$LANG_DATABOX_ADMIN['registset']='タイプ登録';
 $LANG_DATABOX_ADMIN['changeset']='タイプ変更';
-$LANG_DATABOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを変更します。<br{XHTML}>";
+$LANG_DATABOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを登録します。<br{XHTML}>";
 $LANG_DATABOX_ADMIN['inst_changesetx']="のタイプを変更します。<br{XHTML}>";
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-"変更するタイプを選択してください。<br{XHTML}>
+"タイプを選んでください。<br{XHTML}>
 ";
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-エクスポートするタイプを選択してください。<br{XHTML}>
+エクスポートするデータのタイプを選択してください。<br{XHTML}>
 ";
 
 
@@ -243,7 +246,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
 データをクリアします。<br{XHTML}>
 アップロードされたファイルも削除されます。<br{XHTML}>
-属性、カテゴリ、グループ削除されません。<br{XHTML}>
+アトリビュート、カテゴリ、グループ削除されません。<br{XHTML}>
 ";
 $LANG_DATABOX_ADMIN['allclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
@@ -280,11 +283,11 @@ $LANG_DATABOX_ADMIN['must'] = '*必須';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = '属性';
+$LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = '属性ID';
+$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
@@ -359,9 +362,9 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = '属性の管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
-$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'タイプの管理';
+$LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'データタイプの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
@@ -369,13 +372,13 @@ $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-"属性の編集は、属性名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
-属性が選択されているときは右側だけに表示されます。<br{XHTML}>
+"アトリビュートの編集は、アトリビュート名をクリックして「追加」または「削除」ボタンをクリックしてください。<br{XHTML}>
+アトリビュートが選択されているときは右側だけに表示されます。<br{XHTML}>
 編集が終わったら、「保存」ボタンをクリックしてください。<br{XHTML}>
 管理画面に戻ります。";
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-"新規登録するデータのタイプを選択してください。<br{XHTML}>
+"新規登録するデータのタイプを選んでください。<br{XHTML}>
 ";
 
 
@@ -427,8 +430,8 @@ $LANG_DATABOX_ADMIN['err_backup_file_non_rewritable'] = "コンフィギュレ�
 $LANG_DATABOX_ADMIN['err_not_exist'] = '存在しません';
 
 $LANG_DATABOX_ADMIN['err_kind'] = '種別が不正です。';
-$LANG_DATABOX_ADMIN['err_no'] = 'no が不正です。';
-$LANG_DATABOX_ADMIN['err_no_w'] = 'このno はすでに登録されています。';
+$LANG_DATABOX_ADMIN['err_no'] = 'No. が不正です。';
+$LANG_DATABOX_ADMIN['err_no_w'] = 'このNo. はすでに登録されています。';
 
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="ランダム";
@@ -474,10 +477,10 @@ $LANG_DATABOX_MAIL['message_group']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】タイプ更新 by {$_USER['username']}";
+"【{$_CONF['site_name']}】データタイプ更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが更新されました。".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが更新されました。".LB.LB;
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -505,9 +508,9 @@ $LANG_DATABOX_MAIL['message_group_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが削除されました。".LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
-"【{$_CONF['site_name']}】タイプ削除 by {$_USER['username']}";
+"【{$_CONF['site_name']}】データタイプ削除 by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
-"{$_USER['username']}さん(user no.{$_USER['uid']})によって、タイプが削除されました。".LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが削除されました。".LB;
 
 ###############################################################################
 #
@@ -664,7 +667,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にする属性の数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';

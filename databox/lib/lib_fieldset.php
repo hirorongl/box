@@ -63,8 +63,8 @@ function LIB_List(
     $header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
     $header_arr[]=array('text' => $lang_box_admin['fieldset_id'], 'field' => 'fieldset_id', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
-    $header_arr[]=array('text' => $lang_box_admin['fieldlist'], 'field' => 'list', 'sort' => false);
-    $header_arr[]=array('text' => $lang_box_admin['grouplist'], 'field' => 'listg', 'sort' => false);
+    $header_arr[]=array('text' => $lang_box_admin['fieldsetfields'], 'field' => 'list', 'sort' => false);
+    $header_arr[]=array('text' => $lang_box_admin['fieldsetgroups'], 'field' => 'listg', 'sort' => false);
 
     //
     $text_arr = array('has_menu' =>  true,
@@ -1035,7 +1035,7 @@ function LIB_editfields(
     $templates->set_var('lang_link_admin', $lang_box_admin['link_admin']);
     $templates->set_var('lang_link_admin_top', $lang_box_admin['link_admin_top']);
 
-    $templates->set_var('LANG_fieldsetfields',$lang_box_admin['fieldsetfields']);
+    $templates->set_var('LANG_fieldsetfields',$lang_box_admin['fieldsetfieldsregistered']);
     $templates->set_var('fieldsetfields', LIB_selectFields($pi_name,$id, true));
 	
 	$templates->set_var('LANG_fieldlist', $lang_box_admin['fieldlist']);
@@ -1361,7 +1361,7 @@ function LIB_editgroups(
     $templates->set_var('lang_link_admin', $lang_box_admin['link_admin']);
     $templates->set_var('lang_link_admin_top', $lang_box_admin['link_admin_top']);
 
-    $templates->set_var('LANG_fieldsetgroups',$lang_box_admin['fieldsetgroups']);
+    $templates->set_var('LANG_fieldsetgroups',$lang_box_admin['fieldsetgroupsregistered']);
     $templates->set_var('fieldsetgroups', LIB_selectGroups($pi_name,$id, true));
 	
 	$templates->set_var('LANG_grouplist', $lang_box_admin['grouplist']);

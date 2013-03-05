@@ -76,7 +76,7 @@ function fncList()
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 	
 	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
-    $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["changeset"]);
+    $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["registset"]);
     $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
     $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
     $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
@@ -1845,7 +1845,14 @@ function fncsendmail (
 	return ;
 }
 
-function fncNew ()
+function fncNew (
+)
+// +---------------------------------------------------------------------------+
+// | 機能 新規登録 タイプ選択
+// | 書式 fncNew()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:                                                               |
+// +---------------------------------------------------------------------------+
 {
 	global $_CONF;
 	global $LANG_DATABOX_ADMIN;
@@ -1893,7 +1900,14 @@ function fncNew ()
 }
 
 function fncChangeSet (
-){
+)
+// +---------------------------------------------------------------------------+
+// | 機能 新規登録 タイプ登録変更
+// | 書式 fncChangeSet()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:                                                               |
+// +---------------------------------------------------------------------------+
+{
 	global $_CONF;
 	global $LANG_DATABOX_ADMIN;
 	global $LANG_ADMIN;
@@ -1905,7 +1919,12 @@ function fncChangeSet (
 	
 	$id = COM_applyFilter ($_REQUEST['id'], true);
 	//-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["changeset"], '',
+	if  ($id==0){
+		$starttitle=$LANG_DATABOX_ADMIN['registset'];
+	}else{
+		$starttitle=$LANG_DATABOX_ADMIN["changeset"];
+	}
+	$retval .= COM_startBlock ($starttitle, '',
                                COM_getBlockTemplate ('_admin_block', 'header'));
 	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
@@ -1926,9 +1945,11 @@ function fncChangeSet (
 	$templates->set_var('id', $id);
 	if  ($id==0){
 		$inst=$LANG_DATABOX_ADMIN['inst_changeset0'];
+		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['registset']);
 	}else{
 		$inst=DB_getItem($_TABLES['DATABOX_base'],"title","id=".$id);
 		$inst.=$LANG_DATABOX_ADMIN['inst_changesetx'];
+		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
 	}
 	$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
 	$templates->set_var ('lang_inst_changeset', $inst);
@@ -1939,8 +1960,6 @@ function fncChangeSet (
 	$list_fieldset=DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
 	$templates->set_var ('list_fieldset', $list_fieldset);
 	
-	
-    $templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
     $templates->set_var('lang_cancel', $LANG_ADMIN['cancel']);
 
 	$templates->parse('output', 'editor');
@@ -2080,6 +2099,8 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="newedit";
 }else if (($mode == $LANG_DATABOX_ADMIN['changeset']) && !empty ($LANG_DATABOX_ADMIN['changeset'])) {
     $mode="changesetexec";
+}else if (($mode == $LANG_DATABOX_ADMIN['registset']) && !empty ($LANG_DATABOX_ADMIN['registset'])) {
+    $mode="changesetexec";
 }else if (($mode == $LANG_DATABOX_ADMIN['export']) && !empty ($LANG_DATABOX_ADMIN['export'])) {
     $mode="exportexec";
 }
@@ -2147,7 +2168,7 @@ switch ($mode) {
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= fncChangeSet();
         break;
-	case 'new':// 新規登録 属性セット選択
+	case 'new':// 新規登録 タイプ選択
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= fncNew();
         break;
