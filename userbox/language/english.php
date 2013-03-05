@@ -158,11 +158,14 @@ $LANG_USERBOX_ADMIN['parent']='Parent';
 $LANG_USERBOX_ADMIN['fieldset']='Type';
 $LANG_USERBOX_ADMIN['fieldset_id']="Type ID";
 $LANG_USERBOX_ADMIN['fieldsetfields']="Type List";
+$LANG_USERBOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
 $LANG_USERBOX_ADMIN['fieldlist']="Type List";
 $LANG_USERBOX_ADMIN['fieldsetgroups']="Category Group List";
+$LANG_USERBOX_ADMIN['fieldsetgroupsregistered']="Registered Category Group";
 $LANG_USERBOX_ADMIN['grouplist']="Category Group List";
 $LANG_USERBOX_ADMIN['fieldsetlist']='Type List';
 
+$LANG_USERBOX_ADMIN['registset']='Regist Type';
 $LANG_USERBOX_ADMIN['changeset']='Change Type';
 $LANG_USERBOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_USERBOX_ADMIN['inst_changesetx']='<{XHTML}br>';
