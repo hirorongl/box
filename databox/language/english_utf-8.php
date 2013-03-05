@@ -151,11 +151,14 @@ $LANG_DATABOX_ADMIN['parent']='Parent';
 $LANG_DATABOX_ADMIN['fieldset']='Type';
 $LANG_DATABOX_ADMIN['fieldset_id']="Type ID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="Type List";
+$LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
 $LANG_DATABOX_ADMIN['fieldlist']="Type List";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="Category Group List";
+$LANG_DATABOX_ADMIN['fieldsetgroupsregistered']="Registered Category Group";
 $LANG_DATABOX_ADMIN['grouplist']="Category Group List";
 $LANG_DATABOX_ADMIN['fieldsetlist']='Type List';
 
+$LANG_DATABOX_ADMIN['registset']='Regist Type';
 $LANG_DATABOX_ADMIN['changeset']='Change Type';
 $LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
 $LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
