@@ -1740,8 +1740,11 @@ function databox_data(
 				,$A['meta_keyword']
 				,$A['description']);
 			
-			$title = $A['title'] ;
-
+			if  ($A['page_title']<>""){
+				$title = $A['page_title'] ;
+			}else{	
+				$title = $A['title'] ;
+			}
         }
 
 
