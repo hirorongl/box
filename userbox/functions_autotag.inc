@@ -1214,7 +1214,7 @@ function userbox_profile(
 				,$A['id']
 				,$title
 				,$A['meta_description']
-				,$A['meta_keyword']
+				,$A['meta_keywords']
 				,$A['description']);
 		}
 

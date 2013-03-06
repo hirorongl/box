@@ -3881,7 +3881,7 @@ function DATABOX_getheadercode(
 	,$id
 	,$title
 	,$meta_description
-	,$meta_keyword
+	,$meta_keywords
 	,$description
 )
 // +---------------------------------------------------------------------------+
@@ -3895,7 +3895,7 @@ function DATABOX_getheadercode(
 // | 引数 	$id
 // | 引数 	$title
 // | 引数 	$meta_description
-// | 引数 	$meta_keyword
+// | 引数 	$meta_keywords
 // | 引数 	$description
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:HEADERCODE

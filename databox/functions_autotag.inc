@@ -1737,7 +1737,7 @@ function databox_data(
 				,$A['id']
 				,$A['title']
 				,$A['meta_description']
-				,$A['meta_keyword']
+				,$A['meta_keywords']
 				,$A['description']);
 			
 			if  ($A['page_title']<>""){
