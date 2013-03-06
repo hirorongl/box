@@ -109,7 +109,7 @@ $_USERBOX_DEFAULT['aftersave'] = 'item';
 $_USERBOX_DEFAULT['aftersave_admin'] = 'item';
 
 //グループのデフォルト
-$grp_id =DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='UserBox Admin'");
+$grp_id =DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='UserBox Editor'");
 $_USERBOX_DEFAULT['grp_id_default'] = $grp_id;
 
 //（プロフィール）更新を許可する　default はい

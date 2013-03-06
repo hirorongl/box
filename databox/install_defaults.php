@@ -104,7 +104,7 @@ $_DATABOX_DEFAULT['aftersave'] = 'item';
 $_DATABOX_DEFAULT['aftersave_admin'] = 'item';
 
 //グループのデフォルト
-$grp_id =DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='DataBox Admin'");
+$grp_id =DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='DataBox Editor'");
 $_DATABOX_DEFAULT['grp_id_default'] = $grp_id;
 
 
