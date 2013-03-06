@@ -176,11 +176,11 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
             if ($_USERBOX_CONF['datacode']){
-                $url.="m=code";
-                $url.="&code=".$A['username'];
+                $url.="code=".$A['username'];
+                $url.="&amp;m=code";
             }else{
-                $url.="m=id";
-                $url.="&id=".$A['id'];
+                $url.="&=".$A['id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $retval= COM_createLink($username, $url);
