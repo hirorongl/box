@@ -1013,7 +1013,15 @@ function fncSave (
             $code="000000".date(Ymdhis);
 
         }
-        $created=date("Y-m-d H:i:s");
+		$created_month = date('m');
+        $created_day = date('d');
+        $created_year = date('Y');
+        $created_hour = date('H');
+        $created_minute = date('i');
+		$created=COM_convertDate2Timestamp(
+			$created_year."-".$created_month."-".$created_day
+			, $created_hour.":".$created_minute."::00"
+			);
         $modified=$created;
         $released=$created;
         $commentcode =0;
