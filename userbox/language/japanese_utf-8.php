@@ -73,9 +73,9 @@ $LANG_USERBOX['attribute_top']="アトリビュート別件数一覧";
 $LANG_USERBOX['search_link']="";
 
 //$LANG_USERBOX['category_separater']="</li><li>";
-$LANG_USERBOX['category_separater']="、";
+$LANG_USERBOX['category_separater']="、";//テーマ変数でカテゴリを列挙する際の区切
 
-$LANG_USERBOX['category_separater_text']="、";
+$LANG_USERBOX['category_separater_text']="、";//送信メールでカテゴリを列挙する際の区切
 
 $LANG_USERBOX['loginrequired'] = '（ログインしてください）';
 

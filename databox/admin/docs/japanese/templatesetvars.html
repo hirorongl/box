@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/02/25 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/03/07 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -209,7 +209,9 @@ group_<a link href="#notetext_code" class="note_super">code</a>_code,
 grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
 grouplink_<a link href="#notetext_code" class="note_super">code</a>_code コードを表示<br/>
 
-categories,categorieslink,categorieslinkcode,categorieslinkid<br/>
+categories,categorieslink,categorieslinkcode,categorieslinkid
+<a title="カテゴリ名、カテゴリコード、列挙の区切りはLANG_DATABOX['category_separater']で指定しています" class="note_super" href="#notetext_3">*3</a>
+<br/>
 </td>
 </tr>
 <tr class="r2">
@@ -517,7 +519,9 @@ group_<a link href="#notetext_code" class="note_super">code</a>_code,
 grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
 grouplink_<a link href="#notetext_code" class="note_super">code</a>_code コードを表示<br/>
 
-categories,categorieslink,categorieslinkcode,categorieslinkid<br/>
+categories,categorieslink,categorieslinkcode,categorieslinkid
+<a title="カテゴリ名、カテゴリコード、列挙の区切りはLANG_DATABOX['category_separater']で指定しています" class="note_super" href="#notetext_3">*3</a>
+<br/>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
 </td>
@@ -586,6 +590,9 @@ public_html/mydata/data.php<br/>
 </dd>
 <dt><a class="note_super" name="notetext_id">id</a></dt><dd>管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)</dd>
 <dt><a class="note_super" name="notetext_code">code</a></dt><dd>管理画面で指定したcodeの値</dd>
+
+<dt><a class="note_super" name="notetext_3">*3</a></dt>
+<dd>カテゴリ名、カテゴリコード、列挙の区切りはLANG_DATABOX['category_separater']で指定しています。</dd>
 </dl>
 
 
