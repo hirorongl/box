@@ -55,6 +55,7 @@ function fncList()
     $table  = $_TABLES['USERBOX_base'];
     $table1 = $_TABLES['users'];
 	$table2 = $_TABLES['USERBOX_def_fieldset'];
+	$table5 = $_TABLES['USERBOX_stats'];
 	
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
@@ -91,6 +92,7 @@ function fncList()
     $url2=$_CONF['site_url'] . '/userbox/list.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
+	$url8=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=hitsclear';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 
@@ -98,6 +100,7 @@ function fncList()
     $menu_arr[]=array('url' => $url2,'text' => $LANG_USERBOX['list']);
     $menu_arr[]=array('url' => $url3,'text' => $LANG_USERBOX_ADMIN['drafton']);
     $menu_arr[]=array('url' => $url4,'text' => $LANG_USERBOX_ADMIN['draftoff']);
+    $menu_arr[]=array('url' => $url8,'text' => $LANG_USERBOX_ADMIN['hitsclear']);
     $menu_arr[]=array('url' => $url5,'text' => $LANG_USERBOX_ADMIN['export']);
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 
@@ -117,6 +120,7 @@ function fncList()
     $header_arr[]=array('text' => $LANG28['3'], 'field' => 'username', 'sort' => username);
     $header_arr[]=array('text' => $LANG28['4'], 'field' => 'fullname', 'sort' => fullname);
     $header_arr[]=array('text' => $LANG_USERBOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_USERBOX_ADMIN['hits'], 'field' => 'hits', 'sort' => true);
     $header_arr[]=array('text' => $LANG_USERBOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
     $header_arr[]=array('text' => $LANG_USERBOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
     //
@@ -126,29 +130,28 @@ function fncList()
 
     //Query
     $sql = "SELECT ";
-    $sql .= " id";
+    $sql .= " t.id";
     $sql .= " ,draft_flag";
     $sql .= " ,modified";
     $sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime";
     $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
     $sql .= " ,t.fieldset_id";
+    $sql .= " ,t5.hits";
 
     $sql .= " ,t1.username";
     $sql .= " ,t1.fullname";
 
     $sql .= " FROM ";
     $sql .= " {$table} AS t";
-	$sql .= " ,{$table1} AS t1";
-    $sql .= " ,{$table2} AS t2";
-    $sql .= " WHERE ";
-    $sql .= " t.id=t1.uid";
-    $sql .= " AND t.fieldset_id=t2.fieldset_id";
+	$sql .= " JOIN {$table1} AS t1       ON t.id=t1.uid";
+	$sql .= " JOIN {$table2} AS t2       ON t.fieldset_id=t2.fieldset_id";
+	$sql .= " LEFT JOIN {$table5} AS t5  ON t.id=t5.id";
 
     $query_arr = array(
         'table' => " {$table} AS t ,{$table1} AS t1",
         'sql' => $sql,
-        'query_fields' => array('t.id','t1.username','t1.fullname','t.draft_flag','t.orderno'),
+        'query_fields' => array('t.id','t1.username','t1.fullname','t.draft_flag','t.orderno','stats'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 't.id', 'direction' => 'ASC');
@@ -1471,6 +1474,25 @@ function fncchangeDraftAll ($flg)
     DB_query($sql);
     return;
 }
+function fnchitsclear ()
+// +---------------------------------------------------------------------------+
+// | 機能  hits clear
+// | 書式 fnchitsclear()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:                                                               |
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+    global $_USER;
+
+    $uuid=$_USER['uid'];
+
+    $sql="UPDATE {$_TABLES['USERBOX_stats']} set ";
+    $sql.="hits = 0";
+    $sql.=" WHERE hits<>0";
+    DB_query($sql);
+    return;
+}
 
 function fncexportexec ()
 // +---------------------------------------------------------------------------+
@@ -1942,6 +1964,7 @@ if ($mode==""
 	OR $mode=="new" 
 	OR $mode=="drafton" 
 	OR $mode=="draftoff"
+	OR $mode=="hitsclear"
 	OR $mode=="exportform" 
 	OR $mode=="exportexec" 
 	OR $mode=="import"  
@@ -1968,6 +1991,10 @@ if ($mode=="drafton") {
 }
 if ($mode=="draftoff") {
     fncchangeDraftAll (0);
+}
+
+if ($mode=="hitsclear") {
+    fnchitsclear ();
 }
 
 if ($mode=="changesetexec") {

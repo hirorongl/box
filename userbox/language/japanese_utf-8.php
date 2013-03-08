@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130304
+# Last Update 20130308
 
 ###############################################################################
 ## 管理画面 menu
@@ -154,6 +154,7 @@ $LANG_USERBOX_ADMIN['meta_description']='説明文のメタタグ';
 $LANG_USERBOX_ADMIN['meta_keywords']='キーワードのメタタグ';
 
 $LANG_USERBOX_ADMIN['hits']='閲覧数';
+$LANG_USERBOX_ADMIN['hitsclear']='閲覧数初期化';
 
 $LANG_USERBOX_ADMIN['comments']='コメント数';
 

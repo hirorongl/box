@@ -71,7 +71,8 @@ function fncList()
     $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
     $url2=$_CONF['site_url'] . '/databox/list.php';
     $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
-    $url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
+	$url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
+	$url8=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=hitsclear';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
 	
@@ -80,6 +81,7 @@ function fncList()
     $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
     $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
     $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
+    $menu_arr[]=array('url' => $url8,'text' => $LANG_DATABOX_ADMIN['hitsclear']);
     $menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 	
@@ -101,7 +103,8 @@ function fncList()
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['title'], 'field' => 'title', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['fieldset'], 'field' => 'fieldset_name', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['remaingdays'], 'field' => 'remaingdays', 'sort' => true);
-    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
+    $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['hits'], 'field' => 'hits', 'sort' => true);
+	$header_arr[]=array('text' => $LANG_DATABOX_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true);
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true);
     //
     $text_arr = array('has_menu' =>  true,
@@ -110,7 +113,7 @@ function fncList()
 
     //Query
     $sql = "SELECT ";
-    $sql .= " id";
+    $sql .= " t.id";
     $sql .= " ,title";
     $sql .= " ,code";
     $sql .= " ,draft_flag";
@@ -120,6 +123,7 @@ function fncList()
     $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
     $sql .= " ,t.fieldset_id";
+    $sql .= " ,t5.hits";
 	
 	$sql .= " ,(SELECT DATEDIFF(expired , NOW()) ";
 	$sql .= " FROM {$_TABLES['DATABOX_base']} AS t3  ";
@@ -128,14 +132,13 @@ function fncList()
 	
     $sql .= " FROM ";
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
-    $sql .= " ,{$_TABLES['DATABOX_def_fieldset']} AS t2";
-    $sql .= " WHERE ";
-    $sql .= " t.fieldset_id=t2.fieldset_id";
+	$sql .= " JOIN {$_TABLES['DATABOX_def_fieldset']} AS t2       ON t.fieldset_id=t2.fieldset_id";
+	$sql .= " LEFT JOIN {$_TABLES['DATABOX_stats']} AS t5  ON t.id=t5.id";
 
     $query_arr = array(
         'table' => 'DATABOX_base',
         'sql' => $sql,
-        'query_fields' => array('id','title','code','draft_flag','orderno','t2.name'),
+        'query_fields' => array('t.id','title','code','draft_flag','orderno','t2.name','stats'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
@@ -1578,6 +1581,25 @@ function fncchangeDraftAll (
     DB_query($sql);
     return;
 }
+function fnchitsclear ()
+// +---------------------------------------------------------------------------+
+// | 機能  hits clear
+// | 書式 fnchitsclear()
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:                                                               |
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+    global $_USER;
+
+    $uuid=$_USER['uid'];
+
+    $sql="UPDATE {$_TABLES['DATABOX_stats']} set ";
+    $sql.="hits = 0";
+    $sql.=" WHERE hits<>0";
+    DB_query($sql);
+    return;
+}
 
 function fncexportexec()
 // +---------------------------------------------------------------------------+
@@ -2116,6 +2138,7 @@ if ($mode==""
 	OR $mode=="new" 
 	OR $mode=="drafton" 
 	OR $mode=="draftoff"
+	OR $mode=="hitsclear"
 	OR $mode=="exportform" 
 	OR $mode=="exportexec" 
 	OR $mode=="import"  
@@ -2142,6 +2165,10 @@ if ($mode=="drafton") {
 }
 if ($mode=="draftoff") {
     fncchangeDraftAll (0);
+}
+
+if ($mode=="hitsclear") {
+    fnchitsclear ();
 }
 
 if ($mode=="changesetexec") {
