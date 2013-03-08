@@ -144,6 +144,7 @@ $LANG_USERBOX_ADMIN['meta_description']='META Description';
 $LANG_USERBOX_ADMIN['meta_keywords']='META Keywords';
 
 $LANG_USERBOX_ADMIN['hits']='Hits';
+$LANG_USERBOX_ADMIN['hitsclear']='hitsclear';
 
 $LANG_USERBOX_ADMIN['comments']='Comment Number';
 

@@ -137,6 +137,7 @@ $LANG_DATABOX_ADMIN['meta_description']='META Description';
 $LANG_DATABOX_ADMIN['meta_keywords']='META Keywords';
 
 $LANG_DATABOX_ADMIN['hits']='Hits';
+$LANG_DATABOX_ADMIN['hitsclear']='hitsclear';
 
 $LANG_DATABOX_ADMIN['comments']='Comment Number';
 
