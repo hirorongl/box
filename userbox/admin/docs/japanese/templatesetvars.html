@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-
+<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20130221 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -22,7 +22,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/03/07 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/03/21 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -50,10 +50,12 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です"
+class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -137,10 +139,13 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image,
+og_image
+<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+facebook_consumer_key
+<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -267,10 +272,11 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -347,10 +353,11 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5" >*5</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -465,10 +472,11 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image,
+og_image<a title="featuredimageまたはDataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_6" >*6</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -583,13 +591,23 @@ public_html/myprofile/profile.php<br/>
 
 </tbody>
 </table>
-<dl>
-<dt><a class="note_super" name="notetext_1">*1</a></dt>
-<dd>Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。</dd>
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。
 
-<dt><a class="note_super" name="notetext_2">*2</a></dt>
-<dd>mapプラグインが有効の場合　map のitem_10にDataBoxのコードを登録してmapのデータとdataboxのデータを紐付けしています。</dd>
-<dt><a class="note_super" name="notetext_add">各アトリビュートのテーマ変数</a></dt>
+<br/><a class="note_super" href="#notetext_3" id="notetext_3" >*3</a>
+カテゴリ名、カテゴリコード、列挙の区切りはLANG_USERBOX['category_separater']で指定しています。
+
+<br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
+標準テンプレートには記述されていません。
+
+<br/><a class="note_super" href="#notetext_5" id="notetext_5">*5</a>
+UserBoxデフォルト画像またはロゴ画像
+
+<br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
+featuredimageまたはUserBoxデフォルト画像またはロゴ画像
+
+<dl>
+<dt><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a></dt>
 <dd>
 {additionfield<a link href="#notetext_id" class="note_super">id</a>}
 {additionfield_tn<a link href="#notetext_id" class="note_super">id</a>}
@@ -610,9 +628,6 @@ public_html/myprofile/profile.php<br/>
 </dd>
 <dt><a class="note_super" name="notetext_id">id</a></dt><dd>管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)</dd>
 <dt><a class="note_super" name="notetext_code">code</a></dt><dd>管理画面で指定したcodeの値</dd>
-
-<dt><a class="note_super" name="notetext_3">*3</a></dt>
-<dd>カテゴリ名、カテゴリコード、列挙の区切りはLANG_USERBOX['category_separater']で指定しています。</dd>
 </dl>
 
 <div class="footer">
