@@ -48,8 +48,8 @@ $LANG_USERBOX['selectit']="Select";
 $LANG_USERBOX['selectall']="Select all";
 $LANG_USERBOX['byconfig']="By configuration settings";
 
-$LANG_USERBOX['data'] = 'Data';
-$LANG_USERBOX['mydata'] = 'My Data';
+$LANG_USERBOX['profile'] = 'Profile';
+$LANG_USERBOX['myprofile'] = 'My Profile';
 
 $LANG_USERBOX['Norecentnew'] = 'No new data.';
 $LANG_USERBOX['nohit'] = 'No hits';
