@@ -1,4 +1,3 @@
-$LANG_USERBOX_ADMIN['remaingdays'] = 'remaingdays';
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
