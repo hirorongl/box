@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20130221 -->
+<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20130226 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -22,7 +22,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/03/21 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/03/26 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -214,22 +214,7 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
  data_user_photo
  data_edit
  </br><a  href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
- 
-</br>
-group_<a link href="#notetext_id" class="note_super">id</a>,
-group_<a link href="#notetext_code" class="note_super">code</a>,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>,
-grouplink_<a link href="#notetext_code" class="note_super">code</a> 名称を表示<br/>
-
-group_<a link href="#notetext_id" class="note_super">id</a>_code,
-group_<a link href="#notetext_code" class="note_super">code</a>_code,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>_code コードを表示<br/>
-
-categories,categorieslink,categorieslinkcode,categorieslinkid
-<a title="カテゴリ名、カテゴリコード、列挙の区切りはLANG_USERBOX['category_separater']で指定しています" class="note_super" href="#notetext_3">*3</a>
-<br/>
- 
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
  </td>
 </tr>
 <tr class="r2">
@@ -539,19 +524,8 @@ last_modify_name,
 last_modify_fullname,
 edit
 </br><a  href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
 </br>currenturl,appid<a href="#notetext_1" class="note_super" title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です">*1</a></br>
-group_<a  href="#notetext_id" class="note_super" title="category id">id</a>,
-group_<a link href="#notetext_code" class="note_super">code</a>,
-grouplink_<a href="#notetext_id" class="note_super" title="category id">id</a>,
-grouplink_<a link href="#notetext_code" class="note_super">code</a> 名称を表示<br/>
-group_<a  href="#notetext_id" class="note_super" title="category id">id</a>_code,
-group_<a link href="#notetext_code" class="note_super">code</a>_code,
-grouplink_<a href="#notetext_id" class="note_super" title="category id">id</a>_code,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>_code コードを表示<br/>
-
-categories,categorieslink,categorieslinkcode,categorieslinkid
-<a title="カテゴリ名、カテゴリコード、列挙の区切りはLANG_USERBOX['category_separater']で指定しています" class="note_super" href="#notetext_3">*3</a>
-<br/>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
 
@@ -594,9 +568,6 @@ public_html/myprofile/profile.php<br/>
 <br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
 Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。
 
-<br/><a class="note_super" href="#notetext_3" id="notetext_3" >*3</a>
-カテゴリ名、カテゴリコード、列挙の区切りはLANG_USERBOX['category_separater']で指定しています。
-
 <br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
 標準テンプレートには記述されていません。
 
@@ -604,7 +575,23 @@ Geeklogのコンフィギュレーション設定でFacebook OAuth Application I
 UserBoxデフォルト画像またはロゴ画像
 
 <br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
-featuredimageまたはUserBoxデフォルト画像またはロゴ画像
+<a link href="#notetext_featuredimage" class="note_super">featuredimage</a>またはUserBoxデフォルト画像またはロゴ画像
+
+<br/><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>
+<br/>　カテゴリ名称を表示　　categories,categorieslink,categorieslinkcode,categorieslinkid
+<br/>　　　　　　　　group_<a link href="#notetext_id" class="note_super">id</a>,
+group_<a link href="#notetext_code" class="note_super">code</a>,
+grouplink_<a link href="#notetext_id" class="note_super">id</a>,
+grouplink_<a link href="#notetext_code" class="note_super">code</a>
+<br/>　　　　　　　　区切りはLANG_USERBOX['category_separater']で指定しています。
+<br/>　カテゴリコードを表示　group_<a link href="#notetext_id" class="note_super">id</a>_code,
+group_<a link href="#notetext_code" class="note_super">code</a>_code,
+grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
+grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
+<br/>　　　　　　　　区切りはLANG_USERBOX['category_separater_code']で指定しています。
+
+<br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
+最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
 
 <dl>
 <dt><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a></dt>

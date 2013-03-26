@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130308
+# Last Update 20130325
 
 ###############################################################################
 ## 管理画面 menu
@@ -59,7 +59,8 @@ $LANG_DATABOX['attribute_top']="アトリビュート別件数一覧";
 $LANG_DATABOX['search_link']="";
 
 //$LANG_DATABOX['category_separater']="</li><li>";
-$LANG_DATABOX['category_separater']="、";//テーマ変数でカテゴリを列挙する際の区切
+$LANG_DATABOX['category_separater']="、";//テーマ変数でカテゴリ名称を列挙する際の区切
+$LANG_DATABOX['category_separater_code']=":";//テーマ変数でカテゴリコードを列挙する際の区切
 $LANG_DATABOX['category_separater_text']="、";//送信メールでカテゴリを列挙する際の区切
 $LANG_DATABOX['field_separater']="、";
 

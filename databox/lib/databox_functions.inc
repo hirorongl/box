@@ -2177,12 +2177,13 @@ function DATABOX_getcategoriesDisp(
     $sql .= " AND m1.category_id = t.category_id".LB;
     $sql .= " AND m2.group_id = m1.categorygroup_id".LB;
 
-    $sql .= " ORDER by m1.categorygroup_id, m2.orderno, m1.orderno".LB;
+    $sql .= " ORDER by m1.categorygroup_id, m2.orderno, m1.orderno,m1.category_id".LB;
 
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
 
     $separater=$lang_box['category_separater'];
+    $separater_code=$lang_box['category_separater_code'];
     $categpries="";
 
 
@@ -2209,19 +2210,18 @@ function DATABOX_getcategoriesDisp(
                 $categories_group=rtrim($categories_group,$separater);
                 $templates->set_var('group_'.$old_group_id, $categories_group);
 				$templates->set_var('group_'.$old_group_code, $categories_group);
-                $categories_group2=rtrim($categories_group2,$separater);
+                $categories_group2=rtrim($categories_group2,$separater_code);
                 $templates->set_var('group_'.$old_group_id."_code", $categories_group2);//@@
                 $templates->set_var('group_'.$old_group_code."_code", $categories_group2);//@@
 				
-				
                 $categories_link_id_group=rtrim($categories_link_id_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
-                $categories_link_id_group2=rtrim($categories_link_id_group2,$separater);//@@
+                $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
                 $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);//@@
 
                 $categories_link_code_group=rtrim($categories_link_code_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_code, $categories_link_code_group);
-                $categories_link_code_group2=rtrim($categories_link_code_group2,$separater);//@@
+                $categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
                 $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);//@@
 
             }
@@ -2237,26 +2237,31 @@ function DATABOX_getcategoriesDisp(
         }
         $categories.=$A['category_name']." ".$separater;
 		$categories_group.=$A['category_name']." ".$separater;
-		$categories_group2.=$A['category_code']." ".$separater;//@@
+		$categories_group2.=$A['category_code']." ".$separater_code;//@@
 		
 
         $name=COM_applyFilter($A['category_name']);
         $code=COM_applyFilter($A['category_code']);
         $url=$_CONF['site_url'] ."/".$pi_name."/category.php";
-        $url_code=$url."?m=code&code=".$A['category_code'];
-        $url_id=$url."?m=id&id=".$A['category_id'];
-        $url_code   = COM_buildUrl( $url_code );
-        $category_link_id= COM_createLink($name, $url_id);
+		$url_code=$url;
+		$url_code.="?code=".$A['category_code'];
+		$url_code.="&m=code";
+        $url_code = COM_buildUrl( $url_code );
+		$url_id=$url;
+		$url_id.="?id=".$A['category_id'];
+		$url_id.="&m=id";
+        $url_id= COM_buildUrl( $url_id );
+		$category_link_id= COM_createLink($name, $url_id);
         $category_link_code= COM_createLink($name, $url_code);
         $category_link_id2= COM_createLink($code, $url_id);
         $category_link_code2= COM_createLink($code, $url_code);
 
         $categories_link_id.=$category_link_id." ".$separater;
         $categories_link_id_group.=$category_link_id." ".$separater;
-        $categories_link_id_group2.=$category_link_id2." ".$separater;//@@
+        $categories_link_id_group2.=$category_link_id2." ".$separater_code;//@@
         $categories_link_code.=$category_link_code." ".$separater;
         $categories_link_code_group.=$category_link_code." ".$separater;
-        $categories_link_code_group2.=$category_link_code2." ".$separater;//@@
+        $categories_link_code_group2.=$category_link_code2." ".$separater_code;//@@
     }
 
     $categories=rtrim($categories,$separater);
@@ -2279,7 +2284,7 @@ function DATABOX_getcategoriesDisp(
     $templates->set_var('categorieslinkid', $categories_link_id);
 
 	$categories_group=rtrim($categories_group,$separater);
-	$categories_group2=rtrim($categories_group2,$separater);//@@
+	$categories_group2=rtrim($categories_group2,$separater_code);//@@
     $templates->set_var('group_'.$old_group_id, $categories_group);
     $templates->set_var('group_'.$old_group_code, $categories_group);
 	$templates->set_var('group_'.$old_group_id."_code", $categories_group2);//@@
@@ -2287,11 +2292,14 @@ function DATABOX_getcategoriesDisp(
 
     $categories_link_id_group=rtrim($categories_link_id_group,$separater);
     $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
-    $categories_link_id_group2=rtrim($categories_link_id_group2,$separater);//@@
+	
+	$categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);//@@
-    $categories_link_code_group=rtrim($categories_link_code_group,$separater);
+	
+	$categories_link_code_group=rtrim($categories_link_code_group,$separater);
     $templates->set_var('grouplink_'.$old_group_code, $categories_link_code_group);
-    $categories_link_code_group2=rtrim($categories_link_code_group2,$separater);//@@
+	
+	$categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);//@@
 
     return $retval;

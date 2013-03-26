@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20121029 { -->
+<!-- plugins/databox/templates/data/default/list_detail.thtml 20130326 { -->
 
 <div class="databox">
   <h2>{title}</h2>
@@ -69,13 +69,17 @@
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_category}</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;categories&#125;</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;categories&#125;<br{xhtml}></td>
         <td >{categories}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_category} {lang_withlink}</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;categorieslink&#125;</td>
-        <td >{categorieslink}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;categorieslink&#125;
+		 <br{xhtml}>&#123;categorieslinkcode&#125;
+		 <br{xhtml}>&#123;categorieslinkid&#125;</td>
+		<td >{categorieslinkid} 
+		 <br{xhtml}>{categorieslinkcode}
+		 <br{xhtml}>{categorieslinkid}</td>
       </tr>
 
       <tr>
@@ -225,18 +229,24 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
       <tr>
         <th style="width:20%" class="alignright">city</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_city&#125;&#123;group_city_code&#125;</td>
-        <td>{group_city}{group_city_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_city&#125;
+		<br{xhtml}>&#123;group_city_code&#125;</td>
+		<td>{group_city}
+		<br{xhtml}>{group_city_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">country</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_country&#125;&#123;group_country_code&#125;</td>
-        <td>{group_country}{group_country_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_country&#125;
+		<br{xhtml}>&#123;group_country_code&#125;</td>
+		<td>{group_country}
+		<br{xhtml}>{group_country_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">team</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_team&#125;&#123;group_team_code&#125;</td>
-        <td>{group_type}{group_team_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_team&#125;
+		<br{xhtml}>&#123;group_team_code&#125;</td>
+		<td>{group_type}
+		<br{xhtml}>{group_team_code}</td>
       </tr>
     </table>
   </fieldset>
@@ -252,18 +262,24 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
       <tr>
         <th style="width:20%" class="alignright">city</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</td>
-        <td>{grouplink_city}{grouplink_city_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_city&#125;
+		<br{xhtml}>&#123;grouplink_city_code&#125;</td>
+		<td>{grouplink_city}
+		<br{xhtml}>{grouplink_city_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">country</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_country&#125;&#123;grouplink_country_code&#125;</td>
-        <td>{grouplink_country}{grouplink_country_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_country&#125;
+		<br{xhtml}>&#123;grouplink_country_code&#125;</td>
+		<td>{grouplink_country}
+		<br{xhtml}>{grouplink_country_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">team</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</td>
-        <td>{grouplink_team}{grouplink_team_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_team&#125;
+		<br{xhtml}>&#123;grouplink_team_code&#125;</td>
+		<td>{grouplink_team}
+		<br{xhtml}>{grouplink_team_code}</td>
       </tr>
     </table>
   </fieldset>
@@ -279,18 +295,24 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
       <tr>
         <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_1&#125;&#123;group_1_code&#125;</td>
-        <td>{group_1}{group_1_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_1&#125;
+		<br{xhtml}>&#123;group_1_code&#125;</td>
+		<td>{group_1}
+		<br{xhtml}>{group_1_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">2</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_2&#125;&#123;group_2_code&#125;</td>
-        <td>{group_2}{group_2_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_2&#125;
+		<br{xhtml}>&#123;group_2_code&#125;</td>
+		<td>{group_2}
+		<br{xhtml}>{group_2_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">3</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;group_3&#125;&#123;group_3_code&#125;</td>
-        <td>{group_3}{group_3_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;group_3&#125;
+		<br{xhtml}>&#123;group_3_code&#125;</td>
+		<td>{group_3}
+		<br{xhtml}>{group_3_code}</td>
       </tr>
     </table>
   </fieldset>
@@ -307,18 +329,24 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
       <tr>
         <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</td>
-        <td>{grouplink_1}{grouplink_1_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_1&#125;
+		<br{xhtml}>&#123;grouplink_1_code&#125;</td>
+		<td>{grouplink_1}
+		<br{xhtml}>{grouplink_1_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">2</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_2&#125;&#123;grouplink_2_code&#125;</td>
-        <td>{grouplink_2}{grouplink_2_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_2&#125;
+		<br{xhtml}>&#123;grouplink_2_code&#125;</td>
+		<td>{grouplink_2}
+		<br{xhtml}>{grouplink_2_code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">3</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;grouplink_3&#125;&#123;grouplink_3_code&#125;</td>
-        <td>{grouplink_3}{grouplink_3_code}</td>
+		<td style="width:20%; color:green" class="alignleft">&#123;grouplink_3&#125;
+		<br{xhtml}>&#123;grouplink_3_code&#125;</td>
+		<td>{grouplink_3}
+		<br{xhtml}>{grouplink_3_code}</td>
       </tr>
     </table>
   </fieldset>
