@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/mydata/default/data_editor.thtml 20121025 { -->
+<!-- plugins/databox/templates/mydata/default/data_editor.thtml 20130328 { -->
 <div id="databox_admin">
 {about_thispage}
 <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
@@ -29,7 +29,8 @@
     <tr>
     <th style="width:25%" class="alignright">{lang_draft}{help_draft}</th>
     <td >
-        <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+		<input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+		{draft_msg}
     </td>
     </tr>
 

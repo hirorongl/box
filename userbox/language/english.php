@@ -204,6 +204,9 @@ $LANG_USERBOX_ADMIN['selectlist']='Select List';
 $LANG_USERBOX_ADMIN['checkrequried']='Check Requried';
 
 $LANG_USERBOX_ADMIN['draft'] = 'Draft';
+$LANG_USERBOX_ADMIN['draft_msg'] = '
+Your profile is draft mode. When you want to change the mode, please report it to  site manager.
+';
 $LANG_USERBOX_ADMIN['uid'] = 'UserID';
 $LANG_USERBOX_ADMIN['modified'] = 'Modified';
 $LANG_USERBOX_ADMIN['created'] = 'Created';

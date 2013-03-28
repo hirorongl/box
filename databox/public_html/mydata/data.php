@@ -701,9 +701,11 @@ function fncEdit(
     //下書
     $templates->set_var('lang_draft', $LANG_DATABOX_ADMIN['draft']);
     if  ($draft_flag==1) {
-        $templates->set_var('draft_flag', "checked=checked");
+		$templates->set_var('draft_flag', "checked=checked");
+		$templates->set_var('draft_msg', $LANG_DATABOX_ADMIN['draft_msg']);
     }else{
         $templates->set_var('draft_flag', "");
+        $templates->set_var('draft_msg', "");
     }
 
     //

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20121130 { -->
+<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20130328 { -->
 
 <div id="userbox_admin">
 {about_thispage}
@@ -66,7 +66,8 @@
         <tr>
             <th style="width:10%" class="alignright">{lang_draft}{help_draft}</th>
             <td >
-                <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+                <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><BR>
+				{draft_msg}
             </td>
         </tr>
 

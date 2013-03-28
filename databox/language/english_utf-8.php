@@ -202,6 +202,9 @@ $LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
+$LANG_DATABOX_ADMIN['draft_msg'] = '
+This data is draft mode. When you want to change the mode, please report it to  site manager.
+';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';
 $LANG_DATABOX_ADMIN['modified'] = 'Modified';
 $LANG_DATABOX_ADMIN['created'] = 'Created';

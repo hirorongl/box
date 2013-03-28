@@ -434,8 +434,10 @@ function fncEdit(
     $templates->set_var('lang_draft', $LANG_USERBOX_ADMIN['draft']);
     if  ($draft_flag==1) {
         $templates->set_var('draft_flag', "checked=checked");
+        $templates->set_var('draft_msg', $LANG_USERBOX_ADMIN['draft_msg']);
     }else{
         $templates->set_var('draft_flag', "");
+        $templates->set_var('draft_msg', "");
     }
 
     //
