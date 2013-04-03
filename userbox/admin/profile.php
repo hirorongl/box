@@ -147,6 +147,7 @@ function fncList()
 	$sql .= " JOIN {$table1} AS t1       ON t.id=t1.uid";
 	$sql .= " JOIN {$table2} AS t2       ON t.fieldset_id=t2.fieldset_id";
 	$sql .= " LEFT JOIN {$table5} AS t5  ON t.id=t5.id";
+	$sql .= " WHERE 1=1";	
 
     $query_arr = array(
         'table' => " {$table} AS t ,{$table1} AS t1",

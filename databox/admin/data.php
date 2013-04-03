@@ -134,7 +134,8 @@ function fncList()
     $sql .= " {$_TABLES['DATABOX_base']} AS t";
 	$sql .= " JOIN {$_TABLES['DATABOX_def_fieldset']} AS t2       ON t.fieldset_id=t2.fieldset_id";
 	$sql .= " LEFT JOIN {$_TABLES['DATABOX_stats']} AS t5  ON t.id=t5.id";
-
+	$sql .= " WHERE 1=1";	
+	
     $query_arr = array(
         'table' => 'DATABOX_base',
         'sql' => $sql,
