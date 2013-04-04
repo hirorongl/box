@@ -120,7 +120,6 @@ function fncList()
     $sql .= " ,modified";
     $sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime";
     $sql .= " ,orderno";
-    $sql .= " ,orderno";
     $sql .= " ,t2.name AS fieldset_name";
     $sql .= " ,t.fieldset_id";
     $sql .= " ,t5.hits";
@@ -139,7 +138,7 @@ function fncList()
     $query_arr = array(
         'table' => 'DATABOX_base',
         'sql' => $sql,
-        'query_fields' => array('t.id','title','code','draft_flag','orderno','t2.name','stats'),
+        'query_fields' => array('t.id','title','code','draft_flag','orderno','t2.name','hits'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');

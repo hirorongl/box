@@ -84,7 +84,7 @@ function LIB_List(
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
-        'query_fields' => array('fieldset','name'),
+        'query_fields' => array('fieldset_id','name'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'fieldset_id', 'direction' => 'ASC');

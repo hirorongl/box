@@ -86,7 +86,7 @@ function LIB_List(
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
-        'query_fields' => array('group','code','name','orderno'),
+        'query_fields' => array('group_id','code','name','orderno'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'group_id', 'direction' => 'ASC');

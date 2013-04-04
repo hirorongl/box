@@ -152,7 +152,7 @@ function fncList()
     $query_arr = array(
         'table' => " {$table} AS t ,{$table1} AS t1",
         'sql' => $sql,
-        'query_fields' => array('t.id','t1.username','t1.fullname','t.draft_flag','t.orderno','stats'),
+        'query_fields' => array('t.id','t1.username','t1.fullname','t.draft_flag','t.orderno','hits'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 't.id', 'direction' => 'ASC');
