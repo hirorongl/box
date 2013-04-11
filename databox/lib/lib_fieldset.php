@@ -632,12 +632,12 @@ function LIB_export (
     $fld = array ();
 
 
-$fld['fieldset_id'] = $lang_box_admin['fieldset_id'];
-$fld['name'] = $lang_box_admin['name'];
-$fld['description'] = $lang_box_admin['description'];
+$fld['fieldset_id']['name']  = $lang_box_admin['fieldset_id'];
+$fld['name']['name']  = $lang_box_admin['name'];
+$fld['description']['name']  = $lang_box_admin['description'];
 
-$fld['udatetime'] = $lang_box_admin['udatetime'];
-$fld['uuid'] = $lang_box_admin['uuid'];
+$fld['udatetime']['name']  = $lang_box_admin['udatetime'];
+$fld['uuid']['name']  = $lang_box_admin['uuid'];
 
 //----------------------
 $filenm=$pi_name."_fieldset";

@@ -652,34 +652,33 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_category'];
+    $table=$_TABLES[strtoupper($pi_name).'_mst'];
 
 require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
 
 // 項目の見出リスト
 $fld = array ();
 
+$fld['id']['name']  = $lang_box_admin['id'];
+$fld['kind']['name']  = $lang_box_admin['kind'];
+$fld['no']['name']  = $lang_box_admin['no'];
+$fld['value']['name']  = $lang_box_admin['value'];
+$fld['value2']['name']  = $lang_box_admin['value2'];
+$fld['disp']['name']  = $lang_box_admin['disp'];
+$fld['orderno']['name']  = $lang_box_admin['orderno'];
+$fld['relno']['name']  = $lang_box_admin['relno'];
 
-$fld['category_id'] = $lang_box_admin['category_id'];
-$fld['code'] = $lang_box_admin['code'];
-$fld['name'] = $lang_box_admin['name'];
-$fld['description'] = $lang_box_admin['description'];
-
-$fld['categorygroup_id'] = $lang_box_admin['group_id'];
-$fld['parent_id'] = $lang_box_admin['parent_id'];
-$fld['orderno'] = $lang_box_admin['orderno'];
-
-$fld['udatetime'] = $lang_box_admin['udatetime'];
-$fld['uuid'] = $lang_box_admin['uuid'];
+$fld['udatetime']['name']  = $lang_box_admin['udatetime'];
+$fld['uuid']['name']  = $lang_box_admin['uuid'];
 
 //----------------------
-$filenm="category_category";
+$filenm=$pi_name."_mst";
 $tbl ="{$table}";
 $where = "";
-$order = "category_id";
+$order = "kind,no";
 
 $addition=false;
-
+	
 $rt= DATABOX_dltbldt($filenm,$fld,$tbl,$where,$order,$pi_name,$addition);
 
 return;

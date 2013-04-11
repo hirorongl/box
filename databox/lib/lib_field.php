@@ -871,26 +871,26 @@ function LIB_export (
 $fld = array ();
 
 
-$fld['field_id'] = $lang_box_admin['field_id'];
-$fld['name'] = $lang_box_admin['name'];
-$fld['orderno'] = $lang_box_admin['orderno'];
+$fld['field_id']['name']  = $lang_box_admin['field_id'];
+$fld['name']['name']  = $lang_box_admin['name'];
+$fld['orderno']['name']  = $lang_box_admin['orderno'];
 
-$fld['templatesetvar'] = $lang_box_admin['templatesetvar'];
-$fld['description'] = $lang_box_admin['description'];
-$fld['allow_display'] = $lang_box_admin['allow_display'];
-$fld['allow_edit'] = $lang_box_admin['allow_edit'];
-$fld['type'] = $lang_box_admin['type'];
-$fld['selection'] = $lang_box_admin['selection'];
-$fld['selectlist'] = $lang_box_admin['selectlist'];
-$fld['checkrequried'] = $lang_box_admin['checkrequried'];
-$fld['size'] = $lang_box_admin['size'];
-$fld['maxlength'] = $lang_box_admin['maxlength'];
-$fld['rows'] = $lang_box_admin['rows'];
-$fld['br'] = $lang_box_admin['br'];
-$fld['orderno'] = $lang_box_admin['orderno'];
+$fld['templatesetvar']['name']  = $lang_box_admin['templatesetvar'];
+$fld['description']['name']  = $lang_box_admin['description'];
+$fld['allow_display']['name']  = $lang_box_admin['allow_display'];
+$fld['allow_edit']['name']  = $lang_box_admin['allow_edit'];
+$fld['type']['name']  = $lang_box_admin['type'];
+$fld['selection']['name']  = $lang_box_admin['selection'];
+$fld['selectlist']['name']  = $lang_box_admin['selectlist'];
+$fld['checkrequried']['name']  = $lang_box_admin['checkrequried'];
+$fld['size']['name']  = $lang_box_admin['size'];
+$fld['maxlength']['name']  = $lang_box_admin['maxlength'];
+$fld['rows']['name']  = $lang_box_admin['rows'];
+$fld['br']['name']  = $lang_box_admin['br'];
+$fld['orderno']['name']  = $lang_box_admin['orderno'];
 
-$fld['udatetime'] = $lang_box_admin['udatetime'];
-$fld['uuid'] = $lang_box_admin['uuid'];
+$fld['udatetime']['name']  = $lang_box_admin['udatetime'];
+$fld['uuid']['name']  = $lang_box_admin['uuid'];
 
 
 //----------------------

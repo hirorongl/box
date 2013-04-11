@@ -698,20 +698,20 @@ require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
 $fld = array ();
 
 
-$fld['category_id'] = $lang_box_admin['category_id'];
-$fld['code'] = $lang_box_admin['code'];
-$fld['name'] = $lang_box_admin['name'];
-$fld['description'] = $lang_box_admin['description'];
+$fld['category_id']['name']  = $lang_box_admin['category_id'];
+$fld['code']['name']  = $lang_box_admin['code'];
+$fld['name']['name']  = $lang_box_admin['name'];
+$fld['description']['name']  = $lang_box_admin['description'];
 
-$fld['categorygroup_id'] = $lang_box_admin['group_id'];
-$fld['parent_id'] = $lang_box_admin['parent_id'];
-$fld['orderno'] = $lang_box_admin['orderno'];
+$fld['categorygroup_id']['name']  = $lang_box_admin['group_id'];
+$fld['parent_id']['name']  = $lang_box_admin['parent_id'];
+$fld['orderno']['name']  = $lang_box_admin['orderno'];
 
-$fld['udatetime'] = $lang_box_admin['udatetime'];
-$fld['uuid'] = $lang_box_admin['uuid'];
+$fld['udatetime']['name']  = $lang_box_admin['udatetime'];
+$fld['uuid']['name']  = $lang_box_admin['uuid'];
 
 //----------------------
-$filenm="category_category";
+$filenm=$pi_name."_category";
 $tbl ="{$table}";
 $where = "";
 $order = "category_id";
