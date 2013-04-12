@@ -1841,8 +1841,7 @@ function fncsendmail (
 
         }
     }
-	
-	if  (($_DATABOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==0)){
+	if  (($_DATABOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==1)){
 	}else{
 		$message.=$msg.LB;
 		$message.=$url.LB;
