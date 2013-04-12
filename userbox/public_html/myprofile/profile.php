@@ -1112,21 +1112,26 @@ function fncsendmail (
 
         }
     }
+	if  (($_USERBOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==1)){
+	}else{
+		$message.=$msg.LB;
+		$message.=$url.LB;
+		$message.=$LANG_USERBOX_MAIL['sig'].LB;
 
-    $message.=$msg.LB;
-    $message.=$url.LB;
-    $message.=$LANG_USERBOX_MAIL['sig'].LB;
-
-    $mail_to=$_USERBOX_CONF['mail_to'];
-    //--- to user
-    if (array_search($email,$mail_to)===false){
-        $to=$email;
-        COM_mail ($to, $subject, $message);
-    }
-    //--- to admin
-    $to=implode($mail_to,",");
-    COM_mail ($to, $subject, $message);
-
+		$mail_to=$_USERBOX_CONF['mail_to'];
+		//--- to user
+		if  ($_USERBOX_CONF['mail_to_owner']==1){
+			if (array_search($email,$mail_to)===false){
+				$to=$email;
+				COM_mail ($to, $subject, $message);
+			}
+		}
+		//--- to admin
+		if  ($mail_to<>""){
+			$to=implode($mail_to,",");
+			COM_mail ($to, $subject, $message);
+		}
+	}
     return $retval;
 }
 
