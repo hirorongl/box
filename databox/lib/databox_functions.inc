@@ -3018,6 +3018,7 @@ function DATABOX_uploadaddtiondatas(
 						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
 						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
 						$a=explode(".",$imgname);
+						$a[1]=strtolower($a[1]);
 						$newfilename=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
 
 						//$newfilename=$imgname;
