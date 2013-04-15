@@ -744,7 +744,7 @@ function DATABOX_getadditiondef(
 
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
-    $sql.= " ORDER BY orderno";
+    $sql.= " ORDER BY orderno,field_id";
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
