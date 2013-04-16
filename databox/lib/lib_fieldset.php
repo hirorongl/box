@@ -579,7 +579,9 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table1=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table2=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+    $table3=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -599,7 +601,9 @@ function LIB_delete (
     }
 
     //
-    DB_delete ($table, 'fieldset_id', $id);
+    DB_delete ($table3, 'fieldset_id', $id);
+    DB_delete ($table2, 'fieldset_id', $id);
+    DB_delete ($table1, 'fieldset_id', $id);
 
     return COM_refresh ($_CONF['site_admin_url']
                         . '/plugins/'.THIS_SCRIPT.'?msg=2');
