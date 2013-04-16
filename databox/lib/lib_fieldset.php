@@ -1126,6 +1126,8 @@ function LIB_savefields(
 	
 	$fieldsetfields=$_POST['groupmembers'];
 	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+	$table2=$_TABLES[strtoupper($pi_name).'_addition'];
+	$table3=$_TABLES[strtoupper($pi_name).'_base'];
 
     $retval = '';
 
@@ -1142,8 +1144,14 @@ function LIB_savefields(
 			$sql="INSERT INTO {$table} ";
 			$sql.=" (fieldset_id, field_id) VALUES ('$fieldset_id', $field_id)";
 			DB_query($sql);
-		
 		}
+		
+		$sql="DELETE FROM {$table2} ";
+		$sql.=" WHERE"; 
+		$sql.=" id IN  (SELECT m.id FROM {$table3} AS m WHERE  fieldset_id={$fieldset_id})";
+		$sql.=" AND field_id not IN (SELECT field_id FROM {$table} WHERE fieldset_id={$fieldset_id})";
+		DB_query($sql);
+		
 	}
 	$return_page=COM_refresh ($_CONF['site_admin_url']
 		. '/plugins/'.THIS_SCRIPT.'?msg=1');
@@ -1453,6 +1461,9 @@ function LIB_savegroups(
 	
 	$fieldsetgroups=$_POST['groupmembers'];
 	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+	$table2=$_TABLES[strtoupper($pi_name).'_category'];
+	$table3=$_TABLES[strtoupper($pi_name).'_base'];
+	$table4=$_TABLES[strtoupper($pi_name).'_def_category'];
 
     $retval = '';
 
@@ -1468,8 +1479,18 @@ function LIB_savegroups(
 			$sql="INSERT INTO {$table} ";
 			$sql.=" (fieldset_id, group_id) VALUES ('$fieldset_id', $group_id)";
 			DB_query($sql);
-		
 		}
+		$sql="DELETE FROM {$table2} ";
+		$sql.=" WHERE"; 
+		$sql.=" id IN  (SELECT m.id FROM {$table3} AS m WHERE  fieldset_id={$fieldset_id})";
+		$sql.=" AND category_id not IN ";
+		$sql.=" ( SELECT category_id FROM {$table}  as t,{$table4} as t4 ";
+		$sql.=" WHERE t.fieldset_id={$fieldset_id} AND  t4.categorygroup_id=t.group_id)";
+		$sql.=" AND category_id not IN "; 
+		$sql.=" ( SELECT parent_id FROM {$table} as t,{$table4} as t4";
+		$sql.=" WHERE t.fieldset_id={$fieldset_id} AND  t4.categorygroup_id=t.group_id AND parent_id<>0)";
+		DB_query($sql);
+		
 	}
 	$return_page=COM_refresh ($_CONF['site_admin_url']
 		. '/plugins/'.THIS_SCRIPT.'?msg=1');

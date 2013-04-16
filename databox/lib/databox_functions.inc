@@ -934,24 +934,24 @@ function DATABOX_getadditiondatas(
     }
 
     $rt=array();
-
+	
+	$sql="SELECT ";
+	$sql.=" m.field_id";
     if ($id==0){
-        $sql="SELECT m.field_id,'' AS value  ";
-        $sql.=" FROM";
-        $sql.=" {$table_def_field}  AS m";
-        $sql.=" order by m.orderno ";
-
-    }else{
-        $sql="SELECT t.field_id,value  ";
+		$sql.=",'' AS value  ";
+	}else{
+		$sql.=", ( SELECT VALUE ";
         $sql.=" FROM";
         $sql.=" {$table_addition}  AS t";
-        $sql.=" ,{$table_def_field}  AS m";
         $sql.=" where";
         $sql.=" t.id={$id}";
         $sql.=" AND t.field_id=m.field_id";
-        $sql.=" order by m.orderno ";
-    }
-
+        $sql.=" ) AS value ";
+	}
+	$sql.=" FROM";
+    $sql.=" {$table_def_field}  AS m";
+    $sql.=" order by m.orderno ,m.field_id";
+	
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
