@@ -1102,8 +1102,8 @@ function userbox_profile(
 
     $tbl=$_TABLES['USERBOX_base'] ;
     $tbl1=$_TABLES['users'] ;
-	$tbl4=$_TABLES['DATABOX_def_fieldset'];
-	$tbl5=$_TABLES['DATABOX_stats'];
+	$tbl4=$_TABLES['USERBOX_def_fieldset'];
+	$tbl5=$_TABLES['USERBOX_stats'];
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
