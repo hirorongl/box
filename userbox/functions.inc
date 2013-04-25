@@ -861,4 +861,159 @@ function userbox_descriptionemptycheck(
 	
 	return $return;
 }
+
+function plugin_getiteminfo_userbox(
+	$id
+	, $what
+	, $uid = 0
+	, $options = array()
+)
+// +---------------------------------------------------------------------------+
+// | 機能  
+// | XMLSitemap id="*" what="url,date-modified" uid=1
+// +---------------------------------------------------------------------------+
+// | 引数 $id
+// | 引数 $what:
+// | 引数 $uid:
+// | 引数 $options:
+// +---------------------------------------------------------------------------+
+{
+	global $_CONF;
+	global $_TABLES;
+    global $_USERBOX_CONF;
+
+    // parse $what to see what we need to pull from the database
+    $properties = explode(',', $what);
+    $fields = array();
+    foreach ($properties as $p) {
+        switch ($p) {
+        case 'date-created':
+            $fields[] = 'UNIX_TIMESTAMP(created) AS unixdate_created';
+            break;
+        case 'date-modified':
+            $fields[] = 'UNIX_TIMESTAMP(modified) AS unixdate_modified';
+            break;
+        case 'description':
+        case 'excerpt':
+            $fields[] = 'description';
+            break;
+        case 'id':
+            $fields[] = 'id';
+            break;
+		case 'url':
+            if ($id == '*') {
+				$fields[] = 'id';
+				$fields[] = 'username';
+			}
+			break;
+        default:
+            // nothing to do
+            break;
+        }
+    }
+
+    $fields = array_unique($fields);
+    if (count($fields) == 0) {
+        $retval = array();
+        return $retval;
+    }
+    // prepare SQL request
+    $where = LB.' WHERE'.LB;
+	//下書データはのぞく
+	$where .=  " t1.draft_flag=0".LB;
+	$where .=  " AND t1.id=t2.uid".LB;
+	if ($id == '*') {
+    } else {
+        $where .= " AND (t1.id = '" . DB_escapeString($id) . "') ".LB;
+    }
+	//公開日以前のデータはのぞく
+	$where .=  " AND (t1.released <= NOW())".LB;
+	//公開終了日を過ぎたデータはのぞく
+	$where .=  " AND (t1.expired=0 OR t1.expired > NOW())".LB;
+ 	//アクセス権のないデータ はのぞく
+    $permSql = COM_getPermSql('AND', $uid,2,"t1") ;
+	//-----
+	
+	$sql = "SELECT " . implode(',', $fields).LB
+            . " FROM {$_TABLES['USERBOX_base']} AS t1,{$_TABLES['users']} AS t2" . $where . $permSql;
+	if ($id != '*') {
+        $sql .= ' LIMIT 1';
+    }
+    $result = DB_query($sql);
+    $numRows = DB_numRows($result);
+
+    $retval = array();
+    for ($i = 0; $i < $numRows; $i++) {
+        $A = DB_fetchArray($result);
+
+        $props = array();
+        foreach ($properties as $p) {
+            switch ($p) {
+            case 'date-created':
+                $props['date-created'] = $A['unixdate_created'];
+                break;
+            case 'date-modified':
+                $props['date-modified'] = $A['unixdate_modified'];
+                break;
+            case 'description':
+                $props['description'] = trim(PLG_replaceTags(stripslashes($A['description'])));
+                break;
+            case 'excerpt':
+                $props['excerpt'] = trim(PLG_replaceTags(stripslashes($A['description'])));
+                break;
+            case 'id':
+                $props['id'] = $A['id'];
+                break;
+            case 'title':
+                $props['title'] = stripslashes($A['title']);
+                break;
+            case 'url':
+                $url=$_CONF['site_url'] . "/userbox/profile.php";
+                $url.="?";
+                if (empty($A['id'])) {
+					$url.="id=".$id;
+					$url.="&amp;m=id";
+			    }elseif ($_USERBOX_CONF['datacode']){
+				    $url.="code=".$A['username'];
+                    $url.="&amp;m=code";
+			    }else{		
+					$url.="id=".$A['id'];
+                    $url.="&amp;m=id";
+			    }
+				$props['url'] =$url;
+				
+                break;
+            default:
+                // return empty string for unknown properties
+                $props[$p] = '';
+                break;
+            }
+        }
+
+        $mapped = array();
+        foreach ($props as $key => $value) {
+            if ($id == '*') {
+                if ($value != '') {
+                    $mapped[$key] = $value;
+                }
+            } else {
+                $mapped[] = $value;
+            }
+        }
+
+        if ($id == '*') {
+            $retval[] = $mapped;
+        } else {
+            $retval = $mapped;
+            break;
+        }
+    }
+
+    if (($id != '*') && (count($retval) == 1)) {
+        $retval = $retval[0];
+    }
+
+    return $retval;
+}
+
 ?>
