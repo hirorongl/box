@@ -499,6 +499,7 @@ function plugin_getiteminfo_databox(
 {
 	global $_CONF;
 	global $_TABLES;
+    global $_DATABOX_CONF;
 
     // parse $what to see what we need to pull from the database
     $properties = explode(',', $what);
@@ -524,7 +525,7 @@ function plugin_getiteminfo_databox(
 		case 'url':
             if ($id == '*') {
 				$fields[] = 'id';
-				$fields[] = 'code';//???
+				$fields[] = 'code';
 			}
 			break;
         default:
@@ -572,7 +573,7 @@ function plugin_getiteminfo_databox(
             case 'date-created':
                 $props['date-created'] = $A['unixdate_created'];
                 break;
-            case 'date-created':
+            case 'date-modified':
                 $props['date-modified'] = $A['unixdate_modified'];
                 break;
             case 'description':
@@ -593,7 +594,7 @@ function plugin_getiteminfo_databox(
                 if (empty($A['id'])) {
 					$url.="id=".$id;
 					$url.="&amp;m=id";
-			    }elseif ($A['code']<>"") {
+			    }elseif ($_DATABOX_CONF['datacode']) {
 				    $url.="code=".$code;
                     $url.="&amp;m=code";
 			    }else{		
