@@ -595,13 +595,13 @@ function plugin_getiteminfo_databox(
 					$url.="id=".$id;
 					$url.="&amp;m=id";
 			    }elseif ($_DATABOX_CONF['datacode']) {
-				    $url.="code=".$code;
+				    $url.="code=".$A['code'];
                     $url.="&amp;m=code";
 			    }else{		
 					$url.="id=".$A['id'];
                     $url.="&amp;m=id";
-			    }
-				$props['url'] =$url;
+				}
+				$props['url'] =COM_buildUrl( $url );
 				
                 break;
             default:

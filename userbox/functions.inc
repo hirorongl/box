@@ -941,7 +941,6 @@ function plugin_getiteminfo_userbox(
     }
     $result = DB_query($sql);
     $numRows = DB_numRows($result);
-
     $retval = array();
     for ($i = 0; $i < $numRows; $i++) {
         $A = DB_fetchArray($result);
@@ -980,9 +979,8 @@ function plugin_getiteminfo_userbox(
 					$url.="id=".$A['id'];
                     $url.="&amp;m=id";
 			    }
-				$props['url'] =$url;
-				
-                break;
+				$props['url'] =COM_buildUrl( $url );;
+				break;
             default:
                 // return empty string for unknown properties
                 $props[$p] = '';
