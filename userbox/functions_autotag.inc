@@ -1166,8 +1166,6 @@ function userbox_profile(
         $sql .= " LIMIT 0 , 1";
     }
 	
-	COM_errorLog("[USERBOX] userbox_profile sql={$sql}");//@@@@@
-
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
