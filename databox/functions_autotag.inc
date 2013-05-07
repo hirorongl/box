@@ -559,8 +559,8 @@ function databox_category(
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
 
-            $title=COM_applyFilter($A['title']);
-            $description=COM_applyFilter($A['description']);
+            $title=$A['title'];
+            $description=$A['description'];
             $code=COM_applyFilter($A['code']);
             $id=COM_applyFilter($A['id']);
 			$datefield=COM_applyFilter($A['datefield']);
