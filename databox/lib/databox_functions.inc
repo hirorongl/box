@@ -2345,11 +2345,10 @@ global $_TABLES;
 	$sql .= ",m2.input_type".LB;
     $sql .= " FROM ".LB;
 	$sql .= " {$table_def_group} AS m2".LB;
-	$sql .= " ,{$table_def_fieldset_group} AS m3".LB;
-	
-    $sql .= " WHERE ".LB;
-	$sql .= " m2.group_id = m3.group_id".LB;
 	if  ($fieldset_id<>0){
+		$sql .= " ,{$table_def_fieldset_group} AS m3".LB;
+		$sql .= " WHERE ".LB;
+		$sql .= " m2.group_id = m3.group_id".LB;
 		$sql .= " AND m3.fieldset_id = ".$fieldset_id .LB;
 	}
 	
