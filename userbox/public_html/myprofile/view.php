@@ -69,9 +69,9 @@ function fncview ()
 
 	$retval="";
 	$retval.=$view;
-	$retval.= userbox_profile($_USER['uid'],"","","view");
-
-
+	$ret= userbox_profile($_USER['uid'],"","","view");
+	$retval.= $ret['display'];
+	
     return $retval;
 }
 
