@@ -252,17 +252,17 @@ function plugin_getuseroption_userbox()
     global $LANG_USERBOX;
     global $_USERBOX_CONF;
 	
-	$url = $_CONF['site_url'] . '/userbox/myprofile/index.php';
-    if ($_USERBOX_CONF['allow_profile_update']==1){
-		return array ($LANG_USERBOX['myprofile'], $url, '');
-	}else{	
-	   if (SEC_hasRights ('userbox.edit') OR SEC_hasRights ('userbox.joingroup')){
-		   return array ($LANG_USERBOX['myprofile'], $url, '');
-	   }else{
-           return;
-	   }
+	if (SEC_hasRights ('userbox.user')){
+		$url = $_CONF['site_url'] . '/userbox/myprofile/index.php';
+		if ($_USERBOX_CONF['allow_profile_update']==1){
+			return array ($LANG_USERBOX['myprofile'], $url, '');
+		}else{	
+			if (SEC_hasRights ('userbox.edit') OR SEC_hasRights ('userbox.joingroup')){
+				return array ($LANG_USERBOX['myprofile'], $url, '');
+			}
+		}
 	}
-
+	return;
 }
 
 function plugin_whatsnewsupported_userbox()
