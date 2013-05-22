@@ -947,7 +947,7 @@ function databox_field(
 	
 	$field_def=DATABOX_getadditiondef($pi_name);
     $type=$field_def[$field_id]['type'];
-    $w = array(0,2,3,7,8,9);
+    $w = array(0,2,3,4,7,8,9);
     if (in_array ($type,$w)){
     }else{
         return;

@@ -282,7 +282,8 @@ function fncEdit(
     global $LANG_ACCESS;
     global $_DATABOX_CONF;
     global $_USER;
-
+	global $_SCRIPTS;
+	
     $retval = '';
 
 
@@ -656,8 +657,16 @@ function fncEdit(
                 'row'   => 'row.thtml',
                 'col'   => "data_col_detail.thtml",
             ));
+    // Loads jQuery UI datepicker
+    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+    $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
-    //--
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = 'Click and select a date';	// Should be translated
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+	//--
     if (($_CONF['meta_tags'] > 0) && ($_DATABOX_CONF['meta_tags'] > 0)) {
         $templates->set_var('hide_meta', '');
     } else {
@@ -1149,7 +1158,6 @@ function fncSave (
 
         DB_save($_TABLES['DATABOX_base'],$fields,$values);
     }else{
-        $modified=date("Y-m-d H:i:s");
 		
         $sql="UPDATE {$_TABLES['DATABOX_base']} set ";
         $sql.=" title = '$title'";
@@ -1181,7 +1189,7 @@ function fncSave (
 
     $rt=fncsendmail ('data',$id);
 
-//@@@@@ exit;//@@@@@debug 用
+//exit;//@@@@@debug 用
 
     if ($_DATABOX_CONF['aftersave']==='no'){
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
@@ -1282,13 +1290,13 @@ function fncsendmail (
     global $LANG_DATABOX_ADMIN;
     global $_USER ;
     global $_DATABOX_CONF ;
-
+	
+	$pi_name="databox";
     $retval = '';
 
     $site_name=$_CONF['site_name'];
     $subject= sprintf($LANG_DATABOX_MAIL['subject_'.$m],$_USER['username']);
     $message=sprintf($LANG_DATABOX_MAIL['message_'.$m],$_USER['username'],$_USER['uid']);
-
     if ($m==="data_delete"){
         $msg= $LANG_DATABOX_ADMIN['id'].":".$id.LB;
         $msg.= $LANG_DATABOX_ADMIN['title'].":".$title.LB;
@@ -1333,7 +1341,7 @@ function fncsendmail (
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $addition_def=DATABOX_getadditiondef();
             $additionfields = DATABOX_getadditiondatas($id);
-            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user);
+            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name);
 
             //タイムスタンプ　更新ユーザ
             $msg.= $LANG_DATABOX_ADMIN['udatetime'].":".$A['udatetime'].LB;
@@ -1354,7 +1362,6 @@ function fncsendmail (
 
         }
 	}
-	
 	if  (($_DATABOX_CONF['mail_to_draft']==0) AND ($A['draft_flag']==1)){
 	}else{
 

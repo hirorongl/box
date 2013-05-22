@@ -288,6 +288,7 @@ function fncEdit(
     global $LANG_ACCESS;
     global $_USER;
     global $LANG28;
+	global $_SCRIPTS;
 
     global $_USERBOX_CONF;
     global $LANG_USERBOX_ADMIN;
@@ -577,7 +578,28 @@ function fncEdit(
                 'editor' => 'profile_editor.thtml',
                 'row'   => 'row.thtml',
                 'col'   => "profile_col_detail.thtml",
-            ));
+				));
+	
+	
+    // Loads jQuery UI datepicker
+	if (version_compare(VERSION, '2.0.0') >= 0) {
+		$_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+		$_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+		$_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
+
+		$langCode = COM_getLangIso639Code();
+		$toolTip  = 'Click and select a date';	// Should be translated
+		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+		$_SCRIPTS->setJavaScript(
+			"jQuery(function () {"
+			. "  geeklog.datepicker.set('comment_expire', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('modified', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('released', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('expired', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "});", TRUE, TRUE
+		);
+	}
 
     //--
     if (($_CONF['meta_tags'] > 0) && ($_USERBOX_CONF['meta_tags'] > 0)) {
@@ -983,6 +1005,14 @@ function fncSave (
         $comment_expire_year = COM_applyFilter ($_POST['comment_expire_year'],true);
         $comment_expire_hour = COM_applyFilter ($_POST['comment_expire_hour'],true);
         $comment_expire_minute = COM_applyFilter ($_POST['comment_expire_minute'],true);
+		if ($comment_expire_ampm == 'pm') {
+			if ($comment_expire_hour < 12) {
+				$comment_expire_hour = $comment_expire_hour + 12;
+			}
+		}
+		if ($comment_expire_ampm == 'am' AND $comment_expire_hour == 12) {
+			$comment_expire_hour = '00';
+		}
     }ELSE{
         $comment_expire_month = 0;
         $comment_expire_day = 0;
@@ -1054,6 +1084,15 @@ function fncSave (
         $modified_year = COM_applyFilter ($_POST['modified_year'],true);
         $modified_hour = COM_applyFilter ($_POST['modified_hour'],true);
         $modified_minute = COM_applyFilter ($_POST['modified_minute'],true);
+		$modified_ampm=COM_applyFilter ($_POST['modified_ampm']);
+		if ($modified_ampm == 'pm') {
+			if ($modified_hour < 12) {
+				$modified_hour = $modified_hour + 12;
+			}
+		}
+		if ($modified_ampm == 'am' AND $modified_hour == 12) {
+			$modified_hour = '00';
+		}
     }
     //公開日
     $released_month = COM_applyFilter ($_POST['released_month'],true);
@@ -1061,6 +1100,14 @@ function fncSave (
     $released_year = COM_applyFilter ($_POST['released_year'],true);
     $released_hour = COM_applyFilter ($_POST['released_hour'],true);
     $released_minute = COM_applyFilter ($_POST['released_minute'],true);
+	if ($released_ampm == 'pm') {
+		if ($released_hour < 12) {
+			$released_hour = $released_hour + 12;
+		}
+	}
+	if ($released_ampm == 'am' AND $released_hour == 12) {
+		$released_hour = '00';
+	}
 
     //公開終了日
     $expired_flag = COM_applyFilter ($_POST['expired_flag'],true);
@@ -1070,6 +1117,14 @@ function fncSave (
         $expired_year = COM_applyFilter ($_POST['expired_year'],true);
         $expired_hour = COM_applyFilter ($_POST['expired_hour'],true);
         $expired_minute = COM_applyFilter ($_POST['expired_minute'],true);
+		if ($expired_ampm == 'pm') {
+			if ($expired_hour < 12) {
+				$expired_hour = $expired_hour + 12;
+			}
+		}
+		if ($expired_ampm == 'am' AND $expired_hour == 12) {
+			$expired_hour = '00';
+		}
     }ELSE{
         $expired_month = 0;
         $expired_day = 0;

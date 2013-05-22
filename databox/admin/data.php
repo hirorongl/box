@@ -287,7 +287,8 @@ function fncEdit(
     global $MESSAGE;
     global $LANG_ACCESS;
     global $_USER;
-
+	global $_SCRIPTS;
+	
     global $_DATABOX_CONF;
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX;
@@ -663,6 +664,27 @@ function fncEdit(
                 'row'   => 'row.thtml',
                 'col'   => "data_col_detail.thtml",
             ));
+	
+	
+    // Loads jQuery UI datepicker
+	if (version_compare(VERSION, '2.0.0') >= 0) {
+		$_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+		$_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+		$_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
+
+		$langCode = COM_getLangIso639Code();
+		$toolTip  = 'Click and select a date';	// Should be translated
+		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+		$_SCRIPTS->setJavaScript(
+			"jQuery(function () {"
+			. "  geeklog.datepicker.set('comment_expire', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('modified', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('released', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "  geeklog.datepicker.set('expired', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+			. "});", TRUE, TRUE
+		);
+	}
 
     //--
     if (($_CONF['meta_tags'] > 0) && ($_DATABOX_CONF['meta_tags'] > 0)) {
@@ -1059,7 +1081,16 @@ function fncSave (
         $comment_expire_year = COM_applyFilter ($_POST['comment_expire_year'],true);
         $comment_expire_hour = COM_applyFilter ($_POST['comment_expire_hour'],true);
         $comment_expire_minute = COM_applyFilter ($_POST['comment_expire_minute'],true);
-    }ELSE{
+		$comment_expire_ampm=COM_applyFilter ($_POST['comment_expire_ampm']);
+		if ($comment_expire_ampm == 'pm') {
+			if ($comment_expire_hour < 12) {
+				$comment_expire_hour = $comment_expire_hour + 12;
+			}
+		}
+		if ($comment_expire_ampm == 'am' AND $comment_expire_hour == 12) {
+			$comment_expire_hour = '00';
+		}
+	}ELSE{
         $comment_expire_month = 0;
         $comment_expire_day = 0;
         $comment_expire_year = 0;
@@ -1087,7 +1118,6 @@ function fncSave (
     $additionfields_del=$_POST['afield_del'];
     $dummy=DATABOX_cleanaddtiondatas
         ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
-
     //
     $owner_id = COM_applyFilter ($_POST['owner_id'],true);
 
@@ -1130,6 +1160,15 @@ function fncSave (
         $modified_year = COM_applyFilter ($_POST['modified_year'],true);
         $modified_hour = COM_applyFilter ($_POST['modified_hour'],true);
         $modified_minute = COM_applyFilter ($_POST['modified_minute'],true);
+		$modified_ampm=COM_applyFilter ($_POST['modified_ampm']);
+		if ($modified_ampm == 'pm') {
+			if ($modified_hour < 12) {
+				$modified_hour = $modified_hour + 12;
+			}
+		}
+		if ($modified_ampm == 'am' AND $modified_hour == 12) {
+			$modified_hour = '00';
+		}
     }
     //公開日
     $released_month = COM_applyFilter ($_POST['released_month'],true);
@@ -1137,6 +1176,15 @@ function fncSave (
     $released_year = COM_applyFilter ($_POST['released_year'],true);
     $released_hour = COM_applyFilter ($_POST['released_hour'],true);
     $released_minute = COM_applyFilter ($_POST['released_minute'],true);
+	$released_ampm=COM_applyFilter ($_POST['released_ampm']);
+	if ($released_ampm == 'pm') {
+		if ($released_hour < 12) {
+			$released_hour = $released_hour + 12;
+		}
+	}
+	if ($released_ampm == 'am' AND $released_hour == 12) {
+		$released_hour = '00';
+	}
 
     //公開終了日
     $expired_flag = COM_applyFilter ($_POST['expired_flag'],true);
@@ -1146,6 +1194,15 @@ function fncSave (
         $expired_year = COM_applyFilter ($_POST['expired_year'],true);
         $expired_hour = COM_applyFilter ($_POST['expired_hour'],true);
         $expired_minute = COM_applyFilter ($_POST['expired_minute'],true);
+		$expired_ampm=COM_applyFilter ($_POST['expired_ampm']);
+		if ($expired_ampm == 'pm') {
+			if ($expired_hour < 12) {
+				$expired_hour = $expired_hour + 12;
+			}
+		}
+		if ($expired_ampm == 'am' AND $expired_hour == 12) {
+			$expired_hour = '00';
+		}
     }ELSE{
         $expired_month = 0;
         $expired_day = 0;
@@ -1739,7 +1796,8 @@ function fncsendmail (
     global $LANG_DATABOX_ADMIN;
     global $_USER ;
     global $_DATABOX_CONF ;
-
+	
+	$pi_name="databox";
     $retval = '';
 
     $site_name=$_CONF['site_name'];
@@ -1820,7 +1878,7 @@ function fncsendmail (
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $addition_def=DATABOX_getadditiondef();
             $additionfields = DATABOX_getadditiondatas($id);
-            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user);
+            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name);
 
             //タイムスタンプ　更新ユーザ
             $msg.= $LANG_DATABOX_ADMIN['udatetime'].":".$A['udatetime'].LB;

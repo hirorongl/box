@@ -17,14 +17,23 @@ function LIB_datetimeedit(
     $var = $lang;
     global $$var;
     $lang_ary=$$var;
-
-    $datetime_year = date('Y', $datetime_value);
-    $datetime_month = date('m', $datetime_value);
-    $datetime_day = date('d', $datetime_value);
-    //
-    $datetime_hour = date ('H', $datetime_value);
-    $datetime_minute = date ('i', $datetime_value) ;
-
+	
+	if ($datetime_value==""){
+		$datetime_year = date('Y');
+		$datetime_month = date('m');
+		$datetime_day = date('d');
+		//
+		$datetime_hour = date ('H');
+		$datetime_minute = date ('i') ;
+	}else{
+		$datetime_year = date('Y', $datetime_value);
+		$datetime_month = date('m', $datetime_value);
+		$datetime_day = date('d', $datetime_value);
+		//
+		$datetime_hour = date ('H', $datetime_value);
+		$datetime_minute = date ('i', $datetime_value) ;
+	}
+	
     $rt="";
     //Year
     $year_options = COM_getYearFormOptions ($datetime_year);

@@ -83,6 +83,7 @@ function fncEdit(
     global $LANG_ACCESS;
     global $_USER;
     global $LANG28;
+	global $_SCRIPTS;
 
     global $_USERBOX_CONF;
     global $LANG_USERBOX_ADMIN;
@@ -375,7 +376,18 @@ function fncEdit(
                 'row'   => 'row.thtml',
                 'col'   => "profile_col_detail.thtml",
             ));
+	
+	// Loads jQuery UI datepicker
+	if (version_compare(VERSION, '2.0.0') >= 0) {
+		$_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+		$_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+		$_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
+		$langCode = COM_getLangIso639Code();
+		$toolTip  = 'Click and select a date';	// Should be translated
+		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+	}
+	
     //--
     if (($_CONF['meta_tags'] > 0) && ($_USERBOX_CONF['meta_tags'] > 0)) {
         $templates->set_var('hide_meta', '');
@@ -874,6 +886,8 @@ function fncSave (
         $sql.=" page_title = '$page_title'";
         $sql.=" ,description = '$description'";
         $sql.=" ,language_id = '$language_id'";
+		
+        $sql.=" ,modified = FROM_UNIXTIME('$modified')";
 
         $sql.=",uuid='$uuid' WHERE id=$id";
 

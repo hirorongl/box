@@ -81,7 +81,7 @@ function fnclist(
     //TYPE[7] = 'オプションリスト';
     //TYPE[8] = 'ラジオボタンリスト';
 	//TYPE[9] = 'オプションリスト(マスタ)　（既定リスト）';
-	$sql .= " AND t3.type IN (0,2,3,7,8,9) ".LB;
+	$sql .= " AND t3.type IN (0,2,3,4,7,8,9) ".LB;
 
     //ALLOW_DISPLAY[0] ='表示する（orderに指定可能）';
     //ALLOW_DISPLAY[1] ='ログインユーザのみ表示する';
@@ -96,10 +96,10 @@ function fnclist(
     }
 
     //管理者の時,下書データも含む
-    if ( SEC_hasRights('databox.admin')) {
-    }else{
+    //if ( SEC_hasRights('databox.admin')) {
+    //}else{
        $sql .= " AND t2.draft_flag=0".LB;
-    }
+    //}
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND',0,2,"t2").LB;
     //公開日以前のデータはのぞく
@@ -316,7 +316,7 @@ if (COM_isAnonUser()){
 //引数
 //(各アトリビュート)別件数一覧 の引数の順番
 //public_html/attribute.php?id=1&m=id
-//public_html/attribute.php?id=xxxx&m=code
+//public_html/attribute.php?code=xxxx&m=code
 //アトリビュート別一覧の引数の順番
 //public_html/attribute.php?id=1&m=id&value=27&template=yyyy
 //public_html/attribute.php?code=xxxx&m=code&value=27&template=yyyy
@@ -375,13 +375,11 @@ if ($perpage===0){
     $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
 }
 
-//
-
 //(各アトリビュート)別件数一覧
 if ($value==="") {
     $display .= fnclist($id,$template);
 	
-//アトリビュート別一覧の引数の順番
+//アトリビュート別一覧
 }else{
     $display .= databox_field(
         "notautotag"

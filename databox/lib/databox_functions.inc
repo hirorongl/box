@@ -994,8 +994,10 @@ function DATABOX_getaddtionfieldsEdit(
 // +---------------------------------------------------------------------------+
 // 20101206 日付
 {
-global $_TABLES;
-
+	global $_TABLES;
+	global $_SCRIPTS;
+	global $_CONF;
+	
     if ($pi_name==""){
         $lang_admin="LANG_DATABOX_ADMIN";
         $lang_noyes="LANG_DATABOX_NOYES";
@@ -1014,7 +1016,13 @@ global $_TABLES;
     global $$lang_noyes;
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
-
+	
+	if (version_compare(VERSION, '2.0.0') >= 0) {
+		$langCode = COM_getLangIso639Code();
+		$toolTip  = 'Click and select a date';	// Should be translated
+		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+	}
+	
 	$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
 	
     $retval = '';
@@ -1158,31 +1166,51 @@ global $_TABLES;
                     }
                     break;
                 case 3://日付（date picker対応）
-                    if ($disabled===""){
-                        if ($fvalue===""){
-
-                            //$fvalue="2010/12/05";
-
-                        }
-                        $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\"";
-                        $fieldhtml .= " size=\"".$size."\"";
-                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
-                        $fieldhtml .= " class=\"inputDate\"";
-                        $fieldhtml .= " id=\"afield".$fid."\" ";
-                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " value=\"".$fvalue."\"";
-                        $fieldhtml .= " ".$disabled." ";
-                        $fieldhtml .= " ".XHTML.">";
+					if ($disabled===""){
+						//$filedname="afield[".$fid."]";
+						$filedname="afield".$fid;
+					
+						$_SCRIPTS->setJavaScript(
+						"jQuery(function () {"
+							. "  geeklog.datepicker.set(
+							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+							. "});", TRUE, TRUE
+							);
+					
+						$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin,$filedname,"date");
+					    $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+						$fieldhtml.=$wk;
                     }else{
                         $fieldhtml .=$fvalue;
                     }
                     break;
-
-
-
-
-                case 9://既定リスト　（準備中）';
+				case 4://日時（date picker対応）
+					if ($disabled===""){
+						//$filedname="afield[".$fid."]";
+						$filedname="afield".$fid;
+					
+						$_SCRIPTS->setJavaScript(
+						"jQuery(function () {"
+							. "  geeklog.datepicker.set(
+							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+							. "});", TRUE, TRUE
+							);
+						$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin,$filedname);
+					    $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+						$fieldhtml.=$wk;
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+				case 9://既定リスト　（準備中）';
 
                 case 4://日時（準備中）
 
@@ -1547,48 +1575,24 @@ function DATABOX_getenableexpired(
 	,$flg
 	,$pi_name
 ){
-	global $_CONF;
-	
 	//GL のバージョンが1.8.0 より新しくなければおわり
-	if (version_compare(VERSION, '1.8.0') >= 0) {
+	if (version_compare(VERSION, '2.0.0') >= 0) {
 	}else{
 		return ;
 	}
 	
-	$scriptclass=$_CONF['path_system'] .'classes/scripts.class.php';
-	if  (!file_exists($scriptclass) ){
-		return;
-	}
-
-	
+	global $_CONF;
 	global $_SCRIPTS;
 	
-	$str="".LB;
-	
-	$str .= "var disable = {$flg};".LB;
-	$str .= "document.frm{$pi_name}.{$field}_year.disabled=!disable;".LB;
-	$str .= "document.frm{$pi_name}.{$field}_month.disabled=!disable;".LB;
-	$str .= "document.frm{$pi_name}.{$field}_day.disabled=!disable;".LB;
-	$str .= "document.frm{$pi_name}.{$field}_hour.disabled=!disable;".LB;
-	$str .= "document.frm{$pi_name}.{$field}_minute.disabled=!disable;".LB;
-    if ($_CONF['hour_mode'] == 12) {
-		$str .= "document.frm{$pi_name}.{$field}_ampm.disabled=!disable;".LB;
-	}
-	$str .=LB;
-	$str .= "function enable_{$field}(obj) {".LB;
-	$str .= "    var f = obj.form;".LB;
-	$str .= "    var disable = obj.checked;".LB;
-	$str .= "    f.elements[\"{$field}_year\"].disabled=!disable;".LB;
-	$str .= "    f.elements[\"{$field}_month\"].disabled=!disable;".LB;
-	$str .= "    f.elements[\"{$field}_day\"].disabled=!disable;".LB;
-	$str .= "    f.elements[\"{$field}_hour\"].disabled=!disable;".LB;
-	$str .= "    f.elements[\"{$field}_minute\"].disabled=!disable;".LB;
-    if ($_CONF['hour_mode'] == 12) {
-		$str .= "    f.elements[\"{$field}_ampm\"].disabled=!disable;".LB;
-	}
-	$str .= "}".LB;
-	
-	$_SCRIPTS->setJavaScript($str, true);
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = 'Click and select a date';	// Should be translated
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+    $_SCRIPTS->setJavaScript(
+        "jQuery(function () {"
+        . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "});", TRUE, TRUE
+    );
 	
 	return ;
 }
@@ -1598,7 +1602,7 @@ function DATABOX_getaddtionfieldsText(
     $fields
     ,$addition_def
     ,$chk_user
-    ,$pi_name=""
+    ,$pi_name
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目TEXT作成
@@ -1612,14 +1616,11 @@ function DATABOX_getaddtionfieldsText(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目text
 // +---------------------------------------------------------------------------+
-//update 20100420
+//update 20130520
 {
-
-    if ($pi_name==""){
-        $lang_noyes="LANG_DATABOX_NOYES";
-    }else{
-        $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-    }
+	global $_CONF;
+	
+    $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
 
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
@@ -1642,6 +1643,7 @@ function DATABOX_getaddtionfieldsText(
         $checkrequried=$addition_def[$fid]['checkrequried'];
         $type=$addition_def[$fid]['type'];
         $selectionary=$addition_def[$fid]['selectionary'];
+        $selectlist=$addition_def[$fid]['selectlist'];
 
         $size=$addition_def[$fid]['size'];
         $maxlength=$addition_def[$fid]['maxlength'];
@@ -1692,9 +1694,17 @@ function DATABOX_getaddtionfieldsText(
                 case 8://ラジオボタンリスト//@@@@@
                     $retval .= $selectionary[$fvalue];
                     break;
-                case 9://既定リスト　（準備中）';
-                case 4://日時（準備中）
-                case 3://日付（準備中）
+				case 9://既定リスト
+					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
+					$retval .= $mstitems['value'];
+                    break;
+                case 4://日時
+					$w=COM_getUserDateTimeFormat($fvalue);
+					$retval .= $w[0];
+                    break;
+				case 3://日付（準備中）
+					$retval .=strftime( $_CONF['shortdate'], $fvalue );
+                    break;
                 case 5://メールアドレス　（準備中）';
                 case 6://url　（準備中）';
                 case 0:// 一行テキストフィールド
@@ -1911,8 +1921,13 @@ function DATABOX_getaddtionfieldsDisp(
 					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
 					$fieldhtml .= $mstitems['value'];
                     break;
-                case 4://日時（準備中）
-                case 3://日付（準備中）
+                case 4://日時
+					$w=COM_getUserDateTimeFormat($fvalue);
+					$fieldhtml .= $w[0];
+                    break;
+				case 3://日付（準備中）
+					$fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
+                    break;
                 case 5://メールアドレス　（準備中）';
 
                 case 0:// 一行テキストフィールド
@@ -2514,6 +2529,7 @@ function DATABOX_getfieldvalue(
 //update 20110204
 {
 	global $_TABLES;
+	global $_CONF;
 	
 	switch ($type) {
 
@@ -2533,8 +2549,13 @@ function DATABOX_getfieldvalue(
 					,"kind='{$selectlist}' AND no={$value}");
 			}
 			break;
-        case 4://日時（準備中）
-        case 3://日付（準備中）
+        case 4://日時
+			$w=COM_getUserDateTimeFormat($value);
+			$fieldvalue= $w[0];
+            break;
+		case 3://日付
+			$fieldvalue=strftime( $_CONF['shortdate'], $value );
+            break;
         case 5://メールアドレス　（準備中）';
         case 6://url　（準備中）';
 
@@ -2657,7 +2678,7 @@ function DATABOX_cleanaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update 20120823
 {
-    if (is_array($fldary)){
+	if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
             $type=$addition_def[$field_id]['type'];
 			$textconv=$addition_def[$field_id]['textconv'];
@@ -2677,7 +2698,7 @@ function DATABOX_cleanaddtiondatas(
 					break;
 			}
 			//
-            switch ($type) {
+			switch ($type) {
                 case 11:// 図
                     break;
                 case 0:// 一行テキストフィールド
@@ -2690,6 +2711,29 @@ function DATABOX_cleanaddtiondatas(
                 case 2://いいえ/はい
                     $wk=COM_applyFilter($wk,true);
 					break;
+                case 3://日付
+					$wk_year=$_POST['afield'.$field_id.'_year'];
+					$wk_month=$_POST['afield'.$field_id.'_month'];
+					$wk_day=$_POST['afield'.$field_id.'_day'];
+					$wk=$wk_year."-".$wk_month."-".$wk_day;
+					break;
+                case 4://日時
+					$wk_year=$_POST['afield'.$field_id.'_year'];
+					$wk_month=$_POST['afield'.$field_id.'_month'];
+					$wk_day=$_POST['afield'.$field_id.'_day'];
+					$wk_hour=$_POST['afield'.$field_id.'_hour'];
+					$wk_minute=$_POST['afield'.$field_id.'_minute'];
+					$wk_ampm=$_POST['afield'.$field_id.'_ampm'];
+				    if ($wk_ampm == 'pm') {
+						if ($wk_hour < 12) {
+							$wk_hour = $wk_hour + 12;
+						}
+					}
+					if ($wk_ampm == 'am' AND $wk_hour == 12) {
+						$wk_hour = '00';
+					}
+					$wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
+					break;
 				case 14://multiselectlist//@@@@@@
                     $wk=implode ($wk,":");
 					break;
@@ -2697,7 +2741,6 @@ function DATABOX_cleanaddtiondatas(
                 case 8://ラジオボタンリスト//@@@@@
                 case 9://既定リスト　（準備中）';
                 case 4://日時（準備中）
-                case 3://日付（準備中）
                 case 5://メールアドレス　（準備中）';
                 case 6://url　（準備中）';
                 case 10:// 複数行テキストフィールド(HTML NG)
@@ -2854,8 +2897,8 @@ function DATABOX_checkaddtiondatas(
                  }
             }
 
-            //日付
-			if ($addition_def[$field_id]['type']==3){//日付
+            //日付 日時
+			if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4){//日付
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
@@ -2869,8 +2912,14 @@ function DATABOX_checkaddtiondatas(
                     }
                     if ($w_chk==false) {
                         $rt.=$addition_def[$field_id]['name'].$lang_box_admin['err_date'] ."<br {XHTML}>".LB;
-                    }else{
-                        $fldary[$field_id]=date($box_conf['dateformat'],$w);
+					}else{
+						$w_date=date("Y-m-d",$w);
+						if ($addition_def[$field_id]['type']==3){
+							$w_time="";
+						}else{
+							$w_time=date("H:i",$w)."::00";
+						}
+						$fldary[$field_id]=COM_convertDate2Timestamp($w_date,$w_time);
 					}
                 }
             }
