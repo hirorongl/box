@@ -1922,12 +1922,16 @@ function DATABOX_getaddtionfieldsDisp(
 					$fieldhtml .= $mstitems['value'];
                     break;
                 case 4://日時
-					$w=COM_getUserDateTimeFormat($fvalue);
-					$fieldhtml .= $w[0];
-                    break;
+					if  ($fvalue<>""){
+						$w=COM_getUserDateTimeFormat($fvalue);
+						$fieldhtml .= $w[0];
+					}
+					break;
 				case 3://日付（準備中）
-					$fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
-                    break;
+					if  ($fvalue<>""){
+						$fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
+					}
+					break;
                 case 5://メールアドレス　（準備中）';
 
                 case 0:// 一行テキストフィールド
