@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130328
+# Last Update 20130524
 
 ###############################################################################
 ## 管理画面 menu
@@ -564,8 +564,8 @@ $LANG_DATABOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
 $LANG_DATABOX_TYPE[15] = '数値';
 
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
-$LANG_DATABOX_TYPE[3] = '日付　（date picker対応）';
-$LANG_DATABOX_TYPE[4] = '日時　（準備中）';
+$LANG_DATABOX_TYPE[3] = '日付';
+$LANG_DATABOX_TYPE[4] = '日時';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
