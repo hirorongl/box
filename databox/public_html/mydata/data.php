@@ -268,7 +268,8 @@ function fncEdit(
     $id
     , $edt_flg,$msg = ''
     ,$errmsg=""
-    ,$mode="edit"
+	,$mode="edit"
+	,$fieldset_id=0
 )
 {
 
@@ -406,8 +407,7 @@ function fncEdit(
         $fieldset_name=COM_applyFilter ($_POST['fieldset_name']);//"";
 
     }else{
-        if (empty($id)) {
-			$fieldset_id=COM_applyFilter ($_POST['fieldset'],true);//"";
+		if (empty($id)) {
 			$fieldset_name=DB_getItem($_TABLES['DATABOX_def_fieldset'],"name","fieldset_id=".$fieldset_id);
 			$fieldset_name=COM_stripslashes($fieldset_name);
 			
@@ -1458,6 +1458,12 @@ if (isset ($_REQUEST['id'])) {
     $id = COM_applyFilter ($_REQUEST['id'], true);
 }
 
+$fieldset_id = 0;
+if (isset ($_REQUEST['typeid'])) {
+    $fieldset_id = COM_applyFilter ($_REQUEST['typeid'], true);
+}
+
+
 $old_mode="";
 if (isset($_REQUEST['old_mode'])) {
     $old_mode = COM_applyFilter($_REQUEST['old_mode'],false);
@@ -1472,12 +1478,16 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
 	$mode="delete";
 }else if (($mode == $LANG_DATABOX_ADMIN['new']) && !empty ($LANG_DATABOX_ADMIN['new'])) {
     $mode="newedit";
+}else if ($fieldset_id <> 0){
+    $mode="newedit_type";
 }
 
 
 //echo "mode=".$mode."<br>";
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
-    OR $mode=="export" OR $mode=="import"  OR $mode=="copy") {
+	OR $mode=="export" OR $mode=="import"  OR $mode=="copy"
+	OR $mode=="newedit_type"
+	) {
 }else{
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用
@@ -1522,12 +1532,14 @@ switch ($mode) {
             break;
         }
     case 'newedit':// 新規登録
+		$fieldset_id=COM_applyFilter ($_POST['fieldset'],true);
+    case 'newedit_type':// 新規登録
         if ($_DATABOX_CONF['allow_data_insert']
                 OR SEC_hasRights('databox.submit')){
 
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-            $display .= fncEdit("", $edt_flg,$msg);
+            $display .= fncEdit("", $edt_flg,$msg,"","new",$fieldset_id);
             break;
         }
     case 'save':// 保存
