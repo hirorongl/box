@@ -1459,8 +1459,8 @@ if (isset ($_REQUEST['id'])) {
 }
 
 $fieldset_id = 0;
-if (isset ($_REQUEST['typeid'])) {
-    $fieldset_id = COM_applyFilter ($_REQUEST['typeid'], true);
+if (isset ($_REQUEST['type_id'])) {
+    $fieldset_id = COM_applyFilter ($_REQUEST['type_id'], true);
 }
 
 

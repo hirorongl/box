@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2013/02/25 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2013/05/29 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -124,6 +124,23 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 id とcode が共に指定されている場合はidを優先します<br />
 linktext が省略されている場合は、データのタイトルをlinktextとします。該当データがない場合は表示されません。<br />
 linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。該当データがない場合もリンクは表示されます。<br />
+
+</td>
+</tr>
+<tr class="r2">
+<td>[databox:mydataentrylink　type_id linktext]
+</td>
+<td>マイデータ新規登録リンク<br /> 
+例１：[databox:mydataentrylink ]<br />
+例２：[databox:mydataentrylink linktext]<br />
+例３：[databox:mydataentrylink type_id:1]<br />
+例４：[databox:mydataentrylink type_id:1 linktext]<br />
+type_id linktext が省略されている場合は、マイデータの「新規登録」リンクを表示します。<br />
+type_id が省略されている場合は新規登録リンクを表示します<br />
+type_idを指定、linktext が省略されている場合は、タイプの名称をlinktextとします。
+type_idを指定、該当タイプがない場合は表示されません。<br />
+linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。<br />
+マイデータ新規登録の権限がない場合は、表示されません<br />
 
 </td>
 </tr>

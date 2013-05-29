@@ -81,6 +81,7 @@ function plugin_autotags_databox (
 		$parm2_ary[]="value";
 		$parm2_ary[]="field_id";
 		$parm2_ary[]="expired";
+		$parm2_ary[]="type_id";
 		$p=databox_parm2($p2,$parm2_ary);
 
         //各処理
@@ -138,6 +139,7 @@ function plugin_autotags_databox (
 							,$p['category_code']
 							,$p['mode']
 							,$p['expired']
+                            ,$p['type_id']
                         );
                         break;
                     case 'attributecount':
@@ -182,6 +184,12 @@ function plugin_autotags_databox (
                         $rt= databox_datalink(
                             $p['id']
                             ,$p['code']
+                            ,$p['lastparm2']
+                        );
+                        break;
+                    case 'mydataentrylink':
+                        $rt= databox_mydataentrylink(
+                            $p['type_id']
                             ,$p['lastparm2']
                         );
                         break;
@@ -2540,6 +2548,39 @@ function databox_datalink(
 	if  ($url<>""){
 		$url = COM_buildUrl($url);
 		$url = COM_createLink($linktext, $url);
+	}
+	return $url;
+}
+
+function databox_mydataentrylink(
+    $fieldset_id
+    ,$linktext
+)
+{
+	global $_CONF;
+	global $_TABLES;
+	global $LANG_DATABOX_ADMIN;
+	
+	$url="";
+	if (SEC_hasRights ('databox.edit') ){
+		if ($fieldset_id=="" OR $fieldset_id==0) {
+			$url=$_CONF['site_url']."/databox/mydata/data.php?";
+			$url.="mode=new";
+			if  ($linktext==""){
+				$linktext = $LANG_DATABOX_ADMIN["new"];
+			}
+		}else{
+			if (DB_getItem($_TABLES['DATABOX_def_fieldset'],'fieldset_id', "fieldset_id = '$fieldset_id'")==$fieldset_id){
+				$url=$_CONF['site_url']."/databox/mydata/data.php?";
+				$url.="type_id=".$fieldset_id;
+				if  ($linktext==""){
+					$linktext = stripslashes(DB_getItem($_TABLES['DATABOX_def_fieldset'],'name', "fieldset_id = '$fieldset_id'"));
+				}
+			}
+		}
+		if  ($url<>""){
+			$url = COM_createLink($linktext, $url);
+		}
 	}
 	return $url;
 }
