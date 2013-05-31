@@ -21,60 +21,95 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="tables">テーブル</a>(2012/01/19 update 書きかけです)</h2>
+<h2><a name="tables">テーブル</a>(2013/05/31 update 書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:25%">name</th>
     <th style="width:75%">description</th>
 </tr>
 <tbody>
+
 <tr >
 <td>DATABOX_base</td>
-<td></td>
+<td>基本データ<br />
+基本項目、アクセス権
+</td>
 </tr>
 
-<tr class="r2">
+<tr  class="r2">
+<td>DATABOX_stats</td>
+<td>閲覧数<br />
+admin権限のあるユーザー以外の閲覧延べ数
+</td>
+</tr>
+
+<tr>
 <td>DATABOX_category</td>
-<td></td>
+<td>カテゴリーデータ
+</td>
 </tr>
 
-<tr >
+<tr  class="r2">
 <td>DATABOX_addition</td>
-<td></td>
+<td>アトリビュート(追加項目)データ
+</td>
 </tr>
 
-<tr class="r2">
+
+<tr >
 <td>DATABOX_def_category</td>
-<td></td>
+<td>カテゴリー定義
+</td>
 </tr>
 
-<tr >
+<tr  class="r2">
 <td>DATABOX_def_field</td>
-<td></td>
-</tr>
-
-<tr class="r2">
-<td>DATABOX_def_group</td>
-<td></td>
+<td>追加項目定義
+</td>
 </tr>
 
 <tr >
-<td>DATABOX_def_xml</td>
-<td></td>
+<td>DATABOX_def_group</td>
+<td>グループ定義<br />
+インストール時にgroup_id=0のデータが登録されています
+</td>
 </tr>
 
 <tr class="r2">
 <td>DATABOX_mst</td>
-<td></td>
+<td>マスター</td>
 </tr>
 
 <tr >
-<td>DATABOX_stats</td>
-<td></td>
+<td>DATABOX_def_fieldset</td>
+<td>タイプ(属性セット)定義<br />
+インストール時にfieldset_id=0のデータが登録されています
+</td>
+</tr>
+
+<tr class="r2">
+<td>DATABOX_def_fieldset_assignments</td>
+<td>タイプ(属性セット)項目関連<br />
+</td>
+</tr>
+
+<tr >
+<td>DATABOX_def_fieldset_group</td>
+<td>タイプ(属性セット)グループ関連<br />
+</td>
+</tr>
+
+<tr  class="r2">
+<td>DATABOX_def_xml</td>
+<td>XML定義<br />
+professional版用
+</td>
 </tr>
 
 </tbody>
 </table>
+
+<a href="https://bitbucket.org/tsuchi/box/wiki/table%20change%20history">テーブル変更履歴</a>
 
 
 <div class="footer">
