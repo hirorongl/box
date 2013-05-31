@@ -41,6 +41,7 @@ CREATE TABLE {$_TABLES['USERBOX_base']} (
   `expired` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `orderno` int(2) NOT NULL DEFAULT '0',
   `fieldset_id` int(11) NOT NULL DEFAULT '0',
+  `trackbackcode` tinyint(4) NOT NULL DEFAULT '0',
   `draft_flag` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
