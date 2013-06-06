@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2012/10/24 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2013/06/03 { -->
 
 <div id="databox_admin">
 	{about_thispage}
@@ -152,6 +152,15 @@
             <th style="width:25%" class="alignright">{lang_orderno}{help_orderno}</th>
             <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+            </td>
+        </tr>
+        <!-- order -->
+        <tr>
+            <th style="width:25%" class="alignright">{lang_trackbackcode}{help_trackbackcode}</th>
+            <td style="width:75%">
+            <select name="commentcode">
+                {optionlist_trackbackcode}
+            </select>
             </td>
         </tr>
 

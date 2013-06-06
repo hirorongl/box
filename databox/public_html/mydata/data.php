@@ -287,9 +287,7 @@ function fncEdit(
 	
     $retval = '';
 
-
     $delflg=false;
-
 
     $addition_def=DATABOX_getadditiondef();
 
@@ -302,33 +300,9 @@ function fncEdit(
         $title = COM_stripslashes($_POST['title']);
         $page_title = COM_applyFilter($_POST['page_title']);
         $description=$_POST['description'];//COM_applyFilter($_POST['description']);
-        $defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);//@@@@@@
 
         $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
-        $hits = COM_applyFilter ($_POST['hits'],true);
-        $comments = COM_applyFilter ($_POST['comments'],true);
-        $commentcode = COM_applyFilter ($_POST['commentcode'],true);
 
-        //@@@@@
-        $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
-        if ($comment_expire_flag===0){
-            $w = mktime(0, 0, 0, date('m'),
-               date('d') + $_CONF['article_comment_close_days'], date('Y'));
-               $comment_expire_year=date('Y', $w);
-            $comment_expire_month=date('m', $w);
-            $comment_expire_day=date('d', $w);
-            $comment_expire_hour=0;
-            $comment_expire_minute=0;
-        }else{
-            $comment_expire_month = COM_applyFilter ($_POST['comment_expire_month'],true);
-            $comment_expire_day = COM_applyFilter ($_POST['comment_expire_day'],true);
-            $comment_expire_year = COM_applyFilter ($_POST['comment_expire_year'],true);
-            $comment_expire_hour = COM_applyFilter ($_POST['comment_expire_hour'],true);
-            $comment_expire_minute = COM_applyFilter ($_POST['comment_expire_minute'],true);
-        }
-
-        $meta_description = COM_applyFilter ($_POST['meta_description']);
-        $meta_keywords = COM_applyFilter ($_POST['meta_keywords']);
         $language_id = COM_applyFilter ($_POST['language_id']);
 
         $category = $_POST['category'];
@@ -338,62 +312,7 @@ function fncEdit(
         $additionfields_del=$_POST['afield_del'];
         $additionfields=DATABOX_cleanaddtiondatas
             ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del,false);
-        $owner_id = COM_applyFilter ($_POST['owner_id'],true);
-        $group_id = COM_applyFilter ($_POST['group_id'],true);
 
-        //
-        $array['perm_owner']=$_POST['perm_owner'];
-        $array['perm_group']=$_POST['perm_group'];
-        $array['perm_members']=$_POST['perm_members'];
-        $array['perm_anon']=$_POST['perm_anon'];
-
-        if (is_array($array['perm_owner']) || is_array($array['perm_group']) ||
-                is_array($array['perm_members']) ||
-                is_array($array['perm_anon'])) {
-
-            list($perm_owner, $perm_group, $perm_members, $perm_anon)
-                = SEC_getPermissionValues($array['perm_owner'], $array['perm_group'], $array['perm_members'], $array['perm_anon']);
-
-        } else {
-            $perm_owner   = $array['perm_owner'];
-            $perm_group   = $array['perm_group'];
-            $perm_members = $array['perm_members'];
-            $perm_anon    = $array['perm_anon'];
-        }
-
-
-        //編集日
-        $modified_autoupdate = COM_applyFilter ($_POST['modified_autoupdate'],true);
-        $modified_month = COM_applyFilter ($_POST['modified_month'],true);
-        $modified_day = COM_applyFilter ($_POST['modified_day'],true);
-        $modified_year = COM_applyFilter ($_POST['modified_year'],true);
-        $modified_hour = COM_applyFilter ($_POST['modified_hour'],true);
-        $modified_minute = COM_applyFilter ($_POST['modified_minute'],true);
-        //公開日
-        $released_month = COM_applyFilter ($_POST['released_month'],true);
-        $released_day = COM_applyFilter ($_POST['released_day'],true);
-        $released_year = COM_applyFilter ($_POST['released_year'],true);
-        $released_hour = COM_applyFilter ($_POST['released_hour'],true);
-        $released_minute = COM_applyFilter ($_POST['released_minute'],true);
-        //公開終了日
-        $expired_available = COM_applyFilter ($_POST['expired_available'],true);
-        $expired_flag = COM_applyFilter ($_POST['expired_flag'],true);
-
-        if ($expired_flag===0){
-            $w = mktime(0, 0, 0, date('m'),
-                date('d') + $_CONF['article_comment_close_days'], date('Y'));
-            $expired_year=date('Y', $w);
-            $expired_month=date('m', $w);
-            $expired_day=date('d', $w);
-            $expired_hour=0;
-            $expired_minute=0;
-        }else{
-            $expired_month = COM_applyFilter ($_POST['expired_month'],true);
-            $expired_day = COM_applyFilter ($_POST['expired_day'],true);
-            $expired_year = COM_applyFilter ($_POST['expired_year'],true);
-            $expired_hour = COM_applyFilter ($_POST['expired_hour'],true);
-            $expired_minute = COM_applyFilter ($_POST['expired_minute'],true);
-        }
         //作成日付
         $created = COM_applyFilter ($_POST['created']);
         $created_un = COM_applyFilter ($_POST['created_un']);
@@ -411,30 +330,12 @@ function fncEdit(
 			$fieldset_name=DB_getItem($_TABLES['DATABOX_def_fieldset'],"name","fieldset_id=".$fieldset_id);
 			$fieldset_name=COM_stripslashes($fieldset_name);
 			
-
             $id=0;
 
             $code ="";
             $title ="";
             $description="";
-            $defaulttemplatesdirectory=null;
 
-            $hits =0;
-            $comments=0;
-
-            $comment_expire_flag = 0;
-            $w = mktime(0, 0, 0, date('m'),
-                 date('d') + $_CONF['article_comment_close_days'], date('Y'));
-            $comment_expire_year=date('Y', $w);
-            $comment_expire_month=date('m', $w);
-            $comment_expire_day=date('d', $w);
-            $comment_expire_hour=0;
-            $comment_expire_minute=0;
-
-            $commentcode =-1;
-
-            $meta_description ="";
-            $meta_keywords ="";
 			$language_id="";
 
             $category = "";
@@ -444,44 +345,11 @@ function fncEdit(
             $additionfields = DATABOX_getadditiondatas(0,$pi_name);
 
             //
-            $owner_id =$_USER['uid'];
-            $group_id =SEC_getFeatureGroup('databox.admin', $_USER['uid']);//??????
-
-            $array = array();
-            SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_perm']);
-            $perm_owner = $array['perm_owner'];
-            $perm_group = $array['perm_group'];
-            $perm_anon = $array['perm_anon'];
-            $perm_members = $array['perm_members'];
-
-            //
             $draft_flag=$_DATABOX_CONF['user_draft_default'];
-            //編集日付
-            $modified_month = date('m');
-            $modified_day = date('d');
-            $modified_year = date('Y');
-            $modified_hour = date('H');
-            $modified_minute = date('i');
-            //作成日付
+			
+			//作成日付
 			$created=0;
 			$created_un=0;
-            //公開日
-            $released_month=$modified_month;
-            $released_day = $modified_day;
-            $released_year = $modified_year;
-            $released_hour = $modified_hour;
-            $released_minute = $modified_minute;
-            //公開終了日
-            $expired_flag=0;
-            $w = mktime(0, 0, 0, date('m'),
-                 date('d') + $_CONF['article_comment_close_days'], date('Y'));
-            $expired_year=date('Y', $w);
-            $expired_month=date('m', $w);
-            $expired_day=date('d', $w);
-            $expired_hour=0;
-            $expired_minute=0;
-
-            $orderno ="";
 
             $uuid=0;
             $udatetime="";//"";
@@ -510,7 +378,6 @@ function fncEdit(
             //編集権のないデータ はのぞく//@@@@@
             $sql .= COM_getPermSql('AND',0,3);
 
-
             $result = DB_query($sql);
 
             $A = DB_fetchArray($result);
@@ -521,46 +388,8 @@ function fncEdit(
             $title=COM_stripslashes($A['title']);
             $page_title=COM_stripslashes($A['page_title']);
             $description=COM_stripslashes($A['description']);
-            $defaulttemplatesdirectory=COM_stripslashes($A['defaulttemplatesdirectory']);
-
-            $hits = COM_stripslashes($A['hits']);
-
-            $comments = COM_stripslashes($A['comments']);
-            $comment_expire = COM_stripslashes($A['comment_expire']);
-            if ($comment_expire==="0000-00-00 00:00:00"){
-                $comment_expire_flag=0;
-                $w = mktime(0, 0, 0, date('m'),
-                   date('d') + $_CONF['article_comment_close_days'], date('Y'));
-                $comment_expire_year=date('Y', $w);
-                $comment_expire_month=date('m', $w);
-                $comment_expire_day=date('d', $w);
-                $comment_expire_hour=0;
-                $comment_expire_minute=0;
-            }else{
-                $comment_expire_flag=1;
-				$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['comment_expire_un']));
-				$comment_expire = $wary[1];
-                $comment_expire_year=date('Y', $comment_expire);
-                $comment_expire_month=date('m', $comment_expire);
-                $comment_expire_day=date('d', $comment_expire);
-                $comment_expire_hour=date('H', $comment_expire);
-                $comment_expire_minute=date('i', $comment_expire);
-            }
-
-            $commentcode = COM_stripslashes($A['commentcode']);
-
-            $meta_description = COM_stripslashes($A['meta_description']);
-            $meta_keywords = COM_stripslashes($A['meta_keywords']);
 
             $language_id = COM_stripslashes($A['language_id']);
-
-            $owner_id = COM_stripslashes($A['owner_id']);
-            $group_id = COM_stripslashes($A['group_id']);
-
-            $perm_owner = COM_stripslashes($A['perm_owner']);
-            $perm_group = COM_stripslashes($A['perm_group']);
-            $perm_members = COM_stripslashes($A['perm_members']);
-            $perm_anon = COM_stripslashes($A['perm_anon']);
 
             $category = DATABOX_getdatas("category_id",$_TABLES['DATABOX_category'],"id = $id");
 
@@ -579,35 +408,6 @@ function fncEdit(
             $modified_year = date('Y', $modified);
             $modified_hour = date('H', $modified);
             $modified_minute = date('i', $modified);
-            //公開日
-			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['released_un']));
-			$released = $wary[1];
-            $released_month = date('m', $released);
-            $released_day = date('d', $released);
-            $released_year = date('Y', $released);
-            $released_hour = date('H', $released);
-            $released_minute = date('i', $released);
-            //公開終了日
-            $expired = COM_stripslashes($A['expired']);
-            if ($expired==="0000-00-00 00:00:00"){
-                $expired_flag=0;
-                $w = mktime(0, 0, 0, date('m'),
-                   date('d') + $_CONF['article_comment_close_days'], date('Y'));
-                $expired_year=date('Y', $w);
-                $expired_month=date('m', $w);
-                $expired_day=date('d', $w);
-                $expired_hour=0;
-                $expired_minute=0;
-            }else{
-                $expired_flag=1;
-				$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['expired_un']));
-				$expired = $wary[1];
-                $expired_year=date('Y', $expired);
-                $expired_month=date('m', $expired);
-                $expired_day=date('d', $expired);
-                $expired_hour=date('H', $expired);
-                $expired_minute=date('i', $expired);
-           }
 
             //作成日付
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['created_un']));
@@ -739,15 +539,7 @@ function fncEdit(
     $templates->set_var ('page_title', $page_title);
     $templates->set_var('lang_description', $LANG_DATABOX_ADMIN['description']);
     $templates->set_var ('description', $description);
-    $templates->set_var('lang_defaulttemplatesdirectory', $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']);
-    $templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
-    //meta_description
-    $templates->set_var('lang_meta_description', $LANG_DATABOX_ADMIN['meta_description']);
-    $templates->set_var ('meta_description', $meta_description);
 
-    //meta_keywords
-    $templates->set_var('lang_meta_keywords', $LANG_DATABOX_ADMIN['meta_keywords']);
-    $templates->set_var ('meta_keywords', $meta_keywords);
 	
 	//language_id
     if (is_array($_CONF['languages'])) {
@@ -761,41 +553,6 @@ function fncEdit(
 	$templates->set_var ('language_id', $language_id);
     $templates->set_var ('select_language_id', $select_language_id);//@@@@@
 	
-
-    //hits
-    $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
-    $templates->set_var ('hits', $hits);
-
-    //comments
-    $templates->set_var('lang_comments', $LANG_DATABOX_ADMIN['comments']);
-    $templates->set_var ('comments', $comments);
-
-    //commentcode
-    $templates->set_var('lang_commentcode', $LANG_DATABOX_ADMIN['commentcode']);
-    $templates->set_var ('commentcode', $commentcode);
-    $optionlist_commentcode=COM_optionList ($_TABLES['commentcodes'], 'code,name',$commentcode);
-    $templates->set_var ('optionlist_commentcode', $optionlist_commentcode);
-
-    //comment_expire
-    $templates->set_var('lang_enabled', $LANG_DATABOX_ADMIN['enabled']);
-
-    if ($comment_expire_flag===0){
-        $templates->set_var('show_comment_expire', 'false');
-        $templates->set_var('is_checked_comment_expire', '');
-
-    }else{
-        $templates->set_var('show_comment_expire', 'true');
-        $templates->set_var('is_checked_comment_expire', 'checked="checked"');
-    }
-
-    $templates->set_var('lang_comment_expire', $LANG_DATABOX_ADMIN['comment_expire']);
-    $w=COM_convertDate2Timestamp(
-        $comment_expire_year."-".$comment_expire_month."-".$comment_expire_day
-        , $comment_expire_hour.":".$comment_expire_minute."::00"
-        );
-    $datetime_comment_expire=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","comment_expire");
-    $templates->set_var('datetime_comment_expire', $datetime_comment_expire);
-
     //編集日
     $templates->set_var ('lang_modified_autoupdate', $LANG_DATABOX_ADMIN['modified_autoupdate']);
     $templates->set_var ('lang_modified', $LANG_DATABOX_ADMIN['modified']);
@@ -805,34 +562,8 @@ function fncEdit(
         );
     $datetime_modified=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
     $templates->set_var ('datetime_modified', $datetime_modified);
-    //公開日
-    $templates->set_var ('lang_released', $LANG_DATABOX_ADMIN['released']);
-    $w=COM_convertDate2Timestamp(
-        $released_year."-".$released_month."-".$released_day
-        , $released_hour.":".$released_minute."::00"
-        );
-    $datetime_released=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","released");
-    $templates->set_var ('datetime_released', $datetime_released);
-    //公開終了日
-    $templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
-    //if ($expired=="0000-00-00 00:00:00"){
-    if ($expired_flag==0){
-        $templates->set_var('show_expired', 'false');
-        $templates->set_var('is_checked_expired', '');
-
-    }else{
-        $templates->set_var('show_expired', 'true');
-        $templates->set_var('is_checked_expired', 'checked="expired"');
-    }
-    $templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
-    $w=COM_convertDate2Timestamp(
-        $expired_year."-".$expired_month."-".$expired_day
-        , $expired_hour.":".$expired_minute."::00"
-        );
-    $datetime_expired=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","expired");
-    $templates->set_var('datetime_expired', $datetime_expired);
-
-    //カテゴリ
+	
+	//カテゴリ
     $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
     $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox");
     $templates->set_var('checklist_category', $checklist_category);
@@ -853,28 +584,6 @@ function fncEdit(
     $templates->set_var ('lang_created', $LANG_DATABOX_ADMIN['created']);
     $templates->set_var ('created', $created);
     $templates->set_var ('created_un', $created_un);
-
-    //アクセス権
-    $templates->set_var('lang_accessrights',$LANG_ACCESS['accessrights']);
-    $templates->set_var('lang_owner', $LANG_ACCESS['owner']);
-
-    $owner_name = COM_getDisplayName($owner_id);
-    $templates->set_var('owner_name', $owner_name);
-    $templates->set_var('owner_id', $owner_id);
-    $templates->set_var('lang_group', $LANG_ACCESS['group']);
-    $templates->set_var('group_dropdown',SEC_getGroupDropdown ($group_id, 3));
-    $templates->set_var('lang_permissions', $LANG_ACCESS['permissions']);
-    $templates->set_var('lang_perm_key', $LANG_ACCESS['permissionskey']);
-    $templates->set_var('permissions_editor'
-                , SEC_getPermissionsHTML(
-                         $perm_owner
-                        ,$perm_group
-                        ,$perm_members
-                        ,$perm_anon));
-
-    $templates->set_var('permissions_msg', $LANG_ACCESS['permmsg']);
-    $templates->set_var('lang_permissions_msg', $LANG_ACCESS['permmsg']);
-
 
     // SAVE、CANCEL ボタン
     $templates->set_var('lang_save', $LANG_ADMIN['save']);
@@ -1035,8 +744,10 @@ function fncSave (
 			);
         $modified=$created;
         $released=$created;
-        $commentcode =0;
-        $comment_expire='0000-00-00 00:00:00';
+        $commentcode =-1;
+        $trackbackcode=$_CONF[trackback_code];;
+		
+		$comment_expire='0000-00-00 00:00:00';
         $expired='0000-00-00 00:00:00';
         //
 
@@ -1076,6 +787,9 @@ function fncSave (
 
         $fields.=",commentcode";//
         $values.=",$commentcode";
+		
+		$fields.=",trackbackcode";//
+        $values.=",$trackbackcode";
 
         $fields.=",comment_expire";//
 		if ($comment_expire=='0000-00-00 00:00:00'){
