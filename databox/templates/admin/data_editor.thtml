@@ -154,7 +154,7 @@
                 <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
         </tr>
-        <!-- order -->
+        <!-- trackbackcode -->
         <tr>
             <th style="width:25%" class="alignright">{lang_trackbackcode}{help_trackbackcode}</th>
             <td style="width:75%">
