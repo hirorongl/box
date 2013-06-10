@@ -158,7 +158,7 @@
         <tr>
             <th style="width:25%" class="alignright">{lang_trackbackcode}{help_trackbackcode}</th>
             <td style="width:75%">
-            <select name="commentcode">
+            <select name="trackbackcode">
                 {optionlist_trackbackcode}
             </select>
             </td>
