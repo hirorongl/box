@@ -318,6 +318,7 @@ function fncEdit(
         $hits = COM_applyFilter ($_POST['hits'],true);
         $comments = COM_applyFilter ($_POST['comments'],true);
         $commentcode = COM_applyFilter ($_POST['commentcode'],true);
+        $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
 
         //@@@@@
         $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
@@ -485,6 +486,7 @@ function fncEdit(
          }
 
         $commentcode = COM_stripslashes($A['commentcode']);
+        $trackbackcode = COM_stripslashes($A['trackbackcode']);
 
         $meta_description = COM_stripslashes($A['meta_description']);
         $meta_keywords = COM_stripslashes($A['meta_keywords']);
@@ -743,6 +745,12 @@ function fncEdit(
     $templates->set_var ('commentcode', $commentcode);
     $optionlist_commentcode=COM_optionList ($_TABLES['commentcodes'], 'code,name',$commentcode);
     $templates->set_var ('optionlist_commentcode', $optionlist_commentcode);
+	
+	//trackbackcode
+    $templates->set_var('lang_trackbackcode', $LANG_USERBOX_ADMIN['trackbackcode']);
+    $templates->set_var ('trackbackcode', $trackbackcode);
+    $optionlist_trackbackcode=COM_optionList ($_TABLES['trackbackcodes'], 'code,name',$trackbackcode);
+    $templates->set_var ('optionlist_trackbackcode', $optionlist_trackbackcode);
 
     //comment_expire
     $templates->set_var('lang_enabled', $LANG_USERBOX_ADMIN['enabled']);
@@ -1022,8 +1030,9 @@ function fncSave (
     }
 
     $commentcode = COM_applyFilter ($_POST['commentcode'],true);
-
-    $meta_description = $_POST['meta_description'];
+    $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
+	
+	$meta_description = $_POST['meta_description'];
     $meta_description = addslashes (COM_checkHTML (COM_checkWords ($meta_description)));
 
     $meta_keywords = $_POST['meta_keywords'];
@@ -1295,6 +1304,9 @@ function fncSave (
 
     $fields.=",commentcode";//
     $values.=",$commentcode";
+	
+    $fields.=",trackbackcode";//
+    $values.=",$trackbackcode";
 
     $fields.=",comment_expire";//
 	if ($comment_expire=='0000-00-00 00:00:00'){
@@ -1593,6 +1605,7 @@ $fld['expired']['name'] = $LANG_USERBOX_ADMIN['expired'];
 $fld['released']['name'] = $LANG_USERBOX_ADMIN['released'];
 
 $fld['orderno']['name'] = $LANG_USERBOX_ADMIN['orderno'];
+$fld['trackbackcode']['name'] = $LANG_USERBOX_ADMIN['trackbackcode'];
 
 $fld['draft_flag']['name'] = $LANG_USERBOX_ADMIN['draft'];
 $fld['udatetime']['name'] = $LANG_USERBOX_ADMIN['udatetime'];
@@ -1755,6 +1768,7 @@ function fncsendmail (
             $msg.= $LANG_USERBOX_ADMIN['released'].":".$A['released'].LB;
 
             $msg.= $LANG_USERBOX_ADMIN['orderno'].":".$A['orderno'].LB;
+            $msg.= $LANG_USERBOX_ADMIN['trackbackcode'].":".$A['trackbackcode'].LB;
 
             $msg.= $LANG_USERBOX_ADMIN['draft'].":".$A['draft'].LB;
             $msg.= $LANG_USERBOX_ADMIN['udatetime'].":".$A['udatetime'].LB;

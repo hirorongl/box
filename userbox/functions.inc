@@ -397,6 +397,7 @@ function plugin_user_create_userbox (
 	global $_USERBOX_CONF;
     global $_TABLES;
     global $_USER;
+	global $_CONF;
 	
 	$table=$_TABLES['USERBOX_def_field'];
 	$table1=$_TABLES['USERBOX_base'];
@@ -423,6 +424,7 @@ function plugin_user_create_userbox (
     $sql.=" ,`uuid`".LB;
 	$sql.=" ,`group_id`,`perm_owner`,`perm_group`,`perm_anon`,`perm_members`".LB;
     $sql.=" ,`draft_flag`".LB;
+    $sql.=" ,`trackbackcode`".LB;
 	
     $sql.=")".LB;
 
@@ -435,6 +437,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$perm_anon.LB ;
     $sql.=" ,".$perm_members.LB ;
     $sql.=" ,".$draft_flag.LB ;
+	$sql.=",".$_CONF[trackback_code];
 
     $sql .= ")";
     DB_query ($sql);

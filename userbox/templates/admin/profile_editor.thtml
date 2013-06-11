@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20121130 { -->
+<!-- plugins/userbox/templates/admin/profile_editor.thtml 20130610 { -->
 
 <div id="userbox_admin">
 	{about_thispage}
@@ -195,6 +195,15 @@
         <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
     </td>
     </tr>
+        <!-- trackbackcode -->
+        <tr>
+            <th style="width:25%" class="alignright">{lang_trackbackcode}{help_trackbackcode}</th>
+            <td style="width:75%">
+            <select name="trackbackcode">
+                {optionlist_trackbackcode}
+            </select>
+            </td>
+        </tr>
 
     </table>
 </fieldset>
