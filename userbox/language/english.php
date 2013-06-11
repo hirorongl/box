@@ -153,6 +153,8 @@ $LANG_USERBOX_ADMIN['commentcode']='Comment';
 
 $LANG_USERBOX_ADMIN['comment_expire']='Comment Expire Date';
 
+$LANG_USERBOX_ADMIN['trackbackcode']='trackback';
+
 $LANG_USERBOX_ADMIN['group']='Group';
 $LANG_USERBOX_ADMIN['parent']='Parent';
 

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130524
+# Last Update 20130611
 
 ###############################################################################
 ## 管理画面 menu
@@ -162,6 +162,8 @@ $LANG_USERBOX_ADMIN['comments']='コメント数';
 $LANG_USERBOX_ADMIN['commentcode']='コメント';
 
 $LANG_USERBOX_ADMIN['comment_expire']='コメント停止日時';
+
+$LANG_USERBOX_ADMIN['trackbackcode']='トラックバック';
 
 $LANG_USERBOX_ADMIN['group']='グループ';
 $LANG_USERBOX_ADMIN['parent']='親';

@@ -146,6 +146,8 @@ $LANG_DATABOX_ADMIN['commentcode']='Comment';
 
 $LANG_DATABOX_ADMIN['comment_expire']='Comment Expire Date';
 
+$LANG_DATABOX_ADMIN['trackbackcode']='trackback';
+
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
