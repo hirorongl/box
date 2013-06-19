@@ -80,17 +80,15 @@ function plugin_dopluginsearch_databox_data(
     $sql .= " FROM ";
 
     $sql .= " {$_TABLES['DATABOX_base']} AS t1";
-    $sql .= " ,{$_TABLES['DATABOX_stats']} AS t3";
+	$sql .= " LEFT JOIN {$_TABLES['DATABOX_stats']} AS t3  ON t1.id=t3.id";
 
-	$sql .=$rt["sql1"];
+	$sql .=$rt["sql3"];
 
     $sql .= " WHERE ";
 
-    $sql .= " t1.id=t3.id";
+    $sql .= " 1=1";
 
     $sql .= COM_getPermSQL('AND') . ' ';
-
-	$sql .=$rt["sql2"];
 
     if (!empty ($author)) {
         $sql .= "AND (owner_id = '$author') ";
@@ -121,8 +119,6 @@ function plugin_dopluginsearch_databox_data(
         $columns[] =$w;
         next($ary);
     }
-
-//    , "((SELECT value FROM {$_TABLES['DATABOX_addition']} WHERE field_id=1 AND id=t1.id) AS fld1)"
 
 
     list($sql,$ftsql) = $search->buildSearchSQL($keyType, $query, $columns, $sql);

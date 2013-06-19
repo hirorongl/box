@@ -80,20 +80,16 @@ function plugin_dopluginsearch_userbox_data(
     $sql .= " FROM ";
 
     $sql .= " {$_TABLES['USERBOX_base']} AS t1";
-    $sql .= " ,{$_TABLES['users']} AS t2";
-    $sql .= " ,{$_TABLES['USERBOX_stats']} AS t3";
+	$sql .= " LEFT JOIN {$_TABLES['users']} AS t2  ON t1.id=t2.uid";
+	$sql .= " LEFT JOIN {$_TABLES['USERBOX_stats']} AS t3  ON t1.id=t3.id";
 
-
-
-    $sql .=$rt["sql1"];
+    $sql .=$rt["sql3"];
 
     $sql .= " WHERE ";
 
-    $sql .= " t1.id=t2.uid";
-    $sql .= " AND t1.id=t3.id";
+    $sql .= " 1=1";
 
     $sql .= COM_getPermSQL('AND') . ' ';
-    $sql .=$rt["sql2"];
 
     if (!empty ($author)) {
         $sql .= "AND (owner_id = '$author') ";

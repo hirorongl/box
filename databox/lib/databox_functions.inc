@@ -855,10 +855,8 @@ function DATABOX_getadditionsearchdef(
     $retval=array();
 
     $rt=array();
-    $sql1="";
-    $sql2="";
+	$sql3="";
     $columns=array();
-
 
     $sql=LB;
     $sql.="SELECT ";
@@ -891,15 +889,15 @@ function DATABOX_getadditionsearchdef(
         $selection= COM_stripslashes($A['selection']);
         $selectionary=DATABOX_getselectionary($selection);
 
-        $sql1 .= " ,{$table_addition} AS ad{$field_id}".LB;
-        $sql2 .= " AND t1.id=ad{$field_id}.id ";
-        $sql2 .= " AND ad{$field_id}.field_id={$field_id} ".LB;
         $columns[]= "ad{$field_id}.value ";
 
-    }
+		$sql3 .= " JOIN {$table_addition} AS ad{$field_id}";
+		$sql3 .= " ON t1.id=ad{$field_id}.id ";
+        $sql3 .= " AND ad{$field_id}.field_id={$field_id} ".LB;
+		
+	}
 
-    $rt["sql1"]=$sql1;
-    $rt["sql2"]=$sql2;
+    $rt["sql3"]=$sql3;
     $rt["columns"]=$columns;
 	
     return $rt;
