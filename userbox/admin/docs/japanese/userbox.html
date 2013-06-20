@@ -12,7 +12,7 @@
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
 <a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
-- <a href="index.html">ユーザボックス(UserBox) プラグイン</a>
+- <a href="index.html">ユーザーボックス(UserBox) プラグイン</a>
 - 設定</div>
 <p>
 <a href="../../../../../">トップページ</a>
@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定(2013/03/21 update)</a></h3>
+<h3><a name="public">メイン設定(2013/06/20 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -42,14 +42,14 @@
 <tr class="r2">
   <td><a name="desc_loginrequired">ログイン要求する(loginrequired)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、登録ユーザしかユーザボックスセクションにアクセスできなくなります。<br>
-    この設定値よりも、「管理者用メニュー - コンフィギュレーション - Geeklog - ユーザと投稿」の「すべてにログインを要求する(loginrequired)</a>」の設定の方が優先されます。「すべてにログインを要求する」をはい(1)にすると、ユーザボックスプラグインでログインを要求していなくても、ゲストユーザはユーザボックスセクションにアクセスできなくなります。</td>
+  <td>はい(1)にすると、登録ユーザーしかユーザーボックスセクションにアクセスできなくなります。<br>
+    この設定値よりも、「管理者用メニュー - コンフィギュレーション - Geeklog - ユーザーと投稿」の「すべてにログインを要求する(loginrequired)</a>」の設定の方が優先されます。「すべてにログインを要求する」をはい(1)にすると、ユーザーボックスプラグインでログインを要求していなくても、ゲストユーザーはユーザーボックスセクションにアクセスできなくなります。</td>
 </tr>
 
 <tr>
   <td><a name="desc_hidemenu">メニュに表示しない(hidemenu)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、サイトのメニュに「ユーザボックス」を表示しません</td>
+  <td>はい(1)にすると、サイトのメニュに「ユーザーボックス」を表示しません</td>
 </tr>
 
 <tr class="r2">
@@ -160,9 +160,9 @@
   <td></td>
 </tr>
 <tr >
-  <td><a name="desc_mail_to_owner">ユーザに修正を通知する (mail_to_owner)</a></td>
+  <td><a name="desc_mail_to_owner">ユーザーに修正を通知する (mail_to_owner)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、ユーザに修正を通知します。</td>
+  <td>はい(1)にすると、ユーザーに修正を通知します。</td>
 </tr>
 <tr class="r2">
   <td><a name="desc_mail_to_draft">下書データの修正を通知する (mail_to_draft)</a></td>
@@ -171,21 +171,9 @@
 </tr>
 
 <tr>
-  <td><a name="desc_allow_data_update">ユーザに更新を許可する(allow_data_update)</a></td>
+  <td><a name="desc_allow_data_update">ユーザーに更新を許可する(allow_data_update)</a></td>
   <td>はい(1)</td>
-  <td>いいえ(0)にすると、ユーザに更新を許可しません。</td>
-</tr>
-
-<tr class="r2">
-  <td><a name="desc_allow_data_update">ユーザに削除を許可する(allow_data_delete)</a></td>
-  <td>いいえ(0)</td>
-  <td>はい(1)にすると、ユーザに削除を許可しません。</td>
-</tr>
-
-<tr>
-  <td><a name="desc_allow_data_insert">ユーザに新規登録を許可する(allow_data_insert)</a></td>
-  <td>いいえ(0)</td>
-  <td>はい(1)にすると、ユーザに新規登録を許可しません。</td>
+  <td>いいえ(0)にすると、ユーザーに更新を許可しません。</td>
 </tr>
 
 <tr class="r2">
@@ -195,7 +183,7 @@
 </tr>
 
 <tr>
-  <td><a name="desc_user_draft_default">ユーザの新規登録のドラフトのデフォルト(user_draft_default)</a></td>
+  <td><a name="desc_user_draft_default">ユーザーの新規登録のドラフトのデフォルト(user_draft_default)</a></td>
   <td>はい(1)</td>
   <td>いいえ(0)にすると、ドラフトをデフォルトにしません。</td>
 </tr>
@@ -240,19 +228,19 @@
 
 
 <tr class="r2">
-  <td><a name="desc_allow_profile_update">ユーザにプロフィールの更新を許可する(allow_profile_update)</a></td>
+  <td><a name="desc_allow_profile_update">ユーザーにプロフィールの更新を許可する(allow_profile_update)</a></td>
   <td>はい(1)</td>
-  <td>いいえ(0)にすると、ユーザにプロフィールの更新を許可しません。</td>
+  <td>いいえ(0)にすると、ユーザーにプロフィールの更新を許可しません。</td>
 </tr>
 <tr>
-  <td><a name="desc_allow_group_update">ユーザにマイグループの更新を許可する(allow_group_update)</a></td>
+  <td><a name="desc_allow_group_update">ユーザーにマイグループの更新を許可する(allow_group_update)</a></td>
   <td>はい(1)</td>
-  <td>いいえ(0)にすると、ユーザにマイグループの更新を許可しません。</td>
+  <td>いいえ(0)にすると、ユーザーにマイグループの更新を許可しません。</td>
 </tr>
 <tr class="r2">
-  <td><a name="desc_allow_loggedinusers">ログインユーザを登録する(allow_loggedinusers)</a></td>
+  <td><a name="desc_allow_loggedinusers">ログインユーザーを登録する(allow_loggedinusers)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、ログインユーザをUserBoxに登録します。</td>
+  <td>はい(1)にすると、ログインユーザーをUserBoxに登録します。</td>
 </tr>
 <tr >
   <td valign="top"><a name="desc_default_img_url">デフォルト画像URL(default_img_url)</a></td>
@@ -326,7 +314,7 @@
 </tr>
 <tbody>
 <tr>
-  <td><a name="desc_include_search">ユーザボックスを検索する(user_include_search)</a></td>
+  <td><a name="desc_include_search">ユーザーボックスを検索する(user_include_search)</a></td>
   <td>はい(1)</td>
   <td>いいえ(0)にすると、検索しません。</td>
 </tr>
