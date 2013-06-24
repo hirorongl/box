@@ -25,7 +25,7 @@
 <form name='databox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - DataBox」から変更できます。</p>
- <h3><a name="public">メイン設定</a>(2013/06/20 update)</h3>
+ <h3><a name="public">メイン設定</a>(2013/06/24 update)</h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -47,9 +47,9 @@
 </tr>
 
 <tr>
-  <td><a name="desc_hidemenu">メニュに表示しない(hidemenu)</a></td>
+  <td><a name="desc_hidemenu">メニューに表示しない(hidemenu)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、サイトのメニュに「データボックス」を表示しません</td>
+  <td>はい(1)にすると、サイトのメニューに「データ表示」を表示しません</td>
 </tr>
 
 <tr class="r2">
@@ -173,7 +173,7 @@
 <tr>
   <td><a name="desc_allow_data_update">ユーザーに更新を許可する(allow_data_update)</a></td>
   <td>はい(1)</td>
-  <td>いいえ(0)にすると、ユーザーに更新を許可しません。</td>
+  <td>いいえ(0)にすると、ユーザーに更新を許可しません。(更新権限を持つユーザーは除く)</td>
 </tr>
 
 <tr class="r2">
@@ -185,7 +185,9 @@
 <tr>
   <td><a name="desc_allow_data_insert">ユーザーに新規登録を許可する(allow_data_insert)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、ユーザーに新規登録を許可します。</td>
+  <td>はい(1)にすると、ユーザーに新規登録を許可します。ただしユーザーに更新を許可するがいいえの場合は許可しません。</br>
+  いいえ(0)にすると、ユーザーに新規登録を許可しません。(新規登録権限を持つユーザーは除く)
+  </td>
 </tr>
 
 <tr class="r2">
