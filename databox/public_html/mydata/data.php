@@ -34,7 +34,9 @@ if ($_DATABOX_CONF['allow_data_update']==1 ){
 // +---------------------------------------------------------------------------+\
 // | 戻値 nomal:一覧                                                           |
 // +---------------------------------------------------------------------------+
-function fncList()
+function fncList(
+	$template
+)
 {
     global $_CONF;
     global $_TABLES;
@@ -76,8 +78,11 @@ function fncList()
     $filter .="</select>";
 	
 
-    //MENU1:管理画面
+	//MENU1:管理画面
     $url1=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?mode=new';
+	if  ($template<>""){
+		$url1.="&amp;template=".$template;
+	}
     $url2=$_CONF['site_url'] . '/databox/list.php';
 
     if ($_DATABOX_CONF['allow_data_insert']
@@ -184,6 +189,10 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
     global $LANG_DATABOX_ADMIN;
 
     $retval = '';
+	$template = '';
+	if (isset ($_REQUEST['template'])) {
+		$template = COM_applyFilter ($_REQUEST['template']);
+	}
 
         switch($fieldname) {
             //編集アイコン
@@ -191,7 +200,10 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
                 $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
                 $url.="?";
                 $url.="mode=edit";
-                $url.="&amp;id=".$A['id'];
+				$url.="&amp;id=".$A['id'];
+				if  ($template<>""){
+					$url.="&amp;template=".$template;
+				}
                 $retval = COM_createLink($icon_arr['edit'],$url);
                 break;
             case 'copy':
@@ -254,22 +266,23 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
 }
 // +---------------------------------------------------------------------------+
-// | 機能  編集画面表示                                                        |
-// | 書式 fncEdit($id , $edt_flg,$msg,$errmsg)                                 |
+// | 機能  編集画面表示
+// | 書式 fncEdit($id , $edt_flg,$msg,$errmsg,$mode,$fieldset_id,$template)
 // +---------------------------------------------------------------------------+
-// | 引数 $id:                                                                 |
-// | 引数 $edt_flg:                                                            |
-// | 引数 $msg:メッセージ番号                                                  |
+// | 引数 $id:
+// | 引数 $edt_flg:
+// | 引数 $msg:メッセージ番号
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:編集画面                                                       |
 // +---------------------------------------------------------------------------+
 // update 20101207
 function fncEdit(
     $id
-    , $edt_flg,$msg = ''
+    ,$edt_flg,$msg = ''
     ,$errmsg=""
 	,$mode="edit"
 	,$fieldset_id=0
+	,$template=""
 )
 {
 
@@ -353,7 +366,8 @@ function fncEdit(
 
             $uuid=0;
             $udatetime="";//"";
-
+			
+			$defaulttemplatesdirectory="";
         }else{
             $sql = "SELECT ";
 
@@ -420,7 +434,8 @@ function fncEdit(
 
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
 			$udatetime = $wary[0];
-
+			
+			$defaulttemplatesdirectory=$A['uuid'];
             if ($_DATABOX_CONF['allow_data_delete']){
                 if ($edt_flg==FALSE) {
                     $delflg=true;
@@ -446,8 +461,19 @@ function fncEdit(
     $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['edit'], '',
                                COM_getBlockTemplate ('_admin_block', 'header'));
 
-    //template フォルダ
-    $tmplfld=DATABOX_templatePath('mydata','default','databox');
+	//template フォルダ
+	if (is_null($template) or ($template==="")){
+        $template="default";
+		$set_defaulttemplatesdirectory=DB_getItem($_TABLES['DATABOX_def_fieldset']
+			,"defaulttemplatesdirectory","fieldset_id=".$fieldset_id);
+		if  ($set_defaulttemplatesdirectory<>""){
+            $template=$set_defaulttemplatesdirectory;
+		}elseif ($defaulttemplatesdirectory<>""){
+			$template=$defaulttemplatesdirectory;
+        }
+	}
+	
+    $tmplfld=DATABOX_templatePath('mydata',$template,'databox');
     $templates = new Template($tmplfld);
 	
     $templates->set_file('editor',"data_editor.thtml");
@@ -487,8 +513,10 @@ function fncEdit(
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
     $templates->set_var ( 'xhtml', XHTML );
-
-    $templates->set_var('script', THIS_SCRIPT);
+	
+	$script=THIS_SCRIPT;
+	$script.="?template=".$template;
+    $templates->set_var('script', $script);
 
     //
     $templates->set_var('lang_link_admin', $LANG_DATABOX_ADMIN['link_admin']);
@@ -619,7 +647,8 @@ function fncEdit(
 function fncSave (
     $edt_flg
     ,$navbarMenu
-    ,$menuno
+	,$menuno
+	,$template
 )
 {
     $pi_name="databox";
@@ -706,7 +735,7 @@ function fncSave (
     //errorのあるとき
     if ($err<>"") {
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display']= fncEdit($id, $edt_flg,3,$err);
+        $retval['display']= fncEdit($id, $edt_flg,3,$err,"edit",$fieldset_id,$template);
 
         return $retval;
 
@@ -907,7 +936,7 @@ function fncSave (
 
     if ($_DATABOX_CONF['aftersave']==='no'){
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display'] .= fncEdit($id, $edt_flg,1,$err);
+		$retval['display'] .= fncEdit($id, $edt_flg,1,$err,"edit",$fieldset_id,$template);
         return $retval;
 
     }else if ($_DATABOX_CONF['aftersave']==='list'
@@ -947,7 +976,9 @@ function fncSave (
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:戻り画面＆メッセージ                                           |
 // +---------------------------------------------------------------------------+
-function fncdelete ()
+function fncdelete (
+	$template
+)
 {
     global $_CONF;
     global $_TABLES;
@@ -979,7 +1010,11 @@ function fncdelete ()
     $rt=fncsendmail ('data_delete',$id,$title);
 
     //exit;// debug 用
-
+	
+    $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=2';
+	if  ($template<>""){
+		$return_page.="&amp;template=".$template;
+	}
     $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=2';
     return COM_refresh ($return_page);
 
@@ -1103,7 +1138,9 @@ function fncsendmail (
 }
 
 
-function fncNew ()
+function fncNew (
+	$template
+)
 {
 	global $_CONF;
 	global $LANG_DATABOX_ADMIN;
@@ -1117,7 +1154,7 @@ function fncNew ()
     $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["new"], '',
                                COM_getBlockTemplate ('_admin_block', 'header'));
 	
-    $tmplfld=DATABOX_templatePath('mydata','default',$pi_name);
+    $tmplfld=DATABOX_templatePath('mydata',$template,$pi_name);
 
     $templates = new Template($tmplfld);
     $templates->set_file('editor',"selectset.thtml");
@@ -1130,8 +1167,12 @@ function fncNew ()
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
     $templates->set_var ( 'xhtml', XHTML );
-
-    $templates->set_var('script', THIS_SCRIPT);
+	
+	$script=THIS_SCRIPT;
+	if  ($template<>""){
+		$script.="?template=".$template;
+	}
+    $templates->set_var('script', $script);
 
 	//fieldset_id
 	$fieldset_id=0;
@@ -1160,6 +1201,11 @@ $pi_name    = 'databox';
 //############################
 
 // 引数
+//public_html/mydata/data.php
+//public_html/mydata/data.php?mode_id=new
+//public_html/mydata/data.php?type_id=aaa
+//public_html/mydata.php?mode_id=edit&id=1
+//public_html/mydata.php?mode_id=edit&id=1&template=yyyy
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
@@ -1177,6 +1223,10 @@ if (isset ($_REQUEST['type_id'])) {
     $fieldset_id = COM_applyFilter ($_REQUEST['type_id'], true);
 }
 
+$template = '';
+if (isset ($_REQUEST['template'])) {
+	$template = COM_applyFilter ($_REQUEST['template']);
+}
 
 $old_mode="";
 if (isset($_REQUEST['old_mode'])) {
@@ -1242,7 +1292,7 @@ switch ($mode) {
 
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-            $display .= fncNew();
+            $display .= fncNew($template);
             break;
         }
     case 'newedit':// 新規登録
@@ -1253,12 +1303,12 @@ switch ($mode) {
 
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-            $display .= fncEdit("", $edt_flg,$msg,"","new",$fieldset_id);
+            $display .= fncEdit("", $edt_flg,$msg,"","new",$fieldset_id,$template);
             break;
         }
     case 'save':// 保存
 		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
-        $retval= fncSave ($edt_flg ,$navbarMenu ,$menuno);
+        $retval= fncSave ($edt_flg ,$navbarMenu ,$menuno,$template);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
 		break;
@@ -1281,7 +1331,7 @@ switch ($mode) {
             }
             $rt=databox_chk_loaddata($id);
             if ($rt==="OK"){
-                $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
+                $display .= fncEdit($id, $edt_flg,$msg,"",$mode,$fieldset_id,$template);
             }else{
                 $display.=$rt;
             }
@@ -1296,7 +1346,7 @@ switch ($mode) {
         }
         $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 
-        $display .= fncList();
+        $display .= fncList($template);
 
 
 }

@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/03/26 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/06/21 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -421,6 +421,7 @@ order=2&prevorder=orderno&direction=ASC&databoxlistpage=2&q=hotel&query_limit=50
 個別表示<br/>
 public_html/data.php?id=1&amp;m=id&amp;template=yyyy<br/>
 public_html/data.php?code=xxxx_en&amp;m=code&amp;template=yyyy<br/>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
 </td>
 <td>
 【data】headercode.thtml
@@ -528,8 +529,14 @@ newlist<br/>
 
 <tr class="r2">
 <td>
-mydata<br/>
+マイデータ<br/>
 public_html/mydata/data.php<br/>
+public_html/mydata/data.php?mode_id=new<br/>
+public_html/mydata/data.php?type_id=aaa<br/>
+public_html/mydata.php?mode_id=edit&amp;id=1<br/>
+public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
+
 </td>
 <td>
 </td>
@@ -553,6 +560,13 @@ DataBoxデフォルト画像またはロゴ画像
 
 <br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
 <a link href="#notetext_featuredimage" class="note_super">featuredimage</a>またはDataBoxデフォルト画像またはロゴ画像
+
+<br/><a class="note_super" href="#notetext_7" id="notetext_7">*7</a>
+template=テンプレートディレクトリ<br/>
+引数で指定されていない場合は、下記の順に使用されます(一覧画面以外)<br/>
+タイプに登録されているテンプレートディレクトリ<br/>
+データに登録されているテンプレートディレクトリ<br/>
+default<br/>
 
 <br/><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>
 <br/>　カテゴリ名称を表示　　categories,categorieslink,categorieslinkcode,categorieslinkid

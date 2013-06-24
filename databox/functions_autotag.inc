@@ -190,6 +190,13 @@ function plugin_autotags_databox (
                     case 'mydataentrylink':
                         $rt= databox_mydataentrylink(
                             $p['type_id']
+                            ,$p['templatedir']
+                            ,$p['lastparm2']
+                        );
+                        break;
+                    case 'mydata':
+                        $rt= databox_mydata(
+                             $p['templatedir']
                             ,$p['lastparm2']
                         );
                         break;
@@ -2553,19 +2560,26 @@ function databox_datalink(
 }
 
 function databox_mydataentrylink(
-    $fieldset_id
-    ,$linktext
+	$fieldset_id = ""
+	,$templatedir =""
+    ,$linktext =""
 )
 {
 	global $_CONF;
 	global $_TABLES;
 	global $LANG_DATABOX_ADMIN;
+	global $_DATABOX_CONF;
 	
 	$url="";
-	if (SEC_hasRights ('databox.edit') ){
+	//ユーザに更新と新規登録を許可するかまたは、新規登録権を持ったユーザの場合
+	if ($_DATABOX_CONF['allow_data_update'] AND $_DATABOX_CONF['allow_data_insert'] OR
+		SEC_hasRights('databox.submit')){
 		if ($fieldset_id=="" OR $fieldset_id==0) {
 			$url=$_CONF['site_url']."/databox/mydata/data.php?";
 			$url.="mode=new";
+			if  ($templatedir){
+				$url.="&amp;template=".$templatedir;
+			}
 			if  ($linktext==""){
 				$linktext = $LANG_DATABOX_ADMIN["new"];
 			}
@@ -2573,14 +2587,38 @@ function databox_mydataentrylink(
 			if (DB_getItem($_TABLES['DATABOX_def_fieldset'],'fieldset_id', "fieldset_id = '$fieldset_id'")==$fieldset_id){
 				$url=$_CONF['site_url']."/databox/mydata/data.php?";
 				$url.="type_id=".$fieldset_id;
+				if  ($templatedir){
+					$url.="&amp;template=".$templatedir;
+				}
 				if  ($linktext==""){
 					$linktext = stripslashes(DB_getItem($_TABLES['DATABOX_def_fieldset'],'name', "fieldset_id = '$fieldset_id'"));
 				}
 			}
 		}
-		if  ($url<>""){
-			$url = COM_createLink($linktext, $url);
+		$url = COM_createLink($linktext, $url);
+	}
+	return $url;
+}
+function databox_mydata(
+	$templatedir =""
+    ,$linktext =""
+)
+{
+	global $_CONF;
+	global $_TABLES;
+	global $_DATABOX_CONF;
+	global $LANG_DATABOX;
+	$url="";
+	//ユーザに更新を許可するかまたは、更新権を持ったユーザの場合
+	if ($_DATABOX_CONF['allow_data_update'] OR SEC_hasRights('databox.edit')){
+		$url=$_CONF['site_url']."/databox/mydata/data.php?";
+		if  ($templatedir){
+			$url.="&amp;template=".$templatedir;
 		}
+		if  ($linktext==""){
+			$linktext = $LANG_DATABOX['mydata'];
+		}
+		$url = COM_createLink($linktext, $url);
 	}
 	return $url;
 }

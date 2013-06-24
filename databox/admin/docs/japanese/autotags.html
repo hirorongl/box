@@ -21,14 +21,17 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2013/05/29 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2013/06/21 update)</h2>
 <table>
-<tr><th style="width:25%">書式</th>
+<tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
 </tr>
 <tbody>
 <tr>
-<td>[databox:count カテゴリidまたはカテゴリコード]</td>
+<td>[databox:count ]<br /><br />
+category_id:　category_code:<br />
+mode:<br />
+</td>
 <td>
 データ件数<br />
 例１：[databox:count]<br />
@@ -41,7 +44,15 @@
 </tr>
 
 <tr class="r2">
-<td>[databox:newlist　RSSファイルほか例２参照]</td>
+<td>[databox:newlist ]<br /><br />
+rss_file:<br />
+title_trim_length:<br />
+intervalday:<br />
+limitcnt:<br />
+newmarkday:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+category_id:　category_code:<br />
+</td>
 <td>
 新着データ<br />
 例１：[databox:newlist]<br />
@@ -50,7 +61,11 @@
 </tr>
 
 <tr>
-<td>[databox:data id]</td>
+<td>[databox:data ]<br /><br />
+id:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+</td>
 <td>
 データ<br />
 例１：[databox:data] <br />
@@ -59,7 +74,15 @@
 </tr>
 
 <tr class="r2">
-<td>[databox:category　カテゴリidまたはカテゴリコード　ほか]</td>
+<td>[databox:category ]<br /><br />
+category_id:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+expired:<br />
+</td>
 <td>
 カテゴリ別一覧<br />
 例１：[databox:category] <br />
@@ -76,7 +99,10 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </tr>
 
 <tr >
-<td>[databox:attributecount　テーマ変数　値]</td>
+<td>[databox:attributecount ]<br /><br />
+templatesetvar:<br />
+value:<br />
+</td>
 <td>
 指定アトリビュートが指定値のデータの件数<br />
 例１：[databox:attributecount] <br />
@@ -85,7 +111,9 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </tr>
 
 <tr class="r2">
-<td>[databox:lastmodified　テンプレートフォルダ　追加項目値]</td>
+<td>[databox:lastmodified ]<br /><br />
+category_id: category_code:<br />
+</td>
 <td>
 <br />
 例１：[databox:lastmodified] <br />
@@ -95,7 +123,9 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </tr>
 
 <tr >
-<td>[databox:lastmodified　テンプレートフォルダ　追加項目値]</td>
+<td>[databox:lastmodified ]<br /><br />
+category_id: category_code:<br />
+</td>
 <td>
 <br />
 例１：[databox:lastcreated] <br />
@@ -105,7 +135,15 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </tr>
 
 <tr class="r2">
-<td>[databox:attribute　テンプレートフォルダ　追加項目値　ほか例２参照]
+<td>[databox:attribute ]<br /><br />
+field_id: field_code:<br />
+value:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+	
 </td>
 <td>アトリビュート別一覧<br /> 指定アトリビュートが指定値のデータ一覧<br />
 例１：[databox:attribute field_id:99 value:xx ]<br />
@@ -115,33 +153,55 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </tr>
 
 <tr >
-<td>[databox:datalink　id code linktext]
+<td>[databox:datalink ]<br /><br />
+id: code: <br />
+ linktext<a class="note_super" href="#notetext_2">*2</a>
 </td>
 <td>データ個別表示リンク<br /> 
 例１：[databox:datalink id:1 ]<br />
 例２：[databox:datalink code:data1]<br />
-例３：[databox:datalink code:data1 linktext]<br />
+例３：[databox:datalink code:data1 データ]<br />
 id とcode が共に指定されている場合はidを優先します<br />
 linktext が省略されている場合は、データのタイトルをlinktextとします。該当データがない場合は表示されません。<br />
-linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。該当データがない場合もリンクは表示されます。<br />
 
 </td>
 </tr>
 <tr class="r2">
-<td>[databox:mydataentrylink　type_id linktext]
+<td>[databox:mydataentrylink ]<br /><br />
+type_id <br />
+templatedir<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+ linktext<a title=""class="note_super" href="#notetext_2">*2</a><br />
+
 </td>
 <td>マイデータ新規登録リンク<br /> 
 例１：[databox:mydataentrylink ]<br />
 例２：[databox:mydataentrylink linktext]<br />
 例３：[databox:mydataentrylink type_id:1]<br />
-例４：[databox:mydataentrylink type_id:1 linktext]<br />
+例４：[databox:mydataentrylink type_id:1 新規登録]<br />
+例５：[databox:mydataentrylink type_id:1 templatedir:XXX linktext]<br />
 type_id linktext が省略されている場合は、マイデータの「新規登録」リンクを表示します。<br />
 type_id が省略されている場合は新規登録リンクを表示します<br />
 type_idを指定、linktext が省略されている場合は、タイプの名称をlinktextとします。
 type_idを指定、該当タイプがない場合は表示されません。<br />
-linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。<br />
 マイデータ新規登録の権限がない場合は、表示されません<br />
+</td>
+</tr>
 
+<tr >
+<td>
+[databox:mydata templatedir ]<br /><br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+linktext<a title=""class="note_super" href="#notetext_2">*2</a>
+
+</td>
+<td>マイデータリンク<br /> 
+例１：[databox:mydata ]<br />
+例２：[databox:mydata マイデータリンク]<br />
+例３：[databox:mydata ]<br />
+例４：[databox:mydata マイデータリンク]<br />
+例５：[databox:mydata templatedir:XXX マイデータ]<br />
+<br />
+マイデータ更新の権限がない場合は、表示されません<br />
 </td>
 </tr>
 
@@ -159,6 +219,16 @@ linktext は、必ず最後に記述してください。半角スペースを�
 </tr>
 </tbody>
 </table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+テンプレートディレクトリ<br/>
+ココで指定されていない場合は、下記の順に使用されます(一覧画面以外)<br/>
+タイプに登録されているテンプレートディレクトリ<br/>
+データに登録されているテンプレートディレクトリ<br/>
+default<br/>
+
+<br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
+linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。引数名は不要です
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
