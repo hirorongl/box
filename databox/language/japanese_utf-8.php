@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130611
+# Last Update 20130624
 
 ###############################################################################
 ## 管理画面 menu
@@ -659,6 +659,8 @@ $LANG_confignames['databox']['default_img_url'] = 'デフォルト画像URL';
 $LANG_confignames['databox']['maxlength_description'] = '入力制限文字数　説明';
 $LANG_confignames['databox']['maxlength_meta_description'] = '入力制限文字数　説明文のメタタグ';
 $LANG_confignames['databox']['maxlength_meta_keywords'] = '入力制限文字数　キーワードのメタタグ';
+
+$LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';

@@ -245,6 +245,10 @@ function plugin_getuseroption_databox()
     global $_CONF;
     global $LANG_DATABOX;
     global $_DATABOX_CONF;
+	
+    if ($_DATABOX_CONF['hideuseroption'] == 1)  {
+        return;
+    }
 
     $url = $_CONF['site_url'] . '/databox/mydata/index.php';
     if ($_DATABOX_CONF['allow_data_update']==1 ){

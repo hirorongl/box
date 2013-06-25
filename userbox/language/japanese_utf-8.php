@@ -609,6 +609,8 @@ $LANG_confignames['userbox']['maxlength_description'] = '入力制限文字数�
 $LANG_confignames['userbox']['maxlength_meta_description'] = '入力制限文字数　説明文のメタタグ';
 $LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数　キーワードのメタタグ';
 
+$LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
+
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';
 $LANG_fs['userbox'][fs_whatsnew] = '新着情報ブロック';

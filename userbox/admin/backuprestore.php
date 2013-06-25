@@ -122,7 +122,7 @@ switch ($action) {
     case $LANG_USERBOX_ADMIN['config_init']:
         $dummy=LIB_Deleteconfig($pi_name,$config);
         $dummy=LIB_Initializeconfig($pi_name);
-		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/databox/backuprestore.php');
+		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/userbox/backuprestore.php');
 		exit;
         break;
     case $LANG_USERBOX_ADMIN['config_backup']:
@@ -136,6 +136,7 @@ switch ($action) {
 		$dummy=LIB_Deleteconfig($pi_name,$config);
 		$dummy=LIB_Initializeconfig($pi_name);
 		$dummy=LIB_Restoreconfig($pi_name,$config,"update");
+		echo COM_refresh($_CONF['site_admin_url'] . '/plugins/userbox/backuprestore.php');
 		exit;
         break;
  

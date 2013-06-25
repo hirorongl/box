@@ -131,6 +131,9 @@ $_USERBOX_DEFAULT['maxlength_description'] = "1677215";
 $_USERBOX_DEFAULT['maxlength_meta_description'] = "65535";
 $_USERBOX_DEFAULT['maxlength_meta_keywords'] = "65535";
 
+//ユーザーメニューに表示しない
+$_USERBOX_DEFAULT['hideuseroption'] = 0;
+
 
 //---（１）新着
 // 新着の期間
@@ -495,6 +498,14 @@ function plugin_initconfig_userbox()
             ,'text', 0, 0, NULL, 310, TRUE
 			, $pi_name
 			,0);
+		
+		$c->add(
+            'hideuseroption'
+            ,$_USERBOX_DEFAULT['hideuseroption']
+            ,'select', 0, 0, 0, 320, true
+			, $pi_name
+			,0);
+		
 
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);

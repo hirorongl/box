@@ -614,6 +614,8 @@ $LANG_confignames['databox']['maxlength_description'] = 'Maxlength description';
 $LANG_confignames['databox']['maxlength_meta_description'] = 'Max length of meta description';
 $LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
+$LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';

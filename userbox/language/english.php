@@ -635,8 +635,7 @@ $LANG_confignames['userbox']['whatsnew_interval'] = 'New Period';
 $LANG_confignames['userbox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['userbox']['title_trim_length'] = 'Title of Max Length';
 
-
-
+$LANG_confignames['userbox']['hideuseroption'] = 'hide useroption';
 
 //---(2)
 $LANG_tab['userbox'][tab_search] = 'Search';

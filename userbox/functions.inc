@@ -252,6 +252,10 @@ function plugin_getuseroption_userbox()
     global $LANG_USERBOX;
     global $_USERBOX_CONF;
 	
+	if ($_USERBOX_CONF['hideuseroption'] == 1)  {
+        return;
+    }
+
 	if (SEC_hasRights ('userbox.user')){
 		$url = $_CONF['site_url'] . '/userbox/myprofile/index.php';
 		if ($_USERBOX_CONF['allow_profile_update']==1){
