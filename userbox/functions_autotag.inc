@@ -387,7 +387,8 @@ function userbox_category(
 	$sql .= " ,t2.description ".LB;
 	$sql .= " ,t2.released ".LB;
 	$sql .= " ,t2.expired ".LB;
-    $sql .= " ,t2.".$datefield." AS datefield ".LB;
+	$sql .= " ,t2.".$datefield." AS datefield ".LB;
+	$sql .= " ,t2.fieldset_id ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
 	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 	$sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
@@ -580,6 +581,7 @@ function userbox_category(
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
+			$fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -638,7 +640,7 @@ function userbox_category(
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 			
 			//管理者の時「編集」
 			$templates->set_var ('data_edit', "");
@@ -1107,7 +1109,6 @@ function userbox_profile(
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
-
     //-----
 	$sql = "SELECT t.* ";
 	
@@ -1116,6 +1117,8 @@ function userbox_profile(
 	$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
+	
+	$sql .= " ,t.fieldset_id";
 
     $sql .= " ,t1.username ";
 	$sql .= " ,t1.fullname ";
@@ -1165,7 +1168,7 @@ function userbox_profile(
         $sql .= " ORDER BY ".$_USERBOX_CONF['datefield'] . " DESC ";
         $sql .= " LIMIT 0 , 1";
     }
-	
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -1186,6 +1189,7 @@ function userbox_profile(
 
         $group_id = $A['group_id'];
 		$owner_id = $A['owner_id'];
+        $fieldset_id= $A['fieldset_id'];
 		if ($m==="view"){
 			$chk_user=1000;//ログインユーザ
 		}else{
@@ -1322,7 +1326,7 @@ function userbox_profile(
 
         //追加項目
         $templates->set_var('lang_additionfields', $LANG_USERBOX_ADMIN['additionfields']);
-        DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+        DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 
 
         //編集日付
@@ -1568,7 +1572,9 @@ function userbox_field(
 	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 
     $sql .= " ,t2.group_id";
-    $sql .= " ,t2.owner_id";
+	$sql .= " ,t2.owner_id";
+	$sql .= " ,t2.fieldset_id ".LB;
+
     $sql .= " ,t4.username";
 	$sql .= " ,t4.fullname";
     $sql .= " ,t4.photo";
@@ -1733,6 +1739,8 @@ function userbox_field(
             $sortvalue=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
+			
+			$fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -1774,7 +1782,7 @@ function userbox_field(
             $owner_id = stripslashes($A['owner_id']);
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 			
 			//管理者の時「編集」
 			if ( SEC_hasRights('databox.admin')) {

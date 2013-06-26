@@ -1783,7 +1783,7 @@ function fncsendmail (
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $addition_def=DATABOX_getadditiondef($pi_name);
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name);
+            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name,$A['fieldset_id']);
 
             //タイムスタンプ　更新ユーザ
             $msg.= $LANG_USERBOX_ADMIN['udatetime'].":".$A['udatetime'].LB;

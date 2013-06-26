@@ -1844,7 +1844,8 @@ function fncsendmail (
         if ($numrows > 0) {
 
             $A = DB_fetchArray ($result);
-
+			$A = array_map('stripslashes', $A);
+			
             //下書
             if ($A['draft_flag']==1) {
                 $msg.=$LANG_DATABOX_ADMIN['draft'].LB;
@@ -1893,7 +1894,7 @@ function fncsendmail (
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $addition_def=DATABOX_getadditiondef();
             $additionfields = DATABOX_getadditiondatas($id);
-            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name);
+            $msg.=DATABOX_getaddtionfieldsText($additionfields,$addition_def,$chk_user,$pi_name,$A['fieldset_id']);
 
             //タイムスタンプ　更新ユーザ
             $msg.= $LANG_DATABOX_ADMIN['udatetime'].":".$A['udatetime'].LB;

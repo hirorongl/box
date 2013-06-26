@@ -1600,7 +1600,8 @@ function DATABOX_getaddtionfieldsText(
     $fields
     ,$addition_def
     ,$chk_user
-    ,$pi_name
+	,$pi_name
+	,$fieldset_id
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目TEXT作成
@@ -1611,10 +1612,11 @@ function DATABOX_getaddtionfieldsText(
 // | 引数 $addition_def:
 // | 引数 $chk_user:
 // | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $fieldset_id
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目text
 // +---------------------------------------------------------------------------+
-//update 20130520
+//
 {
 	global $_CONF;
 	
@@ -1622,6 +1624,8 @@ function DATABOX_getaddtionfieldsText(
 
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
+	
+	$templatesetvar=$addition_def[$fid]['templatesetvar'];
 
     $retval = '';
 
@@ -1648,7 +1652,7 @@ function DATABOX_getaddtionfieldsText(
         $rows=$addition_def[$fid]['rows'];
         $br=$addition_def[$fid]['br'];
 
-        $templatesetvar=$addition_def[$fid]['templatesetvar'];
+		$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
 
         $chk=false;
         $disabled="disabled";
@@ -1678,40 +1682,42 @@ function DATABOX_getaddtionfieldsText(
             }
         }
 
-        if ($chk) {
-            $retval.=$name.":";
+		if (in_array($fid,$fieldsetfields )) {
+			if ($chk) {
+				$retval.=$name.":";
 
-            switch ($type) {
-                case 11://図
-                    $retval .= "";
-                    break;
-                case 2://いいえ/はい
-                    $retval .= $lang_box_noyes[$fvalue];
-                    break;
-                case 7://オプションリスト配列//@@@@@@
-                case 8://ラジオボタンリスト//@@@@@
-                    $retval .= $selectionary[$fvalue];
-                    break;
-				case 9://既定リスト
-					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
-					$retval .= $mstitems['value'];
-                    break;
-                case 4://日時
-					$w=COM_getUserDateTimeFormat($fvalue);
-					$retval .= $w[0];
-                    break;
-				case 3://日付（準備中）
-					$retval .=strftime( $_CONF['shortdate'], $fvalue );
-                    break;
-                case 5://メールアドレス　（準備中）';
-                case 6://url　（準備中）';
-                case 0:// 一行テキストフィールド
-                case 1:// 複数行テキストフィールド
-                case 10:// 複数行テキストフィールド
-                default:
-                    $retval .= $fvalue;
-            }
-            $retval.=LB;
+				switch ($type) {
+					case 11://図
+						$retval .= "";
+						break;
+					case 2://いいえ/はい
+						$retval .= $lang_box_noyes[$fvalue];
+						break;
+					case 7://オプションリスト配列//@@@@@@
+					case 8://ラジオボタンリスト//@@@@@
+						$retval .= $selectionary[$fvalue];
+						break;
+					case 9://既定リスト
+						$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
+						$retval .= $mstitems['value'];
+						break;
+					case 4://日時
+						$w=COM_getUserDateTimeFormat($fvalue);
+						$retval .= $w[0];
+						break;
+					case 3://日付（準備中）
+						$retval .=strftime( $_CONF['shortdate'], $fvalue );
+						break;
+					case 5://メールアドレス　（準備中）';
+					case 6://url　（準備中）';
+					case 0:// 一行テキストフィールド
+					case 1:// 複数行テキストフィールド
+					case 10:// 複数行テキストフィールド
+					default:
+						$retval .= $fvalue;
+				}
+				$retval.=LB;
+			}
         }
     }
     return $retval;
@@ -1724,7 +1730,8 @@ function DATABOX_getaddtionfieldsDisp(
     ,$addition_def
     ,$templates
     ,$chk_user
-    ,$pi_name=""
+	,$pi_name
+	,$fieldset_id
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目表示用HTML作成                                              |
@@ -1736,6 +1743,7 @@ function DATABOX_getaddtionfieldsDisp(
 // | 引数 $templates:
 // | 引数 $chk_user:
 // | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $fieldset_id
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目表示用HTML　                                           |
 // +---------------------------------------------------------------------------+
@@ -1744,11 +1752,7 @@ function DATABOX_getaddtionfieldsDisp(
     global $_CONF;
 	global $_TABLES;
 
-    if ($pi_name==""){
-        $lang_noyes="LANG_DATABOX_NOYES";
-    }else{
-        $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-    }
+	$lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
 
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
@@ -1764,9 +1768,10 @@ function DATABOX_getaddtionfieldsDisp(
 
 	
 	$noimage="lib/noimage.jpg";
-
+	
+	$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
+	
     $retval = '';
-
 
     if (is_array($fields)){
             $S = $fields;
@@ -1777,7 +1782,6 @@ function DATABOX_getaddtionfieldsDisp(
             $S = array();
         }
     }
-
 
     foreach( $S as $fid => $fvalue ){
 
@@ -1795,33 +1799,34 @@ function DATABOX_getaddtionfieldsDisp(
 
         $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
-
-        $chk=false;
-        //表示する
-        if  ($addition_def[$fid]['allow_display']==='0') {
-            $chk=true;
-        //ログインユーザのみ
-        }else if ($addition_def[$fid]['allow_display']==='1'){
-            if  ($chk_user>=1000) {
-                $chk=true;
-            }
-        //グループとadmin権のある人のみ表示
-        }else if ($addition_def[$fid]['allow_display']==='2'){
-            if  ($chk_user>=1010) {
-                $chk=true;
-            }
-        //所有者とadmin権のある人のみ
-        }else if ($addition_def[$fid]['allow_display']==='3'){
-            if  ($chk_user>=1011) {
-                $chk=true;
-            }
-        //admin権のある人のみ
-        }else if ($addition_def[$fid]['allow_display']==='4'){
-            if  ($chk_user>=1100) {
-                $chk=true;
-            }
-        }
-
+		$chk=false;
+		if (in_array($fid,$fieldsetfields )) {
+			//表示する
+			if  ($addition_def[$fid]['allow_display']==='0') {
+				$chk=true;
+				//ログインユーザのみ
+			}else if ($addition_def[$fid]['allow_display']==='1'){
+				if  ($chk_user>=1000) {
+					$chk=true;
+				}
+				//グループとadmin権のある人のみ表示
+			}else if ($addition_def[$fid]['allow_display']==='2'){
+				if  ($chk_user>=1010) {
+					$chk=true;
+				}
+				//所有者とadmin権のある人のみ
+			}else if ($addition_def[$fid]['allow_display']==='3'){
+				if  ($chk_user>=1011) {
+					$chk=true;
+				}
+				//admin権のある人のみ
+			}else if ($addition_def[$fid]['allow_display']==='4'){
+				if  ($chk_user>=1100) {
+					$chk=true;
+				}
+			}
+		}
+		
         if ($chk) {
             $fieldhtml="";//外画像の場合ファイル名
             $fieldhtml_tn="";//サムネイルファイル名

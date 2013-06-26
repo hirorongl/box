@@ -403,7 +403,8 @@ function databox_category(
 	$sql .= " ,t2.description ".LB;
 	$sql .= " ,t2.released ".LB;
 	$sql .= " ,t2.expired ".LB;
-    $sql .= " ,t2.".$datefield." AS datefield ".LB;
+	$sql .= " ,t2.".$datefield." AS datefield ".LB;
+	$sql .= " ,t2.fieldset_id ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
 	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
 	$sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
@@ -581,6 +582,7 @@ function databox_category(
 			$datefield=COM_applyFilter($A['datefield']);
 			$released=COM_applyFilter($A['released']);
 			$expired=COM_applyFilter($A['expired']);
+			$fieldset_id=COM_applyFilter($A['fieldset_id']);
 			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
 			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
 			if ($expired==="0000-00-00 00:00:00"){
@@ -640,7 +642,7 @@ function databox_category(
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 			
 			//管理者の時「編集」
 			if ( SEC_hasRights('databox.admin')) {
@@ -1011,6 +1013,8 @@ function databox_field(
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
 	
+	$sql .= " ,t2.fieldset_id ".LB;
+	
 	if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
@@ -1167,6 +1171,8 @@ function databox_field(
             $sortvalue=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
+			
+			$fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $url=$_CONF['site_url'] . "/databox/data.php";
             $url.="?";
@@ -1204,7 +1210,7 @@ function databox_field(
             $owner_id = stripslashes($A['owner_id']);
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
-            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 			
 			//管理者の時「編集」
 			if ( SEC_hasRights('databox.admin')) {
@@ -1660,6 +1666,8 @@ function databox_data(
 	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
 	
+	$sql .= " ,t.fieldset_id";
+	
     $sql .= " ,t2.username AS owner_name";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
@@ -1729,6 +1737,7 @@ function databox_data(
         $group_id = $A['group_id'];
         $owner_id = $A['owner_id'];
 		
+        $fieldset_id= $A['fieldset_id'];
 		//
 		if ($m==="view"){	
 			$chk_user=1000;//ログインユーザ
@@ -1848,11 +1857,9 @@ function databox_data(
         $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
         DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
 
-
         //追加項目
         $templates->set_var('lang_additionfields', $LANG_DATABOX_ADMIN['additionfields']);
-        DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name);
-
+        DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
 
         //編集日付
 		$templates->set_var('lang_modified', $LANG_DATABOX_ADMIN['modified']);
