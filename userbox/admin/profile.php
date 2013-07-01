@@ -346,9 +346,16 @@ function fncEdit(
 
         $additionfields=$_POST['afield'];
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
-        $additionfields_del=$_POST['afield_del'];
-        $additionfields=DATABOX_cleanaddtiondatas
-            ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
+		$additionfields_del=$_POST['afield_del'];
+		$additionfields_date=array();
+		$additionfields=DATABOX_cleanaddtiondatas(
+			$additionfields
+			,$addition_def
+			,$additionfields_fnm
+			,$additionfields_del
+			,$additionfields_date
+			,false
+			);
 
         $owner_id = COM_applyFilter ($_POST['owner_id'],true);	
         $group_id = COM_applyFilter ($_POST['group_id'],true);
@@ -506,6 +513,7 @@ function fncEdit(
         $additionfields = DATABOX_getadditiondatas($id,$pi_name);
         $additionfields_fnm=array();//@@@@@
         $additionfields_del=array();
+		$additionfields_date="";
 
         $draft_flag=COM_stripslashes($A['draft_flag']);
 
@@ -821,9 +829,17 @@ function fncEdit(
 
     //追加項目
     $templates->set_var('lang_additionfields', $LANG_USERBOX_ADMIN['additionfields']);
-    $rt=DATABOX_getaddtionfieldsEdit
-        ($additionfields,$addition_def,$templates,9999,$pi_name
-			,$additionfields_fnm,$additionfields_del);
+	$rt=DATABOX_getaddtionfieldsEdit(
+		$additionfields
+		,$addition_def
+		,$templates
+		,9999
+		,$pi_name
+		,$additionfields_fnm
+		,$additionfields_del
+		,$fieldset_id
+		,$additionfields_date
+		);
 
      $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,9999,$pi_name);
 
@@ -1048,9 +1064,14 @@ function fncSave (
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
 
-    $additionfields=DATABOX_cleanaddtiondatas
-        ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
-
+	$dummy=DATABOX_cleanaddtiondatas (
+		$additionfields
+		,$addition_def
+		,$additionfields_fnm
+		,$additionfields_del
+		,$additionfields_date
+		);
+ 
     //
     $owner_id = COM_applyFilter ($_POST['owner_id'],true);
 

@@ -322,9 +322,16 @@ function fncEdit(
 
         $additionfields=$_POST['afield'];
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
-        $additionfields_del=$_POST['afield_del'];
-        $additionfields=DATABOX_cleanaddtiondatas
-            ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del,false);
+		$additionfields_del=$_POST['afield_del'];
+		$additionfields_date=array();
+		$additionfields=DATABOX_cleanaddtiondatas (
+			$additionfields
+			,$addition_def
+			,$additionfields_fnm
+			,$additionfields_del
+			,$additionfields_date
+			,false
+			);
 
         //作成日付
         $created = COM_applyFilter ($_POST['created']);
@@ -355,6 +362,7 @@ function fncEdit(
             $additionfields=array();
             $additionfields_fnm=array();//@@@@@
             $additionfields_del=array();
+			$additionfields_date="";
             $additionfields = DATABOX_getadditiondatas(0,$pi_name);
 
             //
@@ -411,6 +419,7 @@ function fncEdit(
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             $additionfields_fnm=array();//@@@@@
             $additionfields_del=array();
+			$additionfields_date="";
 
             $draft_flag=COM_stripslashes($A['draft_flag']);
 
@@ -598,9 +607,17 @@ function fncEdit(
 
     //追加項目
     $templates->set_var('lang_additionfields', $LANG_DATABOX_ADMIN['additionfields']);
-    $rt=DATABOX_getaddtionfieldsEdit
-        ($additionfields,$addition_def,$templates,$chk_user,$pi_name
-            ,$additionfields_fnm,$additionfields_del,$fieldset_id);
+	$rt=DATABOX_getaddtionfieldsEdit(
+		$additionfields
+		,$addition_def
+		,$templates
+		,$chk_user
+		,$pi_name
+		,$additionfields_fnm
+		,$additionfields_del
+		,$fieldset_id
+		,$additionfields_date
+		);
     $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,$chk_user,$pi_name);
 
     //保存日時
@@ -693,9 +710,15 @@ function fncSave (
     $additionfields=$_POST['afield'];
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
+	$additionfields_date=array();
 
-    $additionfields=DATABOX_cleanaddtiondatas
-        ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
+	$additionfields=DATABOX_cleanaddtiondatas(
+		$additionfields
+		,$addition_def
+		,$additionfields_fnm
+		,$additionfields_del
+		,$additionfields_date
+		);
 
 
 //            $hits =0;

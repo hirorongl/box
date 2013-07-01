@@ -973,6 +973,7 @@ function DATABOX_getaddtionfieldsEdit(
     ,$fields_fnm=""
 	,$fields_del=""
 	,$fieldset_id=0
+	,$fields_date=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目入力用HTML作成
@@ -997,10 +998,12 @@ function DATABOX_getaddtionfieldsEdit(
 	global $_CONF;
 	
     if ($pi_name==""){
+        $lang_admin_x="LANG_DATABOX_ADMIN";
         $lang_admin="LANG_DATABOX_ADMIN";
         $lang_noyes="LANG_DATABOX_NOYES";
         $table_def_field=$_TABLES['DATABOX_def_field'];
     }else{
+        $lang_admin_x="LANG_".strtoupper($pi_name)."_ADMIN";
         $lang_admin="LANG_".strtoupper($pi_name)."_ADMIN";
         $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
         $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
@@ -1164,7 +1167,7 @@ function DATABOX_getaddtionfieldsEdit(
                     }
                     break;
                 case 3://日付（date picker対応）
-					if ($disabled===""){
+				if ($disabled===""){
 						//$filedname="afield[".$fid."]";
 						$filedname="afield".$fid;
 					
@@ -1174,9 +1177,12 @@ function DATABOX_getaddtionfieldsEdit(
 							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
 							. "});", TRUE, TRUE
 							);
-					
-						$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin,$filedname,"date");
-					    $wk =  " <input ";
+						if  (is_array($fields_date)){
+							$fieldhtml.=LIB_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+						}else{
+							$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
+						}
+						$wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
@@ -1197,7 +1203,11 @@ function DATABOX_getaddtionfieldsEdit(
 							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
 							. "});", TRUE, TRUE
 							);
-						$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin,$filedname);
+						if  (is_array($fields_date)){
+							$fieldhtml.=LIB_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+						}else{
+							$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
+						}
 					    $wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
@@ -2669,6 +2679,7 @@ function DATABOX_cleanaddtiondatas(
 	,$addition_def
 	,&$fnmary
 	,&$delary
+	,&$dateary
 	,$addslash = true
 )
 // +---------------------------------------------------------------------------+
@@ -2723,6 +2734,9 @@ function DATABOX_cleanaddtiondatas(
 					$wk_month=$_POST['afield'.$field_id.'_month'];
 					$wk_day=$_POST['afield'.$field_id.'_day'];
 					$wk=$wk_year."-".$wk_month."-".$wk_day;
+					$dateary[$field_id]['year']=$wk_year;//@@@@@
+					$dateary[$field_id]['month']=$wk_month;//@@@@@
+					$dateary[$field_id]['day']=$wk_day;//@@@@@
 					break;
                 case 4://日時
 					$wk_year=$_POST['afield'.$field_id.'_year'];
@@ -2731,6 +2745,12 @@ function DATABOX_cleanaddtiondatas(
 					$wk_hour=$_POST['afield'.$field_id.'_hour'];
 					$wk_minute=$_POST['afield'.$field_id.'_minute'];
 					$wk_ampm=$_POST['afield'.$field_id.'_ampm'];
+					$dateary[$field_id]['year']=$wk_year;//@@@@@
+					$dateary[$field_id]['month']=$wk_month;//@@@@@
+					$dateary[$field_id]['day']=$wk_day;//@@@@@
+					$dateary[$field_id]['hour']=$wk_hour;//@@@@@
+					$dateary[$field_id]['minute']=$wk_minute;//@@@@@
+					$dateary[$field_id]['ampm']=$wk_ampm;//@@@@@
 				    if ($wk_ampm == 'pm') {
 						if ($wk_hour < 12) {
 							$wk_hour = $wk_hour + 12;

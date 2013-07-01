@@ -275,7 +275,7 @@ function fncEdit(
 // | 戻値 nomal:編集画面                                                       |
 // +---------------------------------------------------------------------------+
 // update 20100927-1020 defaulttemplatesdirectory add
-// update 20110826- eyechatchingimage add
+// update 20110826- eyechatchingimage add ??? 20130701delete
 // update 20120516- fieldset add
 {
 
@@ -310,9 +310,7 @@ function fncEdit(
         $page_title = COM_applyFilter($_POST['page_title']);
         $description=$_POST['description'];//COM_applyFilter($_POST['description']);
 		$defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);
-        $eyechatchingimage = COM_applyFilter($_POST['eyechatchingimage']);//@@@@@@
-        $eyechatchingimage_del=COM_applyFilter($_POST['eyechatchingimage_del']);
-
+		
         $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
         $hits = COM_applyFilter ($_POST['hits'],true);
         $comments = COM_applyFilter ($_POST['comments'],true);
@@ -347,8 +345,15 @@ function fncEdit(
 		
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
         $additionfields_del=$_POST['afield_del'];
-        $additionfields=DATABOX_cleanaddtiondatas
-            ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del,false);
+		$additionfields_date=array();
+		$additionfields=DATABOX_cleanaddtiondatas (
+			$additionfields
+			,$addition_def
+			,$additionfields_fnm
+			,$additionfields_del
+			,$additionfields_date
+			,false
+			);
         $owner_id = COM_applyFilter ($_POST['owner_id'],true);
         $group_id = COM_applyFilter ($_POST['group_id'],true);
         //
@@ -429,8 +434,6 @@ function fncEdit(
             $title ="";
             $description="";
             $defaulttemplatesdirectory=null;
-			$eyechatchingimage=null;
-			$eyechatchingimage_del=null;
 			
             $hits =0;
             $comments=0;
@@ -454,7 +457,8 @@ function fncEdit(
             $category = "";
             $additionfields=array();
             $additionfields_fnm=array();//@@@@@
-            $additionfields_del=array();
+			$additionfields_del=array();
+			$additionfields_date="";
             $additionfields = DATABOX_getadditiondatas(0,$pi_name);
 
             //
@@ -583,7 +587,7 @@ function fncEdit(
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             $additionfields_fnm=array();//@@@@@
             $additionfields_del=array();
-
+			$additionfields_date="";
             $draft_flag=COM_stripslashes($A['draft_flag']);
 
             //編集日
@@ -784,11 +788,6 @@ function fncEdit(
 	$select_defaulttemplatesdirectory=fnctemplatesdirectory($defaulttemplatesdirectory);//@@@@@
     $templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);//@@@@@
 	
-	$templates->set_var('lang_eyechatchingimage', $LANG_DATABOX_ADMIN['eyechatchingimage']);
-	$templates->set_var ('eyechatchingimage', $eyechatchingimage);
-	$image_eyechatchingimage =DATABOX_imagehtml ("eyechatchingimage",$eyechatchingimage,$eyechatchingimage_del);
-    $templates->set_var ('image_eyechatchingimage', $image_eyechatchingimage);//@@@@@
-
     //meta_description
     $templates->set_var('lang_meta_description', $LANG_DATABOX_ADMIN['meta_description']);
     $templates->set_var ('meta_description', $meta_description);
@@ -899,9 +898,18 @@ function fncEdit(
 
     //追加項目
     $templates->set_var('lang_additionfields', $LANG_DATABOX_ADMIN['additionfields']);
-    $rt=DATABOX_getaddtionfieldsEdit
-        ($additionfields,$addition_def,$templates,9999,$pi_name
-            ,$additionfields_fnm,$additionfields_del,$fieldset_id);
+	$rt=DATABOX_getaddtionfieldsEdit(
+		$additionfields
+		,$addition_def
+		,$templates
+		,9999
+		,$pi_name
+		,$additionfields_fnm
+		,$additionfields_del
+		,$fieldset_id
+		,$additionfields_date
+		);
+		
     $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,9999,$pi_name);
 
     //保存日時
@@ -1075,9 +1083,6 @@ function fncSave (
     $defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
     $defaulttemplatesdirectory=addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
 	
-    $eyechatchingimage=COM_applyFilter($_POST['eyechatchingimage']);
-    $eyechatchingimage=addslashes (COM_checkHTML (COM_checkWords ($eyechatchingimage)));
-
     $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
 
 //            $hits =0;
@@ -1125,9 +1130,15 @@ function fncSave (
 	$additionfields=$_POST['afield'];
 	
     $additionfields_fnm=$_POST['afield_fnm'];
-    $additionfields_del=$_POST['afield_del'];
-    $dummy=DATABOX_cleanaddtiondatas
-        ($additionfields,$addition_def,$additionfields_fnm,$additionfields_del);
+	$additionfields_del=$_POST['afield_del'];
+	$additionfields_date=array();
+	$dummy=DATABOX_cleanaddtiondatas (
+		$additionfields
+		,$addition_def
+		,$additionfields_fnm
+		,$additionfields_del
+		,$additionfields_date
+		);
     //
     $owner_id = COM_applyFilter ($_POST['owner_id'],true);
 
