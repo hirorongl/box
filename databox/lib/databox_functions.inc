@@ -1105,6 +1105,7 @@ function DATABOX_getaddtionfieldsEdit(
 
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
+                case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
 				     if ($disabled===""){
 						$cntname="afieldcnt".$fid;
                         $fieldhtml .= "<textarea ";
@@ -1117,6 +1118,9 @@ function DATABOX_getaddtionfieldsEdit(
 						$fieldhtml .="-this.value.length;var ";
 						$fieldhtml .="s=document.getElementById";
 						$fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
+						if  ($type==20){
+							$fieldhtml .= " class=\"tinymce_enabled\"";
+						}
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
 						$fieldhtml .= "</textarea>";
@@ -1139,29 +1143,29 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml= $LANG_DATABOX_NOYES[$fvalue];
                     }
                     break;
-				case 7://オプションリスト配列//@@@@@@
-				case 14://マルチセレクトリスト//@@@@@@
+				case 7://オプションリスト（選択肢）//@@@@@@
+				case 14://マルチセレクトリスト（選択肢）//@@@@@@
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-				case 9://既定リスト//@@@@@@
+				case 9://オプションリスト（マスター）//@@@@@@
 					if ($disabled===""){
                        $fieldhtml=DATABOX_getoptionlist("selectlist_mst",$fvalue,0,$pi_name,"",0,$selectlist,"afield[".$fid."]");
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-                case 8://ラジオボタンリスト//@@@@@ @!
+                case 8://ラジオボタンリスト（選択肢）//@@@@@ @!
                     if ($disabled===""){
                         if ($br==1){
                             $brx="<br".XHTML.">";
                         }else{
                             $brx="";
                         }
-                        $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$brx,$disabled);
+                        $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$brx,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -1218,12 +1222,8 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
-				case 9://既定リスト　（準備中）';
-
-                case 4://日時（準備中）
-
-                case 5://メールアドレス　（準備中）';
-                case 6://url　（準備中）';
+                case 5://メールアドレス';
+                case 6://url';
                 case 0:// 一行テキストフィールド
                 default:
                     if ($disabled===""){

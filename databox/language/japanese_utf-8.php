@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130624
+# Last Update 20130703
 
 ###############################################################################
 ## 管理画面 menu
@@ -562,6 +562,7 @@ $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキストフィールド';
 $LANG_DATABOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
+$LANG_DATABOX_TYPE[20] = '複数行テキストフィールド(HTML OK  TinyMCE)';
 $LANG_DATABOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
 $LANG_DATABOX_TYPE[15] = '数値';
 
@@ -572,8 +573,12 @@ $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
 $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
-$LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
+//$LANG_DATABOX_TYPE[17] = 'マルチセレクトラジオボタンリスト（選択肢）ーー準備中';//@@@@@
+$LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
+//$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）ーー準備中';//@@@@@
+//$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）ーー準備中';//@@@@@
+//$LANG_DATABOX_TYPE[19] = 'マルチセレクトラジオボタンリスト（マスター）ーー準備中';//@@@@@
 
 
 $LANG_DATABOX_TYPE[11] = '画像（DB保存）';
