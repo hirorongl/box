@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/field_editor.thtml  20130213 { -->
+<!-- plugins/userbox/templates/admin/field_editor.thtml  20130704 { -->
 
 <div id="userbox_admin">
 {about_thispage}
@@ -115,8 +115,10 @@
 
         <!-- br -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_br}{help_br}</th>
-            <td style="width:70%">{list_br}</td>
+            <th style="width:30%" class="alignright">{lang_br}</th>
+            <td style="width:70%">
+                <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+            </td>
         </tr>
 
         <!-- selection -->

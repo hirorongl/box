@@ -1132,13 +1132,8 @@ function DATABOX_getaddtionfieldsEdit(
                     break;
                 case 2://いいえ/はい @!
                     if ($disabled===""){
-                        if ($br==1){
-                            $brx="<br".XHTML.">";
-                        }else{
-                            $brx="";
-                        }
                         $fieldhtml=DATABOX_getradiolist
-                            ($lang_noyes,"afield[".$fid."]",$fvalue,$brx ,$disabled);
+                            ($lang_noyes,"afield[".$fid."]",$fvalue,$br ,$disabled);
                     }else{
                         $fieldhtml= $LANG_DATABOX_NOYES[$fvalue];
                     }
@@ -1160,12 +1155,7 @@ function DATABOX_getaddtionfieldsEdit(
                     break;
                 case 8://ラジオボタンリスト（選択肢）//@@@@@ @!
                     if ($disabled===""){
-                        if ($br==1){
-                            $brx="<br".XHTML.">";
-                        }else{
-                            $brx="";
-                        }
-                        $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$brx,$disabled,$type);
+                        $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -3524,17 +3514,24 @@ function DATABOX_getradiolist(
 // +---------------------------------------------------------------------------+
 // | 機能  ラジヲボタン作成
 // | 書式 DATABOX_getradiolist
-// |                ($lang_noyes,"afield[".$fid."]",$fvalue,$brx ,$disabled);
+// |                ($lang_noyes,"afield[".$fid."]",$fvalue,$br ,$disabled);
 // +---------------------------------------------------------------------------+
-// | 引数 $selected:選択値　省略時                                             |
+// | 引数 $ary:値配列
+// | 引数 $fld:field name
+// | 引数 $selected:選択値　省略時
+// | 引数 $br:blank 0 改行しない 1〜9 指定数毎に改行
+// | 引数 $disabled:
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:ラジヲボタン                                                   |
 // +---------------------------------------------------------------------------+
-//update 20100420
-
+//update 20130704
 {
+	
     $retval = '';
-
+	if  ($br==="" ) {
+		$br=0;
+	}
+	$cnt=0;
     foreach( $ary as $id => $value ){
 
         //echo "ary".$i."=".$ary[$i]."<br>";
@@ -3543,7 +3540,15 @@ function DATABOX_getradiolist(
                 $retval .= " CHECKED=CHECKED ";
         }
 
-        $retval .= ">$ary[$id]&nbsp".$br;
+		$retval .= ">$ary[$id]&nbsp";
+		
+		if   ($br<>0){
+			$cnt++;
+			if  ($cnt==$br){
+				$retval .="<br".XHTML.">";
+				$cnt=0;
+			}
+		}
     }
 
     return $retval;

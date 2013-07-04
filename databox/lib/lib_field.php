@@ -285,6 +285,7 @@ function LIB_Edit(
         $size = COM_applyFilter($_POST['size'],true);
         $maxlength = COM_applyFilter($_POST['maxlength'],true);
         $rows = COM_applyFilter($_POST['rows'],true);
+        $br = COM_applyFilter($_POST['br'],true);
 
         $orderno = COM_applyFilter ($_POST['orderno']);
 
@@ -350,8 +351,7 @@ function LIB_Edit(
             $selection = COM_stripslashes($A['selection']);
             $selectlist = COM_stripslashes($A['selectlist']);
             $checkrequried = COM_stripslashes($A['checkrequried']);
-            $br = COM_stripslashes($A['br']);
-
+ 
             $size = COM_stripslashes($A['size']);
             $maxlength = COM_stripslashes($A['maxlength']);
             $rows = COM_stripslashes($A['rows']);
@@ -412,30 +412,30 @@ function LIB_Edit(
     $templates->set_var('lang_description', $lang_box_admin['description']);
     $templates->set_var ('description', $description);
 
-    $templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
-    $list_allow_display=DATABOX_getradiolist ($lang_box_allow_display,"allow_display",$allow_display,"<br/>");
+	$templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
+    $list_allow_display=DATABOX_getradiolist ($lang_box_allow_display,"allow_display",$allow_display,1);
     $templates->set_var( 'list_allow_display', $list_allow_display);
 
     $templates->set_var('lang_allow_edit', $lang_box_admin['allow_edit']);
-    $list_allow_edit=DATABOX_getradiolist ($lang_box_allow_edit,"allow_edit",$allow_edit,"<br/>");
+    $list_allow_edit=DATABOX_getradiolist ($lang_box_allow_edit,"allow_edit",$allow_edit,1);
     $templates->set_var( 'list_allow_edit', $list_allow_edit);
 
     //type
     $templates->set_var('lang_type', $lang_box_admin['type']);
-    $list_type=DATABOX_getradiolist ($lang_box_type,"type",$type,"<br/>");
+    $list_type=DATABOX_getradiolist ($lang_box_type,"type",$type,1);
     $templates->set_var( 'list_type', $list_type);
 	
 	//textcheck
     $templates->set_var('lang_textcheck', $lang_box_admin['textcheck']);
-    $list_textcheck=DATABOX_getradiolist ($lang_box_textcheck,"textcheck",$textcheck,"<br/>");
+    $list_textcheck=DATABOX_getradiolist ($lang_box_textcheck,"textcheck",$textcheck,1);
     $templates->set_var( 'list_textcheck', $list_textcheck);
 	//textconv
     $templates->set_var('lang_textconv', $lang_box_admin['textconv']);
-    $list_textconv=DATABOX_getradiolist ($lang_box_textconv,"textconv",$textconv,"<br/>");
+    $list_textconv=DATABOX_getradiolist ($lang_box_textconv,"textconv",$textconv,1);
     $templates->set_var( 'list_textconv', $list_textconv);
 	//searchtarget
     $templates->set_var('lang_searchtarget', $lang_box_admin['searchtarget']);
-    $list_searchtarget=DATABOX_getradiolist ($lang_box_noyes,"searchtarget",$searchtarget,"<br/>");
+    $list_searchtarget=DATABOX_getradiolist ($lang_box_noyes,"searchtarget",$searchtarget,1);
     $templates->set_var( 'list_searchtarget', $list_searchtarget);
 	
 	
@@ -452,8 +452,8 @@ function LIB_Edit(
     $templates->set_var('lang_rows', $lang_box_admin['rows']);
     $templates->set_var ('rows', $rows);
     $templates->set_var('lang_br', $lang_box_admin['br']);
-    $list_br=DATABOX_getradiolist ($lang_box_noyes,"br",$br);
-    $templates->set_var( 'list_br', $list_br);
+    $templates->set_var('help_br', $lang_box_admin['help_br']);
+    $templates->set_var( 'br', $br);
 
 
 
@@ -581,11 +581,11 @@ function LIB_Save (
 
     $size=COM_applyFilter($_POST['size'],true);
     $size=addslashes (COM_checkHTML (COM_checkWords ($size)));
-    $maxlength=COM_applyFilter($_POST['maxlength']);
+    $maxlength=COM_applyFilter($_POST['maxlength'],true);
     $maxlength=addslashes (COM_checkHTML (COM_checkWords ($maxlength)));
-    $rows=COM_applyFilter($_POST['rows']);
+    $rows=COM_applyFilter($_POST['rows'],true);
     $rows=addslashes (COM_checkHTML (COM_checkWords ($rows)));
-    $br=COM_applyFilter($_POST['br']);
+    $br=COM_applyFilter($_POST['br'],true);
     $br=addslashes (COM_checkHTML (COM_checkWords ($br)));
 
     $orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する

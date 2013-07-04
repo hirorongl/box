@@ -80,10 +80,10 @@ $LANG_USERBOX['deny_msg'] =  'No data or no permissions.';
 ###############################################################################
 # admin/plugins/
 
-$LANG_USERBOX_ADMIN['piname'] = 'DataBox';
+$LANG_USERBOX_ADMIN['piname'] = 'UserBox';
 
 # Admin start block title
-$LANG_USERBOX_ADMIN['admin_list'] = 'DataBox';
+$LANG_USERBOX_ADMIN['admin_list'] = 'UserBox';
 
 $LANG_USERBOX_ADMIN['edit'] = 'Edit';
 $LANG_USERBOX_ADMIN['ref'] = 'Refference';
@@ -190,6 +190,7 @@ $LANG_USERBOX_ADMIN['size']='Size( text )';
 $LANG_USERBOX_ADMIN['maxlength']='maxlength( text )';
 $LANG_USERBOX_ADMIN['rows']='rows(Multi line text )';
 $LANG_USERBOX_ADMIN['br']='BR(Radio button)';
+$LANG_USERBOX_ADMIN['help_br']='0:not break,1-9:break every 1-9';
 
 //
 $LANG_USERBOX_ADMIN['language_id']="Language ID";

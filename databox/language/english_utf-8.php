@@ -184,6 +184,7 @@ $LANG_DATABOX_ADMIN['size']='Size( text )';
 $LANG_DATABOX_ADMIN['maxlength']='maxlength( text )';
 $LANG_DATABOX_ADMIN['rows']='rows(Multi line text )';
 $LANG_DATABOX_ADMIN['br']='BR(Radio button)';
+$LANG_DATABOX_ADMIN['help_br']='0:not break,1-9:break every 1-9';
 
 //
 $LANG_DATABOX_ADMIN['language_id']="Language ID";
