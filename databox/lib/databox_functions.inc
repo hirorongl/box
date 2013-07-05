@@ -2555,11 +2555,12 @@ function DATABOX_getfieldvalue(
         case 2://いいえ/はい
             $fieldvalue = $lang_box_noyes[$value];
             break;
-        case 7://オプションリスト配列//@@@@@@
-        case 8://ラジオボタンリスト//@@@@@
+        case 7://オプションリスト（選択肢）
+        case 8://ラジオボタンリスト（選択肢）
             $fieldvalue= $selectionary[$value];
             break;
-		case 9://既定リスト　（準備中）';
+		case 9://オプションリスト（マスター）';
+		case 16://ラジオボタンリスト（マスター）';
 			if  ($value==""){
 				$fieldvalue="";
 			}else{
@@ -2579,8 +2580,9 @@ function DATABOX_getfieldvalue(
         case 6://url　（準備中）';
 
         case 0:// 一行テキストフィールド
-        case 1:// 複数行テキストフィールド
-        case 10:// 複数行テキストフィールド
+        case 1:// 複数行テキストフィールド(HTML OK)
+        case 10:// 複数行テキストフィールド(HTML NG)
+        case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
         default:
             $fieldvalue = $value;
         }

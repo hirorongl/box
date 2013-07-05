@@ -83,7 +83,7 @@ function fnclist(
     //TYPE[7] = 'オプションリスト';
     //TYPE[8] = 'ラジオボタンリスト';
 	//TYPE[9] = 'オプションリスト(マスタ)　（既定リスト）';
-	$sql .= " AND t3.type IN (0,2,3,4,7,8,9) ".LB;
+	$sql .= " AND t3.type IN (0,2,3,4,7,8,9,16) ".LB;
 
     //ALLOW_DISPLAY[0] ='表示する（orderに指定可能）';
     //ALLOW_DISPLAY[1] ='ログインユーザのみ表示する';

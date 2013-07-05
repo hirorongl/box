@@ -131,7 +131,7 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
     $type=COM_applyFilter($A['type'],true);
     $allow_display=COM_applyFilter($A['allow_display'],true);
-    $allow_type = array(0,2,3,4,7,8,9);
+    $allow_type = array(0,2,3,4,7,8,9,16);
 	
     switch($fieldname) {
         //編集アイコン
