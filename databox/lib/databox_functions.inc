@@ -1105,7 +1105,7 @@ function DATABOX_getaddtionfieldsEdit(
 
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
-                case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
+                case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
 				     if ($disabled===""){
 						$cntname="afieldcnt".$fid;
                         $fieldhtml .= "<textarea ";
@@ -1130,7 +1130,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
-                case 2://いいえ/はい @!
+                case 2://いいえ/はい 
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getradiolist
                             ($lang_noyes,"afield[".$fid."]",$fvalue,$br ,$disabled);
@@ -1138,24 +1138,32 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml= $LANG_DATABOX_NOYES[$fvalue];
                     }
                     break;
-				case 7://オプションリスト（選択肢）//@@@@@@
-				case 14://マルチセレクトリスト（選択肢）//@@@@@@
+				case 7://オプションリスト（選択肢）
+				case 14://マルチセレクトリスト（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-				case 9://オプションリスト（マスター）//@@@@@@
+				case 9://オプションリスト（マスター）
 					if ($disabled===""){
                        $fieldhtml=DATABOX_getoptionlist("selectlist_mst",$fvalue,0,$pi_name,"",0,$selectlist,"afield[".$fid."]");
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-                case 8://ラジオボタンリスト（選択肢）//@@@@@ @!
+                case 8://ラジオボタンリスト（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
+                    }else{
+                        $selectionary[$fvalue];
+                    }
+                    break;
+                case 16://ラジオボタンリスト（マスター）//@@@@@
+					if ($disabled===""){
+						$mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
+                        $fieldhtml=DATABOX_getradiolist ($mstary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -4100,4 +4108,38 @@ function DATABOX_getfields(
 	return $fields;
 }
 
+
+function DATABOX_getAry(
+    $kind
+	,$relno=0
+	,$selectlist
+    ,$pi_name=""
+)
+{
+	global $_TABLES;
+
+//	if ($kind=="selectlist_mst"){
+		$table=$_TABLES[strtoupper($pi_name).'_mst'];
+		$where=" WHERE kind='{$selectlist}'";
+		if ($relno<>0) $where.=" AND relno='{$relno}'";
+		$fields= 'no,value';
+		$order=" ORDER BY orderno"; 
+//	}
+
+	$ary=array();
+	$sql = "SELECT ";
+	$sql .= $fields ;
+	$sql .= " FROM " ;
+	$sql .= $table ;
+	$sql .= $where ;
+	$sql .= $order ;
+
+	$result = DB_query($sql);
+    $nrows = DB_numRows($result);
+    for( $i=0; $i < $nrows; $i++) {
+         $A = DB_fetchArray($result, true);
+         $ary[$A[0]] = $A[1];
+	}
+	return $ary;
+}
 ?>
