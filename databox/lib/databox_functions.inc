@@ -1701,11 +1701,12 @@ function DATABOX_getaddtionfieldsText(
 					case 2://いいえ/はい
 						$retval .= $lang_box_noyes[$fvalue];
 						break;
-					case 7://オプションリスト配列//@@@@@@
-					case 8://ラジオボタンリスト//@@@@@
+					case 7://オプションリスト（選択肢）
+					case 8://オプションリスト（選択肢）
 						$retval .= $selectionary[$fvalue];
 						break;
-					case 9://既定リスト
+					case 9://オプションリスト（マスター）
+					case 16://ラジオボタンリスト（マスター）
 						$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
 						$retval .= $mstitems['value'];
 						break;
@@ -1719,8 +1720,9 @@ function DATABOX_getaddtionfieldsText(
 					case 5://メールアドレス　（準備中）';
 					case 6://url　（準備中）';
 					case 0:// 一行テキストフィールド
-					case 1:// 複数行テキストフィールド
-					case 10:// 複数行テキストフィールド
+					case 1:// 複数行テキストフィールド(HTML OK)
+					case 10:// 複数行テキストフィールド(HTML NG)
+					case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
 					default:
 						$retval .= $fvalue;
 				}
@@ -1919,7 +1921,8 @@ function DATABOX_getaddtionfieldsDisp(
 					}
                     $fieldhtml .= rtrim($wk,$separater);
 					break;
-				case 10:// 複数行テキストフィールド
+				case 10:// 複数行テキストフィールド(HTML NG)
+				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
 					$w=DATABOX_nl2br($fvalue);
 					$w=DATABOX_autolink($w);
 					$fieldhtml .= $w;
@@ -1928,7 +1931,8 @@ function DATABOX_getaddtionfieldsDisp(
 					$w=DATABOX_autolink($fvalue);
 					$fieldhtml .= $w;
                     break;
-				case 9://既定リスト　（準備中）';//DB_@@@@@@@@@@@
+				case 9://オプションリスト（マスター）
+				case 16: //ラジオボタン（マスター）
 					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
 					$fieldhtml .= $mstitems['value'];
                     break;
