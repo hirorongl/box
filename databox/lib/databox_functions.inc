@@ -1733,7 +1733,6 @@ function DATABOX_getaddtionfieldsText(
 						break;
 					case 18://マルチセレクトリスト（マスター）
 						$wkary=explode(":",$fvalue);
-						echo "fvalue=".$fvalue." (0=)".$wkary[0]."<br>";
 						$wk="";
 						for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
 							$mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
