@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130705
+# Last Update 20130709
 
 ###############################################################################
 ## 管理画面 menu
@@ -199,7 +199,7 @@ $LANG_USERBOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
 
 $LANG_USERBOX_ADMIN['type']='タイプ';
 
-$LANG_USERBOX_ADMIN['size']='size（テキスト）';
+$LANG_USERBOX_ADMIN['size']='size（テキスト,マルチセレクトリスト）';
 $LANG_USERBOX_ADMIN['maxlength']='maxlength（テキスト）';
 $LANG_USERBOX_ADMIN['rows']='rows（複数行テキスト）';
 $LANG_USERBOX_ADMIN['br']='改行する（ラジオボタン）';
@@ -515,11 +515,11 @@ $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'オプションリスト（選択肢）';
 $LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
-//$LANG_USERBOX_TYPE[17] = 'マルチセレクトラジオボタンリスト（選択肢）ーー準備中';//@@@@@
+//$LANG_USERBOX_TYPE[17] = '';//@@@@@
 $LANG_USERBOX_TYPE[9] = 'オプションリスト（マスター）';
 $LANG_USERBOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
-//$LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）ーー準備中';//@@@@@
-//$LANG_USERBOX_TYPE[19] = 'マルチセレクトラジオボタンリスト（マスター）ーー準備中';//@@@@@
+$LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@
+//$LANG_USERBOX_TYPE[19] = '';//@@@@@
 
 $LANG_USERBOX_TYPE[11] = '画像（DB保存）';
 $LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';

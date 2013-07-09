@@ -1141,7 +1141,7 @@ function DATABOX_getaddtionfieldsEdit(
 				case 7://オプションリスト（選択肢）
 				case 14://マルチセレクトリスト（選択肢）
                     if ($disabled===""){
-                        $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
+                        $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -1164,6 +1164,14 @@ function DATABOX_getaddtionfieldsEdit(
 					if ($disabled===""){
 						$mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
                         $fieldhtml=DATABOX_getradiolist ($mstary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
+                    }else{
+                        $selectionary[$fvalue];
+                    }
+                    break;
+                case 18://マルチセレクトリスト（マスター）//@@@@@
+					if ($disabled===""){
+						$mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
+                        $fieldhtml=DATABOX_getoptionlistary($mstary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -1633,6 +1641,11 @@ function DATABOX_getaddtionfieldsText(
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
 	
+	$lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+	$separater=$lang_box['field_separater'];
+	
 	$templatesetvar=$addition_def[$fid]['templatesetvar'];
 
     $retval = '';
@@ -1705,10 +1718,28 @@ function DATABOX_getaddtionfieldsText(
 					case 8://オプションリスト（選択肢）
 						$retval .= $selectionary[$fvalue];
 						break;
+					case 14://マルチセレクトリスト（選択肢）
+						$wkary=explode(":",$fvalue);
+						$wk="";
+						for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+							$wk.=$selectionary[$wkary[$x]].$separater;
+						}
+						$retval .= rtrim($wk,$separater);
+						break;
 					case 9://オプションリスト（マスター）
 					case 16://ラジオボタンリスト（マスター）
-						$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
+						$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
 						$retval .= $mstitems['value'];
+						break;
+					case 18://マルチセレクトリスト（マスター）
+						$wkary=explode(":",$fvalue);
+						echo "fvalue=".$fvalue." (0=)".$wkary[0]."<br>";
+						$wk="";
+						for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+							$mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
+							$wk.=$mstitems['value'].$separater;
+						}
+						$retval .= rtrim($wk,$separater);
 						break;
 					case 4://日時
 						$w=COM_getUserDateTimeFormat($fvalue);
@@ -1909,11 +1940,11 @@ function DATABOX_getaddtionfieldsDisp(
                 case 2://いいえ/はい
                     $fieldhtml .= $lang_box_noyes[$fvalue];
                     break;
-                case 7://オプションリスト配列//@@@@@@
-                case 8://ラジオボタンリスト//@@@@@
+                case 7://オプションリスト（選択肢）//@@@@@@
+                case 8://ラジオボタンリスト（選択肢）//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
-				case 14://multiselectlist
+				case 14://マルチセレクトリスト（選択肢）
                     $wkary=explode(":",$fvalue);
 					$wk="";
 					for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
@@ -1933,9 +1964,26 @@ function DATABOX_getaddtionfieldsDisp(
                     break;
 				case 9://オプションリスト（マスター）
 				case 16: //ラジオボタン（マスター）
-					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);;
+					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
 					$fieldhtml .= $mstitems['value'];
                     break;
+				case 18://マルチセレクトリスト（マスター）
+					$wkary=explode(":",$fvalue);
+					$wk="";
+					$wk_value2="";
+					$wk_disp="";
+					for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+						$mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
+						$wk.=$mstitems['value'].$separater;
+						$wk_value2.=$mstitems['value2'].$separater;
+						$wk_disp.=$mstitems['disp'].$separater;
+					}
+					$fieldhtml .= rtrim($wk,$separater);
+					
+					$mstitems['value2'] = rtrim($wk_value2,$separater);
+					$mstitems['disp'] = rtrim($wk_disp,$separater);
+					$mstitems['no'] =$fvalue;
+					break;
                 case 4://日時
 					if  ($fvalue<>""){
 						$w=COM_getUserDateTimeFormat($fvalue);
@@ -2765,17 +2813,18 @@ function DATABOX_cleanaddtiondatas(
 					}
 					$wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
 					break;
-				case 14://multiselectlist//@@@@@@
+				case 14://マルチセレクトリスト（選択肢）
+				case 18://マルチセレクトリスト（マスター）
                     $wk=implode ($wk,":");
 					break;
-                case 7://オプションリスト配列//@@@@@@
-                case 8://ラジオボタンリスト//@@@@@
-                case 9://既定リスト　（準備中）';
-                case 4://日時（準備中）
-                case 5://メールアドレス　（準備中）';
-                case 6://url　（準備中）';
+                case 7://オプションリスト（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
+                case 9://オプションリスト（マスター）';
+                case 4://日時
+                case 5://メールアドレス';
+                case 6://url';
                 case 10:// 複数行テキストフィールド(HTML NG)
-                case 12:// 図
+                case 12:// 画像（ファイル保存）
 					$fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
 					$delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
@@ -3576,7 +3625,7 @@ function DATABOX_getoptionlistary(
     ,$pi_name=""
     ,$disabled=""
     ,$type=""
-
+	,$size=1
 )
 // +---------------------------------------------------------------------------+
 // | 機能  オプションリスト作成（配列より）
@@ -3599,17 +3648,20 @@ function DATABOX_getoptionlistary(
         $lang_databox="LANG_".strtoupper($pi_name);
     }
     global $$lang_databox;
-	if  ($type==14){
+	if  ($type==14 OR $type==18){
 		//$selectedary=array[];
 		$selectedary=explode(":",$selected);
 	}
-	
+	if  ($size=="" OR $size==0){
+		$size=1;
+	}
     $retval = '';
 
 	$retval .= "<select ";
-	if ($type==14){
+	if ($type==14 OR $type==18){
 		$retval .= ' name="'.$fld.'[]" ';
-		$retval .= ' multiple ';
+		$retval .= ' multiple="multiple" ';
+		$retval .= ' size="'.$size.'"';
 	}else{
 		$retval .= ' name="'.$fld.'"';
 	}
@@ -3620,7 +3672,7 @@ function DATABOX_getoptionlistary(
 
         $retval .= "<option value=\"".$i."\"";
 		
-		if  ($type==14){
+		if  ($type==14 OR $type==18){
 			if( in_array($i,$selectedary) ){//@@@@@
                 $retval .= " selected=\"selected\" ";
 			}
@@ -3636,9 +3688,9 @@ function DATABOX_getoptionlistary(
 
     }
 
-    $retval .= '</select>';
-
-    return $retval;
+	$retval .= '</select>';
+	
+	return $retval;
 }
 
 

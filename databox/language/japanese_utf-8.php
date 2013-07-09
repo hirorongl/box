@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130705
+# Last Update 20130709
 
 ###############################################################################
 ## 管理画面 menu
@@ -184,7 +184,7 @@ $LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザー用編集画面)';
 
 $LANG_DATABOX_ADMIN['type']='タイプ';
 
-$LANG_DATABOX_ADMIN['size']='size（テキスト）';
+$LANG_DATABOX_ADMIN['size']='size（テキスト,マルチセレクトリスト）';
 $LANG_DATABOX_ADMIN['maxlength']='maxlength（テキスト）';
 $LANG_DATABOX_ADMIN['rows']='rows（複数行テキスト）';
 $LANG_DATABOX_ADMIN['br']='改行する（ラジオボタン）';
@@ -575,11 +575,11 @@ $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
 $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
-//$LANG_DATABOX_TYPE[17] = 'マルチセレクトラジオボタンリスト（選択肢）ーー準備中';//@@@@@
+//$LANG_DATABOX_TYPE[17] = 'xxx';//@@@@@
 $LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
 $LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
-//$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）ーー準備中';//@@@@@
-//$LANG_DATABOX_TYPE[19] = 'マルチセレクトラジオボタンリスト（マスター）ーー準備中';//@@@@@
+$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@
+//$LANG_DATABOX_TYPE[19] = 'xxx';//@@@@@
 
 
 $LANG_DATABOX_TYPE[11] = '画像（DB保存）';
