@@ -180,7 +180,7 @@ $LANG_DATABOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
 $LANG_DATABOX_ADMIN['type']=' Type';
 
-$LANG_DATABOX_ADMIN['size']='Size( text )';
+$LANG_DATABOX_ADMIN['size']='Size( text ,Multiselect)';
 $LANG_DATABOX_ADMIN['maxlength']='maxlength( text )';
 $LANG_DATABOX_ADMIN['rows']='rows(Multi line text )';
 $LANG_DATABOX_ADMIN['br']='BR(Radio button)';
@@ -542,7 +542,7 @@ $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_DATABOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
 $LANG_DATABOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
-$LANG_DATABOX_TYPE[15] = '数値';
+$LANG_DATABOX_TYPE[15] = 'Numeric';
 
 $LANG_DATABOX_TYPE[2] = 'No/Yes';
 $LANG_DATABOX_TYPE[3] = 'Date (Date Picker)';
@@ -551,8 +551,12 @@ $LANG_DATABOX_TYPE[5] = 'Mail Address';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'Option List';
 $LANG_DATABOX_TYPE[8] = 'Radio Button List';
-$LANG_DATABOX_TYPE[9] = 'Definition List';
 $LANG_DATABOX_TYPE[14] = 'Multiselect';
+//$LANG_DATABOX_TYPE[17] = '';
+$LANG_DATABOX_TYPE[9] = 'Definition List';
+$LANG_DATABOX_TYPE[16] = 'Radio Button List（master）';//@@@@@
+$LANG_DATABOX_TYPE[18] = 'Multiselect（master）';//@@@@@
+//$LANG_DATABOX_TYPE[19] = '';//@@@@@
 
 
 $LANG_DATABOX_TYPE[11] = 'Image(DB Save)';

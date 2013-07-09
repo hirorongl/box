@@ -186,7 +186,7 @@ $LANG_USERBOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
 $LANG_USERBOX_ADMIN['type']=' Type';
 
-$LANG_USERBOX_ADMIN['size']='Size( text )';
+$LANG_USERBOX_ADMIN['size']='Size( text ,Multiselect)';
 $LANG_USERBOX_ADMIN['maxlength']='maxlength( text )';
 $LANG_USERBOX_ADMIN['rows']='rows(Multi line text )';
 $LANG_USERBOX_ADMIN['br']='BR(Radio button)';
@@ -531,8 +531,9 @@ $LANG_USERBOX_ALLOW_EDIT[5] = 'Display';
 //TYPE (Chenge Disabled)
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '1 Line Text Attribute';
-$LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
+$LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML OK  TinyMCE)';
 $LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
+$LANG_USERBOX_TYPE[15] = 'Numeric';
 
 $LANG_USERBOX_TYPE[2] = 'No/Yes';
 $LANG_USERBOX_TYPE[3] = 'Date (Date Picker)';
@@ -541,8 +542,12 @@ $LANG_USERBOX_TYPE[5] = 'Mail Address';
 $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'Option List';
 $LANG_USERBOX_TYPE[8] = 'Radio Button List';
-$LANG_USERBOX_TYPE[9] = 'Definition List';
 $LANG_USERBOX_TYPE[14] = 'Multiselect';
+//$LANG_USERBOX_TYPE[17] = '';
+$LANG_USERBOX_TYPE[9] = 'Definition List';
+$LANG_USERBOX_TYPE[16] = 'Radio Button List（master）';//@@@@@
+$LANG_USERBOX_TYPE[18] = 'Multiselect（master）';//@@@@@
+//$LANG_USERBOX_TYPE[19] = '';//@@@@@
 
 
 $LANG_USERBOX_TYPE[11] = 'Image(DB Save)';
