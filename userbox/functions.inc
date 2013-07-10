@@ -206,7 +206,7 @@ function plugin_getadminoption_userbox()
 {
     global $_CONF;
     global $_TABLES;
-    global $LANG_USERBOX_ADMIN;
+	global $LANG_USERBOX_ADMIN;
     if (SEC_hasRights ('userbox.admin') ){
         //下書他も含む全件数
         $cnt = DB_getItem ($_TABLES['USERBOX_base'], 'COUNT(*)');
@@ -256,7 +256,7 @@ function plugin_getuseroption_userbox()
         return;
     }
 
-	if (SEC_hasRights ('userbox.user')){
+	if (SEC_hasRights ('userbox.user') OR ($_USERBOX_CONF['allow_loggedinusers']==1)){
 		$url = $_CONF['site_url'] . '/userbox/myprofile/index.php';
 		if ($_USERBOX_CONF['allow_profile_update']==1){
 			return array ($LANG_USERBOX['myprofile'], $url, '');

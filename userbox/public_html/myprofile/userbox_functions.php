@@ -27,7 +27,7 @@ if  ($_USER['uid']<2 ) {
     exit;
 }
 
-if (SEC_hasRights('userbox.user')){
+if (SEC_hasRights('userbox.user') OR ($_USERBOX_CONF['allow_loggedinusers']==1)){
 }else{
     $page_title= $LANG_USERBOX['myprofile'];
     $display .= DATABOX_siteHeader('USERBOX','',$page_title);
