@@ -15,7 +15,7 @@ define ('THIS_SCRIPT', 'backuprestore.php');
 //define ('THIS_SCRIPT', 'test.php');
 
 require_once('databox_functions.php');
-require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
+require_once ($_CONF['path'] . 'plugins/databox/lib/lib_configuration.php');
 
 
 function fncDisply(
