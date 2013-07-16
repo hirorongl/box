@@ -906,6 +906,9 @@ function plugin_getiteminfo_userbox(
             break;
         case 'id':
             $fields[] = 'id';
+			break;
+        case 'title':
+			$fields[] = 'username';
             break;
 		case 'url':
             if ($id == '*') {
@@ -971,7 +974,7 @@ function plugin_getiteminfo_userbox(
                 $props['id'] = $A['id'];
                 break;
             case 'title':
-                $props['title'] = stripslashes($A['title']);
+                $props['title'] = stripslashes($A['username']);
                 break;
             case 'url':
                 $url=$_CONF['site_url'] . "/userbox/profile.php";
