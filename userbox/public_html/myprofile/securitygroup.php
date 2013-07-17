@@ -321,7 +321,10 @@ function fncSave (
     global $_USER;
     global $_USERBOX_CONF;
     global $LANG_USERBOX_user_menu;
-
+	global $LANG_USERBOX_ADMIN;
+	
+    $pi_name="userbox";
+	
     $retval = '';
 
     //
@@ -358,19 +361,38 @@ function fncSave (
         $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
         $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
         $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
-        $retval .= fncEdit($id, $edt_flg,1,$err);
+        //$retval .= fncEdit($id, $edt_flg,1,$err);
+        $retval .= fncEdit(1);
         $retval .= DATABOX_siteFooter($pi_name,'_admin');
 
         return $retval;
-
-
     }else if ($_USERBOX_CONF['aftersave']==='list'
           OR $_USERBOX_CONF['aftersave']==='admin' ){
-            $item_url=COM_buildURL($_CONF['site_url'] . "/userbox/profile.php?m=id&id=".$id);
-            $target='item';
+        $url=$_CONF['site_url'] . "/userbox/profile.php";
+        $url.="?";
+        //コード使用の時
+        if ($_USERBOX_CONF['datacode']){
+            $url.="code=".$username;
+            $url.="&amp;m=code";
+        }else{
+            $url.="id=".$id;
+            $url.="&amp;m=id";
+		}
+        $item_url = COM_buildUrl( $url );
+        $target='item';
     }else{
-            $item_url=COM_buildURL($_CONF['site_url'] . "/userbox/profile.php?m=id&id=".$id);
-            $target=$_USERBOX_CONF['aftersave'];
+        $url=$_CONF['site_url'] . "/userbox/profile.php";
+        $url.="?";
+        //コード使用の時
+        if ($_USERBOX_CONF['datacode']){
+            $url.="code=".$username;
+            $url.="&amp;m=code";
+        }else{
+            $url.="id=".$id;
+            $url.="&amp;m=id";
+		}
+        $item_url = COM_buildUrl( $url );
+		$target=$_USERBOX_CONF['aftersave_admin'];
     }
 
 // $return_page="";
