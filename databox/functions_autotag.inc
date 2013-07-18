@@ -446,6 +446,8 @@ function databox_category(
 			$w.="WHERE category_id IN ({$ids})) ";
 		}
 		$sql.=" ({$w})".LB;
+	}else{
+		$sql.=" 1=1".LB;
 	}
 	
     if ($addfieldorder){
