@@ -764,7 +764,17 @@ function fncSave (
 
     }else if ($_USERBOX_CONF['aftersave']==='list'
           OR $_USERBOX_CONF['aftersave']==='admin' ){
-            $item_url=COM_buildURL($_CONF['site_url'] . "/userbox/profile.php?m=id&id=".$id);
+        $url=$_CONF['site_url'] . "/userbox/profile.php";
+        $url.="?";
+        //コード使用の時
+        if ($_USERBOX_CONF['datacode']){
+            $url.="code=".$username;
+            $url.="&amp;m=code";
+        }else{
+            $url.="id=".$id;
+            $url.="&amp;m=id";
+		}
+        $item_url = COM_buildUrl( $url );
             $target='item';
     }else{
         $url=$_CONF['site_url'] . "/userbox/profile.php";
@@ -778,7 +788,7 @@ function fncSave (
             $url.="&amp;m=id";
 		}
         $item_url = COM_buildUrl( $url );
-		$target=$_USERBOX_CONF['aftersave_admin'];
+		$target=$_USERBOX_CONF['aftersave'];
     }
 
 // $return_page="";
