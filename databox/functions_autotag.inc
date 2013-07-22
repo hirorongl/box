@@ -1180,9 +1180,9 @@ function databox_field(
             $url.="?";
             //コード使用の時
             if ($_DATABOX_CONF['datacode'] AND $code<>""){
-                $url.="code=".$code;
+                 $url.="code=".$code;
                 $url.="&amp;m=code";
-            }else{
+           }else{
                 $url.="id=".$id;
                 $url.="&amp;m=id";
             }

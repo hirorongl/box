@@ -1746,11 +1746,11 @@ function userbox_field(
             $url.="?";
             //コード使用の時
             if ($_USERBOX_CONF['datacode']){
-                $url.="code=".$A['username'];
-                $url.="&amp;m=code";
+                $url.="m=code";
+                $url.="&amp;code=".$A['username'];
             }else{
-                $url.="&amp;id=".$A['id'];
-                $url.="m=id";
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
             }
             $url = COM_buildUrl( $url );
             $link= COM_createLink($username, $url);
