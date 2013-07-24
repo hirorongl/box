@@ -2196,7 +2196,7 @@ function DATABOX_getcategoriesDisp(
     ,$pi_name=""
 )
 // +---------------------------------------------------------------------------+
-// | 機能  カテゴリテキスト作成
+// | 機能  カテゴリHRML作成
 // | 書式 DATABOX_getcategoriesDisp
 // +---------------------------------------------------------------------------+
 // | 引数 $id:
@@ -2232,7 +2232,33 @@ function DATABOX_getcategoriesDisp(
 
     global $$lang_box;
     $lang_box=$$lang_box;
+	
+	$sql = "SELECT ";
+    $sql .= " group_id".LB;
+    $sql .= " ,code".LB;
+    $sql .= " FROM ";
+    $sql .= " {$table_def_group} ".LB;
+	$result = DB_query( $sql );
+    $nrows = DB_numRows( $result );
+	
+    for( $i = 0; $i < $nrows; $i++ )    {
+        $A = DB_fetchArray( $result, true );
+		$gid=$A['group_id'];
+		$gcode=$A['code'];
+		$templates->set_var('group_'.$gid, "");
+		$templates->set_var('group_'.$gcode, "");
+        $templates->set_var('group_'.$gid."_code", "");
+        $templates->set_var('group_'.$gcode."_code", "");
+				
+        $templates->set_var('grouplink_'.$gid, "");
+        $templates->set_var('grouplink_'.$gid."_code", "");
 
+        $templates->set_var('grouplink_'.$gcode, "");
+		$templates->set_var('grouplink_'.$gcode."_code", "");
+	}
+	
+	
+	
     $retval = '';
 
     $sql = "SELECT ".LB;
