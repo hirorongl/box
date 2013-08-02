@@ -2784,6 +2784,7 @@ function DATABOX_cleanaddtiondatas(
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
 				case 10:// 複数行テキストフィールド(HTML NG)
+				case 20:// 複数行テキストフィールド(HTML OK TinyMCE)
 				if  (($textconv==10)
 						OR ($textcheck>=11 AND $textcheck<=14)){ //半角チェック;
 						$wk = mb_convert_kana($wk,"ak");
@@ -2801,6 +2802,7 @@ function DATABOX_cleanaddtiondatas(
 					$wk=COM_checkHTML (COM_checkWords ($wk));
 					break;
                 case 1:// 複数行テキストフィールド(HTML OK)
+                case 20:// 複数行テキストフィールド(HTML OK TinyMCE)
                     $wk=COM_stripslashes($wk);
                     break;
                 case 2://いいえ/はい
@@ -3091,7 +3093,9 @@ function DATABOX_checkaddtiondatas(
 			
             //textarea
 			if ($addition_def[$field_id]['type']==1 
-					OR $addition_def[$field_id]['type']==10){
+					OR $addition_def[$field_id]['type']==10
+					OR $addition_def[$field_id]['type']==20
+					){
 				if ($value ===""){
 				}else{
 					if (mb_strlen($value, 'UTF-8')>$addition_def[$field_id]['maxlength']) {
