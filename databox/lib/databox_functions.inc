@@ -1952,7 +1952,6 @@ function DATABOX_getaddtionfieldsDisp(
                     $fieldhtml .= rtrim($wk,$separater);
 					break;
 				case 10:// 複数行テキストフィールド(HTML NG)
-				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
 					$w=DATABOX_nl2br($fvalue);
 					$w=DATABOX_autolink($w);
 					$fieldhtml .= $w;
@@ -1997,7 +1996,8 @@ function DATABOX_getaddtionfieldsDisp(
                 case 5://メールアドレス　（準備中）';
 
                 case 0:// 一行テキストフィールド
-                case 1:// 複数行テキストフィールド
+                case 1:// 複数行テキストフィールド(HTML OK)
+				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
                 default:
                     $fieldhtml .= $fvalue;
             }
