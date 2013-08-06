@@ -329,7 +329,8 @@ function LIB_Edit(
 	
 	$templates->set_var('lang_defaulttemplatesdirectory', $lang_box_admin['defaulttemplatesdirectory']);
 	$templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
-	$select_defaulttemplatesdirectory=LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"data");	//@@@@@
+
+	$select_defaulttemplatesdirectory=LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory);
 	$templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);
 	
 	$templates->set_var('lang_layout', $lang_box_admin['layout']);
@@ -1501,25 +1502,29 @@ function LIB_savegroups(
 }
 // +---------------------------------------------------------------------------+
 // | 機能 テンプレートディレクトリの選択入力ｈｔｍｌ
-// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"data")
-// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory,"profile")
+// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory)
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 function LIB_templatesdirectory (
     $pi_name
 	,$defaulttemplatesdirectory
-	,$fld
 ){
 
     global $_CONF;
     global $_TABLES;
-        global $_USER ;
+    global $_USER ;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-
+	
+	if  (strtoupper($pi_name)=="DATABOX"){
+		$fld="data";
+	}else{
+		$fld="profile";
+	}
+		
     //
     $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
@@ -1532,7 +1537,6 @@ function LIB_templatesdirectory (
     }else{
         $fd1=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$fld.'/';
     }
-
 
     if( is_dir( $fd1)){
         $fd = opendir( $fd1 );
