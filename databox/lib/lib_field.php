@@ -311,9 +311,9 @@ function LIB_Edit(
             $selectlist ="";
             $checkrequried ="";
 
-            $size = 60;
-            $maxlength = 160;
-            $rows = 2;
+            $size = 100;
+            $maxlength = 500;
+            $rows = 3;
             $br = 0;
 
             $orderno ="";
