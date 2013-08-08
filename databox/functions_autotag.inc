@@ -188,6 +188,7 @@ function plugin_autotags_databox (
                         );
                         break;
                     case 'mydataentrylink':
+                    case 'mydataentry':
                         $rt= databox_mydataentrylink(
                             $p['type_id']
                             ,$p['templatedir']
