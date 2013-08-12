@@ -300,19 +300,6 @@ $pi_name    = 'databox';
 //############################
 $display = '';
 $page_title=$LANG_DATABOX_ADMIN['piname'];
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_DATABOX_CONF['loginrequired'] === 3)
-            OR ($_DATABOX_CONF['loginrequired'] === 2 AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
-
-}
 
 //引数
 //(各アトリビュート)別件数一覧 の引数の順番
@@ -374,6 +361,22 @@ if ($id===0){
 }
 if ($perpage===0){
     $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
+}
+//ログイン要否チェック
+if (COM_isAnonUser()){
+	// Geeklogすべてにログインを必要とする=0 はい
+	// または DataBox ログインを要求する=3 はい
+	// または DataBox ログインを要求する=2 一覧と詳細　
+    if  ($_CONF['loginrequired']
+            OR ($_DATABOX_CONF['loginrequired'] == 3)
+            OR ($_DATABOX_CONF['loginrequired'] == 2 AND $value<>"") ){
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
+
 }
 
 //(各アトリビュート)別件数一覧
