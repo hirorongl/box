@@ -1106,6 +1106,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
                 case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
+                case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
 				     if ($disabled===""){
 						$cntname="afieldcnt".$fid;
                         $fieldhtml .= "<textarea ";
@@ -1120,6 +1121,9 @@ function DATABOX_getaddtionfieldsEdit(
 						$fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
 						if  ($type==20){
 							$fieldhtml .= " class=\"tinymce_enabled\"";
+						}
+						if  ($type==19){
+							$fieldhtml .= " class=\"wide\"";
 						}
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
@@ -1753,6 +1757,7 @@ function DATABOX_getaddtionfieldsText(
 					case 1:// 複数行テキストフィールド(HTML OK)
 					case 10:// 複数行テキストフィールド(HTML NG)
 					case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
+					case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
 					default:
 						$retval .= $fvalue;
 				}
@@ -1998,6 +2003,7 @@ function DATABOX_getaddtionfieldsDisp(
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
 				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
+				case 19:// 複数行テキストフィールド(HTML OK  CKEditor)
                 default:
                     $fieldhtml .= $fvalue;
             }

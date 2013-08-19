@@ -561,10 +561,12 @@ $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
-$LANG_DATABOX_TYPE[0] = '一行テキストフィールド';
-$LANG_DATABOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
-$LANG_DATABOX_TYPE[20] = '複数行テキストフィールド(HTML OK  TinyMCE)';
-$LANG_DATABOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
+$LANG_DATABOX_TYPE[0] = '一行テキスト';
+$LANG_DATABOX_TYPE[10] = '複数行テキスト';//複数行テキストフィールド(HTML NG)';
+$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';//複数行テキストフィールド(HTML OK)';
+$LANG_DATABOX_TYPE[20] = 'TinyMCEモード（複数行テキスト）';//'複数行テキストフィールド(HTML OK  TinyMCE)';
+$LANG_DATABOX_TYPE[19] = 'CKEditorモード（複数行テキスト）(テスト中GL2.0.1以降用)';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
+
 $LANG_DATABOX_TYPE[15] = '数値';
 
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
