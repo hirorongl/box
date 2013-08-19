@@ -2046,6 +2046,11 @@ function DATABOX_getaddtionfieldsDisp(
 			$templates->set_var($templatesetvar.":2", $mstitems['value2']);
 			$templates->set_var($templatesetvar.":disp", $mstitems['disp']);
 			$templates->set_var($templatesetvar.":no", $mstitems['no']);
+			
+			$templates->set_var($templatesetvar."_2", $mstitems['value2']);
+			$templates->set_var($templatesetvar."_disp", $mstitems['disp']);
+			$templates->set_var($templatesetvar."_no", $mstitems['no']);
+
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('additionfields', 'row', true);
