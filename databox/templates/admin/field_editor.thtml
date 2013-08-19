@@ -2,6 +2,7 @@
 
 <div id="databox_admin">
 {about_thispage}
+<a href="{document_url}input_field.html" target="_blank">{lang_document}</a>
 <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">

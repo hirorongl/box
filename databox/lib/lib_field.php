@@ -403,7 +403,17 @@ function LIB_Edit(
     //id
     $templates->set_var('lang_field_id', $lang_box_admin['field_id']);
     $templates->set_var('id', $id);
-
+	
+	//document link
+	$lang = COM_getLanguageName();
+	$path = 'admin/plugins/'.strtolower($pi_name).'/docs/';
+	if (!file_exists($_CONF['path_html'] . $path . $lang . '/')) {
+		$lang = 'japanese';//'english';
+	}
+	$document_url = $_CONF['site_url'] . '/' . $path . $lang . '/';
+	$templates->set_var('document_url', $document_url);
+    $templates->set_var('lang_document', $LANG_DATABOX_ADMIN['document']);
+	
     //名前＆テンプレート変数＆説明
     $templates->set_var('lang_name', $lang_box_admin['name']);
     $templates->set_var ('name', $name);
