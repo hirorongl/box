@@ -146,7 +146,7 @@ function plugin_autotags_userbox (
 							,$p['expired']
                         );
 						break;
-				    case 'attributecount':
+				    case 'attributedatacount':
                         $rt=userbox_count_each_afield(
                             $p['templatesetvar']
                             ,$p['value']

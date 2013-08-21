@@ -142,7 +142,7 @@ function plugin_autotags_databox (
                             ,$p['type_id']
                         );
                         break;
-                    case 'attributecount':
+                    case 'attributedatacount':
                         $rt=databox_count_each_afield(
                             $p['templatesetvar']
                             ,$p['value']
