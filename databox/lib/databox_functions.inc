@@ -1139,7 +1139,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml=DATABOX_getradiolist
                             ($lang_noyes,"afield[".$fid."]",$fvalue,$br ,$disabled);
                     }else{
-                        $fieldhtml= $LANG_DATABOX_NOYES[$fvalue];
+                        $fieldhtml= $lang_noyes[$fvalue];
                     }
                     break;
 				case 7://オプションリスト（選択肢）
@@ -1716,7 +1716,7 @@ function DATABOX_getaddtionfieldsText(
 						$retval .= "";
 						break;
 					case 2://いいえ/はい
-						$retval .= $lang_box_noyes[$fvalue];
+						$retval .= $lang_noyes[$fvalue];
 						break;
 					case 7://オプションリスト（選択肢）
 					case 8://オプションリスト（選択肢）
@@ -1798,7 +1798,6 @@ function DATABOX_getaddtionfieldsDisp(
 	global $_TABLES;
 
 	$lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
 
@@ -1871,7 +1870,6 @@ function DATABOX_getaddtionfieldsDisp(
 				}
 			}
 		}
-		
         if ($chk) {
             $fieldhtml="";//外画像の場合ファイル名
             $fieldhtml_tn="";//サムネイルファイル名
@@ -1942,8 +1940,8 @@ function DATABOX_getaddtionfieldsDisp(
                     }
                     break;
                 case 2://いいえ/はい
-                    $fieldhtml .= $lang_box_noyes[$fvalue];
-                    break;
+                    $fieldhtml .= $lang_noyes[$fvalue];
+					break;
                 case 7://オプションリスト（選択肢）//@@@@@@
                 case 8://ラジオボタンリスト（選択肢）//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
@@ -2565,9 +2563,9 @@ function DATABOX_getaddtionfields(
     $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
     $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
 
-    $lang_box_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-    global $$lang_box_noyes;
-    $lang_box_noyes=$$lang_box_noyes;
+    $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
+    global $$lang_noyes;
+    $lang_noyes=$$lang_noyes;
 
     $retval=array();
 
@@ -2600,7 +2598,7 @@ function DATABOX_getaddtionfields(
             $value
 			,$addition_def[$fid]['type']
             ,$addition_def[$fid]['selectionary']
-			,$lang_box_noyes
+			,$lang_noyes
 			,$addition_def[$fid]['selectlist']
 			,$pi_name
             );
@@ -2614,18 +2612,18 @@ function DATABOX_getfieldvalue(
     $value
     ,$type
     ,$selectionary
-	,$lang_box_noyes
+	,$lang_noyes
 	,$selectlist
 	,$pi_name
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
-// | 書式 DATABOX_getfieldvalue($value,$type,$selectionary,$lang_box_noyes)
+// | 書式 DATABOX_getfieldvalue($value,$type,$selectionary,$lang_noyes)
 // +---------------------------------------------------------------------------+
 // | 引数 $value:
 // | 引数 $type:
 // | 引数 $selectionary:
-// | 引数 $lang_box_noyes:
+// | 引数 $lang_noyes:
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目値
 // +---------------------------------------------------------------------------+
@@ -2637,7 +2635,7 @@ function DATABOX_getfieldvalue(
 	switch ($type) {
 
         case 2://いいえ/はい
-            $fieldvalue = $lang_box_noyes[$value];
+            $fieldvalue = $lang_noyes[$value];
             break;
         case 7://オプションリスト（選択肢）
         case 8://ラジオボタンリスト（選択肢）
