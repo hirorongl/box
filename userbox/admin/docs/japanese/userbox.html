@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定(2013/06/25 update)</a></h3>
+<h3><a name="public">メイン設定(2013/08/23 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -42,7 +42,14 @@
 <tr class="r2">
   <td><a name="desc_loginrequired">ログイン要求する(loginrequired)</a></td>
   <td>いいえ(0)</td>
-  <td>はい(1)にすると、登録ユーザーしかユーザーボックスセクションにアクセスできなくなります。<br>
+  <td>
+  <ul>
+  <li>いいえ(0)の場合、ログイン要求しません</li>
+    <li>はい(3)にすると、ゲストユーザーはユーザーボックスセクションにアクセスできなくなります</li>
+    <li>一覧と詳細(2)にすると、ゲストユーザーは、件数一覧のみアクセスできますが、一覧と、個別表示にはアクセスできなくなります</li>
+    <li>詳細(1)にすると、ゲストユーザーは、件数一覧と一覧のみアクセスできますが、個別表示にはアクセスできなくなります</li>
+    </ul>
+
     この設定値よりも、「管理者用メニュー - コンフィギュレーション - Geeklog - ユーザーと投稿」の「すべてにログインを要求する(loginrequired)</a>」の設定の方が優先されます。「すべてにログインを要求する」をはい(1)にすると、ユーザーボックスプラグインでログインを要求していなくても、ゲストユーザーはユーザーボックスセクションにアクセスできなくなります。</td>
 </tr>
 
