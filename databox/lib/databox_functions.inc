@@ -4238,4 +4238,83 @@ function DATABOX_getAry(
 	}
 	return $ary;
 }
+
+function DATABOX_categorycount(
+	$pi_name
+	,$categorygroup_id 
+	,$categorygroup_code 
+)
+// +---------------------------------------------------------------------------+
+// | 機能  カテゴリ件数表示
+// +---------------------------------------------------------------------------+
+// | 書式  databox_categorycount()
+// | 書式  databox_categorycount(1)
+// | 書式  databox_count("","japan")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin名
+// | 引数 $group_id:カテゴリグループid
+// | 引数 $group_code:カテゴリグループコード
+// | カテゴリグループid もカテゴリグループコードも指定ない場合は
+// | 親カテゴリグループなしのカテゴリの件数
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:カテゴリ件数
+// | （アクセス権のあるデータが登録されていないカテゴリの件数は含みません）
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+	//-----
+	$tbl3=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+    $tbl1=$_TABLES[strtoupper($pi_name).'_category'] ;
+    $tbl4=$_TABLES[strtoupper($pi_name).'_def_group'] ;
+    $tbl2=$_TABLES[strtoupper($pi_name).'_base'] ;
+	if ($categorygroup_id =="" AND $categorygroup_code=="") {
+		$categorygroup_id=0;
+	}else{
+		if  ($categorygroup_id==""){
+			$categorygroup_id=DATABOX_codetoid(	$categorygroup_code,strtoupper($pi_name).'_def_group',"group_id");
+			if  ($categorygroup_id==0){
+				return 0;
+			}
+		}
+	}
+	
+
+    //-----
+    $sql = "SELECT ".LB;
+    $sql .= " t1.category_id".LB;
+    //$sql .= " ,Count(t1.id) AS count".LB;
+
+    $sql .= " FROM ".LB;
+    $sql .= " {$tbl1} AS t1 ".LB;
+    $sql .= " ,{$tbl2} AS t2 ".LB;
+    $sql .= " ,{$tbl3} AS t3 ".LB;
+    $sql .= " ,{$tbl4} AS t4 ".LB;
+
+    $sql .= " WHERE ".LB;
+    $sql .= " t1.id = t2.id ".LB;
+    $sql .= " AND t1.category_id = t3.category_id ".LB;
+	$sql .= " AND t3.categorygroup_id = ".$categorygroup_id.LB;
+	$sql .= " AND t3.categorygroup_id = t4.group_id ".LB;
+    //管理者の時,下書データも含む
+    //if ( SEC_hasRights('databox.admin')) {
+    //}else{
+       $sql .= " AND t2.draft_flag=0".LB;
+    //}
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND',0,2,"t2").LB;
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())".LB;
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())".LB;
+	
+    $sql .= " GROUP BY ".LB;
+    $sql .= " t1.category_id".LB;
+	
+    $result = DB_query ($sql);
+    $cnt = DB_numRows ($result);
+    $rt=COM_NumberFormat($cnt);
+
+    return $rt;
+
+}
 ?>

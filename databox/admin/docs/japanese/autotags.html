@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2013/08/21 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2013/08/23 update)</h2>
 <table>
 <tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
@@ -204,7 +204,17 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 マイデータ更新の権限がない場合は、表示されません<br />
 </td>
 </tr>
+<tr class="r2">
+<td>[databox:categorycount　カテゴリグループid または　カテゴリグループコード]
+</td>
 
+<td>指定カテゴリグループのカテゴリ件数<br /> 
+例１：[databox:categorycount ] 親グループなしカテゴリの件数<br />
+例２：[databox:categorycount group_id:3]<br />
+例３：[databox:categorycount group_code:pref]<br />
+アクセス権のあるデータが登録されていないカテゴリの件数は含みません
+</td>
+</tr>
 </tbody>
 </table>
 <h2>ブロック用関数</h2>

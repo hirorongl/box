@@ -82,8 +82,9 @@ function plugin_autotags_databox (
 		$parm2_ary[]="field_id";
 		$parm2_ary[]="expired";
 		$parm2_ary[]="type_id";
+		$parm2_ary[]="group_id";
+		$parm2_ary[]="group_code";
 		$p=databox_parm2($p2,$parm2_ary);
-
         //各処理
         switch( $tag ) {
             case 'databox' :
@@ -199,6 +200,13 @@ function plugin_autotags_databox (
                         $rt= databox_mydata(
                              $p['templatedir']
                             ,$p['lastparm2']
+                        );
+                        break;
+                    case 'categorycount':
+						$rt= DATABOX_categorycount(
+							 "databox"
+                            ,$p['group_id']
+                            ,$p['group_code']
                         );
                         break;
 
@@ -2632,4 +2640,5 @@ function databox_mydata(
 	}
 	return $url;
 }
+
 ?>
