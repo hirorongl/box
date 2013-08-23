@@ -608,7 +608,7 @@ function userbox_category(
 
             $templates->set_var ('data_link', $link);
 
-            $templates->set_var ('fullname', $A['fullname']);
+            $templates->set_var ('data_fullname', $A['fullname']);
 
             $templates->set_var ('data_username', $username);
 
