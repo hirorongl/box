@@ -112,19 +112,6 @@ $pi_name    = 'userbox';
 //############################
 $display = '';
 $page_title=$LANG_USERBOX_ADMIN['piname'];
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_USERBOX_CONF['loginrequired'] === "3")
-            OR ($_USERBOX_CONF['loginrequired'] === "2")
-            OR ($_USERBOX_CONF['loginrequired'] === "1" AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
-}
 // 引数
 //data.php?id=1&m=id&template=yyyy
 //data.php?code=xxxx_en&m=code&template=yyyy
@@ -161,6 +148,22 @@ if ($url_rewrite){
     $code = COM_applyFilter($_GET['code']);
     $template = COM_applyFilter($_GET['template']);
 }
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    if  ($_CONF['loginrequired']
+            OR ($_USERBOX_CONF['loginrequired'] == "3")
+            OR ($_USERBOX_CONF['loginrequired'] == "2")
+			OR ($_USERBOX_CONF['loginrequired'] == "1" AND $id>0)
+			OR ($_USERBOX_CONF['loginrequired'] == "1" AND $code<>"")
+		){
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
+}
+
 $msg = '';
 if (isset ($_GET['msg'])) {
     $msg = COM_applyFilter ($_GET['msg'], true);

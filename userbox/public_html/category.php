@@ -287,18 +287,7 @@ $pi_name    = 'userbox';
 //############################
 $display = '';
 $page_title=$LANG_USERBOX_ADMIN['piname'];
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_USERBOX_CONF['loginrequired'] === 3)
-            OR ($_USERBOX_CONF['loginrequired'] === 2 AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
-}
+
 //引数
 //グループ別)カテゴリ別件数一覧　の引数の順番
 //public_html/category.php?gid=1&m=gid
@@ -362,7 +351,22 @@ $expired = COM_applyFilter($_GET['expired']);
 if ($perpage===0){
     $perpage=$_USERBOX_CONF['perpage']; // 1ページの行数 @@@@@
 }
-
+echo "aa=".$_USERBOX_CONF['loginrequired']." id=".$id."<br>";
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    if  ($_CONF['loginrequired']
+            OR ($_USERBOX_CONF['loginrequired'] == 3)
+			OR ($_USERBOX_CONF['loginrequired'] == 2 AND $id>0	) 
+			OR ($_USERBOX_CONF['loginrequired'] == 2 AND $code<>""	) 
+			){
+        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+        $display .= SEC_loginRequiredForm();
+        $display .= DATABOX_siteFooter($pi_name);
+        COM_output($display);
+        exit;
+    }
+}
+echo "Aaaa";
 if ($id===0) { //一覧
 	if ($code<>""){
 		$display .= userbox_category(

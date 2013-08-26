@@ -22,9 +22,9 @@ $_DATABOX_VERBOSE = false;
 //ログイン要否チェック
 if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
-            OR ($_DATABOX_CONF['loginrequired'] === 3)
-            OR ($_DATABOX_CONF['loginrequired'] === 2)
-            OR ($_DATABOX_CONF['loginrequired'] === 1 AND $id>0) ){
+            OR ($_DATABOX_CONF['loginrequired'] == 3)
+            OR ($_DATABOX_CONF['loginrequired'] == 2)
+            ){
         $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
         $display .= DATABOX_siteFooter($pi_name);
