@@ -2788,7 +2788,7 @@ function DATABOX_cleanaddtiondatas(
 			$textconv=$addition_def[$field_id]['textconv'];
 			$textcheck=$addition_def[$field_id]['textcheck'];
 			$wk=$value;
-			//
+			//入力値変換
 			switch ($type) {
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
@@ -2806,12 +2806,14 @@ function DATABOX_cleanaddtiondatas(
 			switch ($type) {
                 case 11:// 図
                     break;
-                case 0:// 一行テキストフィールド
+                case 0:// 一行テキスト
+                case 10://複数行テキスト
                     $wk=COM_stripslashes($wk);
 					$wk=COM_checkHTML (COM_checkWords ($wk));
 					break;
-                case 1:// 複数行テキストフィールド(HTML OK)
-                case 20:// 複数行テキストフィールド(HTML OK TinyMCE)
+                case 1://HTML
+                case 20://TinyMCE
+                case 19://CKEditor
                     $wk=COM_stripslashes($wk);
                     break;
                 case 2://いいえ/はい
@@ -2853,19 +2855,17 @@ function DATABOX_cleanaddtiondatas(
 				case 18://マルチセレクトリスト（マスター）
                     $wk=implode ($wk,":");
 					break;
-                case 7://オプションリスト（選択肢）
-                case 8://ラジオボタンリスト（選択肢）
-                case 9://オプションリスト（マスター）';
-                case 4://日時
-                case 5://メールアドレス';
-                case 6://url';
-                case 10:// 複数行テキストフィールド(HTML NG)
                 case 12:// 画像（ファイル保存）
 					$fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
 					$delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
 					$wk=COM_checkHTML (COM_checkWords ($wk));
                     break;
+                case 7://オプションリスト（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
+                case 9://オプションリスト（マスター）';
+                case 5://メールアドレス';
+                case 6://url';
                 default:
                     $wk=COM_applyFilter($wk);
 					$wk=COM_checkHTML (COM_checkWords ($wk));
