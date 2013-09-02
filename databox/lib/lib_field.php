@@ -560,12 +560,12 @@ function LIB_Save (
         $new_flg=false;
     }
 
-    $name=COM_applyFilter($_POST['name']);
+    $name=COM_stripslashes($_POST['name']);
     $name=addslashes (COM_checkHTML (COM_checkWords ($name)));
     $templatesetvar=COM_applyFilter($_POST['templatesetvar']);
     $templatesetvar=addslashes (COM_checkHTML (COM_checkWords ($templatesetvar)));
 
-    $description=$_POST['description'];//COM_applyFilter($_POST['description']);
+	$description=COM_stripslashes($_POST['description']);
     $description=addslashes (COM_checkHTML (COM_checkWords ($description)));
 
     $allow_display=COM_applyFilter($_POST['allow_display']);
