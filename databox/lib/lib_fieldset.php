@@ -417,10 +417,10 @@ function LIB_Save (
     $code=COM_applyFilter($_POST['code']);
     $code = addslashes (COM_checkHTML (COM_checkWords ($code)));
 
-    $name=COM_applyFilter($_POST['name']);
+    $name=COM_stripslashes($_POST['name']);
     $name = addslashes (COM_checkHTML (COM_checkWords ($name)));
 
-    $description=$_POST['description'];//COM_applyFilter($_POST['description']);
+	$description=COM_stripslashes($_POST['description']);
     $description = addslashes (COM_checkHTML (COM_checkWords ($description)));
 	
 	$layout=COM_applyFilter($_POST['layout']);
