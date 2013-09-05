@@ -3706,22 +3706,21 @@ function DATABOX_getoptionlistary(
 	$retval .= $disabled.">".LB;
     $retval .= "<option value=0>{$$lang_databox['selectit']}</option>".LB;
 
-    for ($i = 0; $i < count($ary); $i++) {
-
-        $retval .= "<option value=\"".$i."\"";
+	foreach($ary as $k => $v) {
+        $retval .= "<option value=\"".$k."\"";
 		
 		if  ($type==14 OR $type==18){
-			if( in_array($i,$selectedary) ){//@@@@@
+			if( in_array($k,$selectedary) ){//@@@@@
                 $retval .= " selected=\"selected\" ";
 			}
 		}else{
-			if( $i == $selected ){//@@@@@
+			if( $k == $selected ){//@@@@@
                 $retval .= " selected=\"selected\" ";
 			}
 		}
         $retval .= ">";
 
-        $retval .= $ary[$i];
+        $retval .= $v;
         $retval .= "</option>".LB;
 
     }
