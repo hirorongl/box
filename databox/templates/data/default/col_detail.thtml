@@ -1,15 +1,29 @@
 <!-- plugins/databox/templates/data/default/col_detail.thtml 20120816{ -->
+
         <th style="width:20%" class="alignright">{additionfield_name}</th>
-<td style="width:10%; color:green" class="alignleft">&#123;{additionfield_templatesetvar}&#125;&#123;{additionfield_templatesetvar}_noimage&#125;&#123;{additionfield_templatesetvar}_tn&#125;&#123;{additionfield_templatesetvar}_tn_noimage&#125;&#123;{additionfield_templatesetvar}_disp&#125;
+        <td style="width:10%; color:green" class="alignleft">
 
-&#123;{additionfield_templatesetvar}:2&#125;
-&#123;{additionfield_templatesetvar}:disp&#125;
-&#123;{additionfield_templatesetvar}:no&#125;
+          &#123;{additionfield_templatesetvar}&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_noimage&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_tn&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_tn_noimage&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_disp&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_2&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_disp&#125;<br{xhtml}>
+          &#123;{additionfield_templatesetvar}_no&#125;
 
-</td>
-<td>{additionfield_value}{additionfield_value_noimage}{additionfield_value_tn}{additionfield_value_tn_noimage}{additionfield_value_disp}
-{additionfield_value_:2}
-{additionfield_value_:disp}
-{additionfield_value_:no}
-</td>
+        </td>
+        <td>
+
+          {additionfield_value}<br{xhtml}>
+          {additionfield_value_noimage}<br{xhtml}>
+          {additionfield_value_tn}<br{xhtml}>
+          {additionfield_value_tn_noimage}<br{xhtml}>
+          {additionfield_value_disp}<br{xhtml}>
+          {additionfield_value_2}<br{xhtml}>
+          {additionfield_value_disp}<br{xhtml}>
+          {additionfield_value_no}
+
+        </td>
+
 <!-- } plugins/databox/templates/data/default/col_detail.thtml -->

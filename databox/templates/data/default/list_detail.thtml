@@ -125,7 +125,6 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-{draft} {edit}
 
 <!-- 以下は参考例です 登録されていない場合表示されません -->
 <!-- 追加属性 IDを使用する　テーマ変数 例-->
@@ -350,6 +349,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
     </table>
   </fieldset>
+
+{draft} {edit}
 
 </div>
 
