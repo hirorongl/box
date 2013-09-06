@@ -200,9 +200,9 @@ $LANG_DATABOX_ADMIN['selection']='Selection';
 $LANG_DATABOX_ADMIN['selectlist']='Select List';
 $LANG_DATABOX_ADMIN['checkrequried']='Check Requried';
 
-$LANG_DATABOX_ADMIN['textcheck']='入力チェック（テキスト）';
-$LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
-$LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
+$LANG_DATABOX_ADMIN['textcheck']='Input validation(text)';
+$LANG_DATABOX_ADMIN['textconv']='Transform input value(text)';
+$LANG_DATABOX_ADMIN['searchtarget']='Search target';
 
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['draft_msg'] = '
@@ -360,7 +360,7 @@ $LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
-$LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
+$LANG_DATABOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
@@ -372,7 +372,7 @@ After edit, click Save button.<{XHTML}br>
 Adminにget back.';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'Select Type for Creat Data<{XHTML}br>
+'Select Type for Creat Data<br{XHTML}>
 ';
 
 //ERR
@@ -527,15 +527,15 @@ $LANG_DATABOX_ALLOW_EDIT[4] = 'Display Disabled';
 $LANG_DATABOX_ALLOW_EDIT[5] = 'Display';
 
 $LANG_DATABOX_TEXTCHECK = array();
-$LANG_DATABOX_TEXTCHECK[0] = 'ノーチェック';
-$LANG_DATABOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[0] = 'no check';
+$LANG_DATABOX_TEXTCHECK[11] = 'only half-width(change half-width automatically)';
+$LANG_DATABOX_TEXTCHECK[12] = 'only half-width alphanumeric(change half-width automatically)';
+$LANG_DATABOX_TEXTCHECK[13] = 'ID format(change half-width automatically)';
+$LANG_DATABOX_TEXTCHECK[14] = 'only half-width alphanumeric or symbol(change half-width automatically)';
 $LANG_DATABOX_TEXTCONV = array();
-$LANG_DATABOX_TEXTCONV[0] = 'しない';
-$LANG_DATABOX_TEXTCONV[10] = '半角に変換する';
-$LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
+$LANG_DATABOX_TEXTCONV[0] = 'no';
+$LANG_DATABOX_TEXTCONV[10] = 'change half-width';
+$LANG_DATABOX_TEXTCONV[20] = 'change half-width';
 
 //TYPE (Chenge Disabled)
 $LANG_DATABOX_TYPE = array();
