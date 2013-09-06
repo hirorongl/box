@@ -1091,10 +1091,10 @@ function fncSave (
             = SEC_getPermissionValues($array['perm_owner'], $array['perm_group'], $array['perm_members'], $array['perm_anon']);
 
     } else {
-        $perm_owner   = $array['perm_owner'];
-        $perm_group   = $array['perm_group'];
-        $perm_members = $array['perm_members'];
-        $perm_anon    = $array['perm_anon'];
+        $perm_owner   = COM_applyBasicFilter($array['perm_owner'],true);
+        $perm_group   = COM_applyBasicFilter($array['perm_group'],true);
+        $perm_members = COM_applyBasicFilter($array['perm_members'],true);
+        $perm_anon    = COM_applyBasicFilter($array['perm_anon'],true);
     }
 
 

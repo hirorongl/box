@@ -814,7 +814,7 @@ function fncSave (
 
 
         $array = array();
-        SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_perm']);
+        SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_permissions']);
         $perm_owner = $array['perm_owner'];
         $perm_group = $array['perm_group'];
         $perm_anon = $array['perm_anon'];

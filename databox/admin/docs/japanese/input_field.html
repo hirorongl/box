@@ -24,10 +24,11 @@
 <h2><a href="input.html">入力一覧</a></h2>
 
 <h3><a name="field">アトリビュート</a>(2013/07/09 update  書きかけです)</h3>
+追加する項目を登録する入力画面です
 <table>
-<tr><th style="width:25%">項目(変数)</th>
-    <th style="width:25%">デフォルト</th>
-    <th style="width:50%">説明</th>
+<tr><th >項目(変数)</th>
+    <th >デフォルト</th>
+    <th >説明</th>
 </tr>
 <tbody>
 
@@ -70,28 +71,7 @@
   <td valign="top"><a name="desc_type">タイプ</a></td>
   <td valign="top"></td>
   <td valign="top">
-  <ul>
-  <li>0:一行テキストフィールド</li>
-  <li>1:複数行テキストフィールド(HTML OK)</li>
-  <li>20:複数行テキストフィールド(HTML OK  TinyMCE)</li>
-  <li>10:複数行テキストフィールド(HTML NG)</li>
-  <li>15:数値</li>
-  <li>2:いいえ/はい</li>
-  <li>3:日付</li>
-  <li>4:日時</li>
-  <li>5:メールアドレス</li>
-  <li>6:url</li>
-  <li>7:オプションリスト（選択肢）</li>
-  <li>8:ラジオボタンリスト（選択肢）</li>
-  <li>14:マルチセレクトリスト（選択肢）</li>
-  <li>9:オプションリスト（マスター）</li>
-  <li>16:ラジオボタンリスト（マスター）</li>
-  <li>18:マルチセレクトリスト（マスター）</li>
-  <li>11:画像（DB保存）</li>
-  <li>12:画像（ファイル保存）</li>
-  <li>13:添付ファイル（準備中）</li>
-  </ul>
-</td>
+  </td>
 </tr>
 
 
@@ -165,6 +145,160 @@
 
 </tbody></table>
 
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2013/08/28 update  書きかけです)</h3>
+<table>
+<tr><th >No.</th>
+    <th >名称</th>
+    <th >説明</th>
+</tr>
+<tbody>
+
+<tr>
+  <td ><a name="fieldtype00">00</a></td>
+  <td valign="top">一行テキスト</td>
+  <td valign="top">テキスト入力フィールド,HTML入力不可
+  </td>
+</tr>  
+  
+<tr>
+  <td><a name="fieldtype01">01</a></td>
+  <td valign="top">複数行テキスト</td>
+  <td valign="top">テキストエリア入力フィールド,HTML入力不可
+  <br />テキストの改行（CR）は改行要素（br）に変換して表示します
+  <br />URLは、リンクに変換して表示します
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype20">20</a></td>
+  <td valign="top">HTML</td>
+  <td valign="top">テキストエリア入力フィールド,HTML入力可
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype10">10</a></td>
+  <td valign="top">TinyMCE</td>
+  <td valign="top">テキストエリア入力フィールド,HTML入力可,class="tinymce_enabled"
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype19">19</a></td>
+  <td valign="top">CKEditor</td>
+  <td valign="top">テキストエリア入力フィールド,HTML入力可,class="wide"<br />GL2.0.1以降
+  </td>
+</tr>  
+
+<tr>
+  <td valign="top"><a name="fieldtype15">15</a></td>
+  <td valign="top">数値</td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td><a name="fieldtype02">02</a></td>
+  <td valign="top">いいえ/はい</td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype03">03</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">
+   date picker対応(GL2.0.0以降)
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype04">04</a></td>
+  <td valign="top">日時</td>
+  <td valign="top">
+   date picker対応(GL2.0.0以降)
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype05">05</a></td>
+  <td valign="top">メールアドレス</td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype06">06</a></td>
+  <td valign="top">url</td>
+  <td valign="top">テキスト入力フィールド
+  <br />URLは、リンクに変換して表示します
+  </td>
+
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype07">07</a></td>
+  <td valign="top">オプションリスト（選択肢）</td>
+  <td valign="top">このタイプは、選択肢の登録が必須です
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype08">08</a></td>
+  <td valign="top">ラジオボタンリスト（選択肢）</td>
+  <td valign="top">このタイプは、選択肢の登録が必須です
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype14">14</a></td>
+  <td valign="top">マルチセレクトリスト（選択肢）</td>
+  <td valign="top">このタイプは、選択肢の登録が必須です
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype09">09</a></td>
+  <td valign="top">オプションリスト（マスター）</td>
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype16">16</a></td>
+  <td valign="top">ラジオボタンリスト（マスター）</td>
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype18">18</a></td>
+  <td valign="top">マルチセレクトリスト（マスター）</td>
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype11">11</a></td>
+  <td valign="top">画像（DB保存）</td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td valign="top"><a name="fieldtype12">12</a></td>
+  <td valign="top">画像（ファイル保存）</td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype13">13</a></td>
+  <td valign="top"></td>
+  <td valign="top">
+  </td>
+</tr>  
+
+
+</tbody></table>
 
 
 <div class="footer">

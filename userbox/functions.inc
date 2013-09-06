@@ -416,7 +416,7 @@ function plugin_user_create_userbox (
 	$draft_flag=$_USERBOX_CONF['user_draft_default'];//add20120406
 	
     $array = array();
-    SEC_setDefaultPermissions($array, $_USERBOX_CONF['default_perm']);
+    SEC_setDefaultPermissions($array, $_USERBOX_CONF['default_permissions']);
     $perm_owner = $array['perm_owner'];
     $perm_group = $array['perm_group'];
     $perm_anon = $array['perm_anon'];
