@@ -468,13 +468,12 @@ function fncEdit(
             $group_id =$_DATABOX_CONF['grp_id_default'];
 
             $array = array();
-            SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_perm']);
-            $perm_owner = $array['perm_owner'];
+            SEC_setDefaultPermissions($array, $_DATABOX_CONF['default_permissions']);
+			$perm_owner = $array['perm_owner'];
             $perm_group = $array['perm_group'];
             $perm_anon = $array['perm_anon'];
             $perm_members = $array['perm_members'];
-
-            //
+			//
             $draft_flag=$_DATABOX_CONF['admin_draft_default'];
             //編集日付
             $modified_month = date('m');
@@ -580,7 +579,6 @@ function fncEdit(
             $perm_group = COM_stripslashes($A['perm_group']);
             $perm_members = COM_stripslashes($A['perm_members']);
             $perm_anon = COM_stripslashes($A['perm_anon']);
-
             $category = databox_getdatas("category_id",$_TABLES['DATABOX_category'],"id = $id");
 
             //@@@@@
@@ -1158,10 +1156,10 @@ function fncSave (
             = SEC_getPermissionValues($array['perm_owner'], $array['perm_group'], $array['perm_members'], $array['perm_anon']);
 
     } else {
-        $perm_owner   = $array['perm_owner'];
-        $perm_group   = $array['perm_group'];
-        $perm_members = $array['perm_members'];
-        $perm_anon    = $array['perm_anon'];
+        $perm_owner   = COM_applyBasicFilter($array['perm_owner'],true);
+        $perm_group   = COM_applyBasicFilter($array['perm_group'],true);
+        $perm_members = COM_applyBasicFilter($array['perm_members'],true);
+        $perm_anon    = COM_applyBasicFilter($array['perm_anon'],true);
     }
 
 
