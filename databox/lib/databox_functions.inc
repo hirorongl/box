@@ -1129,7 +1129,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= $fvalue;
 						$fieldhtml .= "</textarea>";
 					    $fieldhtml .="<br {XHTML}><strong>";
-					    $fieldhtml .="<span id='".$cntname."'></span><strong>";
+					    $fieldhtml .="<span id='".$cntname."'></span></strong>";
                     }else{
                         $fieldhtml .=$fvalue;
                     }
