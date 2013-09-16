@@ -634,6 +634,8 @@ $LANG_confignames['userbox']['maxlength_description'] = 'Maxlength description';
 $LANG_confignames['userbox']['maxlength_meta_description'] = 'Max length of meta description';
 $LANG_confignames['userbox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
+$LANG_confignames['userbox']['commentcode'] = 'Comment Default';
+
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['userbox'][fs_whatsnew] = 'Whats new Block';
@@ -779,6 +781,8 @@ $LANG_configselects['userbox'][24] =array();
         $grp_name=$A['grp_name'];
         $grp_id=$A['grp_id'];
         $LANG_configselects['userbox'][24][$grp_name]=$grp_id;
-    }
+	}
+
+$LANG_configselects['userbox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
 
 ?>

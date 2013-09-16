@@ -641,6 +641,8 @@ $LANG_confignames['databox']['maxlength_meta_keywords'] = 'Max length of meta ke
 
 $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 
+$LANG_confignames['databox']['commentcode'] = 'Comment Default';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
@@ -787,6 +789,8 @@ $LANG_configselects['databox'][24] =array();
         $grp_name=$A['grp_name'];
         $grp_id=$A['grp_id'];
         $LANG_configselects['databox'][24][$grp_name]=$grp_id;
-    }
+	}
+
+$LANG_configselects['databox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
 
 ?>
