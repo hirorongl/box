@@ -420,7 +420,7 @@ function plugin_user_create_userbox (
     $perm_owner = $array['perm_owner'];
     $perm_group = $array['perm_group'];
     $perm_anon = $array['perm_anon'];
-    $perm_members = $array['perm_members'];
+	$perm_members = $array['perm_members'];
 
     $sql=LB;
     $sql.="INSERT INTO {$_TABLES['USERBOX_base']} (".LB;
@@ -429,6 +429,7 @@ function plugin_user_create_userbox (
 	$sql.=" ,`group_id`,`perm_owner`,`perm_group`,`perm_anon`,`perm_members`".LB;
     $sql.=" ,`draft_flag`".LB;
     $sql.=" ,`trackbackcode`".LB;
+    $sql.=" ,`commentcode`".LB;
 	
     $sql.=")".LB;
 
@@ -442,6 +443,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$perm_members.LB ;
     $sql.=" ,".$draft_flag.LB ;
 	$sql.=",".$_CONF[trackback_code];
+	$sql.=",".$_USERBOX_CONF['commentcode'];
 
     $sql .= ")";
     DB_query ($sql);

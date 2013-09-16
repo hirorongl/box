@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130709
+# Last Update 20130916
 
 ###############################################################################
 ## 管理画面 menu
@@ -617,6 +617,8 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数
 
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
+$LANG_confignames['userbox']['commentcode'] = '新規登録時のコメントのデフォルト';
+
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';
 $LANG_fs['userbox'][fs_whatsnew] = '新着情報ブロック';
@@ -754,5 +756,7 @@ $LANG_configselects['userbox'][24] =array();
         $grp_id=$A['grp_id'];
         $LANG_configselects['userbox'][24][$grp_name]=$grp_id;
     }
+
+$LANG_configselects['userbox'][26] =array( 'コメント有効' => 0, 'コメント無効' => -1);
 
 ?>

@@ -447,7 +447,7 @@ function fncEdit(
             $comment_expire_hour=0;
             $comment_expire_minute=0;
 
-            $commentcode =-1;
+            $commentcode =$_DATABOX_CONF['commentcode'];
             $trackbackcode =$_CONF[trackback_code];
 
             $meta_description ="";

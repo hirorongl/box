@@ -135,6 +135,9 @@ $_DATABOX_DEFAULT['maxlength_meta_keywords'] = "65535";
 //ユーザーメニューに表示しない
 $_DATABOX_DEFAULT['hideuseroption'] = 0;
 
+//新規登録時のコメントのデフォルト
+$_DATABOX_DEFAULT['commentcode'] = 0;
+
 //---（１）新着
 // 新着の期間
 $_DATABOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -515,6 +518,13 @@ function plugin_initconfig_databox()
             'hideuseroption'
             ,$_DATABOX_DEFAULT['hideuseroption']
             ,'select', 0, 0, 0, 320, true
+			, $pi_name
+			,0);
+		
+		$c->add(
+            'commentcode'
+            ,$_DATABOX_DEFAULT['commentcode']
+            ,'select', 0, 0, 26, 330, true
 			, $pi_name
 			,0);
 		

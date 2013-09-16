@@ -134,6 +134,8 @@ $_USERBOX_DEFAULT['maxlength_meta_keywords'] = "65535";
 //ユーザーメニューに表示しない
 $_USERBOX_DEFAULT['hideuseroption'] = 0;
 
+//新規登録時のコメントのデフォルト
+$_USERBOX_DEFAULT['commentcode'] = 0;
 
 //---（１）新着
 // 新着の期間
@@ -506,6 +508,12 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,0);
 		
+		$c->add(
+            'commentcode'
+            ,$_USERBOX_DEFAULT['commentcode']
+            ,'select', 0, 0, 26, 330, true
+			, $pi_name
+			,0);
 
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);

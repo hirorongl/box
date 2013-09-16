@@ -796,7 +796,7 @@ function fncSave (
 			);
         $modified=$created;
         $released=$created;
-        $commentcode =-1;
+        $commentcode =$_DATABOX_CONF['commentcode'];
         $trackbackcode=$_CONF[trackback_code];;
 		
 		$comment_expire='0000-00-00 00:00:00';
@@ -1152,7 +1152,7 @@ function fncsendmail (
 			}
 		}
 		//--- mail_to
-		if  (!empty ($mail_to)){
+		if  ($mail_to<>""){
 			$to=implode($mail_to,",");
 			COM_mail ($to, $subject, $message);
 		}
