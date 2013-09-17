@@ -647,7 +647,7 @@ function plugin_getdocumentationurl_userbox(
 			case 'config':
 				$lang = COM_getLanguageName();
 				$path = 'admin/plugins/userbox/docs/';
-				if (!file_exists($_CONF['path_html'] . $path . $lang . '/assist.html')) {
+				if (!file_exists($_CONF['path_html'] . $path . $lang . '/userbox.html')) {
 					$lang = 'japanese';//'english';
 				}
 		
