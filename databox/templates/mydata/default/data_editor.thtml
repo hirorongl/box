@@ -2,7 +2,7 @@
 <div id="databox_admin">
 {about_thispage}
 <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
-{lang_fieldset}{fieldset_name}({fieldset_id})
+{lang_fieldset}{fieldset_name}(Type id:{fieldset_id})
 <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
   <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
   <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
@@ -12,14 +12,14 @@
     <legend>{lang_basicfields}</legend>
     <table style="width:98%">
     <tr>
-    <th style="width:25%; background:#eee"  class="alignright">{lang_fields}</th>
+    <th style="width:25%; background:#eee" class="alignright">{lang_fields}</th>
     <td style="width:75%; background:#eee" class="alignleft">{lang_content}</td>
     </tr>
 
     <!-- id -->
     <tr>
     <th style="width:25%"  class="alignright">{lang_id}{help_id}</th>
-    <td >
+    <td style="width:75%;">
         {id}
         <input type="hidden" name="id" value="{id}"{xhtml}>
     </td>
@@ -28,7 +28,7 @@
     <!-- DRAFT -->
     <tr>
     <th style="width:25%" class="alignright">{lang_draft}{help_draft}</th>
-    <td >
+    <td style="width:75%;">
 		<input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
 		{draft_msg}
     </td>
@@ -38,7 +38,7 @@
     <!-- code -->
     <tr>
     <th style="width:25%" class="alignright">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
-    <td >
+    <td style="width:75%;">
         {code}
         <input type="hidden" size="60" maxlength="160" name="code" value="{code}"{xhtml}>
     </td>
@@ -48,21 +48,21 @@
     <!-- title -->
     <tr>
     <th style="width:25%" class="alignright">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
-    <td >
+    <td style="width:75%;">
         <input type="text" size="60" maxlength="160" name="title" value="{title}"{xhtml}>
     </td>
     </tr>
     <!-- page title -->
     <tr>
     <th style="width:25%" class="alignright">{lang_page_title}{help_page_title}</th>
-    <td >
+    <td style="width:75%;">
         <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
     </td>
     </tr>
     <!-- description -->
     <tr>
     <th style="width:25%" class="alignright">{lang_description}{help_description}</th>
-    <td >
+    <td style="width:75%;">
 		<textarea name="description" style="width:95%" rows="2" id="databox_description"
 				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
 				<br {xhtml}><strong><span id='description_cnt'></span><strong>
@@ -72,7 +72,7 @@
     <!-- language_id  -->
     <tr{hide_language_id}>
     <th style="width:25%" class="alignright">{lang_language_id}{help_language_id}</th>
-    <td >
+    <td style="width:75%;">
 		{select_language_id}
 	</td>
 	</tr>
@@ -80,12 +80,12 @@
     <!-- タイムスタンプ -->
     <tr>
     <th style="width:25%" class="alignright">{lang_udatetime}</th>
-    <td >{udatetime} {lang_uuid}:{uuid}</td>
+    <td style="width:75%;">{udatetime} {lang_uuid}:{uuid}</td>
          <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
     </tr>
     <tr>
     <th style="width:25%" class="alignright">{lang_created}</th>
-    <td >{created}</td>
+    <td style="width:75%;">{created}</td>
         <input type="hidden" name="created" value="{created}"{xhtml}>
         <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
     </tr>

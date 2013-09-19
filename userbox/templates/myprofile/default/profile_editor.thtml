@@ -3,14 +3,14 @@
 <div id="userbox_admin">
 {about_thispage}
 <a href="{site_url}/userbox/myprofile/view.php?id={id}">{lang_view}</a>
-{lang_fieldset}{fieldset_name}({fieldset_id})
+{lang_fieldset}{fieldset_name}(Type id:{fieldset_id})
 <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post">
   <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
   <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
   <fieldset style="width:94%">
     <legend>Core</legend>
-    <table>
+    <table style="width:98%">
     <tr>
     <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
     <td style="background:#eee" class="alignleft">{lang_content}</td>
@@ -18,8 +18,8 @@
 
         <!-- uid -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_uid}{help_uid}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_uid}{help_uid}</th>
+            <td style="width:75%">
                 {id}
 
             </td>
@@ -27,16 +27,16 @@
 
         <!-- username -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_username}{help_username}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_username}{help_username}</th>
+            <td style="width:75%">
                 {username}  <input type="hidden" name="username" value="{username}"{xhtml}>
 
             </td>
         </tr>
         <!-- fullname -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_fullname}{help_fullname}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_fullname}{help_fullname}</th>
+            <td style="width:75%">
                 <input type="fullname" size="60" maxlength="160" name="fullname" value="{fullname}"{xhtml}>
             </td>
         </tr>
@@ -48,15 +48,15 @@
 
   <fieldset style="width:94%">
     <legend>{lang_basicfields}</legend>
-    <table>
+    <table style="width:98%">
     <tr>
-    <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="background:#eee" class="alignleft">{lang_content}</td>
+    <th style="width:25%; background:#eee"  class="alignright">{lang_fields}</th>
+    <td style="width:75%; background:#eee" class="alignleft">{lang_content}</td>
     </tr>
         <!-- id -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_id}{help_id}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_id}{help_id}</th>
+            <td style="width:75%">
                 {id}
                 <input type="hidden" name="id" value="{id}"{xhtml}>
 
@@ -64,8 +64,8 @@
         </tr>
         <!-- DRAFT -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_draft}{help_draft}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_draft}{help_draft}</th>
+            <td style="width:75%">
                 <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><BR>
 				{draft_msg}
             </td>
@@ -74,15 +74,15 @@
 
         <!-- page title -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_page_title}{help_page_title}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_page_title}{help_page_title}</th>
+            <td style="width:75%">
                 <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
             </td>
         </tr>
         <!-- description -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_description}{help_description}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_description}{help_description}</th>
+            <td style="width:75%">
 				<textarea name="description" style="width:95%" rows="2" id="databox_description"
 				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
 				<br {xhtml}><strong><span id='description_cnt'></span><strong>
@@ -92,20 +92,20 @@
 
         <!-- language_id  -->
         <tr{hide_language_id}>
-            <th style="width:10%" class="alignright">{lang_language_id}{help_language_id}</th>
-            <td >
+            <th style="width:25%" class="alignright">{lang_language_id}{help_language_id}</th>
+            <td style="width:75%">
 			{select_language_id}
             </td>
 		</tr>
 		<!-- タイムスタンプ -->
         <tr>
-            <th style="width:10%" class="alignright">{lang_udatetime}</th>
-            <td >{udatetime} {lang_uuid}:{uuid}</td>
+            <th style="width:25%" class="alignright">{lang_udatetime}</th>
+            <td style="width:75%">{udatetime} {lang_uuid}:{uuid}</td>
             <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
         </tr>
         <tr>
-            <th style="width:10%" class="alignright">{lang_created}</th>
-            <td >{created}</td>
+            <th style="width:25%" class="alignright">{lang_created}</th>
+            <td style="width:75%">{created}</td>
             <input type="hidden" name="created" value="{created}"{xhtml}>
             <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
         </tr>
@@ -116,11 +116,11 @@
   <!-- category -->
   <fieldset style="width:94%">
     <legend>{lang_category}</legend>
-    <table >
+    <table style="width:98%">
     <!-- category -->
     <tr>
-    <th style="width:10%" class="alignright">{lang_category}{help_category}</th>
-    <td >{checklist_category}
+    <th style="width:25%" class="alignright">{lang_category}{help_category}</th>
+    <td style="width:75%">{checklist_category}
     </td>
 	</tr>
     </table>
@@ -131,8 +131,8 @@
     <legend>{lang_additionfields}</legend>
     <table>
     <tr>
-    <th style="width:20%; background:#eee"  class="alignright">{lang_fields}</th>
-    <td style="background:#eee" class="alignleft">{lang_content}</td>
+    <th style="width:25%; background:#eee"  class="alignright">{lang_fields}</th>
+    <td style="width:75%; background:#eee" class="alignleft">{lang_content}</td>
     </tr>
 
         {additionfields}
