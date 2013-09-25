@@ -109,17 +109,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 <!-- 追加項目 -->
   <fieldset style="width:94%">
-    <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
+    <legend>{lang_additionfields} </legend>
     <table style="width:98%">
       <tr>
         <th style="width:20%; background:#eee" class="alignright">{lang_field}</th>
         <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
         <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <td class="alignleft" style="background:#eee">{lang_type}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green; background:#eee" class="alignright">&#123;additionfields&#125;  : &#123;additionfield_name&#125;</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">&#123;additionfield_templatesetvar&#125;</td>
-        <td class="alignleft" style="color:green; background:#eee">&#123;additionfield_value&#125;</td>
+		<th style="width:20%; color:green; background:#eee" class="alignright">	&#123;additionfield_name&#125;</th>
+        <td style="width:20%; color:green; background:#eee" class="alignleft">&#123;additionfield_templatesetvar&#125;
+<br {xhtml}>&#123;additionfield_value&#125;
+</td>
+        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
+        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
       </tr>
     {additionfields}
     </table>
@@ -136,6 +140,84 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}>
 <h3> ★Example★ </h3> 
 <!-- 以下は参考例です 登録されていない場合表示されません -->
+<!-- 追加属性 登録したテーマ変数を使用する　テーマ変数 例-->
+  <fieldset style="width:94%">
+    <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
+    <table style="width:98%">
+      <tr>
+        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
+        <td class="alignleft" style="background:#eee">{lang_content}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;tel&#125;</td>
+        <td>{tel}</td>
+      </tr>
+	
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref&#125;</td>
+        <td>{pref}</td>
+      </tr>
+	
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref:2&#125;</td>
+        <td>{pref:2}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_value2&#125;</td>
+        <td>{pref_mst_value2}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref:disp&#125;</td>
+        <td>{pref:disp}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_disp&#125;</td>
+        <td>{pref_mst_disp}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref:no&#125;</td>
+        <td>{pref:no}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_no&#125;</td>
+        <td>{pref_mst_no}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;yesno&#125;</td>
+        <td>{yesno}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;yesno_yes&#125;</td>
+        <td>{yesno_yes}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12&#125;</td>
+        <td>{fg12}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn&#125;</td>
+        <td>{fg12_tn}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12_noimage&#125;</td>
+        <td>{fg12_noimage}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn_noimage&#125;</td>
+        <td>{fg12_tn_noimage}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12_disp&#125;</td>
+        <td>{fg12_disp}</td>
+      </tr>
+      <tr>
+        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn_image&#125;</td>
+        <td>{fg12_tn_image}</td>
+      </tr>
+	
+	</table>
+  </fieldset>
+
 <!-- 追加属性 IDを使用する　テーマ変数 例-->
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingid}</legend>
@@ -144,11 +226,6 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; background:#eee" class="alignright">{lang_additionfields}{lang_id}</th>
         <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
         <td class="alignleft" style="background:#eee">{lang_content}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1&#125;</td>
-        <td>{additionfield1}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">1</th>
@@ -202,26 +279,198 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">2</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield2&#125;</td>
-        <td>{additionfield2}</td>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_value2&#125;
+		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
+		</td>
+        <td>{additionfield1_mst_value2}</td>
+      </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_disp&#125;
+		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
+		</td>
+        <td>{additionfield1_mst_disp}</td>
+      </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_no&#125;
+		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
+		</td>
+        <td>{additionfield1_mst_no}</td>
+      </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_yes&#125;
+		</td>
+        <td>{additionfield1_yes}</td>
+      </tr>
+
+
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tns&#125;
+		</td>
+        <td>{additionfield1_tn}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">3</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield3&#125;</td>
-        <td>{additionfield3}</td>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_noimage&#125;
+		</td>
+        <td>{additionfield1_noimage}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_image&#125;
+		</td>
+        <td>{additionfield1_tn_image}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_noimage&#125;
+		</td>
+        <td>{additionfield1_tn_noimage}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_disp&#125;
+		</td>
+	    <td>{additionfield1_disp}</td>
+      </tr>
+
+
+
+
+
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11&#125;
+		</td>
+		<td>{additionfield11}
+		</td>
 	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11:2&#125
+		</td>
+		<td>{additionfield11:2}
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11:disp&#125 
+		</td>
+		<td>{additionfield11:disp} 
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11:no&#125
+		</td>
+		<td>{additionfield11:no}
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11_mst_value2&#125
+		</td>
+		<td>{additionfield11_mst_value2}
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11_mst_disp&#125 
+		</td>
+		<td>{additionfield11_mst_disp} 
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11_mst_no&#125
+		</td>
+		<td>{additionfield11_mst_no}
+		</td>
+	  </tr>
+
+      <tr>
+        <th style="width:20%" class="alignright">16</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield16&#125
+		</td>
+		<td>{additionfield16}
+		</td>
+	  </tr>
+      <tr>
+        <th style="width:20%" class="alignright">16</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield16_yes&#125
+		</td>
+		<td>{additionfield16_yes}
+		</td>
 	
       <tr>
         <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield18&#125;
-		&#123;additionfield18:2&#125&#123;additionfield18:disp&#125 &#123;additionfield18:no&#125
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18&#125
 		</td>
-		<td>{additionfield18}{additionfield18:2}{additionfield18:disp} {additionfield18:no}
+		<td>{additionfield18}
 		</td>
 	  </tr>
-	
-    </table>
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_tn&#125
+		</td>
+		<td>{additionfield18_tn}
+		</td>
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_noimage&#125
+		</td>
+		<td>{additionfield18_noimage}
+		</td>
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_tn_noimage&#125
+		</td>
+		<td>{additionfield18_tn_noimage}
+		</td>
+
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_disp&#125
+		</td>
+		<td>{additionfield18_disp}
+		</td>
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_tn_image&#125
+		</td>
+		<td>{additionfield18_tn_image}
+		</td>
+
+	</table>
   </fieldset>
 
 

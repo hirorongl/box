@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130916
+# Last Update 20130924
 
 ###############################################################################
 ## 管理画面 menu
@@ -77,6 +77,7 @@ $LANG_USERBOX['category_separater']="、";//テーマ変数でカテゴリ名称
 $LANG_USERBOX['category_separater_code']=":";//テーマ変数でカテゴリコードを列挙する際の区切
 
 $LANG_USERBOX['category_separater_text']="、";//送信メールでカテゴリを列挙する際の区切
+$LANG_USERBOX['field_separater']="、";
 
 $LANG_USERBOX['loginrequired'] = '（ログインしてください）';
 

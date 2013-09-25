@@ -1833,6 +1833,7 @@ function databox_data(
         $templates->set_var('lang_field', $LANG_DATABOX_ADMIN['field']);
         $templates->set_var('lang_templatesetvar', $LANG_DATABOX_ADMIN['templatesetvar']);
         $templates->set_var('lang_content', $LANG_DATABOX_ADMIN['content']);
+        $templates->set_var('lang_type', $LANG_DATABOX_ADMIN['type']);
         $templates->set_var('lang_byusingid', $LANG_DATABOX_ADMIN['byusingid']);
         $templates->set_var('lang_byusingcode', $LANG_DATABOX_ADMIN['byusingcode']);
         $templates->set_var('lang_byusingtemplatesetvar', $LANG_DATABOX_ADMIN['byusingtemplatesetvar']);

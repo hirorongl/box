@@ -1278,6 +1278,7 @@ function userbox_profile(
         $templates->set_var('lang_field', $LANG_USERBOX_ADMIN['field']);
         $templates->set_var('lang_templatesetvar', $LANG_USERBOX_ADMIN['templatesetvar']);
         $templates->set_var('lang_content', $LANG_USERBOX_ADMIN['content']);
+        $templates->set_var('lang_type', $LANG_USERBOX_ADMIN['type']);
         $templates->set_var('lang_byusingid', $LANG_USERBOX_ADMIN['byusingid']);
         $templates->set_var('lang_byusingcode', $LANG_USERBOX_ADMIN['byusingcode']);
         $templates->set_var('lang_byusingtemplatesetvar', $LANG_USERBOX_ADMIN['byusingtemplatesetvar']);

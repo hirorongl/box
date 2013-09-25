@@ -22,7 +22,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/09/12 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2013/09/24 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -565,6 +565,93 @@ public_html/myprofile/profile.php<br/>
 
 </tbody>
 </table>
+
+<h2><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/09/24 update　書きかけです)</h2>
+<table>
+<tr>
+	<th style="width:30%">アトリビュートタイプ</th>
+	<th style="width:30">テーマ変数</th>
+    <th style="width:40%">説明</th>
+	</tr>
+<tr>
+	<td>共通</td>
+	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
+	<br/>{登録したテーマ変数名}
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td   rowspan=5>12:画像（ファイル保存）</td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn}
+	<br/>{登録したテーマ変数名_tn}
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_noimage}
+	<br/>   {登録したテーマ変数名_noimage}	</td>
+	<td>イメージファイル名</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_image}
+	<br/>   {登録したテーマ変数名_tn_image}</td>
+	<td>サムネイルイメージ</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_noimage}
+	<br/>   {登録したテーマ変数名_tn_noimage}</td>
+	<td>サムネイルイメージ</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_disp}
+	<br/>   {登録したテーマ変数名_disp}
+	<td>イメージ</td>
+	</tr>	
+<tr>	
+	<td   rowspan=3>9:オプションリスト（マスター）
+	<br/>16:ラジオボタンリスト（マスター）
+	<br/>18:マルチセレクトリスト（マスター）</td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:2} 
+	<br/>   {登録したテーマ変数名:2}
+	<br/>   {登録したテーマ変数名_mst_value2}</td>
+	<td>マスターのvalue2</td>
+</tr>
+
+<tr>	
+	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:disp}マスターのdisp
+	<br/>   {登録したテーマ変数名:disp}
+	<br/>   {登録したテーマ変数名_mst_disp}</td>
+	<td>マスターのdisp</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:no}
+	<br/>   {登録したテーマ変数名:no} 
+	<br/>   {登録したテーマ変数名_mst_no}	</td>
+	<td>マスターのNo.</td>
+	</tr>	
+<tr>	
+	<td>2:いいえ/はい </td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_yes}
+	<br/>   {登録したテーマ変数名_yes} 
+	</td>
+	<td>はいの時1</td>
+	</tr>		
+</table>	
+（注）:を含むテーマ変数は　GL Ver2.0.1 では使用できません
+<br/>No.以外のマルチセレクトリストの区切りはLANG_USERBOX['field_separater']で指定しています。
+
+
+<h2></h2>
 <br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
 Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。
 
@@ -593,33 +680,11 @@ grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
 最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
 
-<dl>
-<dt><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a></dt>
-<dd>
-{additionfield<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_tn<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_noimage<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_tn_noimage<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_disp<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:2<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:no<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:disp<a link href="#notetext_id" class="note_super">id</a>}<br/>{登録したテーマ変数名}
-<br/>{登録したテーマ変数名_tn}→サムネイルファイル名
-<br/>{登録したテーマ変数名_noimage}
-<br/>{登録したテーマ変数名_tn_image}→サムネイルイメージ
-<br/>{登録したテーマ変数名_tn_noimage}
-<br/>{登録したテーマ変数名:2}→マスターのvalue2 （注）GL Ver2.0.1 では使用できません
-<br/>{登録したテーマ変数名:disp}→マスターのdisp（注）GL Ver2.0.1 では使用できません
-<br/>{登録したテーマ変数名:no}→マスターのNo.   （注）GL Ver2.0.1 では使用できません
-<br/>{登録したテーマ変数名_2}→マスターのvalue2
-<br/>{登録したテーマ変数名_disp}→マスターのdisp
-<br/>{登録したテーマ変数名_no}→マスターのNo.
-<br/>マルチセレクトリストの区切りはLANG_USERBOX['field_separater']で指定しています。
+<br/><a class="note_super" href="#notetext_id" id="notetext_id">id</a>
+管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)
 
-</dd>
-<dt><a class="note_super" name="notetext_id">id</a></dt><dd>管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)</dd>
-<dt><a class="note_super" name="notetext_code">code</a></dt><dd>管理画面で指定したcodeの値</dd>
-</dl>
+<br/><a class="note_super" href="#notetext_code" id="notetext_code">code</a>
+管理画面で指定したcodeの値
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
