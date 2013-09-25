@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130924
+# Last Update 20130925
 
 ###############################################################################
 ## 管理画面 menu
@@ -242,6 +242,16 @@ $LANG_USERBOX_ADMIN['uuid'] = '更新ユーザ';
 
 $LANG_USERBOX_ADMIN['kind'] = '種別';
 $LANG_USERBOX_ADMIN['no'] = 'No.';
+
+$LANG_USERBOX_ADMIN['draftonmsg'] = "
+すべてのドラフトをオンにします。<br{XHTML}>
+";
+$LANG_USERBOX_ADMIN['draftoffmsg'] = "
+すべてのドラフトをオフにします。<br{XHTML}>
+";
+$LANG_USERBOX_ADMIN['hitsclearmsg'] = "
+閲覧数を0にします。<br{XHTML}>
+";
 
 $LANG_USERBOX_ADMIN['yy'] = '年';
 $LANG_USERBOX_ADMIN['mm'] = '月';

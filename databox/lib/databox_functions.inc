@@ -4425,4 +4425,60 @@ function DATABOX_categorycount(
     return $rt;
 
 }
+
+function DATABOX_Confirmation(
+    $pi_name
+    ,$mode
+)
+// +---------------------------------------------------------------------------+
+// | 機能 確認画面
+// | 書式 Con_firmation("databox")
+//   fnc_Confirmation proversion
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin名
+// | 引数 $mode:カテゴリグループid
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    global $LANG_ADMIN;
+
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
+    $tmpl->set_file(array('confirm' => 'confirmation.thtml'));
+
+
+    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
+    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
+    $tmpl->set_var('gltoken', SEC_createToken());
+    $tmpl->set_var ( 'xhtml', XHTML );
+
+    //
+    $actionname=$lang_box_admin[$mode];
+    $actionprg="{$_CONF['site_admin_url']}/plugins/".THIS_SCRIPT."?mode={$mode}exec";
+
+    $tmpl->set_var('actionname', $actionname);
+    $tmpl->set_var('actionprg', $actionprg);
+	
+    $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
+
+	
+    // SAVE、CANCEL ボタン
+    $tmpl->set_var('lang_submit', $LANG_ADMIN['submit']);
+    $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+    $tmpl->set_var('mode', $mode."exec");
+
+    $tmpl->parse ('output', 'confirm');
+    $comfirm = $tmpl->finish ($tmpl->get_var ('output'));
+
+    $retval = $comfirm;
+
+
+    return $retval;
+}
 ?>

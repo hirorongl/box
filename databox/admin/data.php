@@ -2178,6 +2178,10 @@ $pi_name    = 'databox';
 //############################
 
 // 引数
+$action = '';
+if (isset ($_REQUEST['action'])) {
+    $action = COM_applyFilter ($_REQUEST['action'], false);
+}
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
@@ -2215,6 +2219,9 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
 if (isset ($_POST['draftChange'])) {
     $mode='draftChange';
 }
+if ($action == $LANG_ADMIN['cancel'])  { // cancel
+    $mode="";
+}
 
 //echo "mode1=".$mode."<br>";
 
@@ -2245,14 +2252,14 @@ if (isset ($_POST['draftChange'])) {
 }
 
 //DRAFT 一括ON OFF
-if ($mode=="drafton") {
+if ($mode=="draftonexec") {
     fncchangeDraftAll (1);
 }
-if ($mode=="draftoff") {
+if ($mode=="draftoffexec") {
     fncchangeDraftAll (0);
 }
 
-if ($mode=="hitsclear") {
+if ($mode=="hitsclearexec") {
     fnchitsclear ();
 }
 
@@ -2266,6 +2273,14 @@ $menuno=2;
 $information = array();
 
 switch ($mode) {
+    case 'drafton'://drafton Confirmation
+    case 'draftoff'://DATA clear　Confirmation
+    case 'hitsclear'://DATA clear　Confirmation
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+        //$display .= fnc_Menu($pi_name);
+        $display .= DATABOX_Confirmation($pi_name,$mode);
+        break;
+
     case 'exportform':// エクスポート　画面
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['export'];
         $display .= fncexportform();

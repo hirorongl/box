@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130916
+# Last Update 20130925
 
 ###############################################################################
 ## 管理画面 menu
@@ -272,6 +272,7 @@ $LANG_DATABOX_ADMIN['restoremsg'] =
 DataBox のデータベースデータをリストアします。<br{XHTML}>
 アップロードファイルは別途もどしてください。<br{XHTML}>
 ";
+
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = 
 "{$_CONF['backup_path']}"."databox/にある"
 ."ファイル名を指定してください。（省略時databox.xml）<br{XHTML}>
@@ -281,6 +282,16 @@ phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 アップロードファイルは別途もどしてください。<br{XHTML}>
 ";
 //<---
+
+$LANG_DATABOX_ADMIN['draftonmsg'] = "
+すべてのドラフトをオンにします。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['draftoffmsg'] = "
+すべてのドラフトをオフにします。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['hitsclearmsg'] = "
+閲覧数を0にします。<br{XHTML}>
+";
 
 $LANG_DATABOX_ADMIN['yy'] = '年';
 $LANG_DATABOX_ADMIN['mm'] = '月';
