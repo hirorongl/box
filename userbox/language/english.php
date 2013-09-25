@@ -269,6 +269,17 @@ Restore UploadFile.<{XHTML}br>
 ';
 $LANG_USERBOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."userbox/".'Select file name.（default:userbox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase data restore.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>';//<---
 
+
+$LANG_USERBOX_ADMIN['draftonmsg'] = "
+All drafts are turned on <br{XHTML}>
+";
+$LANG_USERBOX_ADMIN['draftoffmsg'] = "
+All drafts are turned off <br{XHTML}>
+";
+$LANG_USERBOX_ADMIN['hitsclearmsg'] = "
+Hits becomes 0<br{XHTML}>
+";
+
 $LANG_USERBOX_ADMIN['yy'] = '/';
 $LANG_USERBOX_ADMIN['mm'] = '/';
 $LANG_USERBOX_ADMIN['dd'] = ' ';

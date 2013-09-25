@@ -267,6 +267,16 @@ Restore UploadFile.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
 
+$LANG_DATABOX_ADMIN['draftonmsg'] = "
+All drafts are turned on <br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['draftoffmsg'] = "
+All drafts are turned off <br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['hitsclearmsg'] = "
+Hits becomes 0<br{XHTML}>
+";
+
 $LANG_DATABOX_ADMIN['yy'] = '/';
 $LANG_DATABOX_ADMIN['mm'] = '/';
 $LANG_DATABOX_ADMIN['dd'] = ' ';
