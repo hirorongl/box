@@ -152,7 +152,7 @@ $LANG_DATABOX_ADMIN['trackbackcode']='trackback';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='Type';
+$LANG_DATABOX_ADMIN['fieldset']='Attribute Type';
 $LANG_DATABOX_ADMIN['fieldset_id']="Type ID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="Type List";
 $LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
@@ -178,7 +178,7 @@ Select export attribute set.<br{XHTML}>
 $LANG_DATABOX_ADMIN['allow_display']='Allow Display (For users)';
 $LANG_DATABOX_ADMIN['allow_edit']='Edit Permission (For user edit)';
 
-$LANG_DATABOX_ADMIN['type']=' Type';
+$LANG_DATABOX_ADMIN['type']='Attribute Type';
 
 $LANG_DATABOX_ADMIN['size']='Size( text ,Multiselect)';
 $LANG_DATABOX_ADMIN['maxlength']='maxlength( text )';
