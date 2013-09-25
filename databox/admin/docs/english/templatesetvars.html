@@ -26,8 +26,8 @@
 <table>
 <tr>
 	<th style="width:20%">Display </th>
-	<th style="width:20%">【Directory 】Template </th>
-    <th style="width:60%">Theme variables </th>
+	<th style="width:20%">Template </th>
+        <th style="width:60%">Theme variables </th>
 </tr>
 <tbody>
 <tr  >
@@ -546,6 +546,87 @@ public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
 </tbody>
 </table>
 
+<h2><a class="note_super" id="notetext_add">Attribute Theme Variable Name</a>(2013/09/24 update　書きかけです)</h2>
+<table>
+<tr>
+	<th style="width:20%">Display</th>
+	<th style="width:20%">Template</th>
+        <th style="width:60%">Theme variables</th>
+	</tr>
+<tr>
+	<td>Common</td>
+	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
+	<br/>{(Theme Variable Name)}
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td   rowspan=5>12:Image（File）</td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn}
+	<br/>{(Theme Variable Name)_tn}
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_noimage}
+	<br/>   {(Theme Variable Name)_noimage}	</td>
+	<td>Image file name</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_image}
+	<br/>   {(Theme Variable Name)_tn_image}</td>
+	<td>Thumbnail</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_noimage}
+	<br/>   {(Theme Variable Name)_tn_noimage}</td>
+	<td>Thumbnail</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_disp}
+	<br/>   {(Theme Variable Name)_disp}
+	<td>Image</td>
+	</tr>	
+<tr>	
+	<td   rowspan=3>9:Option list（Master）
+	<br/>16:Radio button（Master）
+	<br/>18:Multi select list（Master）</td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_2} 
+	<br/>   {(Theme Variable Name)_mst_value2}</td>
+	<td>Masterのvalue2</td>
+</tr>
+
+<tr>	
+	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:disp}Masterのdisp
+	<br/>   {(Theme Variable Name)_mst_disp}</td>
+	<td>Masterのdisp</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:no}
+	<br/>   {(Theme Variable Name)_mst_no}	</td>
+	<td>Master No.</td>
+	</tr>	
+<tr>	
+	<td>2:No/Yes </td>
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_yes}
+	<br/>   {(Theme Variable Name)_yes} 
+	</td>
+	<td>Yes: 1</td>
+	</tr>		
+</table>	
+<br/>multi select list separator without No. is set by LANG_DATABOX['field_separater'].
+
+
 <br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
 GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です.
 
@@ -583,34 +664,6 @@ grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
 
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
 At the first time display されるImages （File save ）Type Attribute（Additional field ）
-
-
-<dl>
-<dt><a class="note_super" id="notetext_add">Each Attribute's Theme variables </a></dt>
-<dd>
-{additionfield<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_tn<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_noimage<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_tn_noimage<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield_disp<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:2<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:no<a link href="#notetext_id" class="note_super">id</a>}
-{additionfield:disp<a link href="#notetext_id" class="note_super">id</a>}<br/>
-{Added Theme variables name }<br/>
-{Added Theme variables name _tn}→Thumbnail File name <br/>
-{Added Theme variables name _noimage}<br/>
-{Added Theme variables name _tn_image}→Thumbnail Image <br/>
-{Added Theme variables name _tn_noimage}<br/>
-{Added Theme variables name :2}→Masterのvalue2 （注）GL Ver2.0.1 ではcan not use.<br/>
-{Added Theme variables name :disp}→Masterのdisp（注）GL Ver2.0.1 ではcan not use.<br/>
-{Added Theme variables name :no}→MasterのNo.   （注）GL Ver2.0.1 ではcan not use.<br/>
-{Added Theme variables name _2}→Masterのvalue2<br/>
-{Added Theme variables name _disp}→Masterのdisp<br/>
-{Added Theme variables name _no}→MasterのNo.<br/>
-</dd>
-<dt><a class="note_super" name="notetext_id">id</a></dt><dd>Adminでdisplay されているid 1,2,3,4,5,...(Selected number by system)</dd>
-<dt><a class="note_super" name="notetext_code">code</a></dt><dd>AdminでSelect したcodeの value</dd>
-</dl>
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklog Document Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
