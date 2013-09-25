@@ -1,34 +1,22 @@
 <!-- plugins/databox/templates/data/default/col_detail.thtml 20130924{ -->
+
 <th style="width:20%" class="alignright">{additionfield_name}</th>
-<td style="width:10%; color:green" class="alignleft">
-&#123;additionfield{field_id}&#125;
-&nbsp; &#123;{additionfield_templatesetvar}&#125;
-<!-- (a_1) --> {br_a}{tmpv_a_1}
-<!-- (a_2) --> {br_a}{tmpv_a_2}
-<!-- (a_3) --> {br_a}{tmpv_a_3}
-<!-- (a_4) --> {br_a}{tmpv_a_4}
-<!-- (a_5) --> {br_a}{tmpv_a_5}
-<!-- (b_1) --> {br_b}{tmpv_b_1}
-<!-- (b_2) --> {br_b}{tmpv_b_2}
-<!-- (b_3) --> {br_b}{tmpv_b_3}
-<!-- (c_1) --> {br_c}{tmpv_c_1}
-</td>
-<td>
-{additionfield_value}
-<!-- (a_1) additionfield_value_tn --> {br_a}{additionfield_value_tn}
-<!-- (a_2) additionfield_value_noimage --> {br_a}{additionfield_value_noimage}
-<!-- (a_3) additionfield_value_tn_image --> {br_a}{additionfield_value_tn_image}
-<!-- (a_4) additionfield_value_tn_noimage --> {br_a}{additionfield_value_tn_noimage}
-<!-- (a_5) additionfield_value_disp --> {br_a}{additionfield_value_disp}
-<!-- (b_1) additionfield_value_:2 --> {br_b}{additionfield_value_:2}
-<!-- (b_1) additionfield_value_mst_value2 --> {br_b}{additionfield_value_mst_value2}
-<!-- (b_2) additionfield_value_:disp --> {br_b}{additionfield_value_:disp}
-<!-- (b_2) additionfield_value_mst_disp --> {br_b}{additionfield_value_mst_disp}
-<!-- (b_3) additionfield_value_:no --> {br_b}{additionfield_value_:no}
-<!-- (b_3) additionfield_value_mst_no --> {br_b}{additionfield_value_mst_no}
-<!-- (c_1) additionfield_value_yes --> {br_c}{additionfield_value_yes}
+<td colspan="2" style="color:green" class="alignleft">
+<dl>
+<dt>&#123;additionfield{field_id}&#125; or &#123;{additionfield_templatesetvar}&#125;</dt><dd>"{additionfield_value}"</dd>
+<dt>&#123;additionfield_value_tn&#125; or &#123;{additionfield_templatesetvar}_value_tn&#125;</dt><dd>"{additionfield_value_tn}"</dd>
+<dt>&#123;additionfield_value_noimage&#125; or &#123;{additionfield_templatesetvar}_noimage&#125;</dt><dd>"{br_a}{additionfield_value_noimage}"</dd>
+<dt>&#123;additionfield_value_tn_image&#125; or &#123;{additionfield_templatesetvar}_tn_image&#125;</dt><dd>"{additionfield_value_tn_image}"</dd>
+<dt>&#123;additionfield_value_tn_noimage&#125; or &#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt><dd>"{additionfield_value_tn_noimage}"</dd>
+<dt>&#123;additionfield_value_disp&#125; or &#123;{additionfield_templatesetvar}_disp&#125;</dt><dd>"{additionfield_value_disp}"</dd>
+<dt>&#123;additionfield_value_mst_value2&#125; or &#123;{additionfield_templatesetvar}_mst_value2&#125;</dt><dd>"{additionfield_value_mst_value2}"</dd>
+<dt>&#123;additionfield_value_mst_disp&#125; or &#123;{additionfield_templatesetvar}_mst_disp&#125;</dt><dd>"{additionfield_value_mst_disp}"</dd>
+<dt>&#123;additionfield_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>"{additionfield_value_mst_no}"</dd>
+<dt>&#123;additionfield_value_flag&#125; or &#123;{additionfield_templatesetvar}_flag&#125;</dt><dd>"{additionfield_value_flag}"</dd>
+</dl>
 </td>
 <td>
 {field_type}
 </td>
+
 <!-- } plugins/databox/templates/data/default/col_detail.thtml -->
