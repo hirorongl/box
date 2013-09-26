@@ -5,10 +5,10 @@
 <dl>
 <dt>&#123;additionfield{field_id}&#125; or &#123;{additionfield_templatesetvar}&#125;</dt><dd>"{additionfield_value}"</dd>
 <dt>&#123;additionfield{field_id}_value_tn&#125; or &#123;{additionfield_templatesetvar}_value_tn&#125;</dt><dd>"{additionfield_value_tn}"</dd>
-<dt>&#123;additionfield{field_id}_value_noimage&#125; or &#123;{additionfield_templatesetvar}_noimage&#125;</dt><dd>"{br_a}{additionfield_value_noimage}"</dd>
+<dt>&#123;additionfield{field_id}_value_noimage&#125; or &#123;{additionfield_templatesetvar}_noimage&#125;</dt><dd>"{additionfield_value_noimage}"</dd>
 <dt>&#123;additionfield{field_id}_value_tn_image&#125; or &#123;{additionfield_templatesetvar}_tn_image&#125;</dt><dd>"{additionfield_value_tn_image}"</dd>
 <dt>&#123;additionfield{field_id}_value_tn_noimage&#125; or &#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt><dd>"{additionfield_value_tn_noimage}"</dd>
-<dt>&#123;additionfield_value_disp&#125; or &#123;{additionfield_templatesetvar}_disp&#125;</dt><dd>"{additionfield_value_disp}"</dd>
+<dt>&#123;additionfield{field_id}_value_disp&#125; or &#123;{additionfield_templatesetvar}_disp&#125;</dt><dd>"{additionfield_value_disp}"</dd>
 <dt>&#123;additionfield{field_id}_value_mst_value2&#125; or &#123;{additionfield_templatesetvar}_mst_value2&#125;</dt><dd>"{additionfield_value_mst_value2}"</dd>
 <dt>&#123;additionfield{field_id}_value_mst_disp&#125; or &#123;{additionfield_templatesetvar}_mst_disp&#125;</dt><dd>"{additionfield_value_mst_disp}"</dd>
 <dt>&#123;additionfield{field_id}_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>"{additionfield_value_mst_no}"</dd>
