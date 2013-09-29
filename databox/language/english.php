@@ -56,11 +56,10 @@ $LANG_DATABOX['category_top']="Categories Top";
 $LANG_DATABOX['field_top']="Attributes Top";
 $LANG_DATABOX['search_link']="";
 
-//$LANG_DATABOX['category_separater']="</li><li>";
-$LANG_DATABOX['category_separater']=", ";
-$LANG_DATABOX['category_separater_code']=":";
+$LANG_DATABOX['category_separater']=" / ";
+$LANG_DATABOX['category_separater_code']=" ";
 $LANG_DATABOX['category_separater_text']=", ";
-$LANG_DATABOX['field_separater']=" | ";
+$LANG_DATABOX['field_separater']="|";
 
 $LANG_DATABOX['loginrequired'] = 'Login Required';
 
