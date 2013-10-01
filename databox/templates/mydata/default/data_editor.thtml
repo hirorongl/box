@@ -8,96 +8,110 @@
   <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
   <!-- data -->
-  <fieldset style="width:98%">
+  <fieldset style="width:90%">
     <legend>{lang_basicfields}</legend>
-    <table class="admin-list-table">
-      <!-- id -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_id}{help_id}</th>
-        <td class="admin-list-field">
+    <table style="width:98%">
+    <tr>
+    <th style="width:25%; background:#eee" class="alignright">{lang_fields}</th>
+    <td style="width:75%; background:#eee" class="alignleft">{lang_content}</td>
+    </tr>
+
+    <!-- id -->
+    <tr>
+    <th style="width:25%"  class="alignright">{lang_id}{help_id}</th>
+    <td style="width:75%;">
         {id}
-        <input type="hidden" name="id" value="{id}"{xhtml}></td>
-      </tr>
+        <input type="hidden" name="id" value="{id}"{xhtml}>
+    </td>
+    </tr>
 
-      <!-- DRAFT -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_draft}{help_draft}</th>
-        <td class="admin-list-field">
-		<input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>{draft_msg}</td>
-      </tr>
+    <!-- DRAFT -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_draft}{help_draft}</th>
+    <td style="width:75%;">
+		<input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+		{draft_msg}
+    </td>
+    </tr>
 
-      <!-- code -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
-        <td class="admin-list-field">
+
+    <!-- code -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
+    <td style="width:75%;">
         {code}
         <input type="hidden" size="60" maxlength="160" name="code" value="{code}"{xhtml}>
-        </td>
-      </tr>
+    </td>
+    </tr>
 
 
-      <!-- title -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
-        <td class="admin-list-field">
+    <!-- title -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_title}{help_title}<span class="must">{lang_must}</span></th>
+    <td style="width:75%;">
         <input type="text" size="60" maxlength="160" name="title" value="{title}"{xhtml}>
-        </td>
-      </tr>
-      <!-- page title -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_page_title}{help_page_title}</th>
-        <td class="admin-list-field">
+    </td>
+    </tr>
+    <!-- page title -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_page_title}{help_page_title}</th>
+    <td style="width:75%;">
         <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
-        </td>
-      </tr>
-      <!-- description -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_description}{help_description}</th>
-        <td class="admin-list-field">
+    </td>
+    </tr>
+    <!-- description -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_description}{help_description}</th>
+    <td style="width:75%;">
 		<textarea name="description" style="width:95%" rows="2" id="databox_description"
 				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
 				<br {xhtml}><strong><span id='description_cnt'></span><strong>
-        </td>
-      </tr>
+    </td>
+    </tr>
 
-      <!-- language_id  -->
-      <tr{hide_language_id}>
-        <th class="admin-list-field">{lang_language_id}{help_language_id}</th>
-        <td class="admin-list-field">
+    <!-- language_id  -->
+    <tr{hide_language_id}>
+    <th style="width:25%" class="alignright">{lang_language_id}{help_language_id}</th>
+    <td style="width:75%;">
 		{select_language_id}
 	</td>
-      </tr>
+	</tr>
 
-      <!-- タイムスタンプ -->
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_udatetime}</th>
-        <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
+    <!-- タイムスタンプ -->
+    <tr>
+    <th style="width:25%" class="alignright">{lang_udatetime}</th>
+    <td style="width:75%;">{udatetime} {lang_uuid}:{uuid}</td>
          <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
-      </tr>
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_created}</th>
-        <td class="admin-list-field">{created}</td>
+    </tr>
+    <tr>
+    <th style="width:25%" class="alignright">{lang_created}</th>
+    <td style="width:75%;">{created}</td>
         <input type="hidden" name="created" value="{created}"{xhtml}>
         <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
-      </tr>
+    </tr>
     </table>
   </fieldset>
 
   <!-- category -->
-  <fieldset style="width:98%">
+  <fieldset style="width:90%">
     <legend>{lang_category}</legend>
-    <table class="admin-list-table">
-      <tr class="pluginRow1">
-        <th class="admin-list-field">{lang_category}{help_category}</th>
-        <td class="admin-list-field">{checklist_category}</td>
-      </tr>
+    <table style="width:98%">
+    <tr>
+    <th style="width:25%" class="alignright">{lang_category}{help_category}</th>
+    <td style="width:75%">{checklist_category}
+    </td>
+    </tr>
     </table>
   </fieldset>
 
   <!-- 追加項目 -->
-  <fieldset style="width:98%">
+  <fieldset style="width:90%">
     <legend>{lang_additionfields}</legend>
-    <table class="admin-list-table">
+    <table style="width:98%">
+    <tr>
+    <th style="width:25%; background:#eee"  class="alignright">{lang_fields}</th>
+    <td style="width:75%; background:#eee" class="alignleft">{lang_content}</td>
+    </tr>
         {additionfields}
     </table>
   </fieldset>
