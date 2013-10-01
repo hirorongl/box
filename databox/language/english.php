@@ -152,7 +152,7 @@ $LANG_DATABOX_ADMIN['trackbackcode']='trackback';
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
 
-$LANG_DATABOX_ADMIN['fieldset']='Attribute Type';
+$LANG_DATABOX_ADMIN['fieldset']='Type';
 $LANG_DATABOX_ADMIN['fieldset_id']="Type ID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="Type List";
 $LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
@@ -178,30 +178,30 @@ Select export attribute set.<br{XHTML}>
 $LANG_DATABOX_ADMIN['allow_display']='Allow Display (For users)';
 $LANG_DATABOX_ADMIN['allow_edit']='Edit Permission (For user edit)';
 
-$LANG_DATABOX_ADMIN['type']='Attribute Type';
+$LANG_DATABOX_ADMIN['type']=' Type';
 
-$LANG_DATABOX_ADMIN['size']='Size( text ,Multiselect)';
-$LANG_DATABOX_ADMIN['maxlength']='maxlength( text )';
-$LANG_DATABOX_ADMIN['rows']='rows(Multi line text )';
-$LANG_DATABOX_ADMIN['br']='BR(Radio button)';
+$LANG_DATABOX_ADMIN['size']='Size (text, Multiselect)';
+$LANG_DATABOX_ADMIN['maxlength']='maxlength (text)';
+$LANG_DATABOX_ADMIN['rows']='rows (Multiline text)';
+$LANG_DATABOX_ADMIN['br']='BR (Radio button)';
 $LANG_DATABOX_ADMIN['help_br']='0:no break,1-9:newline every 1-9';
 
 //
 $LANG_DATABOX_ADMIN['language_id']="Language ID";
 $LANG_DATABOX_ADMIN['owner_id']="Owner ID";
 $LANG_DATABOX_ADMIN['group_id']="Group ID";
-$LANG_DATABOX_ADMIN['perm_owner']="Permission(Owner)";
-$LANG_DATABOX_ADMIN['perm_group']="Permission(Group)";;
-$LANG_DATABOX_ADMIN['perm_members']="Permission(Member)";
-$LANG_DATABOX_ADMIN['perm_anon']="Permission(Anonimous)";
+$LANG_DATABOX_ADMIN['perm_owner']="Permission (Owner)";
+$LANG_DATABOX_ADMIN['perm_group']="Permission (Group)";;
+$LANG_DATABOX_ADMIN['perm_members']="Permission (Member)";
+$LANG_DATABOX_ADMIN['perm_anon']="Permission (Anonimous)";
 //
 
 $LANG_DATABOX_ADMIN['selection']='Selection';
 $LANG_DATABOX_ADMIN['selectlist']='Select List';
 $LANG_DATABOX_ADMIN['checkrequried']='Check Requried';
 
-$LANG_DATABOX_ADMIN['textcheck']='Input validation(text)';
-$LANG_DATABOX_ADMIN['textconv']='Transform input value(text)';
+$LANG_DATABOX_ADMIN['textcheck']='Input validation (text)';
+$LANG_DATABOX_ADMIN['textconv']='Transform input value (text)';
 $LANG_DATABOX_ADMIN['searchtarget']='Search target';
 
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
@@ -276,7 +276,6 @@ All drafts are turned off <br{XHTML}>
 $LANG_DATABOX_ADMIN['hitsclearmsg'] = "
 Hits becomes 0<br{XHTML}>
 ";
-
 $LANG_DATABOX_ADMIN['yy'] = '/';
 $LANG_DATABOX_ADMIN['mm'] = '/';
 $LANG_DATABOX_ADMIN['dd'] = ' ';
@@ -391,7 +390,7 @@ $LANG_DATABOX_ADMIN['err_permission_denied'] = 'Not permitted.';
 
 $LANG_DATABOX_ADMIN['err_id'] = 'ID is not valid';
 $LANG_DATABOX_ADMIN['err_name'] = 'Name is not valid';
-$LANG_DATABOX_ADMIN['err_templatesetvar'] = 'Theme variableis not invalid';
+$LANG_DATABOX_ADMIN['err_templatesetvar'] = 'Theme variable is not invalid';
 $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
 $LANG_DATABOX_ADMIN['err_code_w'] = 'Code is duplicated';
 $LANG_DATABOX_ADMIN['err_code'] = 'Code input error';
@@ -518,7 +517,7 @@ $LANG_DATABOX_INPUTTYPE = array(
 
 
 $LANG_DATABOX_ALLOW_DISPLAY = array();
-$LANG_DATABOX_ALLOW_DISPLAY[0] ='Display(order)';
+$LANG_DATABOX_ALLOW_DISPLAY[0] ='Display (order)';
 $LANG_DATABOX_ALLOW_DISPLAY[1] ='Login User';
 $LANG_DATABOX_ALLOW_DISPLAY[2] ='Owner, Group and Admin';
 $LANG_DATABOX_ALLOW_DISPLAY[3] ='Owner and Admin';
@@ -565,9 +564,9 @@ $LANG_DATABOX_TYPE[18] = 'Multiselect（from master）';//@@@@@
 //$LANG_DATABOX_TYPE[19] = '';//@@@@@
 
 
-$LANG_DATABOX_TYPE[11] = 'Image(DB Save)';
-$LANG_DATABOX_TYPE[12] = 'Image(File Save)';
-$LANG_DATABOX_TYPE[13] = 'File(In Preparation )';
+$LANG_DATABOX_TYPE[11] = 'Image (DB Save)';
+$LANG_DATABOX_TYPE[12] = 'Image (File Save)';
+$LANG_DATABOX_TYPE[13] = 'File (In Preparation )';
 
 ###############################################################################
 #
@@ -671,15 +670,15 @@ $LANG_confignames['databox']['additionsearch'] = 'Attributes number for Search';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'Permission';
-$LANG_fs['databox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
+$LANG_fs['databox'][fs_permissions] = 'Data Permission Default ([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['databox']['default_permissions'] = 'Permissions';
 
 //---(4)
 $LANG_tab['databox'][tab_autotag] = 'Autotags';
 $LANG_fs['databox'][fs_autotag] = 'Autotags';
-$LANG_confignames['databox']['intervalday']="Display Period(Day)";
+$LANG_confignames['databox']['intervalday']="Display Period (Day)";
 $LANG_confignames['databox']['limitcnt']="Display Number";//@@@@@
-$LANG_confignames['databox']['newmarkday']="New Mark Display Period(Day)";//@@@@@
+$LANG_confignames['databox']['newmarkday']="New Mark Display Period (Day)";//@@@@@
 $LANG_confignames['databox']['categories']="Default Category";//@@@@@!!!!
 $LANG_confignames['databox']['new_img']="New Mark";//@@@@@
 $LANG_confignames['databox']['rss_img']="RSS Mark";//@@@@@
