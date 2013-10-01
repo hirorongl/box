@@ -65,11 +65,10 @@ $LANG_USERBOX['category_top']="Categories Top";
 $LANG_USERBOX['field_top']="Attributes Top";
 $LANG_USERBOX['search_link']="";
 
-//$LANG_USERBOX['category_separater']="</li><li>";
-$LANG_USERBOX['category_separater']=", ";
-$LANG_USERBOX['category_separater_code']=":";
+$LANG_USERBOX['category_separater']=" / ";
+$LANG_USERBOX['category_separater_code']=" ";
 $LANG_USERBOX['category_separater_text']=", ";
-$LANG_USERBOX['field_separater']=" | ";
+$LANG_USERBOX['field_separater']="|";
 
 $LANG_USERBOX['loginrequired'] = 'Login Required';
 
@@ -158,7 +157,7 @@ $LANG_USERBOX_ADMIN['trackbackcode']='trackback';
 $LANG_USERBOX_ADMIN['group']='Group';
 $LANG_USERBOX_ADMIN['parent']='Parent';
 
-$LANG_USERBOX_ADMIN['fieldset']='Type';
+$LANG_USERBOX_ADMIN['fieldset']='Attribute Type';
 $LANG_USERBOX_ADMIN['fieldset_id']="Type ID";
 $LANG_USERBOX_ADMIN['fieldsetfields']="Type List";
 $LANG_USERBOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
@@ -184,7 +183,7 @@ Select export attribute set.<br{XHTML}>
 $LANG_USERBOX_ADMIN['allow_display']='Display Permission(For users)';
 $LANG_USERBOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
-$LANG_USERBOX_ADMIN['type']=' Type';
+$LANG_USERBOX_ADMIN['type']='Attribute Type';
 
 $LANG_USERBOX_ADMIN['size']='Size( text ,Multiselect)';
 $LANG_USERBOX_ADMIN['maxlength']='maxlength( text )';

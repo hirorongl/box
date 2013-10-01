@@ -1,7 +1,7 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | DataBox Plugin 0.0.0 for Geeklog 1.8 and later                            |
+// | UserBox Plugin 0.0.0 for Geeklog 1.8 and later                            |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2010 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+
 
 ###############################################################################
-# plugins/userbox/language/english_utf-8.php
+# plugins/userbox/language/english.php
 
 ###############################################################################
 ## Admin menu
@@ -65,11 +65,10 @@ $LANG_USERBOX['category_top']="Categories Top";
 $LANG_USERBOX['field_top']="Attributes Top";
 $LANG_USERBOX['search_link']="";
 
-//$LANG_USERBOX['category_separater']="</li><li>";
-$LANG_USERBOX['category_separater']=", ";
-$LANG_USERBOX['category_separater_code']=":";
+$LANG_USERBOX['category_separater']=" / ";
+$LANG_USERBOX['category_separater_code']=" ";
 $LANG_USERBOX['category_separater_text']=", ";
-$LANG_USERBOX['field_separater']=" | ";
+$LANG_USERBOX['field_separater']="|";
 
 $LANG_USERBOX['loginrequired'] = 'Login Required';
 
@@ -158,7 +157,7 @@ $LANG_USERBOX_ADMIN['trackbackcode']='trackback';
 $LANG_USERBOX_ADMIN['group']='Group';
 $LANG_USERBOX_ADMIN['parent']='Parent';
 
-$LANG_USERBOX_ADMIN['fieldset']='Type';
+$LANG_USERBOX_ADMIN['fieldset']='Attribute Type';
 $LANG_USERBOX_ADMIN['fieldset_id']="Type ID";
 $LANG_USERBOX_ADMIN['fieldsetfields']="Type List";
 $LANG_USERBOX_ADMIN['fieldsetfieldsregistered']="Registered attribute";
@@ -184,7 +183,7 @@ Select export attribute set.<br{XHTML}>
 $LANG_USERBOX_ADMIN['allow_display']='Display Permission(For users)';
 $LANG_USERBOX_ADMIN['allow_edit']='Edit Permissions(For user edit)';
 
-$LANG_USERBOX_ADMIN['type']=' Type';
+$LANG_USERBOX_ADMIN['type']='Attribute Type';
 
 $LANG_USERBOX_ADMIN['size']='Size( text ,Multiselect)';
 $LANG_USERBOX_ADMIN['maxlength']='maxlength( text )';
@@ -258,17 +257,16 @@ Uploaded file is deleted.<{XHTML}br>
 ';
 $LANG_USERBOX_ADMIN['backupmsg'] = 
 "{$_CONF['backup_path']}"."userbox/<{XHTML}br>"
-.'DataBox database is backuped.<{XHTML}br>
+.'UserBox database is backuped.<{XHTML}br>
 Backup upload file.<{XHTML}br>
 ';
 $LANG_USERBOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."userbox/にある"
 .'Filename  select.(default: userbox.xml)<{XHTML}br>
-DataBox  Database Data Restore.<{XHTML}br>
+UserBox  Database Data Restore.<{XHTML}br>
 Restore UploadFile.<{XHTML}br>
 ';
-$LANG_USERBOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."userbox/".'Select file name.（default:userbox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase data restore.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>';//<---
-
+$LANG_USERBOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."userbox/".'Select file name.（default:userbox.xml）<{XHTML}br>phpMyAdmin でexport したUserBox のdatabase data restore.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>';//<---
 
 $LANG_USERBOX_ADMIN['draftonmsg'] = "
 All drafts are turned on <br{XHTML}>
@@ -321,22 +319,6 @@ $LANG_USERBOX_ADMIN['delete_help_group'] = '(There are data. Can not delete grou
 $LANG_USERBOX_ADMIN['delete_help_category'] = '(There are data. Can not delete category and parent.)';
 $LANG_USERBOX_ADMIN['delete_help_fieldset'] = '(There are data. Can not delete attribute.)';
 $LANG_USERBOX_ADMIN['delete_help_mst'] = '(There are registrated data, can\'t remove.)';
-//xmlimport_help
-$LANG_USERBOX_xmlimport['help']=
-"<br{KHTML}>"
-."(注！)<br{KHTML}>"
-."assist DataBox Plugin XML Batch Import Path regist same path.<br{KHTML}>"
-."<br{KHTML}>"
-."assist Plugin xmlImport exit.<br{KHTML}>"
-."maps:item_10 is Code regist.<br{KHTML}>"
-."same code is already regist, delete added.<br{KHTML}>"
-."<br{KHTML}>"
-."DataBox Plugin xmlImport exit.<br{KHTML}>"
-."same code is already regist, delete added.<br{KHTML}>"
-."rocess, XMLFile Delete.<br{KHTML}>"
-."(paermission delete) <br{KHTML}>"
-."<br{KHTML}>"
-."exit　userbox_xmlimport.log regist.<br{KHTML}>"
 
 ;
 $LANG_USERBOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
@@ -542,6 +524,7 @@ $LANG_USERBOX_ALLOW_EDIT[5] = 'Display';
 //TYPE (Chenge Disabled)
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '1 Line Text Attribute';
+$LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
 $LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML OK  TinyMCE)';
 $LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
 $LANG_USERBOX_TYPE[15] = 'Numeric';
@@ -567,9 +550,9 @@ $LANG_USERBOX_TYPE[13] = 'File(In Preparation )';
 
 ###############################################################################
 #
-$LANG_USERBOX_SEARCH['type'] = 'DataBox';
+$LANG_USERBOX_SEARCH['type'] = 'UserBox';
 
-$LANG_USERBOX_SEARCH['results_userbox'] = 'DataBox Search Results';
+$LANG_USERBOX_SEARCH['results_userbox'] = 'UserBox Search Results';
 
 $LANG_USERBOX_SEARCH['title'] =  'Title';
 $LANG_USERBOX_SEARCH['udate'] =  'Update';
@@ -587,22 +570,22 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 #
 $LANG_USERBOX_autotag_desc['userbox']="
 [userbox:count] <br{xhtml}>	
-More, see Databox Plugin documents.
+More, see Userbox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";
 
 ###############################################################################
 # configuration
 // Localization of the Admin Configuration UI
-$LANG_configsections['userbox']['label'] = 'DataBox';
-$LANG_configsections['userbox']['title'] = 'DataBox Setting';
+$LANG_configsections['userbox']['label'] = 'UserBox';
+$LANG_configsections['userbox']['title'] = 'UserBox Setting';
 
 //----------
 $LANG_configsubgroups['userbox']['sg_main'] = 'Main';
 //--(0)
 
 $LANG_tab['userbox'][tab_main] = 'MainSetting';
-$LANG_fs['userbox'][fs_main] = 'DataBox MainSetting';
+$LANG_fs['userbox'][fs_main] = 'UserBox MainSetting';
 $LANG_confignames['userbox']['perpage'] = 'Date Number by Page';
 $LANG_confignames['userbox']['loginrequired'] = 'Login Required';
 $LANG_confignames['userbox']['hidemenu'] = 'Hide Menu';
@@ -645,6 +628,8 @@ $LANG_confignames['userbox']['maxlength_description'] = 'Maxlength description';
 $LANG_confignames['userbox']['maxlength_meta_description'] = 'Max length of meta description';
 $LANG_confignames['userbox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
+$LANG_confignames['userbox']['hideuseroption'] = 'hide useroption';
+
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 
 //--(1)
@@ -654,7 +639,8 @@ $LANG_confignames['userbox']['whatsnew_interval'] = 'New Period';
 $LANG_confignames['userbox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['userbox']['title_trim_length'] = 'Title of Max Length';
 
-$LANG_confignames['userbox']['hideuseroption'] = 'hide useroption';
+
+
 
 //---(2)
 $LANG_tab['userbox'][tab_search] = 'Search';
