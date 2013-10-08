@@ -2023,38 +2023,11 @@ function DATABOX_getaddtionfieldsDisp(
 			$templates->set_var('additionfield'.$fid, $fieldhtml);
 			$templates->set_var($templatesetvar, $fieldhtml);
 			
-			$br_a="" ;
-			$tmpv_a_1="";
-			$tmpv_a_2="";
-			$tmpv_a_3="";
-			$tmpv_a_4="";
-			$tmpv_a_5="";
 			if  ($type==12){
-				$br_a="<br {XHTML}>";
-				$tmpv_a_1="&#123;".'additionfield_value_tn'."&#125;";
-				$tmpv_a_1.=" "."&#123;".'additionfield'.$fid."_tn"."&#125;";
-				$tmpv_a_1.=	" "."&#123;".$templatesetvar."_tn"."&#125;";
-				$tmpv_a_2="&#123;".'additionfield_value_noimage'."&#125;";
-				$tmpv_a_2.=" "."&#123;".'additionfield'.$fid."_noimage"."&#125;";
-				$tmpv_a_2.=	" "."&#123;".$templatesetvar."_noimage"."&#125;";
-				$tmpv_a_3="&#123;".'additionfield_value_tn_image'."&#125;";
-				$tmpv_a_3.=" "."&#123;".'additionfield'.$fid."_tn_image"."&#125;";
-				$tmpv_a_3.=	" "."&#123;".$templatesetvar."_tn_image"."&#125;";
-				$tmpv_a_4="&#123;".'additionfield_value_tn_noimage'."&#125;";
-				$tmpv_a_4.=" "."&#123;".'additionfield'.$fid."_tn_noimage"."&#125;";
-				$tmpv_a_4.=	" "."&#123;".$templatesetvar."_tn_noimage"."&#125;";
-				$tmpv_a_5="&#123;".'additionfield_value_disp'."&#125;";
-				$tmpv_a_5.=" "."&#123;".'additionfield'.$fid."_disp"."&#125;";
-				$tmpv_a_5.=	" "."&#123;".$templatesetvar."_disp"."&#125;";
-				
+				$templates->set_var('display_a', 'display:');
+			}else{
+				$templates->set_var('display_a', 'display:none');
 			}
-			$templates->set_var('br_a', $br_a);
-			$templates->set_var('tmpv_a_1', $tmpv_a_1);
-			$templates->set_var('tmpv_a_2', $tmpv_a_2);
-			$templates->set_var('tmpv_a_3', $tmpv_a_3);
-			$templates->set_var('tmpv_a_4', $tmpv_a_4);
-			$templates->set_var('tmpv_a_5', $tmpv_a_5);
-			
 			//(a_1)_tn サムネイルファイル名
 			$templates->set_var('additionfield_value_tn', $fieldhtml_tn);
 			$templates->set_var('additionfield'.$fid."_tn", $fieldhtml_tn);
@@ -2080,77 +2053,25 @@ function DATABOX_getaddtionfieldsDisp(
 			$templates->set_var('additionfield'.$fid."_disp", $fieldhtmldisp);
 			$templates->set_var($templatesetvar."_disp", $fieldhtmldisp);
 			
-			$br_b="";
-			$tmpv_b_1="";
-			$tmpv_b_2="";
-			$tmpv_b_3="";
-			if  ($type==9 OR $type==16 OR $type==18 ){
-				$br_b="<br {XHTML}>";
-				$tmpv_b_1="&#123;".'additionfield_value_:2}';
-				$tmpv_b_1.=" "."&#123;".'additionfield'.$fid.":2"."&#125;";
-				$tmpv_b_1.=	" "."&#123;".$templatesetvar.":2"."&#125;";
-				$tmpv_b_1.=" "."&#123;".'additionfield_valueb_mst_value2'."&#125;";
-				$tmpv_b_1.=" "."&#123;".'additionfield'.$fid."_mst_value2"."&#125;";
-				$tmpv_b_1.=	" "."&#123;".$templatesetvar."_mst_value2"."&#125;";
-				
-				$tmpv_b_2="&#123;".'additionfield_value_:disp'."&#125;";
-				$tmpv_b_2.=" "."&#123;".'additionfield'.$fid.":disp"."&#125;";
-				$tmpv_b_2.=	" "."&#123;".$templatesetvar.":disp"."&#125;";
-				$tmpv_b_2.=" "."&#123;".'additionfield_value_mst_disp'."&#125;";
-				$tmpv_b_2.=" "."&#123;".'additionfield'.$fid."_mst_disp"."&#125;";
-				$tmpv_b_2.=	" "."&#123;".$templatesetvar."_mst_disp"."&#125;";
-				
-				$tmpv_b_3="&#123;".'additionfield_value_:no'."&#125;";
-				$tmpv_b_3.=" "."&#123;".'additionfield'.$fid.":no"."&#125;";
-				$tmpv_b_3.=	" "."&#123;".$templatesetvar.":no"."&#125;";
-				$tmpv_b_3.=" "."&#123;".'additionfield_value_mst_no'."&#125;";
-				$tmpv_b_3.=" "."&#123;".'additionfield'.$fid."_mst_no"."&#125;";
-				$tmpv_b_3.=	" "."&#123;".$templatesetvar."_mst_no"."&#125;";
-				
+			if  ( $type==9 OR $type==16 OR $type==18 ){
+				$templates->set_var('display_b', 'display:');
+			}else{
+				$templates->set_var('display_b', 'display:none');
 			}
-			$templates->set_var('br_b', $br_b);
-			$templates->set_var('tmpv_b_1', $tmpv_b_1);
-			$templates->set_var('tmpv_b_2', $tmpv_b_2);
-			$templates->set_var('tmpv_b_3', $tmpv_b_3);
 			//(b_1)マスターのvalue2
-			$templates->set_var('additionfield_value_:2', $mstitems['value2']);
-			$templates->set_var('additionfield'.$fid.":2", $mstitems['value2']);
-			$templates->set_var($templatesetvar.":2", $mstitems['value2']);
 			$templates->set_var('additionfield_value_mst_value2', $mstitems['value2']);
 			$templates->set_var('additionfield'.$fid."_mst_value2", $mstitems['value2']);
 			$templates->set_var($templatesetvar."_mst_value2", $mstitems['value2']);
 			
 			//(b_2)マスターのdisp
-            $templates->set_var('additionfield_value_:disp', $mstitems['disp']);
-			$templates->set_var('additionfield'.$fid.":disp", $mstitems['disp']);
-			$templates->set_var($templatesetvar.":disp", $mstitems['disp']);
             $templates->set_var('additionfield_value_mst_disp', $mstitems['disp']);
 			$templates->set_var('additionfield'.$fid."_mst_disp", $mstitems['disp']);
 			$templates->set_var($templatesetvar."_mst_disp", $mstitems['disp']);
 			
 			//(b_3)マスターのno
-            $templates->set_var('additionfield_value_:no', $mstitems['no']);
-			$templates->set_var('additionfield'.$fid.":no", $mstitems['no']);
-			$templates->set_var($templatesetvar.":no", $mstitems['no']);
             $templates->set_var('additionfield_value_mst_no', $mstitems['no']);
 			$templates->set_var('additionfield'.$fid."_mst_no", $mstitems['no']);
 			$templates->set_var($templatesetvar."_mst_no", $mstitems['no']);
-			
-			$br_c="";
-			$tmpv_c_1="";
-			if  ($type==2 ){
-				$br_c="<br {XHTML}>";
-				$tmpv_c_1="&#123;".'additionfield_value_yes'."&#125;";
-				$tmpv_c_1.=" "."&#123;".'additionfield'.$fid."_yes"."&#125;";
-				$tmpv_c_1.=	" "."&#123;".$templatesetvar."_yes"."&#125;";
-			}
-            $templates->set_var('br_c', $br_c);
-            $templates->set_var('tmpv_c_1', $tmpv_c_1);
-			
-			//(c_1)タイプ＝いいえ/はい　ではいの時1	
-            $templates->set_var('additionfield_value_yes', $fieldhtml_yes);
-			$templates->set_var('additionfield'.$fid."_yes", $fieldhtml_yes);
-			$templates->set_var($templatesetvar."_yes", $fieldhtml_yes);
 			
 			//@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
 			//@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
