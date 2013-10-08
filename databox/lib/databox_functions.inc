@@ -1960,10 +1960,6 @@ function DATABOX_getaddtionfieldsDisp(
 					$w=DATABOX_autolink($w);
 					$fieldhtml .= $w;
                     break;
-                case 6://url';
-					$w=DATABOX_autolink($fvalue);
-					$fieldhtml .= $w;
-                    break;
 				case 9://オプションリスト（マスター）
 				case 16: //ラジオボタン（マスター）
 					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
@@ -1999,6 +1995,7 @@ function DATABOX_getaddtionfieldsDisp(
 					break;
                 case 5://メールアドレス　（準備中）';
 
+                case 6://url';
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
 				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
