@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20130925
+# Last Update 20131009
 
 ###############################################################################
 ## 管理画面 menu
@@ -587,7 +587,7 @@ $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
 $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
-//$LANG_DATABOX_TYPE[17] = 'xxx';//@@@@@
+$LANG_DATABOX_TYPE[17] = 'フラグ';
 $LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
 $LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
 $LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@

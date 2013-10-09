@@ -1231,7 +1231,23 @@ function DATABOX_getaddtionfieldsEdit(
                     }else{
                         $fieldhtml .=$fvalue;
                     }
+					break;
+				case 17://フラグ
+					if ($disabled===""){
+						$wk =" <input ";
+					    $wk .= " type=\"checkbox\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+						$wk .= " value=\"1\"";
+						if  ($fvalue==1) {
+							$wk .= " checked=checked";
+						}
+                        $wk .= " ".XHTML.">";
+						$fieldhtml=$wk;
+                    }else{
+                        $fieldhtml= $fvalue;
+                    }
                     break;
+
                 case 5://メールアドレス';
                 case 6://url';
                 case 0:// 一行テキストフィールド
@@ -2826,8 +2842,8 @@ function DATABOX_cleanaddtiondatas(
 						$wk = mb_convert_kana($wk,"ak");
 					}else if ($textconv==20){ //全角に変換する';
 						$wk = mb_convert_kana($wk,"AKV");
-					}
-					break;
+				}
+				break;
 			}
 			//
 			switch ($type) {
