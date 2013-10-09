@@ -149,6 +149,7 @@
 <table>
 <tr><th >No.</th>
     <th >名称</th>
+    <th >入力値変換・入力チェック</th>
     <th >説明</th>
 </tr>
 <tbody>
@@ -156,14 +157,22 @@
 <tr>
   <td ><a name="fieldtype00">00</a></td>
   <td valign="top">一行テキスト</td>
-  <td valign="top">テキスト入力フィールド,HTML入力不可
+  <td valign="top">HTML入力不可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキスト入力フィールド
   </td>
 </tr>  
   
 <tr>
   <td><a name="fieldtype01">01</a></td>
   <td valign="top">複数行テキスト</td>
-  <td valign="top">テキストエリア入力フィールド,HTML入力不可
+  <td valign="top">HTML入力不可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキストエリア入力フィールド
   <br />テキストの改行（CR）は改行要素（br）に変換して表示します
   <br />URLは、リンクに変換して表示します
   </td>
@@ -172,26 +181,38 @@
 <tr>
   <td ><a name="fieldtype20">20</a></td>
   <td valign="top">HTML</td>
-  <td valign="top">テキストエリア入力フィールド,HTML入力可
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキストエリア入力フィールド
   </td>
 </tr>  
 
 <tr>
   <td ><a name="fieldtype10">10</a></td>
   <td valign="top">TinyMCE</td>
-  <td valign="top">テキストエリア入力フィールド,HTML入力可,class="tinymce_enabled"
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキストエリア入力フィールド,class="tinymce_enabled"
   </td>
 </tr>  
 <tr>
   <td ><a name="fieldtype19">19</a></td>
   <td valign="top">CKEditor</td>
-  <td valign="top">テキストエリア入力フィールド,HTML入力可,class="wide"<br />GL2.0.1以降
+  <td valign="top">HTML入力可
+  </td>
+  <td valign="top">テキストエリア入力フィールド,class="wide"<br />GL2.0.1以降
   </td>
 </tr>  
 
 <tr>
   <td valign="top"><a name="fieldtype15">15</a></td>
   <td valign="top">数値</td>
+  <td valign="top">数字または数値文字列のみ
+  </td>
   <td valign="top">
   </td>
 </tr>  
@@ -201,11 +222,15 @@
   <td valign="top">いいえ/はい</td>
   <td valign="top">
   </td>
+  <td valign="top">
+  </td>
 </tr>  
 
 <tr>
   <td ><a name="fieldtype03">03</a></td>
   <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  </td>
   <td valign="top">
    date picker対応(GL2.0.0以降)
   </td>
@@ -214,6 +239,8 @@
 <tr>
   <td ><a name="fieldtype04">04</a></td>
   <td valign="top">日時</td>
+  <td valign="top">日時のみ
+  </td>
   <td valign="top">
    date picker対応(GL2.0.0以降)
   </td>
@@ -222,6 +249,8 @@
 <tr>
   <td ><a name="fieldtype05">05</a></td>
   <td valign="top">メールアドレス</td>
+  <td valign="top">メールアドレス書式のみ
+  </td>
   <td valign="top">
   </td>
 </tr>  
@@ -229,6 +258,8 @@
 <tr>
   <td ><a name="fieldtype06">06</a></td>
   <td valign="top">url</td>
+  <td valign="top">url書式のみ
+  </td>
   <td valign="top">テキスト入力フィールド
   </td>
 
@@ -237,27 +268,30 @@
 <tr>
   <td ><a name="fieldtype07">07</a></td>
   <td valign="top">オプションリスト（選択肢）</td>
-  <td valign="top">このタイプは、選択肢の登録が必須です
+  <td valign="top">選択肢の登録必須
   </td>
+  <td></td>  
 </tr>  
 
 <tr>
   <td ><a name="fieldtype08">08</a></td>
   <td valign="top">ラジオボタンリスト（選択肢）</td>
-  <td valign="top">このタイプは、選択肢の登録が必須です
+  <td valign="top">選択肢の登録必須
   </td>
+  <td></td>  
 </tr>  
 
 <tr>
   <td ><a name="fieldtype14">14</a></td>
   <td valign="top">マルチセレクトリスト（選択肢）</td>
-  <td valign="top">このタイプは、選択肢の登録が必須です
+  <td valign="top">選択肢の登録必須
   </td>
 </tr>  
 
 <tr>
   <td ><a name="fieldtype09">09</a></td>
   <td valign="top">オプションリスト（マスター）</td>
+  <td></td>  
   <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
   </td>
 </tr>  
@@ -265,12 +299,14 @@
 <tr>
   <td ><a name="fieldtype16">16</a></td>
   <td valign="top">ラジオボタンリスト（マスター）</td>
+  <td></td>  
   <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
   </td>
 </tr>  
 <tr>
   <td ><a name="fieldtype18">18</a></td>
   <td valign="top">マルチセレクトリスト（マスター）</td>
+  <td></td>  
   <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
   </td>
 </tr>  
@@ -278,6 +314,7 @@
 <tr>
   <td ><a name="fieldtype11">11</a></td>
   <td valign="top">画像（DB保存）</td>
+  <td></td>  
   <td valign="top">
   </td>
 </tr>  
@@ -292,6 +329,7 @@
 <tr>
   <td ><a name="fieldtype13">13</a></td>
   <td valign="top"></td>
+  <td></td>  
   <td valign="top">
   </td>
 </tr>  
