@@ -176,7 +176,15 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th>{lang_content}</td>
         <th>{lang_type}</td>
       </tr>
-      {additionfields}
+      <tr>
+		<th style="width:20%; color:green; background:#eee" class="alignright">	&#123;additionfield_name&#125;</th>
+        <td style="width:20%; color:green; background:#eee" class="alignleft">&#123;additionfield_templatesetvar&#125;
+<br {xhtml}>&#123;additionfield_value&#125;
+</td>
+        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
+        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
+      </tr>
+       {additionfields}
     </table>
   </fieldset>
 
