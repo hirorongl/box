@@ -215,7 +215,8 @@ function fnclist(
             $templates->set_var ('category_description', $description);
             $templates->set_var ('category_url', $url);
             $templates->set_var ('count', $A['count']);
-
+            $templates->set_var ('category_id', $A['category_id']);
+            $templates->set_var ('category_code', $A['code']);
 
             //=====
 			if ($old_group_name<>$group_name){
