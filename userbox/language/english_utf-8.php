@@ -520,6 +520,16 @@ $LANG_USERBOX_ALLOW_EDIT[3] = 'Owner and admin can edit.';
 $LANG_USERBOX_ALLOW_EDIT[4] = 'Display Disabled';
 $LANG_USERBOX_ALLOW_EDIT[5] = 'Display';
 
+$LANG_USERBOX_TEXTCHECK = array();
+$LANG_USERBOX_TEXTCHECK[0] = 'no check';
+$LANG_USERBOX_TEXTCHECK[11] = 'only half-width(change half-width automatically)';
+$LANG_USERBOX_TEXTCHECK[12] = 'only half-width alphanumeric(change half-width automatically)';
+$LANG_USERBOX_TEXTCHECK[13] = 'ID format(change half-width automatically)';
+$LANG_USERBOX_TEXTCHECK[14] = 'only half-width alphanumeric or symbol(change half-width automatically)';
+$LANG_USERBOX_TEXTCONV = array();
+$LANG_USERBOX_TEXTCONV[0] = 'no';
+$LANG_USERBOX_TEXTCONV[10] = 'change half-width';
+$LANG_USERBOX_TEXTCONV[20] = 'change half-width';
 
 //TYPE (Chenge Disabled)
 $LANG_USERBOX_TYPE = array();
@@ -537,7 +547,7 @@ $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'Option List';
 $LANG_USERBOX_TYPE[8] = 'Radio Button List';
 $LANG_USERBOX_TYPE[14] = 'Multiselect';
-//$LANG_USERBOX_TYPE[17] = '';
+$LANG_USERBOX_TYPE[17] = 'Flag';
 $LANG_USERBOX_TYPE[9] = 'Definition List';
 $LANG_USERBOX_TYPE[16] = 'Radio Button List（master）';//@@@@@
 $LANG_USERBOX_TYPE[18] = 'Multiselect（master）';//@@@@@
