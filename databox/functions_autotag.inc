@@ -1838,7 +1838,8 @@ function databox_data(
         $templates->set_var('lang_byusingcode', $LANG_DATABOX_ADMIN['byusingcode']);
         $templates->set_var('lang_byusingtemplatesetvar', $LANG_DATABOX_ADMIN['byusingtemplatesetvar']);
         $templates->set_var('lang_group', $LANG_DATABOX_ADMIN['group']);
-        $templates->set_var('lang_withlink', $LANG_DATABOX_ADMIN['withlink']);
+		$templates->set_var('lang_withlink', $LANG_DATABOX_ADMIN['withlink']);
+        $templates->set_var('lang_groupbygroup', $LANG_DATABOX_ADMIN['groupbygroup']);
 		
 		//$_DATABOX_CONF
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);

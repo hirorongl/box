@@ -565,7 +565,7 @@ public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
 </tbody>
 </table>
 
-<h2><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
@@ -637,6 +637,81 @@ public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
 </table>	
 （注）No.以外のマルチセレクトリストの区切りはLANG_DATABOX['field_separater']で指定しています。
 
+<h2><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>(2013/10/16 update)</h2>
+<table>
+<tr>
+	<th style="width:30">テーマ変数</th>
+    <th style="width:70%">説明</th>
+	</tr>
+<tr>
+	<td>{categorires}</td>
+	<td>カテゴリ　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{categorireslink}</td>
+	<td>カテゴリ　リンク付　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorireslinkcode}</td>
+	<td>カテゴリ　リンク付　引数コード　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorireslinkid}</td>
+	<td>カテゴリ　リンク付　引数id　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{group_<a  title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>}_code</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>}_pipeline</td>
+	<td>グループ別カテゴリ　グループコードを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>}_code</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　コード列挙　</td>
+</tr>
+
+
+
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}_code</td>
+	<td>グループ別カテゴリ　グループidを使用する　コード列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}_pipeline</td>
+	<td>グループ別カテゴリ　グループidを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>}_code</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　コード列挙　</td>
+</tr>
+</table>
+名称列挙の区切りはLANG_DATABOX['category_separater']で指定しています。
+<br/>　　表示例　日本 / アメリカ / イギリス 
+<br/>コード列挙の区切りはLANG_DATABOX['category_separater_code']で指定しています。
+<br/>　　表示例　japan america england 
+<br/>コードパイプライン区切は |で区切ます。
+<br/>　　表示例　japan|america|england 
+
 
 <h2></h2>
 <br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
@@ -661,28 +736,14 @@ template=テンプレートディレクトリ
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データに登録されているテンプレートディレクトリ
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default
 <br/>
-
-<br/><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>
-<br/>　カテゴリ名称を表示　　categories,categorieslink,categorieslinkcode,categorieslinkid
-<br/>　　　　　　　　group_<a link href="#notetext_id" class="note_super">id</a>,
-group_<a link href="#notetext_code" class="note_super">code</a>,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>
-<br/>　　　　　　　　区切りはLANG_DATABOX['category_separater']で指定しています。
-<br/>　カテゴリコードを表示　group_<a link href="#notetext_id" class="note_super">id</a>_code,
-group_<a link href="#notetext_code" class="note_super">code</a>_code,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
-<br/>　　　　　　　　区切りはLANG_DATABOX['category_separater_code']で指定しています。
-
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
 最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
 
 
-<br/><a class="note_super" href="#notetext_id" id="notetext_id">id</a>
+<br/><a class="note_super" href="#notetext_id" id="notetext_id">1 </a>
 管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)
 
-<br/><a class="note_super" href="#notetext_code" id="notetext_code">code</a>
+<br/><a class="note_super" href="#notetext_code" id="notetext_code">xxxx</a>
 管理画面で指定したcodeの値
 
 

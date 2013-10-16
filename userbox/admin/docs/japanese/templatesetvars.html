@@ -50,7 +50,7 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
+og_image<a title="USerBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です"
@@ -142,7 +142,7 @@ site_name,
 site_mail,
 og_title,
 og_image
-<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
+<a title="UserBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
 facebook_consumer_key
@@ -259,7 +259,7 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
+og_image<a title="UserBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
@@ -268,6 +268,7 @@ facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定
 </tr>
 
 <tr >
+
 <td>
 【attribute】list.thtml,navigation.thtml,row.thtml
 ,pagenavigation.thtml
@@ -293,6 +294,7 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
 </tr>
 
 <tr >
+
 <td>
 【attribute】col.thtml アトリビュート別件数一覧用
 </td>
@@ -307,7 +309,9 @@ value,
 count
 </td>
 </tr>
+
 <tr >
+
 <td>
 【attribute】col2.thtml （各アトリビュート別）件数一覧用
 </td>
@@ -323,7 +327,7 @@ count
 </tr>
 
 <tr class="r2">
-<td  rowspan=4>
+<td rowspan=4>
 アトリビュート別一覧<br/>
 public_html/attribute.php?id=1&amp;m=id&amp;value=27&amp;template=yyyy<br/>
 public_html/attribute.php?code=xxxx&amp;m=code&amp;value=27&amp;template=yyyy<br/>
@@ -340,7 +344,7 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5" >*5</a>,
+og_image<a title="UserBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5" >*5</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
@@ -349,6 +353,7 @@ facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定
 </tr>
 
 <tr class="r2">
+
 <td>
 【attribute】
 list_detail.thtml 
@@ -384,8 +389,6 @@ site_url,
  msg<br/>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
-
- 
 </td>	
 </tr>
 
@@ -410,6 +413,7 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
  </td>
 </tr>
 <tr class="r2">
+
 <td>
 【attribute】nohit.thtml
 </td>
@@ -428,24 +432,24 @@ home
 ,lang_nohit</td>
 </tr>
 
-<tr>
+<tr　>
 <td>
 profile一覧<br/>
-public_html/list.php<br/>
-<br/>
-msg=1<br/>
-order=0&prevorder=created&direction=ASC&q=ja&query_limit=50
+public_html/list.php
+<br/>msg=1
+<br/>order=0&prevorder=created&direction=ASC&q=ja&query_limit=50
 </td>
 <td>
 </td>
 <td></td>
 </tr>
 
-<tr>
+<tr class="r2">
 <td rowspan=3>
 個別表示<br/>
 public_html/profile.php?id=1&amp;m=id&amp;template=yyyy<br/>
 public_html/profile.php?code=xxxx_en&amp;m=code&amp;template=yyyy<br/>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
 </td>
 <td>
 【profile】headercode.thtml
@@ -459,7 +463,7 @@ currenturl,
 site_name,
 site_mail,
 og_title,
-og_image<a title="featuredimageまたはDataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_6" >*6</a>,
+og_image<a title="featuredimageまたはUserBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_6" >*6</a>,
 og_description,
 og_type
 facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
@@ -468,6 +472,7 @@ facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定
 </tr>
 
 <tr class="r2">
+
 <td>
 【profile】list_detail.thtml,row.thtml,col_detail.thtml
 </td>
@@ -535,6 +540,7 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
 </tr>
 
 <tr class="r2">
+
 <td>
 【profile】nohit.thtml
 </td>
@@ -568,10 +574,10 @@ public_html/myprofile/profile.php<br/>
 </tbody>
 </table>
 
-<h2><a class="note_super" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
 <table>
 <tr>
-	<th style="width:30%">アトリビュートタイプ</th>
+	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
 	<th style="width:30">テーマ変数</th>
     <th style="width:40%">説明</th>
 	</tr>
@@ -637,9 +643,83 @@ public_html/myprofile/profile.php<br/>
 	<br/>   {登録したテーマ変数名_mst_no}	</td>
 	<td>マスターのNo.</td>
 	</tr>	
-
 </table>	
 （注）No.以外のマルチセレクトリストの区切りはLANG_USERBOX['field_separater']で指定しています。
+
+<h2><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>(2013/10/16 update)</h2>
+<table>
+<tr>
+	<th style="width:30">テーマ変数</th>
+    <th style="width:70%">説明</th>
+	</tr>
+<tr>
+	<td>{categorires}</td>
+	<td>カテゴリ　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{categorireslink}</td>
+	<td>カテゴリ　リンク付　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorireslinkcode}</td>
+	<td>カテゴリ　リンク付　引数コード　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorireslinkid}</td>
+	<td>カテゴリ　リンク付　引数id　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{group_<a  title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>}_code</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>}_pipeline</td>
+	<td>グループ別カテゴリ　グループコードを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>}_code</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　コード列挙　</td>
+</tr>
+
+
+
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}_code</td>
+	<td>グループ別カテゴリ　グループidを使用する　コード列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}_pipeline</td>
+	<td>グループ別カテゴリ　グループidを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>}_code</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　コード列挙　</td>
+</tr>
+</table>
+名称列挙の区切りはLANG_USERBOX['category_separater']で指定しています。
+<br/>　　表示例　日本 / アメリカ / イギリス 
+<br/>コード列挙の区切りはLANG_USERBOX['category_separater_code']で指定しています。
+<br/>　　表示例　japan america england 
+<br/>コードパイプライン区切は |で区切ます。
+<br/>　　表示例　japan|america|england 
 
 
 <h2></h2>
@@ -655,26 +735,21 @@ UserBoxデフォルト画像またはロゴ画像
 <br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
 <a link href="#notetext_featuredimage" class="note_super">featuredimage</a>またはUserBoxデフォルト画像またはロゴ画像
 
-<br/><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>
-<br/>　カテゴリ名称を表示　　categories,categorieslink,categorieslinkcode,categorieslinkid
-<br/>　　　　　　　　group_<a link href="#notetext_id" class="note_super">id</a>,
-group_<a link href="#notetext_code" class="note_super">code</a>,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>
-<br/>　　　　　　　　区切りはLANG_USERBOX['category_separater']で指定しています。
-<br/>　カテゴリコードを表示　group_<a link href="#notetext_id" class="note_super">id</a>_code,
-group_<a link href="#notetext_code" class="note_super">code</a>_code,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
-<br/>　　　　　　　　区切りはLANG_USERBOX['category_separater_code']で指定しています。
-
+<br/><a class="note_super" href="#notetext_7" id="notetext_7">*7</a>
+template=テンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;引数で指定されていない場合は、下記の順に使用されます(一覧画面以外)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;タイプに登録されているテンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データに登録されているテンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default
+<br/>
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
 最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
 
-<br/><a class="note_super" href="#notetext_id" id="notetext_id">id</a>
+
+<br/><a class="note_super" href="#notetext_id" id="notetext_id">1 </a>
 管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)
 
-<br/><a class="note_super" href="#notetext_code" id="notetext_code">code</a>
+<br/><a class="note_super" href="#notetext_code" id="notetext_code">xxxx</a>
 管理画面で指定したcodeの値
 
 <div class="footer">

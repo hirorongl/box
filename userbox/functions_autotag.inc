@@ -1284,7 +1284,7 @@ function userbox_profile(
         $templates->set_var('lang_byusingtemplatesetvar', $LANG_USERBOX_ADMIN['byusingtemplatesetvar']);
         $templates->set_var('lang_group', $LANG_USERBOX_ADMIN['group']);
         $templates->set_var('lang_withlink', $LANG_USERBOX_ADMIN['withlink']);
-
+        $templates->set_var('lang_groupbygroup', $LANG_USERBOX_ADMIN['groupbygroup']);
 
         $templates->set_var('lang_uid', $LANG28['2']);
         $templates->set_var('lang_username', $LANG28['3']);

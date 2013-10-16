@@ -4,10 +4,8 @@
 // | DataBox プラグイン   function.inc からrequire
 // | Box シリーズ共通
 // +---------------------------------------------------------------------------+
-// $Id: plugins/databox/functions_databox.inc
+// $Id: plugins/databox/lib/databox_functions.inc
 //20100818 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//update 20120328
-
 
 if (strpos ($_SERVER['PHP_SELF'], 'databox_functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -2295,6 +2293,7 @@ function DATABOX_getcategoriesDisp(
 	
     for( $i = 0; $i < $nrows; $i++ )    {
         $A = DB_fetchArray( $result, true );
+		$A = array_map('stripslashes', $A);
 		$gid=$A['group_id'];
 		$gcode=$A['code'];
 		$templates->set_var('group_'.$gid, "");
@@ -2342,7 +2341,9 @@ function DATABOX_getcategoriesDisp(
     $nrows = DB_numRows( $result );
 
     $separater=$lang_box['category_separater'];
-    $separater_code=$lang_box['category_separater_code'];
+	$separater_code=$lang_box['category_separater_code'];
+	$separater_pipeline="|";
+	
     $categpries="";
 
 
@@ -2357,12 +2358,17 @@ function DATABOX_getcategoriesDisp(
     $categories_link_id_group2 ="";
     $categories_link_code_group2 ="";
 	
+    $categories_group_pipeline ="";
+	
 	//group_id2, group_code2, grouplinkid2, grouplinkcode2,
 	//group_id がカテゴリの名称を表示するのに対し、
 	//group_id2はカテゴリのコードを表示する。
 	//$categories_group $categories_link_id_group $categories_link_code_group
+	//group_pipelineはカテゴリのコードパイプライン区切を表示する。
+	//$categories_group_pipeline
     for( $i = 0; $i < $nrows; $i++ )    {
-        $A = DB_fetchArray( $result, true );
+		$A = DB_fetchArray( $result, true );
+		$A = array_map('stripslashes', $A);
         if ($old_group_id<>$A['group_id']){
             if ($categories_group<>""){
 
@@ -2370,36 +2376,41 @@ function DATABOX_getcategoriesDisp(
                 $templates->set_var('group_'.$old_group_id, $categories_group);
 				$templates->set_var('group_'.$old_group_code, $categories_group);
                 $categories_group2=rtrim($categories_group2,$separater_code);
-                $templates->set_var('group_'.$old_group_id."_code", $categories_group2);//@@
-                $templates->set_var('group_'.$old_group_code."_code", $categories_group2);//@@
+                $templates->set_var('group_'.$old_group_id."_code", $categories_group2);
+                $templates->set_var('group_'.$old_group_code."_code", $categories_group2);
+                $categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
+                $templates->set_var('group_'.$old_group_id."_pipeline", $categories_group_pipeline);//@@
+                $templates->set_var('group_'.$old_group_code."_pipeline", $categories_group_pipeline);//@@
 				
                 $categories_link_id_group=rtrim($categories_link_id_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
-                $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
-                $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);//@@
+                $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);
+                $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);
 
                 $categories_link_code_group=rtrim($categories_link_code_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_code, $categories_link_code_group);
-                $categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
-                $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);//@@
+                $categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);
+                $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);
 
             }
             $categories_group ="";
             $categories_link_id_group ="";
 			$categories_link_code_group ="";
-            $categories_group2 ="";//@@
-            $categories_link_id_group2 ="";//@@
-			$categories_link_code_group2 ="";//@@
+            $categories_group2 ="";
+            $categories_link_id_group2 ="";
+			$categories_link_code_group2 ="";
+            $categories_group_pipeline="";//@@
 			
             $old_group_id=$A['group_id'];
             $old_group_code=$A['group_code'];
         }
         $categories.=$A['category_name']." ".$separater;
 		$categories_group.=$A['category_name']." ".$separater;
-		$categories_group2.=$A['category_code']." ".$separater_code;//@@
+		$categories_group2.=$A['category_code']." ".$separater_code;
+		$categories_group_pipeline.=$A['category_code'].$separater_pipeline;
 		
 
-        $name=COM_applyFilter($A['category_name']);
+        $name=$A['category_name'];
         $code=COM_applyFilter($A['category_code']);
         $url=$_CONF['site_url'] ."/".$pi_name."/category.php";
 		$url_code=$url;
@@ -2411,7 +2422,7 @@ function DATABOX_getcategoriesDisp(
 		$url_id.="&m=id";
         $url_id= COM_buildUrl( $url_id );
 		$category_link_id= COM_createLink($name, $url_id);
-        $category_link_code= COM_createLink($name, $url_code);
+		$category_link_code= COM_createLink($name, $url_code);
         $category_link_id2= COM_createLink($code, $url_id);
         $category_link_code2= COM_createLink($code, $url_code);
 
@@ -2443,11 +2454,15 @@ function DATABOX_getcategoriesDisp(
     $templates->set_var('categorieslinkid', $categories_link_id);
 
 	$categories_group=rtrim($categories_group,$separater);
-	$categories_group2=rtrim($categories_group2,$separater_code);//@@
+	$categories_group2=rtrim($categories_group2,$separater_code);
+	$categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
+
     $templates->set_var('group_'.$old_group_id, $categories_group);
     $templates->set_var('group_'.$old_group_code, $categories_group);
-	$templates->set_var('group_'.$old_group_id."_code", $categories_group2);//@@
-    $templates->set_var('group_'.$old_group_code."_code", $categories_group2);//@@
+	$templates->set_var('group_'.$old_group_id."_code", $categories_group2);
+    $templates->set_var('group_'.$old_group_code."_code", $categories_group2);
+    $templates->set_var('group_'.$old_group_id."_pipeline", $categories_group_pipeline);//@@
+    $templates->set_var('group_'.$old_group_code."_pipeline", $categories_group_pipeline);//@@
 
     $categories_link_id_group=rtrim($categories_link_id_group,$separater);
     $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
