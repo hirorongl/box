@@ -310,6 +310,7 @@ $LANG_USERBOX_ADMIN['byusingcode'] = 'Use Code';
 $LANG_USERBOX_ADMIN['byusingtemplatesetvar'] = 'Use Theme Variable';
 
 $LANG_USERBOX_ADMIN['withlink'] = 'With Link';
+$LANG_USERBOX_ADMIN['groupbygroup'] = 'groupby group  ';
 
 $LANG_USERBOX_ADMIN['number'] ="Number";
 $LANG_USERBOX_ADMIN['endmessage'] = "Finished";

@@ -308,6 +308,7 @@ $LANG_DATABOX_ADMIN['byusingcode'] = 'Use Code';
 $LANG_DATABOX_ADMIN['byusingtemplatesetvar'] = 'Use Theme Variable';
 
 $LANG_DATABOX_ADMIN['withlink'] = 'With Link';
+$LANG_DATABOX_ADMIN['groupbygroup'] = 'groupby group  ';
 
 $LANG_DATABOX_ADMIN['number'] ="Number";
 $LANG_DATABOX_ADMIN['endmessage'] = "Finished";
