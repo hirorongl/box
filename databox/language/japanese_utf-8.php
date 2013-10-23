@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20131016
+# Last Update 20131022
 
 ###############################################################################
 ## 管理画面 menu
@@ -433,6 +433,7 @@ $LANG_DATABOX_ADMIN['err_expired'] = '公開終了日が不正です';
 $LANG_DATABOX_ADMIN['err_checkrequried'] = ' 必ず入力してください';
 
 $LANG_DATABOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
+$LANG_DATABOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
 $LANG_DATABOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@

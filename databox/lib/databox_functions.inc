@@ -1348,11 +1348,11 @@ function DATABOX_figurehtml(
 function DATABOX_figurehtml12(
     $fid
     ,$fvalue
-    ,$fvalue_del
+	,$fvalue_del
 )
 {
 
-    global $LANG04;
+	global $LANG04;
 
     //
     $retval .= "        <input ";
@@ -1367,7 +1367,6 @@ function DATABOX_figurehtml12(
 
         $retval .= " id=\"afield_fnm[".$fid."]\" ";
         $retval .= " name=\"afield_fnm[".$fid."]\" ";
-
         $retval .="size=\"30\"";
         $retval .= " ".XHTML.">".LB;
 
@@ -2838,7 +2837,7 @@ function DATABOX_cleanaddtiondatas(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
-//update 20120823
+//update 20131022 12
 {
 	if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
@@ -2963,10 +2962,10 @@ function DATABOX_checkaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update
 {
-
+	global $_CONF;
 	global $LANG04;
-    global $_FILES;
-
+	global $_FILES;
+	
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
@@ -2988,8 +2987,17 @@ function DATABOX_checkaddtiondatas(
                 //url email date
             }
             //図 外記憶
-            if ($addition_def[$field_id]['type']==12){//図
-
+			if ($addition_def[$field_id]['type']==12){//図
+				 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'].$addition_def[$field_id]['templatesetvar'];
+				 $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'].$addition_def[$field_id]['templatesetvar'];
+				 if (!is_writable ( $imgfld )){
+                    $rt.=$imgfld."/ ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+				 }
+				 if  ($imgfld<>$imgfld_thmb){
+					if (!is_writable ( $imgfld_thmb )){
+						$rt.=$imgfld_thmb."/ ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+					}
+				 }
                  if (is_array($fldary_del) AND $fldary_del[$field_id]){
                      //$fldary[$field_id]="";
                      //$fldary_fnm[$field_id]="";
@@ -3243,8 +3251,8 @@ function DATABOX_uploadaddtiondatas(
 						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
 						$a=explode(".",$imgname);
 						$a[1]=strtolower($a[1]);
-						$newfilename=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
-
+						$newfilename=$addition_def[$field_id]['templatesetvar']."/"
+							.$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
 						//$newfilename=$imgname;
 						if (DATABOX_uploadImageFile
 								($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
@@ -3302,7 +3310,8 @@ function DATABOX_uploadaddtiondatas_xml(
 					$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
 					$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
 					//
-					$imgname=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
+					$imgname=$addition_def[$field_id]['templatesetvar']."/"
+							.$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
 					$imgsrc=$fldary[$field_id];
 					if (DATABOX_uploadImageFile_xml($imgname,$imgsrc,$imgfld)){
 						$fldary[$field_id]=$imgname;
