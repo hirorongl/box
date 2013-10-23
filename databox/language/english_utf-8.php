@@ -408,6 +408,7 @@ $LANG_DATABOX_ADMIN['err_expired'] = 'Publish date is not valid.';
 $LANG_DATABOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
 $LANG_DATABOX_ADMIN['err_date'] = 'Date is invalid.';//@@@@@
+$LANG_DATABOX_ADMIN['err_writable'] = ' is not writable';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'Size is invalid.';//@@@@@
 $LANG_DATABOX_ADMIN['err_type'] = ' Type is invalid.';//@@@@@
