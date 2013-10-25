@@ -65,7 +65,7 @@ $LANG_USERBOX['home']="Home";
 $LANG_USERBOX['view']="View";
 $LANG_USERBOX['count']="Count";
 $LANG_USERBOX['category_top']="Categories Top";
-$LANG_USERBOX['field_top']="Attributes Top";
+$LANG_USERBOX['attribute_top']="Attributes Top";
 $LANG_USERBOX['search_link']="";
 
 $LANG_USERBOX['category_separater']=" / ";

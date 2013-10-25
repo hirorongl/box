@@ -53,7 +53,7 @@ $LANG_DATABOX['home']="Home";
 $LANG_DATABOX['view']="View";
 $LANG_DATABOX['count']="Count";
 $LANG_DATABOX['category_top']="Categories Top";
-$LANG_DATABOX['field_top']="Attributes Top";
+$LANG_DATABOX['attribute_top']="Attributes Top";
 $LANG_DATABOX['search_link']="";
 
 $LANG_DATABOX['category_separater']=" / ";
