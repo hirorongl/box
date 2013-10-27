@@ -523,7 +523,9 @@ function plugin_getheadercode_userbox()
 			}
 		}
 	}
-	return;
+	return  '<!-- Include CSS for UserBox Plugin -->' . LB
+          . '<link rel="stylesheet" type="text/css" href="'
+          . $_CONF['site_url'] . '/userbox/css/style.css"' . XHTML . '>' . LB;
 }
 
 function plugin_enablestatechange_userbox ($enable)

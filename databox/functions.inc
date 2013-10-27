@@ -416,7 +416,11 @@ function plugin_getheadercode_databox()
 			}
 		}
 	}
-	return;
+
+	return  '<!-- Include CSS for DataBox Plugin -->' . LB
+          . '<link rel="stylesheet" type="text/css" href="'
+          . $_CONF['site_url'] . '/databox/css/style.css"' . XHTML . '>' . LB;
+
 }
 
 
