@@ -1,6 +1,6 @@
 <!-- plugins/userbox/templates/admin/xml_editor.thtml 20110318{ -->
 
-<div id="databox_admin">
+<div id="userbox_admin">
 {about_thispage}
 <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 

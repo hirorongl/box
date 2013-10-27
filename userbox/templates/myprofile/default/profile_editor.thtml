@@ -83,7 +83,7 @@
         <tr>
             <th style="width:25%" class="alignright">{lang_description}{help_description}</th>
             <td style="width:75%">
-				<textarea name="description" style="width:95%" rows="2" id="databox_description"
+				<textarea name="description" style="width:95%" rows="2" id="userbox_description"
 				onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
 				<br {xhtml}><strong><span id='description_cnt'></span><strong>
             </td>

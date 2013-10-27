@@ -7,62 +7,63 @@
      <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
      <span style="color:green"> &#123;language&#125;</span>:{language}
   </p>
-<!--  基本項目 -->
+
+<!-- Basic Items -->
   <fieldset style="width:98%">
     <legend>{lang_basicfields}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
         <th style="width:20%;" class="alignright">{lang_field}</th>
-        <th style="width:20%; color:green;">{lang_templatesetvar}</td>
-        <th style="width:60%;">{lang_content}</td>
+        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
+        <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_code}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;code&#125;</td>
-        <td style="background:#f8f8f8">{code}</td>
+        <td style="width:20%; color:green">&#123;code&#125;</td>
+        <td>{code}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_title}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;title&#125;</td>
-        <td style="background:#f8f8f8">{title}</td>
+        <td style="width:20%; color:green">&#123;title&#125;</td>
+        <td>{title}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_description}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;description&#125;</td>
-        <td style="background:#f8f8f8">{description}</td>
+        <td style="width:20%; color:green">&#123;description&#125;</td>
+        <td>{description}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_hits}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;hits&#125;</td>
-        <td style="background:#f8f8f8">{hits}</td>
+        <td style="width:20%; color:green">&#123;hits&#125;</td>
+        <td>{hits}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_modified}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;modified&#125;</td>
-        <td style="background:#f8f8f8">{modified}</td>
+        <td style="width:20%; color:green">&#123;modified&#125;</td>
+        <td>{modified}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_created}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;created&#125;</td>
-        <td style="background:#f8f8f8">{created}</td>
+        <td style="width:20%; color:green">&#123;created&#125;</td>
+        <td>{created}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_released}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;released&#125;</td>
-        <td style="background:#f8f8f8">{released}</td>
+        <td style="width:20%; color:green">&#123;released&#125;</td>
+        <td>{released}</td>
 		</tr>
 
       <tr>
         <th style="width:20%" class="alignright">{lang_owner}</th>
-        <td style="background:#f8f8f8; width:10%; color:green">&#123;owner_name&#125;</td>
-        <td style="background:#f8f8f8">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+        <td style="width:20%; color:green">&#123;owner_name&#125;</td>
+        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
         ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
 	　</tr>
 	
       <tr>
         <th style="width:20%" class="alignright">{lang_udatetime}</th>
-        <td style="background:#f8f8f8; width:10%; color:green">&#123;udatetime&#125;</td>
-        <td style="background:#f8f8f8">{udatetime}
+        <td style="width:20%; color:green">&#123;udatetime&#125;</td>
+        <td>{udatetime}
 	( UID: <span  style="color:green"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
 name:<span  style="color:green"> &#123;last_modify_name&#125;</span>: {last_modify_name}	
 fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}	
@@ -71,69 +72,65 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
       <tr>
         <th style="width:20%" class="alignright">Maps Plugin mkid</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;mkid&#125;&#123;marker&#125;</td>
-        <td style="background:#f8f8f8">{mkid}{marker}</td>
+        <td style="width:20%; color:green">&#123;mkid&#125;&#123;marker&#125;</td>
+        <td>{mkid}{marker}</td>
       </tr>
     </table>
-  </fieldset>
 
-<!-- コンフィギュレーション設定値 -->
-  <fieldset style="width:98%">
-    <legend>{lang_basicfields}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
 		<tr>
         <th style="width:20%;" class="alignright">{lang_field}</th>
-        <th style="width:20%; color:green;">{lang_templatesetvar}</td>
-        <th style="width:60%;">{lang_content}</td>
+        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
+        <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_imgfile_frd}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;imgfile_frd&#125;</td>
-        <td style="background:#f8f8f8">{imgfile_frd}</td>
+        <td style="width:20%; color:green">&#123;imgfile_frd&#125;</td>
+        <td>{imgfile_frd}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd}</th>
-        <td style="background:#f8f8f8; width:20%; color:green">&#123;imgfile_thumb_frd&#125;</td>
-        <td style="background:#f8f8f8">{imgfile_thumb_frd}</td>
+        <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;</td>
+        <td>{imgfile_thumb_frd}</td>
       </tr>
     </table>
   </fieldset>
 
-<!-- カテゴリ -->
+<!-- Category -->
   <fieldset style="width:98%">
     <legend>{lang_category} </legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
 		<tr>
         <th style="width:20%;" class="alignright">{lang_field}</th>
-        <th style="width:20%; color:green;">{lang_templatesetvar}</td>
-        <th style="width:60%;">{lang_content}</td>
+        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
+        <th style="width:60%;">{lang_content}</th>
       </tr>
 	  <!--  カテゴリ名称列挙 -->
       <tr>
         <th style="width:20%" class="alignright">{lang_category}</th>
-		<td style="background:#f8f8f8; width:20%; color:green">&#123;categories&#125;<br{xhtml}></td>
-        <td style="background:#f8f8f8">{categories}</td>
+		<td style="width:20%; color:green">&#123;categories&#125;<br{xhtml}></td>
+        <td>{categories}</td>
       </tr>
 	  <!--  カテゴリ名称列挙リンク付 -->
       <tr>
         <th style="width:20%" class="alignright">
 		{lang_category} {lang_withlink}
 		</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;categorieslink&#125;
 		</td>
 		<td>{categorieslink} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;categorieslinkcode&#125
 		</td>
 		<td>{categorieslinkcode} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;categorieslinkid&#125;
 		</td>
 		<td>{categorieslinkid} </td>
@@ -143,23 +140,19 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- 追加項目 -->
+<!-- Additional Items -->
   <fieldset style="width:98%">
     <legend>{lang_additionfields} </legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_field}</th>
-        <th style="width:20%; color:green;">{lang_templatesetvar}</td>
-        <th>{lang_content}</td>
-        <th>{lang_type}</td>
-      </tr>
-      <tr>
-		<th style="width:20%; color:green; background:#eee" class="alignright">	&#123;additionfield_name&#125;</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">&#123;additionfield_templatesetvar&#125;
-<br {xhtml}>&#123;additionfield_value&#125;
-</td>
-        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
-        <td class="alignleft" style="color:green; background:#eee">&nbsp;</td>
+	<th style="width:20%;" class="alignright">{lang_field}<br{XHTML}>&#123;additionfield_name&#125;</th>
+        <th style="width:40%; text-align:left" class="alignleft">
+	  <dl class="databox_col_detail">
+	    <dt style=color:green;>{lang_templatesetvar} &#123;additionfield_templatesetvar&#125;</dt>
+	    <dd>{lang_content} &#123;additionfield_value&#125;</dd>
+	  </dl>
+	</th>
+        <th class="alignleft">{lang_type}</th>
       </tr>
        {additionfields}
     </table>
@@ -169,48 +162,37 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 
 
-
-
-
-
-
-
-
-
-
-
-<br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}><br{xhtml}>
-<h3> ★Example★ </h3> 
+<h3 style="margin-top:10em">* Example *</h3> 
 <!-- 以下は参考例です 登録されていない場合表示されません -->
 
 <!-- グループ別カテゴリ　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%; background:#eee" class="alignright">{lang_group}{lang_code}</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%;" class="alignright">{lang_group}{lang_code}</th>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
+        <th class="alignleft">{lang_content}</th>
       </tr>
 	
 	  <!-- city -->
 	  <tr>
         <th style="width:20%" class="alignright">city</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_city&#125;
 		</td>
 		<td>{group_city} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_city_code&#125
 		</td>
 		<td>{group_city_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_city_pipeline&#125
 		</td>
 		<td>{group_city_pipeline} </td>
@@ -218,21 +200,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- country -->
 	  <tr>
         <th style="width:20%" class="alignright">country</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_country&#125;
 		</td>
 		<td>{group_country} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_country_code&#125
 		</td>
 		<td>{group_country_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_country_pipeline&#125
 		</td>
 		<td>{group_country_pipeline} </td>
@@ -240,21 +222,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- team -->
 	  <tr>
         <th style="width:20%" class="alignright">team</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_team&#125;
 		</td>
 		<td>{group_team} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_team_code&#125
 		</td>
 		<td>{group_team_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_team_pipeline&#125
 		</td>
 		<td>{group_team_pipeline} </td>
@@ -265,54 +247,54 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%; background:#eee" class="alignright">{lang_group}{lang_code}</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%;" class="alignright">{lang_group}{lang_code}</th>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
+        <th class="alignleft">{lang_content}</th>
       </tr>
 	
 	  <!-- city -->
 	  <tr>
-        <th style="width:20%" class="alignright">city</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+        	<th style="width:20%" class="alignright">city</th>
+		<td style="width:20%; color:green">
 		&#123;grouplink_city&#125;
 		</td>
 		<td>{grouplink_city} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_city_code&#125
 		</td>
 		<td>{grouplink_city_code} </td>
 	  </tr>
 	  <!-- country -->
 	  <tr>
-        <th style="width:20%" class="alignright">country</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+        	<th style="width:20%" class="alignright">country</th>
+		<td style="width:20%; color:green">
 		&#123;grouplink_country&#125;
 		</td>
 		<td>{grouplink_country} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_country_code&#125
 		</td>
 		<td>{grouplink_country_code} </td>
 	  </tr>
 	  <!-- team -->
 	  <tr>
-        <th style="width:20%" class="alignright">team</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+        	<th style="width:20%" class="alignright">team</th>
+		<td style="width:20%; color:green">
 		&#123;grouplink_team&#125;
 		</td>
 		<td>{grouplink_team} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_team_code&#125
 		</td>
 		<td>{grouplink_team_code} </td>
@@ -324,30 +306,30 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ　グループIDを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%; background:#eee" class="alignright">{lang_group}{lang_id}</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%;" class="alignright">{lang_group}{lang_id}</th>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
+        <th class="alignleft">{lang_content}</th>
       </tr>
 	  <!-- 1 -->
 	  <tr>
         <th style="width:20%" class="alignright">1</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_1&#125;
 		</td>
 		<td>{group_1} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_1_code&#125
 		</td>
 		<td>{group_1_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_1_pipeline&#125
 		</td>
 		<td>{group_1_pipeline} </td>
@@ -355,21 +337,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- 2 -->
 	  <tr>
         <th style="width:20%" class="alignright">2</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_2&#125;
 		</td>
 		<td>{group_2} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_2_code&#125
 		</td>
 		<td>{group_2_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_2_pipeline&#125
 		</td>
 		<td>{group_2_pipeline} </td>
@@ -377,21 +359,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- 3 -->
 	  <tr>
         <th style="width:20%" class="alignright">3</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_3&#125;
 		</td>
 		<td>{group_3} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_3_code&#125
 		</td>
 		<td>{group_3_code} </td>
 	  </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;group_3_pipeline&#125
 		</td>
 		<td>{group_3_pipeline} </td>
@@ -404,23 +386,23 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ リンク付　グループIDを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%; background:#eee" class="alignright">{lang_group}{lang_id}</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%;" class="alignright">{lang_group}{lang_id}</th>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</td>
+        <th class="alignleft">{lang_content}</th>
       </tr>
 	  <!-- 1 -->
 	  <tr>
         <th style="width:20%" class="alignright">1</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_1&#125;
 		</td>
 		<td>{grouplink_1} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_1_code&#125
 		</td>
 		<td>{grouplink_1_code} </td>
@@ -428,14 +410,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- 2 -->
 	  <tr>
         <th style="width:20%" class="alignright">2</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_2&#125;
 		</td>
 		<td>{grouplink_2} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_2_code&#125
 		</td>
 		<td>{grouplink_2_code} </td>
@@ -443,14 +425,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  <!-- 3 -->
 	  <tr>
         <th style="width:20%" class="alignright">3</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_3&#125;
 		</td>
 		<td>{grouplink_3} </td>
         </tr>
 	  <tr>
 		<th style="width:20%" class="alignright">　	</th>
-		<td style="background:#f8f8f8; width:20%; color:green">
+		<td style="width:20%; color:green">
 		&#123;grouplink_3_code&#125
 		</td>
 		<td>{grouplink_3_code} </td>
@@ -472,73 +454,72 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例-->
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
+        <th class="alignleft">{lang_content}</th>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;tel&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;tel&#125;</th>
         <td>{tel}</td>
       </tr>
 	
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;pref&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;pref&#125;</th>
         <td>{pref}</td>
       </tr>
 	
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_value2&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_value2&#125;</th>
         <td>{pref_mst_value2}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_disp&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_disp&#125;</th>
         <td>{pref_mst_disp}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;pref_mst_no&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_no&#125;</th>
         <td>{pref_mst_no}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;yesno&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;yesno&#125;</th>
         <td>{yesno}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12&#125;</th>
         <td>{fg12}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn&#125;</th>
         <td>{fg12_tn}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12_noimage&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12_noimage&#125;</th>
         <td>{fg12_noimage}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn_noimage&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn_noimage&#125;</th>
         <td>{fg12_tn_noimage}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12_disp&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12_disp&#125;</th>
         <td>{fg12_disp}</td>
       </tr>
       <tr>
-        <td style="width:20%; color:green" class="alignleft">&#123;fg12_tn_image&#125;</td>
+        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn_image&#125;</th>
         <td>{fg12_tn_image}</td>
       </tr>
-	
-	</table>
+    </table>
   </fieldset>
 
 <!-- アトリビュート（追加項目） IDを使用する　テーマ変数 例-->
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingid}</legend>
-    <table style="width:98%">
+    <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%; background:#eee" class="alignright">{lang_additionfields}{lang_id}</th>
-        <td style="width:20%; color:green; background:#eee" class="alignleft">{lang_templatesetvar}</td>
-        <td class="alignleft" style="background:#eee">{lang_content}</td>
+        <th style="width:20%;" class="alignright">{lang_additionfields}{lang_id}</th>
+        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
+        <th class="alignleft">{lang_content}</th>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">1</th>
@@ -653,12 +634,6 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 	    <td>{additionfield1_disp}</td>
       </tr>
-
-
-
-
-
-
       <tr>
         <th style="width:20%" class="alignright">11</th>
 		<td style="width:20%; color:green" class="alignleft">

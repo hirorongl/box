@@ -8,4 +8,4 @@
 
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 
-<!-- plugins/databox/templates/category/default/headercode.thtml { -->
+<!-- plugins/userbox/templates/category/default/headercode.thtml { -->

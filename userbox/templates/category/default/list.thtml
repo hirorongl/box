@@ -1,6 +1,6 @@
 <!-- plugins/userbox/templates/category/default/list.thtml 20121030{ -->
 
-<div id="databox">
+<div id="userbox">
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a></p>
 
