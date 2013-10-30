@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/fieldset_fields.thtml 201205011 { -->
+<!-- plugins/databox/templates/admin/fieldset_fields.thtml 20131025 { -->
 <script type="text/JavaScript" 
 		src="{site_url}/javascript/moveusers.js">
 		</script>
@@ -10,7 +10,6 @@ window.onload=function(){
 var lnk=document.createElement("link");
 lnk.setAttribute("rel","stylesheet");
 lnk.setAttribute("type","text/css");
-lnk.setAttribute("href","{site_url}/databox/css/admin_fieldsetfields.css");
 var head=document.getElementsByTagName("head").item(0);
 head.appendChild(lnk);
 };

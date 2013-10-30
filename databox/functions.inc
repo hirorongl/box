@@ -401,7 +401,10 @@ function plugin_getheadercode_databox()
     global $_PLUGINS;
 	global $_SCRIPTS;
 	global $_CONF;
-
+	
+	$css = '/databox/css/style.css';
+	$_SCRIPTS->setCSSFile('databox_style_css', $css, true);
+	
 	//GL のバージョンが1.8.0 より新しければ
 	//jquery 有効であれば〜datepicker セット
 	if (version_compare(VERSION, '1.8.0') >= 0) {

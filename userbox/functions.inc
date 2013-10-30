@@ -503,6 +503,8 @@ function plugin_getheadercode_userbox()
 	global $_SCRIPTS;
 	global $_CONF;
 	
+	$css = '/userbox/css/style.css';
+	$_SCRIPTS->setCSSFile('userbox_style_css', $css, true);
 	
 	//jquery があれば〜
 	//$_SCRIPTS->setJavaScriptLibrary('jquery');

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/fieldset_group.thtml 20120912 { -->
+<!-- plugins/userbox/templates/admin/fieldset_group.thtml 20131030 { -->
 <script type="text/JavaScript" 
 		src="{site_url}/javascript/moveusers.js">
 		</script>
@@ -10,7 +10,6 @@ window.onload=function(){
 var lnk=document.createElement("link");
 lnk.setAttribute("rel","stylesheet");
 lnk.setAttribute("type","text/css");
-lnk.setAttribute("href","{site_url}/userbox/css/admin_fieldsetgroups.css");
 var head=document.getElementsByTagName("head").item(0);
 head.appendChild(lnk);
 };
