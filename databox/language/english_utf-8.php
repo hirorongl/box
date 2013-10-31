@@ -702,6 +702,7 @@ $LANG_confignames['databox']['imgfile_thumb_h'] = 'Thumbnail Size(h)';
 $LANG_confignames['databox']['imgfile_thumb_w2'] = 'Original Image Size(w2)';
 $LANG_confignames['databox']['imgfile_thumb_h2'] = 'Original Image Size(h2)';
 $LANG_confignames['databox']['imgfile_smallw'] = 'Display Image Max Width';
+$LANG_confignames['databox']['imgfile_subdir'] = 'use subdirectory for Image Save URL';
 
 
 
