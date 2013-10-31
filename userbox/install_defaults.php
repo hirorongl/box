@@ -197,6 +197,9 @@ $_USERBOX_DEFAULT['imgfile_thumb_h2'] = 640;
 //アイテム内に表示する画像の最大横幅(imgタグ内のwidthの値)
 $_USERBOX_DEFAULT['imgfile_smallw'] = 160;
 
+//画像保存URLにサブディレクトリを使用する
+//はい、いいえ　デフォルト＝いいえ 
+$_USERBOX_DEFAULT['imgfile_subdir'] = 0;
 
 
 // ★ファイル保存  絶対アドレスの指定
@@ -726,12 +729,18 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,5);
 
+        $c->add(
+            'imgfile_subdir'
+            ,$_USERBOX_DEFAULT['imgfile_subdir']
+            ,'select', 0, 5, 0, 130, TRUE
+			, $pi_name
+			,5);
 
 
         $c->add(
             'file_path'
             ,$_USERBOX_DEFAULT['file_path']
-            ,'text', 0, 5, NULL, 130, TRUE
+            ,'text', 0, 5, NULL, 140, TRUE
 			, $pi_name
 			,5);
 		
@@ -739,14 +748,14 @@ function plugin_initconfig_userbox()
 		$c->add(
             'file_size'
             ,$_USERBOX_DEFAULT['file_size']
-            ,'text', 0, 5, NULL, 140, TRUE
+            ,'text', 0, 5, NULL, 150, TRUE
 			, $pi_name
 			,5);
 		
         $c->add(
             'file_type'
             ,$_USERBOX_DEFAULT['file_type']
-            ,'%text', 0, 5, 0, 150, TRUE
+            ,'%text', 0, 5, 0, 160, TRUE
 			, $pi_name
 			,5);
 

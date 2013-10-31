@@ -677,6 +677,7 @@ $LANG_confignames['userbox']['imgfile_thumb_h'] = 'サムネイルを作成す�
 $LANG_confignames['userbox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ（w2）';
 $LANG_confignames['userbox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ（h2）';
 $LANG_confignames['userbox']['imgfile_smallw'] = '表示する画像の最大横幅';
+$LANG_confignames['userbox']['imgfile_subdir'] = '画像保存URLにサブディレクトリを使用する';
 
 $LANG_confignames['userbox']['file_path'] = 'ファイル保存  絶対アドレス';
 $LANG_confignames['userbox']['file_size'] = 'ファイルサイズ';

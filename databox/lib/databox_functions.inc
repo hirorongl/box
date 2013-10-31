@@ -2988,9 +2988,15 @@ function DATABOX_checkaddtiondatas(
             }
             //図 外記憶
 			if ($addition_def[$field_id]['type']==12){//図
-				 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'].$addition_def[$field_id]['templatesetvar'];
-				 $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'].$addition_def[$field_id]['templatesetvar'];
-				 if (!is_writable ( $imgfld )){
+				 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+                 if  ( $box_conf['imgfile_subdir']==1){
+					$imgfld.=$addition_def[$field_id]['templatesetvar'];
+				 }
+                 $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                 if  ( $box_conf['imgfile_subdir']==1){
+					$imgfld_thmb.=$addition_def[$field_id]['templatesetvar'];
+				 }
+	             if (!is_writable ( $imgfld )){
                     $rt.=$imgfld."/ ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
 				 }
 				 if  ($imgfld<>$imgfld_thmb){
@@ -3251,8 +3257,10 @@ function DATABOX_uploadaddtiondatas(
 						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
 						$a=explode(".",$imgname);
 						$a[1]=strtolower($a[1]);
-						$newfilename=$addition_def[$field_id]['templatesetvar']."/"
-							.$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+						if  ( $box_conf['imgfile_subdir']==1){
+							$newfilename=$addition_def[$field_id]['templatesetvar']."/";
+						}
+						$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
 						//$newfilename=$imgname;
 						if (DATABOX_uploadImageFile
 								($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
@@ -3310,8 +3318,10 @@ function DATABOX_uploadaddtiondatas_xml(
 					$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
 					$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
 					//
-					$imgname=$addition_def[$field_id]['templatesetvar']."/"
-							.$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
+					if  ($box_conf['imgfile_subdir']==1){
+						$imgname=$addition_def[$field_id]['templatesetvar']."/";
+					}
+					$imgname.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
 					$imgsrc=$fldary[$field_id];
 					if (DATABOX_uploadImageFile_xml($imgname,$imgsrc,$imgfld)){
 						$fldary[$field_id]=$imgname;

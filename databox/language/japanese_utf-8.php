@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20131022
+# Last Update 20131031
 
 ###############################################################################
 ## 管理画面 menu
@@ -732,7 +732,7 @@ $LANG_confignames['databox']['imgfile_thumb_h'] = 'サムネイルを作成す�
 $LANG_confignames['databox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ（w2）';
 $LANG_confignames['databox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ（h2）';
 $LANG_confignames['databox']['imgfile_smallw'] = '表示する画像の最大横幅';
-
+$LANG_confignames['databox']['imgfile_subdir'] = '画像保存URLにサブディレクトリを使用する';
 
 
 $LANG_confignames['databox']['file_path'] = 'ファイル保存  絶対アドレス';
