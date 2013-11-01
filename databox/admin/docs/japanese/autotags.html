@@ -93,6 +93,8 @@ expired:<br />
 例５：[databox:category category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
 例６：[databox:category category_code:AAA expired:yes]<br />
 order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です <br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
 expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br />
 expired:yes 公開終了日を過ぎたデータも表示します。<br />
 </td>
@@ -149,6 +151,8 @@ order:<br />
 例１：[databox:attribute field_id:99 value:xx ]<br />
 例２：[databox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
 例３：[databox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
 </td>
 </tr>
 

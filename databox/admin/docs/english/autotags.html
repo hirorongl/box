@@ -92,14 +92,16 @@ Category 別list <br />
 例５：[databox:category category_code:AAA|BBB|CCC] Category code がAAA or  BBB or  CCC<br />
 例５：[databox:category category_code:AAA|BBB mode:and] Category code がAAA かつ BBB<br />
 例６：[databox:category category_code:AAA expired:yes]<br />
-order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables 　です <br />
+order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables.<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
 expired:no expired data はnot display.（ Default）<br />
 expired:yes expired data もdisplay.<br />
 </td>
 </tr>
 
 <tr >
-<td>[databox:attributedatacount ]<br /><br />
+<td>[databox:attributedatacount]<br /><br />
 templatesetvar:<br />
 value:<br />
 </td>
@@ -149,6 +151,8 @@ order:<br />
 例１：[databox:attribute field_id:99 value:xx ]<br />
 例２：[databox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
 例３：[databox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
 </td>
 </tr>
 

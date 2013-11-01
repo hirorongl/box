@@ -66,15 +66,16 @@ Category 別list <br />
 例３：[userbox:category category_code:japan ]<br />
 例４：[userbox:category category_code:japan|america ] Category code がjapan or america<br />
 例５：[userbox:category category_code:japan|groupA mode:and] Category code がjapan かつgroupA<br />
-order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables 　です <br />
- <br />
+order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables.<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
 expired:no expired data はnot display.（ Default）<br />
 expired:yes expired data もdisplay.<br />
 </td>
 </tr>
 
 <tr >
-<td>[userbox:attributedatacount　Theme variables 　 value]</td>
+<td>[userbox:attributedatacount Theme variables value]</td>
 <td>
 Select AttributeがSelect  valueのData のNumber <br />
 例１：[userbox:attributedatacount] <br />
@@ -109,6 +110,8 @@ Select AttributeがSelect  valueのData のNumber <br />
 例１：[userbox:attribute field_id:99 value:xx ]<br />
 例２：[userbox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
 例３：[userbox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
 </td>
 </tr>
 <tr >
