@@ -227,7 +227,7 @@ function userbox_parm2 ($p2,$parm2_ary)
         }
 
 	}else{
-		$lastparm2=trim($p2);
+		$ary["lastparm2"]=trim($p2);
 	}
 	
     return $ary;
