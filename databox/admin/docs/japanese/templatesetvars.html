@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20131106 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20131111 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -229,6 +229,7 @@ public_html/attribute.php<br/>
 (各アトリビュート)別件数一覧<br/>
 public_html/attribute.php?id=1&amp;m=id<br/>
 public_html/attribute.php?code=xxxx&amp;m=code<br/>
+<a title="codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります" class="note_super" href="#notetext_8">*8</a>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -309,6 +310,7 @@ count
 アトリビュート別一覧<br/>
 public_html/attribute.php?id=1&amp;m=id&amp;value=27&amp;template=yyyy<br/>
 public_html/attribute.php?code=xxxx&amp;m=code&amp;value=27&amp;template=yyyy<br/>
+<a title="codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります" class="note_super" href="#notetext_8">*8</a>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -738,6 +740,20 @@ template=テンプレートディレクトリ
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;タイプに登録されているテンプレートディレクトリ
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データに登録されているテンプレートディレクトリ
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default
+
+<br/><a class="note_super" href="#notetext_8" id="notetext_8">*8</a>
+codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;/が含まれると、urlが切れます
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;使用できるのは、次のアトリビュートタイプです
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00一行テキスト
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02いいえ/はい
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;03日付
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;04日時
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07オプションリスト（選択肢）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08ラジオボタンリスト（選択肢）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09オプションリスト（マスター）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16ラジオボタンリスト（マスター）
+
 <br/>
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
 最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
