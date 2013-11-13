@@ -1083,9 +1083,6 @@ function fncSave (
 	
     $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
 
-//            $hits =0;
-//            $comments=0;
-
     $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
     IF ($comment_expire_flag){
         $comment_expire_month = COM_applyFilter ($_POST['comment_expire_month'],true);
@@ -1391,9 +1388,6 @@ function fncSave (
 			, $created_hour.":".$created_minute."::00"
 			);
     }
-
-    $hits=0;
-    $comments=0;
 
     $fields="id";
     $values="$id";
