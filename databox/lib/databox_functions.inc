@@ -2997,11 +2997,11 @@ function DATABOX_checkaddtiondatas(
 					$imgfld_thmb.=$addition_def[$field_id]['templatesetvar'];
 				 }
 	             if (!is_writable ( $imgfld )){
-                    $rt.=$imgfld."/ ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+                    $rt.=$imgfld." ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
 				 }
 				 if  ($imgfld<>$imgfld_thmb){
 					if (!is_writable ( $imgfld_thmb )){
-						$rt.=$imgfld_thmb."/ ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+						$rt.=$imgfld_thmb." ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
 					}
 				 }
                  if (is_array($fldary_del) AND $fldary_del[$field_id]){
