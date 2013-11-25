@@ -573,9 +573,26 @@ new_img
 
 <tr class="r2">
 <td>
-マイデータ<br/>
+マイデータ（一覧）<br/>
 public_html/mydata/data.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr >
+<td>
+マイデータ（タイプ選択）<br/>
 public_html/mydata/data.php?mode_id=new<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+
+<tr class="r2">
+<td rowspan=2>
+マイデータ（新規登録または編集）<br/>
 public_html/mydata/data.php?type_id=aaa<br/>
 public_html/mydata.php?mode_id=edit&amp;id=1<br/>
 public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
@@ -583,8 +600,74 @@ public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
 
 </td>
 <td>
+【mydata】data_editor.thtml, row.thtml
 </td>
-<td></td>
+<td>
+about_thispage
+,site_url
+,lang_fieldset
+,fieldset_name
+,ieldset_id
+,script
+,lang_basicfields
+,lang_id
+,help_id
+,id
+,lang_draft
+,help_draft
+,draft_flag
+,draft_msg
+,lang_code
+,lang_must_code
+,help_code
+,code
+,lang_title
+,help_title
+,lang_must
+,title
+,lang_page_title
+,help_page_title
+,page_title
+,lang_description
+,help_description
+,maxlength_description
+,description
+,hide_language_id
+,lang_language_id
+,help_language_id
+,select_language_id
+,lang_udatetime
+,udatetime
+,lang_uuid
+,uuid
+,udatetime
+,lang_created
+,created
+,created_un
+,lang_category
+,help_category
+,checklist_category
+,lang_additionfields
+,additionfields
+,lang_save
+,lang_cancel
+,delete_option
+,gltoken_name
+,gltoken
+</td>
+</tr>
+
+<tr class="r2">
+
+<td>
+【mydata】data_col_detail.thtml
+</td>
+<td>
+additionfield_name
+,lang_must_additionfield
+,additionfield_value
+,additionfield_description
+</td>
 </tr>
 
 </tbody>
