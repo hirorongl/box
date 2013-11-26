@@ -41,6 +41,35 @@ table.databox caption {
       margin-right:inherit;
 }
 
+
+/*--------------------------------------
+  For New list
+--------------------------------------*/
+
+span.databox_new { 
+  padding: 0 4px 0 4px;
+  margin:  0 0 0 8px;
+  background: #cc3333;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: Arial;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+span.databox_rss { 
+  padding: 0 4px 0 4px;
+  margin:  0 0 0 8px;
+  background: #3333cc;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: Arial;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
 /*--------------------------------------
   For Admin Data
 --------------------------------------*/
@@ -49,8 +78,9 @@ div#databox_admin .admin-list-table th.admin-list-field {
   width: 25%;
   text-align: right;
 }
-div#databox_admin .admin-list-table td.admin-list-field {
-  width: 75%;
+div#databox_admin div.databox_admin_data_title {
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
 }
 
 
