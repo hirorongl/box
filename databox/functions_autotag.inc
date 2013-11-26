@@ -1675,6 +1675,7 @@ function databox_data(
 	$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
+	$sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un";
 	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
 	
 	$sql .= " ,t.fieldset_id";
@@ -1843,9 +1844,11 @@ function databox_data(
 		
 		//$_DATABOX_CONF
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
-        $templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
+		$templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
+		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_frd']);
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
+        $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
 		
         //基本項目
         $templates->set_var('lang_basicfields', $LANG_DATABOX_ADMIN['basicfields']);
@@ -1878,16 +1881,29 @@ function databox_data(
 		$templates->set_var('lang_modified', $LANG_DATABOX_ADMIN['modified']);
 		$wary = COM_getUserDateTimeFormat($A['modified_un']);
         $templates->set_var ('modified',$wary[0]);
+        $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
 		
 		//作成日付
         $templates->set_var('lang_created', $LANG_DATABOX_ADMIN['created']);
 		$wary = COM_getUserDateTimeFormat($A['created_un']);
         $templates->set_var ('created', $wary[0]);
+        $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
         //公開日
         $templates->set_var('lang_released', $LANG_DATABOX_ADMIN['released']);
 		$wary = COM_getUserDateTimeFormat($A['released_un']);
         $templates->set_var ('released', $wary[0]);
-
+        $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+        //公開日
+		$templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
+		if ($A['expired'] ==="0000-00-00 00:00:00"){
+			$templates->set_var ('expired', "");
+			$templates->set_var ('expired_shortdate', "" );
+		}else{
+			$wary = COM_getUserDateTimeFormat($A['expired_un']);
+			$templates->set_var ('expired', $wary[0]);
+			$templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+		}
+		
         $templates->set_var ('lang_uuid', $LANG_DATABOX_ADMIN['uuid']);
         $templates->set_var ('uuid', $uuid);
 		

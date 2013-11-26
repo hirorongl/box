@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20131016 { -->
+<!-- plugins/databox/templates/data/default/list_detail.thtml 20131126 { -->
 
 <div class="databox">
   <h2>{title}</h2>
@@ -39,18 +39,23 @@
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_modified}</th>
-        <td style="width:20%; color:green">&#123;modified&#125;</td>
-        <td>{modified}</td>
+        <td style="width:20%; color:green">&#123;modified&#125;&nbsp;&#123;modified_shortdate&#125;</td>
+        <td>{modified}&nbsp;{modified_shortdate}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_created}</th>
-        <td style="width:20%; color:green">&#123;created&#125;</td>
-        <td>{created}</td>
+        <td style="width:20%; color:green">&#123;created&#125;&nbsp;&#123;created_shortdate&#125;</td>
+        <td>{created}&nbsp;{created_shortdate}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_released}</th>
-        <td style="width:20%; color:green">&#123;released&#125;</td>
-        <td>{released}</td>
+		<td style="width:20%; color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
+        <td>{released}&nbsp;{released_shortdate}</td>
+		</tr>
+      <tr>
+        <th style="width:20%" class="alignright">{lang_expired}</th>
+		<td style="width:20%; color:green">&#123;expired&#125;&nbsp;&#123;released_expired&#125;</td>
+        <td>{expired}&nbsp;{expired_shortdate}</td>
 		</tr>
 
       <tr>
@@ -85,13 +90,13 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_imgfile_frd}</th>
-        <td style="width:20%; color:green">&#123;imgfile_frd&#125;</td>
-        <td>{imgfile_frd}</td>
+        <td style="width:20%; color:green">&#123;imgfile_frd&#125;<br{XHTML}>&#123;data_img_url&#125;</td>
+        <td>{imgfile_frd}<br{XHTML}>{data_img_url}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd}</th>
-        <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;</td>
-        <td>{imgfile_thumb_frd}</td>
+        <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;<br{XHTML}>&#123;data_thumb_img_url&#125;</td>
+        <td>{imgfile_thumb_frd}<br{XHTML}>{data_thumb_img_url}</td>
       </tr>
     </table>
   </fieldset>
