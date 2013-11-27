@@ -161,13 +161,8 @@ $_DATABOX_DEFAULT['intervalday'] = 90;
 $_DATABOX_DEFAULT['limitcnt'] = 10;
 $_DATABOX_DEFAULT['newmarkday']=3;
 $_DATABOX_DEFAULT['categories']="";
-$_DATABOX_DEFAULT['new_img']="<img width='29' height='11' "
-    ." src='{$_CONF['site_url']}/databox/images/icons/icon_new.gif'"
-    ." alt='NEW!' />";
-$_DATABOX_DEFAULT['rss_img']="<img width='35' height='16' "
-    ."src='{$_CONF['site_url']}/databox/images/icons/icon_RSS.gif' alt='RSS' "
-    ."class='icon_rss' >";
-
+$_DATABOX_DEFAULT['new_img']='<span class="databox_new">new!</span>';
+$_DATABOX_DEFAULT['rss_img']='<span class="databox_rss">RSS</span>';
 
 //（5）file
 $_DATABOX_DEFAULT['imgfile_size'] = "1048576";

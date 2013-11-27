@@ -160,12 +160,8 @@ $_USERBOX_DEFAULT['intervalday'] = 90;
 $_USERBOX_DEFAULT['limitcnt'] = 10;
 $_USERBOX_DEFAULT['newmarkday']=3;
 $_USERBOX_DEFAULT['categories']="";
-$_USERBOX_DEFAULT['new_img']="<img width='29' height='11' "
-    ." src='{$_CONF['site_url']}/userbox/images/icons/icon_new.gif'"
-    ." alt='NEW!' />";
-$_USERBOX_DEFAULT['rss_img']="<img width='35' height='16' "
-    ."src='{$_CONF['site_url']}/userbox/images/icons/icon_RSS.gif' alt='RSS' "
-    ."class='icon_rss' >";
+$_USERBOX_DEFAULT['new_img']='<span class="userbox_new">new!</span>';
+$_USERBOX_DEFAULT['rss_img']='<span class="userbox_rss">RSS</span>';
 
 
 
