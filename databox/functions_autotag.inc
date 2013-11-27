@@ -1893,7 +1893,7 @@ function databox_data(
 		$wary = COM_getUserDateTimeFormat($A['released_un']);
         $templates->set_var ('released', $wary[0]);
         $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-        //公開日
+        //公開終了日
 		$templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
 		if ($A['expired'] ==="0000-00-00 00:00:00"){
 			$templates->set_var ('expired', "");
