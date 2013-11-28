@@ -32,6 +32,12 @@ if (file_exists ($langfile_custom)) {
     require_once ($langfile_custom);
 }
 
+//custom 関数
+$functions_custom = $_CONF['path'] . "plugins/{$pi_name}/custom/functions_custom.inc";
+if (file_exists ($functions_custom)) {
+    require_once ($functions_custom);
+}
+
 //設定ファイル
 require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
 $_USERBOX_CONF['auto_data_create']="1";//自動データ作成
