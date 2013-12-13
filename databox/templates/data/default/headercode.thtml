@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/data/headercode.thtml 20130320{ -->
+<!-- plugins/databox/templates/data/default/headercode.thtml 20130320{ -->
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>
 <meta property="og:image" content="{og_image}" {xhtml}>
@@ -8,4 +8,4 @@
 
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 
-<!-- plugins/databox/templates/data/headercode.thtml { -->
+<!-- plugins/databox/templates/data/default/headercode.thtml { -->
