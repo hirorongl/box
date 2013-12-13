@@ -1,4 +1,5 @@
-<!-- plugins/userbox/templates/attribute/headercode.thtml 20130321{ -->
+<!-- plugins/userbox/templates/attribute/default/headercode.thtml 20130321{ -->
+
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>
 <meta property="og:image" content="{og_image}" {xhtml}>
@@ -8,4 +9,4 @@
 
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 
-<!-- plugins/userbox/templates/attribute/headercode.thtml { -->
+<!-- plugins/userbox/templates/attribute/default/headercode.thtml { -->

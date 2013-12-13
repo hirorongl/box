@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/attribute/nohit.thtml 20121019{ -->
+<!-- plugins/userbox/templates/attribute/default/nohit.thtml 20121019{ -->
 <div id="userbox">
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top}{field_top}</p>
 
@@ -7,4 +7,4 @@
   <p>{lang_nohit}</p>
 
 </div>
-<!-- plugins/userbox/templates/attribute/nohit.thtml { -->
+<!-- plugins/userbox/templates/attribute/default/nohit.thtml { -->

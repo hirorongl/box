@@ -1,6 +1,6 @@
-<!-- plugins/userbox/templates/newlist/list_col.thtml  { -->
+<!-- plugins/userbox/templates/newlist/default/list_col.thtml  { -->
 
 <dt>{day}{new_img}</dt>
 <dd><a href="{url}">{title}</a></dd>
 
-<!-- } plugins/userbox/templates/newlist/list_col.thtml -->
+<!-- } plugins/userbox/templates/newlist/default/list_col.thtml -->

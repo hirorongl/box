@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/newlist/list.thtml  { -->
+<!-- plugins/userbox/templates/newlist/default/list.thtml  { -->
 
 <dl>
 {list_col}
@@ -7,4 +7,4 @@
 <p><a href="{rss_url}">{rss_title}</a></p>
 <p class="more"><a href="{more_url}">{more_title}</a></p>
 
-<!-- } plugins/userbox/templates/newlist/list.thtml -->
+<!-- } plugins/userbox/templates/newlist/default/list.thtml -->
