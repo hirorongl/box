@@ -1,5 +1,4 @@
 <!-- plugins/userbox/templates/admin/profile_col_detail.thtml 20111125 { -->
     <th style="width:10%" class="alignright">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
-    <td style="width:10%; color:green" class="alignleft">{additionfield_templatesetvar}</td>
     <td >{additionfield_value}{additionfield_description}</td>
 <!-- } plugins/userbox/templates/admin/default/profile_col_detail.thtml -->
