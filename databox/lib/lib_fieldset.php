@@ -559,7 +559,7 @@ function LIB_Save (
 
     echo $return_page;
 
-//      exit;
+      exit;
 
 }
 
