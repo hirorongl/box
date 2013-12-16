@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_modified}</th>
-        <td style="width:20%; color:green">&#123;modified&#125;&nbsp;&#123;modified_shortdate&#125;</td>
+        <td style="width:20%; color:green">&#123;modified&#125;</td>
         <td>{modified}&nbsp;{modified_shortdate}</td>
       </tr>
       <tr>
@@ -49,7 +49,7 @@
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_released}</th>
-		<td style="width:20%; color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
+        <td style="width:20%; color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
         <td>{released}&nbsp;{released_shortdate}</td>
 		</tr>
       <tr>
@@ -78,7 +78,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">Maps Plugin mkid</th>
         <td style="width:20%; color:green">&#123;mkid&#125;&#123;marker&#125;</td>
-        <td>{mkid}{marker}</td>
+        <td>{mkid} {marker}</td>
       </tr>
     </table>
 
@@ -175,7 +175,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
     <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group}{lang_code}</th>
+        <th style="width:20%;" class="alignright">{lang_group} {lang_code}</th>
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
@@ -254,7 +254,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
     <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group}{lang_code}</th>
+        <th style="width:20%;" class="alignright">{lang_group} {lang_code}</th>
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
@@ -313,7 +313,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group}{lang_id}</th>
+        <th style="width:20%;" class="alignright">{lang_group} {lang_id}</th>
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
@@ -393,7 +393,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group}{lang_id}</th>
+        <th style="width:20%;" class="alignright">{lang_group} {lang_id}</th>
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</td>
         <th class="alignleft">{lang_content}</th>
       </tr>
@@ -522,7 +522,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_additionfields} {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_additionfields}{lang_id}</th>
+        <th style="width:20%;" class="alignright">{lang_additionfields} {lang_id}</th>
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>

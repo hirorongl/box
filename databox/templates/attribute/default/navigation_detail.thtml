@@ -21,7 +21,7 @@
 {lang_released}&nbsp;
 {lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 <!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
-&nbsp;&nbsp;&nbsp;{name_zipcode}{name_tel}{name_additionfield1}{name_additionfield2}
+&nbsp;&nbsp;&nbsp;{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}
 </li>
     {row_var}
   </ul>

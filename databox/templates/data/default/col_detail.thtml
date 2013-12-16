@@ -1,6 +1,6 @@
 <!-- plugins/databox/templates/data/default/col_detail.thtml 20131031{ -->
 
-<th style="width:20%" class="alignright">{additionfield_name}</th>
+        <th style="width:20%" class="alignright">{additionfield_name}</th>
 <td style="width:70%; background:#f8f8f8">
 <dl class="databox_col_detail">
 <dt style=color:green;>&#123;additionfield{field_id}&#125; or &#123;{additionfield_templatesetvar}&#125;</dt><dd>{additionfield_value}</dd>
@@ -22,9 +22,9 @@
 <dt style="color:green; {display_b}">&#123;additionfield{field_id}_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>{additionfield_value_mst_no}</dd>
 
 </dl>
-</td>
+        </td>
 <td style="width:10%; background:#f8f8f8">
 {field_type}
-</td>
+        </td>
 
 <!-- } plugins/databox/templates/data/default/col_detail.thtml -->

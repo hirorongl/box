@@ -8,7 +8,7 @@
      <span style="color:green"> &#123;language&#125;</span>:{language}
   </p>
 
-  <h2> {group_link}{group_name}{category_name}</h2>
+  <h2> {group_link} {group_name} {category_name}</h2>
   <p>{category_description}</p>
   <p>{msg}</p>
 

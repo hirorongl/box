@@ -13,11 +13,5 @@
 <input type='hidden' name='conf_group' value='databox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
 
-
-
-
-
-
-
 <!-- } plugins/databox/templates/admin/information.thtml -->
 
