@@ -1455,7 +1455,7 @@ function fncSave (
 
 	echo $return_page;
 
-
+	exit;
 
 }
 
