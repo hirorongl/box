@@ -39,7 +39,7 @@ function fncList()
 
     $retval = '';
 	
-	//フィルタ
+	//フィルタ filter
     if (!empty ($_GET['filter_val'])) {
         $filter_val = COM_applyFilter($_GET['filter_val']);
     } elseif (!empty ($_POST['filter_val'])) {
@@ -62,7 +62,7 @@ function fncList()
     }
     $filter .=" >{$LANG09[9]}</option>";
     $filter .= COM_optionList ($_TABLES['DATABOX_def_fieldset']
-                , 'fieldset_id,name', $filter_val,0,"");
+                , 'fieldset_id,name', $filter_val,0,"fieldset_id<>0");
 
     $filter .="</select>";
 	
@@ -141,21 +141,40 @@ function fncList()
         'query_fields' => array('t.id','title','code','draft_flag','orderno','t2.name','hits'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
-    $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
+	$defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
+	
+	$form_arr = array('bottom' => '', 'top' => '');
+    $pagenavurl = '&amp;filter_val=' . $filter_val;
     //List 取得
-    //ADMIN_list(
-    //       $component, $fieldfunction, $header_arr, $text_arr,
-    //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
-    $retval .= ADMIN_list(
-        'databox'
-        , "fncGetListField"
-        , $header_arr
-        , $text_arr
-        , $query_arr
-		, $defsort_arr
-        , $filter
-        );
-
+	if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
+		$retval .= ADMIN_list(
+			'databox'
+			, "fncGetListField"
+			, $header_arr
+			, $text_arr
+			, $query_arr
+			, $defsort_arr
+			, $filter
+			, '', ''
+			, $form_arr
+			, true
+			, $pagenavurl
+			);
+	}else{
+		$retval .= ADMIN_list(
+			'databox'
+			, "fncGetListField"
+			, $header_arr
+			, $text_arr
+			, $query_arr
+			, $defsort_arr
+			, $filter
+			, '', ''
+			, $form_arr
+			, true
+			);
+	}
+	
     $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;

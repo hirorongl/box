@@ -38,7 +38,7 @@ function LIB_List(
 
     $retval = '';
 
-    //フィルタ
+    //フィルタ filter
     if (!empty ($_GET['filter_val'])) {
         $filter_val = COM_applyFilter($_GET['filter_val']);
     } elseif (!empty ($_POST['filter_val'])) {
@@ -61,7 +61,7 @@ function LIB_List(
     }
     $filter .=" >{$LANG09[9]}</option>";
     $filter .= COM_optionList ($table2
-                , 'group_id,name,orderno', $filter_val,2,"");
+                , 'group_id,name,orderno', $filter_val,2,"group_id<>0");
 
     $filter .="</select>";
 
@@ -138,20 +138,39 @@ function LIB_List(
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 't.orderno', 'direction' => 'ASC');
+	$form_arr = array('bottom' => '', 'top' => '');
+    $pagenavurl = '&amp;filter_val=' . $filter_val;
 
     //List 取得
-    //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
-    //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
-    $retval .= ADMIN_list(
-        $pi_name
-        , "LIB_GetListField"
-        , $header_arr
-        , $text_arr
-        , $query_arr
-        , $defsort_arr
-        , $filter
-        );
-
+	if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
+		$retval .= ADMIN_list(
+			$pi_name
+			, "LIB_GetListField"
+			, $header_arr
+			, $text_arr
+			, $query_arr
+			, $defsort_arr
+			, $filter
+			, '', ''
+			, $form_arr
+			, true
+			, $pagenavurl
+			);
+	}else{
+		$retval .= ADMIN_list(
+			$pi_name
+			, "LIB_GetListField"
+			, $header_arr
+			, $text_arr
+			, $query_arr
+			, $defsort_arr
+			, $filter
+			, '', ''
+			, $form_arr
+			, true
+			);
+	}
+	
     $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
