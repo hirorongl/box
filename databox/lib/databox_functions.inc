@@ -3259,6 +3259,8 @@ function DATABOX_uploadaddtiondatas(
 						$a[1]=strtolower($a[1]);
 						if  ( $box_conf['imgfile_subdir']==1){
 							$newfilename=$addition_def[$field_id]['templatesetvar']."/";
+						}else{
+							$newfilename="";
 						}
 						$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
 						//$newfilename=$imgname;
