@@ -1857,7 +1857,7 @@ function fncsendmail (
 			}
 		}
 		//--- to admin
-		if  ($mail_to<>""){
+		if (!empty ($mail_to)){
 			$to=implode($mail_to,",");
 			COM_mail ($to, $subject, $message);
 		}
