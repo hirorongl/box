@@ -1256,7 +1256,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " style=\"width:95%\"";
+                        $fieldhtml .= " style=\"max-width:95%\"";
                         $fieldhtml .= " value=\"".$fvalue."\"";
                         $fieldhtml .= " ".$disabled." ";
                         $fieldhtml .= " ".XHTML.">";
