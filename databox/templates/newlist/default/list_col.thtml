@@ -1,6 +1,6 @@
-<!-- plugins/databox/templates/newlist/list_col.thtml 20110128 { -->
+<!-- plugins/databox/templates/newlist/default/list_col.thtml 20110128 { -->
 
-<dt>{day} {new_img}</dt>
-<dd><a href="{url}">{title}</a>{description}</dd>
+<dt class="databox_date">{day}</dt>
+<dd class="databox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}</dd>
 
-<!-- } plugins/databox/templates/newlist/list_col.thtml -->
+<!-- } plugins/databox/templates/newlist/default/list_col.thtml -->
