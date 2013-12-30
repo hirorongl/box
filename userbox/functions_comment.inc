@@ -93,7 +93,7 @@ function plugin_deletecomment_userbox(
             $A['perm_members'], $A['perm_anon']) == 3) {
         CMT_deleteComment($cid, $id, 'userbox');
         $retval .= COM_refresh ($_CONF['site_url']
-                                 . "/userbox/profile.php?pid=$id&amp;aid=-1");
+                                 . "/userbox/profile.php?id=$id&amp;aid=-1");
     } else {
         COM_errorLog ("User {$_USER['username']} (IP: {$_SERVER['REMOTE_ADDR']}) "
                     . "tried to illegally delete comment $cid from userbox $id");
