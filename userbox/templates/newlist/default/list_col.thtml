@@ -1,6 +1,6 @@
 <!-- plugins/userbox/templates/newlist/default/list_col.thtml  { -->
 
-<dt class="userbox_date">{day}</dt>
-<dd class="userbox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}</dd>
+<dt>{day}{new_img}</dt>
+<dd><a href="{url}">{title}</a></dd>
 
 <!-- } plugins/userbox/templates/newlist/default/list_col.thtml -->

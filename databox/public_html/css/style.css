@@ -45,24 +45,6 @@ table.databox caption {
 /*--------------------------------------
   For New list
 --------------------------------------*/
-dl.databox_newlist {
-  width: 100%;  
-  line-height: 1.2;
-}  
-dl.databox_newlist dt.databox_date {
-  clear: left;
-  float: left;
-  margin: 0 0 0.8em;
-  width: 7.5em;
-  border-left: solid 8px #CCC;
-  padding-left: 5px;
-  color: #000;
-}  
-dl.databox_newlist dd.databox_list {
-  margin-bottom: 0.8em;
-  margin-left: 7.5em;
-  min-width: 30em;
-}
 
 span.databox_new { 
   padding: 0 4px 0 4px;
@@ -85,10 +67,6 @@ span.databox_rss {
   font-family: Arial;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-}
-p.databox_more {
-  clear: left;
-  text-align: right;
 }
 
 
