@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20131220 { -->
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140107 { -->
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
@@ -6,7 +6,9 @@
 <span style="color:green">&#123;data_description&#125;</span>{data_description}&nbsp;
 <span style="color:green">&#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
 <span style="color:green">&#123;data_released&#125;</span>{data_released}&nbsp;
+<span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
 <span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;
+<span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
 <span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
 <span style="color:green">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 

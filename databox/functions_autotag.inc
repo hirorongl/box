@@ -927,6 +927,7 @@ function databox_field(
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX_NOYES;
     global $_IMAGE_TYPE;
+	global $LANG_confignames;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -1171,7 +1172,16 @@ function databox_field(
 		$templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
 		$templates->set_var ('lang_remaingdays', $LANG_DATABOX_ADMIN['remaingdays']);
 		$templates->set_var ('lang_addfield', $addfield_name);
-        for ($i = 0; $i < $numrows; $i++) {
+		
+		//$_DATABOX_CONF
+        $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
+		$templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
+		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_frd']);
+        $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
+        $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
+        $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
+		
+		for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
 
@@ -1221,7 +1231,19 @@ function databox_field(
             $templates->set_var ('data_value', $sortvalue);
 			
 			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
-			$templates->set_var ('data_expired', $expired_ary[0]);//@@@@@@
+            $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+			
+			//公開終了日 Expired to publish
+			$templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
+            if ($A['expired'] ==="0000-00-00 00:00:00"){
+                $templates->set_var ('data_expired', "");
+                $templates->set_var ('data_expired_shortdate', "" );
+            }else{
+                $wary = COM_getUserDateTimeFormat($A['expired_un']);
+                $templates->set_var ('data_expired', $expired_ary[0]);
+                $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+            }
+			
 			$remaingdays="";
 			if ($expired<>"0000-00-00 00:00:00") {
 				if  ($expired_ary[1]>=$curdate_ary[1]){
