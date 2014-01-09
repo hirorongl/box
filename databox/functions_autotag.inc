@@ -1229,7 +1229,7 @@ function databox_field(
             $templates->set_var ('data_url', $url);
 			
 			$templates->set_var ('data_datefield', $datefield_ary[0]);
-			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
             $templates->set_var ('data_value', $sortvalue);
 			
 			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
