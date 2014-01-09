@@ -941,7 +941,8 @@ function databox_field(
     $tbl1=$_TABLES['DATABOX_addition'] ;
     $tbl2=$_TABLES['DATABOX_base'] ;
 	$tbl3=$_TABLES['DATABOX_addition'] ;
-	
+	$tbl5=$_TABLES['DATABOX_stats'];
+
 	//日付関連
 	$datefield=$_DATABOX_CONF['datefield'];//使用する日付（編集日付、作成日付、公開日）
 	$new_img=$_DATABOX_CONF['new_img'];
@@ -1228,6 +1229,7 @@ function databox_field(
             $templates->set_var ('data_url', $url);
 			
 			$templates->set_var ('data_datefield', $datefield_ary[0]);
+			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
             $templates->set_var ('data_value', $sortvalue);
 			
 			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
@@ -1257,6 +1259,10 @@ function databox_field(
 				$templates->set_var ('new_img', '');
 			}
 			
+            $hits=COM_applyFilter(DB_getItem( $tbl5 ,"hits","id={$id}"),true);
+            $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
+            $templates->set_var('data_hits', $hits);
+
 			//カテゴリ@@@@@
 			$templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
 			DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);

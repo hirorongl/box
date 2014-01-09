@@ -9,6 +9,7 @@
 <span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
 <span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;
 <span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
+<span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
 <span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
 <span style="color:green">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
