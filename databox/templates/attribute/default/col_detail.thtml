@@ -1,10 +1,11 @@
-<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140107 { -->
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140114 { -->
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
 (id: <span style="color:green">&#123;data_id&#125;</span>{data_id})(code: <span style="color:green">&#123;data_code&#125;</span>{data_code})&nbsp;
 <span style="color:green">&#123;data_description&#125;</span>{data_description}&nbsp;
 <span style="color:green">&#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
 <span style="color:green">&#123;data_released&#125;</span>{data_released}&nbsp;
 <span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
 <span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;

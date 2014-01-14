@@ -7,6 +7,16 @@
      <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
      <span style="color:green"> &#123;language&#125;</span>:{language}
   </p>
+  <p>
+    {lang_imgfile_frd}
+    <span style="color:green"> &#123;imgfile_frd&#125;</span>:{imgfile_frd}
+    <span style="color:green"> &#123;data_img_url&#125;</span>:{data_img_url}
+  </p>
+  <p>
+    {lang_imgfile_thumb_frd}
+    <span style="color:green"> &#123;imgfile_thumb_frd&#125;</span>:{imgfile_thumb_frd}
+    <span style="color:green"> &#123;data_thumb_img_url&#125;</span>:{data_thumb_img_url}
+  </p>
 
   <h2> {group_link} {group_name} {category_name}</h2>
   <p>{category_description}</p>

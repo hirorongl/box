@@ -304,6 +304,7 @@ function databox_category(
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
     global $_IMAGE_TYPE;
+	global $LANG_confignames;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -320,6 +321,8 @@ function databox_category(
 	//
     $tbl5=$_TABLES['DATABOX_def_category'] ;
 	
+	$tbl6=$_TABLES['DATABOX_stats'];
+
 	//
 	$datefield=$_DATABOX_CONF['datefield'];//使用する日付（編集日付、作成日付、公開日）
 	$new_img=$_DATABOX_CONF['new_img'];
@@ -582,6 +585,14 @@ function databox_category(
 		// 追加項目のヘッダ
 		$addition_def=DATABOX_getadditiondef($pi_name);
 		
+		//
+        $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
+		$templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
+		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_frd']);
+        $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
+        $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
+        $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
+		
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
@@ -630,9 +641,20 @@ function databox_category(
 
 			$templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
+			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
 			
 			$templates->set_var ('data_released', $released_ary[0]);
+            $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
 			$templates->set_var ('data_expired', $expired_ary[0]);//@@@@@@
+			//公開終了日 Expired to publish
+            if ($A['expired'] ==="0000-00-00 00:00:00"){
+                $templates->set_var ('data_expired', "");
+                $templates->set_var ('data_expired_shortdate', "" );
+            }else{
+                $wary = COM_getUserDateTimeFormat($A['expired_un']);
+                $templates->set_var ('data_expired', $expired_ary[0]);
+                $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+            }
 			$remaingdays="";
 			if ($expired<>"0000-00-00 00:00:00") {
 				if  ($expired_ary[1]>=$curdate_ary[1]){
@@ -645,6 +667,9 @@ function databox_category(
 			}else{
 				$templates->set_var ('new_img', '');
 			}
+            $hits=COM_applyFilter(DB_getItem( $tbl6 ,"hits","id={$id}"),true);
+            $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
+            $templates->set_var('data_hits', $hits);
 			
 			//カテゴリ@@@@@
 			$templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
@@ -1236,7 +1261,6 @@ function databox_field(
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
 			
 			//公開終了日 Expired to publish
-			$templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
