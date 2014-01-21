@@ -645,7 +645,6 @@ function databox_category(
 			
 			$templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-			$templates->set_var ('data_expired', $expired_ary[0]);//@@@@@@
 			//公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
