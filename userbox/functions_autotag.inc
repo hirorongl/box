@@ -1211,11 +1211,12 @@ function userbox_profile(
 		$A = array_map('stripslashes', $A);
 		
 		if (is_null($template) or ($template==="")){
-            $defaulttemplatesdirectory = $A['defaulttemplatesdirectory'];
-            if ($defaulttemplatesdirectory===""){
+			if ($A['defaulttemplatesdirectory']<>""){
+                $template=$A['defaulttemplatesdirectory'];
+			}elseif  ($A['set_defaulttemplatesdirectory']<>""){
+                $template=$A['set_defaulttemplatesdirectory'];
+			}else{
                 $template="default";
-            }else{
-                $template=$defaulttemplatesdirectory;
             }
         }
 

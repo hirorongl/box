@@ -1810,10 +1810,10 @@ function databox_data(
 		$A = array_map('stripslashes', $A);
 		
 		if (is_null($template) or ($template==="")){
-			if  ($A['set_defaulttemplatesdirectory']<>""){
-                $template=$A['set_defaulttemplatesdirectory'];
-			}elseif ($A['defaulttemplatesdirectory']<>""){
+			if ($A['defaulttemplatesdirectory']<>""){
                 $template=$A['defaulttemplatesdirectory'];
+			}elseif  ($A['set_defaulttemplatesdirectory']<>""){
+                $template=$A['set_defaulttemplatesdirectory'];
 			}else{
                 $template="default";
             }
