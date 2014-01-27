@@ -89,7 +89,7 @@ function LIB_List(
         'query_fields' => array('group_id','code','name','orderno'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
-    $defsort_arr = array('field' => 'group_id', 'direction' => 'ASC');
+    $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
     //List 取得
     //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
     //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
