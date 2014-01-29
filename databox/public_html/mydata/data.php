@@ -424,6 +424,7 @@ function fncEdit(
             $result = DB_query($sql);
 
             $A = DB_fetchArray($result);
+            $A = array_map('stripslashes', $A);
             $fieldset_id = COM_stripslashes($A['fieldset_id']);
             $fieldset_name = COM_stripslashes($A['fieldset_name']);
 
@@ -465,7 +466,7 @@ function fncEdit(
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
 			$udatetime = $wary[0];
 			
-			$defaulttemplatesdirectory=$A['uuid'];
+			$defaulttemplatesdirectory=$A['defaulttemplatesdirectory'];
             if ($_DATABOX_CONF['allow_data_delete']){
                 if ($edt_flg==FALSE) {
                     $delflg=true;
@@ -492,16 +493,17 @@ function fncEdit(
                                COM_getBlockTemplate ('_admin_block', 'header'));
 
 	//template フォルダ
-	if (is_null($template) or ($template==="")){
-        $template="default";
+    if (is_null($template) or ($template==="")){
 		$set_defaulttemplatesdirectory=DB_getItem($_TABLES['DATABOX_def_fieldset']
 			,"defaulttemplatesdirectory","fieldset_id=".$fieldset_id);
-		if  ($set_defaulttemplatesdirectory<>""){
+		if ($defaulttemplatesdirectory<>""){
+            $template=$defaulttemplatesdirectory;
+        }elseif  ($set_defaulttemplatesdirectory<>""){
             $template=$set_defaulttemplatesdirectory;
-		}elseif ($defaulttemplatesdirectory<>""){
-			$template=$defaulttemplatesdirectory;
+        }else{
+            $template="default";
         }
-	}
+    }
 	
     $tmplfld=DATABOX_templatePath('mydata',$template,'databox');
     $templates = new Template($tmplfld);

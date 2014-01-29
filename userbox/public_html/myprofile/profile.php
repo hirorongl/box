@@ -253,6 +253,7 @@ function fncEdit(
 		 $wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
 		 $udatetime = $wary[0];
 
+         $defaulttemplatesdirectory=$A['defaulttemplatesdirectory'];
          if ($_CONF['allow_account_delete']){
              if ($edt_flg==FALSE) {
                  $delflg=true;
@@ -268,6 +269,17 @@ function fncEdit(
                                COM_getBlockTemplate ('_admin_block', 'header'));
 
     //template フォルダ
+    if (is_null($template) or ($template==="")){
+		$set_defaulttemplatesdirectory=DB_getItem($_TABLES['USERBOX_def_fieldset']
+			,"defaulttemplatesdirectory","fieldset_id=".$fieldset_id);
+		if ($defaulttemplatesdirectory<>""){
+            $template=$defaulttemplatesdirectory;
+        }elseif  ($set_defaulttemplatesdirectory<>""){
+            $template=$set_defaulttemplatesdirectory;
+        }else{
+            $template="default";
+        }
+    }
     $tmplfld=DATABOX_templatePath('myprofile','default',$pi_name);
     $templates = new Template($tmplfld);
 
