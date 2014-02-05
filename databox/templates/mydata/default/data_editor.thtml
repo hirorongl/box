@@ -33,7 +33,7 @@
             <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
             <td class="admin-list-field">
               {code}
-              <input type="hidden" size="60" maxlength="160" name="code" value="{code}"{xhtml}>
+              <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
             </td>
           </tr>
 
@@ -41,7 +41,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="title" value="{title}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
             </td>
           </tr>
 
@@ -49,7 +49,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
             </td>
           </tr>
 

@@ -34,7 +34,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
             <td class="admin-list-field">
-              <input type="fullname" size="60" maxlength="160" name="fullname" value="{fullname}" style="width:95%"{xhtml}>
+              <input type="fullname" size="48" maxlength="160" name="fullname" value="{fullname}" style="width:95%"{xhtml}>
             </td>
           </tr>
         </table>
@@ -68,7 +68,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title}{help_page_title}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}" style="95%"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}" style="95%"{xhtml}>
             </td>
           </tr>
  
@@ -167,7 +167,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}{help_orderno}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
           </tr>
   

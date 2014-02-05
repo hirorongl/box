@@ -32,7 +32,7 @@
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
             <td class="admin-list-field">
-            <input type="fullname" size="60" maxlength="160" name="fullname" value="{fullname}"{xhtml}></td>
+            <input type="fullname" size="48" maxlength="160" name="fullname" value="{fullname}"{xhtml}></td>
           </tr>
         </table>
       </div>
@@ -63,7 +63,7 @@
           <!-- page title -->
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_page_title}{help_page_title}</th>            <td class="admin-list-field">
-               <input type="text" size="60" maxlength="160" name="page_title" value="{page_title}"{xhtml}></td>
+               <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}></td>
           </tr>
           <!-- description -->
           <tr class="pluginRow1">  

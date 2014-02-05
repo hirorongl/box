@@ -38,7 +38,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_value}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
             </td>
           </tr>
 
@@ -46,7 +46,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_value2}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="value2" value="{value2}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="value2" value="{value2}"{xhtml}>
             </td>
           </tr>
 
@@ -54,7 +54,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_disp}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="disp" value="{disp}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="disp" value="{disp}"{xhtml}>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
           </tr>
 
@@ -70,7 +70,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_relno}</th>
             <td class="admin-list-field">
-              <input type="text" size="60" maxlength="160" name="relno" value="{relno}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="relno" value="{relno}"{xhtml}>
             </td>
           </tr>
 
