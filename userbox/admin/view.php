@@ -68,12 +68,16 @@ function fncview (
     $tmpl->parse ('output', 'view');
     $view = $tmpl->finish ($tmpl->get_var ('output'));
 
-	$retval="";
-	$retval.=$view;
-	$retval.= userbox_profile($uid,$template,"","view");
+    $information = array();
+    $retval= userbox_profile($uid,$template,"","view");
+    $layout=$retval['layout'];
+    $information['headercode']=$retval['headercode'];
+    $information['pagetitle']=$retval['title'];
+    $display=$view;
+    $display.=$retval['display'];
+    $display=DATABOX_displaypage($pi_name,$layout,$display,$information);
 
-
-    return $retval;
+    COM_output($display);
 }
 
 
@@ -92,13 +96,8 @@ $template = COM_applyFilter($_REQUEST['template']);
 if  ($id===""){
 	$id=$_USER['uid'];
 }
-$display="";
 
-$page_title=$LANG_USERBOX_ADMIN['piname'];
-$display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-$display .= fncview($id,$template);
-$display .= DATABOX_siteFooter($pi_name,'_admin');
+fncview($id,$template);
 
-echo $display;
 
 ?>
