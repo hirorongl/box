@@ -3761,11 +3761,13 @@ function DATABOX_getoptionlistary(
 {
 
     if ($pi_name==""){
-        $lang_databox="LANG_DATABOX";
+        $lang_box="LANG_DATABOX";
     }else{
-        $lang_databox="LANG_".strtoupper($pi_name);
+        $lang_box="LANG_".strtoupper($pi_name);
     }
-    global $$lang_databox;
+	global $$lang_box;
+    $lang_box=$$lang_box;
+
 	if  ($type==14 OR $type==18){
 		//$selectedary=array[];
 		$selectedary=explode(":",$selected);
@@ -3784,7 +3786,7 @@ function DATABOX_getoptionlistary(
 		$retval .= ' name="'.$fld.'"';
 	}
 	$retval .= $disabled.">".LB;
-    $retval .= "<option value=0>{$$lang_databox['selectit']}</option>".LB;
+    $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
 
 	foreach($ary as $k => $v) {
         $retval .= "<option value=\"".$k."\"";
