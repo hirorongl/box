@@ -661,11 +661,11 @@ function fncEdit(
     $url=$_CONF['site_url'] . "/userbox/profile.php";
     $url.="?";
     if ($_USERBOX_CONF['datacode']){
-        $url.="m=code";
-        $url.="&code=".$A['username'];
+        $url.="code=".$A['username'];
+        $url.="&m=code";
     }else{
-        $url.="m=id";
-        $url.="&id=".$A['id'];
+        $url.="id=".$A['id'];
+        $url.="&m=id";
     }
     $url = COM_buildUrl( $url );
     $view= COM_createLink($LANG_USERBOX['view'], $url);
