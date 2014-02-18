@@ -868,8 +868,8 @@ function DATABOX_getadditionsearchdef(
     $sql.=" allow_display='0'";
     //0: 一行テキストフィールド
     //1: 複数行テキストフィールド
-    //10: 複数行テキストフィールド
-    $sql.=" AND type IN (0,1,10)";
+    //20:HTML  10:TinyMCE 19:CKEditor
+    $sql.=" AND type IN (0,1,10,19,20)";
 	
 	//検索対象にする=はい
 	$sql.=" AND searchtarget='1'";
