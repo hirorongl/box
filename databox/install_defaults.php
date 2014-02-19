@@ -166,11 +166,11 @@ $_DATABOX_DEFAULT['rss_img']='<span class="databox_rss">RSS</span>';
 
 //（5）file
 $_DATABOX_DEFAULT['imgfile_size'] = "1048576";
-$_DATABOX_DEFAULT['imgfile_type'] = array('image/jpeg','image/gif');
+$_DATABOX_DEFAULT['imgfile_type'] = array('image/jpeg','image/gif','image/png','image/jpg','image/pjpeg','image/x-png' );
 //png bmp
 
 $_DATABOX_DEFAULT['imgfile_size2'] = "1048576";
-$_DATABOX_DEFAULT['imgfile_type2'] = array('image/jpeg','image/gif');
+$_DATABOX_DEFAULT['imgfile_type2'] = array('image/jpeg','image/gif','image/png','image/jpg','image/pjpeg','image/x-png');
 
 // ★画像保存URL  サイトURL/ の後の指定
 $_DATABOX_DEFAULT['imgfile_frd'] = "images/databox/";
