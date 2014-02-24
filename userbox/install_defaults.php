@@ -137,6 +137,9 @@ $_USERBOX_DEFAULT['hideuseroption'] = 0;
 //新規登録時のコメントのデフォルト
 $_USERBOX_DEFAULT['commentcode'] = 0;
 
+//管理者ページ（プロフィール）の並び替え
+$_DATABOX_DEFAULT['sort_list_by'] = "orderno";
+
 //---（１）新着
 // 新着の期間
 $_USERBOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -514,6 +517,13 @@ function plugin_initconfig_userbox()
 			, $pi_name
 			,0);
 
+		$c->add(
+            'sort_list_by'
+            ,$_USERBOX_DEFAULT['sort_list_by']
+            ,'select', 0, 0, 27, 340, true
+			, $pi_name
+			,0);
+		
 		//(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
 

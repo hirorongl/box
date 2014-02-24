@@ -630,6 +630,7 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 $LANG_confignames['userbox']['commentcode'] = '新規登録時のコメントのデフォルト';
+$LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフィール）の並び替え';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';
@@ -771,5 +772,17 @@ $LANG_configselects['userbox'][24] =array();
     }
 
 $LANG_configselects['userbox'][26] =array( 'コメント有効' => 0, 'コメント無効' => -1);
+
+$LANG_configselects['userbox'][27] =array(
+    '表示位置' => 'orderno'
+    ,'ユーザーID' => 'id'
+    , 'ユーザー名' => 'username'
+    , '氏名' => 'fullname'
+    , 'タイプ' => 'fieldset'
+    , '残日数' => 'remaingdays'
+    , '閲覧数' => 'hits'
+    , 'タイムスタンプ降順' => 'udatetime'
+    , 'ドラフト' => 'draft'
+        );
 
 ?>

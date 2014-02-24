@@ -51,7 +51,8 @@ function fncList()
     global $LANG28;
     global $LANG_USERBOX_ADMIN;
     global $LANG_USERBOX;
-
+    global $_USERBOX_CONF;
+	
     $table  = $_TABLES['USERBOX_base'];
     $table1 = $_TABLES['users'];
 	$table2 = $_TABLES['USERBOX_def_fieldset'];
@@ -154,8 +155,12 @@ function fncList()
         'sql' => $sql,
         'query_fields' => array('t.id','t1.username','t1.fullname','t.draft_flag','t.orderno','hits'),
         'default_filter' => $exclude);
-    //デフォルトソート項目:
-    $defsort_arr = array('field' => 't.id', 'direction' => 'ASC');
+	//デフォルトソート項目:
+	if  ($_USERBOX_CONF["sort_list_by"]=="udatetime"){
+		$defsort_arr = array('field' => 'udatetime', 'direction' => 'DESC');
+	}else{
+		$defsort_arr = array('field' => $_USERBOX_CONF["sort_list_by"], 'direction' => 'ASC');
+	}
 	$form_arr = array('bottom' => '', 'top' => '');
     $pagenavurl = '&amp;filter_val=' . $filter_val;
     //List 取得

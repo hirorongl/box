@@ -34,6 +34,7 @@ function fncList()
     global $LANG09;
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX;
+    global $_DATABOX_CONF;
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
@@ -141,8 +142,11 @@ function fncList()
         'query_fields' => array('t.id','title','code','draft_flag','orderno','t2.name','hits'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
-	$defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
-	
+	if  ($_DATABOX_CONF["sort_list_by"]=="udatetime"){
+		$defsort_arr = array('field' => 'udatetime', 'direction' => 'DESC');
+	}else{
+		$defsort_arr = array('field' => $_DATABOX_CONF["sort_list_by"], 'direction' => 'ASC');
+	}
 	$form_arr = array('bottom' => '', 'top' => '');
     $pagenavurl = '&amp;filter_val=' . $filter_val;
     //List 取得

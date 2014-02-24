@@ -684,6 +684,8 @@ $LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントのデフォルト';
 
+$LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並び替え';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';
 $LANG_fs['databox'][fs_whatsnew] = '新着情報ブロック';
@@ -835,5 +837,17 @@ $LANG_configselects['databox'][24] =array();
 }
 
 $LANG_configselects['databox'][26] =array( 'コメント有効' => 0, 'コメント無効' => -1);
+
+$LANG_configselects['databox'][27] =array(
+    '表示位置' => 'orderno'
+    ,'ID' => 'id'
+    , 'コード' => 'code'
+    , 'タイトル' => 'title'
+    , 'タイプ' => 'fieldset'
+    , '残日数' => 'remaingdays'
+    , '閲覧数' => 'hits'
+    , 'タイムスタンプ降順' => 'udatetime'
+    , 'ドラフト' => 'draft'
+        );
 
 ?>
