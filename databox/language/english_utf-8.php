@@ -654,6 +654,8 @@ $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 
 $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 
+$LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
@@ -804,5 +806,17 @@ $LANG_configselects['databox'][24] =array();
 	}
 
 $LANG_configselects['databox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
+
+$LANG_configselects['databox'][27] =array(
+    'Order' => 'orderno'
+    ,'ID' => 'id'
+    , 'Code' => 'code'
+    , 'Title' => 'title'
+    , 'Data Type' => 'fieldset'
+    , 'remaining days' => 'remaingdays'
+    , 'Hits' => 'hits'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft'
+        );
 
 ?>

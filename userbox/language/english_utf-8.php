@@ -623,6 +623,7 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = 'Max length of meta ke
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
+$LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
@@ -765,4 +766,15 @@ $LANG_configselects['userbox'][24] =array();
 
 $LANG_configselects['userbox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
 
+$LANG_configselects['userbox'][27] =array(
+    'Order' => 'orderno'
+    ,'User ID' => 'id'
+    , 'Username' => 'username'
+    , 'Full Name' => 'fullname'
+    , 'Profile Type' => 'fieldset'
+    , 'remaining days' => 'remaingdays'
+    , 'Hits' => 'hits'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft'
+        );
 ?>
