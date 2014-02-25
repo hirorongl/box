@@ -450,6 +450,8 @@ function userbox_category(
         $sql .= " AND t3.field_id=".$field_id.LB;
         $sql .= " AND t3.id=t2.id".LB;
     }
+	//有効なデータ
+    $sql .= " AND t4.status=4".LB;
 	//下書データはのぞく
     $sql .= " AND t2.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
@@ -876,6 +878,8 @@ function userbox_count(
 	}
 	
     //@@@@@@@@@@@------>
+	//有効なデータ
+    //☆$sql .= " AND t4.status=4".LB;
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
@@ -960,6 +964,8 @@ function userbox_grp(
     $sql .= " WHERE ".LB;
 
     //@@@@@@@@@--------->
+	//有効なデータ
+	//☆$sql .= " AND t4.status=4".LB;
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
