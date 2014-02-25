@@ -684,7 +684,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントのデフォルト';
 
-$LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並び替え';
+$LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並べ替え';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';

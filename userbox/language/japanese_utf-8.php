@@ -630,7 +630,7 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 $LANG_confignames['userbox']['commentcode'] = '新規登録時のコメントのデフォルト';
-$LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフィール）の並び替え';
+$LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフィール）の並べ替え';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';
