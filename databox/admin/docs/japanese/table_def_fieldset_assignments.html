@@ -7,14 +7,14 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/table_mst.html 20140228 -->
+<!-- admin/plugins/databox/docs/japanese/table_def_fieldset_assignment.html 20140226-->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
 <a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
 - <a href="index.html">データボックス(DataBox) プラグイン</a>
 - <a href="tables.html">テーブル一覧</a>
-- DATABOX_mst マスター</div>
+- DATABOX_def_fieldset_assignment タイプ・アトリビュート関連</div>
 <p>
 <a href="../../../../../">トップページ</a>
  <a href="../../../../../admin/plugins/databox/">管理画面</a>
@@ -23,7 +23,7 @@
 
 <h2><a href="tables.html">テーブル一覧</a></h2>
 
-<h3><a name="data">DATABOX_mst マスター</a>(2013/11/12 update  書きかけです)</h3>
+<h3><a name="data">DATABOX_def_fieldset_assignments タイプ・アトリビュート関連</a>(2014/02/26 update  書きかけです)</h3>
 <table>
 <tr><th style="width:20%">名前</th>
     <th style="width:15%">データ型</th>
@@ -32,76 +32,30 @@
 </tr>
 <tbody>
 <tr>
-  <td valign="top"><a name="desc_id">id</a></td>
+  <td valign="top"><a name="desc_seq">seq</a></td>
   <td valign="top">int(11)</td>
   <td valign="top">　</td>
-  <td valign="top">自動発番　</td>
+  <td valign="top">　</td>
 </tr>
 <tr class="r2">
-  <td valign="top"><a name="desc_kind">kind</a></td>
-  <td valign="top">varchar(16)</td>
-  <td valign="top">　</td>
-  <td valign="top">　</td>
-</tr>
-<tr>
-  <td valign="top"><a name="desc_no">no</a></td>
-  <td valign="top">int(2)</td>
+  <td valign="top"><a name="desc_name">fieldset_id</a></td>
+  <td valign="top">int(11)</td>
   <td valign="top">　</td>
   <td valign="top">　</td>
 </tr>
 <tr class="r2">
-  <td valign="top"><a name="desc_value">value</a></td>
-  <td valign="top">varchar(64)</td>
-  <td valign="top">　</td>
-  <td valign="top">　</td>
-</tr>
-
-<tr>
-  <td valign="top"><a name="desc_value2">value2</a></td>
-  <td valign="top">varchar(64)</td>
-  <td valign="top">　</td>
-  <td valign="top">　</td>
-</tr>
-<tr class="r2">
-  <td valign="top"><a name="desc_disp">disp</a></td>
-  <td valign="top">varchar(64) </td>
-  <td valign="top"> </td>
-  <td valign="top">　</td>
-</tr>
-
-<tr>
-  <td valign="top"><a name="desc_orderno">orderno</a></td>
-  <td valign="top">int(2) </td>
-  <td valign="top">　</td>
-  <td valign="top">　</td>
-</tr>
-<tr class="r2">
-  <td valign="top"><a name="desc_relno">relno</a></td>
+  <td valign="top"><a name="desc_field_id">field_id</a></td>
   <td valign="top">int(11)</td>
   <td valign="top">　</td>
   <td valign="top">　</td>
 </tr>
 
-<tr>
-  <td valign="top"><a name="desc_udatetime">udatetime</a></td>
-  <td valign="top">timestamp</td>
-  <td valign="top">CURRENT_TIMESTAMP　</td>
-  <td valign="top">　</td>
-</tr>
-<tr class="r2">
-  <td valign="top"><a name="desc_uuid">uuid</a></td>
-  <td valign="top">mediumint(8)</td>
-  <td valign="top">　</td>
-  <td valign="top">　</td>
-</tr>
 
 </tbody></table>
-
 <h3>変更履歴</h3>
 <ul>
-<li>2012/12/26 udatetime uuid  追加</li>
+<li>2012/09/11 追加</li>
 </ul>
-
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
     本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
