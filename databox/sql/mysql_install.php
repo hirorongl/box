@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20130213
+// Last Update 20140228
 
 //ADDTION DATA
 $_SQL[] = "
@@ -77,6 +77,7 @@ CREATE TABLE {$_TABLES['DATABOX_def_category']} (
   `orderno` int(2) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `categorygroup_id` int(11) NOT NULL DEFAULT '0',
+  `allow_display` binary(1) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`category_id`)
@@ -105,6 +106,10 @@ CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `textcheck` binary(2) DEFAULT '0',
   `textconv` binary(2) DEFAULT '0',
   `searchtarget` binary(1) DEFAULT '0',
+  `initial_value` mediumtext NOT NULL,
+  `range_start` mediumtext NOT NULL,
+  `range_end` mediumtext NOT NULL,
+  `dfid` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`field_id`)
