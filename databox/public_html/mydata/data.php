@@ -1053,7 +1053,6 @@ function fncdelete (
 	if  ($template<>""){
 		$return_page.="&amp;template=".$template;
 	}
-    $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=2';
     return COM_refresh ($return_page);
 
 
