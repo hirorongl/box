@@ -1353,7 +1353,7 @@ switch ($mode) {
 		break;
 
     case 'delete':// 削除
-        $display .= fncdelete();
+        $display .= fncdelete($template);
         break;
     case 'copy'://コピー
         if ($_DATABOX_CONF['allow_data_insert']
