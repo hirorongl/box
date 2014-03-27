@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/list_detail.thtml 20140117{ -->
+<!-- plugins/userbox/templates/category/default/list_detail.thtml 20140328{ -->
 
 <div id="userbox_outer">
 
@@ -6,6 +6,11 @@
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
      <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
      <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
+  <p><span style="color:green"> &#123;uid&#125;</span>:{uid}
+     <span style="color:green"> &#123;username&#125;</span>:{username}
+     <span style="color:green"> &#123;fullname&#125;</span>:{fullname}
+     <span style="color:green"> &#123;displayname&#125;</span>:{displayname}
   </p>
 
   <h2><span style= "color:green" > &#123;category_name&#125;</span>{category_name}</h2>

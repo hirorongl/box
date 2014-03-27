@@ -249,6 +249,8 @@ function fnclist(
             $templates->set_var ('col_var', '');
 
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'userbox', $templates );
         //ページなび
         //$url = $_CONF['site_url']  . '/'.THIS_SCRIPT."?m=".$m;//."?order=$order";
         $url = $_CONF['site_url']  . '/'.THIS_SCRIPT;
@@ -353,7 +355,6 @@ $expired = COM_applyFilter($_GET['expired']);
 if ($perpage===0){
     $perpage=$_USERBOX_CONF['perpage']; // 1ページの行数 @@@@@
 }
-echo "aa=".$_USERBOX_CONF['loginrequired']." id=".$id."<br>";
 //ログイン要否チェック
 if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
@@ -368,7 +369,6 @@ if (COM_isAnonUser()){
         exit;
     }
 }
-echo "Aaaa";
 if ($id===0) { //一覧
 	if ($code<>""){
 		$display .= userbox_category(

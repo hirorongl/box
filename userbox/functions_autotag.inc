@@ -709,6 +709,8 @@ function userbox_category(
             $templates->set_var ('col_var', '');
 
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'userbox', $templates );
 
         //------------
         //-----navigation
@@ -1433,6 +1435,8 @@ function userbox_profile(
 				}
 			}
 		}
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'userbox', $templates );
 
         //------------
         $templates->parse ('output', 'list');
@@ -1954,6 +1958,9 @@ function userbox_field(
         }else{
             $templates->set_var ( 'pagenavinone', '' );
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'userbox', $templates );
+
         //------------
         $templates->parse ('nav_var', 'nav', true);
 

@@ -726,6 +726,8 @@ function databox_category(
             $templates->set_var ('col_var', '');
 
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'databox', $templates );
 
         //------------
         //-----navigation
@@ -1369,6 +1371,9 @@ function databox_field(
         }else{
             $templates->set_var ( 'pagenavinone', '' );
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'databox', $templates );
+
         //------------
         $templates->parse ('nav_var', 'nav', true);
 
@@ -2052,6 +2057,8 @@ function databox_data(
 				
 			}
 		}
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'databox', $templates );
 
 		if (function_exists('databox_custom_templateSetVars')) {
 			databox_custom_templateSetVars("data", $templates);

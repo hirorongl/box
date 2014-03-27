@@ -244,6 +244,9 @@ function fnclist(
             $templates->set_var ('col_var', '');
 
         }
+        // Call to plugins to set template variables in the databox
+        PLG_templateSetVars( 'databox', $templates );
+		
         //ページなび
         //$url = $_CONF['site_url']  . '/'.THIS_SCRIPT."?m=".$m;//."?order=$order";
         $url = $_CONF['site_url']  . '/'.THIS_SCRIPT;
