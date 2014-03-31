@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20140129 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20140331 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2014/01/22 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2014/03/31 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -78,6 +78,9 @@ blockfooter,
 (msg)<br/>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>
 </tr>
 <tr >
@@ -181,6 +184,8 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
 imgfile_frd,data_img_url<br/>
 imgfile_thumb_frd,data_thumb_img_url<br/>
 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>	
 </tr>
 
@@ -279,6 +284,8 @@ blockfooter,
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>
 </tr>
 
@@ -373,8 +380,8 @@ site_url,
  msg<br/>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
-
- 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>	
 </tr>
 
@@ -524,6 +531,8 @@ marker<a href="#notetext_2" class="note_super" title="mapプラグインが有�
 mapのデータとdataboxのデータを紐付けしています。">*2</a>
 language<br/>
 languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>
 </tr>
 
@@ -873,6 +882,9 @@ codeに指定される内容は、各データに登録されたアトリビュ�
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08ラジオボタンリスト（選択肢）
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09オプションリスト（マスター）
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16ラジオボタンリスト（マスター）
+
+<br/><a class="note_super" href="#notetext_9" id="notetext_9">*9</a>
+Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります
 
 <br/>
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
