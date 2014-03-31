@@ -2301,6 +2301,9 @@ function userbox_newlist(
         $n=($i%2)+1;
         $class='class="row'.$n.'"';
         $list->set_var ('class', 'class="row'.$n.'"');
+		
+		//カテゴリ
+        DATABOX_getcategoriesDisp($A['id'],$list,0,$pi_name);
 
         $list->parse ('list_col', 'col', true);
 
