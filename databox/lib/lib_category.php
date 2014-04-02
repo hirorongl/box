@@ -122,6 +122,7 @@ function LIB_List(
     $sql .= " ,t.orderno".LB;
     $sql .= " ,(SELECT t2.name FROM {$table2} AS t2 WHERE t2.group_id=t.categorygroup_id ) AS group_name ".LB;
     $sql .= " ,(SELECT t3.name FROM {$table3} AS t3 WHERE t3.category_id=t.parent_id ) AS parent_name ".LB;
+    $sql .= " ,t.allow_display";
     $sql .= " FROM ";
     $sql .= " {$table} AS t".LB;
     $sql .= " WHERE ".LB;
@@ -184,6 +185,8 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
     global $_CONF, $LANG_ACCESS;
 
     $retval = '';
+	
+	$allow_display=COM_applyFilter($A['allow_display'],true);
 
     switch($fieldname) {
         //編集アイコン
@@ -204,23 +207,27 @@ function LIB_GetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
         //コード
         case 'code':
-            $name=COM_applyFilter($A['code']);
-            $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
-            $url.="?";
-            $url.="code=".$A['code'];
-            $url.="&amp;m=code";
-            $url = COM_buildUrl( $url );
-            $retval= COM_createLink($name, $url);
-            break;
+            if ($allow_display<2){
+                $name=COM_applyFilter($A['code']);
+                $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                $url.="?";
+                $url.="code=".$A['code'];
+                $url.="&amp;m=code";
+                $url = COM_buildUrl( $url );
+			    $retval= COM_createLink($name, $url);
+                break;
+			}
         case 'category_id':
-            $name=COM_applyFilter($A['category_id']);
-            $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
-            $url.="?";
-            $url.="id=".$A['category_id'];
-            $url.="&amp;m=id";
-            $url = COM_buildUrl( $url );
-            $retval= COM_createLink($name, $url);
-            break;
+            if ($allow_display<2){
+                $name=COM_applyFilter($A['category_id']);
+                $url=$_CONF['site_url'] . "/".THIS_SCRIPT;
+                $url.="?";
+                $url.="id=".$A['category_id'];
+                $url.="&amp;m=id";
+                $url = COM_buildUrl( $url );
+                $retval= COM_createLink($name, $url);
+			    break;
+            }
 
         //各項目
         default:
@@ -267,6 +274,10 @@ function LIB_Edit(
     global $$lang_box;
     $lang_box=$$lang_box;
 
+    $lang_box_allow_display="LANG_".strtoupper($pi_name)."_ALLOW_DISPLAY";
+    global $$lang_box_allow_display;
+    $lang_box_allow_display=$$lang_box_allow_display;
+
     $table=$_TABLES[strtoupper($pi_name).'_def_category'];
     $table2=$_TABLES[strtoupper($pi_name).'_category'];
 
@@ -294,6 +305,9 @@ function LIB_Edit(
         $categorygroup_id = COM_applyFilter ($_POST['group'],true);//@@@@@@
         $orderno = COM_applyFilter ($_POST['orderno']);
 
+        $allow_display = COM_applyFilter($_POST['allow_display'],true);
+        $allow_edit = COM_applyFilter($_POST['allow_edit'],true);
+
         $uuid=$_USER['uid'];
 
     }else{
@@ -309,6 +323,7 @@ function LIB_Edit(
             $categorygroup_id ="";
             $parent_id ="";
             $orderno ="";
+            $allow_display="";
 
             $uuid=0;
             $udatetime="";//"";
@@ -334,6 +349,7 @@ function LIB_Edit(
             $parent_id=COM_stripslashes($A['parent_id']);
             $categorygroup_id=COM_stripslashes($A['categorygroup_id']);
             $orderno=COM_stripslashes($A['orderno']);
+            $allow_display = COM_stripslashes($A['allow_display']);
 
             $uuid = COM_stripslashes($A['uuid']);
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['udatetime_un']));
@@ -422,6 +438,9 @@ function LIB_Edit(
     $templates->set_var('lang_orderno', $lang_box_admin['orderno']);
     $templates->set_var ('orderno', $orderno);
 
+	$templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
+    $list_allow_display=DATABOX_getradiolist ($lang_box_allow_display,"allow_display",$allow_display,1);
+    $templates->set_var( 'list_allow_display', $list_allow_display);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $lang_box_admin['udatetime']);
@@ -517,6 +536,9 @@ function LIB_Save (
 
     $orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する
     $orderno=COM_applyFilter($orderno,true);
+	
+	$allow_display=COM_applyFilter($_POST['allow_display']);
+    $allow_display=addslashes (COM_checkHTML (COM_checkWords ($allow_display)));
 
     //$name = mb_convert_kana($name,"AKV");
     //A:半角英数字を全角英数字に変換する
@@ -597,6 +619,9 @@ function LIB_Save (
 
     $fields.=",orderno";//
     $values.=",$orderno";
+
+    $fields.=",allow_display";
+    $values.=",$allow_display";
 
     $fields.=",uuid";
     $values.=",$uuid";
@@ -725,6 +750,7 @@ $fld['description']['name']  = $lang_box_admin['description'];
 $fld['categorygroup_id']['name']  = $lang_box_admin['group_id'];
 $fld['parent_id']['name']  = $lang_box_admin['parent_id'];
 $fld['orderno']['name']  = $lang_box_admin['orderno'];
+$fld['allow_display']['name']  = $lang_box_admin['allow_display'];
 
 $fld['udatetime']['name']  = $lang_box_admin['udatetime'];
 $fld['uuid']['name']  = $lang_box_admin['uuid'];

@@ -2242,6 +2242,7 @@ function DATABOX_getcategoriesText(
 function DATABOX_getcategoriesDisp(
     $id
     ,$templates
+    ,$chk_user
     ,$group_id=0
     ,$pi_name=""
 )
@@ -2317,7 +2318,8 @@ function DATABOX_getcategoriesDisp(
     $sql .= ",m1.name AS category_name".LB;
     $sql .= ",m1.code AS category_code".LB;
     //$sql .= ",m1.orderno";
-    $sql .= ",m1.categorygroup_id".LB;
+	$sql .= ",m1.categorygroup_id".LB;
+	$sql .= ",m1.allow_display".LB;
     //$sql .= ",m2.name AS group";
     $sql .= ",m2.code AS group_code".LB;
     $sql .= ",m2.group_id".LB;//@@@@@@
@@ -2369,6 +2371,35 @@ function DATABOX_getcategoriesDisp(
     for( $i = 0; $i < $nrows; $i++ )    {
 		$A = DB_fetchArray( $result, true );
 		$A = array_map('stripslashes', $A);
+		$chk=false;
+        //表示する
+        if  ($A['allow_display']==='0') {
+            $chk=true;
+        //ログインユーザのみ
+        }else if ($A['allow_display']==='1'){
+            if  ($chk_user>=1000) {
+                $chk=true;
+            }
+        //グループとadmin権のある人のみ表示
+        }else if ($A['allow_display']==='2'){
+            if  ($chk_user>=1010) {
+                $chk=true;
+            }
+        //所有者とadmin権のある人のみ
+        }else if ($A['allow_display']==='3'){
+            if  ($chk_user>=1011) {
+                $chk=true;
+            }
+        //admin権のある人のみ
+        }else if ($A['allow_display']==='4'){
+            if  ($chk_user>=1100) {
+                $chk=true;
+            }
+        }
+        
+		if  ($chk==false){
+            continue;
+        }
         if ($old_group_id<>$A['group_id']){
             if ($categories_group<>""){
 

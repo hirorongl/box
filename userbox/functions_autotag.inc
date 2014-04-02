@@ -427,7 +427,7 @@ function userbox_category(
 	//--WHERE
     $sql .= " WHERE ".LB;
 	$sql .= " t2.id=t4.uid ".LB;
-	
+
 	if (count($idsary)<>0){
 		if (strtoupper($mode)=="AND"){
 			$w="";
@@ -435,13 +435,13 @@ function userbox_category(
 				if ($w<>""){
 					$w.=" AND ";
 				}
-				$w.=$val." IN (SELECT category_id";
-				$w.=" FROM {$tbl1} AS t1 ";
-				$w.=" WHERE t2.id = t1.id)";
+				$w.=$val." IN (SELECT t1.category_id";
+				$w.=" FROM {$tbl1} AS t1 ,{$tbl5} AS t5";
+				$w.=" WHERE t2.id = t1.id AND t1.category_id = t5.category_id AND t5.allow_display<2)";
 			}
 		}else{
-			$w= "t2.id IN (SELECT id FROM {$tbl1} ";
-			$w.="WHERE category_id IN ({$ids})) ";
+			$w= "t2.id IN (SELECT id FROM {$tbl1} AS t1 ,{$tbl5} AS t5 ";
+			$w.="WHERE t1.category_id = t5.category_id AND t5.allow_display<2 AND t1.category_id IN ({$ids})) ";
 		}
 		$sql.=" AND ({$w})".LB;
 	}
@@ -667,7 +667,7 @@ function userbox_category(
 			
 			//カテゴリ@@@@@
 			$templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-			DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
+			DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
 
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
@@ -1360,7 +1360,7 @@ function userbox_profile(
         $templates->set_var ('hits', $A['hits']);
         //カテゴリ@@@@@
         $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-        DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
+        DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
 
 
         //追加項目
@@ -1876,7 +1876,7 @@ function userbox_field(
             $templates->set_var('data_hits', $hits);
 			//カテゴリ categories 
 			$templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-			DATABOX_getcategoriesDisp($A['id'],$templates,0,$pi_name);
+			DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
 
             //追加項目 fields
             $group_id = stripslashes($A['group_id']);
@@ -2303,7 +2303,7 @@ function userbox_newlist(
         $list->set_var ('class', 'class="row'.$n.'"');
 		
 		//カテゴリ
-        DATABOX_getcategoriesDisp($A['id'],$list,0,$pi_name);
+        DATABOX_getcategoriesDisp($A['id'],$list,$chk_user,0,$pi_name);
 
         $list->parse ('list_col', 'col', true);
 

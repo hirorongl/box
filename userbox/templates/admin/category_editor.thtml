@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/category_editor.thtml 20101116{ -->
+<!-- plugins/userbox/templates/admin/category_editor.thtml 20140401{ -->
 
 <div id="userbox_admin">
   {about_thispage}
@@ -72,6 +72,13 @@
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field">
               <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+            </td>
+          </tr>
+          <!-- allow_display  -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_allow_display} {help_allow_display}</th>
+            <td class="admin-list-field">
+                {list_allow_display}
             </td>
           </tr>
 
