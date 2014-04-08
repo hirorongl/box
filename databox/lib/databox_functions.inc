@@ -1362,16 +1362,13 @@ function DATABOX_figurehtml12(
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
 	
-	if ($fvalue==""){
+	$retval .="<input type=\"file\" dir=\"ltr\"";
+    $retval .= " id=\"afield_fnm[".$fid."]\" ";
+    $retval .= " name=\"afield_fnm[".$fid."]\" ";
+    $retval .="size=\"30\"";
+    $retval .= " ".XHTML.">".LB;
 
-        $retval .="<input type=\"file\" dir=\"ltr\"";
-
-        $retval .= " id=\"afield_fnm[".$fid."]\" ";
-        $retval .= " name=\"afield_fnm[".$fid."]\" ";
-        $retval .="size=\"30\"";
-        $retval .= " ".XHTML.">".LB;
-
-    }else{
+    if ($fvalue<>""){
 
         $retval .="{$fvalue}";
         $retval .= '<br' . XHTML . '>' ;
@@ -3234,6 +3231,7 @@ function DATABOX_uploadaddtiondatas(
 	,$id
     ,$fldary_fnm=""
     ,$fldary_del=""
+    ,$fldary_old=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload
@@ -3246,6 +3244,7 @@ function DATABOX_uploadaddtiondatas(
 // +-----
 // | 引数 $fldary_fnm:追加項目データ配列　アップロードファイル名
 // | 引数 $fldary_del:追加項目データ配列　アップロードファイル削除
+// | 引数 $fldary_old:追加項目データ配列　OLD
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:  
 // +---------------------------------------------------------------------------+
@@ -3274,6 +3273,7 @@ function DATABOX_uploadaddtiondatas(
 				$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
 				$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
 				$filename=$fldary[$field_id];
+				$filename_old=$fldary_old[$field_id];
 				
 				if (is_array($fldary_del) AND $fldary_del[$field_id]){
 					$rt=DATABOX_deleteFile($imgfld.$filename);
@@ -3284,6 +3284,12 @@ function DATABOX_uploadaddtiondatas(
 					$imgname=$_FILES['afield_fnm']['name'][$field_id];
 					
 					if ($imgname<>""){
+						if  ($filename_old<>""){
+                            $rt=DATABOX_deleteFile($imgfld.$filename_old);
+                            $thumbname=DATABOX_getthumbname($filename_old);
+                            $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+                        }
+
 						$imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
 						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
 						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												

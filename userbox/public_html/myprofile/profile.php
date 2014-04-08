@@ -523,6 +523,7 @@ function fncSave (
 
     //@@@@@
     $additionfields=$_POST['afield'];
+    $additionfields_old=$_POST['afield'];
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
 	$additionfields_date=array();
@@ -746,7 +747,7 @@ function fncSave (
 
 	//追加項目@@@@@
 	DATABOX_uploadaddtiondatas	
-        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del);
+        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
     $rt=DATABOX_saveaddtiondatas_update($id,$additionfields,$addition_def,$pi_name);
 
     //user (コアのテーブル)
