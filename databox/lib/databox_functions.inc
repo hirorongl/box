@@ -3326,6 +3326,119 @@ function DATABOX_uploadaddtiondatas(
     return $rt;
 
 }
+function DATABOX_uploadaddtiondatas_cpy(
+    &$fldary
+    ,$addition_def
+	,$pi_name
+	,$id
+    ,$fldary_fnm=""
+    ,$fldary_del=""
+    ,$fldary_old=""
+)
+// +---------------------------------------------------------------------------+
+// | 機能  追加項目upload  for copy
+// | 書式 DATABOX_uploadaddtiondatas($additionfields,$addition_def,$pi_name
+// | 								,$additionfields_fnm,$additionfields_del)
+// +---------------------------------------------------------------------------+
+// | 引数 $fldary:追加項目データ配列
+// | 引数 $addition_def:追加項目定義
+// | 引数 $pi_name: 'databox' 'userbox' 'formbox'
+// +-----
+// | 引数 $fldary_fnm:追加項目データ配列　アップロードファイル名
+// | 引数 $fldary_del:追加項目データ配列　アップロードファイル削除
+// | 引数 $fldary_old:追加項目データ配列　OLD
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:  
+// +---------------------------------------------------------------------------+
+//update
+{
+	global $_CONF;
+    global $LANG04;
+    global $_FILES;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+
+    $rt="";
+
+    if (is_array($fldary)){
+
+        foreach( $fldary as $field_id => $value ){
+			
+			//図 外記憶
+			if ($addition_def[$field_id]['type']==12){//図
+				$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+				$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+				$filename=$fldary[$field_id];
+				$filename_old=$fldary_old[$field_id];
+				
+				if (is_array($fldary_del) AND $fldary_del[$field_id]){
+					$fldary[$field_id]="";
+				}else{
+					$imgname=$_FILES['afield_fnm']['name'][$field_id];
+					if ($imgname<>""){
+						$imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
+						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
+						$a=explode(".",$imgname);
+						$a[1]=strtolower($a[1]);
+						if  ( $box_conf['imgfile_subdir']==1){
+							$newfilename=$addition_def[$field_id]['templatesetvar']."/";
+						}else{
+							$newfilename="";
+						}
+						$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+						//$newfilename=$imgname;
+						if (DATABOX_uploadImageFile
+								($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+							$fldary[$field_id]=$newfilename;
+							//サムネイル作成する場合
+							if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
+								$rt=DATABOX_createthumb(
+									$newfilename
+									,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
+									,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+									,$imgfld_thmb,$imgfld);
+							}
+						}else{
+							$fldary[$field_id]="";
+						}
+					}else{
+						if  ($filename_old<>""){
+							$cpyfrom=$imgfld.$filename_old;
+							$a=explode(".",$filename_old);
+							$a[1]=strtolower($a[1]);
+							if  ( $box_conf['imgfile_subdir']==1){
+								$newfilename=$addition_def[$field_id]['templatesetvar']."/";
+							}else{
+								$newfilename="";
+							}
+							$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+							$cpyto=$imgfld.$newfilename;
+					        $rt=copy( $cpyfrom, $cpyto );
+							//
+							$thumbname=DATABOX_getthumbname($filename_old);
+                            $cpyfrom =$imgfld_thmb.$thumbname;
+							$thumbname=DATABOX_getthumbname($newfilename);
+                            $cpyto =$imgfld_thmb.$thumbname;
+					        $rt=copy( $cpyfrom, $cpyto );
+							//
+							$fldary[$field_id]=$newfilename;
+                        }
+					}
+				}
+			}
+		}
+    }
+
+    return $rt;
+
+}
 
 //update
 function DATABOX_uploadaddtiondatas_xml(

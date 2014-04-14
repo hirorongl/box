@@ -303,7 +303,8 @@ function fncEdit(
     ,$errmsg=""
 	,$mode="edit"
 	,$fieldset_id=0
-	,$template=""
+    ,$template=""
+    ,$old_mode=""
 )
 {
 
@@ -483,7 +484,7 @@ function fncEdit(
         $created=0;
         //
         $delflg=false;
-
+        $old_mode="copy";
     }
 
     $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
@@ -667,6 +668,7 @@ function fncEdit(
                                   sprintf ($delbutton, $jsconfirm));
     }
 
+    $templates->set_var('old_mode', $old_mode);
 
     //
     $templates->parse('output', 'editor');
@@ -747,6 +749,8 @@ function fncSave (
 
 //            $hits =0;
 //            $comments=0;
+    $old_mode=COM_applyFilter($_POST['old_mode']);
+    $old_mode=addslashes (COM_checkHTML (COM_checkWords ($old_mode)));
 
     //-----
     $type=1;
@@ -782,7 +786,7 @@ function fncSave (
     //errorのあるとき
     if ($err<>"") {
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display']= fncEdit($id, $edt_flg,3,$err,"edit",$fieldset_id,$template);
+        $retval['display']= fncEdit($id, $edt_flg,3,$err,"edit",$fieldset_id,$template,$old_mode);
 
         return $retval;
 
@@ -960,9 +964,14 @@ function fncSave (
     $rt=DATABOX_savecategorydatas($id,$category);
 
 	//追加項目
-	DATABOX_uploadaddtiondatas	
-        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
-
+	if  ($old_mode=="copy"){
+	    DATABOX_uploadaddtiondatas_cpy
+            ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+    }else{
+	    DATABOX_uploadaddtiondatas	
+            ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+    }
+		
     if ($new_flg){
         $rt=DATABOX_saveaddtiondatas($id,$additionfields,$addition_def,$pi_name);
     }else{

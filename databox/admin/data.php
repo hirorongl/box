@@ -284,6 +284,7 @@ function fncEdit(
     ,$msg = ''
     ,$errmsg=""
     ,$mode="edit"
+    ,$old_mode=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  編集画面表示                                                        |
@@ -674,7 +675,7 @@ function fncEdit(
         $created=0;
         //
         $delflg=false;
-
+        $old_mode="copy";
     }
 
     //-----
@@ -979,6 +980,7 @@ function fncEdit(
                                   sprintf ($delbutton, $jsconfirm));
     }
 
+    $templates->set_var('old_mode', $old_mode);
 
     //
     $templates->parse('output', 'editor');
@@ -1266,7 +1268,9 @@ function fncSave (
     //V:濁点つきの文字を１文字に変換する (K、H と共に利用する）
     //$name = str_replace ("'", "’",$name);
     //$code = mb_convert_kana($code,"a");//全角英数字を半角英数字に変換する
-
+	
+    $old_mode=COM_applyFilter($_POST['old_mode']);
+    $old_mode=addslashes (COM_checkHTML (COM_checkWords ($old_mode)));
     //-----
     $type=1;
     $uuid=$_USER['uid'];
@@ -1392,7 +1396,7 @@ function fncSave (
     //errorのあるとき
     if ($err<>"") {
         $retval['title']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-        $retval['display']= fncEdit($id, $edt_flg,3,$err);
+        $retval['display']= fncEdit($id, $edt_flg,3,$err,"edit",$old_mode);
 
         return $retval;
 
@@ -1514,9 +1518,14 @@ function fncSave (
     $rt=DATABOX_savecategorydatas($id,$category);
 
 	//追加項目
-	DATABOX_uploadaddtiondatas	
-        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
-
+	if  ($old_mode=="copy"){
+		DATABOX_uploadaddtiondatas_cpy
+		     ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+	}else{	
+		DATABOX_uploadaddtiondatas	
+		     ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+	}
+		
     $rt=DATABOX_saveaddtiondatas
         ($id,$additionfields,$addition_def,$pi_name);
 

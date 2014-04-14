@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2013/06/03 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2014/04/14 { -->
 
 <div id="databox_admin">
   {about_thispage}
@@ -242,6 +242,7 @@
       <input type="submit" value="{lang_save}" name="mode"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
+      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
       {delete_option}
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       {view}
