@@ -40,7 +40,7 @@ if (file_exists ($functions_custom)) {
 
 //設定ファイル
 require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
-$_USERBOX_CONF['auto_data_create']="1";//自動データ作成
+
 
 //BOXシリーズ共通関数
 if (function_exists("DATABOX_nl2br")==false) {
