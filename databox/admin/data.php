@@ -686,8 +686,6 @@ function fncEdit(
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
 
-    $templates->set_file('editor',"data_editor.thtml");
-
     $templates->set_file (array (
                 'editor' => 'data_editor.thtml',
                 'row'   => 'row.thtml',
