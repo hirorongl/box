@@ -138,7 +138,7 @@ $_USERBOX_DEFAULT['hideuseroption'] = 0;
 $_USERBOX_DEFAULT['commentcode'] = 0;
 
 //管理者ページ（プロフィール）の並び替え
-$_DATABOX_DEFAULT['sort_list_by'] = "orderno";
+$_USERBOX_DEFAULT['sort_list_by'] = "orderno";
 
 //---（１）新着
 // 新着の期間
