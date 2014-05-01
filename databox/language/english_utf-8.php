@@ -812,11 +812,11 @@ $LANG_configselects['databox'][27] =array(
     ,'ID' => 'id'
     , 'Code' => 'code'
     , 'Title' => 'title'
-    , 'Data Type' => 'fieldset'
+    , 'Data Type' => 'fieldset_name'
     , 'remaining days' => 'remaingdays'
     , 'Hits' => 'hits'
     , 'Time Stamp (descending)' => 'udatetime'
-    , 'Draft' => 'draft'
+    , 'Draft' => 'draft_flag'
         );
 
 ?>

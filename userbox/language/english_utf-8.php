@@ -771,10 +771,9 @@ $LANG_configselects['userbox'][27] =array(
     ,'User ID' => 'id'
     , 'Username' => 'username'
     , 'Full Name' => 'fullname'
-    , 'Profile Type' => 'fieldset'
-    , 'remaining days' => 'remaingdays'
+    , 'Profile Type' => 'fieldset_name'
     , 'Hits' => 'hits'
     , 'Time Stamp (descending)' => 'udatetime'
-    , 'Draft' => 'draft'
+    , 'Draft' => 'draft_flag'
         );
 ?>

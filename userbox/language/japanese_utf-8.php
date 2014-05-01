@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140401
+# Last Update 20140501
 
 ###############################################################################
 ## 管理画面 menu
@@ -778,11 +778,10 @@ $LANG_configselects['userbox'][27] =array(
     ,'ユーザーID' => 'id'
     , 'ユーザー名' => 'username'
     , '氏名' => 'fullname'
-    , 'タイプ' => 'fieldset'
-    , '残日数' => 'remaingdays'
+    , 'タイプ' => 'fieldset_name'
     , '閲覧数' => 'hits'
     , 'タイムスタンプ降順' => 'udatetime'
-    , 'ドラフト' => 'draft'
+    , 'ドラフト' => 'draft_flag'
         );
 
 ?>
