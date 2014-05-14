@@ -213,6 +213,9 @@ $_DATABOX_DEFAULT['autotag_permissions_databox'] = array (2, 2, 2, 2);
 $_DATABOX_DEFAULT['path_xml'] = $_CONF['path_html']."databox_data";
 $_DATABOX_DEFAULT['path_xml_out']=$_CONF['path']."data/databox_data";
 
+//（10）CSV
+$_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
+$_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
 
 
 // +---------------------------------------------------------------------------+
@@ -818,6 +821,28 @@ function plugin_initconfig_databox()
 			, $pi_name
 			,9);
 		
+		//(10)CSV
+        $c->add('tab_csv', NULL, 'tab', 0, 10, NULL, 0, true, $pi_name,10);
+        $c->add(
+            'fs_csv'
+            , NULL, 'fieldset'
+            , 0, 10, NULL, 0, true
+			, $pi_name
+			,10);
+
+        $c->add(
+            'path_csv'
+            ,$_DATABOX_DEFAULT['path_csv']
+            ,'text', 0, 10, NULL, 10, TRUE
+			, $pi_name
+			,10);
+		
+		$c->add(
+            'path_csv_out'
+            ,$_DATABOX_DEFAULT['path_csv_out']
+            ,'text', 0, 10, NULL, 20, TRUE
+			, $pi_name
+			,10);
 
     }
 

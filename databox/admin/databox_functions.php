@@ -55,5 +55,9 @@ $pro=$_CONF['path'] . 'plugins/databox/proversion/';
 if (file_exists($pro)) {
     $navbarMenu[$LANG_DATABOX_admin_menu['8']]= $adminurl.'pro.php';
 }
+$csv=$_CONF['path'] . 'plugins/databox/csv/';
+if (file_exists($csv)) {
+    $navbarMenu[$LANG_DATABOX_admin_menu['9']]= $adminurl.'csv.php';
+}
 
 ?>

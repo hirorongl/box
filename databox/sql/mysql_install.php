@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20140228
+// Last Update 20140508
 
 //ADDTION DATA
 $_SQL[] = "
@@ -219,6 +219,10 @@ CREATE TABLE {$_TABLES['DATABOX_def_fieldset_group']} (
 $pro=$_CONF['path'] . 'plugins/databox/proversion/';
 if (file_exists($pro)) {
 	include_once($pro.'sql/mysql_install_xml.php');
+}
+$csv=$_CONF['path'] . 'plugins/databox/csv/';
+if (file_exists($csv)) {
+	include_once($csv.'sql/mysql_install_xml.php');
 }
 
 ?>

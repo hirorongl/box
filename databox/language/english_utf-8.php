@@ -24,6 +24,7 @@ $LANG_DATABOX_admin_menu['51']= 'Master';
 $LANG_DATABOX_admin_menu['6']= 'Backup / Restore';
 //
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
+$LANG_DATABOX_admin_menu['9']= 'CSV';
 
 
 ## User
@@ -231,13 +232,13 @@ $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
 $LANG_DATABOX_ADMIN['importmsg'] = '
-Absolute path (directory , file) or URL select.<{XHTML}br>
-If directory selected, xml file is imported under the directory.<{XHTML}br>
-Log file is logs/databox_xmlimport.<{XHTML}br>
+Absolute path (directory , file) or URL select.<br{XHTML}>
+If directory selected, xml file is imported under the directory.<br{XHTML}>
+Log file is logs/databox_xmlimport.log<br{XHTML}>
 ';
 $LANG_DATABOX_ADMIN['exportmsg'] = '
-Select absolute path (directory).<{XHTML}br>
-Log file is logs/databox_xmlimport.<{XHTML}br>
+Select absolute path (directory).<br{XHTML}>
+Log file is logs/databox_xmlimport.log<br{XHTML}>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
 Proversion Initialize. List delete.
@@ -265,6 +266,22 @@ DataBox  Database Data Restore.<{XHTML}br>
 Restore UploadFile.<{XHTML}br>
 ';
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
+
+//csv
+$LANG_DATABOX_ADMIN['csv_def'] = 'CSV definition';
+$LANG_DATABOX_ADMIN['csvheader'] = 'CSV Header title';
+$LANG_DATABOX_ADMIN['importmsgcsv'] = "
+Absolute path (directory , file) or URL select.<br{XHTML}>
+If directory selected, xml file is imported under the directory.<br{XHTML}>
+Log file is logs/databox_csvimport.log<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['exportmsgcsv'] = "
+Select absolute path (directory).<br{XHTML}>
+Log file is logs/databox_csvimport.log<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['initmsgcsv'] = '
+CSV Initialize. List delete.
+';
 
 $LANG_DATABOX_ADMIN['draftonmsg'] = "
 All drafts are turned on <br{XHTML}>
@@ -370,6 +387,9 @@ $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
+$LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML definition ';
+$LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV definition ';
+
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
@@ -415,6 +435,9 @@ $LANG_DATABOX_ADMIN['err_type'] = ' Type is invalid.';//@@@@@
 
 $LANG_DATABOX_ADMIN['err_field_w'] = 'This attribute is already registered';
 $LANG_DATABOX_ADMIN['err_tag_w'] = 'This tag is already registered.';
+
+$LANG_DATABOX_ADMIN['err_csvheader_w'] = 'This CSV header title is already registered';
+$LANG_DATABOX_ADMIN['err_csvheader'] = 'CSV header title is invalid.';
 
 $LANG_DATABOX_ADMIN['err_url'] = 'This URL is not a valid address';
 
@@ -724,9 +747,11 @@ $LANG_fs['databox']['fs_xml'] = '(Profesional Version)';
 $LANG_confignames['databox']['path_xml'] = 'XML Batch Import Path';
 $LANG_confignames['databox']['path_xml_out'] = 'XML Export Path';
 
-
-
-
+//---(１０)
+$LANG_tab['databox']['tab_csv'] = 'CSV';
+$LANG_fs['databox']['fs_csv'] = '（CSV）';
+$LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
+$LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);

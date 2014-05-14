@@ -40,4 +40,6 @@ $_TABLES['DATABOX_def_fieldset_assignments']    = $_DB_table_prefix . 'databox_d
 //20120805add----->
 $_TABLES['DATABOX_def_fieldset_group']    = $_DB_table_prefix . 'databox_def_fieldset_group';
 
+//20140508add----->
+$_TABLES['DATABOX_def_csv']    = $_DB_table_prefix . 'databox_def_csv';
 ?>

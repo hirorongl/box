@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140501
+# Last Update 20140514
 
 ###############################################################################
 ## 管理画面 menu
@@ -26,6 +26,7 @@ $LANG_DATABOX_admin_menu['51']= 'マスター';
 $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
 //
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
+$LANG_DATABOX_admin_menu['9']= 'CSV';
 
 
 ## ユーザー画面
@@ -247,7 +248,7 @@ $LANG_DATABOX_ADMIN['exportmsg'] = "
 logs/databox_xmlimport.log　にログが記録されます。<br{XHTML}>
 ";
 $LANG_DATABOX_ADMIN['initmsg'] = '
-proversion を初期化します。「一覧」の内容は削除されます。
+初期化します。「XML定義一覧」の内容は削除されます。
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = "
 バックアップはとりましたか？<br{XHTML}>
@@ -281,6 +282,27 @@ phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 アップロードファイルは別途もどしてください。<br{XHTML}>
 ";
 //<---
+
+//@@@@@csv-->
+$LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';
+$LANG_DATABOX_ADMIN['csvheader'] = 'ヘッダータイトル';
+$LANG_DATABOX_ADMIN['importmsgcsv'] = "
+絶対パス（フォルダ、ファイル）またはURLを指定してください。<br{XHTML}>
+フォルダ指定の時は、フォルダ下のcsvファイルをインポートします。<br{XHTML}>
+logs/databox_csvimport.log　にログが記録されます。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['exportmsgcsv'] = "
+絶対パス（フォルダ）を指定してください。<br{XHTML}>
+logs/databox_csvimport.log　にログが記録されます。<br{XHTML}>
+";
+$LANG_DATABOX_ADMIN['initmsgcsv'] = '
+初期化します。「CSV定義一覧」の内容は削除されます。
+';
+
+//<---
+
+
+
 
 $LANG_DATABOX_ADMIN['draftonmsg'] = "
 すべてのドラフトをオンにします。<br{XHTML}>
@@ -387,6 +409,9 @@ $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'データタイプの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br{XHTML}><br{XHTML}>";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
+$LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML定義の管理';
+$LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV定義の管理';
+
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
@@ -440,6 +465,9 @@ $LANG_DATABOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@
 
 $LANG_DATABOX_ADMIN['err_field_w'] = '当フィールドはすでに登録されています';
 $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されています';
+
+$LANG_DATABOX_ADMIN['err_csvheader_w'] = '当CSVヘッダーはすでに登録されています';
+$LANG_DATABOX_ADMIN['err_csvheader'] = 'CSVヘッダーが不正です';
 
 $LANG_DATABOX_ADMIN['err_url'] = 'このURLは有効なアドレスではないようです';
 $LANG_DATABOX_ADMIN['err_maxlength'] = '文字以内で入力してください';
@@ -753,6 +781,11 @@ $LANG_fs['databox']['fs_xml'] = '（profesional版）';
 $LANG_confignames['databox']['path_xml'] = 'XML一括インポートディレクトリ';
 $LANG_confignames['databox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 
+//---(１０)
+$LANG_tab['databox']['tab_csv'] = 'CSV';
+$LANG_fs['databox']['fs_csv'] = '（CSV）';
+$LANG_confignames['databox']['path_csv'] = 'CSV一括インポートディレクトリ';
+$LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレクトリ';
 
 
 
