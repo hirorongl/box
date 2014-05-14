@@ -1759,9 +1759,11 @@ function DATABOX_getaddtionfieldsText(
 						$w=COM_getUserDateTimeFormat($fvalue);
 						$retval .= $w[0];
 						break;
-					case 3://日付（準備中）
-						$retval .=strftime( $_CONF['shortdate'], $fvalue );
-						break;
+					case 3://日付
+    					if  ($fvalue<>""){
+						    $retval .=strftime( $_CONF['shortdate'], $fvalue );
+					    }
+        				break;
 					case 5://メールアドレス　（準備中）';
 					case 6://url　（準備中）';
 					case 0:// 一行テキストフィールド
