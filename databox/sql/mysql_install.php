@@ -222,7 +222,7 @@ if (file_exists($pro)) {
 }
 $csv=$_CONF['path'] . 'plugins/databox/csv/';
 if (file_exists($csv)) {
-	include_once($csv.'sql/mysql_install_xml.php');
+	include_once($csv.'sql/mysql_install_csv.php');
 }
 
 ?>
