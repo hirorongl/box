@@ -283,9 +283,9 @@ phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 ";
 //<---
 
-//@@@@@csv-->
+//csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';
-$LANG_DATABOX_ADMIN['csvheader'] = 'ヘッダータイトル';
+$LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
 絶対パス（フォルダ、ファイル）またはURLを指定してください。<br{XHTML}>
 フォルダ指定の時は、フォルダ下のcsvファイルをインポートします。<br{XHTML}>
@@ -298,10 +298,6 @@ logs/databox_csvimport.log　にログが記録されます。<br{XHTML}>
 $LANG_DATABOX_ADMIN['initmsgcsv'] = '
 初期化します。「CSV定義一覧」の内容は削除されます。
 ';
-
-//<---
-
-
 
 
 $LANG_DATABOX_ADMIN['draftonmsg'] = "
