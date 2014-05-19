@@ -61,11 +61,11 @@ $_DATABOX_DEFAULT['loginrequired'] = 0;
 $_DATABOX_DEFAULT['hidemenu'] = 0;
 
 //カテゴリ　コードを使用する
-$_DATABOX_DEFAULT['categorycode']=0;
+$_DATABOX_DEFAULT['categorycode']=1;
 //データ　コードを使用する
-$_DATABOX_DEFAULT['datacode']=0;
+$_DATABOX_DEFAULT['datacode']=1;
 //グループ　コードを使用する
-$_DATABOX_DEFAULT['groupcode']=0;
+$_DATABOX_DEFAULT['groupcode']=1;
 //DataBox のTOPで表示するプログラム
 $_DATABOX_DEFAULT['top']="/databox/list.php";
 //テンプレート 一般画面
@@ -212,10 +212,12 @@ $_DATABOX_DEFAULT['autotag_permissions_databox'] = array (2, 2, 2, 2);
 //（9）Professional version
 $_DATABOX_DEFAULT['path_xml'] = $_CONF['path_html']."databox_data";
 $_DATABOX_DEFAULT['path_xml_out']=$_CONF['path']."data/databox_data";
+$_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 
 //（10）CSV
 $_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
 $_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
+$_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 
 
 // +---------------------------------------------------------------------------+
@@ -820,6 +822,12 @@ function plugin_initconfig_databox()
             ,'text', 0, 9, NULL, 20, TRUE
 			, $pi_name
 			,9);
+		$c->add(
+            'xml_default_fieldset_id'
+            ,$_DATABOX_DEFAULT['xml_default_fieldset_id']
+            ,'select', 0, 9, 28, 30, true
+			, $pi_name
+			,9);
 		
 		//(10)CSV
         $c->add('tab_csv', NULL, 'tab', 0, 10, NULL, 0, true, $pi_name,10);
@@ -841,6 +849,12 @@ function plugin_initconfig_databox()
             'path_csv_out'
             ,$_DATABOX_DEFAULT['path_csv_out']
             ,'text', 0, 10, NULL, 20, TRUE
+			, $pi_name
+			,10);
+		$c->add(
+            'csv_default_fieldset_id'
+            ,$_DATABOX_DEFAULT['csv_default_fieldset_id']
+            ,'select', 0, 10, 28, 30, true
 			, $pi_name
 			,10);
 

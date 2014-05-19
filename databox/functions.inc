@@ -12,6 +12,8 @@ if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
 
 $pi_name         = 'databox';
 
+//設定ファイル
+require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
 
 //言語ファイル
 $langfile = $_CONF['path'] . "plugins/{$pi_name}/language/"
@@ -37,9 +39,6 @@ $functions_custom = $_CONF['path'] . "plugins/{$pi_name}/custom/functions_custom
 if (file_exists ($functions_custom)) {
     require_once ($functions_custom);
 }
-
-//設定ファイル
-require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
 
 
 //BOXシリーズ共通関数

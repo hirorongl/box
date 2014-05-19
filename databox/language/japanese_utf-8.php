@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140514
+# Last Update 20140516
 
 ###############################################################################
 ## 管理画面 menu
@@ -776,12 +776,14 @@ $LANG_tab['databox']['tab_xml'] = 'profesional版';
 $LANG_fs['databox']['fs_xml'] = '（profesional版）';
 $LANG_confignames['databox']['path_xml'] = 'XML一括インポートディレクトリ';
 $LANG_confignames['databox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
+$LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML一括インポートデフォルトタイプ';
 
 //---(１０)
 $LANG_tab['databox']['tab_csv'] = 'CSV';
 $LANG_fs['databox']['fs_csv'] = '（CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV一括インポートディレクトリ';
 $LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレクトリ';
+$LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポートデフォルトタイプ';
 
 
 
@@ -878,5 +880,23 @@ $LANG_configselects['databox'][27] =array(
     , 'タイムスタンプ降順' => 'udatetime'
     , 'ドラフト' => 'draft_flag'
         );
+
+//
+$LANG_configselects['databox'][28] =array();
+    $sql = LB;
+    $sql .= "SELECT ".LB;
+    $sql .= " fieldset_id".LB;
+    $sql .= ",name".LB;
+    $sql .= " FROM {$_TABLES['DATABOX_def_fieldset']}".LB;
+    $sql .= " ORDER BY fieldset_id".LB;
+    $result = DB_query( $sql );
+    $nrows = DB_numRows( $result );
+
+    for( $i = 0; $i < $nrows; $i++ )    {
+        $A = DB_fetchArray( $result, true );
+        $name=$A['name'];
+        $fieldset_id=$A['fieldset_id'];
+        $LANG_configselects['databox'][28][$name]=$fieldset_id;
+}
 
 ?>
