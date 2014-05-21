@@ -286,6 +286,17 @@ phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';
 $LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
+$LANG_DATABOX_ADMIN['help_csvheader'] = 'CSVの１行目';
+$LANG_DATABOX_ADMIN['help_field_csv'] = "
+1.No. で引き当てる場合（アトリビュート項目名）
+2.value で引き当てる場合（アトリビュート項目名_value）
+";
+$LANG_DATABOX_ADMIN['help_value_csv'] = "
+1.データタイプのid<br{XHTML}>
+2.カテゴリの名称<br{XHTML}>
+3.マスターを使用するアトリビュートタイプのVALUE( 2.value で引き当てる場合（アトリビュート項目名_value）)
+";
+
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
 絶対パス（フォルダ、ファイル）またはURLを指定してください。<br{XHTML}>
 フォルダ指定の時は、フォルダ下のcsvファイルをインポートします。<br{XHTML}>
