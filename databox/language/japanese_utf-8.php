@@ -288,13 +288,12 @@ $LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';
 $LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
 $LANG_DATABOX_ADMIN['help_csvheader'] = 'CSVの１行目';
 $LANG_DATABOX_ADMIN['help_field_csv'] = "
-1.No. で引き当てる場合（アトリビュート項目名）
-2.value で引き当てる場合（アトリビュート項目名_value）
+マスターを使用するアトリビュートは２種類あります
+例マスターのNo.を入力ファイルに編集する場合（都道府県）
+マスターのvalueを入力ファイルに編集する場合（都道府県_value）
 ";
 $LANG_DATABOX_ADMIN['help_value_csv'] = "
-1.データタイプのid<br{XHTML}>
-2.カテゴリの名称<br{XHTML}>
-3.マスターを使用するアトリビュートタイプのVALUE( 2.value で引き当てる場合（アトリビュート項目名_value）)
+カテゴリの場合、カテゴリの名称を登録します
 ";
 
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
