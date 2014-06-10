@@ -99,6 +99,7 @@ function LIB_List(
 	$header_arr[]=array('text' => $lang_box_admin['kind'], 'field' => 'kind', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['no'], 'field' => 'no', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['value'], 'field' => 'value', 'sort' => true);
+    $header_arr[]=array('text' => $lang_box_admin['value2'], 'field' => 'value2', 'sort' => true);
 
     //
     $text_arr = array('has_menu' =>  true,
@@ -111,6 +112,7 @@ function LIB_List(
     $sql .= " ,t.kind".LB;
     $sql .= " ,t.no".LB;
     $sql .= " ,t.value".LB;
+    $sql .= " ,t.value2".LB;
     $sql .= " ,t.orderno".LB;
     $sql .= " FROM ";
     $sql .= " {$table} AS t".LB;
@@ -121,7 +123,7 @@ function LIB_List(
     $query_arr = array(
         'table' =>$table,
         'sql' => $sql,
-        'query_fields' => array('t.id','t.kind','t.no','t.value'),
+        'query_fields' => array('t.id','t.kind','t.no','t.value','t.value2'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
