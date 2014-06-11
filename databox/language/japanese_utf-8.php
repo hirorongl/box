@@ -27,6 +27,7 @@ $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
 //
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
 $LANG_DATABOX_admin_menu['9']= 'CSV';
+$LANG_DATABOX_admin_menu['10']= 'Maps';
 
 
 ## ユーザー画面
@@ -48,6 +49,7 @@ $LANG_DATABOX['mydata'] = 'マイデータ';
 $LANG_DATABOX['Norecentnew'] = '新しいデータはありません';
 $LANG_DATABOX['nohit'] = '表示可能なデータはありません';
 $LANG_DATABOX['nopermission'] = '閲覧できません';
+$LANG_DATABOX['notapplicable'] = '該当データはありません';
 
 $LANG_DATABOX['more'] = 'もっとみる';
 $LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
@@ -282,6 +284,18 @@ phpMyAdmin XML Dump version 3.3.8用<br{XHTML}>
 アップロードファイルは別途もどしてください。<br{XHTML}>
 ";
 //<---
+//maps
+$LANG_DATABOX_ADMIN['mapsmarkersclear'] = 'MAPS markers クリア';
+$LANG_DATABOX_ADMIN['mapsmarkersupdate'] = 'MAPS markers 更新';
+$LANG_DATABOX_ADMIN['mapsmarkers'] = 'MAPS marker';
+
+$LANG_DATABOX_ADMIN['mapsmarkersclearmsg'] = "
+アトリビュートに登録されている特定のマップのマーカーをクリアします。
+";
+$LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
+アトリビュートに登録されている特定のマップのマーカーをクリアし
+Dataの内容で作成します。
+";
 
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';

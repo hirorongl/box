@@ -60,4 +60,11 @@ if (file_exists($csv)) {
     $navbarMenu[$LANG_DATABOX_admin_menu['9']]= $adminurl.'csv.php';
 }
 
+$maps=$_CONF['path'] . 'plugins/databox/maps/';
+if (file_exists($maps)) {
+    if (in_array("maps", $_PLUGINS)){
+        $navbarMenu[$LANG_DATABOX_admin_menu['10']]= $adminurl.'maps.php';
+    }
+}
+
 ?>
