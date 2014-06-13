@@ -25,7 +25,7 @@ $LANG_DATABOX_admin_menu['6']= 'Backup / Restore';
 //
 $LANG_DATABOX_admin_menu['8']= 'Proversion';
 $LANG_DATABOX_admin_menu['9']= 'CSV';
-
+$LANG_DATABOX_admin_menu['10']= 'Maps';
 
 ## User
 $LANG_DATABOX_user_menu = array();
@@ -46,6 +46,7 @@ $LANG_DATABOX['mydata'] = 'My Data';
 $LANG_DATABOX['Norecentnew'] = 'No new data.';
 $LANG_DATABOX['nohit'] = 'No hits';
 $LANG_DATABOX['nopermission'] = 'No Permissions';
+$LANG_DATABOX['notapplicable'] = 'Not Applicable';
 
 $LANG_DATABOX['more'] = 'More';
 $LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
@@ -91,7 +92,7 @@ $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = 'Delete';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br {xhtml}>";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
@@ -164,14 +165,14 @@ $LANG_DATABOX_ADMIN['fieldsetlist']='Type List';
 
 $LANG_DATABOX_ADMIN['registset']='Register Type';
 $LANG_DATABOX_ADMIN['changeset']='Change Type';
-$LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
-$LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<br'.XHTML.'>';
+$LANG_DATABOX_ADMIN['inst_changesetx']='<br'.XHTML.'>';
 
-$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<br'.XHTML.'>';
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-Select export attribute set.<br{XHTML}>
+Select export attribute set.<br".XHTML.">
 ";
 
 
@@ -232,65 +233,88 @@ $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
 $LANG_DATABOX_ADMIN['importmsg'] = '
-Absolute path (directory , file) or URL select.<br{XHTML}>
-If directory selected, xml file is imported under the directory.<br{XHTML}>
-Log file is logs/databox_xmlimport.log<br{XHTML}>
+Absolute path (directory , file) or URL select.<br'.XHTML.'>
+If directory selected, xml file is imported under the directory.<br'.XHTML.'>
+Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['exportmsg'] = '
-Select absolute path (directory).<br{XHTML}>
-Log file is logs/databox_xmlimport.log<br{XHTML}>
+Select absolute path (directory).<br'.XHTML.'>
+Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
 Proversion Initialize. List delete.
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = '
-Did you Backup?<{XHTML}br>
-clear data now.<{XHTML}br>
-Uploaded file delete, too.<{XHTML}br>
-Attributes, Category, Group not deleted.<{XHTML}br>
+Did you Backup?<br'.XHTML.'>
+clear data now.<br'.XHTML.'>
+Uploaded file delete, too.<br'.XHTML.'>
+Attributes, Category, Group not deleted.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
-Did you Backup?<{XHTML}br>
-master and clear data.<{XHTML}br>
-Uploaded file is deleted.<{XHTML}br>
+Did you Backup?<br'.XHTML.'>
+master and clear data.<br'.XHTML.'>
+Uploaded file is deleted.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['backupmsg'] = 
-"{$_CONF['backup_path']}"."databox/<{XHTML}br>"
-.'DataBox database is backup-ed.<{XHTML}br>
-Backup upload file.<{XHTML}br>
+"{$_CONF['backup_path']}"."databox/<br".XHTML.">"
+.'DataBox database is backup-ed.<br'.XHTML.'br>
+Backup upload file.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'Filename  select.(default: databox.xml)<{XHTML}br>
-DataBox  Database Data Restore.<{XHTML}br>
-Restore UploadFile.<{XHTML}br>
+.'Filename  select.(default: databox.xml)<br'.XHTML.'>
+DataBox  Database Data Restore.<br'.XHTML.'>
+Restore UploadFile.<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<br'.XHTML.'>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<br'.XHTML.'>phpMyAdmin XML Dump version 3.3.8用<br'.XHTML.'>接頭子が異なる場合は, あらかじめchange しておいてください.<br'.XHTML.'>upload file は別途もどしてください.<br'.XHTML.'>';
+//<---
+
+//maps
+$LANG_DATABOX_ADMIN['mapsmarkersclear'] = 'MAPS markers clear';
+$LANG_DATABOX_ADMIN['mapsmarkersupdate'] = 'MAPS markers update';
+$LANG_DATABOX_ADMIN['mapsmarkers'] = 'MAPS marker';
+
+$LANG_DATABOX_ADMIN['mapsmarkersclearmsg'] = "
+Clears the marker of a particular map that are registered in the attribute.
+";
+$LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
+Clears the marker of a particular map that are registered in the attribute.
+It is created with the contents of the Data.
+";
 
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV definition';
-$LANG_DATABOX_ADMIN['csvheader'] = 'CSV Header title';
+$LANG_DATABOX_ADMIN['csvheader'] = 'CSV First line';
+$LANG_DATABOX_ADMIN['help_field_csv'] = "
+There are two attributes that use the master
+If you want to edit the input file No. Example of master (prefecture)
+If you want to edit the input file the value of the master (prefectures _value)
+";
+$LANG_DATABOX_ADMIN['help_value_csv'] = "
+In the case of category, please register the name of the category of
+";
+
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
-Absolute path (directory , file) or URL select.<br{XHTML}>
-If directory selected, xml file is imported under the directory.<br{XHTML}>
-Log file is logs/databox_csvimport.log<br{XHTML}>
+Absolute path (directory , file) or URL select.<br".XHTML.">
+If directory selected, xml file is imported under the directory.<br".XHTML.">
+Log file is logs/databox_csvimport.log<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['exportmsgcsv'] = "
-Select absolute path (directory).<br{XHTML}>
-Log file is logs/databox_csvimport.log<br{XHTML}>
+Select absolute path (directory).<br".XHTML.">
+Log file is logs/databox_csvimport.log<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['initmsgcsv'] = '
 CSV Initialize. List delete.
 ';
 
 $LANG_DATABOX_ADMIN['draftonmsg'] = "
-All drafts are turned on <br{XHTML}>
+All drafts are turned on <br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['draftoffmsg'] = "
-All drafts are turned off <br{XHTML}>
+All drafts are turned off <br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['hitsclearmsg'] = "
-Hits becomes 0<br{XHTML}>
+Hits becomes 0<br".XHTML.">
 ";
 
 $LANG_DATABOX_ADMIN['yy'] = '/';
@@ -394,12 +418,12 @@ $LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV definition ';
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Attribute Edit: click Attributes name, click add or remove button.<{XHTML}br>
-to add Attributes, select only right side.<{XHTML}br>
-After edit, click Save button.<{XHTML}br>';
+'Attribute Edit: click Attributes name, click add or remove button.<br'.XHTML.'>
+to add Attributes, select only right side.<br'.XHTML.'>
+After edit, click Save button.<br'.XHTML.'>';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'Select Type for Creation of Data<br{XHTML}>
+'Select Type for Creation of Data<br'.XHTML.'>
 ';
 
 //ERR
@@ -614,7 +638,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br{xhtml}>	
+[databox:count] <br".xhtml.">	
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
@@ -746,12 +770,14 @@ $LANG_tab['databox']['tab_xml'] = 'ProfesionalVersion';
 $LANG_fs['databox']['fs_xml'] = '(Profesional Version)';
 $LANG_confignames['databox']['path_xml'] = 'XML Batch Import Path';
 $LANG_confignames['databox']['path_xml_out'] = 'XML Export Path';
+$LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML Import Default Type';
 
 //---(１０)
 $LANG_tab['databox']['tab_csv'] = 'CSV';
 $LANG_fs['databox']['fs_csv'] = '（CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
+$LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
@@ -843,5 +869,23 @@ $LANG_configselects['databox'][27] =array(
     , 'Time Stamp (descending)' => 'udatetime'
     , 'Draft' => 'draft_flag'
         );
+
+//
+$LANG_configselects['databox'][28] =array();
+    $sql = LB;
+    $sql .= "SELECT ".LB;
+    $sql .= " fieldset_id".LB;
+    $sql .= ",name".LB;
+    $sql .= " FROM {$_TABLES['DATABOX_def_fieldset']}".LB;
+    $sql .= " ORDER BY fieldset_id".LB;
+    $result = DB_query( $sql );
+    $nrows = DB_numRows( $result );
+
+    for( $i = 0; $i < $nrows; $i++ )    {
+        $A = DB_fetchArray( $result, true );
+        $name=$A['name'];
+        $fieldset_id=$A['fieldset_id'];
+        $LANG_configselects['databox'][28][$name]=$fieldset_id;
+}
 
 ?>

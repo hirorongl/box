@@ -104,7 +104,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'Path';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = 'Delete';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br {xhtml}>";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "From ID";
 $LANG_USERBOX_ADMIN['idto'] = "To ID";
@@ -177,14 +177,14 @@ $LANG_USERBOX_ADMIN['fieldsetlist']='Type List';
 
 $LANG_USERBOX_ADMIN['registset']='Register Type';
 $LANG_USERBOX_ADMIN['changeset']='Change Type';
-$LANG_USERBOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<br'.XHTML.'>';
+$LANG_USERBOX_ADMIN['inst_changesetx']='<br'.XHTML.'>';
 
-$LANG_USERBOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changeset'] = 'Select attribute sets.<br'.XHTML.'>';
 
 $LANG_USERBOX_ADMIN['inst_dataexport'] = 
 "
-Select export attribute set.<br{XHTML}>
+Select export attribute set.<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['allow_display']='Allow Display (For users)';
@@ -237,13 +237,13 @@ $LANG_USERBOX_ADMIN['kind'] = 'Kind';
 $LANG_USERBOX_ADMIN['no'] = 'No.';//@@@@@-->
 
 $LANG_USERBOX_ADMIN['draftonmsg'] = "
-All drafts are turned on <br{XHTML}>
+All drafts are turned on <br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['draftoffmsg'] = "
-All drafts are turned off <br{XHTML}>
+All drafts are turned off <br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['hitsclearmsg'] = "
-Hits becomes 0<br{XHTML}>
+Hits becomes 0<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['yy'] = '/';
@@ -325,12 +325,12 @@ $LANG_USERBOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
 $LANG_USERBOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 $LANG_USERBOX_ADMIN['inst_fieldsetfields'] = 
-'Attribute Edit: click Attributes name, click add or remove button.<{XHTML}br>
-to add Attributes, select only right side.<{XHTML}br>
-After edit, click Save button.<{XHTML}br>';
+"Attribute Edit: click Attributes name, click add or remove button.<br".XHTML."br>
+to add Attributes, select only right side.<br".XHTML."br>
+After edit, click Save button.<br".XHTML."br>";
 
 $LANG_USERBOX_ADMIN['inst_newdata'] = 
-'Select Type for Creation of Data<br{XHTML}>
+'Select Type for Creation of Data<br'.XHTML.'>
 ';
 
 //ERR
@@ -563,7 +563,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count] <br{xhtml}>	
+[userbox:count] <br".xhtml.">	
 More, see UserBox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";
