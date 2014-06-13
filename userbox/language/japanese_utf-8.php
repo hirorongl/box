@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140501
+# Last Update 20140613
 
 ###############################################################################
 ## 管理画面 menu
@@ -108,7 +108,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'パス';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = '削除';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br{xhtml}>";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br".xhtml.">";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "開始ID";
 $LANG_USERBOX_ADMIN['idto'] = "終了ID";
@@ -181,16 +181,16 @@ $LANG_USERBOX_ADMIN['fieldsetlist']='タイプ一覧';
 
 $LANG_USERBOX_ADMIN['registset']='タイプ登録';
 $LANG_USERBOX_ADMIN['changeset']='タイプ変更';
-$LANG_USERBOX_ADMIN['inst_changeset0']='タイプが登録されていないデータのタイプを登録します。<{XHTML}br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='のタイプを変更します。<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changeset0']='タイプが登録されていないデータのタイプを登録します。<'.XHTML.'br>';
+$LANG_USERBOX_ADMIN['inst_changesetx']='のタイプを変更します。<'.XHTML.'br>';
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 
-'タイプを選んでください。<{XHTML}br>
+'タイプを選んでください。<'.XHTML.'br>
 ';
 
 $LANG_USERBOX_ADMIN['inst_dataexport'] = 
 "
-エクスポートするデータのタイプを選択してください。<br{XHTML}>
+エクスポートするデータのタイプを選択してください。<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['allow_display']='表示制限(一般画面)';
@@ -243,13 +243,13 @@ $LANG_USERBOX_ADMIN['kind'] = '種別';
 $LANG_USERBOX_ADMIN['no'] = 'No.';
 
 $LANG_USERBOX_ADMIN['draftonmsg'] = "
-すべてのドラフトをオンにします。<br{XHTML}>
+すべてのドラフトをオンにします。<br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['draftoffmsg'] = "
-すべてのドラフトをオフにします。<br{XHTML}>
+すべてのドラフトをオフにします。<br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['hitsclearmsg'] = "
-閲覧数を0にします。<br{XHTML}>
+閲覧数を0にします。<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['yy'] = '年';
@@ -334,7 +334,7 @@ $LANG_USERBOX_ADMIN['about_myprofile_profile'] = 'あなたのプロフィール
 $LANG_USERBOX_ADMIN['about_myprofile_securitygroup'] = 'あなたの所属するグループの管理';
 
 $LANG_USERBOX_ADMIN['inst_newdata'] = 
-"新規登録するデータのタイプを選んでください。<br{XHTML}>
+"新規登録するデータのタイプを選んでください。<br".XHTML.">
 ";
 
 //ERR
@@ -569,7 +569,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count]他 <br{xhtml}>	
+[userbox:count]他 <br".xhtml.">	
 詳細は、userboxプラグインのドキュメントを参照してください。
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";
