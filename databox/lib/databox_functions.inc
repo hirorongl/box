@@ -413,38 +413,32 @@ function DATABOX_displaypage (
 
 function DATABOX_getcheckList(
     $kind
-    ,$selected = ""
-    ,$pi_name=""
+    ,$selected
+    ,$pi_name
 )
 // +---------------------------------------------------------------------------+
 // | 機能  チェックリスト作成
 // | 書式 DATABOX_getcheckList($kind,$selected = "")
 // +---------------------------------------------------------------------------+
 // | 引数 $kind:種類
-// | 引数 $selected:選択値　省略時
-// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox' 省略時  DATABOX
+// | 引数 $selected:選択値
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox' 
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:チェックリスト
 // +---------------------------------------------------------------------------+
 //20101116
-// カテゴリ以外で使っているか確認のこと
+// カテゴリ以外で使っているか確認のこと --> category は DATABOX_getcategoriesinp
+//20140624 fieldset　追加
 {
 global $_TABLES;
 
-    if ($pi_name==""){
-        $table_def_category=$_TABLES['DATABOX_def_category'];
-        $table_def_group=$_TABLES['DATABOX_def_group'];
-        $table_mst=$_TABLES['DATABOX_mst'];
-    }else{
-        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-        $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
-    }
-
+    $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
+    $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
+    $table_def_fieldset=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
     $retval = '';
-
-    if ($kind="category"){
-        $sql = "SELECT ";
+    if ($kind=="category"){
+		$sql = "SELECT ";
         $sql .= " m1.category_id".LB;
         $sql .= ",m1.name".LB;
         $sql .= ",m1.orderno".LB;
@@ -456,6 +450,13 @@ global $_TABLES;
         $sql .= " m2.group_id = m1.categorygroup_id".LB;
         $sql .= " AND m2.parent_flg = 0".LB;
         $sql .= " ORDER BY m2.group_id,m2.orderno, m1.orderno".LB;
+    }else if ($kind=="fieldset"){
+        $sql = "SELECT ";
+        $sql .= " fieldset_id".LB;
+        $sql .= ",name".LB;
+        $sql .= ",'1' AS group_id".LB;
+        $sql .= " FROM {$table_def_fieldset} ".LB;
+        $sql .= " ORDER BY fieldset_id".LB;
     }else{
         $sql = "SELECT ".LB;
         $sql .= " no".LB;
@@ -468,7 +469,6 @@ global $_TABLES;
     }
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
-
     if (is_array($selected)){
             $S = $selected;
     }else{
@@ -482,7 +482,7 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        if ($kind="category"){
+        if ($kind=="category"){
             if ($old_group_id<>$A['group_id']){
 				$retval .="<div class=\"databox_admin_data_title\">";
 				$retval .=$A['group_name'];
@@ -4592,7 +4592,12 @@ function DATABOX_Confirmation(
 	
     $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
 
-	
+    if ($mode==="datadelete"){
+        $tmpl->set_var('lang_checklist', $lang_box_admin['fieldset'].":");
+        $checklist=DATABOX_getcheckList ("fieldset","",$pi_name);
+        $tmpl->set_var('checklist', $checklist);
+    }
+
     // SAVE、CANCEL ボタン
     $tmpl->set_var('lang_submit', $LANG_ADMIN['submit']);
     $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);

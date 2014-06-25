@@ -76,6 +76,7 @@ function fncList()
 	$url8=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=hitsclear';
     $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
     $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
+    $url9=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=datadelete';
 	
 	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
     $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["registset"]);
@@ -83,7 +84,9 @@ function fncList()
     $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
     $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
     $menu_arr[]=array('url' => $url8,'text' => $LANG_DATABOX_ADMIN['hitsclear']);
-    $menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
+	$menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
+	$menu_arr[]=array('url' => $url9,'text' => $LANG_DATABOX_ADMIN['datadelete']);
+	
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 	
     $retval .= COM_startBlock($LANG_DATABOX_ADMIN['admin_list'], '',
@@ -2193,6 +2196,44 @@ function fncexportform (
 	return $retval;
 }
 
+function fncdatadeleteExec (
+)
+{
+    global $_TABLES;
+	
+	$fieldset = $_POST['fieldset'];
+    //if (is_array($fieldset)){
+    //        $S = $fieldset;
+    //}else{
+    //    if( !empty( $fieldset ))    {
+    //        $S = explode( ' ', $fieldset );
+    //    }else {
+    //        $S = array();
+    //    }
+    //}
+	if  ($fieldset==""){ 
+		return ;
+	}
+	$rt="";
+	$s=implode(", ", $fieldset); 
+	
+	$sql="SELECT id FROM {$_TABLES['DATABOX_base']}  ";
+	$sql .=" WHERE ";
+	$sql .="  fieldset_id IN (".$s.")";
+	
+	$result = DB_query ($sql);
+	$numrows = DB_numRows ($result);
+	if ($numrows > 0) {
+        for ($i = 0; $i < $numrows; $i++) {
+            $A = DB_fetchArray ($result);
+			$A = array_map('stripslashes', $A);
+		    $dummy=databox_deletedata ($A['id']);
+        }
+	}
+	
+    return ;
+}
+
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
@@ -2259,6 +2300,7 @@ if ($mode==""
 	OR $mode=="import"  
 	OR $mode=="copy"
 	OR $mode=="changeset"
+	OR $mode=="datadelete"
 	) {
 }else{
     if (!SEC_checkToken()){
@@ -2289,6 +2331,9 @@ if ($mode=="hitsclearexec") {
 if ($mode=="changesetexec") {
 	fncChangeSetExec();
 }
+if ($mode=="datadeleteexec") {
+	fncdatadeleteExec ();
+}
 
 //
 $display="";
@@ -2296,9 +2341,11 @@ $menuno=2;
 $information = array();
 
 switch ($mode) {
-    case 'drafton'://drafton Confirmation
-    case 'draftoff'://DATA clear　Confirmation
-    case 'hitsclear'://DATA clear　Confirmation
+    //confirmation
+    case 'drafton':
+    case 'draftoff':
+    case 'hitsclear':
+    case 'datadelete':
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         //$display .= fnc_Menu($pi_name);
         $display .= DATABOX_Confirmation($pi_name,$mode);

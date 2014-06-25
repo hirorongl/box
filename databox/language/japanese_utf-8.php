@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140613
+# Last Update 20140624
 
 ###############################################################################
 ## 管理画面 menu
@@ -90,6 +90,7 @@ $LANG_DATABOX_ADMIN['draftoff'] = 'ドラフト一括オフ';//'下書一括オ�
 $LANG_DATABOX_ADMIN['export'] = 'エクスポート';
 $LANG_DATABOX_ADMIN['import'] = 'インポート';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'サンプルインポート';
+$LANG_DATABOX_ADMIN['datadelete'] = '一括削除';
 
 $LANG_DATABOX_ADMIN['importfile'] = 'パス';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
@@ -282,6 +283,10 @@ phpMyAdmin でエクスポートしたDataBox のデータベースデータを�
 phpMyAdmin XML Dump version 3.3.8用<br".XHTML.">
 接頭子が異なる場合は、あらかじめ変換しておいてください。<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
+";
+$LANG_DATABOX_ADMIN['datadeletemsg'] = "
+チェックしたタイプのデータをクリアします。<br".XHTML.">
+アップロードされたファイルも削除されます。<br".XHTML.">
 ";
 //<---
 //maps
