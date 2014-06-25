@@ -87,6 +87,7 @@ $LANG_DATABOX_ADMIN['draftoff'] = 'Draft Off All';
 $LANG_DATABOX_ADMIN['export'] = 'Export';
 $LANG_DATABOX_ADMIN['import'] = 'Import';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'Import sample';
+$LANG_DATABOX_ADMIN['datadelete'] = 'Bulk Delete';
 
 $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
@@ -268,6 +269,10 @@ Restore UploadFile.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<br'.XHTML.'>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<br'.XHTML.'>phpMyAdmin XML Dump version 3.3.8用<br'.XHTML.'>接頭子が異なる場合は, あらかじめchange しておいてください.<br'.XHTML.'>upload file は別途もどしてください.<br'.XHTML.'>';
 //<---
+$LANG_DATABOX_ADMIN['datadeletemsg'] = "
+Types of data that are checked will be deleted<br".XHTML.">
+Uploaded file will be deleted<br".XHTML.">
+";
 
 //maps
 $LANG_DATABOX_ADMIN['mapsmarkersclear'] = 'MAPS markers clear';

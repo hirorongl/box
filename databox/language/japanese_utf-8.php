@@ -285,7 +285,7 @@ phpMyAdmin XML Dump version 3.3.8用<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['datadeletemsg'] = "
-チェックしたタイプのデータをクリアします。<br".XHTML.">
+チェックしたタイプのデータを削除します。<br".XHTML.">
 アップロードされたファイルも削除されます。<br".XHTML.">
 ";
 //<---
