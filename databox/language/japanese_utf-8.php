@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140624
+# Last Update 20140704
 
 ###############################################################################
 ## 管理画面 menu
@@ -83,6 +83,7 @@ $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 $LANG_DATABOX_ADMIN['edit'] = '編集';
 $LANG_DATABOX_ADMIN['ref'] = '参考';
 $LANG_DATABOX_ADMIN['view'] = '表示確認';
+$LANG_DATABOX_ADMIN['add'] = '追加';
 
 $LANG_DATABOX_ADMIN['new'] = '新規登録';
 $LANG_DATABOX_ADMIN['drafton'] = 'ドラフト一括オン';//'下書一括オン';
@@ -418,6 +419,14 @@ $LANG_DATABOX_ADMIN['config_restore_help'] = 'バックアップファイルの�
 
 $LANG_DATABOX_ADMIN['config_update'] = '更新';
 $LANG_DATABOX_ADMIN['config_update_help'] = '最新の仕様に更新します ';
+
+//(2)
+$LANG_DATABOX_ADMIN['datamaster'] = 'データ〜マスター';
+$LANG_DATABOX_ADMIN['data_clear'] = 'データクリア実行';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'データ〜マスタークリア実行';
+$LANG_DATABOX_ADMIN['data_backup'] = 'データ〜マスターバックアップ実行';
+$LANG_DATABOX_ADMIN['data_restore'] = 'データ〜マスターリストア実行';
+
 
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
 $LANG_DATABOX_ADMIN['configuration'] = 'コンフィギュレーション設定';
@@ -815,6 +824,10 @@ $LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレ�
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポートデフォルトタイプ';
 
 
+//---(１１)
+$LANG_tab['databox']['tab_maps'] = 'MAPS';
+$LANG_fs['databox']['fs_maps'] = '（MAPS）';
+$LANG_confignames['databox']['maps_mid'] = 'マップIDを登録するマスターの種別';
 
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']

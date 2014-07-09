@@ -219,6 +219,8 @@ $_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
 $_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
 $_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 
+//（11）MAPS
+$_DATABOX_DEFAULT['maps_mid'] = "mapid";
 
 // +---------------------------------------------------------------------------+
 
@@ -858,6 +860,21 @@ function plugin_initconfig_databox()
 			, $pi_name
 			,10);
 
+		//(11)MAPS
+        $c->add('tab_maps', NULL, 'tab', 0, 11, NULL, 0, true, $pi_name,11);
+        $c->add(
+            'fs_maps'
+            , NULL, 'fieldset'
+            , 0, 11, NULL, 0, true
+			, $pi_name
+			,11);
+
+        $c->add(
+            'maps_mid'
+            ,$_DATABOX_DEFAULT['maps_mid']
+            ,'text', 0, 11, NULL, 10, TRUE
+			, $pi_name
+			,11);
     }
 
     return true;

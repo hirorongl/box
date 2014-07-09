@@ -80,6 +80,7 @@ $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 $LANG_DATABOX_ADMIN['edit'] = 'Edit';
 $LANG_DATABOX_ADMIN['ref'] = 'Reference';
 $LANG_DATABOX_ADMIN['view'] = 'View';
+$LANG_DATABOX_ADMIN['add'] = 'add';
 
 $LANG_DATABOX_ADMIN['new'] = 'New';
 $LANG_DATABOX_ADMIN['drafton'] = 'Draft On All';
@@ -400,6 +401,13 @@ $LANG_DATABOX_ADMIN['config_restore_help'] = 'Restore Backup File';
 
 $LANG_DATABOX_ADMIN['config_update'] = 'Update';
 $LANG_DATABOX_ADMIN['config_update_help'] = 'Update.';
+
+//(2)
+$LANG_DATABOX_ADMIN['datamaster'] = 'data & master';
+$LANG_DATABOX_ADMIN['data_clear'] = 'data clear';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'data & master clear';
+$LANG_DATABOX_ADMIN['data_backup'] = 'data & master backup';
+$LANG_DATABOX_ADMIN['data_restore'] = 'data & master restore';
 
 $LANG_DATABOX_ADMIN['document'] = 'Document';
 $LANG_DATABOX_ADMIN['configuration'] = 'Configuration Settings';
@@ -783,6 +791,11 @@ $LANG_fs['databox']['fs_csv'] = '（CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
+
+//---(１１)
+$LANG_tab['databox']['tab_maps'] = 'MAPS';
+$LANG_fs['databox']['fs_maps'] = '（MAPS）';
+$LANG_confignames['databox']['maps_mid'] = 'Kind of master to register the map ID';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
