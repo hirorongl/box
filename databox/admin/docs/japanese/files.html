@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/files.html 20131128 -->
+<!-- admin/plugins/databox/docs/japanese/files.html 20140717 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -20,7 +20,7 @@
 </p>
 <h1><a href="index.html">DataBox プラグイン</h1>
 
-<h2><a name="files">ファイル構成(2013/11/28update)</a></h2>
+<h2><a name="files">ファイル構成(2014/07/17update)</a></h2>
 <pre><code>
 -databox
   ├ admin
@@ -108,6 +108,7 @@
   │
   ├ templates
   │ ├ admin
+  │ │ ├ backupform.thtml
   │ │ ├ backuprestore.thtml
   │ │ ├ category_editor.thtml
   │ │ ├ changeset.thtml
@@ -122,6 +123,7 @@
   │ │ ├ import_url.thtml
   │ │ ├ information.thtml
   │ │ ├ mst_editor.thtml
+  │ │ ├ restoreform.thtml
   │ │ ├ row.thtml
   │ │ ├ selectset.thtml
   │ │ ├ view.thtml
@@ -196,6 +198,8 @@
 </code></pre>
 <p>DataBox のコンフィギュレーションのバックアップは、
 private/data/ に作成されます</p>
+<p>DataBox のデータ〜マスターのバックアップは、
+private/backups/databox/ に作成されます</p>
 
 <pre><code>
  GEEKLOG

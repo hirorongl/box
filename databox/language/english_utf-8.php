@@ -230,6 +230,15 @@ $LANG_DATABOX_ADMIN['list'] = 'List';
 $LANG_DATABOX_ADMIN['dataclear'] = 'Clear data';
 $LANG_DATABOX_ADMIN['allclear'] = 'Clear all';
 
+$LANG_DATABOX_ADMIN['configbackup'] = 'Configuration Backup';
+$LANG_DATABOX_ADMIN['configinit'] = 'Configuration Initialize';
+$LANG_DATABOX_ADMIN['configrestore'] = 'Configuration restore';
+$LANG_DATABOX_ADMIN['configupdate'] = 'Configuration update';
+$LANG_DATABOX_ADMIN['configbackupmsg'] = 'Configuration Backup';
+$LANG_DATABOX_ADMIN['configinitmsg'] = 'Configuration Initialize';
+$LANG_DATABOX_ADMIN['configrestoremsg'] = 'Configuration restore';
+$LANG_DATABOX_ADMIN['configupdatemsg'] = 'Configuration update';
+
 $LANG_DATABOX_ADMIN['path'] = 'Path';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 

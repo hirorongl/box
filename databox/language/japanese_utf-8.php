@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140704
+# Last Update 20140717
 
 ###############################################################################
 ## 管理画面 menu
@@ -237,6 +237,16 @@ $LANG_DATABOX_ADMIN['init'] = '初期化';
 $LANG_DATABOX_ADMIN['list'] = '一覧';
 $LANG_DATABOX_ADMIN['dataclear'] = 'データクリア';
 $LANG_DATABOX_ADMIN['allclear'] = 'ALL クリア';
+
+$LANG_DATABOX_ADMIN['configbackup'] = 'コンフィギュレーションバックアップ';
+$LANG_DATABOX_ADMIN['configinit'] = 'コンフィギュレーション初期化';
+$LANG_DATABOX_ADMIN['configrestore'] = 'コンフィギュレーションリストア';
+$LANG_DATABOX_ADMIN['configupdate'] = 'コンフィギュレーション更新';
+$LANG_DATABOX_ADMIN['configbackupmsg'] = 'バックアップを作成します';
+$LANG_DATABOX_ADMIN['configinitmsg'] = 'コンフィギュレーションを初期化します';
+$LANG_DATABOX_ADMIN['configrestoremsg'] = 'コンフィギュレーションをバックアップの内容に戻します';
+$LANG_DATABOX_ADMIN['configupdatemsg'] = 'コンフィギュレーションを最新の仕様に更新';
+
 
 $LANG_DATABOX_ADMIN['path'] = '絶対パス';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
