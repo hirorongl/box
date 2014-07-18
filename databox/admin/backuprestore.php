@@ -180,21 +180,23 @@ function fncclear(
             TRUNCATE TABLE {$_TABLES['DATABOX_def_fieldset_group']};
         ";
         
+        if  (fncTableCheck($_TABLES['DATABOX_def_xml'])<>0){
+            $_SQL[] = "
+                TRUNCATE TABLE {$_TABLES['DATABOX_def_xml']};
+			";
+		}
         
-        $_SQL[] = "
-            TRUNCATE TABLE {$_TABLES['DATABOX_def_xml']};
-        ";
-        
-        $_SQL[] = "
-            TRUNCATE TABLE {$_TABLES['DATABOX_def_csv']};
-        ";
-        $_SQL[] = "
-            TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel']};
-        ";
-        $_SQL[] = "
-            TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel_dtl']};
-        ";
-        
+        if  (fncTableCheck($_TABLES['DATABOX_def_csv'])<>0){
+            $_SQL[] = "
+                TRUNCATE TABLE {$_TABLES['DATABOX_def_csv']};
+            ";
+            $_SQL[] = "
+                TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel']};
+            ";
+            $_SQL[] = "
+                TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel_dtl']};
+            ";
+        }
         if  ($mode=="allclearexec"){
             $_SQL[] = "
                 INSERT INTO {$_TABLES['DATABOX_def_group']} (
@@ -460,8 +462,8 @@ function fncrestoreexec(
             $fields="";
             $values="";
             
-            $tchk=in_array($table, $_TABLES);
-            if  ($tchk<>""){
+            $tchk=fncTableCheck($table);
+            if  ($tchk<>0){
                 foreach($v->Children() as $k => $v){
                     if  ($v<>""){
                         if  (($table==$table_base AND $k =="hits")
@@ -500,6 +502,21 @@ function fncrestoreexec(
     
     return $rt;
 
+}
+function fncTableCheck(
+    $table
+)
+{
+    global $_TABLES;
+    $rt=in_array($table, $_TABLES);
+    if  ($rt<>""){
+        $sql="show tables like '{$table}'" ;
+        $rt=DB_query($sql);
+        $rt=DB_numRows($rt);
+    }else{
+        $rt=0;
+    }
+    return $rt;
 }
 function fncConfirmation(
     $pi_name
