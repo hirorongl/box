@@ -188,6 +188,12 @@ function fncclear(
         $_SQL[] = "
             TRUNCATE TABLE {$_TABLES['DATABOX_def_csv']};
         ";
+        $_SQL[] = "
+            TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel']};
+        ";
+        $_SQL[] = "
+            TRUNCATE TABLE {$_TABLES['DATABOX_def_csv_sel_dtl']};
+        ";
         
         if  ($mode=="allclearexec"){
             $_SQL[] = "
@@ -255,6 +261,8 @@ function fncBackupdata(
     $tablenames[]='DATABOX_def_xml';
     
     $tablenames[]='DATABOX_def_csv';
+    $tablenames[]='DATABOX_def_csv_sel';
+    $tablenames[]='DATABOX_def_csv_sel_dtl';
     
     $filename="databox_".date("YmdHis").".xml";
     $filename = $_CONF['backup_path']."databox/".$filename;  //  ファイル名

@@ -142,6 +142,10 @@ function plugin_autouninstall_databox ()
     $out['tables'][]='DATABOX_def_category_name';
     $out['tables'][]='DATABOX_def_field_name';
 	$out['tables'][]='DATABOX_def_group_name';
+	//
+    $out['tables'][]='DATABOX_def_csv';
+    $out['tables'][]='DATABOX_def_csv_sel';
+    $out['tables'][]='DATABOX_def_csv_sel_dtl';
 	
 
     // (2) 削除するグループ名

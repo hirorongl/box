@@ -44,5 +44,5 @@ $_TABLES['DATABOX_def_fieldset_group']    = $_DB_table_prefix . 'databox_def_fie
 $_TABLES['DATABOX_def_csv']    = $_DB_table_prefix . 'databox_def_csv';
 //20140627add----->
 $_TABLES['DATABOX_def_csv_sel']    = $_DB_table_prefix . 'databox_def_csv_sel';
-$_TABLES['DATABOX_def_csv_sel_dtl']    = $_DB_table_prefix . 'databox_def_csv_dtl';
+$_TABLES['DATABOX_def_csv_sel_dtl']    = $_DB_table_prefix . 'databox_def_csv_sel_dtl';
 ?>
