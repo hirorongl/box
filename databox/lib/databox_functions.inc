@@ -3993,13 +3993,12 @@ function DATABOX_getoptionlist(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
 // +---------------------------------------------------------------------------+
-//update 20101122,20110613,20120525
+//update 20101122,20110613,20120525,20140724
 {
 global $_CONF;
 global $_TABLES;
 global $LANG_configselects;
-	
-	
+    
     if ($pi_name==""){
         $lang_box="LANG_DATABOX";
     }else{
@@ -4073,6 +4072,10 @@ global $LANG_configselects;
 			$where="kind='{$selectlist}'";
 			if ($relno<>0) $where.=" AND relno='{$relno}'";
 			$fields= 'no,value,orderno';
+		}else if ($kind=="csvsel"){
+			$where="";
+			$table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
+			$fields= 'csv_sel_id,name,csv_sel_id';
 		}else{
 			$table=$_TABLES[strtoupper($pi_name).'_mst'];
 			$where="kind='{$kind}'";
