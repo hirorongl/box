@@ -392,9 +392,10 @@ $LANG_DATABOX_xmlimport['help']=
 ."exit　databox_xmlimport.log register.<br{KHTML}>"
 
 ;
-$LANG_DATABOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ok'] = 'Done: %d<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ng'] = 'Error: %d<br{KHTML}>';
+$LANG_DATABOX_ADMIN['jobend'] = "Finished<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ok'] = "Done: %d<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ng'] = "Error: %d<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ex'] = "Excluded: %d <br".XHTML.">";
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'Configuration';

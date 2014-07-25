@@ -414,6 +414,7 @@ $LANG_DATABOX_xmlimport['help']=
 $LANG_DATABOX_ADMIN['jobend'] = "処理終了しました<br".XHTML.">";
 $LANG_DATABOX_ADMIN['cnt_ok'] = "成功: %d 件<br".XHTML.">";
 $LANG_DATABOX_ADMIN['cnt_ng'] = "エラー: %d 件<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ex'] = "対象外: %d 件<br".XHTML.">";
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'コンフィギュレーション';
