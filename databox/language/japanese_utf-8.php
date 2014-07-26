@@ -135,7 +135,7 @@ $LANG_DATABOX_ADMIN['title']='タイトル';
 $LANG_DATABOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_DATABOX_ADMIN['description']='説明';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テーマ';
 $LANG_DATABOX_ADMIN['layout']='レイアウト';
 
 $LANG_DATABOX_ADMIN['category']='カテゴリ';

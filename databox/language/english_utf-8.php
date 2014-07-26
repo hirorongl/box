@@ -132,7 +132,7 @@ $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Template directory';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
 $LANG_DATABOX_ADMIN['layout']='Layout';
 
 $LANG_DATABOX_ADMIN['category']='Category';

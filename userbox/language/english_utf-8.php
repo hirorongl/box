@@ -141,7 +141,7 @@ $LANG_USERBOX_ADMIN['title']='Title';
 $LANG_USERBOX_ADMIN['page_title']='Page Title';
 
 $LANG_USERBOX_ADMIN['description']='Description';
-$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Template directory';
+$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Theme';
 $LANG_USERBOX_ADMIN['layout']='Layout';
 
 $LANG_USERBOX_ADMIN['category']='Category';
