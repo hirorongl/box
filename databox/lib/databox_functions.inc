@@ -4075,7 +4075,7 @@ global $LANG_configselects;
 		}else if ($kind=="csvsel"){
 			$where="";
 			$table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
-			$fields= 'csv_sel_id,name,csv_sel_id';
+			$fields= 'csv_sel_id,name,csv_sel_id*-1';
 		}else{
 			$table=$_TABLES[strtoupper($pi_name).'_mst'];
 			$where="kind='{$kind}'";

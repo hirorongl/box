@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140717
+# Last Update 20140729
 
 ###############################################################################
 ## 管理画面 menu
@@ -135,7 +135,7 @@ $LANG_DATABOX_ADMIN['title']='タイトル';
 $LANG_DATABOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_DATABOX_ADMIN['description']='説明';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テーマ';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
 $LANG_DATABOX_ADMIN['layout']='レイアウト';
 
 $LANG_DATABOX_ADMIN['category']='カテゴリ';
@@ -315,6 +315,8 @@ Dataの内容で作成します。
 
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV定義';
+$LANG_DATABOX_ADMIN['csv_select'] = '条件';
+$LANG_DATABOX_ADMIN['csv_select_dtl'] = '条件:明細';
 $LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
 $LANG_DATABOX_ADMIN['help_csvheader'] = 'CSVの１行目';
 $LANG_DATABOX_ADMIN['help_field_csv'] = "
@@ -325,10 +327,15 @@ $LANG_DATABOX_ADMIN['help_field_csv'] = "
 $LANG_DATABOX_ADMIN['help_value_csv'] = "
 カテゴリの場合、カテゴリの名称を登録します
 ";
+$LANG_DATABOX_ADMIN['help_value_csv_sel'] = "
+,区切りで複数指定できます。例　駐車場,賃貸アパート
+";
 
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
 絶対パス（フォルダ、ファイル）またはURLを指定してください。<br".XHTML.">
 フォルダ指定の時は、フォルダ下のcsvファイルをインポートします。<br".XHTML.">
+入力を省略すると%s
+の下のcsvファイルをインポートします。<br".XHTML.">
 logs/databox_csvimport.log　にログが記録されます。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['exportmsgcsv'] = "

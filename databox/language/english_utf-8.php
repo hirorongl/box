@@ -132,7 +132,7 @@ $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_DATABOX_ADMIN['layout']='Layout';
 
 $LANG_DATABOX_ADMIN['category']='Category';
@@ -299,6 +299,8 @@ It is created with the contents of the Data.
 
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV definition';
+$LANG_DATABOX_ADMIN['csv_select'] = 'SELECT';
+$LANG_DATABOX_ADMIN['csv_select_dtl'] = 'SELECT:detail';
 $LANG_DATABOX_ADMIN['csvheader'] = 'CSV First line';
 $LANG_DATABOX_ADMIN['help_field_csv'] = "
 There are two attributes that use the master
@@ -307,6 +309,9 @@ If you want to edit the input file the value of the master (prefectures _value)
 ";
 $LANG_DATABOX_ADMIN['help_value_csv'] = "
 In the case of category, please register the name of the category of
+";
+$LANG_DATABOX_ADMIN['help_value_csv_sel'] = "
+In the case of multiple  Separated, Example Parking,apartments
 ";
 
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "

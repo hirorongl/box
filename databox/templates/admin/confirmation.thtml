@@ -1,6 +1,6 @@
-<!-- plugins/databox/templates/admin/confirmation.thtml  20110606 { -->
+<!-- plugins/databox/templates/admin/confirmation.thtml  20140730 { -->
 
-<h1>{actionname}</h1>
+<h3>{actionname}</h3>
 <form action="{actionprg}" method="post">
   <div>
     <div>{lang_checklist} {checklist}</div>
