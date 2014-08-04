@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140729
+# Last Update 20140804
 
 ###############################################################################
 ## 管理画面 menu
@@ -660,6 +660,7 @@ $LANG_DATABOX_TYPE[20] = 'TinyMCEモード（複数行テキスト）';//'複数
 $LANG_DATABOX_TYPE[19] = 'CKEditorモード（複数行テキスト）(テスト中GL2.0.1以降用)';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
 
 $LANG_DATABOX_TYPE[15] = '数値';
+$LANG_DATABOX_TYPE[21] = '通貨';//@@@@@
 
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付';
@@ -671,9 +672,8 @@ $LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 $LANG_DATABOX_TYPE[17] = 'フラグ';
 $LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
-$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@
-//$LANG_DATABOX_TYPE[19] = 'xxx';//@@@@@
+$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';
+$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';
 
 
 $LANG_DATABOX_TYPE[11] = '画像（DB保存）';

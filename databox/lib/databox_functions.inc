@@ -2006,6 +2006,9 @@ function DATABOX_getaddtionfieldsDisp(
 						$fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
 					}
 					break;
+                case 21://money 通貨;
+                    $fieldhtml .= COM_numberFormat($fvalue);
+					break;
                 case 5://メールアドレス　（準備中）';
 
                 case 6://url';

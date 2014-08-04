@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140613
+# Last Update 20140804
 
 ###############################################################################
 ## 管理画面 menu
@@ -518,6 +518,7 @@ $LANG_USERBOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
 $LANG_USERBOX_TYPE[20] = '複数行テキストフィールド(HTML OK  TinyMCE)';
 $LANG_USERBOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
 $LANG_USERBOX_TYPE[15] = '数値';
+$LANG_USERBOX_TYPE[21] = '通貨';
 
 $LANG_USERBOX_TYPE[2] = 'いいえ/はい';
 $LANG_USERBOX_TYPE[3] = '日付';

@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/inputfield.html 20140218 -->
+<!-- admin/plugins/databox/docs/japanese/inputfield.html 20140804 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -147,7 +147,7 @@
 
 </tbody></table>
 
-<h3><a name="fieldtype">アトリビュートタイプ</a>(2013/10/09 update  書きかけです)</h3>
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2014/08/04 update  書きかけです)</h3>
 <table>
 <tr><th >No.</th>
     <th >名称</th>
@@ -214,6 +214,18 @@
   <td valign="top"><a name="fieldtype15">15</a></td>
   <td valign="top">数値</td>
   <td valign="top">数字または数値文字列のみ
+  </td>
+  <td valign="top">
+  </td>
+</tr>  
+<tr>
+  <td valign="top"><a name="fieldtype15">21</a></td>
+  <td valign="top">通貨</td>
+  <td valign="top">千単位に区切表示（カンマ編集）します。<br />
+Geeklogのコアのコンフィギュレーション設定の「千単位の区切り文字」
+「小数点」 「小数点以下の桁数」を参照します。 <br />
+小数点以下がない場合、小数点以下は、「小数点以下の桁数」>0であっても表示されません。
+小数点以下の桁数が「小数点以下の桁数」より多い場合、「小数点以下の桁数」に丸められます。
   </td>
   <td valign="top">
   </td>

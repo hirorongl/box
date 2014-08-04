@@ -625,6 +625,7 @@ $LANG_DATABOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_DATABOX_TYPE[1] = 'MultiLine Text Attribute (HTML)';
 $LANG_DATABOX_TYPE[10] = 'MultiLine Text Attribute (plain)';
 $LANG_DATABOX_TYPE[15] = 'Numeric';
+$LANG_DATABOX_TYPE[21] = 'Currency';
 
 $LANG_DATABOX_TYPE[2] = 'Yes/No';
 $LANG_DATABOX_TYPE[3] = 'Date (Date Picker)';

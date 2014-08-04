@@ -512,6 +512,7 @@ $LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
 $LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML OK  TinyMCE)';
 $LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
 $LANG_USERBOX_TYPE[15] = 'Numeric';
+$LANG_USERBOX_TYPE[21] = 'Currency';
 
 $LANG_USERBOX_TYPE[2] = 'Yes/No';
 $LANG_USERBOX_TYPE[3] = 'Date (Date Picker)';
