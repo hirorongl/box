@@ -209,7 +209,7 @@ $_DATABOX_DEFAULT['file_type'] = array();
 $_DATABOX_DEFAULT['autotag_permissions_databox'] = array (2, 2, 2, 2);
 
 
-//（9）Professional version
+//（9）XML
 $_DATABOX_DEFAULT['path_xml'] = $_CONF['path_html']."databox_data";
 $_DATABOX_DEFAULT['path_xml_out']=$_CONF['path']."data/databox_data";
 $_DATABOX_DEFAULT['xml_default_fieldset_id']="";
@@ -221,6 +221,12 @@ $_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 
 //（11）MAPS
 $_DATABOX_DEFAULT['maps_mid'] = "mapid";
+$_DATABOX_DEFAULT['maps_lat'] = "lat";
+$_DATABOX_DEFAULT['maps_lng'] = "lng";
+$_DATABOX_DEFAULT['maps_pref'] = "pref";
+$_DATABOX_DEFAULT['maps_address1'] = "address1";
+$_DATABOX_DEFAULT['maps_address2'] = "address2";
+$_DATABOX_DEFAULT['maps_address3'] = "address3";
 
 // +---------------------------------------------------------------------------+
 
@@ -873,8 +879,44 @@ function plugin_initconfig_databox()
             'maps_mid'
             ,$_DATABOX_DEFAULT['maps_mid']
             ,'text', 0, 11, NULL, 10, TRUE
-			, $pi_name
-			,11);
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_lat'
+            ,$_DATABOX_DEFAULT['maps_lat']
+            ,'text', 0, 11, NULL, 20, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_lng'
+            ,$_DATABOX_DEFAULT['maps_lng']
+            ,'text', 0, 11, NULL, 30, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_pref'
+            ,$_DATABOX_DEFAULT['maps_pref']
+            ,'text', 0, 11, NULL, 40, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_address1'
+            ,$_DATABOX_DEFAULT['maps_address1']
+            ,'text', 0, 11, NULL, 50, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_address2'
+            ,$_DATABOX_DEFAULT['maps_address2']
+            ,'text', 0, 11, NULL, 60, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_address3'
+            ,$_DATABOX_DEFAULT['maps_address3']
+            ,'text', 0, 11, NULL, 70, TRUE
+            , $pi_name
+            ,11);
     }
 
     return true;

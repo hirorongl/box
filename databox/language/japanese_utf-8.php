@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140804
+# Last Update 20140805
 
 ###############################################################################
 ## 管理画面 menu
@@ -828,15 +828,15 @@ $LANG_fs['databox']['fs_autotag_permissions'] = '自動タグのパーミッシ�
 $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] パーミッション';
 
 //---(９)
-$LANG_tab['databox']['tab_xml'] = 'profesional版';
-$LANG_fs['databox']['fs_xml'] = '（profesional版）';
+$LANG_tab['databox']['tab_xml'] = 'XML';
+$LANG_fs['databox']['fs_xml'] = '（OPTION:XML）';
 $LANG_confignames['databox']['path_xml'] = 'XML一括インポートディレクトリ';
 $LANG_confignames['databox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 $LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML一括インポートデフォルトタイプ';
 
 //---(１０)
 $LANG_tab['databox']['tab_csv'] = 'CSV';
-$LANG_fs['databox']['fs_csv'] = '（CSV）';
+$LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV一括インポートディレクトリ';
 $LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレクトリ';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポートデフォルトタイプ';
@@ -844,9 +844,14 @@ $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポー
 
 //---(１１)
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
-$LANG_fs['databox']['fs_maps'] = '（MAPS）';
+$LANG_fs['databox']['fs_maps'] = '（OPTION:MAPS）';
 $LANG_confignames['databox']['maps_mid'] = 'マップIDを登録するマスターの種別';
-
+$LANG_confignames['databox']['maps_lat'] = '緯度を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_lng'] = '経度を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_pref'] = '都道府県を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address1'] = '住所１を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address2'] = '住所２を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address3'] = '住所３を登録するアトリビュートのテーマ変数';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('はい' => 1, 'いいえ' => 0);

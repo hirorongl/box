@@ -795,23 +795,29 @@ $LANG_fs['databox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [
 $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] Permission';
 
 //---(９)
-$LANG_tab['databox']['tab_xml'] = 'ProfesionalVersion';
-$LANG_fs['databox']['fs_xml'] = '(Profesional Version)';
+$LANG_tab['databox']['tab_xml'] = 'XML';
+$LANG_fs['databox']['fs_xml'] = '(OPTION:XML)';
 $LANG_confignames['databox']['path_xml'] = 'XML Batch Import Path';
 $LANG_confignames['databox']['path_xml_out'] = 'XML Export Path';
 $LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML Import Default Type';
 
 //---(１０)
 $LANG_tab['databox']['tab_csv'] = 'CSV';
-$LANG_fs['databox']['fs_csv'] = '（CSV）';
+$LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
 
 //---(１１)
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
-$LANG_fs['databox']['fs_maps'] = '（MAPS）';
+$LANG_fs['databox']['fs_maps'] = '（OPTION:MAPS）';
 $LANG_confignames['databox']['maps_mid'] = 'Kind of master to register the map ID';
+$LANG_confignames['databox']['maps_lat'] = 'Theme Variable for latitude';
+$LANG_confignames['databox']['maps_lng'] = 'Theme Variable for Longitude';
+$LANG_confignames['databox']['maps_pref'] = 'Theme Variable for Prefectural';
+$LANG_confignames['databox']['maps_address1'] = 'Theme Variable for Address1';
+$LANG_confignames['databox']['maps_address2'] = 'Theme Variable for Address2';
+$LANG_confignames['databox']['maps_address3'] = 'Theme Variable for Address3';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
