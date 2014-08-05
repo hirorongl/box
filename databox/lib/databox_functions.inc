@@ -2007,7 +2007,10 @@ function DATABOX_getaddtionfieldsDisp(
 					}
 					break;
                 case 21://money 通貨;
-                    $fieldhtml .= COM_numberFormat($fvalue);
+                    $dc = $_CONF['decimal_count'];
+				    $ts = $_CONF['thousand_separator'];
+                    $ds = $_CONF['decimal_separator'];
+				    $fieldhtml .= number_format( $fvalue, $dc, $ds, $ts );
 					break;
                 case 5://メールアドレス　（準備中）';
 
