@@ -260,11 +260,15 @@ function fncBackupdata(
     $tablenames[]='DATABOX_def_fieldset_assignments';
     $tablenames[]='DATABOX_def_fieldset_group';
     
-    $tablenames[]='DATABOX_def_xml';
+    if  (fncTableCheck($_TABLES['DATABOX_def_xml'])<>0){
+        $tablenames[]='DATABOX_def_xml';
+    }
     
-    $tablenames[]='DATABOX_def_csv';
-    $tablenames[]='DATABOX_def_csv_sel';
-    $tablenames[]='DATABOX_def_csv_sel_dtl';
+    if  (fncTableCheck($_TABLES['DATABOX_def_csv'])<>0){
+        $tablenames[]='DATABOX_def_csv';
+        $tablenames[]='DATABOX_def_csv_sel';
+        $tablenames[]='DATABOX_def_csv_sel_dtl';
+    }
     
     $filename="databox_".date("YmdHis").".xml";
     $filename = $_CONF['backup_path']."databox/".$filename;  //  ファイル名
