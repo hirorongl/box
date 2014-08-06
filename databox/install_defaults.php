@@ -882,26 +882,26 @@ function plugin_initconfig_databox()
             , $pi_name
             ,11);
         $c->add(
-            'maps_lat'
-            ,$_DATABOX_DEFAULT['maps_lat']
-            ,'text', 0, 11, NULL, 20, TRUE
-            , $pi_name
-            ,11);
-        $c->add(
-            'maps_lng'
-            ,$_DATABOX_DEFAULT['maps_lng']
-            ,'text', 0, 11, NULL, 30, TRUE
-            , $pi_name
-            ,11);
-        $c->add(
             'maps_pref'
             ,$_DATABOX_DEFAULT['maps_pref']
-            ,'text', 0, 11, NULL, 40, TRUE
+            ,'text', 0, 11, NULL, 20, TRUE
             , $pi_name
             ,11);
         $c->add(
             'maps_address1'
             ,$_DATABOX_DEFAULT['maps_address1']
+            ,'text', 0, 11, NULL, 30, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_lat'
+            ,$_DATABOX_DEFAULT['maps_lat']
+            ,'text', 0, 11, NULL, 40, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_lng'
+            ,$_DATABOX_DEFAULT['maps_lng']
             ,'text', 0, 11, NULL, 50, TRUE
             , $pi_name
             ,11);
