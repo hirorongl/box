@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/databox.html 20140806 -->
+<!-- admin/plugins/databox/docs/japanese/databox.html 20140811 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -540,7 +540,7 @@
 
 </table>
 
-<h3><a >OPTION:CSV</a>(2014/05/19)</h3>
+<h3><a >OPTION:CSV</a>(2014/08/11)</h3>
 <table>
 <tr><th style="width:25%">項目(変数)</th>
     <th style="width:25%">デフォルト</th>
@@ -557,13 +557,24 @@
   <td valign="top">$_CONF['path']."data/databox_csv"</td>
   <td valign="top">　</td>
 </tr>
+<tr >
   <td valign="top"><a name="desc_csv_default_fieldset_id">CSV一括インポートデフォルトタイプ(csv_default_fieldset_id)</a></td>
   <td valign="top"></td>
   <td valign="top">　</td>
- 
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_csv_cron_schedule_interval">Cronのスケジュール間隔(csv_cron_schedule_interval)</a></td>
+  <td valign="top">0（秒）</td>
+  <td valign="top">一定の間隔で無条件一括インポートを行うことができます。　<br/>
+  ここで設定する値は、作業が行われる間隔を秒単位で指定します。デフォルトは0秒です。 例) 86400秒 = 24時間<br/>
+  この作業が行われるには、予定の時刻付近で誰かがサイトを訪問する必要があることに注意してください。訪問者がほとんどいないサイトでは、作業の開始がかなり遅れる可能性があります。<br/>
+  この機能を無効にするには、0を指定します。<br/>
+  </td>
+</tr>
+
 </table>
 
-<h3><a >OPTION:MAPS</a>(2014/08/06)</h3>
+<h3><a >OPTION:MAPS</a>(2014/08/11)</h3>
 <table>
 <tr><th style="width:25%">項目(変数)</th>
     <th style="width:25%">デフォルト</th>
@@ -605,7 +616,15 @@
   <td valign="top">"address3"</td>
   <td valign="top">　</td>
 </tr>
-
+<tr class="r2">
+  <td valign="top"><a name="desc_maps_cron_schedule_interval">Cronのスケジュール間隔(maps_cron_schedule_interval)</a></td>
+  <td valign="top">0（秒）</td>
+  <td valign="top">一定の間隔でMAPS エクスポートを行うことができます。<br/>
+ここで設定する値は、作業が行われる間隔を秒単位で指定します。デフォルトは0秒です。 例) 86400秒 = 24時間<br/>
+  この作業が行われるには、予定の時刻付近で誰かがサイトを訪問する必要があることに注意してください。訪問者がほとんどいないサイトでは、作業の開始がかなり遅れる可能性があります。<br/>
+  この機能を無効にするには、0を指定します。<br/>
+  </td>
+</tr>
 </table>
 
 <div class="footer">

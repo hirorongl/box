@@ -217,7 +217,8 @@ $_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 //（10）CSV
 $_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
 $_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
-$_DATABOX_DEFAULT['xml_default_fieldset_id']="";
+$_DATABOX_DEFAULT['csv_default_fieldset_id']="";
+$_DATABOX_DEFAULT['csv_cron_schedule_interval']="0";
 
 //（11）MAPS
 $_DATABOX_DEFAULT['maps_mid'] = "mapid";
@@ -227,6 +228,7 @@ $_DATABOX_DEFAULT['maps_pref'] = "pref";
 $_DATABOX_DEFAULT['maps_address1'] = "address1";
 $_DATABOX_DEFAULT['maps_address2'] = "address2";
 $_DATABOX_DEFAULT['maps_address3'] = "address3";
+$_DATABOX_DEFAULT['maps_cron_schedule_interval']="0";
 
 // +---------------------------------------------------------------------------+
 
@@ -865,6 +867,12 @@ function plugin_initconfig_databox()
             ,'select', 0, 10, 28, 30, true
 			, $pi_name
 			,10);
+        $c->add(
+            'csv_cron_schedule_interval'
+            ,$_DATABOX_DEFAULT['csv_cron_schedule_interval']
+            ,'text', 0, 11, NULL, 40, TRUE
+            , $pi_name
+            ,10);
 
 		//(11)MAPS
         $c->add('tab_maps', NULL, 'tab', 0, 11, NULL, 0, true, $pi_name,11);
@@ -915,6 +923,12 @@ function plugin_initconfig_databox()
             'maps_address3'
             ,$_DATABOX_DEFAULT['maps_address3']
             ,'text', 0, 11, NULL, 70, TRUE
+            , $pi_name
+            ,11);
+        $c->add(
+            'maps_cron_schedule_interval'
+            ,$_DATABOX_DEFAULT['maps_cron_schedule_interval']
+            ,'text', 0, 11, NULL, 80, TRUE
             , $pi_name
             ,11);
     }

@@ -813,6 +813,7 @@ $LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
+$LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cron Schedule Interval';
 
 //---(１１)
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
@@ -824,6 +825,7 @@ $LANG_confignames['databox']['maps_pref'] = 'Theme Variable for Prefectural';
 $LANG_confignames['databox']['maps_address1'] = 'Theme Variable for Address1';
 $LANG_confignames['databox']['maps_address2'] = 'Theme Variable for Address2';
 $LANG_confignames['databox']['maps_address3'] = 'Theme Variable for Address3';
+$LANG_confignames['databox']['maps_cron_schedule_interval'] = 'Cron Schedule Interval';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
