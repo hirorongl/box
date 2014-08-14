@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140811
+# Last Update 20140814
 
 ###############################################################################
 ## 管理画面 menu
@@ -319,6 +319,17 @@ $LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "
 
 $LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "
   (緯度・経度 計算 %d 件 更新 %d 件)
+";
+
+$LANG_DATABOX_ADMIN['schedule'] = "スケジュール";
+$LANG_DATABOX_ADMIN['nextdatetime'] = "予定の時刻";
+$LANG_DATABOX_ADMIN['cron_schedule'] = "
+この作業が行われるには、予定の時刻付近で誰かがサイトを訪問する必要があることに注意してください。<br".XHTML.">
+訪問者がほとんどいないサイトでは、作業の開始がかなり遅れる可能性があります。
+";
+$LANG_DATABOX_ADMIN['cron_schedule_Enable'] = "
+この機能は無効に設定されています<br".XHTML.">
+有効にするためには、DataBoxのコンフィギュレーション設定を変更してください。<br".XHTML.">
 ";
 
 //csv
