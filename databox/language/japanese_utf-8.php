@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140814
+# Last Update 20140818
 
 ###############################################################################
 ## 管理画面 menu
@@ -313,13 +313,8 @@ $LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
 データの内容で作成します。<br".XHTML.">
 logs/databox_mapsupdate.log　にログが記録されます。
 ";
-$LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "
-正常 %d 件 エラー %d 件
-";
-
-$LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "
-  (緯度・経度 計算 %d 件 更新 %d 件)
-";
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "正常 %d 件 エラー %d 件";
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "(緯度・経度 計算 %d 件 更新 %d 件)";
 
 $LANG_DATABOX_ADMIN['schedule'] = "スケジュール";
 $LANG_DATABOX_ADMIN['nextdatetime'] = "予定の時刻";

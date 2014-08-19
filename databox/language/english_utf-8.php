@@ -296,13 +296,9 @@ $LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
 Clears the marker of a particular map that are registered in the attribute.
 It is created with the contents of the Data.
 ";
-$LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "
-Success %d Error %d 
-";
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "Success %d Error %d";
 
-$LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "
-  (Latitude and longitude calculation %d Updateing %d)
-";
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "(Latitude and longitude calculation %d Updateing %d)";
 //csv
 $LANG_DATABOX_ADMIN['csv_def'] = 'CSV definition';
 $LANG_DATABOX_ADMIN['csv_select'] = 'SELECT';
