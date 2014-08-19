@@ -3169,7 +3169,7 @@ function DATABOX_checkaddtiondatas(
                 }
             }
             //numeric
-			if ($addition_def[$field_id]['type']==15){
+			if ($addition_def[$field_id]['type']==15 OR $addition_def[$field_id]['type']==21){
 				if ($value ===""){
 				}else{
 					
