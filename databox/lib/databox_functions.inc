@@ -2010,7 +2010,7 @@ function DATABOX_getaddtionfieldsDisp(
                     $dc = $_CONF['decimal_count'];
 				    $ts = $_CONF['thousand_separator'];
                     $ds = $_CONF['decimal_separator'];
-				    $fieldhtml .= number_format( $fvalue, $dc, $ds, $ts );
+				    $fieldhtml .= number_format( (int)$fvalue, $dc, $ds, $ts );
 					break;
                 case 5://メールアドレス　（準備中）';
 
