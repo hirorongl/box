@@ -4,7 +4,7 @@
 <form action="{actionprg}" method="post">
   <div>
     <div>{lang_checklist} {checklist}</div>
-    <input type='submit' name='action' value='{lang_submit}'{xhtml}>
+    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('実行してよいですか?');"{xhtml}>
     <input type='submit' name='action' value='{lang_cancel}'{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     <input type="hidden" value="{mode}" name="mode"{xhtml}>
