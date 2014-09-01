@@ -219,6 +219,8 @@ $_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
 $_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
 $_DATABOX_DEFAULT['csv_default_fieldset_id']="";
 $_DATABOX_DEFAULT['csv_cron_schedule_interval']="0";
+$_DATABOX_DEFAULT['csv_cron_schedule_unlink']="0";
+$_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']="0";
 
 //（11）MAPS
 $_DATABOX_DEFAULT['maps_mid'] = "mapid";
@@ -870,9 +872,22 @@ function plugin_initconfig_databox()
         $c->add(
             'csv_cron_schedule_interval'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_interval']
-            ,'text', 0, 11, NULL, 40, TRUE
+            ,'text', 0, 10, NULL, 40, TRUE
             , $pi_name
-            ,10);
+		    ,10);
+        $c->add(
+            'csv_cron_schedule_unlink'
+            ,$_DATABOX_DEFAULT['csv_cron_schedule_unlink']
+            ,'select', 0, 10, 0, 50, true
+			, $pi_name
+			,10);
+        $c->add(
+            'csv_cron_schedule_nextmaps'
+            ,$_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']
+            ,'select', 0, 10, 0, 60, true
+			, $pi_name
+			,10);
+		
 
 		//(11)MAPS
         $c->add('tab_maps', NULL, 'tab', 0, 11, NULL, 0, true, $pi_name,11);
