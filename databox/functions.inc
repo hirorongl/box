@@ -9,7 +9,6 @@
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
 }
-
 $pi_name         = 'databox';
 
 //設定ファイル
@@ -63,8 +62,13 @@ require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_stats.inc");
 
 //コメント機能
 require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_comment.inc");
-
 //疑似CRON機能
+if ($_DATABOX_CONF['csv_cron_schedule_interval'] > 0) {
+    $functions_sc = $_CONF['path'] . "plugins/{$pi_name}/csv/csv_scheduled.inc";
+    if (file_exists ($functions_sc)) {
+		require_once ($functions_sc);
+    }
+}
 if ($_DATABOX_CONF['maps_cron_schedule_interval'] > 0) {
     $functions_sc = $_CONF['path'] . "plugins/{$pi_name}/maps/maps_scheduled.inc";
     if (file_exists ($functions_sc)) {
