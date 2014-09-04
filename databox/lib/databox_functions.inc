@@ -4620,4 +4620,230 @@ function DATABOX_Confirmation(
 
     return $retval;
 }
+
+//==============================================================================
+//lib_datetimeedit.php →
+function DATABOX_datetimeedit(
+    $datetime_value
+    ,$lang
+    ,$datetime_name="datetime"
+    ,$mode="datetime"
+) {
+    global $_CONF;
+
+    $var = $lang;
+    global $$var;
+    $lang_ary=$$var;
+    if ($datetime_value==""){
+        $datetime_year = date('Y');
+        $datetime_month = date('m');
+        $datetime_day = date('d');
+        //
+        $datetime_hour = date ('H');
+        $datetime_minute = date ('i') ;
+    }else{
+        $datetime_year = date('Y', $datetime_value);
+        $datetime_month = date('m', $datetime_value);
+        $datetime_day = date('d', $datetime_value);
+        //
+        $datetime_hour = date ('H', $datetime_value);
+        $datetime_minute = date ('i', $datetime_value) ;
+    }
+    
+    $rt="";
+    //Year
+    $year_options = COM_getYearFormOptions ($datetime_year);
+    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.=$year_options.LB;
+    $rt.="</select>".$lang_ary['yy'].LB;
+
+    //month
+    $month_options = COM_getMonthFormOptions ($datetime_month);
+    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.=$month_options.LB;
+    $rt.="</select>".$lang_ary['mm'].LB;
+
+    //day
+    $day_options = COM_getDayFormOptions ($datetime_day);
+    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.=$day_options.LB;
+    $rt.="</select>".$lang_ary['dd'].LB;
+
+    //hour
+    if ($mode==="datetime"){
+        if ($_CONF['hour_mode'] == 24) {
+            $hour_options = COM_getHourFormOptions ($datetime_hour, 24);
+        }else{
+            $datetime_hour_wk=$datetime_hour;
+            if ($datetime_hour_wk >= 12) {
+                if ($datetime_hour_wk > 12) {
+                    $datetime_hour_wk = $datetime_hour_wk - 12;
+                }
+                $ampm = 'pm';
+            } else {
+                $ampm = 'am';
+            }
+            $ampm_select = COM_getAmPmFormSelection ($datetime_name.'_ampm', $ampm);
+            if (empty ($ampm_select)) {
+                $ampm_select = '<input type="hidden" name="cmt_close_ampm" value=""' . XHTML . '>';
+            }
+            $rt.=$ampm_select;
+            $hour_options = COM_getHourFormOptions ($datetime_hour_wk);
+        }
+
+        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.=$hour_options.LB;
+        $rt.="</select>:".LB;
+
+        //minute
+        $minute_options = COM_getMinuteFormOptions ($datetime_minute);
+
+        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.=$minute_options.LB;
+        $rt.="</select>".LB;
+
+    }
+
+    return $rt;
+
+}
+
+function DATABOX_datetimeedit_R(
+    $datetime_ary
+    ,$lang
+    ,$datetime_name="datetime"
+) {
+    global $_CONF;
+
+    $var = $lang;
+    global $$var;
+    $lang_ary=$$var;
+    
+    if  (!is_array($datetime_ary)){
+        return "";
+    }
+    
+    $rt="";
+    
+    //Year
+    $year_options = COM_getYearFormOptions ($datetime_ary['year']);
+    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.=$year_options.LB;
+    $rt.="</select>".$lang_ary['yy'].LB;
+
+    //month
+    $month_options = COM_getMonthFormOptions ($datetime_ary['month']);
+    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.=$month_options.LB;
+    $rt.="</select>".$lang_ary['mm'].LB;
+
+    //day
+    $day_options = COM_getDayFormOptions ($datetime_ary['day']);
+    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.=$day_options.LB;
+    $rt.="</select>".$lang_ary['dd'].LB;
+
+    //hour
+    if ($datetime_ary['hour']<>""){
+        if ($_CONF['hour_mode'] == 24) {
+            $hour_options = COM_getHourFormOptions ($datetime_ary['hour'], 24);
+        }else{
+            $ampm_select = COM_getAmPmFormSelection ($datetime_name.'_ampm', $datetime_ary['ampm']);
+            if (empty ($ampm_select)) {
+                $ampm_select = '<input type="hidden" name="cmt_close_ampm" value=""' . XHTML . '>';
+            }
+            $rt.=$ampm_select;
+            $hour_options = COM_getHourFormOptions ($datetime_ary['hour']);
+        }
+
+        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.=$hour_options.LB;
+        $rt.="</select>:".LB;
+
+        //minute
+        $minute_options = COM_getMinuteFormOptions ($datetime_ary['minute']);
+
+        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.=$minute_options.LB;
+        $rt.="</select>".LB;
+
+    }
+
+    return $rt;
+
+}
+//==============================================================================
+//lib_outlog.php →
+//log 出力モード設定　0:作成しない,1:ファイルに出力 2:画面にも出力
+//$logmode =2;
+//$logfile = $_CONF['path_log'] . "profile_point.log";
+
+//echo OutLog( "----- photomailcheck.php start",$logmode);
+
+
+// ログ出力処理
+function DATABOX_OutLog( $logentry ,$logfile,$logmode=1)
+{
+    global $_CONF,$LANG01;
+
+    $retval = '';
+
+    if (!empty($logmode)) {
+        if( !empty( $logentry )) {
+            $logentry = str_replace( array( '<?', '?>' ), array( '(@', '@)' ),
+                                     $logentry );
+
+            $timestamp = strftime( '%c' );
+
+            if (!file_exists($logfile)) {
+                echo $logfile ."  doesn't exist. ";
+                exit();
+            }
+            if (!is_writable($logfile)) {
+                echo $logfile ." cannot be written. ";
+                exit();
+            }
+
+            $file = fopen( $logfile, 'a' );
+
+            if( empty($file)) {
+                $retval .= $LANG01[33] . ' ' . $logfile . ' (' . $timestamp . ')<br/><br/>' . LB;
+            } else {
+                fputs( $file, "$timestamp - $logentry\n" );
+            }
+
+            if ($logmode ==2){
+                $retval .="$timestamp - $logentry<br/>" . LB;
+            }
+        }
+    }
+
+    return $retval;
+}
+//==============================================================================
+//lib_getfilelist.php →
+// 指定フォルダのファイルの一覧を取得
+function DATABOX_getfilelist(
+    $fd
+    ,$exte =""
+)
+{
+    $fary= array();
+    $dir=opendir($fd);
+    while(($ent = readdir()) !==FALSE){
+        if  ($exte=="") {
+           $fary[$i] = $ent;
+           $i++;
+        }else{
+            $w=explode('.',$ent);
+            if (strtolower($w[1])===$exte){
+               $fary[$i] = $ent;
+               $i++;
+            }
+        }
+    }
+    return $fary;
+
+}
+
 ?>
