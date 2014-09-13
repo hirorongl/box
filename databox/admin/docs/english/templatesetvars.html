@@ -8,21 +8,21 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/english/templatesetvars.html 20130226 -->
+<!-- admin/plugins/databox/docs/english/templatesetvars.html 20140904 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
-<a href="../../../../../docs/english/index.html">Geeklog Document</a>
-- <a href="index.html">DataBox Plugin </a>
-- Theme variables </div>
+<a href="../../../../../docs/english/index.html">Geeklogドキュメント</a>
+- <a href="index.html">DataBox プラグイン</a>
+- テーマ変数</div>
 <p>
-<a href="../../../../../">Top page</a>
- <a href="../../../../../admin/plugins/databox/">Admin</a>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/databox/">管理画面</a>
 </p>
-<h1><a href="index.html">DataBox Plugin </h1>
+<h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">Theme variables </a>(2013/08/21 update　unfinished)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2014/03/31 update　書きかけです)</h2>
 <table>
 <tr>
 	<th style="width:20%">Display </th>
@@ -32,9 +32,9 @@
 <tbody>
 <tr  >
 <td   rowspan=4>
-Category 別Number list <br/>
+カテゴリ別件数一覧<br/>
 public_html/category.php<br/>
-(Group 別)Category 別Number list <br/>
+(グループ別)カテゴリ別件数一覧<br/>
 public_html/category.php?gid=1&amp;m=gid<br/>
 public_html/category.php?gcode=country&amp;m=gcode<br/>
 </td>
@@ -49,12 +49,12 @@ layout_url,
 currenturl,
 site_name,
 og_title,
-og_image<a title="DataBox DefaultImages or logo Images " class="note_super" href="#notetext_5">*5</a>,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です"
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です"
 class="note_super" href="#notetext_1">*1</a>
-<br/>site_mail<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_4">*4</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -77,8 +77,10 @@ page_navigation,
 blockfooter,
 (msg)<br/>
 language<br/>
-languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>
 </tr>
 <tr >
@@ -99,6 +101,8 @@ category_link,
 category_name,
 category_description,
 category_url,
+category_id,
+category_code,
 count
  </td>
 </tr>
@@ -106,7 +110,7 @@ count
 
 <tr class="r2">
 <td  rowspan=4>
-Category 別list <br/>
+カテゴリ別一覧<br/>
 public_html/category.php?id=1&amp;m=id<br/>
 public_html/category.php?code=city&amp;m=code<br/>
 <br/>
@@ -114,10 +118,10 @@ public_html/category.php?code=city&amp;m=code<br/>
 &order=random<br/>
 $expired=no<br/>
 <br/>
-order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables 　です<br/>
+order に指定できるのは、 random date released orderno code title description id と　表示制限されていない追加項目のテーマ変数　です。<br/>date と released は逆順です。<br/>
 <br/>
-expired:no expired data はnot display.（ Default）<br/>
-expired:yes expired data もdisplay.<br/>
+expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br/>
+expired:yes 公開終了日を過ぎたデータも表示します。<br/>
 <td>
 【category】headercode.thtml
 </td>
@@ -130,12 +134,12 @@ currenturl,
 site_name,
 og_title,
 og_image
-<a title="DataBox DefaultImages or logo Images " class="note_super" href="#notetext_5">*5</a>,
+<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
 facebook_consumer_key
-<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
-<br/>site_mail<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_4">*4</a>
+<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -172,11 +176,16 @@ site_url,
  lang_date,
  lang_description,
  lang_addfield,
+ lang_hits,
  blockfooter,
  msg<br/>
  language<br/>
-languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+imgfile_frd,data_img_url<br/>
+imgfile_thumb_frd,data_thumb_img_url<br/>
 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>	
 </tr>
 
@@ -195,12 +204,17 @@ languageid,_languageidlanguage File [multi language mode ]にregist not  case �
  data_expired,
  data_remaingdays,
  <br/>
- data_datefield(Use Date 作成日付or編集日付orRreleased),
- new_img (Use Dateと新着マークdisplay 期間で判定します)<br/>
- data_value(ソート順にSelect されたAttribute項目の value),<br/>
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ new_img (使用する日付と新着マーク表示期間で判定します)<br/>
+data_datefield_shortdate,
+data_releaaed_shortdate,
+data_expired_shortdate,
+data_hits<br/>
+
+ data_value(ソート順に指定されたアトリビュート項目の値),<br/>
  data_edit
- </br><a href="#notetext_add" class="note_super" title="">Each Attribute's Theme variables </a>
- </br><a href="#notetext_categories" class="note_super" title="">Category 列挙のTheme variables </a>
+ </br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
 </td>
 </tr>
 <tr class="r2">
@@ -222,11 +236,12 @@ home
 
 <tr>
 <td rowspan=4>
-Attribute別Number list <br/>
+アトリビュート別件数一覧<br/>
 public_html/attribute.php<br/>
-(各Attribute)別Number list <br/>
+(各アトリビュート)別件数一覧<br/>
 public_html/attribute.php?id=1&amp;m=id<br/>
 public_html/attribute.php?code=xxxx&amp;m=code<br/>
+<a title="codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります" class="note_super" href="#notetext_8">*8</a>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -239,11 +254,11 @@ layout_url,
 currenturl,
 site_name,
 og_title,
-og_image<a title="DataBox DefaultImages or logo Images " class="note_super" href="#notetext_5">*5</a>,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
-<br/>site_mail<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_4">*4</a>
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -267,14 +282,16 @@ page_navigation,
 blockfooter,
 (msg)<br/>
 language<br/>
-languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
 
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>
 </tr>
 
 <tr >
 <td>
-【attribute】col.thtml Attribute別Number list 用
+【attribute】col.thtml アトリビュート別件数一覧用
 </td>
 <td>
 field_link,
@@ -289,7 +306,7 @@ count
 </tr>
 <tr >
 <td>
-【attribute】col2.thtml （各Attribute別）Number list 用
+【attribute】col2.thtml （各アトリビュート別）件数一覧用
 </td>
 <td>
 value_link,
@@ -304,9 +321,10 @@ count
 
 <tr class="r2">
 <td  rowspan=4>
-Attribute別list <br/>
+アトリビュート別一覧<br/>
 public_html/attribute.php?id=1&amp;m=id&amp;value=27&amp;template=yyyy<br/>
 public_html/attribute.php?code=xxxx&amp;m=code&amp;value=27&amp;template=yyyy<br/>
+<a title="codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります" class="note_super" href="#notetext_8">*8</a>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -319,11 +337,11 @@ layout_url,
 currenturl,
 site_name,
 og_title,
-og_image<a title="DataBox DefaultImages or logo Images " class="note_super" href="#notetext_5" >*5</a>,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5" >*5</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
-<br/>site_mail<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_4">*4</a>
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
@@ -357,12 +375,13 @@ site_url,
  lang_title,
  lang_description,
  lang_addfield,
+ lang_expired,lang_hits,
  blockfooter,
  msg<br/>
 language<br/>
-languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
-
- 
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
 </td>	
 </tr>
 
@@ -378,11 +397,17 @@ languageid,_languageidlanguage File [multi language mode ]にregist not  case �
  data_id,
  data_url,
  data_released,<br/>
- data_datefield(Use Date 作成日付or編集日付orRreleased),
- new_img (Use Dateと新着マークdisplay 期間で判定します)<br/>
- data_value(ソート順にSelect されたAttribute項目の value),<br/>
+ data_datefield_shortdate,
+ data_releaaed_shortdate,
+ data_expired_shortdate,
+ data_hits<br/>
+ 
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ new_img (使用する日付と新着マーク表示期間で判定します)<br/>
+ data_value(ソート順に指定されたアトリビュート項目の値),<br/>
  data_edit
- </br><a href="#notetext_add" class="note_super" title="">Each Attribute's Theme variables </a>
+ </br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
  </td>
 </tr>
 <tr class="r2">
@@ -405,7 +430,7 @@ home
 </tr>
 <tr>
 <td>
-Data list <br/>
+データ一覧<br/>
 public_html/list.php<br/>
 <br/>
 msg=1<br/>
@@ -417,11 +442,14 @@ order=2&prevorder=orderno&direction=ASC&databoxlistpage=2&q=hotel&query_limit=50
 </tr>
 
 <tr class="r2">
-<td rowspan=3>
-Data display <br/>
+<td rowspan=4>
+個別表示<br/>
 public_html/data.php?id=1&amp;m=id&amp;template=yyyy<br/>
 public_html/data.php?code=xxxx_en&amp;m=code&amp;template=yyyy<br/>
-<a title="template=yyyyy Theme Directory" class="note_super" href="#notetext_7">*7</a>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
+<br/><br/><br/>ヘッダフッタなし
+public_html/content.php?code=xxxx_en&amp;template=yyyy<br/>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
 </td>
 <td>
 【data】headercode.thtml
@@ -434,17 +462,17 @@ layout_url,
 currenturl,
 site_name,
 og_title,
-og_image<a title="featuredimageor DataBox DefaultImages or logo Images " class="note_super" href="#notetext_6" >*6</a>,
+og_image<a title="featuredimageまたはDataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_6" >*6</a>,
 og_description,
 og_type
-facebook_consumer_key<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
-<br/>site_mail<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_4">*4</a>
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
 </td>
 </tr>
 
 <tr  class="r2">
 <td>
-【data】list_detail.thtml,row.thtml,col_detail.thtml
+【data】list_detail.thtml,row.thtml
 </td>
 
 <td>
@@ -463,9 +491,9 @@ lang_byusingtemplatesetvar,
 lang_group,
 lang_withlink,
 lang_imgfile_frd,
-imgfile_frd,
+imgfile_frd,data_img_url,
 lang_imgfile_thumb_frd,
-imgfile_thumb_frd,
+imgfile_thumb_frd,data_thumb_img_url,
 lang_basicfields,
 lang_code,
 code,
@@ -481,11 +509,13 @@ hits,
 lang_category,
 lang_additionfields,
 lang_modified,		
-modified,
+modified,modified_shortdate,
 lang_created,
-created,
+created,created_shortdate,
 lang_released,
-released,
+released,released_shortdate,
+lang_expired,
+expired,expired_shortdate,
 lang_uuid,
 uuid,
 lang_udatetime,
@@ -493,14 +523,33 @@ last_modify_uid,
 last_modify_name,
 last_modify_fullname,
 edit
-</br><a href="#notetext_add" class="note_super" title="">Each Attribute's Theme variables </a>
-</br><a href="#notetext_categories" class="note_super" title="">Category 列挙のTheme variables </a>
-</br>currenturl,appid<a href="#notetext_1" class="note_super" title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です">*1</a></br>
+</br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+</br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
+</br>currenturl,appid<a href="#notetext_1" class="note_super" title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です">*1</a></br>
 mkid,
-marker<a href="#notetext_2" class="note_super" title="mapPlugin が有効の case   　map のitem_10にDataBoxのcode をregist して
-mapのData とdataboxのData を紐付けしています.">*2</a>
+marker<a href="#notetext_2" class="note_super" title="mapプラグインが有効の場合  　map のitem_10にDataBoxのコードを登録して
+mapのデータとdataboxのデータを紐付けしています。">*2</a>
 language<br/>
-languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
+</td>
+</tr>
+
+<tr  class="r2">
+<td>
+【data】col_detail.thtml
+</td>
+<td>
+additionfield_value
+,additionfield_value
+,additionfield_value_noimage
+,additionfield_value_tn_image
+,additionfield_value_tn_noimage
+,additionfield_value_disp
+,additionfield_value_mst_value2
+,additionfield_value_mst_disp
+,additionfield_value_mst_no
 </td>
 </tr>
 
@@ -518,152 +567,337 @@ lang_nohit</td>
 
 
 <tr >
-<td>
+<td rowspan=2>
 newlist<br/>
+</td>
+<td>
+【newlist】list.thtml
+</td>
+<td>
+site_url
+,day
+,rss_url
+,rss_title
+,more_url
+,more_title
+</td>
+</tr>
+<tr >
+<td>
+【newlist】list_col.thtml
+</td>
+<td>
+new_img
+,link
+,url
+,title
+,description
+,class (奇数行 class=row1 偶数行 class=row2)
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+マイデータ（一覧）<br/>
+public_html/mydata/data.php<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr >
+<td>
+マイデータ（タイプ選択）<br/>
+public_html/mydata/data.php?mode_id=new<br/>
 </td>
 <td>
 </td>
 <td></td>
 </tr>
 
-
 <tr class="r2">
-<td>
-My data<br/>
-public_html/mydata/data.php<br/>
-public_html/mydata/data.php?mode_id=new<br/>
+<td rowspan=2>
+マイデータ（新規登録または編集）<br/>
 public_html/mydata/data.php?type_id=aaa<br/>
 public_html/mydata.php?mode_id=edit&amp;id=1<br/>
 public_html/mydata.php?mode_id=edit&amp;id=1&amp;template=yyyy<br/>
-<a title="template=yyyyy Theme Directory" class="note_super" href="#notetext_7">*7</a>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
 
 </td>
 <td>
+【mydata】data_editor.thtml, row.thtml
 </td>
-<td></td>
+<td>
+about_thispage
+,site_url
+,lang_fieldset
+,fieldset_name
+,ieldset_id
+,script
+,lang_basicfields
+,lang_id
+,help_id
+,id
+,lang_draft
+,help_draft
+,draft_flag
+,draft_msg
+,lang_code
+,lang_must_code
+,help_code
+,code
+,lang_title
+,help_title
+,lang_must
+,title
+,lang_page_title
+,help_page_title
+,page_title
+,lang_description
+,help_description
+,maxlength_description
+,description
+,hide_language_id
+,lang_language_id
+,help_language_id
+,select_language_id
+,lang_udatetime
+,udatetime
+,lang_uuid
+,uuid
+,udatetime
+,lang_created
+,created
+,created_un
+,lang_category
+,help_category
+,checklist_category
+,lang_additionfields
+,additionfields
+,lang_save
+,lang_cancel
+,delete_option
+,gltoken_name
+,gltoken
+</td>
+</tr>
+
+<tr class="r2">
+
+<td>
+【mydata】data_col_detail.thtml
+</td>
+<td>
+additionfield_name
+,lang_must_additionfield
+,additionfield_value
+,additionfield_description
+</td>
 </tr>
 
 </tbody>
 </table>
 
-<h2><a class="note_super" id="notetext_add">Attribute Theme Variable Name</a>(2013/09/24 update　書きかけです)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
 <table>
 <tr>
-	<th style="width:20%">Display</th>
-	<th style="width:20%">Template</th>
-        <th style="width:60%">Theme variables</th>
+	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
+	<th style="width:30">テーマ変数</th>
+    <th style="width:40%">説明</th>
 	</tr>
 <tr>
-	<td>Common</td>
+	<td>共通</td>
 	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
-	<br/>{(Theme Variable Name)}
+	<br/>{登録したテーマ変数名}
 	</td>
 	<td>&nbsp;</td>
 	</tr>
 <tr>	
-	<td   rowspan=5>12:Image（File）</td>
+	<td   rowspan=5>12:画像（ファイル保存）</td>
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn}
-	<br/>{(Theme Variable Name)_tn}
+	<br/>{登録したテーマ変数名_tn}
 	</td>
 	<td>&nbsp;</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_noimage}
-	<br/>   {(Theme Variable Name)_noimage}	</td>
-	<td>Image file name</td>
+	<br/>   {登録したテーマ変数名_noimage}	</td>
+	<td>イメージファイル名</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_image}
-	<br/>   {(Theme Variable Name)_tn_image}</td>
-	<td>Thumbnail</td>
+	<br/>   {登録したテーマ変数名_tn_image}</td>
+	<td>サムネイルイメージ</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_noimage}
-	<br/>   {(Theme Variable Name)_tn_noimage}</td>
-	<td>Thumbnail</td>
+	<br/>   {登録したテーマ変数名_tn_noimage}</td>
+	<td>サムネイルイメージ</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_disp}
-	<br/>   {(Theme Variable Name)_disp}
-	<td>Image</td>
+	<br/>   {登録したテーマ変数名_disp}
+	<td>イメージ</td>
 	</tr>	
 <tr>	
-	<td   rowspan=3>9:Option list（Master）
-	<br/>16:Radio button（Master）
-	<br/>18:Multi select list（Master）</td>
+	<td   rowspan=3>9:オプションリスト（マスター）
+	<br/>16:ラジオボタンリスト（マスター）
+	<br/>18:マルチセレクトリスト（マスター）</td>
 	<td>
-	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_2} 
-	<br/>   {(Theme Variable Name)_mst_value2}</td>
-	<td>Masterのvalue2</td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:2} 
+	<br/>   {登録したテーマ変数名_mst_value2}</td>
+	<td>マスターのvalue2</td>
 </tr>
 
 <tr>	
 	
 	<td>
-	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:disp}Masterのdisp
-	<br/>   {(Theme Variable Name)_mst_disp}</td>
-	<td>Masterのdisp</td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:disp}マスターのdisp
+	<br/>   {登録したテーマ変数名_mst_disp}</td>
+	<td>マスターのdisp</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:no}
-	<br/>   {(Theme Variable Name)_mst_no}	</td>
-	<td>Master No.</td>
+	<br/>   {登録したテーマ変数名_mst_no}	</td>
+	<td>マスターのNo.</td>
 	</tr>	
-<tr>	
-	<td>2:No/Yes </td>
-	<td>
-	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_yes}
-	<br/>   {(Theme Variable Name)_yes} 
-	</td>
-	<td>Yes: 1</td>
-	</tr>		
 </table>	
-<br/>multi select list separator without No. is set by LANG_DATABOX['field_separater'].
+（注）No.以外のマルチセレクトリストの区切りはLANG_DATABOX['field_separater']で指定しています。
+
+<h2><a class="note_super" href="#notetext_categories" id="notetext_categories" >カテゴリ列挙のテーマ変数</a>(2013/10/16 update)</h2>
+<table>
+<tr>
+	<th style="width:30">テーマ変数</th>
+    <th style="width:70%">説明</th>
+	</tr>
+<tr>
+	<td>{categories}</td>
+	<td>カテゴリ　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{categorieslink}</td>
+	<td>カテゴリ　リンク付　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorieslinkcode}</td>
+	<td>カテゴリ　リンク付　引数コード　名称列挙</td>
+</tr>
+<tr>
+	<td>{categorieslinkid}</td>
+	<td>カテゴリ　リンク付　引数id　名称列挙</td>
+</tr>
+
+<tr>
+	<td>{group_<a  title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>_code}</td>
+	<td>グループ別カテゴリ　グループコードを使用する　名称列挙</td>
+</tr>
+<tr>
+	<td>{group_<a  title="code"  href="#notetext_code" class="note_super">xxxx</a>_pipeline}</td>
+	<td>グループ別カテゴリ　グループコードを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="code" href="#notetext_code" class="note_super">xxxx</a>_code}</td>
+	<td>グループ別カテゴリ　リンク付　グループコードを使用する　コード列挙　</td>
+</tr>
 
 
+
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>_code}</td>
+	<td>グループ別カテゴリ　グループidを使用する　コード列挙　</td>
+</tr>
+<tr>
+	<td>{group_<a title="id" class="note_super" href="#notetext_id">1</a>_pipeline}</td>
+	<td>グループ別カテゴリ　グループidを使用する　コードパイプライン区切　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>}</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　名称列挙　</td>
+</tr>
+<tr>
+	<td>{grouplink_<a title="id" class="note_super" href="#notetext_id">1</a>_code}</td>
+	<td>グループ別カテゴリ　リンク付　グループidを使用する　コード列挙　</td>
+</tr>
+</table>
+名称列挙の区切りはLANG_DATABOX['category_separater']で指定しています。
+<br/>　　表示例　日本 / アメリカ / イギリス 
+<br/>コード列挙の区切りはLANG_DATABOX['category_separater_code']で指定しています。
+<br/>　　表示例　japan america england 
+<br/>コードパイプライン区切は |で区切ます。
+<br/>　　表示例　japan|america|england 
+
+
+<h2></h2>
 <br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
-GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です.
+Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です。
 
 <br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
-mapPlugin が有効の case 　map のitem_10にDataBoxのcode をregist してmapのData とdataboxのData を紐付けしています.
+mapプラグインが有効の場合　map のitem_10にDataBoxのコードを登録してmapのデータとdataboxのデータを紐付けしています。
 
 <br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
-StandardTemplate には記述されていません.
+標準テンプレートには記述されていません。
 
 <br/><a class="note_super" href="#notetext_5" id="notetext_5">*5</a>
-DataBox DefaultImages or logo Images 
+DataBoxデフォルト画像またはロゴ画像
 
 <br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
-<a link href="#notetext_featuredimage" class="note_super">featuredimage</a>or DataBox DefaultImages or logo Images 
+<a link href="#notetext_featuredimage" class="note_super">featuredimage</a>またはDataBoxデフォルト画像またはロゴ画像
 
 <br/><a class="note_super" href="#notetext_7" id="notetext_7">*7</a>
-template=Theme Directory<br/>
-引数でSelect not  case は、下記の順にuse されます(list Display 以外)<br/>
-Typeにregist されているTheme Directory<br/>
-Data にregist されているTheme Directory<br/>
-default<br/>
+template=テンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;引数で指定されていない場合は、下記の順に使用されます(個別表示,マイデータ（新規登録または編集）)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;データに登録されているテンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;タイプに登録されているテンプレートディレクトリ
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default（標準）
 
-<br/><a class="note_super" href="#notetext_categories" id="notetext_categories" >Category 列挙のTheme variables </a>
-<br/>　Category name 称をdisplay 　　categories,categorieslink,categorieslinkcode,categorieslinkid
-<br/>　　　　　　　　group_<a link href="#notetext_id" class="note_super">id</a>,
-group_<a link href="#notetext_code" class="note_super">code</a>,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>
-<br/>　　　　　　　　区切りはLANG_DATABOX['category_separater']でSelect しています.
-<br/>　Category code をdisplay 　group_<a link href="#notetext_id" class="note_super">id</a>_code,
-group_<a link href="#notetext_code" class="note_super">code</a>_code,
-grouplink_<a link href="#notetext_id" class="note_super">id</a>_code,
-grouplink_<a link href="#notetext_code" class="note_super">code</a>_code
-<br/>　　　　　　　　区切りはLANG_DATABOX['category_separater_code']でSelect しています.
+<br/><a class="note_super" href="#notetext_8" id="notetext_8">*8</a>
+codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;/が含まれると、urlが切れます
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;使用できるのは、次のアトリビュートタイプです
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00一行テキスト
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02いいえ/はい
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;03日付
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;04日時
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07オプションリスト（選択肢）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08ラジオボタンリスト（選択肢）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;09オプションリスト（マスター）
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16ラジオボタンリスト（マスター）
 
+<br/><a class="note_super" href="#notetext_9" id="notetext_9">*9</a>
+Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります
+
+<br/>
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
-At the first time display されるImages （File save ）Type Attribute（Additional field ）
+最初に表示される画像（ファイル保存）タイプのアトリビュート（追加項目）
+
+
+<br/><a class="note_super" href="#notetext_id" id="notetext_id">1 </a>
+管理画面で表示されているid 1,2,3,4,5,...(システムで指定された数字)
+
+<br/><a class="note_super" href="#notetext_code" id="notetext_code">xxxx</a>
+管理画面で指定したcodeの値
+
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklog Document Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
