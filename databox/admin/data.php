@@ -2197,9 +2197,11 @@ function fncexportform (
 }
 
 function fncdatadeleteExec (
+    $action
 )
 {
-    global $_TABLES;
+	global $_TABLES;
+	global $LANG_DATABOX_ADMIN;
 	
 	$fieldset = $_POST['fieldset'];
     //if (is_array($fieldset)){
@@ -2214,12 +2216,27 @@ function fncdatadeleteExec (
 	if  ($fieldset==""){ 
 		return ;
 	}
+	
+	if  ($action==$LANG_DATABOX_ADMIN['delete1']){
+		//DRAFT 下書データ
+		$arg= " AND draft_flag=1".LB;
+	}else if  ($action==$LANG_DATABOX_ADMIN['delete2']){
+		//公開終了日を過ぎたデータ
+		$arg= " AND NOT (expired=0 OR expired > NOW())";
+	}else if  ($action==$LANG_DATABOX_ADMIN['delete3']){
+		//すべて
+		$arg= "";
+	}else{
+		return ;
+	}	
+	
 	$rt="";
 	$s=implode(", ", $fieldset); 
 	
 	$sql="SELECT id FROM {$_TABLES['DATABOX_base']}  ";
 	$sql .=" WHERE ";
 	$sql .="  fieldset_id IN (".$s.")";
+	$sql .=$arg;
 	
 	$result = DB_query ($sql);
 	$numrows = DB_numRows ($result);
@@ -2332,7 +2349,7 @@ if ($mode=="changesetexec") {
 	fncChangeSetExec();
 }
 if ($mode=="datadeleteexec") {
-	fncdatadeleteExec ();
+	fncdatadeleteExec ($action);
 }
 
 //

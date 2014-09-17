@@ -114,6 +114,7 @@ $LANG_USERBOX_ADMIN['mail2'] = 'Settings';
 
 
 $LANG_USERBOX_ADMIN['submit'] = 'Submit';
+$LANG_USERBOX_ADMIN['confirm'] = 'Sure you want to execute?';
 
 //
 $LANG_USERBOX_ADMIN['link_admin'] = 'Admin';

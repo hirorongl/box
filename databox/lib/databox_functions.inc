@@ -4600,15 +4600,29 @@ function DATABOX_Confirmation(
     $tmpl->set_var('actionprg', $actionprg);
 	
     $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
-
+    $btn_value=$LANG_ADMIN['submit'];
+	$confirm_value=$lang_box_admin['confirm'];
+	$btn2="";
+	$btn3="";
     if ($mode==="datadelete"){
         $tmpl->set_var('lang_checklist', $lang_box_admin['fieldset'].":");
         $checklist=DATABOX_getcheckList ("fieldset","",$pi_name);
         $tmpl->set_var('checklist', $checklist);
+        $btn_value=$lang_box_admin['delete1'];
+		$confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
+		$confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
+		$confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
+		$btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
+		     ." onclick=\"return confirm('{$confirm_value2}');\"{xhtml}>".LB;
+		$btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
+		     ." onclick=\"return confirm('{$confirm_value3}');\"{xhtml}>".LB;
     }
 
     // SAVE、CANCEL ボタン
-    $tmpl->set_var('lang_submit', $LANG_ADMIN['submit']);
+    $tmpl->set_var('lang_confirm', $confirm_value);
+    $tmpl->set_var('lang_submit', $btn_value);
+    $tmpl->set_var('btn2', $btn2);
+    $tmpl->set_var('btn3', $btn3);
     $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
     $tmpl->set_var('mode', $mode."exec");
 

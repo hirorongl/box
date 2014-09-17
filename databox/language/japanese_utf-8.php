@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140901
+# Last Update 20140917
 
 ###############################################################################
 ## 管理画面 menu
@@ -106,6 +106,11 @@ $LANG_DATABOX_ADMIN['mail1'] = '送信実行';
 $LANG_DATABOX_ADMIN['mail2'] = '送信設定';
 
 $LANG_DATABOX_ADMIN['submit'] = '実行';
+$LANG_DATABOX_ADMIN['confirm'] = '実行してよいですか？';
+
+$LANG_DATABOX_ADMIN['delete1'] = '選択したタイプのドラフトデータを削除する';
+$LANG_DATABOX_ADMIN['delete2'] = '選択したタイプの公開終了データを削除する';
+$LANG_DATABOX_ADMIN['delete3'] = '選択したタイプのすべてのデータを削除する';
 
 //
 $LANG_DATABOX_ADMIN['link_admin'] = '管理画面：';

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140804
+# Last Update 20140917
 
 ###############################################################################
 ## 管理画面 menu
@@ -118,6 +118,8 @@ $LANG_USERBOX_ADMIN['mail2'] = '送信設定';
 
 
 $LANG_USERBOX_ADMIN['submit'] = '実行';
+$LANG_USERBOX_ADMIN['confirm'] = '実行してよいですか？';
+
 
 //
 $LANG_USERBOX_ADMIN['link_admin'] = '管理画面：';

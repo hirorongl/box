@@ -103,6 +103,11 @@ $LANG_DATABOX_ADMIN['mail1'] = 'Send';
 $LANG_DATABOX_ADMIN['mail2'] = 'Settings';
 
 $LANG_DATABOX_ADMIN['submit'] = 'Submit';
+$LANG_DATABOX_ADMIN['confirm'] = 'Sure you want to execute?';
+
+$LANG_DATABOX_ADMIN['delete1'] = 'delete the draft data of the selected type';
+$LANG_DATABOX_ADMIN['delete2'] = 'delete the public end data of the selected type';
+$LANG_DATABOX_ADMIN['delete3'] = 'delete all the data of the selected type';
 
 //
 $LANG_DATABOX_ADMIN['link_admin'] = 'Admin';
