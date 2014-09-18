@@ -221,7 +221,7 @@ $_DATABOX_DEFAULT['csv_default_fieldset_id']="";
 $_DATABOX_DEFAULT['csv_cron_schedule_interval']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_unlink']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']="0";
-$_DATABOX_DEFAULT['csv_cron_schedule_default_sel_id']="0";
+$_DATABOX_DEFAULT['csv_cron_schedule_sel_id']="0";
 
 //（11）MAPS
 $_DATABOX_DEFAULT['maps_mid'] = "mapid";
