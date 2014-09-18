@@ -221,6 +221,7 @@ $_DATABOX_DEFAULT['csv_default_fieldset_id']="";
 $_DATABOX_DEFAULT['csv_cron_schedule_interval']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_unlink']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']="0";
+$_DATABOX_DEFAULT['csv_cron_schedule_default_sel_id']="0";
 
 //（11）MAPS
 $_DATABOX_DEFAULT['maps_mid'] = "mapid";
@@ -885,6 +886,12 @@ function plugin_initconfig_databox()
             'csv_cron_schedule_nextmaps'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']
             ,'select', 0, 10, 0, 60, true
+			, $pi_name
+			,10);
+        $c->add(
+            'csv_cron_schedule_sel_id'
+            ,$_DATABOX_DEFAULT['csv_cron_schedule_sel_id']
+            ,'select', 0, 10, 29, 70, true
 			, $pi_name
 			,10);
 		

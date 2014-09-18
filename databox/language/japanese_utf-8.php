@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140917
+# Last Update 20140918
 
 ###############################################################################
 ## 管理画面 menu
@@ -861,6 +861,7 @@ $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポー
 $LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cronのスケジュール間隔 ';
 $LANG_confignames['databox']['csv_cron_schedule_unlink'] = 'スケジュール.終了後入力ファイル削除 ';
 $LANG_confignames['databox']['csv_cron_schedule_nextmaps'] = 'スケジュール.続けてMaps実行 ';
+$LANG_confignames['databox']['csv_cron_schedule_sel_id'] = 'スケジュール.条件 ';
 
 
 //---(１１)
@@ -984,6 +985,30 @@ $LANG_configselects['databox'][28] =array();
         $name=$A['name'];
         $fieldset_id=$A['fieldset_id'];
         $LANG_configselects['databox'][28][$name]=$fieldset_id;
-}
+    }
 
+//
+$LANG_configselects['databox'][29] =array();
+    $sql="show tables like '{$_TABLES['DATABOX_def_csv_sel']}'" ;
+
+    $rt=DB_query($sql);
+    $rt=DB_numRows($rt);
+
+    if  ($rt<>0){
+        $sql = LB;
+        $sql .= "SELECT ".LB;
+        $sql .= " csv_sel_id".LB;
+        $sql .= ",name".LB;
+        $sql .= " FROM {$_TABLES['DATABOX_def_csv_sel']}".LB;
+        $sql .= " ORDER BY csv_sel_id".LB;
+        $result = DB_query( $sql );
+        $nrows = DB_numRows( $result );
+        $LANG_configselects['databox'][29]['条件なし']="";
+        for( $i = 0; $i < $nrows; $i++ )    {
+            $A = DB_fetchArray( $result, true );
+            $name=$A['name'];
+            $csv_sel_id=$A['csv_sel_id'];
+            $LANG_configselects['databox'][29][$name]=$csv_sel_id;
+        }
+    }
 ?>

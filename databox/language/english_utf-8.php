@@ -815,6 +815,9 @@ $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
 $LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cron Schedule Interval';
+$LANG_confignames['databox']['csv_cron_schedule_unlink'] = 'schedule.After the end of the input file Delete ';
+$LANG_confignames['databox']['csv_cron_schedule_nextmaps'] = 'schedule.Maps continues execution ';
+$LANG_confignames['databox']['csv_cron_schedule_sel_id'] = 'schedule.SELECT ';
 
 //---(１１)
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
@@ -936,5 +939,21 @@ $LANG_configselects['databox'][28] =array();
         $fieldset_id=$A['fieldset_id'];
         $LANG_configselects['databox'][28][$name]=$fieldset_id;
 }
-
+    if  ($rt<>0){
+        $sql = LB;
+        $sql .= "SELECT ".LB;
+        $sql .= " csv_sel_id".LB;
+        $sql .= ",name".LB;
+        $sql .= " FROM {$_TABLES['DATABOX_def_csv_sel']}".LB;
+        $sql .= " ORDER BY csv_sel_id".LB;
+        $result = DB_query( $sql );
+        $nrows = DB_numRows( $result );
+        $LANG_configselects['databox'][29]['ALL']="";
+        for( $i = 0; $i < $nrows; $i++ )    {
+            $A = DB_fetchArray( $result, true );
+            $name=$A['name'];
+            $csv_sel_id=$A['csv_sel_id'];
+            $LANG_configselects['databox'][29][$name]=$csv_sel_id;
+        }
+    }
 ?>
