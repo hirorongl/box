@@ -7,8 +7,6 @@
 // public_html/admin/plugins/databox/backuprestore.php
 // 20121023 tsuchitani AT ivywe DOT co DOT jp
 
-// @@@@@追加予定：データのバックアップリストア
-// @@@@@追加予定：データのクリア
 // @@@@@追加予定：サンプルデータのインポート
 
 define ('THIS_SCRIPT', 'databox/backuprestore.php');
@@ -522,54 +520,7 @@ function fncTableCheck(
     }
     return $rt;
 }
-function fncConfirmation(
-    $pi_name
-    ,$mode
-)
-// +---------------------------------------------------------------------------+
-// | 機能 確認画面
-// | 書式 Confirmation("databox")
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:
-// +---------------------------------------------------------------------------+
-{
-    global $_CONF;
-    global $LANG_ADMIN;
 
-    global $LANG_DATABOX_ADMIN;
-
-    $tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
-    $tmpl->set_file(array('confirm' => 'confirmation.thtml'));
-
-
-    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
-    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
-    $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
-
-    //
-    $actionname=$LANG_DATABOX_ADMIN[$mode];
-    $actionprg="{$_CONF['site_admin_url']}/plugins/".THIS_SCRIPT."?mode={$mode}exec";
-
-    $tmpl->set_var('actionname', $actionname);
-    $tmpl->set_var('actionprg', $actionprg);
-	
-    $tmpl->set_var('help', $LANG_DATABOX_ADMIN[$mode.'msg']);
-
-	
-    // SAVE、CANCEL ボタン
-    $tmpl->set_var('lang_submit', $LANG_ADMIN['submit']);
-    $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
-    $tmpl->set_var('mode', $mode."exec");
-
-    $tmpl->parse ('output', 'confirm');
-    $comfirm = $tmpl->finish ($tmpl->get_var ('output'));
-
-    $retval = $comfirm;
-
-
-    return $retval;
-}
 function fncchkBasicData(
     $pi_name
 )
@@ -709,7 +660,7 @@ switch ($mode) {
 	case 'allclear':
         $information['pagetitle']=$LANG_databox_ADMIN['piname'];
         $display .= fncMenu($pi_name);
-        $display .= fncConfirmation($pi_name,$mode);
+        $display .= DATABOX_Confirmation($pi_name,$mode);
         break;
     case 'dataclearexec'://data clear
     case 'allclearexec'://data clear
