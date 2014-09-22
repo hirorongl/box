@@ -50,11 +50,11 @@ $navbarMenu[$LANG_DATABOX_admin_menu['51']]= $adminurl.'mst.php';
 $navbarMenu[$LANG_DATABOX_admin_menu['6']]= $adminurl.'backuprestore.php';
 
 //
-$pro=$_CONF['path'] . 'plugins/databox/proversion/';
-
-if (file_exists($pro)) {
-    $navbarMenu[$LANG_DATABOX_admin_menu['8']]= $adminurl.'pro.php';
+$xml=$_CONF['path'] . 'plugins/databox/xml/';
+if (file_exists($xml)) {
+    $navbarMenu[$LANG_DATABOX_admin_menu['8']]= $adminurl.'xml.php';
 }
+
 $csv=$_CONF['path'] . 'plugins/databox/csv/';
 if (file_exists($csv)) {
     $navbarMenu[$LANG_DATABOX_admin_menu['9']]= $adminurl.'csv.php';

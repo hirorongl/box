@@ -25,7 +25,7 @@ $LANG_DATABOX_admin_menu['5']= 'グループ';
 $LANG_DATABOX_admin_menu['51']= 'マスター';
 $LANG_DATABOX_admin_menu['6']= 'バックアップ＆リストア';
 //
-$LANG_DATABOX_admin_menu['8']= 'Proversion';
+$LANG_DATABOX_admin_menu['8']= 'XML';
 $LANG_DATABOX_admin_menu['9']= 'CSV';
 $LANG_DATABOX_admin_menu['10']= 'Maps';
 
