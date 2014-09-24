@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140918
+# Last Update 20140924
 
 ###############################################################################
 ## 管理画面 menu
@@ -391,7 +391,7 @@ $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
 $LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
-$LANG_DATABOX_ADMIN['templatesetvars'] = '  テーマ変数';
+$LANG_DATABOX_ADMIN['templatesetvars'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['parent_id'] = '親ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = '親グループ？';
 $LANG_DATABOX_ADMIN['input_type'] = '入力タイプ';
@@ -466,11 +466,16 @@ $LANG_DATABOX_ADMIN['data_restore'] = 'データ〜マスターリストア実�
 
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
 $LANG_DATABOX_ADMIN['configuration'] = 'コンフィギュレーション設定';
-$LANG_DATABOX_ADMIN['autotags'] = '自動タグ';
+$LANG_DATABOX_ADMIN['install'] = 'インストール方法';
+$LANG_DATABOX_ADMIN['autotags'] = '自動タグ・ブロック用関数';
+$LANG_DATABOX_ADMIN['files'] = 'ファイル一覧';
+$LANG_DATABOX_ADMIN['tables'] = 'テーブル一覧';
+$LANG_DATABOX_ADMIN['input'] = '入力一覧';
+
 $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 
 //管理画面：このページについて
-$LANG_DATABOX_ADMIN['about_admin_information'] = '自動タグについて';
+$LANG_DATABOX_ADMIN['about_admin_information'] = '';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';

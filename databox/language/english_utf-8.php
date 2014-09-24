@@ -433,11 +433,15 @@ $LANG_DATABOX_ADMIN['data_restore'] = 'data & master restore';
 
 $LANG_DATABOX_ADMIN['document'] = 'Document';
 $LANG_DATABOX_ADMIN['configuration'] = 'Configuration Settings';
+$LANG_DATABOX_ADMIN['install'] = 'install';
 $LANG_DATABOX_ADMIN['autotags'] = 'Autotags';
+$LANG_DATABOX_ADMIN['files'] = 'file list';
+$LANG_DATABOX_ADMIN['tables'] = 'table list';
+$LANG_DATABOX_ADMIN['input'] = 'input list';
 $LANG_DATABOX_ADMIN['online'] = 'Online';
 
 //Admin
-$LANG_DATABOX_ADMIN['about_admin_information'] = 'About Autotags';
+$LANG_DATABOX_ADMIN['about_admin_information'] = '';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
