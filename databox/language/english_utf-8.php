@@ -23,9 +23,9 @@ $LANG_DATABOX_admin_menu['5']= 'Groups';
 $LANG_DATABOX_admin_menu['51']= 'Master';
 $LANG_DATABOX_admin_menu['6']= 'Backup / Restore';
 //
-$LANG_DATABOX_admin_menu['8']= 'Proversion';
+$LANG_DATABOX_admin_menu['8']= 'XML';
 $LANG_DATABOX_admin_menu['9']= 'CSV';
-$LANG_DATABOX_admin_menu['10']= 'Maps';
+$LANG_DATABOX_admin_menu['10']= 'MAPS';
 
 ## User
 $LANG_DATABOX_user_menu = array();
