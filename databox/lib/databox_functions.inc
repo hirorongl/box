@@ -415,14 +415,20 @@ function DATABOX_getcheckList(
     $kind
     ,$selected
     ,$pi_name
+	,$group_id=""
+	,$fname=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  チェックリスト作成
 // | 書式 DATABOX_getcheckList($kind,$selected = "")
+// | 書式 $checklist=DATABOX_getcheckList ("fieldset","",$pi_name)
+// | 書式 $checklist=DATABOX_getcheckList ("categorygroup","",$pi_name,1,"ch1")
 // +---------------------------------------------------------------------------+
-// | 引数 $kind:種類
+// | 引数 $kind:fieldset
 // | 引数 $selected:選択値
 // | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox' 
+// | 引数 $group_id　マスターの時既定リスト名
+// | 引数 $fname フィールド名
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:チェックリスト
 // +---------------------------------------------------------------------------+
@@ -431,13 +437,17 @@ function DATABOX_getcheckList(
 //20140624 fieldset　追加
 {
 global $_TABLES;
+	
+	if ($fname==""){
+		$fname=$kind;
+	}
 
     $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
     $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
     $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
     $table_def_fieldset=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
     $retval = '';
-    if ($kind=="category"){
+    if ($kind=="categorygroup"){
 		$sql = "SELECT ";
         $sql .= " m1.category_id".LB;
         $sql .= ",m1.name".LB;
@@ -447,9 +457,10 @@ global $_TABLES;
         $sql .= " FROM {$table_def_category} AS m1".LB;
         $sql .= " , {$table_def_group} AS m2".LB;
         $sql .= " WHERE ".LB;
-        $sql .= " m2.group_id = m1.categorygroup_id".LB;
-        $sql .= " AND m2.parent_flg = 0".LB;
-        $sql .= " ORDER BY m2.group_id,m2.orderno, m1.orderno".LB;
+        $sql .= " m1.allow_display<2 ".LB;
+        $sql .= " AND m1.categorygroup_id =".$group_id.LB;
+        $sql .= " AND m2.group_id = m1.categorygroup_id".LB;
+        $sql .= " ORDER BY m1.orderno".LB;
     }else if ($kind=="fieldset"){
         $sql = "SELECT ";
         $sql .= " fieldset_id".LB;
@@ -482,16 +493,8 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        if ($kind=="category"){
-            if ($old_group_id<>$A['group_id']){
-				$retval .="<div class=\"databox_admin_data_title\">";
-				$retval .=$A['group_name'];
-                $retval .="</div>";
-                $old_group_id=$A['group_id'];
-            }
-        }
         $retval .="<nobr>";
-        $retval .= '<input type="checkbox" name="' . $kind . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         $retval .= ' class="clcr" ';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {

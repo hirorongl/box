@@ -84,6 +84,7 @@ function plugin_autotags_databox (
 		$parm2_ary[]="type_id";
 		$parm2_ary[]="group_id";
 		$parm2_ary[]="group_code";
+		$parm2_ary[]="fname";
 		$p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -207,6 +208,15 @@ function plugin_autotags_databox (
 							 "databox"
                             ,$p['group_id']
                             ,$p['group_code']
+                        );
+                        break;
+                    case 'categorycheck':
+          				$rt= DATABOX_getcheckList(
+							 "categorygroup"
+                            ,""
+                            ,"databox"
+                            ,$p['group_id']
+                            ,$p['fname']
                         );
                         break;
 
