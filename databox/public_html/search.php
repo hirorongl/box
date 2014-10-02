@@ -72,7 +72,10 @@ function fncDisplay()
     //-----引数チェック
     $arg=$_REQUEST;
     $cary=array();
-
+    $acnt=0;
+    $afield=array();
+    $afile=array();
+    $awhere=array();
     foreach((array)$arg as $key => $value) {
         if (is_array($value)){
             $k = explode ('_', $key);
@@ -99,7 +102,7 @@ function fncDisplay()
                 }
                 $cary[]= " (" .$ids." ) ";
             }
-        }else{
+		}else if ($value<>""){
             if  ($key=="fieldset") {
                 $fieldset_id=$value;
             }else if  ($key=="templatedir") {
@@ -112,16 +115,12 @@ function fncDisplay()
                 $nohitmsg=$value;
             }else{
                 $k = explode ('_', $key);
-                if  ($k[0]=="aeq"){
-                    $w=COM_applyFilter($k[1]);
-                }else if ($k[0]=="afr"){
-                    $w=COM_applyFilter($k[1]);
-                }else if ($k[0]=="ato"){
-                    $w=COM_applyFilter($k[1]);
+				if  ($k[0]=="aeq" OR $k[0]=="afr" OR $k[0]=="ato"){
+					$dummy= fncfield($k[0],COM_applyFilter($k[1]),$value,$acnt,$afield,$afile,$awhere);
                 }
             }
         }
-    }
+	}
     if  ($fieldset_id==""){
         $fieldset_id=0;
     }
@@ -149,13 +148,23 @@ function fncDisplay()
     $sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
 
-    $sql .= " ,t2.group_id";
-    $sql .= " ,t2.owner_id";
-
+    $sql .= " ,t2.group_id".LB;
+    $sql .= " ,t2.owner_id".LB;
+	
+	if  ($acnt>0){
+        for ($i = 1; $i <= $acnt; $i++) {
+			$sql .= $afield[$i].LB;
+		}
+    }
     
     //--FROM
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
+	if  ($acnt>0){
+        for ($i = 1; $i <= $acnt; $i++) {
+			$sql .= $afile[$i].LB;
+		}
+    }
     
     //--WHERE
     $sql .= " WHERE ".LB;
@@ -165,7 +174,12 @@ function fncDisplay()
     
     //条件
     foreach((array)$cary as $value) {
-        $sql .= " AND ".$value;
+        $sql .= " AND ".$value.LB;
+    }
+	if  ($acnt>0){
+        for ($i = 1; $i <= $acnt; $i++) {
+			$sql .= " AND ".$awhere[$i].LB;
+		}
     }
     //下書データを除く
     $sql .= " AND t2.draft_flag=0".LB;
@@ -279,6 +293,9 @@ function fncDisplay()
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
         
+        $referer =$_SERVER['HTTP_REFERER'];
+        $templates->set_var ('referer', $referer);
+        $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
             $A = array_map('stripslashes', $A);
@@ -446,6 +463,9 @@ function fncDisplay()
             ));
             
             $templates->set_var ('home',$LANG_DATABOX['home']);
+            $referer =$_SERVER['HTTP_REFERER'];
+            $templates->set_var ('referer', $referer);
+            $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
             
                         
             $templates->set_var('xhtml', XHTML);
@@ -465,7 +485,72 @@ function fncDisplay()
 
     return $retval;
 }    
+function fncfield(
+    $operate
+    ,$field_id
+    ,$value
+    ,&$acnt
+    ,&$afield
+    ,&$afile
+    ,&$awhere
 
+)
+// +---------------------------------------------------------------------------+
+// | 機能  追加項目の条件 を編集
+// | 書式  fncfield($operate,$field_id,$value,$acnt,$afield,$afile,$awhere);
+// +---------------------------------------------------------------------------+
+// | 引数 $operate
+// | 引数 $field_id
+// | 引数戻値 $acnt
+// | 引数戻値 $afield
+// | 引数戻値 $afile
+// | 引数戻値 $awhire
+// +---------------------------------------------------------------------------+
+
+{
+    global $_TABLES;
+	
+	
+	$return=false;
+	
+    $sql="SELECT ";
+    $sql.= " field_id ";
+    $sql.= ",name ";
+    $sql.=" FROM";
+    $sql.=" {$_TABLES['DATABOX_def_field']} ";
+    $sql.=" WHERE field_id=".$field_id;
+    // 表示する項目のみ
+    $sql.=" AND allow_display='0'";
+    //0: 一行テキストフィールド
+    //1: 複数行テキストフィールド
+    //20:HTML  10:TinyMCE 19:CKEditor
+    $sql.=" AND type IN (0,1,10,19,20)";
+	//検索対象にする=はい
+	//$sql.=" AND searchtarget='1'";
+	
+	$result = DB_query ($sql);
+    $numrows = DB_numRows ($result);
+    if ($numrows>0){
+       $A = DB_fetchArray ($result);
+       $acnt=$acnt+1;
+       $afield[$acnt]=" ,a".$acnt.".value AS value".$acnt;
+       $afile[$acnt]=" ,{$_TABLES['DATABOX_addition']} AS a".$acnt;
+	   $w="a".$acnt.".field_id=".$field_id;
+	   $w.=" AND a".$acnt.".id=t2.id";
+	   if  ($operate=="aeq"){
+	       $w.=" AND a".$acnt.".value='".$value."'";
+	   }else if ($operate=="afr"){
+	       $w.=" AND a".$acnt.".value>='".$value."'";
+	   }else if ($operate=="ato"){
+	       $w.=" AND a".$acnt.".value<='".$value."'";
+	   }
+	   $awhere[$acnt]=$w;
+       $return=true;
+	}
+
+    return ;
+
+}
 // +---------------------------------------------------------------------------+
 // MAIN
 // +---------------------------------------------------------------------------+
@@ -495,7 +580,6 @@ if (COM_isAnonUser()){
 //&attributeA=100000_15000
 //&attributeA=2000|3000
 //&attributeA=2000
-
 
 $display = '';
 $information = array();
