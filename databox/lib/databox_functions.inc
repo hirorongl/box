@@ -872,7 +872,8 @@ function DATABOX_getadditionsearchdef(
     //0: 一行テキストフィールド
     //1: 複数行テキストフィールド
     //20:HTML  10:TinyMCE 19:CKEditor
-    $sql.=" AND type IN (0,1,10,19,20)";
+    //15:数値  21:通貨
+    $sql.=" AND type IN (0,1,10,19,20,15,21)";
 	
 	//検索対象にする=はい
 	$sql.=" AND searchtarget='1'";
