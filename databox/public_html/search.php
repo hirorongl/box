@@ -516,6 +516,7 @@ function fncfield(
     $sql="SELECT ";
     $sql.= " field_id ";
     $sql.= ",name ";
+    $sql.= ",type ";
     $sql.=" FROM";
     $sql.=" {$_TABLES['DATABOX_def_field']} ";
     $sql.=" WHERE field_id=".$field_id;
@@ -524,7 +525,8 @@ function fncfield(
     //0: 一行テキストフィールド
     //1: 複数行テキストフィールド
     //20:HTML  10:TinyMCE 19:CKEditor
-    $sql.=" AND type IN (0,1,10,19,20)";
+    //15:数値  21:通貨
+    $sql.=" AND type IN (0,1,10,19,20,15,21)";
 	//検索対象にする=はい
 	//$sql.=" AND searchtarget='1'";
 	
@@ -540,9 +542,17 @@ function fncfield(
 	   if  ($operate=="aeq"){
 	       $w.=" AND a".$acnt.".value='".$value."'";
 	   }else if ($operate=="afr"){
-	       $w.=" AND a".$acnt.".value>='".$value."'";
+            if  ($A['type']==15  OR $A['type']==21){
+                $w.=" AND (a".$acnt.".value + 0) >='".$value."'";
+        	}else{
+                $w.=" AND a".$acnt.".value>='".$value."'";
+            }
 	   }else if ($operate=="ato"){
-	       $w.=" AND a".$acnt.".value<='".$value."'";
+            if  ($A['type']==15  OR $A['type']==21){
+                $w.=" AND (a".$acnt.".value + 0) <='".$value."'";
+            }else{
+                $w.=" AND a".$acnt.".value<='".$value."'";
+            }
 	   }
 	   $awhere[$acnt]=$w;
        $return=true;
