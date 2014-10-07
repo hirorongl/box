@@ -100,6 +100,17 @@ div#databox_admin .admin-list-table th.admin-list-field {
   width: 25%;
   text-align: right;
 }
+div#databox_admin .admin-list-table td.admin-list-field {
+  width: 75%;
+}
+div#databox_admin .admin-list-table th.admin-list-field2 {
+  width: 35%;
+  text-align: right;
+  color: #777;
+}
+div#databox_admin .admin-list-table td.admin-list-field2 {
+  width: 65%;
+}
 div#databox_admin div.databox_admin_data_title {
   font-weight: bold;
   margin: 1em 0 0.5em 0;
@@ -213,4 +224,21 @@ form#admin-fieldsetgroups ul.move li {
 form#admin-fieldsetgroups ul.submit {
   clear: left;
   text-align: center;
+}
+.pluginRow2 th,
+.pluginRow2 td {
+color:#333;
+line-height:120%;
+width: 35%;
+}
+div#databox_admin .admin-list-table th.admin-list-field2 {
+  vertical-align:middle;
+  width: 35%;
+  text-align: right;
+}
+div#databox_admin .admin-list-table th.admin-list-field2,
+div#databox_admin .admin-list-table td.admin-list-field2,
+div#databox_admin .admin-list-table th.admin-list-field,
+div#databox_admin .admin-list-table td.admin-list-field {
+  vertical-align:middle;
 }

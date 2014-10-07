@@ -189,15 +189,15 @@ $LANG_DATABOX_ADMIN['inst_dataexport'] =
 ";
 
 
-$LANG_DATABOX_ADMIN['allow_display']='表示制限(一般画面)';
-$LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザー用編集画面)';
+$LANG_DATABOX_ADMIN['allow_display']='表示制限(一般)';
+$LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザー)';
 
 $LANG_DATABOX_ADMIN['type']='タイプ';
 
 $LANG_DATABOX_ADMIN['size']='size（テキスト,マルチセレクトリスト）';
 $LANG_DATABOX_ADMIN['maxlength']='maxlength（テキスト）';
 $LANG_DATABOX_ADMIN['rows']='rows（複数行テキスト）';
-$LANG_DATABOX_ADMIN['br']='改行する（ラジオボタン）';
+$LANG_DATABOX_ADMIN['br']='改行（ラジオボタン）';
 $LANG_DATABOX_ADMIN['help_br']='0:しない,1〜9:指定数毎に改行する';
 
 //
