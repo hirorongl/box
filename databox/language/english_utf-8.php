@@ -819,6 +819,7 @@ $LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
 $LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
+$LANG_confignames['databox']['csv_default_owner_id'] = 'CSV Import Default OwnerID';
 $LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cron Schedule Interval';
 $LANG_confignames['databox']['csv_cron_schedule_unlink'] = 'schedule.After the end of the input file Delete ';
 $LANG_confignames['databox']['csv_cron_schedule_nextmaps'] = 'schedule.Maps continues execution ';

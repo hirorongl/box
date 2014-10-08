@@ -218,6 +218,7 @@ $_DATABOX_DEFAULT['xml_default_fieldset_id']="";
 $_DATABOX_DEFAULT['path_csv'] = $_CONF['path_html']."databox_csv";
 $_DATABOX_DEFAULT['path_csv_out']=$_CONF['path']."data/databox_csv";
 $_DATABOX_DEFAULT['csv_default_fieldset_id']="";
+$_DATABOX_DEFAULT['csv_default_owner_id']="2";
 $_DATABOX_DEFAULT['csv_cron_schedule_interval']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_unlink']="0";
 $_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']="0";
@@ -869,29 +870,36 @@ function plugin_initconfig_databox()
             ,$_DATABOX_DEFAULT['csv_default_fieldset_id']
             ,'select', 0, 10, 28, 30, true
 			, $pi_name
+    		,10);
+		$c->add(
+            'csv_default_owner_id'
+            ,$_DATABOX_DEFAULT['csv_default_owner_id']
+            ,'text', 0, 10, NULL, 40, TRUE
+			, $pi_name
 			,10);
+
         $c->add(
             'csv_cron_schedule_interval'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_interval']
-            ,'text', 0, 10, NULL, 40, TRUE
+            ,'text', 0, 10, NULL, 50, TRUE
             , $pi_name
 		    ,10);
         $c->add(
             'csv_cron_schedule_unlink'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_unlink']
-            ,'select', 0, 10, 0, 50, true
+            ,'select', 0, 10, 0, 60, true
 			, $pi_name
 			,10);
         $c->add(
             'csv_cron_schedule_nextmaps'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_nextmaps']
-            ,'select', 0, 10, 0, 60, true
+            ,'select', 0, 10, 0, 70, true
 			, $pi_name
 			,10);
         $c->add(
             'csv_cron_schedule_sel_id'
             ,$_DATABOX_DEFAULT['csv_cron_schedule_sel_id']
-            ,'select', 0, 10, 29, 70, true
+            ,'select', 0, 10, 29, 80, true
 			, $pi_name
 			,10);
 		

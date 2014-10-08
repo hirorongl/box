@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140929
+# Last Update 20141008
 
 ###############################################################################
 ## 管理画面 menu
@@ -864,6 +864,7 @@ $LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
 $LANG_confignames['databox']['path_csv'] = 'CSV一括インポートディレクトリ';
 $LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレクトリ';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポートデフォルトタイプ';
+$LANG_confignames['databox']['csv_default_owner_id'] = 'CSV一括インポートデフォルト所有者ID';
 $LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cronのスケジュール間隔 ';
 $LANG_confignames['databox']['csv_cron_schedule_unlink'] = 'スケジュール.終了後入力ファイル削除 ';
 $LANG_confignames['databox']['csv_cron_schedule_nextmaps'] = 'スケジュール.続けてMaps実行 ';

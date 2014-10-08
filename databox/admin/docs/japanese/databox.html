@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/databox.html 20140918 -->
+<!-- admin/plugins/databox/docs/japanese/databox.html 20141008 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -540,7 +540,7 @@
 
 </table>
 
-<h3><a >OPTION:CSV</a>(2014/09/18)</h3>
+<h3><a >OPTION:CSV</a>(2014/10/08)</h3>
 <table>
 <tr><th style="width:25%">項目(変数)</th>
     <th style="width:25%">デフォルト</th>
@@ -563,6 +563,11 @@
   <td valign="top">　</td>
 </tr>
 <tr class="r2">
+  <td valign="top"><a name="desc_csv_default_owner_id">CSV一括インポートデフォルト所有者ID(csv_default_owner_id)</a></td>
+  <td valign="top">2</td>
+  <td valign="top">　</td>
+</tr>
+<tr >
   <td valign="top"><a name="desc_csv_cron_schedule_interval">Cronのスケジュール間隔(csv_cron_schedule_interval)</a></td>
   <td valign="top">0（秒）</td>
   <td valign="top">一定の間隔で無条件一括インポートを行うことができます。　<br/>
@@ -571,12 +576,12 @@
   この機能を無効にするには、0を指定します。<br/>
   </td>
 </tr>
-<tr>
+<tr class="r2">
   <td valign="top"><a name="desc_csv_cron_schedule_unlink">スケジュール.終了後入力ファイル削除(csv_csv_cron_schedule_unlink)</a></td>
   <td valign="top">いいえ(0)</td>
   <td valign="top">はい(1)にするとスケジュール実行後　入力ファイルを削除します　</td>
 </tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_csv_cron_schedule_nextmaps">スケジュール.続けてMaps実行(csv_cron_schedule_nextmaps)</a></td>
   <td valign="top">いいえ(0)</td>
   <td valign="top">はい(1)にするとスケジュール実行後、続けてMapsのスケジュール（MAPS エクスポート）実行します。<br/>
@@ -584,7 +589,7 @@
   はい(1)にする場合は、Mapsプラグインのロード順は、必ず、DataBox より上位にしてください。
   　</td>
 </tr>
-<tr >
+<tr class="r2">
   <td valign="top"><a name="desc_csv_cron_schedule_sel_id">スケジュール.条件(csv_cron_schedule_sel_id)</a></td>
   <td valign="top">条件なし(0)</td>
   <td valign="top">設定された条件で一括インポートスケジュール実行します。
