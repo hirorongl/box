@@ -88,19 +88,25 @@ function fncDisplay()
                     }
                     $ids.= COM_applyFilter($value2);
                 }
-                $cary[]= "(t2.id IN (SELECT id FROM {$tbl1}"
+                if  ($ids<>""){
+                    $cary[]= "(t2.id IN (SELECT id FROM {$tbl1}"
                            ." WHERE t2.id=id AND category_id IN ({$ids})) )";
+				}	
             }else if ($k[0]=="gand"){
                 foreach($ary as $key2 => $value2){
-                    if ($ids<>""){
-                        $ids.=" AND ";
+                    $w= COM_applyFilter($value2);
+					if  ($w<>""){
+                        if ($ids<>""){
+                            $ids.=" AND ";
+                        }
+                        $ids.= " IN (SELECT category_id";
+                        $ids.=" FROM {$tbl1}  ";
+                        $ids.=" WHERE t2.id = id )";
                     }
-                    $ids.= COM_applyFilter($value2);
-                    $ids.= " IN (SELECT category_id";
-                    $ids.=" FROM {$tbl1}  ";
-                    $ids.=" WHERE t2.id = id )";
                 }
-                $cary[]= " (" .$ids." ) ";
+                if  ($ids<>""){
+                    $cary[]= " (" .$ids." ) ";
+                }
             }
 		}else if ($value<>""){
             if  ($key=="fieldset") {
