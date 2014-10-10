@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20141008
+# Last Update 20141010
 
 ###############################################################################
 ## 管理画面 menu
@@ -91,6 +91,7 @@ $LANG_DATABOX_ADMIN['drafton'] = 'ドラフト一括オン';//'下書一括オ�
 $LANG_DATABOX_ADMIN['draftoff'] = 'ドラフト一括オフ';//'下書一括オフ';
 $LANG_DATABOX_ADMIN['export'] = 'エクスポート';
 $LANG_DATABOX_ADMIN['import'] = 'インポート';
+$LANG_DATABOX_ADMIN['unlinkafterimport'] = '終了後入力ファイル削除する';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'サンプルインポート';
 $LANG_DATABOX_ADMIN['datadelete'] = '一括削除';
 

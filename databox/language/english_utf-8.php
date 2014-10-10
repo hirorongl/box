@@ -88,6 +88,7 @@ $LANG_DATABOX_ADMIN['drafton'] = 'Draft On All';
 $LANG_DATABOX_ADMIN['draftoff'] = 'Draft Off All';
 $LANG_DATABOX_ADMIN['export'] = 'Export';
 $LANG_DATABOX_ADMIN['import'] = 'Import';
+$LANG_DATABOX_ADMIN['unlinkafterimport'] = 'Delete CSV file after import';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'Import sample';
 $LANG_DATABOX_ADMIN['datadelete'] = 'Bulk Delete';
 
