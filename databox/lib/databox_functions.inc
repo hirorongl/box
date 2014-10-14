@@ -1848,6 +1848,7 @@ function DATABOX_getaddtionfieldsDisp(
 
 
         $name=$addition_def[$fid]['name'];
+        $description=$addition_def[$fid]['description'];
         $checkrequried=$addition_def[$fid]['checkrequried'];
         $type=$addition_def[$fid]['type'];
         $selectionary=$addition_def[$fid]['selectionary'];
@@ -2029,14 +2030,14 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('field_id', $fid);
             $templates->set_var('field_type', $type);
 			
-			//アトリビュート（追加項目）名称
+            //項目名
             $templates->set_var('additionfield_name', $name);
-            $templates->set_var('additionfield_templatesetvar', $templatesetvar);
+            $templates->set_var('additionfield'.$fid."_name", $name);
+            $templates->set_var($templatesetvar."_name", $name);
 			
-			//項目名
-            $templates->set_var('additionfield_name', $name);
-			$templates->set_var('name_additionfield'.$fid, $name);
-            $templates->set_var('name_'.$templatesetvar, $name);
+			//説明
+            $templates->set_var('additionfield'.$fid."_description", $description);
+            $templates->set_var($templatesetvar."_description", $description);
 			
 			//登録したテーマ変数名
             $templates->set_var('additionfield_templatesetvar', $templatesetvar);

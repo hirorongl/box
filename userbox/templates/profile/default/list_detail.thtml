@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/profile/default/list_detail.thtml 20140328 { -->
+<!-- plugins/userbox/templates/profile/default/list_detail.thtml 20141014 { -->
 
 <div class="userbox">
   <h2>{title}</h2>
@@ -470,6 +470,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th class="alignleft">{lang_content}</th>
       </tr>
       <tr>
+        <th style="width:20%; color:green" class="alignleft">&#123;tel_name&#125;</th>
+        <td>{tel_name}</td>
+      </tr>
+      <tr>
+        <th style="width:20%; color:green" class="alignleft">&#123;tel_description&#125;</th>
+        <td>{tel_description}</td>
+      </tr>
+      <tr>
         <th style="width:20%; color:green" class="alignleft">&#123;tel&#125;</th>
         <td>{tel}</td>
       </tr>
@@ -643,6 +651,18 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_disp&#125;
 		</td>
 	    <td>{additionfield1_disp}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_name&#125;
+		</td>
+	    <td>{additionfield1_name}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_description&#125;
+		</td>
+	    <td>{additionfield1_description}</td>
       </tr>
 
 
