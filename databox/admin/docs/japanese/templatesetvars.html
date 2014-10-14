@@ -703,6 +703,136 @@ additionfield_name
 </tbody>
 </table>
 
+<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/10/14)</h2>
+<table>
+<tr>
+<th style="width:20%">画面</th>
+<th style="width:20%">【フォルダ】テンプレート</th>
+<th style="width:60%">テーマ変数</th>
+</tr>
+<tbody>
+<tr class="r2">
+<td  rowspan=3>
+public_html/search.php
+<br/><br/>検索条件に関する引数 各条件はAND
+<br/>fieldset=1 
+<br/>&nbsp;&nbsp;タイプid=1　省略時0
+<br/>gor_a[]=1&gor_a[]=2 ・・・
+<br/>&nbsp;&nbsp;_aは任意
+<br/>&nbsp;&nbsp;カテゴリid=1 OR カテゴリid=2
+<br/>gand_a[]=3&gand_a[]=4 ・・・
+<br/>&nbsp;&nbsp;_aは任意
+<br/>&nbsp;&nbsp;カテゴリid=3 AND カテゴリid=4
+<br/>aeq_1=xxxx 
+<br/>&nbsp;&nbsp;_1 1はアトリビュートid
+<br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxxと 等しい
+<br/>afr_1=xxxx 
+<br/>&nbsp;&nbsp;_1 1はアトリビュートid
+<br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxx以上
+<br/>ato_1=xxxx 
+<br/>&nbsp;&nbsp;_1 1はアトリビュートid
+<br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxx以下
+<br/><br/>その他の引数
+<br/>templatedir=xxxx テンプレートディレクトリ
+<br/>perpage=9 省略時コンフィギュレーション設定ページあたりのデータ数
+<br/>page=1 省略時1
+<br/>nohitmsg=no 省略時yes
+</td>
+
+
+<td>
+【search】
+list_detail.thtml 
+ navigation_detail.thtml
+ row.thtml
+ pagenavigation.thtml
+ </td>
+ <td>
+site_url,
+ this_script,
+ home,
+ category_top,
+ lang_category_list_h2,
+ category_name,
+ category_code,
+ category_description,
+ cnt,
+ lang_view,
+ lin,
+ cnt,
+ lang_name,
+ lang_username,
+ lang_id,
+ lang_uid,
+ lang_username,
+ lang_fullname,
+ lang_released,
+ lang_expired,
+ lang_remaingdays,
+ lang_date,
+ lang_description,
+ lang_addfield,
+ lang_hits,
+ blockfooter,
+ msg<br/>
+ language<br/>
+languageid,_languageid言語ファイル[多言語モード]に登録されていない場合は表示されません<br/>
+imgfile_frd,data_img_url<br/>
+imgfile_thumb_frd,data_thumb_img_url<br/>
+
+{uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
+<a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
+</td>	
+</tr>
+
+<tr class="r2">
+
+<td>
+【search】col_detail.thtml 
+</td>
+<td>data_link,
+ data_fullname,
+ data_username,
+ data_description,
+ data_id,
+ data_url,
+ data_released,
+ data_expired,
+ data_remaingdays,
+ <br/>
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ new_img (使用する日付と新着マーク表示期間で判定します)<br/>
+data_datefield_shortdate,
+data_releaaed_shortdate,
+data_expired_shortdate,
+data_hits<br/>
+
+ data_value(ソート順に指定されたアトリビュート項目の値),<br/>
+ data_edit
+ </br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
+ </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
+</td>
+</tr>
+<tr class="r2">
+<td>
+【search】nohit.thtml
+</td>
+<td>
+home
+,category_top
+,category_name
+,category_code
+,category_description
+,xhtml
+,site_url
+,site_admin_url
+,layout_url
+,lang_nohit</td>
+</tr>
+
+</tbody>
+</table>
+
 <h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2014/10/14 update　書きかけです)</h2>
 <table>
 <tr>

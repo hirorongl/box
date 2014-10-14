@@ -211,28 +211,12 @@ function fncDisplay()
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
 
-    //自動タグでない時　ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $category_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $category_name);
-        }
-        
-        // Meta Tags
-        $headercode=DATABOX_getheadercode(    
-            "category"
-            ,$template
-            ,$pi_name
-            ,$category_id
-            ,$category_name
-            ,$category_description
-            ,$category_name
-            ,$category_description);
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+    if ($page > 1) {
+        $page_title = sprintf ('%s (%d)', $LANG_DATABOX_ADMIN['piname'], $page);
+    } else {
+        $page_title = sprintf ('%s ', $LANG_DATABOX_ADMIN['piname']);
     }
     
-
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -458,7 +442,6 @@ function fncDisplay()
         $templates->parse ('output', 'list');
 
         $content = $templates->finish ($templates->get_var ('output'));
-        $retval .=$content;
 
     }else{
         if ($nohitmsg==="yes"){
@@ -483,11 +466,11 @@ function fncDisplay()
 
             $templates->parse ('output', 'list');
             $content = $templates->finish ($templates->get_var ('output'));
-            $retval .=$content;
         }
     }
 
-    $retval =PLG_replacetags ($retval);
+    $retval["pagetitle"] =$pagetitle;
+    $retval["display"] =PLG_replacetags ($content);
 
     return $retval;
 }    
@@ -600,10 +583,10 @@ if (COM_isAnonUser()){
 $display = '';
 $information = array();
 
-$information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
 
-$display=fncDisplay();
-
+$rt=fncDisplay();
+$information['pagetitle']=$rt['pagetitle'];
+$display=$rt['display'];
 
 
 //---
