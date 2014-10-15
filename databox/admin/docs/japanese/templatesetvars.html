@@ -712,24 +712,24 @@ additionfield_name
 </tr>
 <tbody>
 <tr class="r2">
-<td  rowspan=3>
+<td  rowspan=4>
 public_html/search.php
 <br/><br/>検索条件に関する引数 各条件はAND
 <br/>fieldset=1 
 <br/>&nbsp;&nbsp;タイプid=1　省略時0
-<br/>gor_1[]=1&gor_1[]=2 ・・・
+<br/>gor_<a title="id" class="note_super" href="#notetext_id">1</a>[]=1&gor_<a title="id" class="note_super" href="#notetext_id">1</a>[]=2 ・・・
 <br/>&nbsp;&nbsp;_1はカテゴリグループid
 <br/>&nbsp;&nbsp;カテゴリid=1 OR カテゴリid=2
-<br/>gand_1[]=3&gand_1[]=4 ・・・
+<br/>gand_<a title="id" class="note_super" href="#notetext_id">1</a>[]=3&gand_<a title="id" class="note_super" href="#notetext_id">1</a>[]=4 ・・・
 <br/>&nbsp;&nbsp;_1はカテゴリグループid
 <br/>&nbsp;&nbsp;カテゴリid=3 AND カテゴリid=4
-<br/>aeq_1=xxxx 
+<br/>aeq_<a title="id" class="note_super" href="#notetext_id">1</a>=xxxx 
 <br/>&nbsp;&nbsp;_1 1はアトリビュートid
 <br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxxと 等しい
-<br/>afr_1=xxxx 
+<br/>afr_<a title="id" class="note_super" href="#notetext_id">1</a>=xxxx 
 <br/>&nbsp;&nbsp;_1 1はアトリビュートid
 <br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxx以上
-<br/>ato_1=xxxx 
+<br/>ato_<a title="id" class="note_super" href="#notetext_id">1</a>=xxxx 
 <br/>&nbsp;&nbsp;_1 1はアトリビュートid
 <br/>&nbsp;&nbsp;アトリビュートidが1のデータがxxxx以下
 <br/><br/>その他の引数
@@ -829,7 +829,18 @@ home
 ,layout_url
 ,lang_nohit</td>
 </tr>
-
+<tr class="r2">
+<td>
+【search】argument.thtml
+</td>
+<td>
+site_url
+,this_script
+,lang_search
+,引数 (例:fieldset,gor_1)
+,カテゴリチェックボックスの引数 (例:gor_1_0,gor_1_1)
+</td>
+</tr>
 </tbody>
 </table>
 
