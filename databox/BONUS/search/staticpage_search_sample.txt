@@ -1,9 +1,9 @@
-<!-- 検索条件指定静的ページサンプル 2014002 -->
+<!-- 検索条件指定静的ページサンプル 20141015 -->
 
 <form action="[conf:site_url]/databox/search.php" method="get" >
 
 <!-- templatedir　テンプレートディレクトリを指定する 省略可 -->
-<input name="templatedir" value="" type="hidden">
+<input name="templatedir" value="abc" type="hidden">
 
 <!-- 条件指定　AND  -->
 
@@ -15,10 +15,12 @@
 <!-- gor_3 カテゴリグループid=3のカテゴリを複数指定する　OR条件 -->
  <div class="databox_admin_data_title">賃貸物件タイプ</div>
 [databox:categorycheck group_id:3 fname:gor_3]
+<input name="gor_3[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
 
 <!-- gand_8 カテゴリグループid=8のカテゴリを複数指定する　AND条件 -->
  <div class="databox_admin_data_title">売買物件タイプ</div>
 [databox:categorycheck group_id:8 fname:gand_8]
+<input name="gand_8[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
 
 <!-- アトリビュート -->
 <!-- 表示制限(一般画面)=表示するで アトリビュートタイプが一行テキスト 、複数行テキスト、HTML、TinyMCE、CKEditor、数値、通貨の項目を検索キーにすることができます。
@@ -42,6 +44,27 @@
 <p>
 敷金以下<input size="60" maxlength="160" name="ato_6" style="max-width:95%" value="" type="text">
 </p>
+<p>
+75通貨=<input size="60" maxlength="160" name="aeq_75" style="max-width:95%" value="" type="text">
+</p>
+<p>
+75通貨以上<input size="60" maxlength="160" name="afr_75" style="max-width:95%" value="" type="text">
+</p>
+<p>
+75通貨以下<input size="60" maxlength="160" name="ato_75" style="max-width:95%" value="" type="text">
+</p>
+
+<!-- 無意味な引数例（１） 値設定のないカテゴリ指定　非表示 -->
+<input name="gor_1[]" value="" type="hidden">　
+<!-- 無意味な引数例（２） 値設定のないカテゴリ指定　非表示 -->
+<input name="gand_2[]" value="" type="hidden">　
+
+
+<!--その他 -->
+<input name="perpage" value="4" type="hidden">
+<input name="page" value="1" type="hidden">
+<input name="nohitmsg" value="yes" type="hidden">
+
 
 <p><input value="検索" class="submit" type="submit"></p>
  </form>

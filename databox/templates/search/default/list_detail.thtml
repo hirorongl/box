@@ -25,6 +25,7 @@
 
   <p>{msg}</p>
 
+{arg_var}
   <ul class="contents" id="list">
 {nav_var}
   </ul>

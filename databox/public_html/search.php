@@ -83,10 +83,13 @@ function fncDisplay()
             $ary=$value;
             if  ($k[0]=="gor"){
                 foreach($ary as $key2 => $value2){
-                    if ($ids<>""){
-                        $ids.=",";
+                    $w= COM_applyFilter($value2);
+					if  ($w<>""){
+                        if ($ids<>""){
+                            $ids.=",";
+                        }
+                        $ids.= COM_applyFilter($value2);
                     }
-                    $ids.= COM_applyFilter($value2);
                 }
                 if  ($ids<>""){
                     $cary[]= "(t2.id IN (SELECT id FROM {$tbl1}"
@@ -98,7 +101,8 @@ function fncDisplay()
 					if  ($w<>""){
                         if ($ids<>""){
                             $ids.=" AND ";
-                        }
+						}
+                        $ids.= $w;
                         $ids.= " IN (SELECT category_id";
                         $ids.=" FROM {$tbl1}  ";
                         $ids.=" WHERE t2.id = id )";
@@ -226,12 +230,15 @@ function fncDisplay()
         $templates = new Template($tmplfld);
         $templates->set_file (array (
             'list' => 'list_detail.thtml',
+            'arg'   => 'argument.thtml',
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
             'pagenav'  => 'pagenavigation.thtml'
             ));
-
+        
+        $dummy=fncarg($arg,$templates);
+        
         $languageid=COM_getLanguageId();
         $language= COM_getLanguage();
         $templates->set_var ('languageid', $languageid);
@@ -435,6 +442,7 @@ function fncDisplay()
                 COM_printPageNavigation ($url, $page, $pages));
         $templates->set_var ( 'pagenavinone', '' );
         //------------
+        $templates->parse ('arg_var', 'arg', true);
         $templates->parse ('nav_var', 'nav', true);
 
         $templates->set_var ('msg', "");
@@ -449,7 +457,10 @@ function fncDisplay()
             $templates = new Template($tmplfld);
             $templates->set_file (array (
                 'list' => 'nohit.thtml',
+                'arg'   => 'argument.thtml',
             ));
+
+            $dummy=fncarg($arg,$templates);
             
             $templates->set_var ('home',$LANG_DATABOX['home']);
             $referer =$_SERVER['HTTP_REFERER'];
@@ -464,6 +475,8 @@ function fncDisplay()
             
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
 
+            $templates->parse ('arg_var', 'arg', true);
+            
             $templates->parse ('output', 'list');
             $content = $templates->finish ($templates->get_var ('output'));
         }
@@ -550,6 +563,34 @@ function fncfield(
     return ;
 
 }
+// $dummy=fncarg($arg,$templates);
+function fncarg(
+    $arg
+    ,&$templates
+)
+{
+	foreach((array)$arg as $key => $value) {
+        if (is_array($value)){
+            $k = explode ('_', $key);
+            $ary=$value;
+            if  ($k[0]=="gor"  OR  $k[0]=="gand"){
+                foreach($ary as $key2 => $value2){
+					$w= COM_applyFilter($value2);
+					$ary[$key2]=$w;
+                    $templates->set_var ($key."_".$key2,$w);
+				}
+				$checklist=DATABOX_getcheckList ("categorygroup",$ary,"databox",$k[1],$key);
+                $templates->set_var ($key,$checklist);
+            }
+		}else if ($value<>""){
+            $w=COM_applyFilter($value);
+            $templates->set_var ($key,$w);
+        }
+	}
+
+    return ;
+}
+
 // +---------------------------------------------------------------------------+
 // MAIN
 // +---------------------------------------------------------------------------+

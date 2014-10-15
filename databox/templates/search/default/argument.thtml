@@ -1,0 +1,45 @@
+<!-- plugins/databox/templates/search/default/argument.thtml 20141015{ -->
+
+<div >
+<!-- argument example -->
+<!-- 以下は参考例です ない場合は表示されません -->
+
+  <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+  </p>
+
+  <p><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
+  </p>
+
+  <p><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
+  </p>
+
+  <p><span style="color:green"> &#123;gor_3_1&#125;</span>:{gor_3_1}
+  </p>
+
+  <p><span style="color:green"> &#123;gand_8_1&#125;</span>:{gand_8_1}
+  </p>
+
+  <p><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}
+  </p>
+
+  <p><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}
+  </p>
+
+  <p><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}
+  </p>
+
+  <p><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}
+  </p>
+
+  <p><span style="color:green"> &#123;perpage&#125;</span>:{perpage}
+  </p>
+
+  <p><span style="color:green"> &#123;page&#125;</span>:{page}
+  </p>
+
+  <p><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}
+  </p>
+
+</div>
+
+<!-- } plugins/databox/templates/search/default/argument.thtml -->
