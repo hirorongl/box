@@ -58,6 +58,7 @@ $LANG_DATABOX['category_top']="Categories Top";
 $LANG_DATABOX['attribute_top']="Attributes Top";
 $LANG_DATABOX['search_link']="";
 $LANG_DATABOX['return']="return";
+$LANG_DATABOX['search'] = 'search';
 
 $LANG_DATABOX['category_separater']=" / ";
 $LANG_DATABOX['category_separater_code']=" ";

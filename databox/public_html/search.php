@@ -569,7 +569,13 @@ function fncarg(
     ,&$templates
 )
 {
-	foreach((array)$arg as $key => $value) {
+    global $LANG_DATABOX;
+    global $_CONF;
+    
+    $templates->set_var ('site_url',$_CONF['site_url']);
+    $templates->set_var ('this_script',THIS_SCRIPT);
+    $templates->set_var ("lang_search",$LANG_DATABOX['search']);
+    foreach((array)$arg as $key => $value) {
         if (is_array($value)){
             $k = explode ('_', $key);
             $ary=$value;
