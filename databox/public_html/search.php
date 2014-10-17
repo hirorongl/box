@@ -123,6 +123,8 @@ function fncDisplay()
                 $page=$value;
             }else if  ($key=="nohitmsg") {
                 $nohitmsg=$value;
+            }else if  ($key=="expired") {
+                $expired=$value;
             }else{
                 $k = explode ('_', $key);
 				if  ($k[0]=="aeq" OR $k[0]=="afr" OR $k[0]=="ato"){
@@ -142,6 +144,9 @@ function fncDisplay()
     }
     if (is_null($nohitmsg)){
         $nohitmsg="yes";
+    }
+    if (is_null($expired)){
+        $expired="no";
     }
     //-----
     $sql = "SELECT ";
