@@ -231,7 +231,7 @@ function fncDisplay()
 
     if ($numrows > 0) {
         
-        $tmplfld=DATABOX_templatePath('search',$template,$pi_name);
+        $tmplfld=DATABOX_templatePath('search',$templatedir,$pi_name);
         $templates = new Template($tmplfld);
         $templates->set_file (array (
             'list' => 'list_detail.thtml',
