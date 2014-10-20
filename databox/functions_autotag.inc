@@ -85,6 +85,8 @@ function plugin_autotags_databox (
 		$parm2_ary[]="group_id";
 		$parm2_ary[]="group_code";
 		$parm2_ary[]="fname";
+		$parm2_ary[]="without_code";
+		$parm2_ary[]="without_id";
 		$p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -141,7 +143,8 @@ function plugin_autotags_databox (
 							,$p['category_code']
 							,$p['mode']
 							,$p['expired']
-                            ,$p['type_id']
+                            ,$p['without_code']
+                            ,$p['without_id']
                         );
                         break;
                     case 'attributedatacount':
@@ -281,6 +284,8 @@ function databox_category(
 	,$category_code=null
 	,$mode=''
 	,$expired=''
+	,$without_code=''
+	,$without_id=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別一覧表示
@@ -494,7 +499,13 @@ function databox_category(
 	if  (strtoupper($expired)=="NO"){
 		$sql .= " AND (expired=0 OR expired > NOW())";
 	}
-
+	if  ($without_code<>""){
+		$sql .= " AND (t2.code<>'$without_code')";
+	}
+	if  ($without_id<>""){
+		$sql .= " AND (t2.id<>$without_id)";
+	}
+	
 	//--ORDER
     $sql .= " ORDER BY ".LB;
 	$sql .= $orderby.LB;
