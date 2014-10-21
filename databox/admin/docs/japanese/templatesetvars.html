@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20141017 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20141021 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -190,6 +190,11 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
 
 {uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
 <a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
+<br/><br/>
+{order_date}{order_orderno}{order_code}{order_title}{order_description}{order_id}{order_released}{order_random}{cur_order}{lang_view} {lin} {cnt}{pagenavinone}
+<br/>
+{order_<a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>}
+
 </td>	
 </tr>
 
@@ -703,7 +708,7 @@ additionfield_name
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/10/17)</h2>
+<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/10/21)</h2>
 <table>
 <tr>
 <th style="width:20%">画面</th>
@@ -739,6 +744,9 @@ public_html/search.php
 <br/>nohitmsg=no 省略時yes
 <br/>expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）
 <br/>expired:yes 公開終了日を過ぎたデータも表示します。
+<br/>order=date 省略時 date
+<br/>order に指定できるのは、 random date released orderno code title description id と　表示制限されていない追加項目のテーマ変数　です。
+<br/>date と released は逆順です。
 </td>
 
 
@@ -784,6 +792,12 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
 
 {uid} {username} {fullname} {displayname}ゲストユーザの場合は、null 
 <a title="Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります" class="note_super" href="#notetext_1">*9</a>
+
+<br/><br/>
+{order_date}{order_orderno}{order_code}{order_title}{order_description}{order_id}{order_released}{order_random}{cur_order}{lang_view} {lin} {cnt}{pagenavinone}
+<br/>
+{order_<a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>}
+
 </td>	
 </tr>
 
@@ -813,6 +827,7 @@ data_hits<br/>
  data_edit
  </br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
  </br><a href="#notetext_categories" class="note_super" title="">カテゴリ列挙のテーマ変数</a>
+ </br>
 </td>
 </tr>
 <tr class="r2">

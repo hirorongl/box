@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/argument.thtml 20141015{ -->
+<!-- plugins/databox/templates/search/default/argument.thtml 20141021{ -->
 
 <form action="{site_url}/{this_script}" method="get" >
 <div >
@@ -46,8 +46,12 @@
 
   <p><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}
   </p>
+  <p><span style="color:green"> &#123;order&#125;</span>:{order}
+  </p>
 
 </div>
 <p><input value="{lang_search}" class="submit" type="submit"></p>
- </form>
+</form>
+
+
 <!-- } plugins/databox/templates/search/default/argument.thtml -->

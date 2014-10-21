@@ -63,14 +63,28 @@ function fncDisplay()
     }
     $chkday=strtotime("- $newmarkday days",time());
     
-    //-----引数退避
-    $uri = $_SERVER["REQUEST_URI"];
-    $w=explode ('?', $uri);
-    $uri=$w[1];
-    $w=explode ('&page', $uri);
-    $uri=$w[0];
-    //-----引数チェック
-    $arg=$_REQUEST;
+    //-----Argument checking　引数チェック
+	$arg=$_REQUEST;
+	$arg_sv="";//---Argument save 引数退避　order page を除く
+    foreach((array)$arg as $key => $value) {
+        if (is_array($value)){
+            $ary=$value;
+            foreach($ary as $key2 => $value2){
+			    if  ($arg_sv<>""){
+				    $arg_sv.="&amp;";
+			    }
+				$arg_sv.=$key."[]=".$value2;
+			}	
+		}else{
+		    if  ($key=="order"  OR $key=="page"){
+			}else{
+			    if  ($arg_sv<>""){
+				    $arg_sv.="&amp;";
+			    }
+				$arg_sv.=$key."=".$value;
+			}
+		}
+	}
     $cary=array();
     $acnt=0;
     $afield=array();
@@ -125,6 +139,8 @@ function fncDisplay()
                 $nohitmsg=$value;
             }else if  ($key=="expired") {
                 $expired=$value;
+            }else if  ($key=="order") {
+                $order=$value;
             }else{
                 $k = explode ('_', $key);
 				if  ($k[0]=="aeq" OR $k[0]=="afr" OR $k[0]=="ato"){
@@ -147,7 +163,12 @@ function fncDisplay()
     }
     if (is_null($expired)){
         $expired="no";
-    }
+	}
+    if (is_null($order)){
+        $order="date";
+	}
+    $dummy=databox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
+
     //-----
     $sql = "SELECT ";
 
@@ -171,10 +192,18 @@ function fncDisplay()
 			$sql .= $afield[$i].LB;
 		}
     }
+	
+    if ($addfieldorder){
+        $sql .= " ,t3.value ".LB;
+    }
     
     //--FROM
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
+    if ($addfieldorder){
+        $sql .= " ,{$tbl3} AS t3 ".LB;
+    }
+	
 	if  ($acnt>0){
         for ($i = 1; $i <= $acnt; $i++) {
 			$sql .= $afile[$i].LB;
@@ -186,7 +215,12 @@ function fncDisplay()
                 
     //タイプ
     $sql .= " t2.fieldset_id=".$fieldset_id.LB;
-    
+	//additionfield 追加項目でsort する時
+    if ($addfieldorder){
+		$sql .= " AND t3.field_id=".$field_id.LB;
+        $sql .= " AND t3.id=t2.id".LB;
+    }
+
     //条件
     foreach((array)$cary as $value) {
         $sql .= " AND ".$value.LB;
@@ -208,6 +242,9 @@ function fncDisplay()
     if  (strtoupper($expired)=="NO"){
         $sql .= " AND (expired=0 OR expired > NOW())";
     }
+	//--ORDER
+    $sql .= " ORDER BY ".LB;
+	$sql .= $orderby.LB;
 
 //echo "sql=".$sql."<br>";    
     $result = DB_query ($sql);
@@ -439,8 +476,10 @@ function fncDisplay()
         $url = $_CONF['site_url']  . '/';
         $url.=THIS_SCRIPT;
         $url.="?";
-        $url.=$uri;
-        
+        $url.=$arg_sv;
+        $url .= "&amp;order=";
+		//-----order navigation
+        $dummy=databox_order ($url, $templates, $order) ;
         //-----page navigation
         $url .= $order;
         $templates->set_var ('page_navigation',
@@ -576,7 +615,8 @@ function fncarg(
 {
     global $LANG_DATABOX;
     global $_CONF;
-    
+	
+    $rt="";
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
     $templates->set_var ("lang_search",$LANG_DATABOX['search']);
@@ -597,7 +637,7 @@ function fncarg(
             $w=COM_applyFilter($value);
             $templates->set_var ($key,$w);
         }
-	}
+   }
 
     return ;
 }
