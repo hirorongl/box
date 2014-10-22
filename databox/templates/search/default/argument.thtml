@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/argument.thtml 20141021{ -->
+<!-- plugins/databox/templates/search/default/argument.thtml 20141022{ -->
 
 <form action="{site_url}/{this_script}" method="get" >
 <div >
@@ -33,6 +33,14 @@
   </p>
 
   <p><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}
+  </p>
+
+  <p><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
+  <input name="ams_47[]" value="" type="hidden">
+  </p>
+  <p><span style="color:green"> &#123;ams_47_0&#125;</span>:{ams_47_0}
+  </p>
+  <p><span style="color:green"> &#123;ams_47_1&#125;</span>:{ams_47_1}
   </p>
 
   <p><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}

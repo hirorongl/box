@@ -125,6 +125,19 @@ function fncDisplay()
                 if  ($ids<>""){
                     $cary[]= " (" .$ids." ) ";
                 }
+            }else if ($k[0]=="ams"){
+                foreach($ary as $key2 => $value2){
+                    $w= COM_applyFilter($value2);
+					if  ($w<>""){
+                        if ($ids<>""){
+                            $ids.=",";
+                        }
+                        $ids.= COM_applyFilter($value2);
+                    }
+                }
+                if  ($ids<>""){
+					$dummy= fncfield($k[0],COM_applyFilter($k[1]),$ids,$acnt,$afield,$afile,$awhere);
+				}	
             }
 		}else if ($value<>""){
             if  ($key=="fieldset") {
@@ -568,13 +581,18 @@ function fncfield(
     $sql.=" WHERE field_id=".$field_id;
     // 表示する項目のみ
     $sql.=" AND allow_display='0'";
-    //0: 一行テキストフィールド
-    //1: 複数行テキストフィールド
-    //20:HTML  10:TinyMCE 19:CKEditor
-    //15:数値  21:通貨
-    $sql.=" AND type IN (0,1,10,19,20,15,21)";
-	//検索対象にする=はい
-	//$sql.=" AND searchtarget='1'";
+	if  ($operate=="ams"){
+        //9:オプションリスト（マスター）
+        //16:ラジオボタンリスト（マスター）
+		//18:マルチセレクトリスト（マスター）
+		$sql.=" AND type IN (9,16,18)";
+	}else{
+         //0: 一行テキストフィールド
+         //1: 複数行テキストフィールド
+         //20:HTML  10:TinyMCE 19:CKEditor
+         //15:数値  21:通貨
+         $sql.=" AND type IN (0,1,10,19,20,15,21)";
+	}
 	
 	$result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -599,6 +617,8 @@ function fncfield(
             }else{
                 $w.=" AND a".$acnt.".value<='".$value."'";
             }
+       }else if ($operate=="ams"){
+            $w.=" AND a".$acnt.".value  IN  ({$value})";
 	   }
 	   $awhere[$acnt]=$w;
        $return=true;
@@ -615,6 +635,7 @@ function fncarg(
 {
     global $LANG_DATABOX;
     global $_CONF;
+    global $_TABLES;
 	
     $rt="";
     $templates->set_var ('site_url',$_CONF['site_url']);
@@ -631,6 +652,17 @@ function fncarg(
                     $templates->set_var ($key."_".$key2,$w);
 				}
 				$checklist=DATABOX_getcheckList ("categorygroup",$ary,"databox",$k[1],$key);
+                $templates->set_var ($key,$checklist);
+            }else if  ($k[0]=="ams" ){
+                $kind=COM_applyFilter(
+                      DB_getItem($_TABLES['DATABOX_def_field'] 
+                     ,"selectlist","field_id={$k[1]}"));
+                foreach($ary as $key2 => $value2){
+					$w= COM_applyFilter($value2);
+					$ary[$key2]=$w;
+                    $templates->set_var ($key."_".$key2,$w);
+				}
+				$checklist=DATABOX_getcheckList ($kind,$ary,"databox",$k[1],$key);
                 $templates->set_var ($key,$checklist);
             }
 		}else if ($value<>""){
