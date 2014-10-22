@@ -222,7 +222,22 @@ function plugin_autotags_databox (
                             ,$p['fname']
                         );
                         break;
-
+                    case 'mastercheck':
+                        if  ($p['field_id']<>""){
+                            $kind=COM_applyFilter(
+                                DB_getItem($_TABLES['DATABOX_def_field'] 
+                                    ,"selectlist","field_id={$p['field_id']}"));
+                            if  ($kind<>""){
+                                  $rt= DATABOX_getcheckList(
+                                     $kind
+                                     ,""
+                                     ,"databox"
+                                     ,""
+                                     ,$p['fname']
+                                  );
+                            }
+						}
+                        break;
                 }
 
                 $content = str_replace ($autotag['tagstr'], $rt, $content);
