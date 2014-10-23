@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20140917
+# Last Update 20141023
 
 ###############################################################################
 ## 管理画面 menu
@@ -317,12 +317,15 @@ $LANG_USERBOX_ADMIN['config_update_help'] = '最新の仕様に更新します '
 //
 $LANG_USERBOX_ADMIN['document'] = 'ドキュメント';
 $LANG_USERBOX_ADMIN['configuration'] = 'コンフィギュレーション設定';
-$LANG_USERBOX_ADMIN['autotags'] = '自動タグ';
+$LANG_USERBOX_ADMIN['install'] = 'インストール方法';
+$LANG_USERBOX_ADMIN['autotags'] = '自動タグ・ブロック用関数';
+$LANG_USERBOX_ADMIN['files'] = 'ファイル一覧';
+$LANG_USERBOX_ADMIN['tables'] = 'テーブル一覧';
 $LANG_USERBOX_ADMIN['online'] = 'オンライン';
 
 
 //管理画面：このページについて
-$LANG_USERBOX_ADMIN['about_admin_information'] = '自動タグについて';
+$LANG_USERBOX_ADMIN['about_admin_information'] = '';
 $LANG_USERBOX_ADMIN['about_admin_profile'] = 'プロフィールの管理';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_USERBOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';

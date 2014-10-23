@@ -10,7 +10,8 @@
 
 define ('THIS_SCRIPT', 'information.php');
 
-include_once('userbox_functions.php');
+require_once('userbox_functions.php');
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 
 function fncDisplay()
@@ -25,6 +26,7 @@ function fncDisplay()
     $pi_name="userbox";
 
     global $_CONF;
+    global $LANG_ADMIN;
     global $LANG_USERBOX_ADMIN;
     global $LANG_USERBOX_INFORMATION_HELP;
 	global $_USERBOX_CONF;
@@ -33,6 +35,15 @@ function fncDisplay()
     $retval="";
 	
 	$pi_name="userbox";
+	
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr
+        ,$LANG_USERBOX_ADMIN['about_admin_information']
+        ,$icon
+       );
 
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
 	$T = new Template($tmplfld);
@@ -49,7 +60,6 @@ function fncDisplay()
 	$T->set_var('version',$_USERBOX_CONF['version']);
 
 	$T->set_var('piname', $LANG_USERBOX_ADMIN['piname']);
-    $T->set_var('about_thispage', $LANG_USERBOX_ADMIN['about_admin_information']);
 
 	$T->set_var('lang_document', $LANG_USERBOX_ADMIN['document']);
 	$T->set_var('document_url',$document_url);
@@ -57,6 +67,12 @@ function fncDisplay()
 	$T->set_var('online', $LANG_USER_ADMIN['online']);
 	$T->set_var('lang_configuration', $LANG_USERBOX_ADMIN['configuration']);
 	$T->set_var('lang_autotags', $LANG_USERBOX_ADMIN['autotags']);
+	
+	$T->set_var('lang_templatesetvars', $LANG_USERBOX_ADMIN['templatesetvars']);
+	$T->set_var('lang_install', $LANG_USERBOX_ADMIN['install']);
+	$T->set_var('lang_autotags', $LANG_USERBOX_ADMIN['autotags']);
+	$T->set_var('lang_files', $LANG_USERBOX_ADMIN['files']);
+	$T->set_var('lang_tables', $LANG_USERBOX_ADMIN['tables']);
 	
     $T->set_var('site_url', $_CONF['site_url']);
     $T->set_var('site_admin_url', $_CONF['site_admin_url']);
@@ -83,6 +99,11 @@ $information = array();
 $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
 $display .=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
 $display.=fncDisplay();
+
+$display=COM_startBlock($LANG_USERBOX_ADMIN['piname'],''
+         ,COM_getBlockTemplate('_admin_block', 'header'))
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);

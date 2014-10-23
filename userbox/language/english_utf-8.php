@@ -311,11 +311,13 @@ $LANG_USERBOX_ADMIN['config_update_help'] = 'Update.';
 $LANG_USERBOX_ADMIN['document'] = 'Document';
 $LANG_USERBOX_ADMIN['configuration'] = 'Configuration Settings';
 $LANG_USERBOX_ADMIN['autotags'] = 'Autotags';
+$LANG_USERBOX_ADMIN['files'] = 'file list';
+$LANG_USERBOX_ADMIN['tables'] = 'table list';
 $LANG_USERBOX_ADMIN['online'] = 'Online';
 
 
 //Admin
-$LANG_USERBOX_ADMIN['about_admin_information'] = 'About Autotags';
+$LANG_USERBOX_ADMIN['about_admin_information'] = '';
 $LANG_USERBOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'Category Admin';
 $LANG_USERBOX_ADMIN['about_admin_field'] = 'Attribute Admin';

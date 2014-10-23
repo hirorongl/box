@@ -1,10 +1,17 @@
-<!-- plugins/userbox/templates/admin/information.thtml 20120413{ -->
+<!-- plugins/userbox/templates/admin/information.thtml 20121023{ -->
 
-<h2>{piname}</h2>
-<h3>information</h3>
 {about_thispage}
 <p>Ver:{version}</p>
 <p> <a href="{document_url}" target="_blank">{lang_document}</a>
+<ul>
+  <li><a href="{document_url}install.html" target="_blank">{lang_install}</a> </li>
+  <li><a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a></li>
+  <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
+  <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
+  <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
+  <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
+</ul>
+	
 (
 <a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a>
 :<a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a>
