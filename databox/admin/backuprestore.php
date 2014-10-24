@@ -360,11 +360,7 @@ function fncbackuprestore (
     $tmpl->parse ('output', 'restore');
     $restore = $tmpl->finish ($tmpl->get_var ('output'));
 
-    $retval="";
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN[$mode], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
-    $retval .= $restore;
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+    $retval= $restore;
 
     return $retval;
 }
@@ -506,11 +502,18 @@ function fncrestoreexec(
 
 }
 function fncTableCheck(
-    $table
+    &$table
 )
 {
     global $_TABLES;
-    $rt=in_array($table, $_TABLES);
+	global $_DB_table_prefix;
+	
+	$w = explode ('_', $table);
+    $wprefix=$w[0]."_";
+	if  ($wprefix<>$_DB_table_prefix){
+	    $table=str_replace($wprefix, $_DB_table_prefix, $table);
+    }
+	$rt=in_array($table, $_TABLES);
     if  ($rt<>""){
         $sql="show tables like '{$table}'" ;
         $rt=DB_query($sql);
@@ -689,6 +692,10 @@ switch ($mode) {
         $display.=fncDisply($pi_name);
 }
 
+$display=COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
+         ,COM_getBlockTemplate('_admin_block', 'header'))
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);

@@ -1,6 +1,4 @@
-<!-- plugins/databox/templates/admin/backuprestore.thtml 20140717 {  -->
-<h2>DataBox</h2>
-<h3>backup & restore </h3>
+<!-- plugins/databox/templates/admin/backuprestore.thtml 20141024 {  -->
 {about_thispage}
 
 <fieldset style="margin-top:10px;">
