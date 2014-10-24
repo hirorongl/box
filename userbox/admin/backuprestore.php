@@ -18,6 +18,8 @@ define ('THIS_SCRIPT', 'backuprestore.php');
 require_once('userbox_functions.php');
 require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_configuration.php');
 
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
+
 function fncDisply(
 	$pi_name
 )
@@ -84,6 +86,34 @@ function fncDisply(
 
 }
 
+function fncMenu(
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 fncMenu()
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    global $LANG_USERBOX_ADMIN;
+
+    $retval = '';
+    //
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $LANG_USERBOX_ADMIN['instructions'],
+        plugin_geticon_userbox()
+    );
+    
+    return $retval;
+}
+
 
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
@@ -142,8 +172,13 @@ switch ($action) {
  
     default:
 }
-
+$display .= fncMenu($pi_name);
 $display.=fncDisply($pi_name);
+
+$display=COM_startBlock($LANG_USERBOX_ADMIN['piname'],''
+         ,COM_getBlockTemplate('_admin_block', 'header'))
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);

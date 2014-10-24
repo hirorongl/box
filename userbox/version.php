@@ -1,3 +1,3 @@
 <?php
-$_USERBOX_CONF['version'] = '0.0.0.20141014a';
+$_USERBOX_CONF['version'] = '0.0.0.20141014b';
 ?>

@@ -1,6 +1,4 @@
-<!-- plugins/userbox/templates/admin/backuprestore.thtml 20120210 {  -->
-<h2>UserBox</h2>
-<h3>backup & restore </h3>
+<!-- plugins/userbox/templates/admin/backuprestore.thtml 20141024 {  -->
 {about_thispage}
 <fieldset style="margin-top:10px;">
 <legend>(1){config}</legend>
