@@ -636,7 +636,7 @@ function fncarg(
     global $LANG_DATABOX;
     global $_CONF;
     global $_TABLES;
-	
+    
     $rt="";
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
@@ -646,30 +646,54 @@ function fncarg(
             $k = explode ('_', $key);
             $ary=$value;
             if  ($k[0]=="gor"  OR  $k[0]=="gand"){
+                $wnames="";
                 foreach($ary as $key2 => $value2){
-					$w= COM_applyFilter($value2);
-					$ary[$key2]=$w;
-                    $templates->set_var ($key."_".$key2,$w);
-				}
-				$checklist=DATABOX_getcheckList ("categorygroup",$ary,"databox",$k[1],$key);
+                    $key2p1=$key2+1;
+                    $w= COM_applyFilter($value2);
+                    $ary[$key2]=$w;
+                    $templates->set_var ($key."_".$key2p1."_id",$w);
+                    if  ($w<>""){
+                        $wname=COM_applyFilter(
+                        DB_getItem($_TABLES['DATABOX_def_category'] 
+                            ,"name","category_id={$w}"));
+                            $wnames.=$wname." ";
+                    }else{
+                        $wname="";
+                    }
+                    $templates->set_var ($key."_".$key2p1."_name",$wname);
+                }
+                $checklist=DATABOX_getcheckList ("categorygroup",$ary,"databox",$k[1],$key);
                 $templates->set_var ($key,$checklist);
+                $templates->set_var ($key."_names",$wnames);
             }else if  ($k[0]=="ams" ){
                 $kind=COM_applyFilter(
-                      DB_getItem($_TABLES['DATABOX_def_field'] 
+                DB_getItem($_TABLES['DATABOX_def_field'] 
                      ,"selectlist","field_id={$k[1]}"));
+                $wnames="";
                 foreach($ary as $key2 => $value2){
-					$w= COM_applyFilter($value2);
-					$ary[$key2]=$w;
-                    $templates->set_var ($key."_".$key2,$w);
-				}
-				$checklist=DATABOX_getcheckList ($kind,$ary,"databox",$k[1],$key);
+                    $key2p1=$key2+1;
+                    $w= COM_applyFilter($value2);
+                    $ary[$key2]=$w;
+                    $templates->set_var ($key."_".$key2p1."_no",$w);
+                    if  ($w<>""){
+                         $wname=COM_applyFilter(
+                         DB_getItem($_TABLES['DATABOX_mst'] 
+                             ,"value","kind='{$kind}' AND no={$w}"));
+						$wnames.=$wname." ";
+                     }else{
+                         $wname="";
+                     }
+                     $templates->set_var ($key."_".$key2p1."_name",$wname);
+                }
+                $checklist=DATABOX_getcheckList ($kind,$ary,"databox",$k[1],$key);
                 $templates->set_var ($key,$checklist);
+                $templates->set_var ($key."_names",$wnames);
             }
-		}else if ($value<>""){
+        }else if ($value<>""){
             $w=COM_applyFilter($value);
             $templates->set_var ($key,$w);
         }
-   }
+    }
 
     return ;
 }
