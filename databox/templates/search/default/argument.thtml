@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/argument.thtml 20141022{ -->
+<!-- plugins/databox/templates/search/default/argument.thtml 20141029{ -->
 
 <form action="{site_url}/{this_script}" method="get" >
 <div >
@@ -16,14 +16,26 @@
   <input name="gand_8[]" value="" type="hidden">
   </p>
 
-  <p><span style="color:green"> &#123;gor_3_0&#125;</span>:{gor_3_0}
+  <p><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}
   </p>
-  <p><span style="color:green"> &#123;gor_3_1&#125;</span>:{gor_3_1}
+  <p><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}
+  </p>
+  <p><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}
+  </p>
+  <p><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}
+  </p>
+  <p><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}
   </p>
 
-  <p><span style="color:green"> &#123;gand_8_0&#125;</span>:{gand_8_0}
+  <p><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}
   </p>
-  <p><span style="color:green"> &#123;gand_8_1&#125;</span>:{gand_8_1}
+  <p><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}
   </p>
 
   <p><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}
@@ -38,9 +50,15 @@
   <p><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
   <input name="ams_47[]" value="" type="hidden">
   </p>
-  <p><span style="color:green"> &#123;ams_47_0&#125;</span>:{ams_47_0}
+  <p><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}
   </p>
-  <p><span style="color:green"> &#123;ams_47_1&#125;</span>:{ams_47_1}
+  <p><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}
+  </p>
+  <p><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}
+  </p>
+  <p><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}
+  </p>
+  <p><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}
   </p>
 
   <p><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}
