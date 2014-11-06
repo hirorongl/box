@@ -31,8 +31,6 @@ function LIB_List(
     $lang_box=$$lang_box;
 
     $table=$_TABLES[strtoupper($pi_name).'_mst'];
-	
-	require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
 
@@ -61,34 +59,6 @@ function LIB_List(
     $filter .= COM_optionList ($table
                 , 'DISTINCT kind,kind,kind', $filter_val,2,"");
     $filter .="</select>";
-	
-    //MENU1:管理画面
-    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
-    $url3=$_CONF['site_url'] . '/'.$pi_name.'/mst.php';
-
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
-    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-    $url61=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=sampleimport';
-
-    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
-    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
-    $menu_arr[]=array('url' => $url61,'text' => $lang_box_admin['sampleimport']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-
-    $function="plugin_geticon_".$pi_name;
-    $icon=$function();
-
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
-    );
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -159,8 +129,6 @@ function LIB_List(
 			);
 	}
 	
-
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -323,8 +291,6 @@ function LIB_Edit(
         $delflg=false;
     }
 
-    $retval .= COM_startBlock ($lang_box_admin['edit'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
 
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
@@ -401,7 +367,6 @@ function LIB_Edit(
     //
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -496,7 +461,7 @@ function LIB_Save (
         $err.=$lang_box_admin['err_kind']."<br/>".LB;
     }
     //no必須　二重チェック
-    if (empty($no)){
+    if ($no==""){
         $err.=$lang_box_admin['err_no']."<br/>".LB;
 	}else{
         $cntsql="SELECT id FROM {$table} ";
@@ -632,20 +597,6 @@ function LIB_delete (
 
     $id = COM_applyFilter($_POST['id'],true);
 
-    // CHECK
-    $err="";
-    if ($err<>"") {
-        $page_title=  $lang_box_admin['err'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .= COM_startBlock ($lang_box_admin['err'], '',
-                            COM_getBlockTemplate ('_msg_block', 'header'));
-        $retval .= $err;
-        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-        return $retval;
-    }
-
-    //
     DB_delete ($table, 'id', $id);
 
     return COM_refresh ($_CONF['site_admin_url']
@@ -779,11 +730,7 @@ function LIB_import (
     $import = $tmpl->finish ($tmpl->get_var ('output'));
 
     $retval="";
-    $retval .= COM_startBlock ($lang_box_admin['import'], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
     $retval .= $import;
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
-
 
     return $retval;
 }
@@ -881,6 +828,57 @@ function LIB_sendmail (
 
     }
 
+    return $retval;
+}
+function LIB_Menu(
+    $pi_name
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 LIB_Menu("databox")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+
+    $retval = '';
+	
+    //MENU1:管理画面
+    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
+    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
+    $url3=$_CONF['site_url'] . '/'.$pi_name.'/mst.php';
+
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
+    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
+    $url61=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=sampleimport';
+
+    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
+    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
+    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
+    $menu_arr[]=array('url' => $url61,'text' => $lang_box_admin['sampleimport']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
     return $retval;
 }
 

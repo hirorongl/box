@@ -260,12 +260,12 @@ $LANG_DATABOX_ADMIN['path'] = '絶対パス';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'デフォルト';
-$LANG_DATABOX_ADMIN['importmsg'] = "
+$LANG_DATABOX_ADMIN['importxmlmsg'] = "
 絶対パス（フォルダ、ファイル）またはURLを指定してください。<br".XHTML.">
 フォルダ指定の時は、フォルダ下のxmlファイルをインポートします。<br".XHTML.">
 logs/databox_xmlimport.log　にログが記録されます。<br".XHTML.">
 ";
-$LANG_DATABOX_ADMIN['exportmsg'] = "
+$LANG_DATABOX_ADMIN['exportxmlmsg'] = "
 絶対パス（フォルダ）を指定してください。<br".XHTML.">
 logs/databox_xmlimport.log　にログが記録されます。<br".XHTML.">
 ";
