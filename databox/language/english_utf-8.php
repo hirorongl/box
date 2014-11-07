@@ -251,12 +251,12 @@ $LANG_DATABOX_ADMIN['path'] = 'Path';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
-$LANG_DATABOX_ADMIN['importmsg'] = '
+$LANG_DATABOX_ADMIN['importxmlmsg'] = '
 Absolute path (directory , file) or URL select.<br'.XHTML.'>
 If directory selected, xml file is imported under the directory.<br'.XHTML.'>
 Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['exportmsg'] = '
+$LANG_DATABOX_ADMIN['exportxmlmsg'] = '
 Select absolute path (directory).<br'.XHTML.'>
 Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
