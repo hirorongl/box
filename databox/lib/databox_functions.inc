@@ -3949,8 +3949,12 @@ function DATABOX_getoptionlistary(
 		$retval .= ' name="'.$fld.'"';
 	}
 	$retval .= $disabled.">".LB;
-    $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
-
+    
+    if  ($ary[0]<>""){
+    }else{
+        $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
+    }
+	
 	foreach($ary as $k => $v) {
         $retval .= "<option value=\"".$k."\"";
 		
