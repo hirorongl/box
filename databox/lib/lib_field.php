@@ -423,21 +423,21 @@ function LIB_Edit(
     $templates->set_var ('description', $description);
 
     $templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
-    $list_allow_display=DATABOX_getoptionlistary ($lang_box_allow_display,"allow_display",$allow_display,1);
+    $list_allow_display=DATABOX_getoptionlistary ($lang_box_allow_display,"allow_display",$allow_display,$pi_name);
     $templates->set_var( 'list_allow_display', $list_allow_display);
 
     $templates->set_var('lang_allow_edit', $lang_box_admin['allow_edit']);
-    $list_allow_edit=DATABOX_getoptionlistary ($lang_box_allow_edit,"allow_edit",$allow_edit,1);
+    $list_allow_edit=DATABOX_getoptionlistary ($lang_box_allow_edit,"allow_edit",$allow_edit,$pi_name);
     $templates->set_var( 'list_allow_edit', $list_allow_edit);
 
     //textcheck
     $templates->set_var('lang_textcheck', $lang_box_admin['textcheck']);
-    $list_textcheck=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,1);
+    $list_textcheck=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
     $templates->set_var( 'list_textcheck', $list_textcheck);
 
     //textconv
     $templates->set_var('lang_textconv', $lang_box_admin['textconv']);
-    $list_textconv=DATABOX_getoptionlistary ($lang_box_textconv,"textconv",$textconv,1);
+    $list_textconv=DATABOX_getoptionlistary ($lang_box_textconv,"textconv",$textconv,$pi_name);
     $templates->set_var( 'list_textconv', $list_textconv);
 
     //searchtarget
@@ -447,7 +447,7 @@ function LIB_Edit(
 
     //type
     $templates->set_var('lang_type', $lang_box_admin['type']);
-    $list_type=DATABOX_getoptionlistary ($lang_box_type,"type",$type,1);
+    $list_type=DATABOX_getoptionlistary ($lang_box_type,"type",$type,$pi_name);
     $templates->set_var( 'list_type', $list_type);
 
     //checkrequried
