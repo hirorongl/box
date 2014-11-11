@@ -13,9 +13,6 @@ define ('THIS_SCRIPT', 'userbox/myprofile/view.php');
 
 include_once('userbox_functions.php');
 
-//require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_datetimeedit.php');
-//require_once $_CONF['path_system'] . 'lib-user.php';
-
 //ログイン要チェック
 
 if (empty ($_USER['username'])) {

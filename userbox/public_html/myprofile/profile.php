@@ -30,7 +30,6 @@ define ('THIS_SCRIPT', 'userbox/myprofile/profile.php');
 
 include_once('userbox_functions.php');
 
-require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_datetimeedit.php');
 require_once $_CONF['path_system'] . 'lib-user.php';
 
 //ログイン要チェック
@@ -406,7 +405,7 @@ function fncEdit(
         $modified_year."-".$modified_month."-".$modified_day
         , $modified_hour.":".$modified_minute."::00"
         );
-    $datetime_modified=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
+    $datetime_modified=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
     $templates->set_var ('datetime_modified', $datetime_modified);
 
     //カテゴリ

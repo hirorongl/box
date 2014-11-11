@@ -1194,9 +1194,9 @@ function DATABOX_getaddtionfieldsEdit(
 							. "});", TRUE, TRUE
 							);
 						if  (is_array($fields_date)){
-							$fieldhtml.=LIB_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+							$fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
 						}else{
-							$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
+							$fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
 						}
 						$wk =  " <input ";
                         $wk .= " type=\"hidden\"";
@@ -1220,9 +1220,9 @@ function DATABOX_getaddtionfieldsEdit(
 							. "});", TRUE, TRUE
 							);
 						if  (is_array($fields_date)){
-							$fieldhtml.=LIB_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+							$fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
 						}else{
-							$fieldhtml.=LIB_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
+							$fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
 						}
 					    $wk =  " <input ";
                         $wk .= " type=\"hidden\"";

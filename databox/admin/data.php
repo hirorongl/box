@@ -18,7 +18,6 @@ define ('THIS_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 
 require_once('databox_functions.php');
-require_once($_CONF['path'] . 'plugins/databox/lib/lib_datetimeedit.php');
 
 function fncList()
 // +---------------------------------------------------------------------------+
@@ -869,7 +868,7 @@ function fncEdit(
         $comment_expire_year."-".$comment_expire_month."-".$comment_expire_day
         , $comment_expire_hour.":".$comment_expire_minute."::00"
         );
-    $datetime_comment_expire=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","comment_expire");
+    $datetime_comment_expire=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","comment_expire");
     $templates->set_var('datetime_comment_expire', $datetime_comment_expire);
 	$dummy=DATABOX_getenableexpired('comment_expire',$comment_expire_flag,$pi_name);
 
@@ -880,7 +879,7 @@ function fncEdit(
         $modified_year."-".$modified_month."-".$modified_day
         , $modified_hour.":".$modified_minute."::00"
         );
-    $datetime_modified=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
+    $datetime_modified=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
     $templates->set_var ('datetime_modified', $datetime_modified);
     //公開日
     $templates->set_var ('lang_released', $LANG_DATABOX_ADMIN['released']);
@@ -888,7 +887,7 @@ function fncEdit(
         $released_year."-".$released_month."-".$released_day
         , $released_hour.":".$released_minute."::00"
         );
-    $datetime_released=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","released");
+    $datetime_released=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","released");
     $templates->set_var ('datetime_released', $datetime_released);
     //公開終了日
     $templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
@@ -906,7 +905,7 @@ function fncEdit(
         $expired_year."-".$expired_month."-".$expired_day
         , $expired_hour.":".$expired_minute."::00"
         );
-    $datetime_expired=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","expired");
+    $datetime_expired=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","expired");
 	$templates->set_var('datetime_expired', $datetime_expired);
 	$dummy=DATABOX_getenableexpired('expired',$expired_flag,$pi_name);
 	

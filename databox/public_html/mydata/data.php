@@ -16,8 +16,6 @@ define ('THIS_SCRIPT', 'databox/mydata/data.php');
 
 include_once('databox_functions.php');
 
-require_once ($_CONF['path'] . 'plugins/databox/lib/lib_datetimeedit.php');
-
 if ($_DATABOX_CONF['allow_data_update']==1 ){
 }else{
     if (SEC_hasRights ('databox.edit') ){
@@ -621,7 +619,7 @@ function fncEdit(
         $modified_year."-".$modified_month."-".$modified_day
         , $modified_hour.":".$modified_minute."::00"
         );
-    $datetime_modified=LIB_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
+    $datetime_modified=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","modified");
     $templates->set_var ('datetime_modified', $datetime_modified);
 	
 	//カテゴリ
