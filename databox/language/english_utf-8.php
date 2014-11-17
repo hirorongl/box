@@ -215,6 +215,10 @@ $LANG_DATABOX_ADMIN['textcheck']='Input validation(text)';
 $LANG_DATABOX_ADMIN['textconv']='Transform input value(text)';
 $LANG_DATABOX_ADMIN['searchtarget']='Search target';
 
+$LANG_DATABOX_ADMIN['initial_value']='initial value';
+$LANG_DATABOX_ADMIN['range']='range';
+$LANG_DATABOX_ADMIN['dfid']=$LANG04[42];
+
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['draft_msg'] = 'This data is in draft mode. When you want to change the mode, please report it to  site manager.';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';

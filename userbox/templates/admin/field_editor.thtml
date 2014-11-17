@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/field_editor.thtml  20130704 { -->
+<!-- plugins/userbox/templates/admin/field_editor.thtml  20141114 { -->
 
 <div id="userbox_admin">
   {about_thispage}
@@ -61,6 +61,11 @@
         </table>
         <table class="admin-list-table" id="attributetype">
 
+          <!-- 検索対象にする searchtarget -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field2" colspan="2">{lang_searchtarget}{help_searchtarget}</th>
+            <td class="admin-list-field2">{list_searchtarget}</td>
+          </tr>
           <!-- type -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_type}{help_type}</th>
@@ -69,10 +74,25 @@
         </table>
         <table class="admin-list-table" id="attributetype">
 
-          <!-- 検索対象にする searchtarget -->
-          <tr class="pluginRow1">
-            <th class="admin-list-field2" colspan="2">{lang_searchtarget}{help_searchtarget}</th>
-            <td class="admin-list-field2">{list_searchtarget}</td>
+          <!-- 初期値 initial value -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_initial_value} {help_initial_value}</th>
+            <td class="admin-list-field" colspan="2">
+               <textarea name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
+            </td>
+          </tr>
+          <!-- 範囲 range -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_range}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="40" maxlength="160" name="range_start" value="{range_start}"{xhtml}>
+              〜<input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+            </td>
+          </tr>
+          <!-- 日時のフォーマット DateTime Format -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_dfid} {help_dfid}</th>
+            <td class="admin-list-field2">{list_dfid}</td>
           </tr>
 
           <!-- 入力チェック textcheck -->

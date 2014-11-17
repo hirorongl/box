@@ -16,8 +16,9 @@ define ('THIS_SCRIPT2', 'databox/attribute.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 
 
-include_once('databox_functions.php');
-require_once ($_CONF['path'] . 'plugins/databox/lib/lib_field.php');
+require_once('databox_functions.php');
+require_once( $_CONF['path'] . 'plugins/databox/lib/lib_field.php');
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 
 
@@ -29,6 +30,10 @@ $pi_name    = 'databox';
 //############################
 
 // 引数
+$action = '';
+if (isset ($_REQUEST['action'])) {
+    $action = COM_applyFilter ($_REQUEST['action'], false);
+}
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
@@ -54,6 +59,10 @@ if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
 }else if (($mode == $LANG_ADMIN['delete']) && !empty ($LANG_ADMIN['delete'])) {
     $mode="delete";
 }
+if ($action == $LANG_ADMIN['cancel'])  { // cancel
+    $mode="";
+}
+
 
 //echo "mode=".$mode."<br>";
 if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="draftoff"
@@ -68,7 +77,7 @@ if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="dr
 }
 
 
-if ($mode=="export") {
+if ($mode=="exportexec") {
     LIB_export ($pi_name);
     exit;
 }
@@ -80,14 +89,17 @@ $information = array();
 
 //echo "mode=".$mode."<br>";
 switch ($mode) {
+    case 'export':
+    case 'sampleimport':
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+        $display .= DATABOX_Confirmation($pi_name,$mode);
+        break;
     case 'new':// 新規登録
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-        $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_Edit($pi_name,"", $edt_flg,$msg);
         break;
 
 	case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
@@ -99,29 +111,26 @@ switch ($mode) {
     case 'edit':// 編集
         if (!empty ($id) ) {
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-            if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-            }
             $display .= LIB_Edit($pi_name,$id, $edt_flg,$msg,"",$mode);
         }
         break;
 
-    case 'import':// インポート
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
-        $display .= LIB_import($pi_name);
-        break;
-
 
     default:// 初期表示、一覧表示
-
         $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
-        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
         $display .= LIB_List($pi_name);
 
 }
+$display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
+            ,COM_getBlockTemplate('_admin_block', 'header'))
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .LIB_Menu($pi_name)
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 

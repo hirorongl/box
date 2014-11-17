@@ -220,6 +220,10 @@ $LANG_USERBOX_ADMIN['textcheck']='Input validation(text)';
 $LANG_USERBOX_ADMIN['textconv']='Transform input value(text)';
 $LANG_USERBOX_ADMIN['searchtarget']='Search target';
 
+$LANG_USERBOX_ADMIN['initial_value']='initial value';
+$LANG_USERBOX_ADMIN['range']='range';
+$LANG_USERBOX_ADMIN['dfid']=$LANG04[42];
+
 $LANG_USERBOX_ADMIN['draft'] = 'Draft';
 $LANG_USERBOX_ADMIN['draft_msg'] = '
 Your profile is draft mode. When you want to change the mode, please report it to  site manager.

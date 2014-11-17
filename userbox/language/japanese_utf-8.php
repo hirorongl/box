@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20141023
+# Last Update 20141114
 
 ###############################################################################
 ## 管理画面 menu
@@ -226,6 +226,10 @@ $LANG_USERBOX_ADMIN['checkrequried']='必須チェック';
 $LANG_USERBOX_ADMIN['textcheck']='入力チェック（テキスト）';
 $LANG_USERBOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
+
+$LANG_USERBOX_ADMIN['initial_value']='初期値 (準備中)';
+$LANG_USERBOX_ADMIN['range']='範囲 (準備中)';
+$LANG_USERBOX_ADMIN['dfid']=$LANG04[42]." (準備中)";//'日時のフォーマット';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_USERBOX_ADMIN['draft_msg'] = '

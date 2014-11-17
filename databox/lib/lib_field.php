@@ -36,33 +36,6 @@ function LIB_List(
 
     $retval = '';
 
-    //MENU1:管理画面
-    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
-
-    $url3=$_CONF['site_url'] . '/'.$pi_name.'/attribute.php';
-
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
-    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-
-    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
-    $menu_arr[]=array('url' => $url3,'text' => $lang_box['attribute_top']);
-
-    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
-    //$menu_arr[]=array('url' => $url6,'text' => $lang_box['export']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-    $function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
-    );
 
 
     //ヘッダ：編集～
@@ -113,8 +86,6 @@ function LIB_List(
         , $query_arr
         , $defsort_arr
         );
-
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -278,7 +249,12 @@ function LIB_Edit(
         $textconv = COM_applyFilter($_POST['textconv'],true);
         $searchtarget = COM_applyFilter($_POST['searchtarget'],true);
 		
-        $selection = COM_applyFilter($_POST['selection']);
+        $initial_value = COM_applyFilter($_POST['initial_value']);
+        $range_start = COM_applyFilter($_POST['range_start']);
+        $range_end = COM_applyFilter($_POST['range_end']);
+        $dfid = COM_applyFilter($_POST['dfid'],true);
+		
+		$selection = COM_applyFilter($_POST['selection']);
         $selectlist = COM_applyFilter($_POST['selectlist']);
         $checkrequried = COM_applyFilter($_POST['checkrequried']);
 
@@ -304,7 +280,12 @@ function LIB_Edit(
 			$textcheck="";
 			$textconv="";
 			$searchtarget="";
-
+            
+            $initial_value = "";
+            $range_start = "";
+            $range_end = "";
+            $dfid = 0;
+            
             $type ="";
 
             $selection ="";
@@ -345,7 +326,12 @@ function LIB_Edit(
             $textcheck = COM_stripslashes($A['textcheck']);
             $textconv = COM_stripslashes($A['textconv']);
             $searchtarget = COM_stripslashes($A['searchtarget']);
-
+            
+            $initial_value = COM_stripslashes($A['initial_value']);
+            $range_start = COM_stripslashes($A['range_start']);
+            $range_end = COM_stripslashes($A['range_end']);
+            $dfid = COM_stripslashes($A['dfid']);
+            
             $type = COM_stripslashes($A['type']);
 
             $selection = COM_stripslashes($A['selection']);
@@ -376,8 +362,6 @@ function LIB_Edit(
         $delflg=false;
 
     }
-    $retval .= COM_startBlock ($lang_box_admin['edit'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
 
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
@@ -444,7 +428,23 @@ function LIB_Edit(
     $templates->set_var('lang_searchtarget', $lang_box_admin['searchtarget']);
     $list_searchtarget=DATABOX_getradiolist ($lang_box_noyes,"searchtarget",$searchtarget);
     $templates->set_var( 'list_searchtarget', $list_searchtarget);
-
+	
+    //初期値 範囲 日時フォーマット initial value range dfid
+    $templates->set_var('lang_initial_value', $lang_box_admin['initial_value']);
+    $templates->set_var('help_initial_value', $lang_box_admin['help_initial_value']);
+    $templates->set_var ('initial_value', $initial_value);
+    $templates->set_var('lang_range', $lang_box_admin['range']);
+    $templates->set_var('help_range', $lang_box_admin['help_range']);
+    $templates->set_var ('range_start', $range_start);
+    $templates->set_var ('range_end', $range_end);
+    $templates->set_var('lang_dfid', $lang_box_admin['dfid']);
+    $templates->set_var('help_dfid', $lang_box_admin['help_dfid']);
+    //$list_dfid=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
+    $list_dfid = '<select id="dfid" name="dfid">' . LB
+               . COM_optionList ($_TABLES['dateformats'], 'dfid,description',
+                                 $dfid) . '</select>';
+    $templates->set_var( 'list_dfid', $list_dfid);
+	
     //type
     $templates->set_var('lang_type', $lang_box_admin['type']);
     $list_type=DATABOX_getoptionlistary ($lang_box_type,"type",$type,$pi_name);
@@ -508,7 +508,6 @@ function LIB_Edit(
     //
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -580,6 +579,15 @@ function LIB_Save (
     $textconv=addslashes (COM_checkHTML (COM_checkWords ($textconv)));
     $searchtarget=COM_applyFilter($_POST['searchtarget']);
     $searchtarget=addslashes (COM_checkHTML (COM_checkWords ($searchtarget)));
+	
+    $initial_value=COM_applyFilter($_POST['initial_value']);
+    $initial_value=addslashes (COM_checkHTML (COM_checkWords ($initial_value)));
+    $range_start=COM_applyFilter($_POST['range_start']);
+    $range_start=addslashes (COM_checkHTML (COM_checkWords ($range_start)));
+    $range_end=COM_applyFilter($_POST['range_end']);
+    $range_end=addslashes (COM_checkHTML (COM_checkWords ($range_end)));
+    $dfid=COM_applyFilter($_POST['dfid']);
+    $dfid=addslashes (COM_checkHTML (COM_checkWords ($dfid)));
 	
     $type=COM_applyFilter($_POST['type']);
     $type=addslashes (COM_checkHTML (COM_checkWords ($type)));
@@ -728,6 +736,14 @@ function LIB_Save (
     $fields.=",searchtarget";
     $values.=",$searchtarget";
 	
+    $fields.=",initial_value";
+    $values.=",'$initial_value'";
+    $fields.=",range_start";
+    $values.=",'$range_start'";
+    $fields.=",range_end";
+    $values.=",'$range_end'";
+    $fields.=",dfid";
+    $values.=",$dfid";
 	
     $fields.=",uuid";
     $values.=",$uuid";
@@ -829,20 +845,6 @@ function LIB_delete (
 
     $id = COM_applyFilter($_POST['id'],true);
     $type=COM_applyFilter($_POST['type']);
-
-    // CHECK
-    $err="";
-    if ($err<>"") {
-        $page_title= $lang_box_admin['err'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
-        $retval .= COM_startBlock ($lang_box_admin['err'], '',
-                            COM_getBlockTemplate ('_msg_block', 'header'));
-        $retval .= $err;
-        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-        return $retval;
-    }
 
 	//
 	if ($type=12){
@@ -952,10 +954,7 @@ function LIB_import (
     $import = $tmpl->finish ($tmpl->get_var ('output'));
 
     $retval="";
-    $retval .= COM_startBlock ($lang_box_admin['import'], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
     $retval .= $import;
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
 
     return $retval;
@@ -1047,6 +1046,59 @@ function LIB_sendmail (
         COM_mail ($to, $subject, $message);
 
     }
+
+    return $retval;
+}
+function LIB_Menu(
+    $pi_name
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 LIB_Menu("databox")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+
+    $retval = '';
+	
+    //MENU1:管理画面
+    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
+    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
+
+    $url3=$_CONF['site_url'] . '/'.$pi_name.'/attribute.php';
+
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
+    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
+
+    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
+    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
+    $menu_arr[]=array('url' => $url3,'text' => $lang_box['attribute_top']);
+
+    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
+    //$menu_arr[]=array('url' => $url6,'text' => $lang_box['export']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
 
     return $retval;
 }
