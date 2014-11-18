@@ -4327,6 +4327,10 @@ function DATABOX_getheadercode(
 	,$meta_description
 	,$meta_keywords
 	,$description
+    ,$additionfields=""
+    ,$addition_def=""
+    ,$chk_user=""
+    ,$fieldset_id=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
@@ -4413,7 +4417,11 @@ function DATABOX_getheadercode(
 		//facebook
 		$facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
 		$tpl->set_var ('facebook_consumer_key', $facebook_consumer_key);
-
+		
+        if ($kind==="data"){
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$tpl,$chk_user,$pi_name,$fieldset_id);
+        }
+    
 		$tpl->parse ('output', 'tpl');
 		$retval .= $tpl->finish ($tpl->get_var ('output'));
 	}

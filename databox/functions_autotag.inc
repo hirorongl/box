@@ -1889,7 +1889,12 @@ function databox_data(
 				,$A['title']
 				,$A['meta_description']
 				,$A['meta_keywords']
-				,$A['description']);
+                ,$A['description']
+                ,$additionfields 
+                ,$addition_def 
+                ,$chk_user 
+                ,$fieldset_id 
+			    );
 			
 			if  ($A['page_title']<>""){
 				$title = $A['page_title'] ;
