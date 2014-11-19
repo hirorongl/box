@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/files.html 20141111 -->
+<!-- admin/plugins/databox/docs/japanese/files.html 20141119 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -28,9 +28,31 @@
   │ │ ├ japanese
   │ │ │ ├ autotags.html
   │ │ │ ├ databox.html
+  │ │ │ ├ docstyle.css
   │ │ │ ├ files.html
   │ │ │ ├ index.html
+  │ │ │ ├ input.html
+  │ │ │ ├ input_backuprestore.html
+  │ │ │ ├ input_category.html
+  │ │ │ ├ input_data.html
+  │ │ │ ├ input_field.html
+  │ │ │ ├ input_fieldset.html
+  │ │ │ ├ input_group.html
+  │ │ │ ├ input_mst.html
+  │ │ │ ├ input_mydata_data.html
   │ │ │ ├ install.html
+  │ │ │ ├ table_addition.html
+  │ │ │ ├ table_base.html
+  │ │ │ ├ table_category.html
+  │ │ │ ├ table_def_category.html
+  │ │ │ ├ table_def_field.html
+  │ │ │ ├ table_def_fieldset.html
+  │ │ │ ├ table_def_fieldset_assignments.html
+  │ │ │ ├ table_def_fieldset_group.html
+  │ │ │ ├ table_def_froup.html
+  │ │ │ ├ table_def_xml.html
+  │ │ │ ├ table_mst.html
+  │ │ │ ├ table_stats.html
   │ │ │ ├ tables.html
   │ │ │ └ templatesetvars.html
   │ │ │
@@ -51,6 +73,11 @@
   │ ├ mst.php
   │ └ view.php
   │
+  │ ├ csv.php   (CSV)
+  │ ├ xml.php   (XML)
+  │ └ maps.php  (MAPS)
+  │
+  │
   ├ <a name="custom">custom  (各サイトでご用意ください)</a>
   │ ├ language
   │ │ └ japaese_utf-8.php　
@@ -59,6 +86,7 @@
   │ └ functions_custom.inc (テーマ変数の追加)
   │ 
   ├ language
+  │ ├ english_utf-8.php
   │ └ japanese_utf-8.php 
   │   （指定言語がない場合にも使用されます）
   │
@@ -101,7 +129,8 @@
   │ ├ content.php
   │ ├ data.php
   │ ├ index.php
-  │ └ list.php
+  │ ├ list.php
+  │ └ search.php
   │
   ├ sql
   │ └ mysql_install.php
@@ -115,12 +144,13 @@
   │ │ ├ confirmation.thtml
   │ │ ├ data_col_detail.thtml
   │ │ ├ data_editor.thtml
+  │ │ ├ exportform.thtml
   │ │ ├ field_editor.thtml
   │ │ ├ fieldset_editor.thtml
   │ │ ├ fieldset_fields.thtml
   │ │ ├ fieldset_groups.thtml
   │ │ ├ group_editor.thtml
-  │ │ ├ import_url.thtml
+  │ │ ├ import_url.thtml  (CSVのエクスポート XMLのインポート、XMLのエクスポートで使用)　
   │ │ ├ information.thtml
   │ │ ├ mst_editor.thtml
   │ │ ├ restoreform.thtml
@@ -128,28 +158,37 @@
   │ │ ├ selectset.thtml
   │ │ └ view.thtml
   │ │
+  │ │ ├ csv_editor.thtml
+  │ │ ├ csvimportform.thtml
+  │ │ ├ csvsel_editor.thtml
+  │ │ └ csvsel_editor.thtml
+  │ │
+  │ │ └ xml_editor.thtml
+  │ │
   │ ├ attribute
   │ │ └ default
-  │ │    ├ col_detail.thtml
   │ │    ├ col.thtml
   │ │    ├ col2.thtml
-  │ │    ├ list_detail.thtml
+  │ │    ├ col_detail.thtml
+  │ │    ├ headerode.thtml
   │ │    ├ list.thtml
-  │ │    ├ navigation_detail.thtml
+  │ │    ├ list_detail.thtml
   │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
   │ │    ├ pagenavigation.thtml
   │ │    └ row.thtml
   │ │
   │ ├ category
   │ │ └ default
-  │ │    ├ col_detail.thtml
   │ │    ├ col.thtml
+  │ │    ├ col_detail.thtml
   │ │    ├ grp.thtml
   │ │    ├ headercode.thtml
-  │ │    ├ list_detail.thtml
   │ │    ├ list.thtml
-  │ │    ├ navigation_detail.thtml
+  │ │    ├ list_detail.thtml
   │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
   │ │    ├ nohit.thtml
   │ │    ├ pagenavigation.thtml
   │ │    └ row.thtml
@@ -177,6 +216,17 @@
   │ │  └ default
   │ │     ├ list.thtml
   │ │     └ list_col.thtml
+  │ │
+  │ ├ search
+  │ │ └ default
+  │ │    ├ argument.thtml
+  │ │    ├ col_detail.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    ├ pagenavigation.thtml
+  │ │    └ row.thtml
+  │ │
   │ └ datetime.thtml
   │
   ├ autoinstall.php
@@ -192,7 +242,36 @@
   ├ install_defaults.php
   └ version.php
   
+  ├ csv (CSV)
+  │ ├ sql
+  │ │ └ mysql_install_csv.php
+  │ │ 
+  │ ├ csv.inc
+  │ ├ csv_functions.php
+  │ ├ csv_importexec.php
+  │ ├ csv_scheduled.php
+  │ ├ history
+  │ └ readme_csv.txt
+  │
   
+  ├ maps (MAPS)
+  │ ├ history
+  │ ├ maps_markersupdate.inc
+  │ ├ maps_scheduled.inc
+  │ ├ masps.inc
+  │ └ readme_maps.txt
+  │
+  
+  ├ xml (XML)
+  │ ├ sql
+  │ │ └ mysql_install_xml.php
+  │ │ 
+  │ ├ history
+  │ ├ readme_xml.txt
+  │ ├ xml.inc
+  │ ├ xml_functions.php
+  │ └ xml_data_functions.php
+  │
   
 </code></pre>
 <p>DataBox のコンフィギュレーションのバックアップは、
@@ -204,18 +283,31 @@ private/backups/databox/ に作成されます</p>
  GEEKLOG
    ├ data
    │ ├ databox  (ファイル保存場所)
+   │ ├ databox_csv  (CSVエキスポートディレクトリ)
+   │ ├ databox  (XMLエキスポートディレクトリ)
    │
    ├ public_html
    │ ├ images
    │ │ ├ databox (追加項目の画像（外記憶）の記憶場所)
    │ │
    │ ├ databox_data  (ファイル保存場所)
+   │ │
+   │ ├ databox_csv  (CSV一括インポートディレクトリ)
+   │ │
+   │ ├ databox_data  (XML一括インポートディレクトリ)
+   │ │
    │ ├ layout
    │ │ ├ テーマ
    │ │     ├ databox
    │ │        ├ templates  テーマテンプレート
    │ │                 (各サイトでご用意ください)
    │ │
+   │ │
+   │ ├ logs
+   │ │ ├ databox_csvimport.log   (CSV)
+   │ │ ├ databox_mapsupdate.log  (MAPS)
+   │ │ ├ databox_xmlimport.log   (XML)
+   
 </code></pre>
 
 <div class="footer">
