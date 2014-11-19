@@ -229,7 +229,7 @@ $LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_USERBOX_ADMIN['initial_value']='初期値 (準備中)';
 $LANG_USERBOX_ADMIN['range']='範囲 (準備中)';
-$LANG_USERBOX_ADMIN['dfid']=$LANG04[42]." (準備中)";//'日時のフォーマット';
+$LANG_USERBOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_USERBOX_ADMIN['draft_msg'] = '

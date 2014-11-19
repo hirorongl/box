@@ -708,10 +708,10 @@ function DATABOX_getadditiondef(
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:追加項目定義
 // +---------------------------------------------------------------------------+
-// 20101116
 {
     global $_TABLES;
-
+    global $_CONF;
+	
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_def_field'];
     }else{
@@ -742,6 +742,11 @@ function DATABOX_getadditiondef(
     $sql.= ",textcheck";
     $sql.= ",textconv";
     $sql.= ",searchtarget";
+	
+    $sql.= ",initial_value";
+    $sql.= ",range_start";
+    $sql.= ",range_end";
+    $sql.= ",dfid";
 
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
@@ -783,23 +788,20 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['selectlist'] = COM_stripslashes($A['selectlist']);
         $rt[$field_id]['templatesetvar'] = COM_stripslashes($A['templatesetvar']);
 
-        //@@@@@---->
         $selection= COM_stripslashes($A['selection']);
-        //$selectionary=array();
-        //$ary=array();
-        //$ary=split("\r" , $selection);
-        //$j=0;
-        //for ($ii = 0; $ii < count($ary); $ii++) {
-        //    if ($ary[$ii]<>""){
-        //        $selectionary[$j]=$ary[$ii];
-        //        $j=$j+1;
-        //    }
-        //}
-        //$rt[$field_id]['selectionary']=$selectionary;
-
         $rt[$field_id]['selectionary']=DATABOX_getselectionary($selection);
 
-        //@@@@@<-----
+        $rt[$field_id]['initial_value']= COM_stripslashes($A['initial_value']);
+        $rt[$field_id]['range_start']= COM_stripslashes($A['range_start']);
+        $rt[$field_id]['range_end']= COM_stripslashes($A['range_end']);
+        $dfid= COM_stripslashes($A['dfid']);
+        $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+        if( empty( $format )) {
+            $rt[$field_id]['format'] = $_CONF['date'];
+        }else{
+            $rt[$field_id]['format'] = $format;
+        }
+
 
     }
     return $rt;
@@ -1858,6 +1860,7 @@ function DATABOX_getaddtionfieldsDisp(
         $maxlength=$addition_def[$fid]['maxlength'];
         $rows=$addition_def[$fid]['rows'];
         $br=$addition_def[$fid]['br'];
+        $format=$addition_def[$fid]['format'];
 
         $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
@@ -2002,7 +2005,7 @@ function DATABOX_getaddtionfieldsDisp(
 					break;
                 case 4://日時
 					if  ($fvalue<>""){
-						$w=COM_getUserDateTimeFormat($fvalue);
+						$w=DATABOX_getDateTimeFormat($fvalue,$format);
 						$fieldhtml .= $w[0];
 					}
 					break;
@@ -4875,6 +4878,18 @@ function DATABOX_getfilelist(
     }
     return $fary;
 
+}
+function DATABOX_getDateTimeFormat( $date,$format )
+{
+    if( empty( $date ))    {
+        $stamp = time();
+    } else if( is_numeric( $date )){
+        $stamp = $date;
+    }else{
+        $stamp = strtotime( $date );
+    }
+    $date = strftime( $format, $stamp );
+    return array( $date, $stamp );
 }
 
 ?>
