@@ -253,6 +253,13 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             } else {
                 $switch = '';
             }
+            $query_limit=COM_applyFilter($_REQUEST['query_limit']);
+            $direction=COM_applyFilter($_REQUEST['direction']);
+            $filter_val=COM_applyFilter($_REQUEST['filter_val']);
+            $databoxlistpage=COM_applyFilter($_REQUEST['databoxlistpage']);
+            $order=COM_applyFilter($_REQUEST['order'],true);
+            $prevorder=COM_applyFilter($_REQUEST['prevorder']);
+
             $retval = "<form action=\"{$_CONF['site_admin_url']}";
             $retval .= "/plugins/".THIS_SCRIPT."\" method=\"post\">";
             $retval .= "<input type=\"checkbox\" name=\"drafton\" ";
@@ -262,6 +269,13 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
 
             $retval .= "<input type=\"hidden\" name=\"".CSRF_TOKEN."\"";
             $retval .= " value=\"".SEC_createToken()."\"".XHTML.">";
+
+            $retval .= "<input type=\"hidden\" name=\"order\" value=\"$order\" />";
+            $retval .= "<input type=\"hidden\" name=\"prevorder\" value=\"$prevorder\" />";
+            $retval .= "<input type=\"hidden\" name=\"query_limit\" value=\"$query_limit\" />";
+            $retval .= "<input type=\"hidden\" name=\"direction\" value=\"$direction\" />";
+            $retval .= "<input type=\"hidden\" name=\"filter_val\" value=\"$filter_val\" />";
+            $retval .= "<input type=\"hidden\" name=\"databoxlistpage\" value=\"$databoxlistpage\" />";
 
             $retval .= "</form>";
             break;
