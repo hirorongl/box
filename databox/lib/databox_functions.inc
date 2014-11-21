@@ -940,7 +940,7 @@ function DATABOX_getadditiondatas(
 	$sql="SELECT ";
 	$sql.=" m.field_id";
     if ($id==0){
-		$sql.=",'' AS value  ";
+		$sql.=",initial_value AS value  ";
 	}else{
 		$sql.=", ( SELECT VALUE ";
         $sql.=" FROM";
