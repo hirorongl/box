@@ -454,6 +454,7 @@ function plugin_user_create_userbox (
     $sql .= " field_id";
     $sql .= " ,type";
     $sql .= " ,selection";
+    $sql .= " ,initial_value";
 
     $sql .= " FROM ";
     $sql .= $table;
@@ -469,19 +470,20 @@ function plugin_user_create_userbox (
             $field_id=$A['field_id'];
             $type=$A['type'];
             $selection=$A['selection'];
-
+            $initial_value=$A['initial_value'];
+            //7 = 'オプションリスト';
+            //8 = 'ラジオボタンリスト';
+            if (($type==7 OR $type==8) AND ($selection<>"")){
+				if  ($initial_value==""){
+					$initial_value=0;
+				}
+			}
             $sql2="INSERT INTO ".$table2.LB;
             $sql2.=" (`id`,`field_id`,`value`)".LB;
             $sql2.=" VALUES (";
             $sql2.=" ".$uid;
             $sql2.=" ,".$field_id;
-            //7 = 'オプションリスト';
-            //8 = 'ラジオボタンリスト';
-            if (($type==7 OR $type==8) AND ($selection<>"")){
-                $sql2.=",'0' ";
-            }else{
-                $sql2.=",'' ";
-            }
+            $sql2.=",'$initial_value' ";
             $sql2.=" )";
 
             DB_query($sql2);
