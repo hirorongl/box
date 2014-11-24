@@ -674,6 +674,10 @@ $LANG_DATABOX_SEARCH['title'] =  'Title';
 $LANG_DATABOX_SEARCH['udate'] =  'Update';
 
 ###############################################################################
+#
+$LANG_DATABOX_STATS['data'] = 'DataBox';
+
+###############################################################################
 # COM_showMessage()
 $PLG_databox_MESSAGE1  = 'Saved';
 $PLG_databox_MESSAGE2  = 'Deleted';

@@ -550,6 +550,10 @@ $LANG_USERBOX_SEARCH['title'] =  'Title';
 $LANG_USERBOX_SEARCH['udate'] =  'Update';
 
 ###############################################################################
+#
+$LANG_USERBOX_STATS['data'] = 'DataBox';
+
+###############################################################################
 # COM_showMessage()
 $PLG_userbox_MESSAGE1  = 'Saved';
 $PLG_userbox_MESSAGE2  = 'Deleted';
