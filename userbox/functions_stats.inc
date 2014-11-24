@@ -21,7 +21,8 @@ function plugin_showstats_userbox (
 	global $_CONF;
 	global $_TABLES;
 	global $LANG_USERBOX_STATS;
-
+	global $_USERBOX_CONF;
+	
     require_once $_CONF['path_system'] . 'lib-admin.php';
 	
     $tbl1=$_TABLES['USERBOX_base'] ;
@@ -72,14 +73,23 @@ function plugin_showstats_userbox (
         );
         $data_arr = array();
         $text_arr = array('has_menu' => false,
-                          'title'    => $LANG_DATABOX_STATS['stats_headline'],
+                          'title'    => $LANG_USERBOX_STATS['stats_headline'],
         );
         for ($i = 0; $i < $nrows; $i++) {
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
             $title = stripslashes (str_replace ('$', '&#36;', $A['username']));
-            $url = COM_buildUrl ($_CONF['site_url']
-                        . '/userbox/profile.php?id=' . $A['id']);
+            $url=$_CONF['site_url'] . "/userbox/profile.php";
+            $url.="?";
+            //コード使用の時
+            if ($_USERBOX_CONF['datacode']){
+                $url.="code=".$A['username'];
+                $url.="&amp;m=code";
+            }else{
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
+            }
+            $url = COM_buildUrl( $url );
             $sid = COM_createLink($title, $url,array('title' => $title));
             $hits = COM_numberFormat ($A['hits']);
 			

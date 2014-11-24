@@ -21,7 +21,8 @@ function plugin_showstats_databox (
 	global $_CONF;
 	global $_TABLES;
 	global $LANG_DATABOX_STATS;
-
+	global $_DATABOX_CONF;
+	
     require_once $_CONF['path_system'] . 'lib-admin.php';
 	
     $tbl1=$_TABLES['DATABOX_base'] ;
@@ -29,7 +30,7 @@ function plugin_showstats_databox (
 
     $retval = '';
 	
-	$sql = "SELECT t1.id,t1.title,t2.hits ";
+	$sql = "SELECT t1.id,t1.title,t2.hits ,t1.code";
 	
 	$sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
@@ -74,8 +75,17 @@ function plugin_showstats_databox (
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
             $title = stripslashes (str_replace ('$', '&#36;', $A['title']));
-            $url = COM_buildUrl ($_CONF['site_url']
-                        . '/databox/data.php?id=' . $A['id']);
+            $url=$_CONF['site_url'] . "/databox/data.php";
+            $url.="?";
+            //コード使用の時
+            if ($_DATABOX_CONF['datacode']){
+                $url.="code=".$A['code'];
+                $url.="&amp;m=code";
+            }else{
+                $url.="id=".$A['id'];
+                $url.="&amp;m=id";
+            }
+            $url = COM_buildUrl( $url );
             $sid = COM_createLink($title, $url,array('title' => $title));
             $hits = COM_numberFormat ($A['hits']);
 			

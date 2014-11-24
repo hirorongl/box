@@ -552,6 +552,7 @@ $LANG_USERBOX_SEARCH['udate'] =  'Update';
 ###############################################################################
 #
 $LANG_USERBOX_STATS['data'] = 'DataBox';
+$LANG_USERBOX_STATS['stats_page_title']='User Name';
 $LANG_USERBOX_STATS['stats_hits']='Hits';
 $LANG_USERBOX_STATS['stats_headline']='Top Ten UserBox Pages';
 $LANG_USERBOX_STATS['stats_no_hits']='It appears that there are no UserBox pages on this site';
