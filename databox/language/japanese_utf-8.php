@@ -723,6 +723,11 @@ $LANG_DATABOX_SEARCH['udate'] =  '更新日';
 #
 $LANG_DATABOX_STATS['data'] = 'DataBox';
 
+$LANG_DATABOX_STATS['stats_page_title']='タイトル';
+$LANG_DATABOX_STATS['stats_hits']='表示回数';
+$LANG_DATABOX_STATS['stats_headline']='DataBox(上位10件) 管理人の表示は含みません';
+$LANG_DATABOX_STATS['stats_no_hits']='表示した人が人がいません。';
+
 ###############################################################################
 # COM_showMessage()
 $PLG_databox_MESSAGE1  = '保存されました。';

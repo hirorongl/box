@@ -676,6 +676,9 @@ $LANG_DATABOX_SEARCH['udate'] =  'Update';
 ###############################################################################
 #
 $LANG_DATABOX_STATS['data'] = 'DataBox';
+$LANG_DATABOX_STATS['stats_hits']='Hits';
+$LANG_DATABOX_STATS['stats_headline']='Top Ten DataBox Pages';
+$LANG_DATABOX_STATS['stats_no_hits']='It appears that there are no DataBox pages on this site';
 
 ###############################################################################
 # COM_showMessage()
