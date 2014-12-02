@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/databox.html 20141008 -->
+<!-- admin/plugins/databox/docs/japanese/databox.html 20141126 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='databox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - DataBox」から変更できます。</p>
- <h3><a name="public">メイン設定</a>(2014/02/24 update)</h3>
+ <h3><a name="public">メイン設定</a>(2014/11/26 update)</h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -83,10 +83,16 @@
 </tr>
 
 <tr class="r2">
+  <td><a name="desc_detail">個別表示に使用するプログラム(detail)</a></td>
+  <td>data.php</td>
+  <td></td>
+</tr>
+
+<tr >
   <td valign="top"><a name="desc_templates">テンプレート　一般画面(templates)</a></td>
   <td valign="top">標準(standard)</td>
   <td valign="top">どのテンプレートフォルダを使用するかを指定します。
-<ul>
+<ul  class="r2">
     <li>標準(standard)(デフォルト): private/plugins/databox/templates/以下</li>
     <li>カスタム(custom): private/plugins/databox/custom/templates/以下</li>
     <li>テーマ(theme): public_html/テーマ/テーマテンプレートパス/以下</li>
@@ -95,7 +101,7 @@
 </td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td valign="top"><a name="desc_templates_admin">テンプレート 管理画面(templates_admin)</a></td>
   <td valign="top">標準(standard)</td>
   <td valign="top">どのテンプレートフォルダを使用するかを指定します。
@@ -106,32 +112,32 @@
     </ul>
 <strong>注意:</strong> カスタムまたはテーマを指定している場合でもフォルダがなければ標準のテンプレートフォルダを使用します　</td>
 </tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_themespath">テーマテンプレートパス(themespath)</a></td>
   <td valign="top">databox/templates/</td>
   <td valign="top">テーマテンプレートを使用する場合、テーマからの相対パス　</td>
 </tr>
-<tr>
+<tr class="r2">
   <td><a name="desc_delete_data">所有者の削除と共に削除する(delete_data)</a></td>
   <td>いいえ(false)</td>
   <td>いいえ(false)の場合、データの所有者のアカウントが削除された時、Root管理者(通常はID＝２)に変更します。
 はい(true)にすると、所有者の削除と共に削除します。</td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td><a name="desc_datefield">使用する日付(datefield')</a></td>
   <td>編集日付による(modified)</td>
   <td>編集日付による(modified)、作成日付による(created)、公開日による(released)から選択します。</td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_meta_tags">メタタグを使用する(meta_tags)</a></td>
   <td>いいえ(0)</td>
   <td>いいえ(0)の場合、メタタグを使用しません。
 はい(1)にすると、メタタグが出力されます。</td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td><a name="desc_layout">レイアウト 一般画面(layout)</a></td>
   <td>ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）(standard)</td>
   <td> 一般画面のレイアウトを指定します。
@@ -146,7 +152,7 @@
   </td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_layout_admin">レイアウト 管理画面(layout_admin)</a></td>
   <td>ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）(standard)</td>
   <td>管理画面のレイアウトを指定します。
@@ -160,35 +166,35 @@
     </ul>
   </td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_mail_to">更新通知先メールアドレス (mail_to)</a></td>
   <td></td>
   <td></td>
 </tr>
-<tr >
+<tr class="r2">
   <td><a name="desc_mail_to_owner">所有者に修正を通知する (mail_to_owner)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、所有者に修正を通知します。</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_mail_to_draft">下書データの修正を通知する (mail_to_draft)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、下書データの修正を通知します。</td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_allow_data_update">ユーザーに更新を許可する(allow_data_update)</a></td>
   <td>はい(1)</td>
   <td>いいえ(0)にすると、ユーザーに更新を許可しません。(更新権限を持つユーザーは除く)</td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td><a name="desc_allow_data_delete">ユーザーに削除を許可する(allow_data_delete)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、ユーザーに削除を許可します。</td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_allow_data_insert">ユーザーに新規登録を許可する(allow_data_insert)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、ユーザーに新規登録を許可します。ただしユーザーに更新を許可するがいいえの場合は許可しません。</br>
@@ -196,25 +202,25 @@
   </td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td><a name="desc_admin_draft_default">管理者の新規登録のドラフトのデフォルト(admin_draft_default)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、ドラフトをデフォルトにします。</td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_user_draft_default">ユーザーの新規登録のドラフトのデフォルト(user_draft_default)</a></td>
   <td>はい(1)</td>
   <td>いいえ(0)にすると、ドラフトをデフォルトにしません。</td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td><a name="desc_dateformat">日付書式　datepicker用(dateformat)</a></td>
   <td>Y/m/d</td>
   <td></td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td valign="top"><a name="desc_aftersave">保存後の画面遷移 一般画面(aftersave)</a></td>
   <td valign="top">ページを表示する	(item)</td>
   <td valign="top">保存した後、どのページに移動するかを指定します。
@@ -226,7 +232,7 @@
     <li>プラグイントップを表示する(plugin): プラグイントップを表示します。</li>
     </ul>　</td>
 </tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_aftersave_admin">保存後の画面遷移 管理画面(aftersave_admin)</a></td>
   <td valign="top">ページを表示する(item)</td>
   <td valign="top">保存した後、どのページに移動するかを指定します。
@@ -240,13 +246,13 @@
     </ul>　</td>
 </tr>
 
-<tr>
+<tr class="r2">
   <td><a name="desc_grp_id_default">グループのデフォルト(grp_id_default)</a></td>
   <td>DataBox Editor</td>
   <td></td>
 </tr>
 </tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_default_img_url">デフォルト画像URL(default_img_url)</a></td>
   <td valign="top">　</td>
   <td valign="top">TOPページ等のメタタグ設定で使用します。<br />
@@ -259,33 +265,33 @@
   注：facebookのogp画像に使用する場合、200X200ピクセル以上、1500X1500ピクセル以下で
  </td>
 </tr>
-<tr>
+<tr class="r2">
   <td valign="top"><a name="desc_maxlength_description">入力制限文字数　説明(maxlength_description)</a></td>
   <td valign="top">1677215</td>
   <td valign="top">説明の入力を登録された文字数で制限します。
  </td>
 </tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_maxlength_meta_description">入力制限文字数　説明文のメタタグ(maxlength_meta_description)</a></td>
   <td valign="top">65535</td>
   <td valign="top">説明文のメタタグの入力を登録された文字数で制限します。
  </td>
 </tr>
-<tr>
+<tr class="r2">
   <td valign="top"><a name="desc_maxlength_meta_keywords">入力制限文字数　キーワードのメタタグ(maxlength_meta_keywords)</a></td>
   <td valign="top">65535</td>
   <td valign="top">キーワードのメタタグの入力を登録された文字数で制限します。
  </td>
 </tr>
 
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_hideuseroption">ユーザー情報に表示しない(hideuseroption)</a></td>
   <td valign="top">いいえ(0)</td>
   <td valign="top">はい(1)にすると、ユーザー情報ブロックに「マイデータ」を表示しません
  </td>
 </tr>
 
-<tr >
+<tr  class="r2">
   <td valign="top"><a name="desc_commentcode">新規登録時のコメントのデフォルト(commentcode)</a></td>
   <td valign="top">コメント有効(0)</td>
   <td valign="top">新規登録時のコメントのデフォルトを指定します。コメント有効(0)、コメント無効(-1)。

@@ -68,6 +68,9 @@ $_DATABOX_DEFAULT['datacode']=1;
 $_DATABOX_DEFAULT['groupcode']=1;
 //DataBox のTOPで表示するプログラム
 $_DATABOX_DEFAULT['top']="/databox/list.php";
+//DataBox の個別表示で使用するプログラム
+$_DATABOX_DEFAULT['detail']="data.php";
+
 //テンプレート 一般画面
 $_DATABOX_DEFAULT['templates']="standard";
 //テンプレート 管理画面
@@ -362,76 +365,82 @@ function plugin_initconfig_databox()
 			, $pi_name
 			,0);
         $c->add(
+            'detail'
+            ,$_DATABOX_DEFAULT['detail']
+            ,'text', 0, 0, NULL, 80, TRUE
+			, $pi_name
+			,0);
+        $c->add(
             'templates'
             , $_DATABOX_DEFAULT['templates']
-            , 'select',  0, 0, 20, 80, true
+            , 'select',  0, 0, 20, 90, true
 			, $pi_name
 			,0);
         $c->add(
             'templates_admin'
             , $_DATABOX_DEFAULT['templates_admin']
-            , 'select',  0, 0, 20, 90, true
+            , 'select',  0, 0, 20, 100, true
 			, $pi_name
 			,0);
         $c->add(
             'themespath'
             ,$_DATABOX_DEFAULT['themespath']
-            ,'text', 0, 0, NULL, 100, TRUE
+            ,'text', 0, 0, NULL, 110, TRUE
 			, $pi_name
 			,0);
 
         $c->add(
             'delete_data'
             , $_DATABOX_DEFAULT['delete_data']
-            , 'select',  0, 0, 1, 110, true
+            , 'select',  0, 0, 1, 120, true
 			, $pi_name
 			,0);
         $c->add(
             'datefield'
             , $_DATABOX_DEFAULT['datefield']
-            , 'select',  0, 0, 21, 120, true
+            , 'select',  0, 0, 21, 130, true
 			, $pi_name
 			,0);
 
 
         $c->add('meta_tags'
             , $_DATABOX_DEFAULT['meta_tags']
-            , 'select',  0, 0, 0, 130, true
+            , 'select',  0, 0, 0, 140, true
 			, $pi_name
 			,0);
 
         $c->add(
             'layout'
             , $_DATABOX_DEFAULT['layout']
-            , 'select',  0, 0, 22, 140, true
+            , 'select',  0, 0, 22, 150, true
 			, $pi_name
 			,0);
 
         $c->add(
             'layout_admin'
             , $_DATABOX_DEFAULT['layout_admin']
-            , 'select',  0, 0, 22, 150, true
+            , 'select',  0, 0, 22, 160, true
 			, $pi_name
 			,0);
 
         $c->add(
             'mail_to'
             ,array()
-            ,'%text', 0, 0, 0, 160, TRUE
+            ,'%text', 0, 0, 0, 170, TRUE
 			, $pi_name
 			,0);
 		
         $c->add(
             'mail_to_owner'
             ,$_DATABOX_DEFAULT['mail_to_owner']
-            ,'select', 0, 0, 0, 170, true
+            ,'select', 0, 0, 0, 180, true
 			, $pi_name
 			,0);
 		
         $c->add(
             'mail_to_draft'
             ,$_DATABOX_DEFAULT['mail_to_draft']
-            ,'select', 0, 0, 0, 180, true
+            ,'select', 0, 0, 0, 190, true
 			, $pi_name
 			,0);
 		
@@ -443,7 +452,7 @@ function plugin_initconfig_databox()
         $c->add(
             'allow_data_update'
             ,$_DATABOX_DEFAULT['allow_data_update']
-            ,'select', 0, 0, 0, 190, true
+            ,'select', 0, 0, 0, 200, true
 			, $pi_name
 			,0);
 
@@ -452,28 +461,28 @@ function plugin_initconfig_databox()
         $c->add(
             'allow_data_delete'
             ,$_DATABOX_DEFAULT['allow_data_delete']
-            ,'select', 0, 0, 0, 200, true
+            ,'select', 0, 0, 0, 210, true
 			, $pi_name
 			,0);
 
         $c->add(
             'allow_data_insert'
             ,$_DATABOX_DEFAULT['allow_data_insert']
-            ,'select', 0, 0, 0, 210, true
+            ,'select', 0, 0, 0, 220, true
 			, $pi_name
 			,0);
 		
 		$c->add(
             'admin_draft_default'
             ,$_DATABOX_DEFAULT['admin_draft_default']
-            ,'select', 0, 0, 0, 220, true
+            ,'select', 0, 0, 0, 230, true
 			, $pi_name
 			,0);
 		
         $c->add(
             'user_draft_default'
             ,$_DATABOX_DEFAULT['user_draft_default']
-            ,'select', 0, 0, 0, 230, true
+            ,'select', 0, 0, 0, 240, true
 			, $pi_name
 			,0);
 
@@ -481,75 +490,75 @@ function plugin_initconfig_databox()
         $c->add(
             'dateformat'
             ,$_DATABOX_DEFAULT['dateformat']
-            ,'text', 0, 0, NULL, 240, TRUE
+            ,'text', 0, 0, NULL, 250, TRUE
 			, $pi_name
 			,0);
 
         $c->add(
             'aftersave'
             ,$_DATABOX_DEFAULT['aftersave']
-            ,'select', 0, 0, 25, 250, true
+            ,'select', 0, 0, 25, 260, true
 			, $pi_name
 			,0);
 
         $c->add(
             'aftersave_admin'
             ,$_DATABOX_DEFAULT['aftersave_admin']
-            ,'select', 0, 0, 9, 260, true
+            ,'select', 0, 0, 9, 270, true
 			, $pi_name
 			,0);
 
         $c->add(
             'grp_id_default'
             ,$_DATABOX_DEFAULT['grp_id_default']
-            ,'select', 0, 0, 24, 270, true
+            ,'select', 0, 0, 24, 280, true
 			, $pi_name
 			,0);
 
         $c->add(
             'default_img_url'
             ,$_DATABOX_DEFAULT['default_img_url']
-            ,'text', 0, 0, NULL, 280, TRUE
+            ,'text', 0, 0, NULL, 290, TRUE
 			, $pi_name
 			,0);
 		
         $c->add(
             'maxlength_description'
             ,$_DATABOX_DEFAULT['maxlength_description']
-            ,'text', 0, 0, NULL, 290, TRUE
+            ,'text', 0, 0, NULL, 300, TRUE
 			, $pi_name
 			,0);
         $c->add(
             'maxlength_meta_description'
             ,$_DATABOX_DEFAULT['maxlength_meta_description']
-            ,'text', 0, 0, NULL, 300, TRUE
+            ,'text', 0, 0, NULL, 310, TRUE
 			, $pi_name
 			,0);
         $c->add(
             'maxlength_meta_keywords'
             ,$_DATABOX_DEFAULT['maxlength_meta_keywords']
-            ,'text', 0, 0, NULL, 310, TRUE
+            ,'text', 0, 0, NULL, 320, TRUE
 			, $pi_name
 			,0);
 		
 		$c->add(
             'hideuseroption'
             ,$_DATABOX_DEFAULT['hideuseroption']
-            ,'select', 0, 0, 0, 320, true
+            ,'select', 0, 0, 0, 330, true
 			, $pi_name
 			,0);
 		
 		$c->add(
             'commentcode'
             ,$_DATABOX_DEFAULT['commentcode']
-            ,'select', 0, 0, 26, 330, true
+            ,'select', 0, 0, 26, 340, true
 			, $pi_name
 			,0);
 		
 		$c->add(
             'sort_list_by'
             ,$_DATABOX_DEFAULT['sort_list_by']
-            ,'select', 0, 0, 27, 340, true
+            ,'select', 0, 0, 27, 350, true
 			, $pi_name
 			,0);
 		

@@ -1,7 +1,7 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | DataBox Plugin 0.0.0 for Geeklog 1.8.0                                    |
+// | DataBox Plugin 0.0.0 for Geeklog
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2010 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20141114
+# Last Update 20141125
 
 ###############################################################################
 ## 管理画面 menu
@@ -765,6 +765,7 @@ $LANG_confignames['databox']['categorycode'] = 'カテゴリ　コードを使�
 $LANG_confignames['databox']['datacode'] = 'データ　コードを使用する';
 $LANG_confignames['databox']['groupcode'] = 'グループ　コードを使用する';
 $LANG_confignames['databox']['top'] = 'topに表示するプログラム';
+$LANG_confignames['databox']['detail'] = '個別表示に使用するプログラム';
 $LANG_confignames['databox']['templates'] = 'テンプレート　一般画面';
 $LANG_confignames['databox']['templates_admin'] = 'テンプレート 管理画面';
 

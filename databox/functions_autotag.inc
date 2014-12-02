@@ -655,18 +655,7 @@ function databox_category(
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
 
-            $url=$_CONF['site_url'] . "/databox/data.php";
-            $url.="?";
-            //コード使用の時
-            if ($_DATABOX_CONF['datacode']){
-                $url.="code=".$code;
-                $url.="&amp;m=code";
-            }else{
-                $url.="id=".$id;
-                $url.="&amp;m=id";
-            }
-            $url = COM_buildUrl( $url );
-            $link= COM_createLink($title, $url);
+            $link= databox_detail_link($id,$code,$title);
 
             $templates->set_var ('data_link', $link);
             $templates->set_var ('data_title', $title);
@@ -1270,19 +1259,8 @@ function databox_field(
 			
 			$fieldset_id=COM_applyFilter($A['fieldset_id']);
 
-            $url=$_CONF['site_url'] . "/databox/data.php";
-            $url.="?";
-            //コード使用の時
-            if ($_DATABOX_CONF['datacode'] AND $code<>""){
-                 $url.="code=".$code;
-                $url.="&amp;m=code";
-           }else{
-                $url.="id=".$id;
-                $url.="&amp;m=id";
-            }
-            $url = COM_buildUrl( $url );
-            $link= COM_createLink($title, $url);
-
+			$link=databox_detail_link($id,$code,$title);
+			
             $templates->set_var ('data_link', $link);
             $templates->set_var ('data_title', $title);
             $templates->set_var ('data_code', $code);
@@ -2524,18 +2502,7 @@ function databox_newlist(
         $title= COM_truncate( $A['title'], $title_trim_length,'...' );
         $description = stripslashes($A['description']);
 
-        $url=$_CONF['site_url'] . "/databox/data.php";
-        $url.="?";
-        //コード使用の時
-        if ($_DATABOX_CONF['datacode']){
-            $url.="code=".$A['code'];
-            $url.="&amp;m=code";
-        }else{
-            $url.="id=".$A['id'];
-            $url.="&amp;m=id";
-        }
-        $url = COM_buildUrl( $url );
-        $link= COM_createLink($title, $url);
+        $link= databox_detail_link($id,$code,$title);;
 
 
         $list->set_var ('site_url', $_CONF['site_url']);
@@ -2786,5 +2753,150 @@ function databox_mydata(
 	}
 	return $url;
 }
+function databox_Comment(
+    $id
+    ,$code
+)
+// +---------------------------------------------------------------------------+
+// | 機能 コメント表示
+// | 書式 databox_Comment($id,$code)
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    global $_TABLES;
+    //    
+    $order = '';
+    if (isset ($_REQUEST['order'])) {
+        $order = COM_applyFilter ($_REQUEST['order']);
+    }
+    $mode = '';
+    if (isset ($_REQUEST['mode'])) {
+        $mode = COM_applyFilter ($_POST['mode']);
+    }
+    
+    $page = 1;
+    if (isset ($_REQUEST['cpage'])) {
+        $page = COM_applyFilter ($_REQUEST['cpage']);
+    }
+    //
+    
+    $tbl=$_TABLES['DATABOX_base'] ;
 
+    //-----
+    $sql = "SELECT ";
+    
+    $sql .= "commentcode "; 
+    $sql .= ",owner_id";
+    $sql .= ",group_id";
+    $sql .= ",perm_owner";
+    $sql .= ",perm_group";
+    $sql .= ",perm_members";
+    $sql .= ",perm_anon";
+    $sql .= ",title";
+    $sql .= ",id";
+
+    $sql .= " FROM ";
+    $sql .= " {$tbl} AS t ";//base
+    $sql .= " WHERE ";
+    if   ($id<>0) {
+        $sql .= " id=".$id;
+    }else{
+        $sql .= " code='".$code."'";
+    }
+    $sql .= " AND t.draft_flag=0".LB;
+    
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND');
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())";
+
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())";
+    //
+    
+    $result = DB_query ($sql);
+    $numrows = DB_numRows ($result);
+    
+    if ($numrows > 0) {
+
+        $A = DB_fetchArray ($result);
+        $A = array_map('stripslashes', $A);
+        if  ($A['commentcode']>=0){
+            $delete_option = (SEC_hasRights('databox.edit') &&
+                    SEC_hasAccess($A['owner_id'], $A['group_id'],
+                    $A['perm_owner'], $A['perm_group'], $A['perm_members'],
+                    $A['perm_anon']) == 3 ? true : false);
+    
+            require_once $_CONF['path_system'] . 'lib-comment.php';
+            $retval .= CMT_userComments(
+                            $A['id']
+                            , $A['title']
+                            , 'databox'
+                            , $order
+                            , $mode
+                            , 0
+                            , $page
+                            , false
+                            , $delete_option
+                            , $A['commentcode']
+                            );
+        }
+    }
+    
+
+    return $retval;
+}
+
+function databox_detail_link(
+    $id
+    ,$code
+    ,$title
+)
+// +---------------------------------------------------------------------------+
+// | 機能  個別データlink
+// | 書式  databox_detail_link($id,$code,$title);
+// +---------------------------------------------------------------------------+
+// | 引数 $id            :
+// | 引数 $code          :
+// | 引数 $title         :
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:link
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    global $_DATABOX_CONF;
+	
+	if  ($id==0  AND $code==""){
+		return "";
+	}
+	if  ($_DATABOX_CONF['detail']==""){
+		$prg="data.php";
+	}else{
+		$prg=$_DATABOX_CONF['detail'];
+	}
+	
+	$link="";
+	
+	$url=$_CONF['site_url'] . "/databox/".$_DATABOX_CONF['detail'];
+    $url.="?";
+	
+    if  ($prg=="data.php"){
+        if ($_DATABOX_CONF['datacode'] OR $id==0){
+           $url.="code=".$code;
+           $url.="&amp;m=code";
+		}else{
+     	    $url.="id=".$id; 
+			$url.="&amp;m=id";
+		}
+	}else{
+        if  ($code<>""){
+			$url.="code=".$code;
+		}
+	}
+    $url = COM_buildUrl( $url );
+    $link= COM_createLink($title, $url);
+    return $link;
+}
 ?>

@@ -1,13 +1,13 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | data.php 表示                                                             |
+// | page.php 個別表示 
 // +---------------------------------------------------------------------------+
-// $Id: data.php
-// public_html/databox/data.php
-// 2010/07/30 tsuchitani AT ivywe DOT co DOT jp
+// $Id: page.php
+// public_html/databox/page.php
+// 2014/11/25 tsuchitani AT ivywe DOT co DOT jp
 
-define ('THIS_SCRIPT', 'databox/data.php');
+define ('THIS_SCRIPT', 'databox/page.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 //debug 時 true
 $_DATABOX_VERBOSE = false;
@@ -17,6 +17,18 @@ if (!in_array('databox', $_PLUGINS)) {
     echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
+//ログイン要否チェック
+if (COM_isAnonUser()){
+    if  ($_CONF['loginrequired']
+            OR ($_DATABOX_CONF['loginrequired'] == 3)
+            OR ($_DATABOX_CONF['loginrequired'] == 2)
+            OR ($_DATABOX_CONF['loginrequired'] == 1 ) 
+			){
+		echo $LANG_DATABOX['loginrequired'];
+		exit;
+    }
+
+}
 
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
@@ -25,11 +37,9 @@ if (!in_array('databox', $_PLUGINS)) {
 $pi_name    = 'databox';
 //############################
 $display = '';
-$page_title=$LANG_DATABOX_ADMIN['piname'];
 
 // 引数
-//public_html/data.php?id=1&m=id&template=yyyy
-//public_html/data.php?code=xxxx_en&m=code&template=yyyy
+//public_html/page.php?code=xxxx&template=yyyy
 $url_rewrite = false;
 $q = false;
 $url = $_SERVER["REQUEST_URI"];
@@ -43,48 +53,20 @@ if ($_CONF['url_rewrite']) {
 }
 //
 if ($url_rewrite){
-	COM_setArgNames(array('idcode','m','template',$dummy1));
-    $m=COM_applyFilter(COM_getArgument('m'));
+	COM_setArgNames(array('code','template','dummy1','dummy2'));
+    $code=COM_applyFilter(COM_getArgument('code'));
     $template=COM_applyFilter(COM_getArgument('template'));
-    //code 使用の時
-    if ($m==="code"){
-        $id=0;
-        $code=COM_applyFilter(COM_getArgument('idcode'));
-    }elseif ($m==="id"){
-        $id=COM_applyFilter(COM_getArgument('idcode'),true);
-		$code="";
-	}else{
-        $id=0;
-		$code="";
-    }
 }else{
-    $m = COM_applyFilter($_GET['m']);
-    $id = COM_applyFilter($_GET['id'],true);
     $code = COM_applyFilter($_GET['code']);
     $template = COM_applyFilter($_GET['template']);
-}
-
-//ログイン要否チェック
-if (COM_isAnonUser()){
-    if  ($_CONF['loginrequired']
-            OR ($_DATABOX_CONF['loginrequired'] == 3)
-            OR ($_DATABOX_CONF['loginrequired'] == 2)
-            OR ($_DATABOX_CONF['loginrequired'] == 1 AND $id>0) 
-            OR ($_DATABOX_CONF['loginrequired'] == 1 AND $code<>"") 
-			){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
-        $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
-        COM_output($display);
-        exit;
-    }
-
 }
 
 $msg = '';
 if (isset ($_GET['msg'])) {
     $msg = COM_applyFilter ($_GET['msg'], true);
 }
+
+$display = '';
 
 $information = array();
 // 'コメントを追加',
@@ -96,6 +78,7 @@ if (isset ($_POST['reply']) && ($_POST['reply'] == $LANG01[25])) {
     exit;
 }
 
+$id=0;
 $retval= databox_data($id,$template,"yes","page",$code);
 $layout=$retval['layout'];
 $information['headercode']=$retval['headercode'];
@@ -109,6 +92,5 @@ $display.= databox_Comment($id,$code);
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);
 
 COM_output($display);
-
 
 ?>

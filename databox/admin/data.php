@@ -225,12 +225,7 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             break;
         case 'code':
             $name=COM_stripslashes($A['code']);
-            $url=$_CONF['site_url'] . "/databox/data.php";
-            $url.="?";
-            $url.="code=".$A['code'];
-            $url.="&amp;m=code";
-            $url = COM_buildUrl( $url );
-            $retval= COM_createLink($name, $url);
+            $retval= databox_detail_link(0,$A['code'],$name);
             break;
         //属性セット名
 		case 'fieldset_name':
