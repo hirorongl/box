@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/navigation_detail.thtml 20141021{ -->
+<!-- plugins/databox/templates/search/default/navigation_detail.thtml 20141203{ -->
 
 <div id="databox">
     <div class='order'>
@@ -13,6 +13,8 @@
     <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
+<!-- Maps Link mkids selectedMarkers-->
+{mkids}{selectedMarkers}
 
   <ul class="contents" id="list">
 <li>{lang_title} ({lang_id}) ({lang_code})&nbsp;

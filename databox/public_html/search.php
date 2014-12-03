@@ -33,6 +33,8 @@ function fncDisplay()
     global $LANG_DATABOX_ADMIN;
     global $_IMAGE_TYPE;
     global $LANG_confignames;
+    global $_PLUGINS;
+    global $_MAPS_CONF;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -348,6 +350,7 @@ function fncDisplay()
         $referer =$_SERVER['HTTP_REFERER'];
         $templates->set_var ('referer', $referer);
         $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
+        $mkids="";
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
             $A = array_map('stripslashes', $A);
@@ -470,10 +473,16 @@ function fncDisplay()
                 }else{
                     $templates->set_var ('data_edit', "");
                 }
-                
-            }
+             }
+             //maps plugin link
+             $mkid="";
+             if (in_array("maps", $_PLUGINS)){
+                 if ($code<>""){
+                     $mkid=DB_getItem($_TABLES['maps_markers'],"mkid","item_10='$code'");
+                     $mkids.=$mkid." ";
+                 }
+             }
 
-            
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);
@@ -481,6 +490,20 @@ function fncDisplay()
             $templates->set_var ('col_var', '');
 
         }
+        $mkids=rtrim($mkids," ");
+        $mkidary=array();
+        $mkid_ary=split(" " , $mkids);
+        $selectedMarkers="";
+        if (function_exists("maps_selectedMarkers")) {
+            $selectedMarkers=maps_selectedMarkers(
+              $_MAPS_CONF['map_width']
+             ,$_MAPS_CONF['map_height']
+             ,$_MAPS_CONF['map_zoom']
+             ,$mkid_ary);
+        }
+        $templates->set_var ('mkids', $mkids);
+        $templates->set_var ('selectedMarkers', $selectedMarkers);
+
         // Call to plugins to set template variables in the databox
         PLG_templateSetVars( 'databox', $templates );
 
