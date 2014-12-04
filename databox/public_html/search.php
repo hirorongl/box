@@ -494,8 +494,8 @@ function fncDisplay()
         $mkidary=array();
         $mkid_ary=split(" " , $mkids);
         $selectedMarkers="";
-        if (function_exists("maps_selectedMarkers")) {
-            $selectedMarkers=maps_selectedMarkers(
+        if (function_exists("MAPS_selectedMarkers")) {
+            $selectedMarkers=MAPS_selectedMarkers(
               $_MAPS_CONF['map_width']
              ,$_MAPS_CONF['map_height']
              ,$_MAPS_CONF['map_zoom']
