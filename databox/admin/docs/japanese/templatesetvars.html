@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2014/12/02 update)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2014/12/05 update)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -711,7 +711,7 @@ additionfield_name
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/10/29)</h2>
+<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/12/05)</h2>
 <table>
 <tr>
 <th style="width:20%">画面</th>
@@ -806,7 +806,9 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
 {order_date}{order_orderno}{order_code}{order_title}{order_description}{order_id}{order_released}{order_random}{cur_order}{lang_view} {lin} {cnt}{pagenavinone}
 <br/>
 {order_<a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>}
-
+<br/>{mkids}{selectedMarkers}
+<a href="#notetext_2" class="note_super" title="mapプラグインが有効の場合  　map のitem_10にDataBoxのコードを登録して
+mapのデータとdataboxのデータを紐付けしています。">*2</a>
 </td>	
 </tr>
 
@@ -1037,6 +1039,10 @@ Geeklogのコンフィギュレーション設定でFacebook OAuth Application I
 
 <br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
 mapプラグインが有効の場合　map のitem_10にDataBoxのコードを登録してmapのデータとdataboxのデータを紐付けしています。
+<br/>{selectedMarkers} MAPS_getMarkerDetail使用
+<br/>{marker} id のリスト　スペース区切り 
+<br/>{selectedMarkers} MAPS_selectedMarkers使用 
+<br/>Mapsプラグイン Ver1.3.5以上
 
 <br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
 標準テンプレートには記述されていません。
