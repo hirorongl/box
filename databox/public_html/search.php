@@ -277,7 +277,21 @@ function fncDisplay()
     } else {
         $page_title = sprintf ('%s ', $LANG_DATABOX_ADMIN['piname']);
     }
-    
+	// Meta Tags
+	$title="search";//og_title
+	$description="";//og_description
+	$keywords="";//og_description
+	//meta 
+	$headercode=DATABOX_getheadercode(	
+		"search"
+		,$templatedir
+		,$pi_name
+		,""
+		,$title
+		,$description
+		,$keywords
+		,$description);
+     
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -563,6 +577,7 @@ function fncDisplay()
     }
 
     $retval["pagetitle"] =$pagetitle;
+    $retval["headercode"] =$headercode;
     $retval["display"] =PLG_replacetags ($content);
 
     return $retval;
@@ -757,6 +772,7 @@ $information = array();
 
 $rt=fncDisplay();
 $information['pagetitle']=$rt['pagetitle'];
+$information['headercode']=$rt['headercode'];
 $display=$rt['display'];
 
 

@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20141118 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20141219 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -711,7 +711,7 @@ additionfield_name
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/12/05)</h2>
+<h2><a class="note_super" href="#notetext_search" id="notetext_search">検索リストのテーマ変数</a>(2014/12/19)</h2>
 <table>
 <tr>
 <th style="width:20%">画面</th>
@@ -720,7 +720,7 @@ additionfield_name
 </tr>
 <tbody>
 <tr class="r2">
-<td  rowspan=4>
+<td  rowspan=5>
 public_html/search.php
 <br/><br/>検索条件に関する引数 各条件はAND
 <br/>fieldset=1 
@@ -757,8 +757,27 @@ public_html/search.php
 <br/>order に指定できるのは、 random date released orderno code title description id と　表示制限されていない追加項目のテーマ変数　です。
 <br/>date と released は逆順です。
 </td>
+<td>
+【search】headercode.thtml
+</td>
+<td>
+xhtml,
+site_url,
+site_admin_url,
+layout_url,
+currenturl,
+site_name,
+og_title,
+og_image<a title="DataBoxデフォルト画像またはロゴ画像" class="note_super" href="#notetext_5">*5</a>,
+og_description,
+og_type
+facebook_consumer_key<a title="Geeklogのコンフィギュレーション設定でFacebook OAuth Application IDの設定が必要です"
+class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail<a title="標準テンプレートには記述されていません" class="note_super" href="#notetext_4">*4</a>
+</td>
+</tr>
 
-
+<tr class="r2">
 <td>
 【search】
 list_detail.thtml 
