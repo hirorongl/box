@@ -3135,6 +3135,20 @@ function DATABOX_checkaddtiondatas(
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
+                    
+                    if  ($addition_def[$field_id]['range_start']=="" 
+                         AND $addition_def[$field_id]['range_end']=="" ){
+                    }else{
+                        $w_start=strtotime($addition_def[$field_id]['range_start']);
+                        $w_end=strtotime($addition_def[$field_id]['range_end']);
+                        if  ($w <$w_start OR $w >$w_end){
+                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
+                                ."(".$addition_def[$field_id]['range_start'] 
+                                ."-".$addition_def[$field_id]['range_end'].")" 
+                            ."<br {XHTML}>".LB;
+                        }
+                    }
+                    
                     if ($w==""){
                         $w_chk=false;
                     }else{
@@ -3232,7 +3246,23 @@ function DATABOX_checkaddtiondatas(
                 }
             }
 			
-			
+            //range check 範囲チェック
+            if  ($addition_def[$field_id]['range_start']=="" AND $addition_def[$field_id]['range_end']=="" ){
+            }else{
+                if (($addition_def[$field_id]['type']==0)
+                     OR ($addition_def[$field_id]['type']==1)
+                     OR ($addition_def[$field_id]['type']==15) 
+                     OR ($addition_def[$field_id]['type']==21) ){
+                    if  ($value <$addition_def[$field_id]['range_start'] 
+                        OR $value >$addition_def[$field_id]['range_end']){
+                                $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
+                                ."(".$addition_def[$field_id]['range_start'] 
+                                ."-".$addition_def[$field_id]['range_end'].")" 
+                                ."<br {XHTML}>".LB;
+                    }
+                }
+                
+            }
         }
     }
 
@@ -4367,7 +4397,6 @@ function DATABOX_getheadercode(
 
 	$og_type="article";
 	$og_title=$title;
-	$og_description = COM_getTextContent($description);
 	
 	if ($box_conf['meta_tags'] > 0) {
          $retval .= COM_createMetaTags($meta_description, $meta_keywords);

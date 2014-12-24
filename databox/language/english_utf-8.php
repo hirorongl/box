@@ -486,6 +486,13 @@ $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
 $LANG_DATABOX_ADMIN['err_code_w'] = 'Code is duplicated';
 $LANG_DATABOX_ADMIN['err_code'] = 'Code input error';
 $LANG_DATABOX_ADMIN['err_title'] = 'Title input error';
+$LANG_DATABOX_ADMIN['err_numeric'] = 'Numerical value can only be input';
+
+$LANG_DATABOX_ADMIN['err_text1'] = 'Numbers value can only be input';
+$LANG_DATABOX_ADMIN['err_text2'] = 'Alphanumeric value can only be input';
+$LANG_DATABOX_ADMIN['err_text3'] = 'Alphanumeric / -. value can only be input';
+$LANG_DATABOX_ADMIN['err_text4'] = 'Alphanumeric symbols value can only be input';
+$LANG_DATABOX_ADMIN['err_range'] = 'Range check error';
 
 $LANG_DATABOX_ADMIN['err_selection'] = 'Nothing selected';
 

@@ -353,14 +353,15 @@ $LANG_USERBOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
 $LANG_USERBOX_ADMIN['err_code_w'] = 'Code is duplicated';
 $LANG_USERBOX_ADMIN['err_code'] = 'Code input error';
 $LANG_USERBOX_ADMIN['err_title'] = 'Title input error';
-$LANG_USERBOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_numeric'] = 'Numerical value can only be input';
 
-$LANG_USERBOX_ADMIN['err_text1'] = '半角数字のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text2'] = '英数字のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text3'] = '半角英数字/-.のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text4'] = '英数字記号のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_text1'] = 'Numbers value can only be input';
+$LANG_USERBOX_ADMIN['err_text2'] = 'Alphanumeric value can only be input';
+$LANG_USERBOX_ADMIN['err_text3'] = 'Alphanumeric / -. value can only be input';
+$LANG_USERBOX_ADMIN['err_text4'] = 'Alphanumeric symbols value can only be input';
+$LANG_USERBOX_ADMIN['err_range'] = 'Range check error';
 
-$LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
+$LANG_USERBOX_ADMIN['err_description'] = 'enter a description';
 
 $LANG_USERBOX_ADMIN['err_selection'] = 'Nothing selected';
 

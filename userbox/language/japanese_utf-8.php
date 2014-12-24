@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20141124
+# Last Update 20141224
 
 ###############################################################################
 ## 管理画面 menu
@@ -227,8 +227,8 @@ $LANG_USERBOX_ADMIN['textcheck']='入力チェック（テキスト）';
 $LANG_USERBOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
 
-$LANG_USERBOX_ADMIN['initial_value']='初期値 (準備中)';
-$LANG_USERBOX_ADMIN['range']='範囲 (準備中)';
+$LANG_USERBOX_ADMIN['initial_value']='初期値';
+$LANG_USERBOX_ADMIN['range']='範囲';
 $LANG_USERBOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
@@ -365,6 +365,7 @@ $LANG_USERBOX_ADMIN['err_text1'] = '半角数字のみ入力可能です';
 $LANG_USERBOX_ADMIN['err_text2'] = '英数字のみ入力可能です';
 $LANG_USERBOX_ADMIN['err_text3'] = '半角英数字/-.のみ入力可能です';
 $LANG_USERBOX_ADMIN['err_text4'] = '英数字記号のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_range'] = '範囲外です';
 
 $LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
 

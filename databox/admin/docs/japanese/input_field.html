@@ -23,7 +23,7 @@
 
 <h2><a href="input.html">入力一覧</a></h2>
 
-<h3><a name="field">アトリビュート</a>(2014/11/19 update )</h3>
+<h3><a name="field">アトリビュート</a>(2014/12/24 update )</h3>
 追加する項目を登録する入力画面です
 <table>
 <tr><th >項目(変数)</th>
@@ -96,7 +96,7 @@
 </tr>
 <tr class="r2">
   <td valign="top"><a name="desc_range_start">範囲（開始）</a></td>
-  <td valign="top"></td>
+  <td valign="top">範囲チェックは、アトリビュートタイプが一行テキスト、複数行テキスト、数値、通貨、日付、日時の場合のみ有効です</td>
   <td valign="top">
   </td>
 </tr>
@@ -174,7 +174,7 @@
 
 </tbody></table>
 
-<h3><a name="fieldtype">アトリビュートタイプ</a>(2014/08/05 update  書きかけです)</h3>
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2014/12/24 update  書きかけです)</h3>
 <table>
 <tr><th >No.</th>
     <th >名称</th>
@@ -189,6 +189,7 @@
   <td valign="top">HTML入力不可
   <br />指定された入力変換をおこなう
   <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">テキスト入力フィールド
   </td>
@@ -200,6 +201,7 @@
   <td valign="top">HTML入力不可
   <br />指定された入力変換をおこなう
   <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">テキストエリア入力フィールド
   <br />テキストの改行（CR）は改行要素（br）に変換して表示します
@@ -224,6 +226,7 @@
   <td valign="top">HTML入力可
   <br />指定された入力変換をおこなう
   <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">テキストエリア入力フィールド,class="tinymce_enabled"
   </td>
@@ -241,6 +244,7 @@
   <td valign="top"><a name="fieldtype15">15</a></td>
   <td valign="top">数値</td>
   <td valign="top">数字または数値文字列のみ
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
   </td>
@@ -250,7 +254,8 @@
   <td valign="top">通貨</td>
   <td valign="top">千単位に区切表示（カンマ編集）します。<br />
 Geeklogのコアのコンフィギュレーション設定の「千単位の区切り文字」
-「小数点」 「小数点以下の桁数」を参照します。 <br />
+「小数点」 「小数点以下の桁数」を参照します。
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
   </td>
@@ -269,6 +274,7 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   <td ><a name="fieldtype03">03</a></td>
   <td valign="top">日付</td>
   <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
    date picker対応(GL2.0.0以降)
@@ -279,6 +285,7 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   <td ><a name="fieldtype04">04</a></td>
   <td valign="top">日時</td>
   <td valign="top">日時のみ
+  <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
    date picker対応(GL2.0.0以降)
