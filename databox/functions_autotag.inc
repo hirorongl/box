@@ -979,6 +979,8 @@ function databox_field(
     global $LANG_DATABOX_NOYES;
     global $_IMAGE_TYPE;
 	global $LANG_confignames;
+    global $_PLUGINS;
+    global $_MAPS_CONF;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -1233,6 +1235,7 @@ function databox_field(
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
 		
+        $mkids="";
 		for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
@@ -1351,6 +1354,15 @@ function databox_field(
 				}
 				
 			}
+            //maps plugin link
+            $mkid="";
+            if (in_array("maps", $_PLUGINS)){
+                if ($code<>""){
+                    $mkid=DB_getItem($_TABLES['maps_markers'],"mkid","item_10='$code'");
+                    $mkids.=$mkid." ";
+                }
+            }
+
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);
@@ -1358,6 +1370,19 @@ function databox_field(
             $templates->set_var ('col_var', '');
 
         }
+        $mkids=rtrim($mkids," ");
+        $mkidary=array();
+        $mkid_ary=split(" " , $mkids);
+        $selectedMarkers="";
+        if (function_exists("MAPS_selectedMarkers")) {
+            $selectedMarkers=MAPS_selectedMarkers(
+              $_MAPS_CONF['map_width']
+             ,$_MAPS_CONF['map_height']
+             ,$_MAPS_CONF['map_zoom']
+             ,$mkid_ary);
+        }
+        $templates->set_var ('mkids', $mkids);
+        $templates->set_var ('selectedMarkers', $selectedMarkers);
 
         //------------
         //-----navigation
