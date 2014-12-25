@@ -1519,7 +1519,7 @@ function databox_orderby(
                 $A = DB_fetchArray ($result);
                 $field_id=COM_stripslashes($A['field_id']);
                 $addfield_name=COM_stripslashes($A['name']);
-                $orderby = " t3.value";
+                $orderby = " t3.value IS NULL ASC ,t3.value ASC ";
                 $addfieldorder=true;
             }else{
                 $order="date";
