@@ -6,6 +6,7 @@
 <!-- 以下は参考例です ない場合は表示されません -->
 
   <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+  <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
   </p>
 
   <p><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}

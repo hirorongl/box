@@ -52,6 +52,7 @@ function fncDisplay()
     $tbl5=$_TABLES['DATABOX_def_category'] ;
     
     $tbl6=$_TABLES['DATABOX_stats'];
+    $tbl7=$_TABLES['DATABOX_def_fieldset'];
 
     //
     $datefield=$_DATABOX_CONF['datefield'];//使用する日付（編集日付、作成日付、公開日）
@@ -167,6 +168,8 @@ function fncDisplay()
     if  ($fieldset_id==""){
         $fieldset_id=0;
     }
+    $fieldset_name=COM_applyFilter(DB_getItem( $tbl7 ,"name","fieldset_id={$fieldset_id}"));
+
     if ($perpage===0 OR is_null($perpage)){
         $perpage=$_DATABOX_CONF['perpage'];
     }
@@ -278,9 +281,9 @@ function fncDisplay()
         $page_title = sprintf ('%s ', $LANG_DATABOX_ADMIN['piname']);
     }
 	// Meta Tags
-	$title="search";//og_title
-	$description="";//og_description
-	$keywords="";//og_description
+	$title=$_CONF['site_name'] ."-". $fieldset_name;//og_title
+	$description=$_CONF['meta_description'];//og_description
+	$keywords=$_CONF['meta_keywords'];//og_description
 	//meta 
 	$headercode=DATABOX_getheadercode(	
 		"search"
@@ -290,8 +293,13 @@ function fncDisplay()
 		,$title
 		,$description
 		,$keywords
-		,$description);
-     
+		,$description
+        ,""
+        ,""
+        ,""
+        ,$fieldset_id
+        ,$fieldset_name
+	);
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -364,6 +372,7 @@ function fncDisplay()
         $referer =$_SERVER['HTTP_REFERER'];
         $templates->set_var ('referer', $referer);
         $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
+        $templates->set_var ('fieldset_name',$fieldset_name);
         $mkids="";
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
@@ -560,7 +569,7 @@ function fncDisplay()
             $referer =$_SERVER['HTTP_REFERER'];
             $templates->set_var ('referer', $referer);
             $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
-            
+            $templates->set_var ('fieldset_name',$fieldset_name);
                         
             $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);

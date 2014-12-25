@@ -4364,6 +4364,7 @@ function DATABOX_getheadercode(
     ,$addition_def=""
     ,$chk_user=""
     ,$fieldset_id=""
+    ,$fieldset_name=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
@@ -4444,7 +4445,7 @@ function DATABOX_getheadercode(
 		$tpl->set_var ('og_image', $og_image);
 		$tpl->set_var ('og_description', $og_description);
 		$tpl->set_var ('og_type', $og_type);
-		
+		$tpl->set_var ('fieldset_name', $fieldset_name);
 		
 		//facebook
 		$facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
