@@ -1,6 +1,6 @@
 <?php
 // 20101110 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20140228
+// Last Update 20141226
 
 //ADDTION DATA
 $_SQL[] = "
@@ -8,7 +8,7 @@ CREATE TABLE {$_TABLES['USERBOX_addition']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
-  `value` mediumtext NOT NULL,
+  `value` mediumtext ,
   PRIMARY KEY (`seq`),
   KEY `id` (`id`),
   KEY `field_id` (`field_id`),

@@ -2809,7 +2809,12 @@ function DATABOX_saveaddtiondatas(
 			$sql="INSERT INTO {$table} (";
 			$sql.="id, field_id,value ";
 			$sql.=") VALUES (";
-			$sql.="{$id},{$field_id}, '{$value}'";
+			$sql.="{$id},{$field_id}";
+            if  ($value<>"") {
+	            $sql.=", '{$value}'";
+            }else{
+                $sql.=", NULL";
+            }
 			$sql.=")";
 			DB_query($sql);
 		}
@@ -2851,7 +2856,11 @@ function DATABOX_saveaddtiondatas_update(
         foreach( $fldary as $field_id => $value ){
             //if ($addition_def[$field_id]['type']=11){
             $sql="UPDATE ".$table ." SET ";
-            $sql.=" value ='".$value."'";
+            if  ($value<>"") {
+                $sql.=" value ='".$value."'";
+            }else{
+                $sql.=" value =NULL";
+            }
             $sql.=" WHERE id=".$id." AND field_id=".$field_id;
             DB_query($sql);
         }

@@ -482,8 +482,12 @@ function plugin_user_create_userbox (
             $sql2.=" (`id`,`field_id`,`value`)".LB;
             $sql2.=" VALUES (";
             $sql2.=" ".$uid;
-            $sql2.=" ,".$field_id;
-            $sql2.=",'$initial_value' ";
+			$sql2.=" ,".$field_id;
+			if  ($initial_value<>""){
+                $sql2.=",'$initial_value' ";
+			}else{
+				$sql2.=",NULL ";
+			}
             $sql2.=" )";
 
             DB_query($sql2);

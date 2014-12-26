@@ -761,7 +761,7 @@ function LIB_Save (
         if (($type==7 OR $type==8) AND ($selection<>"")){
             $sql.=",'0' ";
         }else{
-            $sql.=",'' ";
+            $sql.=",NULL ";
         }
         $sql.=" FROM " .$table1.LB;
 
