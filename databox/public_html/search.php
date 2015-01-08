@@ -157,9 +157,13 @@ function fncDisplay()
                 $expired=$value;
             }else if  ($key=="order") {
                 $order=$value;
+            }else if  ($key=="teq") {
+                $teq=$value;
+            }else if  ($key=="t") {
+                $t=$value;
             }else{
                 $k = explode ('_', $key);
-				if  ($k[0]=="aeq" OR $k[0]=="afr" OR $k[0]=="ato"){
+				if  ($k[0]=="aeq" OR $k[0]=="afr" OR $k[0]=="ato" OR $k[0]=="a"){
 					$dummy= fncfield($k[0],COM_applyFilter($k[1]),$value,$acnt,$afield,$afile,$awhere);
                 }
             }
@@ -239,7 +243,13 @@ function fncDisplay()
         $sql .= " AND t3.id=t2.id".LB;
     }
 
-    //条件
+	//条件
+    if  ($teq<>""){
+        $sql .= " AND (title="."'".$teq."')".LB;
+    }
+    if  ($t<>""){
+        $sql .= " AND (title LIKE '%".$t."%')".LB;
+    }
     foreach((array)$cary as $value) {
         $sql .= " AND ".$value.LB;
     }
@@ -652,6 +662,8 @@ function fncfield(
 	   $w.=" AND a".$acnt.".id=t2.id";
 	   if  ($operate=="aeq"){
 	       $w.=" AND a".$acnt.".value='".$value."'";
+       }else if ($operate=="a"){
+            $w.=" AND a".$acnt.".value LIKE '%".$value."%'";
 	   }else if ($operate=="afr"){
             if  ($A['type']==15  OR $A['type']==21){
                 $w.=" AND (a".$acnt.".value + 0) >='".$value."'";
