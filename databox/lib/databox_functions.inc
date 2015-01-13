@@ -493,16 +493,15 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        $retval .="<nobr>";
+        $retval .= '<span style="white-space:nowrap">';
         $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
-        $retval .= ' class="clcr" ';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
                 $retval .= ' checked="checked"';
             }
         }
-        $retval .= '>' . stripslashes( $A[1] ) . '</nobr>' . LB;
+        $retval .= '>' . stripslashes( $A[1] ) . '</span>' . LB;
     }
 
     return $retval;
@@ -2619,12 +2618,11 @@ global $_TABLES;
 				}
 			
 				if  ($A['input_type']==0){
-					$retval .="<nobr>";
+        			$retval .= '<span style="white-space:nowrap">';
 					$retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
 					$retval .= '"';
-					$retval .= ' class="clcr" ';
 					$retval .= $checked;
-					$retval .= ' >' . stripslashes( $A2['name'] ) . '</nobr>' . LB;
+					$retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
 				}else{
 					$retval .= '<option value="' . $A2['category_id'] . '"';
 					$retval .= $checked;
