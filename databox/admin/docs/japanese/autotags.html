@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/autotags.html 20141022 -->
+<!-- admin/plugins/databox/docs/japanese/autotags.html 20150114 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2014/10/22 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/01/14 update)</h2>
 <table>
 <tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
@@ -224,19 +224,20 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 </tr>
 
 <tr>
-<td>[databox:categorycheck　カテゴリグループid チェックボックスのname]
+<td>[databox:categorycheck　カテゴリグループid チェックボックスの input name]
 </td>
 
 <td>指定カテゴリグループのチェックボックス<br /> 
-例１：[databox:categorycheck group_id:3 fname:XXX] <br />
-</td>
+例１：[databox:categorycheck group_id:3 iname:gor_1] <br />
+<a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
 </tr>
 <tr  class="r2">
-<td>[databox:mastercheck　アトリビュートid チェックボックスのname]
+<td>[databox:mastercheck　アトリビュートid チェックボックスの input name]
 </td>
 
 <td>指定アトリビュートのマスターのチェックボックス<br /> 
-例１：[databox:mastercheck field_id:3 fname:XXX] <br />
+例１：[databox:mastercheck field_id:3 iname:gor_1] <br />
+<a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
 </td>
 </tr>
 
@@ -264,6 +265,13 @@ default<br/>
 
 <br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
 linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。引数名は不要です
+
+<br/><br/><a class="note_super" href="#notetext_3" id="notetext_3">*3</a>
+使用例：BONUS/search/staticpage_search_sample.txt 
+<br/>2015/01/14 引数fname をiname に変更しました。
+
+<br/><br/>
+<a href="https://bitbucket.org/tsuchi/box/wiki/Autotag%20Argument%20change%20history">自動タグ引数変更履歴</a>
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />

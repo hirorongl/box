@@ -1,4 +1,4 @@
-<!-- 検索条件指定静的ページサンプル 20141015 -->
+<!-- 検索条件指定静的ページサンプル 20150114 -->
 
 <form action="[conf:site_url]/databox/search.php" method="get" >
 
@@ -14,12 +14,12 @@
 <!-- カテゴリー -->
 <!-- gor_3 カテゴリグループid=3のカテゴリを複数指定する　OR条件 -->
  <div class="databox_admin_data_title">賃貸物件タイプ</div>
-[databox:categorycheck group_id:3 fname:gor_3]
+[databox:categorycheck group_id:3 iname:gor_3]
 <input name="gor_3[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
 
 <!-- gand_8 カテゴリグループid=8のカテゴリを複数指定する　AND条件 -->
  <div class="databox_admin_data_title">売買物件タイプ</div>
-[databox:categorycheck group_id:8 fname:gand_8]
+[databox:categorycheck group_id:8 iname:gand_8]
 <input name="gand_8[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
 
 <!-- アトリビュート -->

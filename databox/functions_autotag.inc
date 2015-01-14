@@ -84,7 +84,7 @@ function plugin_autotags_databox (
 		$parm2_ary[]="type_id";
 		$parm2_ary[]="group_id";
 		$parm2_ary[]="group_code";
-		$parm2_ary[]="fname";
+		$parm2_ary[]="iname";
 		$parm2_ary[]="without_code";
 		$parm2_ary[]="without_id";
 		$p=databox_parm2($p2,$parm2_ary);
@@ -219,7 +219,7 @@ function plugin_autotags_databox (
                             ,""
                             ,"databox"
                             ,$p['group_id']
-                            ,$p['fname']
+                            ,$p['iname']
                         );
                         break;
                     case 'mastercheck':
@@ -233,7 +233,7 @@ function plugin_autotags_databox (
                                      ,""
                                      ,"databox"
                                      ,""
-                                     ,$p['fname']
+                                     ,$p['iname']
                                   );
                             }
 						}
