@@ -1,3 +1,3 @@
 <?php
-$_DATABOX_CONF['version'] = '0.0.0.20141226c';
+$_DATABOX_CONF['version'] = '0.0.0.20141226d';
 ?>
