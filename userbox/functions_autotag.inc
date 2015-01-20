@@ -1326,8 +1326,8 @@ function userbox_profile(
 		}else{
 			$templates->set_var('photo', $A['photo']);
 		}
-		$photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
-		$templates->set_var('user_photo', $photo);
+		//$photo = USER_getPhoto($A['id'], $A['photo'], $A['email'], -1);
+		//$templates->set_var('user_photo', $photo);
 		
 		
 		//$_USERBOX_CONF
