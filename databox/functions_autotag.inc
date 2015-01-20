@@ -2981,7 +2981,7 @@ function databox_search(
     $chkday=strtotime("- $newmarkday days",time());
     
     //-----Argument checking　引数チェック
-          $arg_sv="";//---Argument save 引数退避　order page を除く
+    $arg_sv="";//---Argument save 引数退避　order page を除く
     foreach((array)$argary as $key => $value) {
         if (is_array($value)){
             $ary=$value;
@@ -3077,9 +3077,10 @@ function databox_search(
                     $dummy= databox_searchfield($k[0],COM_applyFilter($k[1]),$ids,$acnt,$afield,$afile,$awhere);
                 }
             }
-        }else if  ( substr($key,0,3)=="geq" OR substr($key,0,3)=="afr" 
-                              OR substr($key,0,3)=="ato" OR substr($key,0,3)=="a") {
-            $k = explode ('_', $key);
+        }else if  ( substr($key,0,3)=="aeq" OR substr($key,0,3)=="afr" 
+                              OR substr($key,0,3)=="ato" OR substr($key,0,1)=="a") {
+			$k = explode ('_', $key);
+
             if  ($value<>""){
                 $dummy= databox_searchfield($k[0],COM_applyFilter($k[1]),$value,$acnt,$afield,$afile,$awhere);
             }
