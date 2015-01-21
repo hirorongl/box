@@ -1316,7 +1316,7 @@ function userbox_profile(
         $templates->set_var('lang_uid', $LANG28['2']);
         $templates->set_var('lang_username', $LANG28['3']);
         $templates->set_var ('username', $A['username']);
-        $templates->set_var('lang_fullname', $LANG28['4']);
+		$templates->set_var('lang_fullname', $LANG28['4']);
         $templates->set_var ('fullname', $A['fullname']);
 		
         $templates->set_var('lang_photo', $LANG04['77']);
@@ -1342,9 +1342,9 @@ function userbox_profile(
         $templates->set_var('lang_basicfields', $LANG_USERBOX_ADMIN['basicfields']);
         //コード＆タイトル＆説明
         $templates->set_var('lang_code', $LANG_USERBOX_ADMIN['code']);
-        $templates->set_var ('code', $A['code']);
+        $templates->set_var ('code', $A['username']);
         $templates->set_var('lang_title', $LANG_USERBOX_ADMIN['title']);
-        $templates->set_var ('title',$A['title']);
+        $templates->set_var ('title',$A['fullname']);
 
         $templates->set_var('lang_description', $LANG_USERBOX_ADMIN['description']);
         $templates->set_var ('description',$A['description']);
