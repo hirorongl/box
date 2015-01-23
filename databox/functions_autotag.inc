@@ -3417,7 +3417,9 @@ function databox_search(
              if (in_array("maps", $_PLUGINS)){
                  if ($code<>""){
                      $mkid=DB_getItem($_TABLES['maps_markers'],"mkid","item_10='$code'");
-                     $mkids.=$mkid." ";
+                     if  ($mkid<>""){
+                         $mkids.=$mkid." ";
+                     }
                  }
              }
 
