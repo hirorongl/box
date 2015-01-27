@@ -1131,7 +1131,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
 						$fieldhtml .= "</textarea>";
-					    $fieldhtml .="<br {XHTML}><strong>";
+					    $fieldhtml .="<br ".XHTML."><strong>";
 					    $fieldhtml .="<span id='".$cntname."'></span></strong>";
                     }else{
                         $fieldhtml .=$fvalue;
@@ -1332,7 +1332,7 @@ function DATABOX_figurehtml(
         $retval .="<img src=\"data:image/jpg;base64,";
         $retval .="{$fvalue}\"";
         $retval .="width=100 height=100";
-        $retval .="{XHTML}>".LB;
+        $retval .=" ".XHTML.">".LB;
         //
         $retval .= '<br' . XHTML . '>' ;
         $retval .= '<br' . XHTML . '>' ;
@@ -1342,7 +1342,7 @@ function DATABOX_figurehtml(
         if ($fvalue_del){
             $retval .= " checked ";
         }
-        $retval .= " {XHTML}>".LB;
+        $retval .= " ".XHTML.">".LB;
 
     }
 
@@ -1383,7 +1383,7 @@ function DATABOX_figurehtml12(
         if ($fvalue_del){
             $retval .= " checked ";
         }
-        $retval .= " {XHTML}>".LB;
+        $retval .= " ".XHTML.">".LB;
 
     }
 
@@ -1427,7 +1427,7 @@ function DATABOX_imagehtml(
         if ($fvalue_del){
             $retval .= " checked ";
         }
-        $retval .= " {XHTML}>".LB;
+        $retval .= " ".XHTML.">".LB;
 
     }
 
@@ -1917,7 +1917,7 @@ function DATABOX_getaddtionfieldsDisp(
                         $fieldhtmldisp .=" src=\"{$fieldurl}\"";
                         $fieldhtmldisp .=" border=\"0\"";
                         $fieldhtmldisp .=" alt=\"{$fvalue}\"";
-                        $fieldhtmldisp .=" {XHTML}>";
+                        $fieldhtmldisp .=" ".HTML.">";
 					
 						//サムネイル
 					    $filename = substr($fvalue, 0, strrpos($fvalue,"."));
@@ -1936,7 +1936,7 @@ function DATABOX_getaddtionfieldsDisp(
 							$fieldhtml_tn_image .=" src=\"{$fieldurl_tn}\"";
 							$fieldhtml_tn_image .=" border=\"0\"";
 							$fieldhtml_tn_image .=" alt=\"{$fvalue}\"";
-							$fieldhtml_tn_image .=" {XHTML}>";
+							$fieldhtml_tn_image .=" ".XHTML.">";
 							$fieldhtml_tn_image .=" </a>";
 						
 						}else{
@@ -1954,7 +1954,7 @@ function DATABOX_getaddtionfieldsDisp(
                     if  ($fvalue===""){
                     }else{
                         $fieldhtml .="<img src=\"data:image/jpg;base64,";
-                        $fieldhtml .="{$fvalue}\"{XHTML}>";
+                        $fieldhtml .="{$fvalue}\"".XHTML.">";
                     }
                     break;
                 case 2://いいえ/はい
@@ -3034,7 +3034,8 @@ function DATABOX_checkaddtiondatas(
 			//必須
             if ($addition_def[$field_id]['checkrequried']==1){
 				if ($value ===""){
-                    $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_checkrequried'] ."<br {XHTML}>".LB;
+                    $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_checkrequried'] ;
+                    $rt.="<br ".XHTML.">".LB;
                 }
                 //url email date
             }
@@ -3049,11 +3050,13 @@ function DATABOX_checkaddtiondatas(
 					$imgfld_thmb.=$addition_def[$field_id]['templatesetvar'];
 				 }
 	             if (!is_writable ( $imgfld )){
-                    $rt.=$imgfld.": ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+                    $rt.=$imgfld.": ".$lang_box_admin['err_writable'];
+                    $rt.="<br ".XHTML.">".LB;
 				 }
 				 if  ($imgfld<>$imgfld_thmb){
 					if (!is_writable ( $imgfld_thmb )){
-						$rt.=$imgfld_thmb.": ".$lang_box_admin['err_writable'] ."<br {XHTML}>".LB;
+                        $rt.=$imgfld_thmb.": ".$lang_box_admin['err_writable'] ;
+                        $rt.="<br ".XHTML.">".LB;
 					}
 				 }
                  if (is_array($fldary_del) AND $fldary_del[$field_id]){
@@ -3069,14 +3072,16 @@ function DATABOX_checkaddtiondatas(
 						if  ($imgfile<>""){
 							$imgerr="";
 							if ($box_conf['imgfile_size2']<>"" AND $imgsize>$box_conf['imgfile_size2']){
-								$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size']."<br {XHTML}>".LB;
+                                $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
+                                $rt.="<br ".XHTML.">".LB;
 								$imgerr=1;
 							}
 							if (count($box_conf['imgfile_type2'])>0){
 								if  (in_array($imgtype,$box_conf['imgfile_type2'])){
 								}else{
 									$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type2']
-										.$_FILES['afield_fnm']['name'][$field_id]."(".$imgtype.")<br {XHTML}>".LB;
+                                        .$_FILES['afield_fnm']['name'][$field_id]."(".$imgtype.")";
+                                    $rt.="<br ".XHTML.">".LB;
 									$imgerr=1;
 								}
 							}
@@ -3118,15 +3123,17 @@ function DATABOX_checkaddtiondatas(
                      if  ($imgfile<>""){
                           $imgerr="";
                           if ($box_conf['imgfile_size']<>"" AND $imgsize>$box_conf['imgfile_size']){
-                              $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size']."<br {XHTML}>".LB;
+                              $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
+                              $rt.="<br ".XHTML.">".LB;
                               $imgerr=1;
                           }
                           if (count($box_conf['imgfile_type'])>0){
                               if  (in_array($imgtype,$box_conf['imgfile_type'])){
                               }else{
                                   $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type']
-                                    .$_FILES['afield_fnm']['name'][$field_id]."(".$imgtype.")<br {XHTML}>".LB;
-                                  $imgerr=1;
+                                  .$_FILES['afield_fnm']['name'][$field_id]."(".$imgtype.")";
+                                  $rt.="<br ".XHTML.">".LB;
+                                 $imgerr=1;
                               }
                           }
                           if  ($imgerr===""){
@@ -3150,9 +3157,9 @@ function DATABOX_checkaddtiondatas(
                         $w_end=strtotime($addition_def[$field_id]['range_end']);
                         if  ($w <$w_start OR $w >$w_end){
                                  $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
-                                ."(".$addition_def[$field_id]['range_start'] 
-                                ."-".$addition_def[$field_id]['range_end'].")" 
-                            ."<br {XHTML}>".LB;
+                                  ."(".$addition_def[$field_id]['range_start'] 
+                                  ."-".$addition_def[$field_id]['range_end'].")" ;
+                                 $rt.="<br ".XHTML.">".LB;
                         }
                     }
                     
@@ -3165,7 +3172,8 @@ function DATABOX_checkaddtiondatas(
                         $w_chk=checkdate($w_month, $w_day, $w_year);
                     }
                     if ($w_chk==false) {
-                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_date'] ."<br {XHTML}>".LB;
+                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_date'] ;
+                        $rt.="<br ".XHTML.">".LB;
 					}else{
 						$w_date=date("Y-m-d",$w);
 						if ($addition_def[$field_id]['type']==3){
@@ -3182,7 +3190,8 @@ function DATABOX_checkaddtiondatas(
                 if ($value ===""){
                 }else{
                     if (COM_isEmail ($value)==false) {
-                        $rt.=$addition_def[$field_id]['name'].$LANG04[18]."<br {XHTML}>".LB;
+                        $rt.=$addition_def[$field_id]['name'].$LANG04[18];
+                        $rt.="<br ".XHTML.">".LB;
                     }
                 }
             }
@@ -3193,7 +3202,8 @@ function DATABOX_checkaddtiondatas(
 					
 					if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
 					} else {
-                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_url']."<br {XHTML}>".LB;
+						$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_url'];
+                        $rt.="<br ".XHTML.">".LB;
 					}
                 }
             }
@@ -3204,7 +3214,8 @@ function DATABOX_checkaddtiondatas(
 					
 					if (is_numeric($value)) {
 					} else {
-                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_numeric']."<br {XHTML}>".LB;
+						$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_numeric'];
+                        $rt.="<br ".XHTML.">".LB;
 					}
                 }
             }
@@ -3216,22 +3227,26 @@ function DATABOX_checkaddtiondatas(
 				}else{
 					if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
 						if  (!preg_match("/^[0-9]+$/", $value)){
-							$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text1']."<br {XHTML}>".LB;
+                            $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text1'];
+                            $rt.="<br ".XHTML.">".LB;
 						}
 					}else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
 						if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
-							$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text2']."<br {XHTML}>".LB;
+                            $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text2'];
+                            $rt.="<br ".XHTML.">".LB;
 						}
 					}else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
 						$value=rtrim(ltrim($value));
 						$newvalue=COM_sanitizeID($value);
 						if  ($value<>$newvalue){
-							$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text3']."<br {XHTML}>".LB;
+                            $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text3'];
+                            $rt.="<br ".XHTML.">".LB;
 						}
 						$fldary[$field_id]=$value;
 					}else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
 						if  (!preg_match("/^[!-~]+$/", $value)){
-							$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text4']."<br {XHTML}>".LB;
+                            $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text4'];
+                            $rt.="<br ".XHTML.">".LB;
 						}
 					}
 				}
@@ -3248,7 +3263,8 @@ function DATABOX_checkaddtiondatas(
 					if (mb_strlen($value, 'UTF-8')>$addition_def[$field_id]['maxlength']) {
 						$rt.=$addition_def[$field_id]['name']
 							.$addition_def[$field_id]['maxlength']
-							.": ".$lang_box_admin['err_maxlength']."<br {XHTML}>".LB;
+                            .": ".$lang_box_admin['err_maxlength'];
+                            $rt.="<br ".XHTML.">".LB;
 					}
                 }
             }
@@ -3264,8 +3280,8 @@ function DATABOX_checkaddtiondatas(
                         OR $value >$addition_def[$field_id]['range_end']){
                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
                                 ."(".$addition_def[$field_id]['range_start'] 
-                                ."-".$addition_def[$field_id]['range_end'].")" 
-                                ."<br {XHTML}>".LB;
+                                ."-".$addition_def[$field_id]['range_end'].")";
+                                $rt.="<br ".XHTML.">".LB;
                     }
                 }
                 
@@ -4197,7 +4213,7 @@ function DATABOX_dltbldt(
     $outfile = $_CONF['path_data'] . $filenm."_".$curdatetime;
     $file = @fopen( $outfile, 'w' );
     if ( $file === false ) {
-        $retval .= "ERR! ".$outfile ." is not writable!<br {XHTML}>" . LB;
+        $retval .= "ERR! ".$outfile ." is not writable!<br ".XHTML.">" . LB;
         return $retval;
     }
 
@@ -4267,7 +4283,7 @@ function DATABOX_dltbldt(
             $wkary=DATABOX_getaddtionfields($A["id"],$addition_def,$pi_name);
             $s=$addition_def;
             foreach($s as $k1 =>$v1){
-                //echo "k1=".$k1."<br {XHTML}>";
+                //echo "k1=".$k1."<br ".XHTML.">";
 
 
                 if (isset($wkary[$k1])) {
@@ -4670,9 +4686,9 @@ function DATABOX_Confirmation(
 		$confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
 		$confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
 		$btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
-		     ." onclick=\"return confirm('{$confirm_value2}');\"{xhtml}>".LB;
+		     ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
 		$btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
-		     ." onclick=\"return confirm('{$confirm_value3}');\"{xhtml}>".LB;
+		     ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 
     // SAVE、CANCEL ボタン
