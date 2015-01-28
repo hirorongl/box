@@ -88,19 +88,19 @@ function DATABOX_swichlang(
 // | 戻値 nomal:変換後のコード
 // +---------------------------------------------------------------------------+
 {
-	
-	global $_CONF;
-	$newlanguageid = COM_getLanguageId();
-	if  ($newlanguageid<>""){
-		if  ($code<>""){
-			$lang_len = strlen($newlanguageid);
-			$oldlanguageid=substr($code,-($lang_len));
-			if  (array_key_exists($oldlanguageid, $_CONF['language_files'])){
-				$code = substr_replace($code, $newlanguageid, -$lang_len);
-			}
-		}
-	}
-	return $code;
+    
+    global $_CONF;
+    $newlanguageid = COM_getLanguageId();
+    if  ($newlanguageid<>""){
+        if  ($code<>""){
+            $lang_len = strlen($newlanguageid);
+            $oldlanguageid=substr($code,-($lang_len));
+            if  (array_key_exists($oldlanguageid, $_CONF['language_files'])){
+                $code = substr_replace($code, $newlanguageid, -$lang_len);
+            }
+        }
+    }
+    return $code;
 }
 
 
@@ -221,13 +221,13 @@ function DATABOX_siteHeader (
 
 
     $display="";
-	
-	if  ($kind=="_admin" OR $kind==""){
-		$layout=$box_conf['layout'.$kind];
-	}else{
-		$layout=$kind;
-	}
-	switch ($layout) {
+    
+    if  ($kind=="_admin" OR $kind==""){
+        $layout=$box_conf['layout'.$kind];
+    }else{
+        $layout=$kind;
+    }
+    switch ($layout) {
         // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
         case 'standard':
         //ヘッダ・フッタ・左右ブロックあり
@@ -291,7 +291,7 @@ function DATABOX_siteFooter (
     switch ($layout) {
         // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
         case 'standard':
-		$display .= COM_siteFooter(false,$custom);
+        $display .= COM_siteFooter(false,$custom);
             break;
         //ヘッダ・フッタ・左右ブロックあり
         case 'leftrightblocks':
@@ -345,66 +345,66 @@ function DATABOX_displaypage (
     global $$box_conf;
     $box_conf=$$box_conf;
 
-	if  ($kind=="_admin" OR $kind==""){
-		$layout=$box_conf['layout'.$kind];
-	}else{
-		$layout=$kind;
-	}
-	
-	//全画面表示（ヘッダ・フッタ・ブロックなし）
-	if  ($layout=='blankpage'){
-		
-	}else{
-		switch ($layout) {
-			// ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
-			case 'standard':
-				//$display=COM_siteHeader ('menu', $page_title,$headercode);
-				//$display .= COM_siteFooter(false,$custom);
-				$information['what']='menu';
-				$information['rightblock']=false;
-				break;
-			//ヘッダ・フッタ・左右ブロックあり
-			case 'leftrightblocks':
-				//$display=COM_siteHeader ('menu', $page_title,$headercode);
-				//$display .= COM_siteFooter(true,$custom);
-				$information['what']='menu';
-				$information['rightblock']=true;
-				break;
-			//ヘッダ・フッタ・左ブロックあり（右ブロックなし）
-			case 'leftblocks':
-				//$display=COM_siteHeader ('menu', $page_title,$headercode);
-				$information['what']='menu';
-				$_CONF['show_right_blocks']=0;
-				$_CONF['left_blocks_in_footer']=0;
-				//$display .= COM_siteFooter(false,$custom);
-				$information['rightblock']=false;
-				break;
-			//ヘッダ・フッタ・右ブロックあり（左ブロックなし）
-			case 'rightblocks':
-				//$display=COM_siteHeader ('none', $page_title,$headercode);
-				$information['what']='none';
-				//$display .= COM_siteFooter(true,$custom);
-				$information['rightblock']=true;
-				break;
-			//ヘッダ・フッタあり（ブロックなし）
-			case 'noblocks':
-				//$display=COM_siteHeader ('none', $page_title,$headercode);
-				$information['what']='none';
-				$_CONF['show_right_blocks']=0;
-				$_CONF['left_blocks_in_footer']=0;
-				//$display .= COM_siteFooter(false,$custom);
-				$information['rightblock']=false;
-				break;
-		}
-		
-		//FOR GL2.0.0 
-		if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
-			$display = COM_createHTMLDocument($display,$information);
-		}else{
-			$display = COM_siteHeader ($information['what'], $information['pagetitle']).$display;
-			$display .= COM_siteFooter($information['rightblock']);
-		}
-	}
+    if  ($kind=="_admin" OR $kind==""){
+        $layout=$box_conf['layout'.$kind];
+    }else{
+        $layout=$kind;
+    }
+    
+    //全画面表示（ヘッダ・フッタ・ブロックなし）
+    if  ($layout=='blankpage'){
+        
+    }else{
+        switch ($layout) {
+            // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
+            case 'standard':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                //$display .= COM_siteFooter(false,$custom);
+                $information['what']='menu';
+                $information['rightblock']=false;
+                break;
+            //ヘッダ・フッタ・左右ブロックあり
+            case 'leftrightblocks':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                //$display .= COM_siteFooter(true,$custom);
+                $information['what']='menu';
+                $information['rightblock']=true;
+                break;
+            //ヘッダ・フッタ・左ブロックあり（右ブロックなし）
+            case 'leftblocks':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                $information['what']='menu';
+                $_CONF['show_right_blocks']=0;
+                $_CONF['left_blocks_in_footer']=0;
+                //$display .= COM_siteFooter(false,$custom);
+                $information['rightblock']=false;
+                break;
+            //ヘッダ・フッタ・右ブロックあり（左ブロックなし）
+            case 'rightblocks':
+                //$display=COM_siteHeader ('none', $page_title,$headercode);
+                $information['what']='none';
+                //$display .= COM_siteFooter(true,$custom);
+                $information['rightblock']=true;
+                break;
+            //ヘッダ・フッタあり（ブロックなし）
+            case 'noblocks':
+                //$display=COM_siteHeader ('none', $page_title,$headercode);
+                $information['what']='none';
+                $_CONF['show_right_blocks']=0;
+                $_CONF['left_blocks_in_footer']=0;
+                //$display .= COM_siteFooter(false,$custom);
+                $information['rightblock']=false;
+                break;
+        }
+        
+        //FOR GL2.0.0 
+        if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
+            $display = COM_createHTMLDocument($display,$information);
+        }else{
+            $display = COM_siteHeader ($information['what'], $information['pagetitle']).$display;
+            $display .= COM_siteFooter($information['rightblock']);
+        }
+    }
 
 
     return $display;
@@ -415,8 +415,8 @@ function DATABOX_getcheckList(
     $kind
     ,$selected
     ,$pi_name
-	,$group_id=""
-	,$fname=""
+    ,$group_id=""
+    ,$fname=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  チェックリスト作成
@@ -437,10 +437,10 @@ function DATABOX_getcheckList(
 //20140624 fieldset　追加
 {
 global $_TABLES;
-	
-	if ($fname==""){
-		$fname=$kind;
-	}
+    
+    if ($fname==""){
+        $fname=$kind;
+    }
 
     $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
     $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
@@ -448,7 +448,7 @@ global $_TABLES;
     $table_def_fieldset=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
     $retval = '';
     if ($kind=="categorygroup"){
-		$sql = "SELECT ";
+        $sql = "SELECT ";
         $sql .= " m1.category_id".LB;
         $sql .= ",m1.name".LB;
         $sql .= ",m1.orderno".LB;
@@ -710,7 +710,7 @@ function DATABOX_getadditiondef(
 {
     global $_TABLES;
     global $_CONF;
-	
+    
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_def_field'];
     }else{
@@ -741,7 +741,7 @@ function DATABOX_getadditiondef(
     $sql.= ",textcheck";
     $sql.= ",textconv";
     $sql.= ",searchtarget";
-	
+    
     $sql.= ",initial_value";
     $sql.= ",range_start";
     $sql.= ",range_end";
@@ -762,10 +762,10 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['allow_display'] = COM_stripslashes($A['allow_display']);
         $rt[$field_id]['allow_edit'] = COM_stripslashes($A['allow_edit']);
         $rt[$field_id]['textcheck'] = COM_stripslashes($A['textcheck']);
-		$rt[$field_id]['textconv'] = COM_stripslashes($A['textconv']);
+        $rt[$field_id]['textconv'] = COM_stripslashes($A['textconv']);
         $rt[$field_id]['searchtarget'] = COM_stripslashes($A['searchtarget']);
-		
-		$rt[$field_id]['type'] = COM_stripslashes($A['type']);
+        
+        $rt[$field_id]['type'] = COM_stripslashes($A['type']);
         //$rt[$field_id]['group_id'] = COM_stripslashes($A['group_id']);
         $rt[$field_id]['selection'] = COM_stripslashes($A['selection']);
 
@@ -840,31 +840,31 @@ function DATABOX_getadditionsearchdef(
     $pi_name=""
 )
 {
-	global $_TABLES;
-	
+    global $_TABLES;
+    
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
 
     $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
     $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
-	
-	if ($box_conf['additionsearch']==0){
-		return;
-	}
-	$lmt=$box_conf['additionsearch'];
-	
+    
+    if ($box_conf['additionsearch']==0){
+        return;
+    }
+    $lmt=$box_conf['additionsearch'];
+    
     $retval=array();
 
     $rt=array();
-	$sql3="";
+    $sql3="";
     $columns=array();
 
     $sql=LB;
     $sql.="SELECT ";
     $sql.= " field_id ";
-	
-	$sql.=" FROM";
+    
+    $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
 
     // 表示する項目のみ
@@ -875,10 +875,10 @@ function DATABOX_getadditionsearchdef(
     //20:HTML  10:TinyMCE 19:CKEditor
     //15:数値  21:通貨
     $sql.=" AND type IN (0,1,10,19,20,15,21)";
-	
-	//検索対象にする=はい
-	$sql.=" AND searchtarget='1'";
-	
+    
+    //検索対象にする=はい
+    $sql.=" AND searchtarget='1'";
+    
     $sql.=" ORDER  BY  orderno,field_id";
     $sql.=" LIMIT 0 ,".$lmt;
 
@@ -894,15 +894,15 @@ function DATABOX_getadditionsearchdef(
 
         $columns[]= "ad{$field_id}.value ";
 
-		$sql3 .= " JOIN {$table_addition} AS ad{$field_id}";
-		$sql3 .= " ON t1.id=ad{$field_id}.id ";
+        $sql3 .= " JOIN {$table_addition} AS ad{$field_id}";
+        $sql3 .= " ON t1.id=ad{$field_id}.id ";
         $sql3 .= " AND ad{$field_id}.field_id={$field_id} ".LB;
-		
-	}
+        
+    }
 
     $rt["sql3"]=$sql3;
     $rt["columns"]=$columns;
-	
+    
     return $rt;
 
 }
@@ -935,24 +935,24 @@ function DATABOX_getadditiondatas(
     }
 
     $rt=array();
-	
-	$sql="SELECT ";
-	$sql.=" m.field_id";
+    
+    $sql="SELECT ";
+    $sql.=" m.field_id";
     if ($id==0){
-		$sql.=",initial_value AS value  ";
-	}else{
-		$sql.=", ( SELECT VALUE ";
+        $sql.=",initial_value AS value  ";
+    }else{
+        $sql.=", ( SELECT VALUE ";
         $sql.=" FROM";
         $sql.=" {$table_addition}  AS t";
         $sql.=" where";
         $sql.=" t.id={$id}";
         $sql.=" AND t.field_id=m.field_id";
         $sql.=" ) AS value ";
-	}
-	$sql.=" FROM";
+    }
+    $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
     $sql.=" order by m.orderno ,m.field_id";
-	
+    
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -974,9 +974,9 @@ function DATABOX_getaddtionfieldsEdit(
     ,$chk_user
     ,$pi_name=""
     ,$fields_fnm=""
-	,$fields_del=""
-	,$fieldset_id=0
-	,$fields_date=""
+    ,$fields_del=""
+    ,$fieldset_id=0
+    ,$fields_date=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目入力用HTML作成
@@ -996,10 +996,10 @@ function DATABOX_getaddtionfieldsEdit(
 // +---------------------------------------------------------------------------+
 // 20101206 日付
 {
-	global $_TABLES;
-	global $_SCRIPTS;
-	global $_CONF;
-	
+    global $_TABLES;
+    global $_SCRIPTS;
+    global $_CONF;
+    
     if ($pi_name==""){
         $lang_admin_x="LANG_DATABOX_ADMIN";
         $lang_admin="LANG_DATABOX_ADMIN";
@@ -1020,15 +1020,15 @@ function DATABOX_getaddtionfieldsEdit(
     global $$lang_noyes;
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
-	
-	if (version_compare(VERSION, '2.0.0') >= 0) {
-		$langCode = COM_getLangIso639Code();
-		$toolTip  = 'Click and select a date';	// Should be translated
-		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-	}
-	
-	$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
-	
+    
+    if (version_compare(VERSION, '2.0.0') >= 0) {
+        $langCode = COM_getLangIso639Code();
+        $toolTip  = 'Click and select a date';    // Should be translated
+        $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+    }
+    
+    $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
+    
     $retval = '';
 
     if (is_array($fields)){
@@ -1057,37 +1057,37 @@ function DATABOX_getaddtionfieldsEdit(
         $description=$addition_def[$fid]['description'];
 
         $chk=false;
-		$disabled="disabled";
-		
-		if (in_array($fid,$fieldsetfields )) {
-			
-			if ($chk_user===9999){
-				$chk=true;
-				$disabled="";
-			}else{
-				//編集可能
-				if  ($addition_def[$fid]['allow_edit']==='0') {
-					$chk=true;
-					$disabled="";
-				//グループとadmin権のある人のみ表示
-				}else if ($addition_def[$fid]['allow_edit']==='2'){
-					if  ($chk_user>=1010) {
-						$chk=true;
-						$disabled="";
-					}
-				//所有者とadmin権のある人のみ
-				}else if ($addition_def[$fid]['allow_edit']==='3'){
-					if  ($chk_user>=1011) {
-						$chk=true;
-						$disabled="";
-					}
-				//編集不可表示のみ
-				}else if ($addition_def[$fid]['allow_edit']==='4'){
-					$chk=true;
-				}
-			}
-		}
-	
+        $disabled="disabled";
+        
+        if (in_array($fid,$fieldsetfields )) {
+            
+            if ($chk_user===9999){
+                $chk=true;
+                $disabled="";
+            }else{
+                //編集可能
+                if  ($addition_def[$fid]['allow_edit']==='0') {
+                    $chk=true;
+                    $disabled="";
+                //グループとadmin権のある人のみ表示
+                }else if ($addition_def[$fid]['allow_edit']==='2'){
+                    if  ($chk_user>=1010) {
+                        $chk=true;
+                        $disabled="";
+                    }
+                //所有者とadmin権のある人のみ
+                }else if ($addition_def[$fid]['allow_edit']==='3'){
+                    if  ($chk_user>=1011) {
+                        $chk=true;
+                        $disabled="";
+                    }
+                //編集不可表示のみ
+                }else if ($addition_def[$fid]['allow_edit']==='4'){
+                    $chk=true;
+                }
+            }
+        }
+    
         if ($chk) {
 
             $fieldhtml="";
@@ -1110,29 +1110,29 @@ function DATABOX_getaddtionfieldsEdit(
                 case 10:// 複数行テキストフィールド(HTML NG)
                 case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
                 case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
-				     if ($disabled===""){
-						$cntname="afieldcnt".$fid;
+                     if ($disabled===""){
+                        $cntname="afieldcnt".$fid;
                         $fieldhtml .= "<textarea ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
                         $fieldhtml .= " id=\"DATABOX_afield".$fid."\"";
-						$fieldhtml .= " ".$disabled." ";
-						$fieldhtml .= " onKeyup=\"var n=".$maxlength;
-						$fieldhtml .="-this.value.length;var ";
-						$fieldhtml .="s=document.getElementById";
-						$fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
-						if  ($type==20){
-							$fieldhtml .= " class=\"tinymce_enabled\"";
-						}
-						if  ($type==19){
-							$fieldhtml .= " class=\"wide\"";
-						}
+                        $fieldhtml .= " ".$disabled." ";
+                        $fieldhtml .= " onKeyup=\"var n=".$maxlength;
+                        $fieldhtml .="-this.value.length;var ";
+                        $fieldhtml .="s=document.getElementById";
+                        $fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
+                        if  ($type==20){
+                            $fieldhtml .= " class=\"tinymce_enabled\"";
+                        }
+                        if  ($type==19){
+                            $fieldhtml .= " class=\"wide\"";
+                        }
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
-						$fieldhtml .= "</textarea>";
-					    $fieldhtml .="<br ".XHTML."><strong>";
-					    $fieldhtml .="<span id='".$cntname."'></span></strong>";
+                        $fieldhtml .= "</textarea>";
+                        $fieldhtml .="<br ".XHTML."><strong>";
+                        $fieldhtml .="<span id='".$cntname."'></span></strong>";
                     }else{
                         $fieldhtml .=$fvalue;
                     }
@@ -1145,16 +1145,16 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml= $lang_noyes[$fvalue];
                     }
                     break;
-				case 7://オプションリスト（選択肢）
-				case 14://マルチセレクトリスト（選択肢）
+                case 7://オプションリスト（選択肢）
+                case 14://マルチセレクトリスト（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getoptionlistary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-				case 9://オプションリスト（マスター）
-					if ($disabled===""){
+                case 9://オプションリスト（マスター）
+                    if ($disabled===""){
                        $fieldhtml=DATABOX_getoptionlist("selectlist_mst",$fvalue,0,$pi_name,"",0,$selectlist,"afield[".$fid."]");
                     }else{
                         $selectionary[$fvalue];
@@ -1168,84 +1168,84 @@ function DATABOX_getaddtionfieldsEdit(
                     }
                     break;
                 case 16://ラジオボタンリスト（マスター）//@@@@@
-					if ($disabled===""){
-						$mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
+                    if ($disabled===""){
+                        $mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
                         $fieldhtml=DATABOX_getradiolist ($mstary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
                 case 18://マルチセレクトリスト（マスター）//@@@@@
-					if ($disabled===""){
-						$mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
+                    if ($disabled===""){
+                        $mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
                         $fieldhtml=DATABOX_getoptionlistary($mstary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
                 case 3://日付（date picker対応）
-				if ($disabled===""){
-						//$filedname="afield[".$fid."]";
-						$filedname="afield".$fid;
-					
-						$_SCRIPTS->setJavaScript(
-						"jQuery(function () {"
-							. "  geeklog.datepicker.set(
-							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-							. "});", TRUE, TRUE
-							);
-						if  (is_array($fields_date)){
-							$fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
-						}else{
-							$fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
-						}
-						$wk =  " <input ";
+                if ($disabled===""){
+                        //$filedname="afield[".$fid."]";
+                        $filedname="afield".$fid;
+                    
+                        $_SCRIPTS->setJavaScript(
+                        "jQuery(function () {"
+                            . "  geeklog.datepicker.set(
+                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "});", TRUE, TRUE
+                            );
+                        if  (is_array($fields_date)){
+                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+                        }else{
+                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
+                        }
+                        $wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
-						$fieldhtml.=$wk;
+                        $fieldhtml.=$wk;
                     }else{
                         $fieldhtml .=$fvalue;
                     }
                     break;
-				case 4://日時（date picker対応）
-					if ($disabled===""){
-						//$filedname="afield[".$fid."]";
-						$filedname="afield".$fid;
-					
-						$_SCRIPTS->setJavaScript(
-						"jQuery(function () {"
-							. "  geeklog.datepicker.set(
-							'{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-							. "});", TRUE, TRUE
-							);
-						if  (is_array($fields_date)){
-							$fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
-						}else{
-							$fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
-						}
-					    $wk =  " <input ";
+                case 4://日時（date picker対応）
+                    if ($disabled===""){
+                        //$filedname="afield[".$fid."]";
+                        $filedname="afield".$fid;
+                    
+                        $_SCRIPTS->setJavaScript(
+                        "jQuery(function () {"
+                            . "  geeklog.datepicker.set(
+                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "});", TRUE, TRUE
+                            );
+                        if  (is_array($fields_date)){
+                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+                        }else{
+                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
+                        }
+                        $wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
-						$fieldhtml.=$wk;
+                        $fieldhtml.=$wk;
                     }else{
                         $fieldhtml .=$fvalue;
                     }
-					break;
-				case 17://フラグ
-					if ($disabled===""){
-						$wk =" <input ";
-					    $wk .= " type=\"checkbox\"";
+                    break;
+                case 17://フラグ
+                    if ($disabled===""){
+                        $wk =" <input ";
+                        $wk .= " type=\"checkbox\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
-						$wk .= " value=\"1\"";
-						if  ($fvalue==1) {
-							$wk .= " checked=checked";
-						}
+                        $wk .= " value=\"1\"";
+                        if  ($fvalue==1) {
+                            $wk .= " checked=checked";
+                        }
                         $wk .= " ".XHTML.">";
-						$fieldhtml=$wk;
+                        $fieldhtml=$wk;
                     }else{
                         $fieldhtml= $fvalue;
                     }
@@ -1354,11 +1354,11 @@ function DATABOX_figurehtml(
 function DATABOX_figurehtml12(
     $fid
     ,$fvalue
-	,$fvalue_del
+    ,$fvalue_del
 )
 {
 
-	global $LANG04;
+    global $LANG04;
 
     //
     $retval .= "        <input ";
@@ -1366,8 +1366,8 @@ function DATABOX_figurehtml12(
     $retval .= " name=\"afield[".$fid."]\" ";
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
-	
-	$retval .="<input type=\"file\" dir=\"ltr\"";
+    
+    $retval .="<input type=\"file\" dir=\"ltr\"";
     $retval .= " id=\"afield_fnm[".$fid."]\" ";
     $retval .= " name=\"afield_fnm[".$fid."]\" ";
     $retval .="size=\"30\"";
@@ -1392,8 +1392,8 @@ function DATABOX_figurehtml12(
 }
 
 function DATABOX_imagehtml(
-	$name
-	,$fvalue
+    $name
+    ,$fvalue
     ,$fvalue_del
 )
 {
@@ -1406,8 +1406,8 @@ function DATABOX_imagehtml(
     $retval .= " name=\"".$name."\" ";
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
-	
-	if ($fvalue==""){
+    
+    if ($fvalue==""){
 
         $retval .="<input type=\"file\" dir=\"ltr\"";
 
@@ -1457,19 +1457,19 @@ function DATABOX_getaddtionfieldsJS(
 // +---------------------------------------------------------------------------+
 // 20101206 日付
 {
-	global $_CONF;
-	//GL のバージョンが1.8.0 より新しくなければおわり
-	if (version_compare(VERSION, '1.8.0') >= 0) {
-	}else{
-		return ;
-	}
-	$scriptclass=$_CONF['path_system'] .'classes/scripts.class.php';
-	if  (!file_exists($scriptclass) ){
-		return;
-	}
-	
-	global $_SCRIPTS;
-	global $_TABLES;
+    global $_CONF;
+    //GL のバージョンが1.8.0 より新しくなければおわり
+    if (version_compare(VERSION, '1.8.0') >= 0) {
+    }else{
+        return ;
+    }
+    $scriptclass=$_CONF['path_system'] .'classes/scripts.class.php';
+    if  (!file_exists($scriptclass) ){
+        return;
+    }
+    
+    global $_SCRIPTS;
+    global $_TABLES;
 
     $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
 
@@ -1480,8 +1480,8 @@ function DATABOX_getaddtionfieldsJS(
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-	
-	$dateformat=$box_conf['dateformat'];
+    
+    $dateformat=$box_conf['dateformat'];
 
     $js= '';
 
@@ -1543,83 +1543,83 @@ function DATABOX_getaddtionfieldsJS(
 
                 case 3://日付（DatePicker 対応）
                     if ($disabled===""){
-						$js.=DATABOX_getaddtionfieldsJS_date($fid,$dateformat);
+                        $js.=DATABOX_getaddtionfieldsJS_date($fid,$dateformat);
                     }
                     break;
             }
             //=====
         }
     }
-	
-	
-	$_SCRIPTS->setJavaScript($js, true);
+    
+    
+    $_SCRIPTS->setJavaScript($js, true);
 
     return ;
 }
 
 function DATABOX_getaddtionfieldsJS_date(
-	$fid
-	,$dateformat
+    $fid
+    ,$dateformat
 ){
-	global $_SCRIPTS;
-	//GL のバージョンが1.8.0 より新しくなければおわり
-	if (version_compare(VERSION, '1.8.0') >= 0) {
-	}else{
-		return ;
-	}
-	$jquery="";
-	if (function_exists('plugin_chkVersion_jquery')) {
-		$jquery=plugin_chkVersion_jquery();
-	}
-	if ($jquery==="") {
-		return;
-	}
-	$jsfooter=$_SCRIPTS->getFooter();
-	$datepicker=mb_strpos($jsfooter,"datepicker");
-	if (!$datepicker) {
-		return;
-	}
-	
-	$str="".LB;
-	$str .= "	jQuery(function() {".LB;
-	$str .= "        jQuery('#afield{$fid}').DatePicker({".LB;
+    global $_SCRIPTS;
+    //GL のバージョンが1.8.0 より新しくなければおわり
+    if (version_compare(VERSION, '1.8.0') >= 0) {
+    }else{
+        return ;
+    }
+    $jquery="";
+    if (function_exists('plugin_chkVersion_jquery')) {
+        $jquery=plugin_chkVersion_jquery();
+    }
+    if ($jquery==="") {
+        return;
+    }
+    $jsfooter=$_SCRIPTS->getFooter();
+    $datepicker=mb_strpos($jsfooter,"datepicker");
+    if (!$datepicker) {
+        return;
+    }
+    
+    $str="".LB;
+    $str .= "    jQuery(function() {".LB;
+    $str .= "        jQuery('#afield{$fid}').DatePicker({".LB;
     $str .= "            format:'{$dateformat}',".LB;
     $str .= "            date: jQuery('#afield{$fid}').val(),".LB;
     $str .= "            current: jQuery('#afield{$fid}').val(),".LB;
     $str .= "            starts: 1,".LB;
     $str .= "            position: 'top',".LB;
-	
-//	$str .= "            onBeforeShow: function(){".LB;
+    
+//    $str .= "            onBeforeShow: function(){".LB;
 //    $str .= "                    jQuery('#afield{$fid}').DatePickerSetDate(jQuery('#afield{$fid}').val(), true);".LB;
-//	$str .= "            },".LB;
-	
+//    $str .= "            },".LB;
+    
     $str .= "            onChange: function(formated){".LB;
     $str .= "                    jQuery('#afield{$fid}').val(formated);".LB;
     $str .= "                    jQuery('#afield{$fid}').DatePickerHide();".LB;
     $str .= "            }".LB;
-    $str .= "    	});".LB;
-	$str .= "   });".LB;
-	
-	
-	return $str;
+    $str .= "        });".LB;
+    $str .= "   });".LB;
+    
+    
+    return $str;
 }
 
 function DATABOX_getenableexpired(
-	$field
-	,$flg
-	,$pi_name
+    $field
+    ,$flg
+    ,$pi_name
 ){
-	//GL のバージョンが1.8.0 より新しくなければおわり
-	if (version_compare(VERSION, '2.0.0') >= 0) {
-	}else{
-		return ;
-	}
-	
-	global $_CONF;
-	global $_SCRIPTS;
-	
+    //GL のバージョンが1.8.0 より新しくなければおわり
+    if (version_compare(VERSION, '2.0.0') >= 0) {
+    }else{
+        return ;
+    }
+    
+    global $_CONF;
+    global $_SCRIPTS;
+    
     $langCode = COM_getLangIso639Code();
-    $toolTip  = 'Click and select a date';	// Should be translated
+    $toolTip  = 'Click and select a date';    // Should be translated
     $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
 
     $_SCRIPTS->setJavaScript(
@@ -1627,8 +1627,8 @@ function DATABOX_getenableexpired(
         . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
         . "});", TRUE, TRUE
     );
-	
-	return ;
+    
+    return ;
 }
 
 
@@ -1636,8 +1636,8 @@ function DATABOX_getaddtionfieldsText(
     $fields
     ,$addition_def
     ,$chk_user
-	,$pi_name
-	,$fieldset_id
+    ,$pi_name
+    ,$fieldset_id
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目TEXT作成
@@ -1654,19 +1654,19 @@ function DATABOX_getaddtionfieldsText(
 // +---------------------------------------------------------------------------+
 //
 {
-	global $_CONF;
-	
+    global $_CONF;
+    
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
 
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
-	
-	$lang_box="LANG_".strtoupper($pi_name);
+    
+    $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
-	$separater=$lang_box['field_separater'];
-	
-	$templatesetvar=$addition_def[$fid]['templatesetvar'];
+    $separater=$lang_box['field_separater'];
+    
+    $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
     $retval = '';
 
@@ -1693,7 +1693,7 @@ function DATABOX_getaddtionfieldsText(
         $rows=$addition_def[$fid]['rows'];
         $br=$addition_def[$fid]['br'];
 
-		$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
+        $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
 
         $chk=false;
         $disabled="disabled";
@@ -1723,64 +1723,64 @@ function DATABOX_getaddtionfieldsText(
             }
         }
 
-		if (in_array($fid,$fieldsetfields )) {
-			if ($chk) {
-				$retval.=$name.":";
+        if (in_array($fid,$fieldsetfields )) {
+            if ($chk) {
+                $retval.=$name.":";
 
-				switch ($type) {
-					case 11://図
-						$retval .= "";
-						break;
-					case 2://いいえ/はい
-						$retval .= $lang_noyes[$fvalue];
-						break;
-					case 7://オプションリスト（選択肢）
-					case 8://オプションリスト（選択肢）
-						$retval .= $selectionary[$fvalue];
-						break;
-					case 14://マルチセレクトリスト（選択肢）
-						$wkary=explode(":",$fvalue);
-						$wk="";
-						for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
-							$wk.=$selectionary[$wkary[$x]].$separater;
-						}
-						$retval .= rtrim($wk,$separater);
-						break;
-					case 9://オプションリスト（マスター）
-					case 16://ラジオボタンリスト（マスター）
-						$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
-						$retval .= $mstitems['value'];
-						break;
-					case 18://マルチセレクトリスト（マスター）
-						$wkary=explode(":",$fvalue);
-						$wk="";
-						for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
-							$mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
-							$wk.=$mstitems['value'].$separater;
-						}
-						$retval .= rtrim($wk,$separater);
-						break;
-					case 4://日時
-						$w=COM_getUserDateTimeFormat($fvalue);
-						$retval .= $w[0];
-						break;
-					case 3://日付
-    					if  ($fvalue<>""){
-						    $retval .=strftime( $_CONF['shortdate'], $fvalue );
-					    }
-        				break;
-					case 5://メールアドレス　（準備中）';
-					case 6://url　（準備中）';
-					case 0:// 一行テキストフィールド
-					case 1:// 複数行テキストフィールド(HTML OK)
-					case 10:// 複数行テキストフィールド(HTML NG)
-					case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
-					case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
-					default:
-						$retval .= $fvalue;
-				}
-				$retval.=LB;
-			}
+                switch ($type) {
+                    case 11://図
+                        $retval .= "";
+                        break;
+                    case 2://いいえ/はい
+                        $retval .= $lang_noyes[$fvalue];
+                        break;
+                    case 7://オプションリスト（選択肢）
+                    case 8://オプションリスト（選択肢）
+                        $retval .= $selectionary[$fvalue];
+                        break;
+                    case 14://マルチセレクトリスト（選択肢）
+                        $wkary=explode(":",$fvalue);
+                        $wk="";
+                        for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+                            $wk.=$selectionary[$wkary[$x]].$separater;
+                        }
+                        $retval .= rtrim($wk,$separater);
+                        break;
+                    case 9://オプションリスト（マスター）
+                    case 16://ラジオボタンリスト（マスター）
+                        $mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
+                        $retval .= $mstitems['value'];
+                        break;
+                    case 18://マルチセレクトリスト（マスター）
+                        $wkary=explode(":",$fvalue);
+                        $wk="";
+                        for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+                            $mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
+                            $wk.=$mstitems['value'].$separater;
+                        }
+                        $retval .= rtrim($wk,$separater);
+                        break;
+                    case 4://日時
+                        $w=COM_getUserDateTimeFormat($fvalue);
+                        $retval .= $w[0];
+                        break;
+                    case 3://日付
+                        if  ($fvalue<>""){
+                            $retval .=strftime( $_CONF['shortdate'], $fvalue );
+                        }
+                        break;
+                    case 5://メールアドレス　（準備中）';
+                    case 6://url　（準備中）';
+                    case 0:// 一行テキストフィールド
+                    case 1:// 複数行テキストフィールド(HTML OK)
+                    case 10:// 複数行テキストフィールド(HTML NG)
+                    case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)//@@@@@
+                    case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
+                    default:
+                        $retval .= $fvalue;
+                }
+                $retval.=LB;
+            }
         }
     }
     return $retval;
@@ -1793,8 +1793,8 @@ function DATABOX_getaddtionfieldsDisp(
     ,$addition_def
     ,$templates
     ,$chk_user
-	,$pi_name
-	,$fieldset_id
+    ,$pi_name
+    ,$fieldset_id
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目表示用HTML作成                                              |
@@ -1813,26 +1813,26 @@ function DATABOX_getaddtionfieldsDisp(
 //update 20101012 $chk_user
 {
     global $_CONF;
-	global $_TABLES;
+    global $_TABLES;
 
-	$lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
+    $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-	
+    
     $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
-	$separater=$lang_box['field_separater'];
+    $separater=$lang_box['field_separater'];
 
-	
-	$noimage="lib/noimage.jpg";
-	
-	$fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
-	
+    
+    $noimage="lib/noimage.jpg";
+    
+    $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
+    
     $retval = '';
 
     if (is_array($fields)){
@@ -1863,86 +1863,86 @@ function DATABOX_getaddtionfieldsDisp(
 
         $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
-		$chk=false;
-		if (in_array($fid,$fieldsetfields )) {
-			//表示する
-			if  ($addition_def[$fid]['allow_display']==='0') {
-				$chk=true;
-				//ログインユーザのみ
-			}else if ($addition_def[$fid]['allow_display']==='1'){
-				if  ($chk_user>=1000) {
-					$chk=true;
-				}
-				//グループとadmin権のある人のみ表示
-			}else if ($addition_def[$fid]['allow_display']==='2'){
-				if  ($chk_user>=1010) {
-					$chk=true;
-				}
-				//所有者とadmin権のある人のみ
-			}else if ($addition_def[$fid]['allow_display']==='3'){
-				if  ($chk_user>=1011) {
-					$chk=true;
-				}
-				//admin権のある人のみ
-			}else if ($addition_def[$fid]['allow_display']==='4'){
-				if  ($chk_user>=1100) {
-					$chk=true;
-				}
-			}
-		}
+        $chk=false;
+        if (in_array($fid,$fieldsetfields )) {
+            //表示する
+            if  ($addition_def[$fid]['allow_display']==='0') {
+                $chk=true;
+                //ログインユーザのみ
+            }else if ($addition_def[$fid]['allow_display']==='1'){
+                if  ($chk_user>=1000) {
+                    $chk=true;
+                }
+                //グループとadmin権のある人のみ表示
+            }else if ($addition_def[$fid]['allow_display']==='2'){
+                if  ($chk_user>=1010) {
+                    $chk=true;
+                }
+                //所有者とadmin権のある人のみ
+            }else if ($addition_def[$fid]['allow_display']==='3'){
+                if  ($chk_user>=1011) {
+                    $chk=true;
+                }
+                //admin権のある人のみ
+            }else if ($addition_def[$fid]['allow_display']==='4'){
+                if  ($chk_user>=1100) {
+                    $chk=true;
+                }
+            }
+        }
         if ($chk) {
             $fieldhtml="";//外画像の場合ファイル名
             $fieldhtml_tn="";//サムネイルファイル名
-			$fieldhtmldisp="";//外画像　画像表示　（準備中）
-			$fieldhtmldisp_tn="";//外画像　画像表示　（準備中）
-			$fieldhtml_noimage="";
+            $fieldhtmldisp="";//外画像　画像表示　（準備中）
+            $fieldhtmldisp_tn="";//外画像　画像表示　（準備中）
+            $fieldhtml_noimage="";
             $fieldhtml_tn_noimage="";
-			$fieldhtml_tn_image="";//サムネイル
-			$mstitems=array();
-			$fieldhtml_yes="";
-			
+            $fieldhtml_tn_image="";//サムネイル
+            $mstitems=array();
+            $fieldhtml_yes="";
+            
             switch ($type) {
                 case 12://画像（外記憶）（準備中）
                     $fieldhtml=$fvalue;//ファイル名
-					$fieldhtml_noimage=$fvalue;
+                    $fieldhtml_noimage=$fvalue;
                     //
-					if  ($fvalue===""){
-						$fieldhtml_noimage=$noimage;
-						$fieldhtml_tn_noimage=$noimage;
-					}else{
-						$fieldurl= $_CONF['site_url']   ."/".$box_conf['imgfile_frd'] ;
-						$fieldurl.= $fvalue ;
+                    if  ($fvalue===""){
+                        $fieldhtml_noimage=$noimage;
+                        $fieldhtml_tn_noimage=$noimage;
+                    }else{
+                        $fieldurl= $_CONF['site_url']   ."/".$box_conf['imgfile_frd'] ;
+                        $fieldurl.= $fvalue ;
 
                         $fieldhtmldisp .="<img ";
                         $fieldhtmldisp .=" src=\"{$fieldurl}\"";
                         $fieldhtmldisp .=" border=\"0\"";
                         $fieldhtmldisp .=" alt=\"{$fvalue}\"";
                         $fieldhtmldisp .=" ".HTML.">";
-					
-						//サムネイル
-					    $filename = substr($fvalue, 0, strrpos($fvalue,"."));
-						$thum_filename = $filename . "-small.jpg";
-						$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-					
-						if(file_exists($imgfld_thmb.$thum_filename)) {
-							$fieldhtml_tn=$thum_filename;
-							$fieldhtml_tn_noimage=$thum_filename;
-							//
-							$fieldurl_tn= $_CONF['site_url']   ."/".$box_conf['imgfile_thumb_frd'] ;
-							$fieldurl_tn.= $thum_filename ;
-							//
-							$fieldhtml_tn_image .="<a href=\"{$fieldurl}\" target=\"_blank\">";
-							$fieldhtml_tn_image .="<img ";
-							$fieldhtml_tn_image .=" src=\"{$fieldurl_tn}\"";
-							$fieldhtml_tn_image .=" border=\"0\"";
-							$fieldhtml_tn_image .=" alt=\"{$fvalue}\"";
-							$fieldhtml_tn_image .=" ".XHTML.">";
-							$fieldhtml_tn_image .=" </a>";
-						
-						}else{
-							$fieldhtml_tn_noimage=$noimage;
-						}
-						
+                    
+                        //サムネイル
+                        $filename = substr($fvalue, 0, strrpos($fvalue,"."));
+                        $thum_filename = $filename . "-small.jpg";
+                        $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                    
+                        if(file_exists($imgfld_thmb.$thum_filename)) {
+                            $fieldhtml_tn=$thum_filename;
+                            $fieldhtml_tn_noimage=$thum_filename;
+                            //
+                            $fieldurl_tn= $_CONF['site_url']   ."/".$box_conf['imgfile_thumb_frd'] ;
+                            $fieldurl_tn.= $thum_filename ;
+                            //
+                            $fieldhtml_tn_image .="<a href=\"{$fieldurl}\" target=\"_blank\">";
+                            $fieldhtml_tn_image .="<img ";
+                            $fieldhtml_tn_image .=" src=\"{$fieldurl_tn}\"";
+                            $fieldhtml_tn_image .=" border=\"0\"";
+                            $fieldhtml_tn_image .=" alt=\"{$fvalue}\"";
+                            $fieldhtml_tn_image .=" ".XHTML.">";
+                            $fieldhtml_tn_image .=" </a>";
+                        
+                        }else{
+                            $fieldhtml_tn_noimage=$noimage;
+                        }
+                        
                     }
 
                     break;
@@ -1958,150 +1958,150 @@ function DATABOX_getaddtionfieldsDisp(
                     }
                     break;
                 case 2://いいえ/はい
-					$fieldhtml .= $lang_noyes[$fvalue];
-					if  ($fvalue==1){
-						$fieldhtml_yes=1;
-					}
-					break;
+                    $fieldhtml .= $lang_noyes[$fvalue];
+                    if  ($fvalue==1){
+                        $fieldhtml_yes=1;
+                    }
+                    break;
                 case 7://オプションリスト（選択肢）//@@@@@@
                 case 8://ラジオボタンリスト（選択肢）//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
-				case 14://マルチセレクトリスト（選択肢）
+                case 14://マルチセレクトリスト（選択肢）
                     $wkary=explode(":",$fvalue);
-					$wk="";
-					for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
-						$wk.=$selectionary[$wkary[$x]].$separater;
-					}
+                    $wk="";
+                    for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+                        $wk.=$selectionary[$wkary[$x]].$separater;
+                    }
                     $fieldhtml .= rtrim($wk,$separater);
-					break;
-				case 10:// 複数行テキストフィールド(HTML NG)
-					$w=DATABOX_nl2br($fvalue);
-					$w=DATABOX_autolink($w);
-					$fieldhtml .= $w;
                     break;
-				case 9://オプションリスト（マスター）
-				case 16: //ラジオボタン（マスター）
-					$mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
-					$fieldhtml .= $mstitems['value'];
+                case 10:// 複数行テキストフィールド(HTML NG)
+                    $w=DATABOX_nl2br($fvalue);
+                    $w=DATABOX_autolink($w);
+                    $fieldhtml .= $w;
                     break;
-				case 18://マルチセレクトリスト（マスター）
-					$wkary=explode(":",$fvalue);
-					$wk="";
-					$wk_value2="";
-					$wk_disp="";
-					for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
-						$mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
-						$wk.=$mstitems['value'].$separater;
-						$wk_value2.=$mstitems['value2'].$separater;
-						$wk_disp.=$mstitems['disp'].$separater;
-					}
-					$fieldhtml .= rtrim($wk,$separater);
-					
-					$mstitems['value2'] = rtrim($wk_value2,$separater);
-					$mstitems['disp'] = rtrim($wk_disp,$separater);
-					$mstitems['no'] =$fvalue;
-					break;
+                case 9://オプションリスト（マスター）
+                case 16: //ラジオボタン（マスター）
+                    $mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
+                    $fieldhtml .= $mstitems['value'];
+                    break;
+                case 18://マルチセレクトリスト（マスター）
+                    $wkary=explode(":",$fvalue);
+                    $wk="";
+                    $wk_value2="";
+                    $wk_disp="";
+                    for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
+                        $mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
+                        $wk.=$mstitems['value'].$separater;
+                        $wk_value2.=$mstitems['value2'].$separater;
+                        $wk_disp.=$mstitems['disp'].$separater;
+                    }
+                    $fieldhtml .= rtrim($wk,$separater);
+                    
+                    $mstitems['value2'] = rtrim($wk_value2,$separater);
+                    $mstitems['disp'] = rtrim($wk_disp,$separater);
+                    $mstitems['no'] =$fvalue;
+                    break;
                 case 4://日時
-					if  ($fvalue<>""){
-						$w=DATABOX_getDateTimeFormat($fvalue,$format);
-						$fieldhtml .= $w[0];
-					}
-					break;
-				case 3://日付（準備中）
-					if  ($fvalue<>""){
-						$fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
-					}
-					break;
+                    if  ($fvalue<>""){
+                        $w=DATABOX_getDateTimeFormat($fvalue,$format);
+                        $fieldhtml .= $w[0];
+                    }
+                    break;
+                case 3://日付（準備中）
+                    if  ($fvalue<>""){
+                        $fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
+                    }
+                    break;
                 case 21://money 通貨;
                     $dc = $_CONF['decimal_count'];
-		    $ts = $_CONF['thousand_separator'];
+            $ts = $_CONF['thousand_separator'];
                     $ds = $_CONF['decimal_separator'];
-		    $fieldhtml .= number_format( (float)$fvalue, $dc, $ds, $ts );
-					break;
+            $fieldhtml .= number_format( (float)$fvalue, $dc, $ds, $ts );
+                    break;
                 case 5://メールアドレス　（準備中）';
 
                 case 6://url';
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
-				case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
-				case 19:// 複数行テキストフィールド(HTML OK  CKEditor)
+                case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
+                case 19:// 複数行テキストフィールド(HTML OK  CKEditor)
                 default:
                     $fieldhtml .= $fvalue;
             }
             $templates->set_var('field_id', $fid);
             $templates->set_var('field_type', $type);
-			
+            
             //項目名
             $templates->set_var('additionfield_name', $name);
             $templates->set_var('additionfield'.$fid."_name", $name);
             $templates->set_var($templatesetvar."_name", $name);
-			
-			//説明
+            
+            //説明
             $templates->set_var('additionfield'.$fid."_description", $description);
             $templates->set_var($templatesetvar."_description", $description);
-			
-			//登録したテーマ変数名
+            
+            //登録したテーマ変数名
             $templates->set_var('additionfield_templatesetvar', $templatesetvar);
-			
-			//
-			$templates->set_var('additionfield_value', $fieldhtml);
-			$templates->set_var('additionfield'.$fid, $fieldhtml);
-			$templates->set_var($templatesetvar, $fieldhtml);
-			
-			if  ($type==12){
-				$templates->set_var('display_a', 'display:');
-			}else{
-				$templates->set_var('display_a', 'display:none');
-			}
-			//(a_1)_tn サムネイルファイル名
-			$templates->set_var('additionfield_value_tn', $fieldhtml_tn);
-			$templates->set_var('additionfield'.$fid."_tn", $fieldhtml_tn);
-			$templates->set_var($templatesetvar."_tn", $fieldhtml_tn);
-			
-			//(a_2)_noimage
+            
+            //
+            $templates->set_var('additionfield_value', $fieldhtml);
+            $templates->set_var('additionfield'.$fid, $fieldhtml);
+            $templates->set_var($templatesetvar, $fieldhtml);
+            
+            if  ($type==12){
+                $templates->set_var('display_a', 'display:');
+            }else{
+                $templates->set_var('display_a', 'display:none');
+            }
+            //(a_1)_tn サムネイルファイル名
+            $templates->set_var('additionfield_value_tn', $fieldhtml_tn);
+            $templates->set_var('additionfield'.$fid."_tn", $fieldhtml_tn);
+            $templates->set_var($templatesetvar."_tn", $fieldhtml_tn);
+            
+            //(a_2)_noimage
             $templates->set_var('additionfield_value_noimage', $fieldhtml_noimage);
-			$templates->set_var('additionfield'.$fid."_noimage", $fieldhtml_noimage);
-			$templates->set_var($templatesetvar."_noimage", $fieldhtml_noimage);
-			
-			//(a_3)_tn_image サムネイルイメージ
+            $templates->set_var('additionfield'.$fid."_noimage", $fieldhtml_noimage);
+            $templates->set_var($templatesetvar."_noimage", $fieldhtml_noimage);
+            
+            //(a_3)_tn_image サムネイルイメージ
             $templates->set_var('additionfield_value_tn_image', $fieldhtml_tn_image);
-			$templates->set_var('additionfield'.$fid."_tn_image", $fieldhtml_tn_image);
-			$templates->set_var($templatesetvar."_tn_image", $fieldhtml_tn_image);
-			
-			//(a_4)_tn_noimage サムネイルイメージ
+            $templates->set_var('additionfield'.$fid."_tn_image", $fieldhtml_tn_image);
+            $templates->set_var($templatesetvar."_tn_image", $fieldhtml_tn_image);
+            
+            //(a_4)_tn_noimage サムネイルイメージ
             $templates->set_var('additionfield_value_tn_noimage', $fieldhtml_tn_noimage);
-			$templates->set_var('additionfield'.$fid."_tn_noimage", $fieldhtml_tn_noimage);
-			$templates->set_var($templatesetvar."_tn_noimage", $fieldhtml_tn_noimage);
-			
-			//(a_5)disp 画像（外記憶）表示
+            $templates->set_var('additionfield'.$fid."_tn_noimage", $fieldhtml_tn_noimage);
+            $templates->set_var($templatesetvar."_tn_noimage", $fieldhtml_tn_noimage);
+            
+            //(a_5)disp 画像（外記憶）表示
             $templates->set_var('additionfield_value_disp', $fieldhtmldisp);
-			$templates->set_var('additionfield'.$fid."_disp", $fieldhtmldisp);
-			$templates->set_var($templatesetvar."_disp", $fieldhtmldisp);
-			
-			if  ( $type==9 OR $type==16 OR $type==18 ){
-				$templates->set_var('display_b', 'display:');
-			}else{
-				$templates->set_var('display_b', 'display:none');
-			}
-			//(b_1)マスターのvalue2
-			$templates->set_var('additionfield_value_mst_value2', $mstitems['value2']);
-			$templates->set_var('additionfield'.$fid."_mst_value2", $mstitems['value2']);
-			$templates->set_var($templatesetvar."_mst_value2", $mstitems['value2']);
-			
-			//(b_2)マスターのdisp
+            $templates->set_var('additionfield'.$fid."_disp", $fieldhtmldisp);
+            $templates->set_var($templatesetvar."_disp", $fieldhtmldisp);
+            
+            if  ( $type==9 OR $type==16 OR $type==18 ){
+                $templates->set_var('display_b', 'display:');
+            }else{
+                $templates->set_var('display_b', 'display:none');
+            }
+            //(b_1)マスターのvalue2
+            $templates->set_var('additionfield_value_mst_value2', $mstitems['value2']);
+            $templates->set_var('additionfield'.$fid."_mst_value2", $mstitems['value2']);
+            $templates->set_var($templatesetvar."_mst_value2", $mstitems['value2']);
+            
+            //(b_2)マスターのdisp
             $templates->set_var('additionfield_value_mst_disp', $mstitems['disp']);
-			$templates->set_var('additionfield'.$fid."_mst_disp", $mstitems['disp']);
-			$templates->set_var($templatesetvar."_mst_disp", $mstitems['disp']);
-			
-			//(b_3)マスターのno
+            $templates->set_var('additionfield'.$fid."_mst_disp", $mstitems['disp']);
+            $templates->set_var($templatesetvar."_mst_disp", $mstitems['disp']);
+            
+            //(b_3)マスターのno
             $templates->set_var('additionfield_value_mst_no', $mstitems['no']);
-			$templates->set_var('additionfield'.$fid."_mst_no", $mstitems['no']);
-			$templates->set_var($templatesetvar."_mst_no", $mstitems['no']);
-			
-			//@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
-			//@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
-			
+            $templates->set_var('additionfield'.$fid."_mst_no", $mstitems['no']);
+            $templates->set_var($templatesetvar."_mst_no", $mstitems['no']);
+            
+            //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
+            //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
+            
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('additionfields', 'row', true);
@@ -2117,29 +2117,29 @@ function DATABOX_getaddtionfieldsDisp(
 
 //
 function DATABOX_getMstItems(
-	$selectlist
-	,$id
-	,$pi_name
+    $selectlist
+    ,$id
+    ,$pi_name
 //DATABOX_getMstItems($id,$pi_name);
 ){
-	if ($id==""){
-		return array();
-	}
-	global $_TABLES;
-	
+    if ($id==""){
+        return array();
+    }
+    global $_TABLES;
+    
     $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
 
-	$sql="SELECT * FROM  {$table_mst} WHERE kind='{$selectlist}' AND no={$id}";
-	
-	$result = DB_query($sql);
+    $sql="SELECT * FROM  {$table_mst} WHERE kind='{$selectlist}' AND no={$id}";
+    
+    $result = DB_query($sql);
     $numrows = DB_numRows ($result);
-	if ($numrows > 0) {
-		$A = DB_fetchArray($result, true);
-		$A = array_map('stripslashes', $A);
-	}else{
-		$A=array();
-	}
-	return $A;
+    if ($numrows > 0) {
+        $A = DB_fetchArray($result, true);
+        $A = array_map('stripslashes', $A);
+    }else{
+        $A=array();
+    }
+    return $A;
 }
 
 
@@ -2295,34 +2295,34 @@ function DATABOX_getcategoriesDisp(
 
     global $$lang_box;
     $lang_box=$$lang_box;
-	
-	$sql = "SELECT ";
+    
+    $sql = "SELECT ";
     $sql .= " group_id".LB;
     $sql .= " ,code".LB;
     $sql .= " FROM ";
     $sql .= " {$table_def_group} ".LB;
-	$result = DB_query( $sql );
+    $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
-	
+    
     for( $i = 0; $i < $nrows; $i++ )    {
         $A = DB_fetchArray( $result, true );
-		$A = array_map('stripslashes', $A);
-		$gid=$A['group_id'];
-		$gcode=$A['code'];
-		$templates->set_var('group_'.$gid, "");
-		$templates->set_var('group_'.$gcode, "");
+        $A = array_map('stripslashes', $A);
+        $gid=$A['group_id'];
+        $gcode=$A['code'];
+        $templates->set_var('group_'.$gid, "");
+        $templates->set_var('group_'.$gcode, "");
         $templates->set_var('group_'.$gid."_code", "");
         $templates->set_var('group_'.$gcode."_code", "");
-				
+                
         $templates->set_var('grouplink_'.$gid, "");
         $templates->set_var('grouplink_'.$gid."_code", "");
 
         $templates->set_var('grouplink_'.$gcode, "");
-		$templates->set_var('grouplink_'.$gcode."_code", "");
-	}
-	
-	
-	
+        $templates->set_var('grouplink_'.$gcode."_code", "");
+    }
+    
+    
+    
     $retval = '';
 
     $sql = "SELECT ".LB;
@@ -2330,8 +2330,8 @@ function DATABOX_getcategoriesDisp(
     $sql .= ",m1.name AS category_name".LB;
     $sql .= ",m1.code AS category_code".LB;
     //$sql .= ",m1.orderno";
-	$sql .= ",m1.categorygroup_id".LB;
-	$sql .= ",m1.allow_display".LB;
+    $sql .= ",m1.categorygroup_id".LB;
+    $sql .= ",m1.allow_display".LB;
     //$sql .= ",m2.name AS group";
     $sql .= ",m2.code AS group_code".LB;
     $sql .= ",m2.group_id".LB;//@@@@@@
@@ -2355,35 +2355,35 @@ function DATABOX_getcategoriesDisp(
     $nrows = DB_numRows( $result );
 
     $separater=$lang_box['category_separater'];
-	$separater_code=$lang_box['category_separater_code'];
-	$separater_pipeline="|";
-	
+    $separater_code=$lang_box['category_separater_code'];
+    $separater_pipeline="|";
+    
     $categpries="";
 
 
     $old_group_id="";
-	$old_group_code="";
-	
+    $old_group_code="";
+    
     $categories_group ="";
     $categories_link_id_group ="";
     $categories_link_code_group ="";
-	
+    
     $categories_group2 ="";
     $categories_link_id_group2 ="";
     $categories_link_code_group2 ="";
-	
+    
     $categories_group_pipeline ="";
-	
-	//group_id2, group_code2, grouplinkid2, grouplinkcode2,
-	//group_id がカテゴリの名称を表示するのに対し、
-	//group_id2はカテゴリのコードを表示する。
-	//$categories_group $categories_link_id_group $categories_link_code_group
-	//group_pipelineはカテゴリのコードパイプライン区切を表示する。
-	//$categories_group_pipeline
+    
+    //group_id2, group_code2, grouplinkid2, grouplinkcode2,
+    //group_id がカテゴリの名称を表示するのに対し、
+    //group_id2はカテゴリのコードを表示する。
+    //$categories_group $categories_link_id_group $categories_link_code_group
+    //group_pipelineはカテゴリのコードパイプライン区切を表示する。
+    //$categories_group_pipeline
     for( $i = 0; $i < $nrows; $i++ )    {
-		$A = DB_fetchArray( $result, true );
-		$A = array_map('stripslashes', $A);
-		$chk=false;
+        $A = DB_fetchArray( $result, true );
+        $A = array_map('stripslashes', $A);
+        $chk=false;
         //表示する
         if  ($A['allow_display']==='0') {
             $chk=true;
@@ -2409,7 +2409,7 @@ function DATABOX_getcategoriesDisp(
             }
         }
         
-		if  ($chk==false){
+        if  ($chk==false){
             continue;
         }
         if ($old_group_id<>$A['group_id']){
@@ -2417,14 +2417,14 @@ function DATABOX_getcategoriesDisp(
 
                 $categories_group=rtrim($categories_group,$separater);
                 $templates->set_var('group_'.$old_group_id, $categories_group);
-				$templates->set_var('group_'.$old_group_code, $categories_group);
+                $templates->set_var('group_'.$old_group_code, $categories_group);
                 $categories_group2=rtrim($categories_group2,$separater_code);
                 $templates->set_var('group_'.$old_group_id."_code", $categories_group2);
                 $templates->set_var('group_'.$old_group_code."_code", $categories_group2);
                 $categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
                 $templates->set_var('group_'.$old_group_id."_pipeline", $categories_group_pipeline);//@@
                 $templates->set_var('group_'.$old_group_code."_pipeline", $categories_group_pipeline);//@@
-				
+                
                 $categories_link_id_group=rtrim($categories_link_id_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
                 $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);
@@ -2438,34 +2438,34 @@ function DATABOX_getcategoriesDisp(
             }
             $categories_group ="";
             $categories_link_id_group ="";
-			$categories_link_code_group ="";
+            $categories_link_code_group ="";
             $categories_group2 ="";
             $categories_link_id_group2 ="";
-			$categories_link_code_group2 ="";
+            $categories_link_code_group2 ="";
             $categories_group_pipeline="";//@@
-			
+            
             $old_group_id=$A['group_id'];
             $old_group_code=$A['group_code'];
         }
         $categories.=$A['category_name']." ".$separater;
-		$categories_group.=$A['category_name']." ".$separater;
-		$categories_group2.=$A['category_code']." ".$separater_code;
-		$categories_group_pipeline.=$A['category_code'].$separater_pipeline;
-		
+        $categories_group.=$A['category_name']." ".$separater;
+        $categories_group2.=$A['category_code']." ".$separater_code;
+        $categories_group_pipeline.=$A['category_code'].$separater_pipeline;
+        
 
         $name=$A['category_name'];
         $code=COM_applyFilter($A['category_code']);
         $url=$_CONF['site_url'] ."/".$pi_name."/category.php";
-		$url_code=$url;
-		$url_code.="?code=".$A['category_code'];
-		$url_code.="&m=code";
+        $url_code=$url;
+        $url_code.="?code=".$A['category_code'];
+        $url_code.="&m=code";
         $url_code = COM_buildUrl( $url_code );
-		$url_id=$url;
-		$url_id.="?id=".$A['category_id'];
-		$url_id.="&m=id";
+        $url_id=$url;
+        $url_id.="?id=".$A['category_id'];
+        $url_id.="&m=id";
         $url_id= COM_buildUrl( $url_id );
-		$category_link_id= COM_createLink($name, $url_id);
-		$category_link_code= COM_createLink($name, $url_code);
+        $category_link_id= COM_createLink($name, $url_id);
+        $category_link_code= COM_createLink($name, $url_code);
         $category_link_id2= COM_createLink($code, $url_id);
         $category_link_code2= COM_createLink($code, $url_code);
 
@@ -2496,35 +2496,35 @@ function DATABOX_getcategoriesDisp(
     $templates->set_var('categorieslinkcode', $categories_link_code);
     $templates->set_var('categorieslinkid', $categories_link_id);
 
-	$categories_group=rtrim($categories_group,$separater);
-	$categories_group2=rtrim($categories_group2,$separater_code);
-	$categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
+    $categories_group=rtrim($categories_group,$separater);
+    $categories_group2=rtrim($categories_group2,$separater_code);
+    $categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
 
     $templates->set_var('group_'.$old_group_id, $categories_group);
     $templates->set_var('group_'.$old_group_code, $categories_group);
-	$templates->set_var('group_'.$old_group_id."_code", $categories_group2);
+    $templates->set_var('group_'.$old_group_id."_code", $categories_group2);
     $templates->set_var('group_'.$old_group_code."_code", $categories_group2);
     $templates->set_var('group_'.$old_group_id."_pipeline", $categories_group_pipeline);//@@
     $templates->set_var('group_'.$old_group_code."_pipeline", $categories_group_pipeline);//@@
 
     $categories_link_id_group=rtrim($categories_link_id_group,$separater);
     $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
-	
-	$categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
+    
+    $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);//@@
-	
-	$categories_link_code_group=rtrim($categories_link_code_group,$separater);
+    
+    $categories_link_code_group=rtrim($categories_link_code_group,$separater);
     $templates->set_var('grouplink_'.$old_group_code, $categories_link_code_group);
-	
-	$categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
+    
+    $categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);//@@
 
     return $retval;
 }
 
 function DATABOX_getcategoriesinp(
-	$selected = ""
-	,$fieldset_id=""
+    $selected = ""
+    ,$fieldset_id=""
     ,$pi_name=""
 )
 {
@@ -2532,17 +2532,17 @@ global $_TABLES;
 
     if ($pi_name==""){
         $table_def_category=$_TABLES['DATABOX_def_category'];
-		$table_def_group=$_TABLES['DATABOX_def_group'];
-		$table_def_fieldset_group=$_TABLES['DATABOX_def_fieldset_group'];
+        $table_def_group=$_TABLES['DATABOX_def_group'];
+        $table_def_fieldset_group=$_TABLES['DATABOX_def_fieldset_group'];
         $table_mst=$_TABLES['DATABOX_mst'];
     }else{
         $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
         $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-		$table_def_fieldset_group=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+        $table_def_fieldset_group=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
         $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
-	}
-	
-	//
+    }
+    
+    //
     if (is_array($selected)){
             $S = $selected;
     }else{
@@ -2552,91 +2552,91 @@ global $_TABLES;
             $S = array();
         }
     }
-	
-	//
-	$retval = '';
+    
+    //
+    $retval = '';
 
     $sql = "SELECT ";
     $sql .= "m2.group_id".LB;
-	$sql .= ",m2.name AS group_name".LB;
-	$sql .= ",m2.input_type".LB;
+    $sql .= ",m2.name AS group_name".LB;
+    $sql .= ",m2.input_type".LB;
     $sql .= " FROM ".LB;
-	$sql .= " {$table_def_group} AS m2".LB;
-	if  ($fieldset_id<>0){
-		$sql .= " ,{$table_def_fieldset_group} AS m3".LB;
-		$sql .= " WHERE ".LB;
-		$sql .= " m2.group_id = m3.group_id".LB;
-		$sql .= " AND m3.fieldset_id = ".$fieldset_id .LB;
-	}
-	
-	
+    $sql .= " {$table_def_group} AS m2".LB;
+    if  ($fieldset_id<>0){
+        $sql .= " ,{$table_def_fieldset_group} AS m3".LB;
+        $sql .= " WHERE ".LB;
+        $sql .= " m2.group_id = m3.group_id".LB;
+        $sql .= " AND m3.fieldset_id = ".$fieldset_id .LB;
+    }
+    
+    
     $sql .= " ORDER BY m2.orderno".LB;
-		
-	$result = DB_query( $sql );
+        
+    $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
 
-	
+    
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-		
-		$sql2 = "SELECT ";
+        
+        $sql2 = "SELECT ";
         $sql2 .= " m1.category_id".LB;
         $sql2 .= ",m1.name".LB;
         $sql2 .= ",m1.orderno".LB;
         $sql2 .= " FROM {$table_def_category} AS m1".LB;
-		$sql2 .= " WHERE ".LB;
-		$sql2 .= " m1.categorygroup_id=".$A['group_id'].LB;
-		
+        $sql2 .= " WHERE ".LB;
+        $sql2 .= " m1.categorygroup_id=".$A['group_id'].LB;
+        
         $sql2 .= " ORDER BY m1.orderno".LB;
-		
-		$result2 = DB_query( $sql2 );
-		$nrows2 = DB_numRows( $result2 );
-		
-		if ($nrows2>0){
-			$retval .="<div class=\"databox_admin_data_title\">";
-			$retval .=$A['group_name'];
-			$retval .="</div>".LB;
-		
-			if  ($A['input_type']==1){
-				$retval .='<select name="category[]" multiple style="height:10em">'.LB;
-			}
-		
-			for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
+        
+        $result2 = DB_query( $sql2 );
+        $nrows2 = DB_numRows( $result2 );
+        
+        if ($nrows2>0){
+            $retval .="<div class=\"databox_admin_data_title\">";
+            $retval .=$A['group_name'];
+            $retval .="</div>".LB;
+        
+            if  ($A['input_type']==1){
+                $retval .='<select name="category[]" multiple style="height:10em">'.LB;
+            }
+        
+            for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
-				$A2 = DB_fetchArray( $result2, true );
-		
-				$checked=" ";
-				for( $x = 0; $x < sizeof( $S ); $x++ )            {
-					if( $A2['category_id'] == $S[$x] )                {
-						if  ($A['input_type']==0){
-							$checked= ' checked="checked" ';
-						}else{
-							$checked= ' selected ';
-						}
-					}
-				}
-			
-				if  ($A['input_type']==0){
-        			$retval .= '<span style="white-space:nowrap">';
-					$retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
-					$retval .= '"';
-					$retval .= $checked;
-					$retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
-				}else{
-					$retval .= '<option value="' . $A2['category_id'] . '"';
-					$retval .= $checked;
-					$retval .= ' >' . stripslashes( $A2['name'] ) ;
-					$retval .= '</option>' . LB;
-				}
-			}
-		
-			if  ($A['input_type']==1){
-				$retval .='</select>';
-			}
-		}
-		
-	}
+                $A2 = DB_fetchArray( $result2, true );
+        
+                $checked=" ";
+                for( $x = 0; $x < sizeof( $S ); $x++ )            {
+                    if( $A2['category_id'] == $S[$x] )                {
+                        if  ($A['input_type']==0){
+                            $checked= ' checked="checked" ';
+                        }else{
+                            $checked= ' selected ';
+                        }
+                    }
+                }
+            
+                if  ($A['input_type']==0){
+                    $retval .= '<span style="white-space:nowrap">';
+                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                }else{
+                    $retval .= '<option value="' . $A2['category_id'] . '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) ;
+                    $retval .= '</option>' . LB;
+                }
+            }
+        
+            if  ($A['input_type']==1){
+                $retval .='</select>';
+            }
+        }
+        
+    }
 
     return $retval;
 }
@@ -2696,11 +2696,11 @@ function DATABOX_getaddtionfields(
 
         $fieldvalue=DATABOX_getfieldvalue(
             $value
-			,$addition_def[$fid]['type']
+            ,$addition_def[$fid]['type']
             ,$addition_def[$fid]['selectionary']
-			,$lang_noyes
-			,$addition_def[$fid]['selectlist']
-			,$pi_name
+            ,$lang_noyes
+            ,$addition_def[$fid]['selectlist']
+            ,$pi_name
             );
         $retval[$fid]=$fieldvalue;
     }
@@ -2712,9 +2712,9 @@ function DATABOX_getfieldvalue(
     $value
     ,$type
     ,$selectionary
-	,$lang_noyes
-	,$selectlist
-	,$pi_name
+    ,$lang_noyes
+    ,$selectlist
+    ,$pi_name
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目値を返す　　　　                                            |
@@ -2729,10 +2729,10 @@ function DATABOX_getfieldvalue(
 // +---------------------------------------------------------------------------+
 //update 20110204
 {
-	global $_TABLES;
-	global $_CONF;
-	
-	switch ($type) {
+    global $_TABLES;
+    global $_CONF;
+    
+    switch ($type) {
 
         case 2://いいえ/はい
             $fieldvalue = $lang_noyes[$value];
@@ -2741,22 +2741,22 @@ function DATABOX_getfieldvalue(
         case 8://ラジオボタンリスト（選択肢）
             $fieldvalue= $selectionary[$value];
             break;
-		case 9://オプションリスト（マスター）';
-		case 16://ラジオボタンリスト（マスター）';
-			if  ($value==""){
-				$fieldvalue="";
-			}else{
-				$fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
-					,"value"
-					,"kind='{$selectlist}' AND no={$value}");
-			}
-			break;
-        case 4://日時
-			$w=COM_getUserDateTimeFormat($value);
-			$fieldvalue= $w[0];
+        case 9://オプションリスト（マスター）';
+        case 16://ラジオボタンリスト（マスター）';
+            if  ($value==""){
+                $fieldvalue="";
+            }else{
+                $fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
+                    ,"value"
+                    ,"kind='{$selectlist}' AND no={$value}");
+            }
             break;
-		case 3://日付
-			$fieldvalue=strftime( $_CONF['shortdate'], $value );
+        case 4://日時
+            $w=COM_getUserDateTimeFormat($value);
+            $fieldvalue= $w[0];
+            break;
+        case 3://日付
+            $fieldvalue=strftime( $_CONF['shortdate'], $value );
             break;
         case 5://メールアドレス　（準備中）';
         case 6://url　（準備中）';
@@ -2798,25 +2798,25 @@ function DATABOX_saveaddtiondatas(
         $table=$_TABLES['DATABOX_addition'];
     }else{
         $table=$_TABLES[strtoupper($pi_name).'_addition'];
-	}
-	
+    }
+    
     $rt=DB_delete($table,"id",$id);
     if (is_array($fldary)){
-		foreach( $fldary as $field_id => $value ){
-			
-			$sql="INSERT INTO {$table} (";
-			$sql.="id, field_id,value ";
-			$sql.=") VALUES (";
-			$sql.="{$id},{$field_id}";
+        foreach( $fldary as $field_id => $value ){
+            
+            $sql="INSERT INTO {$table} (";
+            $sql.="id, field_id,value ";
+            $sql.=") VALUES (";
+            $sql.="{$id},{$field_id}";
             if  ($value<>"") {
-	            $sql.=", '{$value}'";
+                $sql.=", '{$value}'";
             }else{
                 $sql.=", NULL";
             }
-			$sql.=")";
-			DB_query($sql);
-		}
-	}
+            $sql.=")";
+            DB_query($sql);
+        }
+    }
     return ;
 
 }
@@ -2871,11 +2871,11 @@ function DATABOX_saveaddtiondatas_update(
 
 function DATABOX_cleanaddtiondatas(
     &$fldary
-	,$addition_def
-	,&$fnmary
-	,&$delary
-	,&$dateary
-	,$addslash = true
+    ,$addition_def
+    ,&$fnmary
+    ,&$delary
+    ,&$dateary
+    ,$addslash = true
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目clean
@@ -2891,35 +2891,35 @@ function DATABOX_cleanaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update 20131022 12
 {
-	if (is_array($fldary)){
+    if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
             $type=$addition_def[$field_id]['type'];
-			$textconv=$addition_def[$field_id]['textconv'];
-			$textcheck=$addition_def[$field_id]['textcheck'];
-			$wk=$value;
-			//入力値変換
-			switch ($type) {
+            $textconv=$addition_def[$field_id]['textconv'];
+            $textcheck=$addition_def[$field_id]['textcheck'];
+            $wk=$value;
+            //入力値変換
+            switch ($type) {
                 case 0:// 一行テキストフィールド
                 case 1:// 複数行テキストフィールド(HTML OK)
-				case 10:// 複数行テキストフィールド(HTML NG)
-				case 20:// 複数行テキストフィールド(HTML OK TinyMCE)
-				if  (($textconv==10)
-						OR ($textcheck>=11 AND $textcheck<=14)){ //半角チェック;
-						$wk = mb_convert_kana($wk,"ak");
-					}else if ($textconv==20){ //全角に変換する';
-						$wk = mb_convert_kana($wk,"AKV");
-				}
-				break;
-			}
-			//
-			switch ($type) {
+                case 10:// 複数行テキストフィールド(HTML NG)
+                case 20:// 複数行テキストフィールド(HTML OK TinyMCE)
+                if  (($textconv==10)
+                        OR ($textcheck>=11 AND $textcheck<=14)){ //半角チェック;
+                        $wk = mb_convert_kana($wk,"ak");
+                    }else if ($textconv==20){ //全角に変換する';
+                        $wk = mb_convert_kana($wk,"AKV");
+                }
+                break;
+            }
+            //
+            switch ($type) {
                 case 11:// 図
                     break;
                 case 0:// 一行テキスト
                 case 10://複数行テキスト
                     $wk=COM_stripslashes($wk);
-					$wk=COM_checkHTML (COM_checkWords ($wk));
-					break;
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
+                    break;
                 case 1://HTML
                 case 20://TinyMCE
                 case 19://CKEditor
@@ -2927,48 +2927,48 @@ function DATABOX_cleanaddtiondatas(
                     break;
                 case 2://いいえ/はい
                     $wk=COM_applyFilter($wk,true);
-					break;
+                    break;
                 case 3://日付
-					$wk_year=$_POST['afield'.$field_id.'_year'];
-					$wk_month=$_POST['afield'.$field_id.'_month'];
-					$wk_day=$_POST['afield'.$field_id.'_day'];
-					$wk=$wk_year."-".$wk_month."-".$wk_day;
-					$dateary[$field_id]['year']=$wk_year;//@@@@@
-					$dateary[$field_id]['month']=$wk_month;//@@@@@
-					$dateary[$field_id]['day']=$wk_day;//@@@@@
-					break;
+                    $wk_year=$_POST['afield'.$field_id.'_year'];
+                    $wk_month=$_POST['afield'.$field_id.'_month'];
+                    $wk_day=$_POST['afield'.$field_id.'_day'];
+                    $wk=$wk_year."-".$wk_month."-".$wk_day;
+                    $dateary[$field_id]['year']=$wk_year;//@@@@@
+                    $dateary[$field_id]['month']=$wk_month;//@@@@@
+                    $dateary[$field_id]['day']=$wk_day;//@@@@@
+                    break;
                 case 4://日時
-					$wk_year=$_POST['afield'.$field_id.'_year'];
-					$wk_month=$_POST['afield'.$field_id.'_month'];
-					$wk_day=$_POST['afield'.$field_id.'_day'];
-					$wk_hour=$_POST['afield'.$field_id.'_hour'];
-					$wk_minute=$_POST['afield'.$field_id.'_minute'];
-					$wk_ampm=$_POST['afield'.$field_id.'_ampm'];
-					$dateary[$field_id]['year']=$wk_year;//@@@@@
-					$dateary[$field_id]['month']=$wk_month;//@@@@@
-					$dateary[$field_id]['day']=$wk_day;//@@@@@
-					$dateary[$field_id]['hour']=$wk_hour;//@@@@@
-					$dateary[$field_id]['minute']=$wk_minute;//@@@@@
-					$dateary[$field_id]['ampm']=$wk_ampm;//@@@@@
-				    if ($wk_ampm == 'pm') {
-						if ($wk_hour < 12) {
-							$wk_hour = $wk_hour + 12;
-						}
-					}
-					if ($wk_ampm == 'am' AND $wk_hour == 12) {
-						$wk_hour = '00';
-					}
-					$wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
-					break;
-				case 14://マルチセレクトリスト（選択肢）
-				case 18://マルチセレクトリスト（マスター）
+                    $wk_year=$_POST['afield'.$field_id.'_year'];
+                    $wk_month=$_POST['afield'.$field_id.'_month'];
+                    $wk_day=$_POST['afield'.$field_id.'_day'];
+                    $wk_hour=$_POST['afield'.$field_id.'_hour'];
+                    $wk_minute=$_POST['afield'.$field_id.'_minute'];
+                    $wk_ampm=$_POST['afield'.$field_id.'_ampm'];
+                    $dateary[$field_id]['year']=$wk_year;//@@@@@
+                    $dateary[$field_id]['month']=$wk_month;//@@@@@
+                    $dateary[$field_id]['day']=$wk_day;//@@@@@
+                    $dateary[$field_id]['hour']=$wk_hour;//@@@@@
+                    $dateary[$field_id]['minute']=$wk_minute;//@@@@@
+                    $dateary[$field_id]['ampm']=$wk_ampm;//@@@@@
+                    if ($wk_ampm == 'pm') {
+                        if ($wk_hour < 12) {
+                            $wk_hour = $wk_hour + 12;
+                        }
+                    }
+                    if ($wk_ampm == 'am' AND $wk_hour == 12) {
+                        $wk_hour = '00';
+                    }
+                    $wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
+                    break;
+                case 14://マルチセレクトリスト（選択肢）
+                case 18://マルチセレクトリスト（マスター）
                     $wk=implode ($wk,":");
-					break;
+                    break;
                 case 12:// 画像（ファイル保存）
-					$fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
-					$delary[$field_id]=COM_applyFilter($delary[$field_id]);
+                    $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
+                    $delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
-					$wk=COM_checkHTML (COM_checkWords ($wk));
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
                     break;
                 case 7://オプションリスト（選択肢）
                 case 8://ラジオボタンリスト（選択肢）
@@ -2977,12 +2977,12 @@ function DATABOX_cleanaddtiondatas(
                 case 6://url';
                 default:
                     $wk=COM_applyFilter($wk);
-					$wk=COM_checkHTML (COM_checkWords ($wk));
-			}
-			if ($addslash){
-				$wk=addslashes ($wk);
-			}
-			$fldary[$field_id] =$wk;
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
+            }
+            if ($addslash){
+                $wk=addslashes ($wk);
+            }
+            $fldary[$field_id] =$wk;
         }
     }
 
@@ -2995,13 +2995,13 @@ function DATABOX_checkaddtiondatas(
     ,$addition_def
     ,$pi_name
     ,$fldary_fnm=""
-	,$fldary_del=""
+    ,$fldary_del=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能 追加項目check
 // | 書式 DATABOX_checkdditiondatas($fldary,$typeary,$pi_data)
 // | 書式 DATABOX_checkdditiondatas($additionfields,$addition_def,$pi_name
-// | 								,$additionfields_fnm,$additionfields_del)
+// |                                 ,$additionfields_fnm,$additionfields_del)
 // +---------------------------------------------------------------------------+
 // | 引数 $fldary:追加項目データ配列
 // | 引数 $addition_def:追加項目定義
@@ -3014,10 +3014,10 @@ function DATABOX_checkaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update
 {
-	global $_CONF;
-	global $LANG04;
-	global $_FILES;
-	
+    global $_CONF;
+    global $LANG04;
+    global $_FILES;
+    
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
@@ -3030,76 +3030,76 @@ function DATABOX_checkaddtiondatas(
 
     if (is_array($fldary)){
 
-		foreach( $fldary as $field_id => $value ){
-			//必須
+        foreach( $fldary as $field_id => $value ){
+            //必須
             if ($addition_def[$field_id]['checkrequried']==1){
-				if ($value ===""){
+                if ($value ===""){
                     $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_checkrequried'] ;
                     $rt.="<br ".XHTML.">".LB;
                 }
                 //url email date
             }
             //図 外記憶
-			if ($addition_def[$field_id]['type']==12){//図
-				 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+            if ($addition_def[$field_id]['type']==12){//図
+                 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
                  if  ( $box_conf['imgfile_subdir']==1){
-					$imgfld.=$addition_def[$field_id]['templatesetvar'];
-				 }
+                    $imgfld.=$addition_def[$field_id]['templatesetvar'];
+                 }
                  $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
                  if  ( $box_conf['imgfile_subdir']==1){
-					$imgfld_thmb.=$addition_def[$field_id]['templatesetvar'];
-				 }
-	             if (!is_writable ( $imgfld )){
+                    $imgfld_thmb.=$addition_def[$field_id]['templatesetvar'];
+                 }
+                 if (!is_writable ( $imgfld )){
                     $rt.=$imgfld.": ".$lang_box_admin['err_writable'];
                     $rt.="<br ".XHTML.">".LB;
-				 }
-				 if  ($imgfld<>$imgfld_thmb){
-					if (!is_writable ( $imgfld_thmb )){
+                 }
+                 if  ($imgfld<>$imgfld_thmb){
+                    if (!is_writable ( $imgfld_thmb )){
                         $rt.=$imgfld_thmb.": ".$lang_box_admin['err_writable'] ;
                         $rt.="<br ".XHTML.">".LB;
-					}
-				 }
+                    }
+                 }
                  if (is_array($fldary_del) AND $fldary_del[$field_id]){
                      //$fldary[$field_id]="";
                      //$fldary_fnm[$field_id]="";
-				 }else{
-					if (is_array($fldary_fnm)){
-						$imgname=$_FILES['afield_fnm']['name'][$field_id];
-						$imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
-						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
-						$imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                 }else{
+                    if (is_array($fldary_fnm)){
+                        $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
 
-						if  ($imgfile<>""){
-							$imgerr="";
-							if ($box_conf['imgfile_size2']<>"" AND $imgsize>$box_conf['imgfile_size2']){
+                        if  ($imgfile<>""){
+                            $imgerr="";
+                            if ($box_conf['imgfile_size2']<>"" AND $imgsize>$box_conf['imgfile_size2']){
                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
                                 $rt.="<br ".XHTML.">".LB;
-								$imgerr=1;
-							}
-							if (count($box_conf['imgfile_type2'])>0){
-								if  (in_array($imgtype,$box_conf['imgfile_type2'])){
-								}else{
-									$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type2']
+                                $imgerr=1;
+                            }
+                            if (count($box_conf['imgfile_type2'])>0){
+                                if  (in_array($imgtype,$box_conf['imgfile_type2'])){
+                                }else{
+                                    $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type2']
                                         .$_FILES['afield_fnm']['name'][$field_id]."(".$imgtype.")";
                                     $rt.="<br ".XHTML.">".LB;
-									$imgerr=1;
-								}
-							}
-						
-							//$imgname=sanitize
-							// 問題文字を除く
-							//$filename = str_replace("&","",$filename);
-							//$filename = str_replace("'","",$filename);
-							//$filename = str_replace("/","",$filename);
-							//$filename = str_replace(".JPG",".jpg",$filename);
-							//重複チェック
-							if  ($imgerr===""){
-								$fldary[$field_id]=$imgname;
-							}
-						}
-					}else{
-						
-					}	
+                                    $imgerr=1;
+                                }
+                            }
+                        
+                            //$imgname=sanitize
+                            // 問題文字を除く
+                            //$filename = str_replace("&","",$filename);
+                            //$filename = str_replace("'","",$filename);
+                            //$filename = str_replace("/","",$filename);
+                            //$filename = str_replace(".JPG",".jpg",$filename);
+                            //重複チェック
+                            if  ($imgerr===""){
+                                $fldary[$field_id]=$imgname;
+                            }
+                        }
+                    }else{
+                        
+                    }    
                  }
             }
 
@@ -3145,7 +3145,7 @@ function DATABOX_checkaddtiondatas(
             }
 
             //日付 日時
-			if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4){//日付
+            if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4){//日付
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
@@ -3174,15 +3174,15 @@ function DATABOX_checkaddtiondatas(
                     if ($w_chk==false) {
                         $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_date'] ;
                         $rt.="<br ".XHTML.">".LB;
-					}else{
-						$w_date=date("Y-m-d",$w);
-						if ($addition_def[$field_id]['type']==3){
-							$w_time="";
-						}else{
-							$w_time=date("H:i",$w)."::00";
-						}
-						$fldary[$field_id]=COM_convertDate2Timestamp($w_date,$w_time);
-					}
+                    }else{
+                        $w_date=date("Y-m-d",$w);
+                        if ($addition_def[$field_id]['type']==3){
+                            $w_time="";
+                        }else{
+                            $w_time=date("H:i",$w)."::00";
+                        }
+                        $fldary[$field_id]=COM_convertDate2Timestamp($w_date,$w_time);
+                    }
                 }
             }
             //メールアドレス
@@ -3196,79 +3196,79 @@ function DATABOX_checkaddtiondatas(
                 }
             }
             //url
-			if ($addition_def[$field_id]['type']==6){
-				if ($value ===""){
-				}else{
-					
-					if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
-					} else {
-						$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_url'];
+            if ($addition_def[$field_id]['type']==6){
+                if ($value ===""){
+                }else{
+                    
+                    if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
+                    } else {
+                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_url'];
                         $rt.="<br ".XHTML.">".LB;
-					}
+                    }
                 }
             }
             //numeric
-			if ($addition_def[$field_id]['type']==15 OR $addition_def[$field_id]['type']==21){
-				if ($value ===""){
-				}else{
-					
-					if (is_numeric($value)) {
-					} else {
-						$rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_numeric'];
+            if ($addition_def[$field_id]['type']==15 OR $addition_def[$field_id]['type']==21){
+                if ($value ===""){
+                }else{
+                    
+                    if (is_numeric($value)) {
+                    } else {
+                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_numeric'];
                         $rt.="<br ".XHTML.">".LB;
-					}
+                    }
                 }
             }
            //text field
-			if (($addition_def[$field_id]['type']==0)
-					OR ($addition_def[$field_id]['type']==1)
-					OR ($addition_def[$field_id]['type']==10) ){
-				if ($value ===""){
-				}else{
-					if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
-						if  (!preg_match("/^[0-9]+$/", $value)){
+            if (($addition_def[$field_id]['type']==0)
+                    OR ($addition_def[$field_id]['type']==1)
+                    OR ($addition_def[$field_id]['type']==10) ){
+                if ($value ===""){
+                }else{
+                    if  ($addition_def[$field_id]['textcheck']==11){ //'半角数字のみ';
+                        if  (!preg_match("/^[0-9]+$/", $value)){
                             $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text1'];
                             $rt.="<br ".XHTML.">".LB;
-						}
-					}else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
-						if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
+                        }
+                    }else if ($addition_def[$field_id]['textcheck']==12){//半角英数字のみ';
+                        if  (!preg_match("/^[a-zA-Z0-9]+$/", $value)){
                             $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text2'];
                             $rt.="<br ".XHTML.">".LB;
-						}
-					}else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
-						$value=rtrim(ltrim($value));
-						$newvalue=COM_sanitizeID($value);
-						if  ($value<>$newvalue){
+                        }
+                    }else if ($addition_def[$field_id]['textcheck']==13){//標準IDの範囲内';
+                        $value=rtrim(ltrim($value));
+                        $newvalue=COM_sanitizeID($value);
+                        if  ($value<>$newvalue){
                             $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text3'];
                             $rt.="<br ".XHTML.">".LB;
-						}
-						$fldary[$field_id]=$value;
-					}else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
-						if  (!preg_match("/^[!-~]+$/", $value)){
+                        }
+                        $fldary[$field_id]=$value;
+                    }else if ($addition_def[$field_id]['textcheck']==14){//半角英数字記号のみ';
+                        if  (!preg_match("/^[!-~]+$/", $value)){
                             $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_text4'];
                             $rt.="<br ".XHTML.">".LB;
-						}
-					}
-				}
-			}
-			
-			
-            //textarea
-			if ($addition_def[$field_id]['type']==1 
-					OR $addition_def[$field_id]['type']==10
-					OR $addition_def[$field_id]['type']==20
-					){
-				if ($value ===""){
-				}else{
-					if (mb_strlen($value, 'UTF-8')>$addition_def[$field_id]['maxlength']) {
-						$rt.=$addition_def[$field_id]['name']
-							.$addition_def[$field_id]['maxlength']
-                            .": ".$lang_box_admin['err_maxlength'];
-                            $rt.="<br ".XHTML.">".LB;
-					}
+                        }
+                    }
                 }
             }
-			
+            
+            
+            //textarea
+            if ($addition_def[$field_id]['type']==1 
+                    OR $addition_def[$field_id]['type']==10
+                    OR $addition_def[$field_id]['type']==20
+                    ){
+                if ($value ===""){
+                }else{
+                    if (mb_strlen($value, 'UTF-8')>$addition_def[$field_id]['maxlength']) {
+                        $rt.=$addition_def[$field_id]['name']
+                            .$addition_def[$field_id]['maxlength']
+                            .": ".$lang_box_admin['err_maxlength'];
+                            $rt.="<br ".XHTML.">".LB;
+                    }
+                }
+            }
+            
             //range check 範囲チェック
             if  ($addition_def[$field_id]['range_start']=="" AND $addition_def[$field_id]['range_end']=="" ){
             }else{
@@ -3296,8 +3296,8 @@ function DATABOX_checkaddtiondatas(
 function DATABOX_uploadaddtiondatas(
     &$fldary
     ,$addition_def
-	,$pi_name
-	,$id
+    ,$pi_name
+    ,$id
     ,$fldary_fnm=""
     ,$fldary_del=""
     ,$fldary_old=""
@@ -3305,7 +3305,7 @@ function DATABOX_uploadaddtiondatas(
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload
 // | 書式 DATABOX_uploadaddtiondatas($additionfields,$addition_def,$pi_name
-// | 								,$additionfields_fnm,$additionfields_del)
+// |                                 ,$additionfields_fnm,$additionfields_del)
 // +---------------------------------------------------------------------------+
 // | 引数 $fldary:追加項目データ配列
 // | 引数 $addition_def:追加項目定義
@@ -3319,7 +3319,7 @@ function DATABOX_uploadaddtiondatas(
 // +---------------------------------------------------------------------------+
 //update
 {
-	global $_CONF;
+    global $_CONF;
     global $LANG04;
     global $_FILES;
 
@@ -3336,60 +3336,60 @@ function DATABOX_uploadaddtiondatas(
     if (is_array($fldary)){
 
         foreach( $fldary as $field_id => $value ){
-			
-			//図 外記憶
-			if ($addition_def[$field_id]['type']==12){//図
-				$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
-				$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-				$filename=$fldary[$field_id];
-				$filename_old=$fldary_old[$field_id];
-				
-				if (is_array($fldary_del) AND $fldary_del[$field_id]){
-					$rt=DATABOX_deleteFile($imgfld.$filename);
-					$thumbname=DATABOX_getthumbname($filename);
-					$rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
-					$fldary[$field_id]="";
-				}else{
-					$imgname=$_FILES['afield_fnm']['name'][$field_id];
-					
-					if ($imgname<>""){
-						if  ($filename_old<>""){
+            
+            //図 外記憶
+            if ($addition_def[$field_id]['type']==12){//図
+                $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+                $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                $filename=$fldary[$field_id];
+                $filename_old=$fldary_old[$field_id];
+                
+                if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                    $rt=DATABOX_deleteFile($imgfld.$filename);
+                    $thumbname=DATABOX_getthumbname($filename);
+                    $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+                    $fldary[$field_id]="";
+                }else{
+                    $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                    
+                    if ($imgname<>""){
+                        if  ($filename_old<>""){
                             $rt=DATABOX_deleteFile($imgfld.$filename_old);
                             $thumbname=DATABOX_getthumbname($filename_old);
                             $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
                         }
 
-						$imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
-						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
-						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
-						$a=explode(".",$imgname);
-						$a[1]=strtolower($a[1]);
-						if  ( $box_conf['imgfile_subdir']==1){
-							$newfilename=$addition_def[$field_id]['templatesetvar']."/";
-						}else{
-							$newfilename="";
-						}
-						$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
-						//$newfilename=$imgname;
-						if (DATABOX_uploadImageFile
-								($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
-							$fldary[$field_id]=$newfilename;
-							//サムネイル作成する場合
-							if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
-								$rt=DATABOX_createthumb(
-									$newfilename
-									,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-									,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
-									,$imgfld_thmb,$imgfld);
-							}
-						}else{
-							$fldary[$field_id]="";
-							//$fldary_fnm[$field_id]="";
-						}
-					}
-				}
-			}
-		}
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                        $a=explode(".",$imgname);
+                        $a[1]=strtolower($a[1]);
+                        if  ( $box_conf['imgfile_subdir']==1){
+                            $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                        }else{
+                            $newfilename="";
+                        }
+                        $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                        //$newfilename=$imgname;
+                        if (DATABOX_uploadImageFile
+                                ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+                            $fldary[$field_id]=$newfilename;
+                            //サムネイル作成する場合
+                            if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
+                                $rt=DATABOX_createthumb(
+                                    $newfilename
+                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
+                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                    ,$imgfld_thmb,$imgfld);
+                            }
+                        }else{
+                            $fldary[$field_id]="";
+                            //$fldary_fnm[$field_id]="";
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return $rt;
@@ -3398,8 +3398,8 @@ function DATABOX_uploadaddtiondatas(
 function DATABOX_uploadaddtiondatas_cpy(
     &$fldary
     ,$addition_def
-	,$pi_name
-	,$id
+    ,$pi_name
+    ,$id
     ,$fldary_fnm=""
     ,$fldary_del=""
     ,$fldary_old=""
@@ -3407,7 +3407,7 @@ function DATABOX_uploadaddtiondatas_cpy(
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload  for copy
 // | 書式 DATABOX_uploadaddtiondatas($additionfields,$addition_def,$pi_name
-// | 								,$additionfields_fnm,$additionfields_del)
+// |                                 ,$additionfields_fnm,$additionfields_del)
 // +---------------------------------------------------------------------------+
 // | 引数 $fldary:追加項目データ配列
 // | 引数 $addition_def:追加項目定義
@@ -3421,7 +3421,7 @@ function DATABOX_uploadaddtiondatas_cpy(
 // +---------------------------------------------------------------------------+
 //update
 {
-	global $_CONF;
+    global $_CONF;
     global $LANG04;
     global $_FILES;
 
@@ -3438,71 +3438,71 @@ function DATABOX_uploadaddtiondatas_cpy(
     if (is_array($fldary)){
 
         foreach( $fldary as $field_id => $value ){
-			
-			//図 外記憶
-			if ($addition_def[$field_id]['type']==12){//図
-				$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
-				$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-				$filename=$fldary[$field_id];
-				$filename_old=$fldary_old[$field_id];
-				
-				if (is_array($fldary_del) AND $fldary_del[$field_id]){
-					$fldary[$field_id]="";
-				}else{
-					$imgname=$_FILES['afield_fnm']['name'][$field_id];
-					if ($imgname<>""){
-						$imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
-						$imgsize=$_FILES['afield_fnm']['size'][$field_id];
-						$imgtype=$_FILES['afield_fnm']['type'][$field_id];												
-						$a=explode(".",$imgname);
-						$a[1]=strtolower($a[1]);
-						if  ( $box_conf['imgfile_subdir']==1){
-							$newfilename=$addition_def[$field_id]['templatesetvar']."/";
-						}else{
-							$newfilename="";
-						}
-						$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
-						//$newfilename=$imgname;
-						if (DATABOX_uploadImageFile
-								($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
-							$fldary[$field_id]=$newfilename;
-							//サムネイル作成する場合
-							if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
-								$rt=DATABOX_createthumb(
-									$newfilename
-									,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-									,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
-									,$imgfld_thmb,$imgfld);
-							}
-						}else{
-							$fldary[$field_id]="";
-						}
-					}else{
-						if  ($filename_old<>""){
-							$cpyfrom=$imgfld.$filename_old;
-							$a=explode(".",$filename_old);
-							$a[1]=strtolower($a[1]);
-							if  ( $box_conf['imgfile_subdir']==1){
-								$newfilename=$addition_def[$field_id]['templatesetvar']."/";
-							}else{
-								$newfilename="";
-							}
-							$newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
-							$cpyto=$imgfld.$newfilename;
-					        $rt=copy( $cpyfrom, $cpyto );
-							//
-							$thumbname=DATABOX_getthumbname($filename_old);
-                            $cpyfrom =$imgfld_thmb.$thumbname;
-							$thumbname=DATABOX_getthumbname($newfilename);
-                            $cpyto =$imgfld_thmb.$thumbname;
-					        $rt=copy( $cpyfrom, $cpyto );
-							//
-							$fldary[$field_id]=$newfilename;
+            
+            //図 外記憶
+            if ($addition_def[$field_id]['type']==12){//図
+                $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+                $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                $filename=$fldary[$field_id];
+                $filename_old=$fldary_old[$field_id];
+                
+                if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                    $fldary[$field_id]="";
+                }else{
+                    $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                    if ($imgname<>""){
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                        $a=explode(".",$imgname);
+                        $a[1]=strtolower($a[1]);
+                        if  ( $box_conf['imgfile_subdir']==1){
+                            $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                        }else{
+                            $newfilename="";
                         }
-					}
-				}
-			}
-		}
+                        $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                        //$newfilename=$imgname;
+                        if (DATABOX_uploadImageFile
+                                ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+                            $fldary[$field_id]=$newfilename;
+                            //サムネイル作成する場合
+                            if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
+                                $rt=DATABOX_createthumb(
+                                    $newfilename
+                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
+                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                    ,$imgfld_thmb,$imgfld);
+                            }
+                        }else{
+                            $fldary[$field_id]="";
+                        }
+                    }else{
+                        if  ($filename_old<>""){
+                            $cpyfrom=$imgfld.$filename_old;
+                            $a=explode(".",$filename_old);
+                            $a[1]=strtolower($a[1]);
+                            if  ( $box_conf['imgfile_subdir']==1){
+                                $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                            }else{
+                                $newfilename="";
+                            }
+                            $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                            $cpyto=$imgfld.$newfilename;
+                            $rt=copy( $cpyfrom, $cpyto );
+                            //
+                            $thumbname=DATABOX_getthumbname($filename_old);
+                            $cpyfrom =$imgfld_thmb.$thumbname;
+                            $thumbname=DATABOX_getthumbname($newfilename);
+                            $cpyto =$imgfld_thmb.$thumbname;
+                            $rt=copy( $cpyfrom, $cpyto );
+                            //
+                            $fldary[$field_id]=$newfilename;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return $rt;
@@ -3513,11 +3513,11 @@ function DATABOX_uploadaddtiondatas_cpy(
 function DATABOX_uploadaddtiondatas_xml(
     &$fldary
     ,$addition_def
-	,$pi_name
-	,$id
+    ,$pi_name
+    ,$id
 )
 {
-	global $_CONF;
+    global $_CONF;
     global $LANG04;
     global $_FILES;
 
@@ -3532,35 +3532,35 @@ function DATABOX_uploadaddtiondatas_xml(
     $rt="";
 
     if (is_array($fldary)){
-		foreach( $fldary as $field_id => $value ){
-			if ($fldary[$field_id]<>""){
-				
-				//図 外記憶
-				if ($addition_def[$field_id]['type']==12){//図
-					$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
-					$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-					//
-					if  ($box_conf['imgfile_subdir']==1){
-						$imgname=$addition_def[$field_id]['templatesetvar']."/";
-					}
-					$imgname.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
-					$imgsrc=$fldary[$field_id];
-					if (DATABOX_uploadImageFile_xml($imgname,$imgsrc,$imgfld)){
-						$fldary[$field_id]=$imgname;
-						//サムネイル作成する場合
-						if($box_conf['imgfile_thumb_ok']==="1" && function_exists('ImageCreate')) {
-							$srcfile=$imgfld.$imgname;
-							$rt=DATABOX_createthumb(
-								$imgname
-								,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-								,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
-								,$imgfld_thmb,$imgfld);
-						}
-					}else{
-						$fldary[$field_id]="";
-					}
-				}
-			}
+        foreach( $fldary as $field_id => $value ){
+            if ($fldary[$field_id]<>""){
+                
+                //図 外記憶
+                if ($addition_def[$field_id]['type']==12){//図
+                    $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+                    $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                    //
+                    if  ($box_conf['imgfile_subdir']==1){
+                        $imgname=$addition_def[$field_id]['templatesetvar']."/";
+                    }
+                    $imgname.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".jpg";
+                    $imgsrc=$fldary[$field_id];
+                    if (DATABOX_uploadImageFile_xml($imgname,$imgsrc,$imgfld)){
+                        $fldary[$field_id]=$imgname;
+                        //サムネイル作成する場合
+                        if($box_conf['imgfile_thumb_ok']==="1" && function_exists('ImageCreate')) {
+                            $srcfile=$imgfld.$imgname;
+                            $rt=DATABOX_createthumb(
+                                $imgname
+                                ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
+                                ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                ,$imgfld_thmb,$imgfld);
+                        }
+                    }else{
+                        $fldary[$field_id]="";
+                    }
+                }
+            }
         }
     }
 
@@ -3568,11 +3568,11 @@ function DATABOX_uploadaddtiondatas_xml(
 
 }
 function DATABOX_deleteaddtionfiles(
-	$fldary
+    $fldary
     ,$addition_def
-	,$pi_name
+    ,$pi_name
 ){
-	global $_CONF;
+    global $_CONF;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -3582,19 +3582,19 @@ function DATABOX_deleteaddtionfiles(
 
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
-			
-			//図 外記憶
-			if ($addition_def[$field_id]['type']==12){//図
-				$filename=$fldary[$field_id];
-				if ($filename<>""){
-					$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
-					$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-					$rt=DATABOX_deleteFile($imgfld.$filename);
-					$thumbname=DATABOX_getthumbname($filename);
-					$rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
-				}
-			}
-		}
+            
+            //図 外記憶
+            if ($addition_def[$field_id]['type']==12){//図
+                $filename=$fldary[$field_id];
+                if ($filename<>""){
+                    $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+                    $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+                    $rt=DATABOX_deleteFile($imgfld.$filename);
+                    $thumbname=DATABOX_getthumbname($filename);
+                    $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+                }
+            }
+        }
     }
 
     return $rt;
@@ -3602,20 +3602,20 @@ function DATABOX_deleteaddtionfiles(
 }
 //
 function DATABOX_deleteaddtionfiles_def(
-	$field_id
-	,$pi_name
+    $field_id
+    ,$pi_name
 ){
-	global $_CONF;
-	global $_TABLES;
+    global $_CONF;
+    global $_TABLES;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
 
     $rt="";
-	
-	$table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
-	//
+    
+    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    //
     $sql="SELECT value  ";
     $sql.=" FROM";
     $sql.=" {$table_addition} ";
@@ -3626,14 +3626,14 @@ function DATABOX_deleteaddtionfiles_def(
     $numrows = DB_numRows ($result);
     for ($i = 1; $i <= $numrows; $i++) {
         $A = DB_fetchArray ($result);
-		$filename = COM_stripslashes($A['value']);
-		if ($filename<>""){
-			$imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
-			$imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-			$rt=DATABOX_deleteFile($imgfld.$filename);
-			$thumbname=DATABOX_getthumbname($filename);
-			$rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
-		}
+        $filename = COM_stripslashes($A['value']);
+        if ($filename<>""){
+            $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
+            $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
+            $rt=DATABOX_deleteFile($imgfld.$filename);
+            $thumbname=DATABOX_getthumbname($filename);
+            $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+        }
     }
 
     return $rt;
@@ -3641,14 +3641,14 @@ function DATABOX_deleteaddtionfiles_def(
 }
 
 function DATABOX_deleteaddtionfiles_all(
-	$fld
-	,$pi_name
+    $fld
+    ,$pi_name
 ){
-	
-	
-	
-	global $_CONF;
-	global $_TABLES;
+    
+    
+    
+    global $_CONF;
+    global $_TABLES;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -3656,17 +3656,17 @@ function DATABOX_deleteaddtionfiles_all(
 
     $rt="";
 
-	if( is_dir( $fld)){
-		$fd = opendir( $fld );
+    if( is_dir( $fld)){
+        $fd = opendir( $fld );
         while(( $file = @readdir( $fd )) == TRUE )    {
-			if( !is_dir( $fd1 . $file)
-					&& $dir <> '.'
+            if( !is_dir( $fd1 . $file)
+                    && $dir <> '.'
                     && $dir <> '..'
                     && $dir <> 'CVS'
                     && substr( $dir, 0 , 1 ) <> '.' ) {
-				clearstatcache();
-				$rt=DATABOX_deleteFile($fld.$file);
-			}
+                clearstatcache();
+                $rt=DATABOX_deleteFile($fld.$file);
+            }
         }
     }
 
@@ -3684,30 +3684,30 @@ function DATABOX_deleteaddtionfiles_all(
 // +---------------------------------------------------------------------------+
 //update
 function DATABOX_deleteFile (
-	$filename
+    $filename
 )
 {
-	$rt=false;
-	if (file_exists ($filename)) {
-		if (!@unlink ($filename)) {
+    $rt=false;
+    if (file_exists ($filename)) {
+        if (!@unlink ($filename)) {
             COM_errorLog ("Unable to remove file $filename");
-		}else{
-			$rt=true;
+        }else{
+            $rt=true;
             COM_errorLog ("remove file $filename");
-	    }		
-	}else{
+        }        
+    }else{
             COM_errorLog ("Unable to remove file $filename not exist");
-	}
-	return $rt;
+    }
+    return $rt;
 }
 
 function DATABOX_uploadImageFile (
-	 $imgname
-	,$imgfile
-	,$imgsize
-	,$imgtype
-	,$imgfld
-	,$newfilename
+     $imgname
+    ,$imgfile
+    ,$imgsize
+    ,$imgtype
+    ,$imgfld
+    ,$newfilename
 )
 // +---------------------------------------------------------------------------+
 // | 機能  upload Image File
@@ -3723,65 +3723,65 @@ function DATABOX_uploadImageFile (
 // +---------------------------------------------------------------------------+
 //update
 {
-	$FilePermissions = (int) 0755;
+    $FilePermissions = (int) 0755;
 
-	if (is_uploaded_file ($imgfile)) {
-		//$newfile=$imgfld.$imgname;
-		$newfile=$imgfld.$newfilename;
-		if(!file_exists($newfile)) {
-			$returnMove = move_uploaded_file($imgfile, $newfile); 
-			if (!$returnMove) {
-				$logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
+    if (is_uploaded_file ($imgfile)) {
+        //$newfile=$imgfld.$imgname;
+        $newfile=$imgfld.$newfilename;
+        if(!file_exists($newfile)) {
+            $returnMove = move_uploaded_file($imgfile, $newfile); 
+            if (!$returnMove) {
+                $logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
                 COM_errorLOG($logmsg);
                 return false;
              } else {
                 $chown =@chmod ($newfile,$FilePermissions);
-				$logmsg="DataBox ImageFile upload sucsess: ".$imgname;
-				COM_errorLOG($logmsg);
-				return true;
+                $logmsg="DataBox ImageFile upload sucsess: ".$imgname;
+                COM_errorLOG($logmsg);
+                return true;
              }
          }else{
             COM_errorLOG("Filemgmt upload error: Temporary file does not exist: '".$tmp ."'");
             return false;
-		 }
-	}
+         }
+    }
 }
 //
 function DATABOX_uploadImageFile_xml (
-	$imgname
-	,$imgsrc
-	,$imgfld
+    $imgname
+    ,$imgsrc
+    ,$imgfld
 )
 {
-	$FilePermissions = (int) 0755;
+    $FilePermissions = (int) 0755;
 
-	$newfile=$imgfld.$imgname;
-	//
-	$fp = fopen($newfile, "w");
-	$imgsrc=base64_decode($imgsrc);
+    $newfile=$imgfld.$imgname;
+    //
+    $fp = fopen($newfile, "w");
+    $imgsrc=base64_decode($imgsrc);
     fputs($fp, $imgsrc);
     fclose($fp);
-	
-	if(!file_exists($newfile)) {
-		$logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
+    
+    if(!file_exists($newfile)) {
+        $logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
         COM_errorLOG($logmsg);
         return false;
     } else {
         $chown =@chmod ($newfile,$FilePermissions);
-		$logmsg="DataBox ImageFile upload sucsess: ".$imgname;
-		COM_errorLOG($logmsg);
-		return true;
+        $logmsg="DataBox ImageFile upload sucsess: ".$imgname;
+        COM_errorLOG($logmsg);
+        return true;
     }
 }
 
 function DATABOX_createthumb(
-	$filename
-	, $W
-	, $H
-	, $W2
-	, $H2
-	, $imgfld_thmb
-	, $imgfld
+    $filename
+    , $W
+    , $H
+    , $W2
+    , $H2
+    , $imgfld_thmb
+    , $imgfld
 )
 // +---------------------------------------------------------------------------+
 // | 機能 uploadfile サムネイル作成
@@ -3798,13 +3798,13 @@ function DATABOX_createthumb(
 //update
 {
     //$filename = substr($srcfile, strrpos($srcfile,"/")+1);
-	$srcfile=$imgfld.$filename;
-	// 画像の幅と高さとタイプを取得
-	$imagesize = GetImageSize($srcfile);
-	$srcfile_w=$imagesize['0'];
-	$srcfile_h=$imagesize['1'];
-	$srcfile_type=$imagesize['2'];
-	//対象タイプの確認
+    $srcfile=$imgfld.$filename;
+    // 画像の幅と高さとタイプを取得
+    $imagesize = GetImageSize($srcfile);
+    $srcfile_w=$imagesize['0'];
+    $srcfile_h=$imagesize['1'];
+    $srcfile_type=$imagesize['2'];
+    //対象タイプの確認
     switch ($srcfile_type) {
         case 1 : //gif
              return false;
@@ -3816,19 +3816,19 @@ function DATABOX_createthumb(
              $srcimage = @ImageCreateFromPNG($srcfile);
              break;
     }
-	if (!$srcimage) {
+    if (!$srcimage) {
         return false;
-	}
-	
-	$logmsg="size=(w)".$srcfile_w." > ".$w." (h)".$srcfile_h." > ".$h;
+    }
+    
+    $logmsg="size=(w)".$srcfile_w." > ".$w." (h)".$srcfile_h." > ".$h;
     COM_errorLog ($logmsg);
 
-	//対象サイズの確認
-	if ($srcfile_w > $w || $srcfile_h > $h) {
-	}else{
+    //対象サイズの確認
+    if ($srcfile_w > $w || $srcfile_h > $h) {
+    }else{
         return false;
-	}
-		
+    }
+        
     // リサイズ
     if ($srcfile_w > $W || $srcfile_h > $H) {
         $key_w = $W / $srcfile_w;
@@ -3843,18 +3843,18 @@ function DATABOX_createthumb(
 
     // 出力画像（サムネイル）のイメージを作成し、元画像をコピーします。(GD2.0用)
     $outimage = ImageCreateTrueColor($out_w, $out_h);
-	$resize = ImageCopyResampled(
-			$outimage, $srcimage, 0, 0, 0, 0
-			, $out_w, $out_h, $srcfile_w, $srcfile_h);
+    $resize = ImageCopyResampled(
+            $outimage, $srcimage, 0, 0, 0, 0
+            , $out_w, $out_h, $srcfile_w, $srcfile_h);
 
     // サムネイル画像をブラウザに出力、保存
     //$filename = substr($srcfile, strrpos($srcfile,"/")+1);
-	$thum_filename = DATABOX_getthumbname($filename);
-   	$filename = substr($filename, 0, strrpos($filename,"."));
+    $thum_filename = DATABOX_getthumbname($filename);
+       $filename = substr($filename, 0, strrpos($filename,"."));
     touch($imgfld_thmb.$thum_filename);
-	ImageJPEG($outimage, $imgfld_thmb.$thum_filename);
-		
-	// 出力画像のイメージを作成し、元画像をコピーします。(GD2.0用)
+    ImageJPEG($outimage, $imgfld_thmb.$thum_filename);
+        
+    // 出力画像のイメージを作成し、元画像をコピーします。(GD2.0用)
     // リンク先のサイズが設定値より大きい時リンク先も縮小する<-----
     if ($srcfile_w > $W2 || $srcfile_h > $H2) {
         $rt = rename($imgfld.$filename.".jpg",$imgfld.$filename."-bak.jpg");
@@ -3868,9 +3868,9 @@ function DATABOX_createthumb(
         $out_w = $srcfile_w * $keys;
         $out_h = $srcfile_h * $keys;
         $outimage2 = ImageCreateTrueColor($out_w, $out_h);
-		$resize = ImageCopyResampled(
-			$outimage2, $srcimage, 0, 0, 0, 0
-			, $out_w, $out_h, $srcfile_w, $srcfile_h);
+        $resize = ImageCopyResampled(
+            $outimage2, $srcimage, 0, 0, 0, 0
+            , $out_w, $out_h, $srcfile_w, $srcfile_h);
 
         touch($imgfld.$filename.".jpg");
         ImageJPEG($outimage2, $imgfld.$filename.".jpg"); 
@@ -3892,15 +3892,15 @@ function DATABOX_createthumb(
 }
 //
 function DATABOX_getthumbname(
-	$filename
+    $filename
 )
 {
-	$rt="";
-	if ($filename<>""){
-		$filename = substr($filename, 0, strrpos($filename,"."));
-		$rt = $filename . "-small.jpg";
-	}
-	return $rt;
+    $rt="";
+    if ($filename<>""){
+        $filename = substr($filename, 0, strrpos($filename,"."));
+        $rt = $filename . "-small.jpg";
+    }
+    return $rt;
 }
 //==============================================================================
 
@@ -3926,12 +3926,12 @@ function DATABOX_getradiolist(
 // +---------------------------------------------------------------------------+
 //update 20130704
 {
-	
+    
     $retval = '';
-	if  ($br==="" ) {
-		$br=0;
-	}
-	$cnt=0;
+    if  ($br==="" ) {
+        $br=0;
+    }
+    $cnt=0;
     foreach( $ary as $id => $value ){
 
         //echo "ary".$i."=".$ary[$i]."<br>";
@@ -3940,15 +3940,15 @@ function DATABOX_getradiolist(
                 $retval .= " CHECKED=CHECKED ";
         }
 
-		$retval .= ">$ary[$id]&nbsp";
-		
-		if   ($br<>0){
-			$cnt++;
-			if  ($cnt==$br){
-				$retval .="<br".XHTML.">";
-				$cnt=0;
-			}
-		}
+        $retval .= ">$ary[$id]&nbsp";
+        
+        if   ($br<>0){
+            $cnt++;
+            if  ($cnt==$br){
+                $retval .="<br".XHTML.">";
+                $cnt=0;
+            }
+        }
     }
 
     return $retval;
@@ -3962,7 +3962,7 @@ function DATABOX_getoptionlistary(
     ,$pi_name=""
     ,$disabled=""
     ,$type=""
-	,$size=1
+    ,$size=1
 )
 // +---------------------------------------------------------------------------+
 // | 機能  オプションリスト作成（配列より）
@@ -3984,45 +3984,45 @@ function DATABOX_getoptionlistary(
     }else{
         $lang_box="LANG_".strtoupper($pi_name);
     }
-	global $$lang_box;
+    global $$lang_box;
     $lang_box=$$lang_box;
 
-	if  ($type==14 OR $type==18){
-		//$selectedary=array[];
-		$selectedary=explode(":",$selected);
-	}
-	if  ($size=="" OR $size==0){
-		$size=1;
-	}
+    if  ($type==14 OR $type==18){
+        //$selectedary=array[];
+        $selectedary=explode(":",$selected);
+    }
+    if  ($size=="" OR $size==0){
+        $size=1;
+    }
     $retval = '';
 
-	$retval .= "<select ";
-	if ($type==14 OR $type==18){
-		$retval .= ' name="'.$fld.'[]" ';
-		$retval .= ' multiple="multiple" ';
-		$retval .= ' size="'.$size.'"';
-	}else{
-		$retval .= ' name="'.$fld.'"';
-	}
-	$retval .= $disabled.">".LB;
+    $retval .= "<select ";
+    if ($type==14 OR $type==18){
+        $retval .= ' name="'.$fld.'[]" ';
+        $retval .= ' multiple="multiple" ';
+        $retval .= ' size="'.$size.'"';
+    }else{
+        $retval .= ' name="'.$fld.'"';
+    }
+    $retval .= $disabled.">".LB;
     
     if  ($ary[0]<>""){
     }else{
         $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
     }
-	
-	foreach($ary as $k => $v) {
+    
+    foreach($ary as $k => $v) {
         $retval .= "<option value=\"".$k."\"";
-		
-		if  ($type==14 OR $type==18){
-			if( in_array($k,$selectedary) ){//@@@@@
+        
+        if  ($type==14 OR $type==18){
+            if( in_array($k,$selectedary) ){//@@@@@
                 $retval .= " selected=\"selected\" ";
-			}
-		}else{
-			if( $k == $selected ){//@@@@@
+            }
+        }else{
+            if( $k == $selected ){//@@@@@
                 $retval .= " selected=\"selected\" ";
-			}
-		}
+            }
+        }
         $retval .= ">";
 
         $retval .= $v;
@@ -4030,9 +4030,9 @@ function DATABOX_getoptionlistary(
 
     }
 
-	$retval .= '</select>';
-	
-	return $retval;
+    $retval .= '</select>';
+    
+    return $retval;
 }
 
 
@@ -4042,16 +4042,16 @@ function DATABOX_getoptionlist(
     ,$selected = 0
     ,$relno=0
     ,$pi_name=""
-	,$disabled=""
-	,$selectit=true
-	,$selectlist=""
-	,$fname=""
+    ,$disabled=""
+    ,$selectit=true
+    ,$selectlist=""
+    ,$fname=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  オプションリスト作成
 // | 書式 DATABOX_getoptionlist($kind)
-// |	  DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
-// |	  DATABOX_getoptionlist("group",$categorygroup_id,0,$pi_name,"",0 );
+// |      DATABOX_getoptionlist("fieldset",$fieldset_id,0,$pi_name,"",0 );
+// |      DATABOX_getoptionlist("group",$categorygroup_id,0,$pi_name,"",0 );
 // +---------------------------------------------------------------------------+
 // | 引数 $kind:項目種類
 // | 引数 $selected:選択値
@@ -4077,92 +4077,92 @@ global $LANG_configselects;
     }
     global $$lang_box;
     $lang_box=$$lang_box;
-	
-	if ($fname==""){
-		$fname=$kind;
-	}
-	
-	
+    
+    if ($fname==""){
+        $fname=$kind;
+    }
+    
+    
     $retval = '';
 
-	$retval .= "<select name='$fname' $disabled>".LB;
-	if ($selectit==="all"){
-		$retval .= "<option value=\"all\">{$lang_box['selectall']}</option>".LB;
-	}elseif ($selectit){
-		$retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
-	}
-	
-	
-	if ($kind=="layout"){
-		$retval .= "<option value=0>{$lang_box['byconfig']}</option>".LB;
-		$ary=$LANG_configselects[strtolower($pi_name)][22];
-		foreach($ary as $k => $v) {
-			$retval .= "<option value=\"".$v."\"";
-			if( $v == $selected ){//@@@@@
-				$retval .= " selected=\"selected\" ";
-			}
-			$retval .= ">";
+    $retval .= "<select name='$fname' $disabled>".LB;
+    if ($selectit==="all"){
+        $retval .= "<option value=\"all\">{$lang_box['selectall']}</option>".LB;
+    }elseif ($selectit){
+        $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
+    }
+    
+    
+    if ($kind=="layout"){
+        $retval .= "<option value=0>{$lang_box['byconfig']}</option>".LB;
+        $ary=$LANG_configselects[strtolower($pi_name)][22];
+        foreach($ary as $k => $v) {
+            $retval .= "<option value=\"".$v."\"";
+            if( $v == $selected ){//@@@@@
+                $retval .= " selected=\"selected\" ";
+            }
+            $retval .= ">";
 
-			$retval .= $k;
-			$retval .= "</option>".LB;
-			next($ary);
-		}
-	}else if ($kind=="language_id"){
-		$retval .= "<option value=0> </option>".LB;
-		$ary=$_CONF['languages'];
-		foreach($ary as $k => $v) {
-			$retval .= "<option value=\"".$k."\"";
-			if( $k == $selected ){//@@@@@
-				$retval .= " selected=\"selected\" ";
-			}
-			$retval .= ">";
+            $retval .= $k;
+            $retval .= "</option>".LB;
+            next($ary);
+        }
+    }else if ($kind=="language_id"){
+        $retval .= "<option value=0> </option>".LB;
+        $ary=$_CONF['languages'];
+        foreach($ary as $k => $v) {
+            $retval .= "<option value=\"".$k."\"";
+            if( $k == $selected ){//@@@@@
+                $retval .= " selected=\"selected\" ";
+            }
+            $retval .= ">";
 
-			$retval .= $v;
-			$retval .= "</option>".LB;
-			next($ary);
-		}
-	}else{
-		if ($kind=="group"){
-			$where="";
-			$table=$_TABLES[strtoupper($pi_name).'_def_group'];
-			$fields= 'group_id,name,orderno';
-		}else if ($kind=="parent"){
-			$where="";
-			$table=$_TABLES[strtoupper($pi_name).'_def_category'];
-			$fields= 'category_id,name,orderno';
-		}else if ($kind=="fieldset"){
-			$where="";
-			$table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
-			$fields= 'fieldset_id,name,fieldset_id';
-		}else if ($kind=="selectlist"){
-			$where="";
-			$table=$_TABLES[strtoupper($pi_name).'_mst'];
-			$fields= 'DISTINCT kind,kind,kind';
-		}else if ($kind=="selectlist_mst"){
-			$table=$_TABLES[strtoupper($pi_name).'_mst'];
-			$where="kind='{$selectlist}'";
-			if ($relno<>0) $where.=" AND relno='{$relno}'";
-			$fields= 'no,value,orderno';
-		}else if ($kind=="csvsel"){
-			$where="";
-			$table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
-			$fields= 'csv_sel_id,name,csv_sel_id*-1';
-		}else{
-			$table=$_TABLES[strtoupper($pi_name).'_mst'];
-			$where="kind='{$kind}'";
+            $retval .= $v;
+            $retval .= "</option>".LB;
+            next($ary);
+        }
+    }else{
+        if ($kind=="group"){
+            $where="";
+            $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+            $fields= 'group_id,name,orderno';
+        }else if ($kind=="parent"){
+            $where="";
+            $table=$_TABLES[strtoupper($pi_name).'_def_category'];
+            $fields= 'category_id,name,orderno';
+        }else if ($kind=="fieldset"){
+            $where="";
+            $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+            $fields= 'fieldset_id,name,fieldset_id';
+        }else if ($kind=="selectlist"){
+            $where="";
+            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $fields= 'DISTINCT kind,kind,kind';
+        }else if ($kind=="selectlist_mst"){
+            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $where="kind='{$selectlist}'";
+            if ($relno<>0) $where.=" AND relno='{$relno}'";
+            $fields= 'no,value,orderno';
+        }else if ($kind=="csvsel"){
+            $where="";
+            $table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
+            $fields= 'csv_sel_id,name,csv_sel_id*-1';
+        }else{
+            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $where="kind='{$kind}'";
         if ($relno<>0) $where.=" AND relno='{$relno}'";
-			$fields= 'no,value,orderno';
-		}
-		$retval .= COM_optionList (
-			$table
-			, $fields
-			, $selected,2,$where);
-	}
-	
-	
+            $fields= 'no,value,orderno';
+        }
+        $retval .= COM_optionList (
+            $table
+            , $fields
+            , $selected,2,$where);
+    }
+    
+    
     $retval .= '</select>';
 
-	if ($disabled==="disabled"){
+    if ($disabled==="disabled"){
         $retval .= "  <input type='hidden' name='{$fname}' value='{$selected}'>";
     }
 
@@ -4177,7 +4177,7 @@ function DATABOX_dltbldt(
     ,$where=""
     ,$order=""
     ,$pi_name=""
-	,$addition=false
+    ,$addition=false
 )
 // +---------------------------------------------------------------------------+
 // | 機能  テーブルのデータをCSV形式でダウンロードする
@@ -4243,7 +4243,7 @@ function DATABOX_dltbldt(
         if ($addition_def<>""){
             $s=$addition_def;
             foreach($s as $k1 =>$v1){
-				$w .=$ec.$s[$k1]['templatesetvar'].$ec.$dm;
+                $w .=$ec.$s[$k1]['templatesetvar'].$ec.$dm;
             }
         }
     }
@@ -4301,25 +4301,25 @@ function DATABOX_dltbldt(
         fputs( $file, $w.LB);
 
     }
-	fclose($file);
-	
+    fclose($file);
+    
     $filename=basename($outfile).".csv";
     $dir=dirname($outfile);
 
     header ("Content-Disposition: attachment; filename=$filename");
     header ("Content-type: application/x-csv");
     readfile ($outfile);
-	flush();
-	
+    flush();
+    
     $rt=unlink($outfile);
-	
+    
     return "";
 }
 
 function DATABOX_getfeaturedimage(
-	$id
-	,$pi_name
-	,$mode="imgsrc"
+    $id
+    ,$pi_name
+    ,$mode="imgsrc"
 )
 // +---------------------------------------------------------------------------+
 // | 機能  featuredimage取得
@@ -4332,57 +4332,57 @@ function DATABOX_getfeaturedimage(
 // | 戻値 nomal:featuredimage
 // +---------------------------------------------------------------------------+
 {
-	global $_CONF;
-	global $_TABLES;
+    global $_CONF;
+    global $_TABLES;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
 
-	$tbl1=$_TABLES[strtoupper($pi_name).'_addition'];
+    $tbl1=$_TABLES[strtoupper($pi_name).'_addition'];
     $tbl2=$_TABLES[strtoupper($pi_name).'_def_field'];
 
-	$rt="";
+    $rt="";
 
     $sql = "SELECT t1.value";
     $sql .= " FROM ";
-	$sql .= " {$tbl1} AS t1";
-	$sql .= "  ,{$tbl2} AS t2";
-	$sql .= "  WHERE t1.id=".$id;
-	$sql .= "  AND t1.field_id =t2.field_id";
-	$sql .= "  AND t2.type=12";
-	$sql .= "  AND allow_display=0";
-	$sql .= "  ORDER BY orderno";
+    $sql .= " {$tbl1} AS t1";
+    $sql .= "  ,{$tbl2} AS t2";
+    $sql .= "  WHERE t1.id=".$id;
+    $sql .= "  AND t1.field_id =t2.field_id";
+    $sql .= "  AND t2.type=12";
+    $sql .= "  AND allow_display=0";
+    $sql .= "  ORDER BY orderno";
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
     if ($numrows > 0) {
         $A = DB_fetchArray ($result);
-		$value=$A['value'];
-		if  ($value<>""){
-			$url=$_CONF['site_url']   ."/".$box_conf['imgfile_frd'] ;
-			$url.= $value ;
-			if  ($mode=="imgsrc"){
-				$rt='<img src="'.$url.'" />';
-			}else{
-				$rt=$url;
-			}
-		}
-	}
+        $value=$A['value'];
+        if  ($value<>""){
+            $url=$_CONF['site_url']   ."/".$box_conf['imgfile_frd'] ;
+            $url.= $value ;
+            if  ($mode=="imgsrc"){
+                $rt='<img src="'.$url.'" />';
+            }else{
+                $rt=$url;
+            }
+        }
+    }
 
-	return $rt;
+    return $rt;
 }
 
 function DATABOX_getheadercode(
-	$kind
-	,$template
-	,$pi_name
-	,$id
-	,$title
-	,$meta_description
-	,$meta_keywords
-	,$description
+    $kind
+    ,$template
+    ,$pi_name
+    ,$id
+    ,$title
+    ,$meta_description
+    ,$meta_keywords
+    ,$description
     ,$additionfields=""
     ,$addition_def=""
     ,$chk_user=""
@@ -4392,172 +4392,172 @@ function DATABOX_getheadercode(
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
 // | 書式 DATABOX_getheadercode("data",$template,$pi_name,$A['id'],$A['title']
-// | 		,$A['meta_description'],$A['meta_keyword'],$A['description']);
+// |         ,$A['meta_description'],$A['meta_keyword'],$A['description']);
 // +---------------------------------------------------------------------------+
-// | 引数 	$kind		"data","category"
-// | 引数 	$template
-// | 引数 	$pi_name
-// | 引数 	$id
-// | 引数 	$title
-// | 引数 	$meta_description
-// | 引数 	$meta_keywords
-// | 引数 	$description
+// | 引数  $kind        "data","category"
+// | 引数  $template
+// | 引数  $pi_name
+// | 引数  $id
+// | 引数  $title
+// | 引数  $meta_description
+// | 引数  $meta_keywords
+// | 引数  $description
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:HEADERCODE
 // +---------------------------------------------------------------------------+
 {
-	global $_CONF;
-	global $_TABLES;
-	global $_IMAGE_TYPE;
-	
-	$box_conf="_".strtoupper($pi_name)."_CONF";
+    global $_CONF;
+    global $_TABLES;
+    global $_IMAGE_TYPE;
+    
+    $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-	
-	$retval="";
-	
-	$currenturl= COM_getCurrentURL();
-	$site_logo= $_CONF['layout_url'] . '/images/logo.' . $_IMAGE_TYPE ;
+    
+    $retval="";
+    
+    $currenturl= COM_getCurrentURL();
+    $site_logo= $_CONF['layout_url'] . '/images/logo.' . $_IMAGE_TYPE ;
 
-	$og_type="article";
-	$og_title=$title;
-	
-	if ($box_conf['meta_tags'] > 0) {
+    $og_type="article";
+    $og_title=$title;
+    
+    if ($box_conf['meta_tags'] > 0) {
          $retval .= COM_createMetaTags($meta_description, $meta_keywords);
-	}
+    }
 
-	if ($_CONF['meta_tags']==0 OR $meta_description=="") {
-		$og_description = $description;
-	}else{
-		$og_description = $meta_description;
-	}
-	$og_description= COM_getTextContent(PLG_replaceTags($og_description));
-		
-	
-	if ($kind==="data"){
-		$og_image =DATABOX_getfeaturedimage($id,$pi_name,"url");
-		if ($og_image===""){
-			$og_image=$site_logo;
-		}
-	}else{
-		$og_image =$box_conf["default_img_url"];
-		if ($og_image===""){
-			$og_image=$site_logo;
-		}
-	}
-	
-	//テンプレートフォルダの設定
-	$tmplfld=DATABOX_templatePath($kind,$template,$pi_name);
-	if (file_exists ($tmplfld."/headercode.thtml")) {
-		$tpl = new Template($tmplfld);
-		$tpl->set_file (array (
-			'tpl' => 'headercode.thtml',
-			));
-	
-		$tpl->set_var('xhtml', XHTML);
-		$tpl->set_var('site_url', $_CONF['site_url']);
-		$tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
-		$tpl->set_var('layout_url', $_CONF['layout_url']);
-		
-		$tpl->set_var ('currenturl', $currenturl);
-		
-		$tpl->set_var ('site_name', $_CONF['site_name']);
-		$tpl->set_var ('site_mail', $_CONF['site_mail']);
-		
-		$tpl->set_var ('og_title', $og_title);
-		$tpl->set_var ('og_image', $og_image);
-		$tpl->set_var ('og_description', $og_description);
-		$tpl->set_var ('og_type', $og_type);
-		$tpl->set_var ('fieldset_name', $fieldset_name);
-		
-		//facebook
-		$facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
-		$tpl->set_var ('facebook_consumer_key', $facebook_consumer_key);
-		
+    if ($_CONF['meta_tags']==0 OR $meta_description=="") {
+        $og_description = $description;
+    }else{
+        $og_description = $meta_description;
+    }
+    $og_description= COM_getTextContent(PLG_replaceTags($og_description));
+        
+    
+    if ($kind==="data"){
+        $og_image =DATABOX_getfeaturedimage($id,$pi_name,"url");
+        if ($og_image===""){
+            $og_image=$site_logo;
+        }
+    }else{
+        $og_image =$box_conf["default_img_url"];
+        if ($og_image===""){
+            $og_image=$site_logo;
+        }
+    }
+    
+    //テンプレートフォルダの設定
+    $tmplfld=DATABOX_templatePath($kind,$template,$pi_name);
+    if (file_exists ($tmplfld."/headercode.thtml")) {
+        $tpl = new Template($tmplfld);
+        $tpl->set_file (array (
+            'tpl' => 'headercode.thtml',
+            ));
+    
+        $tpl->set_var('xhtml', XHTML);
+        $tpl->set_var('site_url', $_CONF['site_url']);
+        $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
+        $tpl->set_var('layout_url', $_CONF['layout_url']);
+        
+        $tpl->set_var ('currenturl', $currenturl);
+        
+        $tpl->set_var ('site_name', $_CONF['site_name']);
+        $tpl->set_var ('site_mail', $_CONF['site_mail']);
+        
+        $tpl->set_var ('og_title', $og_title);
+        $tpl->set_var ('og_image', $og_image);
+        $tpl->set_var ('og_description', $og_description);
+        $tpl->set_var ('og_type', $og_type);
+        $tpl->set_var ('fieldset_name', $fieldset_name);
+        
+        //facebook
+        $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
+        $tpl->set_var ('facebook_consumer_key', $facebook_consumer_key);
+        
         if ($kind==="data"){
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$tpl,$chk_user,$pi_name,$fieldset_id);
         }
     
-		$tpl->parse ('output', 'tpl');
-		$retval .= $tpl->finish ($tpl->get_var ('output'));
-	}
-	return $retval;
+        $tpl->parse ('output', 'tpl');
+        $retval .= $tpl->finish ($tpl->get_var ('output'));
+    }
+    return $retval;
 }
 
 function DATABOX_getfields(
-	$pi_name
-	, $fieldset_id
+    $pi_name
+    , $fieldset_id
 )
 {
-	global $_TABLES;
-	
-	if ($fieldset_id==0){
-		$table=$_TABLES[strtoupper($pi_name).'_def_field'];
-	}else{
-		$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
-	}
-	$fields = array();
+    global $_TABLES;
+    
+    if ($fieldset_id==0){
+        $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+    }else{
+        $table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+    }
+    $fields = array();
 
-	// Get a list of additionfields in the selected field
-	$sql  = "SELECT DISTINCT field_id ";
-	$sql  .= " FROM {$table}";
-	
-	if ($fieldset_id<>0){
-		$sql  .= " WHERE  ";
-		$sql  .= " fieldset_id = $fieldset_id";
-	}
-	
-	$result = DB_query ($sql);
-	$num = DB_numRows ($result);
-	
-	if ($num<>0){
-		while ($A = DB_fetchArray($result)) {
-			$fields[] = $A['field_id'];
-		}
-	}
-	
-	return $fields;
+    // Get a list of additionfields in the selected field
+    $sql  = "SELECT DISTINCT field_id ";
+    $sql  .= " FROM {$table}";
+    
+    if ($fieldset_id<>0){
+        $sql  .= " WHERE  ";
+        $sql  .= " fieldset_id = $fieldset_id";
+    }
+    
+    $result = DB_query ($sql);
+    $num = DB_numRows ($result);
+    
+    if ($num<>0){
+        while ($A = DB_fetchArray($result)) {
+            $fields[] = $A['field_id'];
+        }
+    }
+    
+    return $fields;
 }
 
 
 function DATABOX_getAry(
     $kind
-	,$relno=0
-	,$selectlist
+    ,$relno=0
+    ,$selectlist
     ,$pi_name=""
 )
 {
-	global $_TABLES;
+    global $_TABLES;
 
-//	if ($kind=="selectlist_mst"){
-		$table=$_TABLES[strtoupper($pi_name).'_mst'];
-		$where=" WHERE kind='{$selectlist}'";
-		if ($relno<>0) $where.=" AND relno='{$relno}'";
-		$fields= 'no,value';
-		$order=" ORDER BY orderno"; 
-//	}
+//    if ($kind=="selectlist_mst"){
+        $table=$_TABLES[strtoupper($pi_name).'_mst'];
+        $where=" WHERE kind='{$selectlist}'";
+        if ($relno<>0) $where.=" AND relno='{$relno}'";
+        $fields= 'no,value';
+        $order=" ORDER BY orderno"; 
+//    }
 
-	$ary=array();
-	$sql = "SELECT ";
-	$sql .= $fields ;
-	$sql .= " FROM " ;
-	$sql .= $table ;
-	$sql .= $where ;
-	$sql .= $order ;
+    $ary=array();
+    $sql = "SELECT ";
+    $sql .= $fields ;
+    $sql .= " FROM " ;
+    $sql .= $table ;
+    $sql .= $where ;
+    $sql .= $order ;
 
-	$result = DB_query($sql);
+    $result = DB_query($sql);
     $nrows = DB_numRows($result);
     for( $i=0; $i < $nrows; $i++) {
          $A = DB_fetchArray($result, true);
          $ary[$A[0]] = $A[1];
-	}
-	return $ary;
+    }
+    return $ary;
 }
 
 function DATABOX_categorycount(
-	$pi_name
-	,$categorygroup_id 
-	,$categorygroup_code 
+    $pi_name
+    ,$categorygroup_id 
+    ,$categorygroup_code 
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ件数表示
@@ -4577,22 +4577,22 @@ function DATABOX_categorycount(
 // +---------------------------------------------------------------------------+
 {
     global $_TABLES;
-	//-----
-	$tbl3=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+    //-----
+    $tbl3=$_TABLES[strtoupper($pi_name).'_def_category'] ;
     $tbl1=$_TABLES[strtoupper($pi_name).'_category'] ;
     $tbl4=$_TABLES[strtoupper($pi_name).'_def_group'] ;
     $tbl2=$_TABLES[strtoupper($pi_name).'_base'] ;
-	if ($categorygroup_id =="" AND $categorygroup_code=="") {
-		$categorygroup_id=0;
-	}else{
-		if  ($categorygroup_id==""){
-			$categorygroup_id=DATABOX_codetoid(	$categorygroup_code,strtoupper($pi_name).'_def_group',"group_id");
-			if  ($categorygroup_id==0){
-				return 0;
-			}
-		}
-	}
-	
+    if ($categorygroup_id =="" AND $categorygroup_code=="") {
+        $categorygroup_id=0;
+    }else{
+        if  ($categorygroup_id==""){
+            $categorygroup_id=DATABOX_codetoid(    $categorygroup_code,strtoupper($pi_name).'_def_group',"group_id");
+            if  ($categorygroup_id==0){
+                return 0;
+            }
+        }
+    }
+    
 
     //-----
     $sql = "SELECT ".LB;
@@ -4608,8 +4608,8 @@ function DATABOX_categorycount(
     $sql .= " WHERE ".LB;
     $sql .= " t1.id = t2.id ".LB;
     $sql .= " AND t1.category_id = t3.category_id ".LB;
-	$sql .= " AND t3.categorygroup_id = ".$categorygroup_id.LB;
-	$sql .= " AND t3.categorygroup_id = t4.group_id ".LB;
+    $sql .= " AND t3.categorygroup_id = ".$categorygroup_id.LB;
+    $sql .= " AND t3.categorygroup_id = t4.group_id ".LB;
     //管理者の時,下書データも含む
     //if ( SEC_hasRights('databox.admin')) {
     //}else{
@@ -4621,10 +4621,10 @@ function DATABOX_categorycount(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
-	
+    
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.category_id".LB;
-	
+    
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
     $rt=COM_NumberFormat($cnt);
@@ -4671,24 +4671,24 @@ function DATABOX_Confirmation(
 
     $tmpl->set_var('actionname', $actionname);
     $tmpl->set_var('actionprg', $actionprg);
-	
+    
     $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
     $btn_value=$LANG_ADMIN['submit'];
-	$confirm_value=$lang_box_admin['confirm'];
-	$btn2="";
-	$btn3="";
+    $confirm_value=$lang_box_admin['confirm'];
+    $btn2="";
+    $btn3="";
     if ($mode==="datadelete"){
         $tmpl->set_var('lang_checklist', $lang_box_admin['fieldset'].":");
         $checklist=DATABOX_getcheckList ("fieldset","",$pi_name);
         $tmpl->set_var('checklist', $checklist);
         $btn_value=$lang_box_admin['delete1'];
-		$confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
-		$confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
-		$confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-		$btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
-		     ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
-		$btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
-		     ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
+        $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
+        $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
+        $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
+        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
+             ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
+        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
+             ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 
     // SAVE、CANCEL ボタン
