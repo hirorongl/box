@@ -3434,7 +3434,7 @@ function databox_search(
         $mkidary=array();
         $mkid_ary=split(" " , $mkids);
         $selectedMarkers="";
-        if (function_exists("MAPS_selectedMarkers")) {
+        if (function_exists("MAPS_selectedMarkers") AND $mkids<>"") {
             $selectedMarkers=MAPS_selectedMarkers(
               $_MAPS_CONF['map_width']
              ,$_MAPS_CONF['map_height']
