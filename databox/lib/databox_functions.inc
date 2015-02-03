@@ -2015,9 +2015,9 @@ function DATABOX_getaddtionfieldsDisp(
                     break;
                 case 21://money 通貨;
                     $dc = $_CONF['decimal_count'];
-            $ts = $_CONF['thousand_separator'];
+                    $ts = $_CONF['thousand_separator'];
                     $ds = $_CONF['decimal_separator'];
-            $fieldhtml .= number_format( (float)$fvalue, $dc, $ds, $ts );
+                    $fieldhtml .= number_format( (float)$fvalue, $dc, $ds, $ts );
                     break;
                 case 5://メールアドレス　（準備中）';
 
