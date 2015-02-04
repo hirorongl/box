@@ -4945,4 +4945,222 @@ function DATABOX_getDateTimeFormat( $date,$format )
     return array( $date, $stamp );
 }
 
+function DATABOX_fieldvalue(
+    $pi_name
+    ,$id
+    ,$code
+    ,$field_id
+    ,$field_code
+    ,$option = ""
+)
+// +---------------------------------------------------------------------------+
+// | 機能  追加項目表示用取得
+// | 書式 DATABOX_fieldvalue($pi_name,$id,$code,$field_id,$field_code,$option)
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $id:
+// | 引数 $code:
+// | 引数 $field_id:
+// | 引数 $field_code:
+// | 引数 $option:'','name','description','yes','value2','disp','no'
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:追加項目表示用
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+    global $_CONF;
+    
+    $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
+    global $$lang_noyes;
+    $lang_noyes=$$lang_noyes;
+          
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+    $separater=$lang_box['field_separater'];
+
+    $table_base=$_TABLES[strtoupper($pi_name).'_base'];
+    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_def_fieldset_assignments
+        =$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+    //-----引数チェック
+    if (is_null($id)){
+        if (is_null($code) OR $code===""){
+            $id=0;
+        }else{
+            $id=DATABOX_codetoid($code,strtoupper($pi_name).'_base');
+        }
+    }
+    if ($id===0) {
+        return "";
+    }
+    if (is_null($field_id)){
+        if (is_null($field_code) OR $field_code===""){
+            $field_id=0;
+        }else{
+            $field_id=DATABOX_codetoid($field_code,strtoupper($pi_name).'_def_field'
+                     ,"field_id","templatesetvar");
+        }
+    }
+    if ($field_id===0) {
+        return "";
+    }
+    $fieldset_id=DB_getItem( $table_base,"fieldset_id","id=".$id  );
+          if  ($fieldset_id==0){
+          }else{
+              $w=DB_getItem( $table_def_fieldset_assignments
+                  ,"fieldset_id","fieldset_id=$fieldset_id AND field_id=".$field_id );
+              if  ($w==""){
+                  return "";
+              }
+          }
+          
+          //
+    $sql  = "SELECT DISTINCT ".LB;
+    $sql  .= " t.value ".LB;
+    $sql  .= " ,m.type ".LB;
+    $sql  .= " ,m.name ".LB;
+    $sql  .= " ,m.description ".LB;
+    $sql  .= " ,m.selection ".LB;
+    $sql  .= " ,m.selectlist ".LB;
+    $sql  .= " ,m.dfid ".LB;
+    $sql  .= " FROM ".LB;
+    $sql  .= "{$table_addition} AS t".LB;
+    $sql  .= " , {$table_def_field} AS m".LB;
+    
+    if ($fieldset_id<>0){
+        $sql  .= " WHERE  ".LB;
+        $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
+        $sql  .= " AND m.field_id = {$field_id} ".LB;
+        $sql  .= " AND m.allow_display = 0 ".LB;
+    }
+    
+    $result = DB_query ($sql);
+    $num = DB_numRows ($result);
+    $rt="";
+    if ($num<>0){
+        $A = DB_fetchArray ($result);
+        $A = array_map('stripslashes', $A);
+        if  ($option=="name"){
+            $rt=$A['name'];
+        }else if ($option=="description"){
+            $rt=$A['description'];
+        }else{
+            $selectionary=DATABOX_getselectionary($A['selection']);
+            $selectlist=$A['selectlist'];
+            $type=$A['type'];
+            $value=$A['value'];
+            $dfid= $A['dfid'];
+            $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+            if( empty( $format )) {
+                $format = $_CONF['date'];
+            }
+            switch ($type) {
+                case 12://画像（外記憶）
+                case 13://添付ファイル
+                    $rt=$value;
+                    break;
+                case 11://画像（DB記憶)
+                    if  ($value===""){
+                    }else{
+                        $rt="<img src=\"data:image/jpg;base64,";
+                        $rt .="{$value}\"".XHTML.">";
+                    }
+                    break;
+                case 2://いいえ/はい
+                    if  ($option=="yes"){
+                        if  ($value==1){
+                            $rt=1;
+                        }
+                    }else{
+                        $rt= $lang_noyes[$value];
+                    }
+                    break;
+                case 7://オプションリスト（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
+                    $rt= $selectionary[$value];
+                    break;
+                case 14://マルチセレクトリスト（選択肢）
+                    $wkary=explode(":",$value);
+                    $wk="";
+                    for( $x = 0; $x < sizeof( $wkary ); $x++ ) {
+                        $wk.=$selectionary[$wkary[$x]].$separater;
+                    }
+                    $rt= rtrim($wk,$separater);
+                    break;
+                case 10:// 複数行テキストフィールド(HTML NG)
+                    $w=DATABOX_nl2br($value);
+                    $w=DATABOX_autolink($w);
+                    $rt= $w;
+                    break;
+                case 9://オプションリスト（マスター）
+                case 16: //ラジオボタン（マスター）
+                    $mstitems=DATABOX_getMstItems($selectlist,$value,$pi_name);
+                    $rt= $mstitems['value'];
+                    if  ($option=="value2"){
+                        $rt= $mstitems['value2'];
+                    }else if  ($option=="disp"){
+                        $rt= $mstitems['disp'];
+                    }else if  ($option=="no"){
+                        $rt= $mstitems['no'];
+                    }else{
+                        $rt= $mstitems['value'];
+                    }
+                    break;
+                case 18://マルチセレクトリスト（マスター）
+                    $wkary=explode(":",$value);
+                    $wk="";
+                    $wk_value2="";
+                    $wk_disp="";
+                    $wk_no="";
+                    for( $x = 0; $x < sizeof( $wkary ); $x++ ) {
+                        $mstitems=DATABOX_getMstItems($selectlist,$wkary[$x],$pi_name);
+                        $wk.=$mstitems['value'].$separater;
+                        $wk_value2.=$mstitems['value2'].$separater;
+                        $wk_disp.=$mstitems['disp'].$separater;
+                        $wk_no.=$mstitems['no'].$separater;
+                    }
+                    if  ($option=="value2"){
+                        $rt= rtrim($wk_value2,$separater);
+                    }else if  ($option=="disp"){
+                        $rt= rtrim($wk_disp,$separater);
+                    }else if  ($option=="no"){
+                        $rt= rtrim($wk_no,$separater);
+                    }else{
+                        $rt= rtrim($wk,$separater);
+                    }
+                    break;
+                case 4://日時
+                    if  ($value<>""){
+                        $w=DATABOX_getDateTimeFormat($value,$format);
+                        $rt= $w[0];
+                    }
+                    break;
+                case 3://日付
+                    if  ($value<>""){
+                        $rt=strftime( $_CONF['shortdate'], $value );
+                    }
+                    break;
+                case 21://money 通貨;
+                    $dc = $_CONF['decimal_count'];
+                    $ts = $_CONF['thousand_separator'];
+                    $ds = $_CONF['decimal_separator'];
+                    $rt= number_format( (float)$value, $dc, $ds, $ts );
+                    break;
+                case 5://メールアドレス
+                case 6://url';
+                case 0:// 一行テキストフィールド
+                case 1:// 複数行テキストフィールド(HTML OK)
+                case 20:// 複数行テキストフィールド(HTML OK  TinyMCE)
+                case 19:// 複数行テキストフィールド(HTML OK  CKEditor)
+                default:
+                    $rt= $value;
+            }
+        }
+    }
+
+    return $rt;
+
+}
 ?>

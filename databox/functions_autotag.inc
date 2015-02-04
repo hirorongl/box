@@ -87,6 +87,8 @@ function plugin_autotags_databox (
         $parm2_ary[]="iname";
         $parm2_ary[]="without_code";
         $parm2_ary[]="without_id";
+        $parm2_ary[]="field_code";
+        $parm2_ary[]="option";
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -241,6 +243,16 @@ function plugin_autotags_databox (
                     case 'search':
                         $argary=databox_searcharg("autotag",$p['lastparm2']);
                         $rt=databox_search("autotag",$argary);
+                        break;
+                    case 'attributevalue':
+                        $rt=DATABOX_fieldvalue(
+                                "databox"
+                                ,$p['id']
+                                ,$p['code']
+                                ,$p['field_id']
+                                ,$p['field_code']
+                                ,$p['option']
+                            );
                         break;
                 }
 
