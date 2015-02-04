@@ -2679,14 +2679,10 @@ global $_TABLES;
             $order_name=$LANG_DATABOX_ORDER[$c];
         }
 
-        if ($order<>"random" AND $order===$cur_order){
-            $rt=$order_name;
-        }else{
-            $order_url=$url;
-            $order_url.=$order;
-            //$order_url = COM_buildUrl( $order_url );
-            $rt= COM_createLink($order_name, $order_url);
-        }
+        $order_url=$url;
+        $order_url.=$order;
+        //$order_url = COM_buildUrl( $order_url );
+        $rt= COM_createLink($order_name, $order_url);
 
         $templates->set_var('order_'.$order,$rt);
 
