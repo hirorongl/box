@@ -14,9 +14,9 @@ if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
 
 //=====自動タグ=================================================================
 function plugin_autotags_userbox (
-	$op
-	, $content = ''
-	, $autotag = '')
+    $op
+    , $content = ''
+    , $autotag = '')
 // +---------------------------------------------------------------------------+
 // | 自動タグ
 // | 書式 plugin_autotags_userbox ($op, $content, $autotag)
@@ -25,34 +25,34 @@ function plugin_autotags_userbox (
 {
     global $_TABLES;
     global $_CONF;
-	global $LANG_USERBOX_autotag_desc;
-	
+    global $LANG_USERBOX_autotag_desc;
+         
     //Option Display
     if ($op == 'tagname' ) {
         $tagname[]='userbox';
-		return $tagname;
-	} elseif ($op == 'permission' || $op == 'nopermission') {
-	    if ($op == 'permission') {
+        return $tagname;
+    } elseif ($op == 'permission' || $op == 'nopermission') {
+        if ($op == 'permission') {
             $flag = true;
         } else {
             $flag = false;
         }
 
-		if (isset($_GROUPS['UserBox Admin'])) {
-			$group_id = $_GROUPS['UserBox Admin'];
+        if (isset($_GROUPS['UserBox Admin'])) {
+            $group_id = $_GROUPS['UserBox Admin'];
         } else {
             $group_id = DB_getItem($_TABLES['groups'], 'grp_id',
                                    "grp_name = 'UserBox Admin'");
         }
         $owner_id = SEC_getDefaultRootUser();
 
-		if (COM_getPermTag(
-			$owner_id
-			, $group_id
-			, $_USERBOX_CONF['autotag_permissions_userbox'][0]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][1]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][2]
-			, $_USERBOX_CONF['autotag_permissions_userbox'][3]) == $flag) {
+        if (COM_getPermTag(
+            $owner_id
+            , $group_id
+            , $_USERBOX_CONF['autotag_permissions_userbox'][0]
+            , $_USERBOX_CONF['autotag_permissions_userbox'][1]
+            , $_USERBOX_CONF['autotag_permissions_userbox'][2]
+            , $_USERBOX_CONF['autotag_permissions_userbox'][3]) == $flag) {
             return $tagname;
         }
 
@@ -64,30 +64,30 @@ function plugin_autotags_userbox (
         $p2 = COM_applyFilter ($autotag['parm2']);
         $tag = COM_applyFilter ($autotag['tag']);
         $tagstr = COM_applyFilter ($autotag['tagstr']);
-		
-		$parm2_ary[]="category_id";
-		$parm2_ary[]="category_code";
-		$parm2_ary[]="mode";
-		$parm2_ary[]="rss_file";
-		$parm2_ary[]="title_trim_length";
-		$parm2_ary[]="intervalday";
-		$parm2_ary[]="limitcnt";
-		$parm2_ary[]="newmarkday";
-		$parm2_ary[]="templatedir";
-		//$parm2_ary[]="id";
-		$parm2_ary[]="uid";
-		$parm2_ary[]="username";
-		$parm2_ary[]="code";
-		$parm2_ary[]="nohitmsg";
-		$parm2_ary[]="perpage";
-		$parm2_ary[]="page";
-		$parm2_ary[]="order";
-		$parm2_ary[]="templatesetvar";
-		$parm2_ary[]="value";
-		$parm2_ary[]="field_id";
-		$parm2_ary[]="expired";
-		$parm2_ary[]="group_id";
-		$parm2_ary[]="group_code";
+        
+        $parm2_ary[]="category_id";
+        $parm2_ary[]="category_code";
+        $parm2_ary[]="mode";
+        $parm2_ary[]="rss_file";
+        $parm2_ary[]="title_trim_length";
+        $parm2_ary[]="intervalday";
+        $parm2_ary[]="limitcnt";
+        $parm2_ary[]="newmarkday";
+        $parm2_ary[]="templatedir";
+        //$parm2_ary[]="id";
+        $parm2_ary[]="uid";
+        $parm2_ary[]="username";
+        $parm2_ary[]="code";
+        $parm2_ary[]="nohitmsg";
+        $parm2_ary[]="perpage";
+        $parm2_ary[]="page";
+        $parm2_ary[]="order";
+        $parm2_ary[]="templatesetvar";
+        $parm2_ary[]="value";
+        $parm2_ary[]="field_id";
+        $parm2_ary[]="expired";
+        $parm2_ary[]="group_id";
+        $parm2_ary[]="group_code";
         $p=userbox_parm2($p2,$parm2_ary);
 
         //各処理
@@ -98,7 +98,7 @@ function plugin_autotags_userbox (
                         $rt= userbox_count(
                             $p['category_id']
                             ,$p['category_code']
-							,$p['mode']
+                            ,$p['mode']
                             );
                         break;
                     case 'newlist':
@@ -131,8 +131,8 @@ function plugin_autotags_userbox (
                             ,$p['nohitmsg']
                             ,""
                             ,$p['username']
-							);
-						$rt=$w['display'];
+                            );
+                        $rt=$w['display'];
                         break;
                     case 'category':
                         $rt= userbox_category(
@@ -143,12 +143,12 @@ function plugin_autotags_userbox (
                             ,$p['perpage']
                             ,$p['page']
                             ,$p['order']
-							,$p['category_code']
-							,$p['mode']
-							,$p['expired']
+                            ,$p['category_code']
+                            ,$p['mode']
+                            ,$p['expired']
                         );
-						break;
-				    case 'attributedatacount':
+                        break;
+                    case 'attributedatacount':
                         $rt=userbox_count_each_afield(
                             $p['templatesetvar']
                             ,$p['value']
@@ -171,7 +171,7 @@ function plugin_autotags_userbox (
                             ,$p['category_id']
                             ,$p['category_code']
                             );
-							break;
+                            break;
                     case 'attribute':
                         $rt= userbox_field(
                             "autotag"
@@ -189,8 +189,8 @@ function plugin_autotags_userbox (
                         $rt=userbox_msg($p['for']) ;
                         break;
                     case 'categorycount':
-						$rt= DATABOX_categorycount(
-							 "userbox"
+                        $rt= DATABOX_categorycount(
+                             "userbox"
                             ,$p['group_id']
                             ,$p['group_code']
                         );
@@ -211,14 +211,14 @@ function userbox_parm2 ($p2,$parm2_ary)
     $ary=array();
     $px = explode (' ', trim ($p2));
     if (is_array ($px)) {
-		foreach ($px as $part) {
-			$a = explode (':', $part);
-			if (in_array($a[0],$parm2_ary)){
-				$ary["{$a[0]}"]=$a[1];
-				$skip++;			
-			}
-		}
-		
+        foreach ($px as $part) {
+            $a = explode (':', $part);
+            if (in_array($a[0],$parm2_ary)){
+                $ary["{$a[0]}"]=$a[1];
+                $skip++;            
+            }
+        }
+        
         if (count ($px) > $skip) {
             for ($i = 0; $i < $skip; $i++) {
                 array_shift ($px);
@@ -226,10 +226,10 @@ function userbox_parm2 ($p2,$parm2_ary)
             $ary["lastparm2"] = trim(implode (' ', $px));
         }
 
-	}else{
-		$ary["lastparm2"]=trim($p2);
-	}
-	
+    }else{
+        $ary["lastparm2"]=trim($p2);
+    }
+    
     return $ary;
 
 }
@@ -252,9 +252,9 @@ function userbox_category(
     ,$perpage =0
     ,$page=null
     ,$order=null
-	,$category_code=null
-	,$mode=''
-	,$expired=''
+    ,$category_code=null
+    ,$mode=''
+    ,$expired=''
 )
 
 // +---------------------------------------------------------------------------+
@@ -287,14 +287,14 @@ function userbox_category(
     global $_USERBOX_CONF;
     global $LANG_USERBOX;
     global $LANG_USERBOX_ADMIN;
-	global $LANG28;
-	global $_USER;
-	
-	global $_IMAGE_TYPE;
-	global $LANG_confignames;
+    global $LANG28;
+    global $_USER;
+    
+    global $_IMAGE_TYPE;
+    global $LANG_confignames;
 
-	
-	//ログイン要否チェック
+    
+    //ログイン要否チェック
     if (COM_isAnonUser()){
         if  ($_CONF['loginrequired']
                 OR ($_USERBOX_CONF['loginrequired'] >1) ){
@@ -307,71 +307,71 @@ function userbox_category(
     $tbl1=$_TABLES['USERBOX_category'] ;
     $tbl2=$_TABLES['USERBOX_base'] ;
     $tbl3=$_TABLES['USERBOX_addition'] ;
-	$tbl4=$_TABLES['users'] ;
-	//
+    $tbl4=$_TABLES['users'] ;
+    //
     $tbl5=$_TABLES['USERBOX_def_category'] ;
-	
-	$tbl6=$_TABLES['USERBOX_stats'];
-	
-	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
-	$new_img=$_USERBOX_CONF['new_img'];
+    
+    $tbl6=$_TABLES['USERBOX_stats'];
+    
+    $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
+    $new_img=$_USERBOX_CONF['new_img'];
     if ($new_img==""){
         $new_img="New!";
-	}
+    }
     $newmarkday=$_USERBOX_CONF['newmarkday'];
     if ($newmarkday==""){
         $newmarkday=3;
     }
     $chkday=strtotime("- $newmarkday days",time());
 
-	//-----引数チェック
-	$ids="";
-	$idsary=array();
-	if (is_null($category_id) OR $category_id==0){
-		if (is_null($category_code)){
-		}else{
-			$w=explode("|",$category_code);
-			foreach( $w as $val ){
-				if ($ids<>""){
-					$ids.=",";
-				}
-				$w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
-				$idsary[]=$w_id;
-				$ids.=$w_id;
-			}
-		}
-	}else{
-		$ids=$category_id;
-		$idsary[]=$category_id;
-	}
-	
-	//--CATEGORY
+    //-----引数チェック
+    $ids="";
+    $idsary=array();
+    if (is_null($category_id) OR $category_id==0){
+        if (is_null($category_code)){
+        }else{
+            $w=explode("|",$category_code);
+            foreach( $w as $val ){
+                if ($ids<>""){
+                    $ids.=",";
+                }
+                $w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
+                $idsary[]=$w_id;
+                $ids.=$w_id;
+            }
+        }
+    }else{
+        $ids=$category_id;
+        $idsary[]=$category_id;
+    }
+    
+    //--CATEGORY
     $category_name="";
     $defaulttemplatesdirectory = "";
-	if (count($idsary)<>0){
-		
+    if (count($idsary)<>0){
+        
         for ($i = 0; $i < count($idsary); $i++) {
-			$sql = "SELECT ";
-			$sql .= " name ".LB;
-			$sql .= " ,code ".LB;
-			$sql .= " ,description ".LB;
-			$sql .= " ,defaulttemplatesdirectory".LB;
-			$sql .= " FROM ".LB;
-			$sql .= " {$tbl5} AS t5 ".LB;
-			$sql	 .= " WHERE ".LB;
-			$sql .= " t5.category_id =".$idsary[$i].LB;
-		
-			$result = DB_query ($sql);
-			$numrows = DB_numRows ($result);
-			if ($numrows > 0) {
-				$A = DB_fetchArray ($result);
-				$category_name.=COM_applyFilter($A['name'])." ";
-				$category_description.=COM_applyFilter($A['description'])." ";
-				if ($i==0){
-					$defaulttemplatesdirectory=COM_applyFilter($A['defaulttemplatesdirectory']);
-				}
-			}
-		}
+            $sql = "SELECT ";
+            $sql .= " name ".LB;
+            $sql .= " ,code ".LB;
+            $sql .= " ,description ".LB;
+            $sql .= " ,defaulttemplatesdirectory".LB;
+            $sql .= " FROM ".LB;
+            $sql .= " {$tbl5} AS t5 ".LB;
+            $sql .= " WHERE ".LB;
+            $sql .= " t5.category_id =".$idsary[$i].LB;
+        
+            $result = DB_query ($sql);
+            $numrows = DB_numRows ($result);
+            if ($numrows > 0) {
+                $A = DB_fetchArray ($result);
+                $category_name.=COM_applyFilter($A['name'])." ";
+                $category_description.=COM_applyFilter($A['description'])." ";
+                if ($i==0){
+                    $defaulttemplatesdirectory=COM_applyFilter($A['defaulttemplatesdirectory']);
+                }
+            }
+        }
     }
 
     if (is_null($template) or ($template==="")){
@@ -381,29 +381,29 @@ function userbox_category(
             $template=$defaulttemplatesdirectory;
         }
     }
-	
-	//
-	if (is_null($page) OR !isset($page) OR $page == 0) {
+    
+    //
+    if (is_null($page) OR !isset($page) OR $page == 0) {
         $page = 1;
-	}
+    }
     if ($perpage===0 OR is_null($perpage)){
         $perpage=$_USERBOX_CONF['perpage'];
     }
-	//
+    //
     $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder,$field_id);
 
-    //-----	
+    //-----    
     $sql = "SELECT ";
 
     $sql .= " t2.id ".LB;
-	$sql .= " ,t2.description ".LB;
-	$sql .= " ,t2.released ".LB;
-	$sql .= " ,t2.expired ".LB;
-	$sql .= " ,t2.".$datefield." AS datefield ".LB;
-	$sql .= " ,t2.fieldset_id ".LB;
+    $sql .= " ,t2.description ".LB;
+    $sql .= " ,t2.released ".LB;
+    $sql .= " ,t2.expired ".LB;
+    $sql .= " ,t2.".$datefield." AS datefield ".LB;
+    $sql .= " ,t2.fieldset_id ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
-	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
-	$sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
@@ -415,57 +415,57 @@ function userbox_category(
     if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
-	
-	//--FROM
+    
+    //--FROM
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
     $sql .= " ,{$tbl4} AS t4 ".LB;
-	if ($addfieldorder){
+    if ($addfieldorder){
         $sql .= " ,{$tbl3} AS t3 ".LB;
     }
-	
-	//--WHERE
+    
+    //--WHERE
     $sql .= " WHERE ".LB;
-	$sql .= " t2.id=t4.uid ".LB;
+    $sql .= " t2.id=t4.uid ".LB;
 
-	if (count($idsary)<>0){
-		if (strtoupper($mode)=="AND"){
-			$w="";
-			foreach( $idsary as $val ){
-				if ($w<>""){
-					$w.=" AND ";
-				}
-				$w.=$val." IN (SELECT t1.category_id";
-				$w.=" FROM {$tbl1} AS t1 ,{$tbl5} AS t5";
-				$w.=" WHERE t2.id = t1.id AND t1.category_id = t5.category_id AND t5.allow_display<2)";
-			}
-		}else{
-			$w= "t2.id IN (SELECT id FROM {$tbl1} AS t1 ,{$tbl5} AS t5 ";
-			$w.="WHERE t1.category_id = t5.category_id AND t5.allow_display<2 AND t1.category_id IN ({$ids})) ";
-		}
-		$sql.=" AND ({$w})".LB;
-	}
-	
+    if (count($idsary)<>0){
+        if (strtoupper($mode)=="AND"){
+            $w="";
+            foreach( $idsary as $val ){
+                if ($w<>""){
+                    $w.=" AND ";
+                }
+                $w.=$val." IN (SELECT t1.category_id";
+                $w.=" FROM {$tbl1} AS t1 ,{$tbl5} AS t5";
+                $w.=" WHERE t2.id = t1.id AND t1.category_id = t5.category_id AND t5.allow_display<2)";
+            }
+        }else{
+            $w= "t2.id IN (SELECT id FROM {$tbl1} AS t1 ,{$tbl5} AS t5 ";
+            $w.="WHERE t1.category_id = t5.category_id AND t5.allow_display<2 AND t1.category_id IN ({$ids})) ";
+        }
+        $sql.=" AND ({$w})".LB;
+    }
+    
     if ($addfieldorder){
         $sql .= " AND t3.field_id=".$field_id.LB;
         $sql .= " AND t3.id=t2.id".LB;
     }
-	//下書データはのぞく
+    //下書データはのぞく
     $sql .= " AND t2.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND',0,2,"t2");
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
-	if  (strtoupper($expired)=="NO"){
-		$sql .= " AND (expired=0 OR expired > NOW())";
-	}
-	
-	//--ORDER
+    if  (strtoupper($expired)=="NO"){
+        $sql .= " AND (expired=0 OR expired > NOW())";
+    }
+    
+    //--ORDER
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
-	
-	//
+    
+    //
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -483,16 +483,16 @@ function userbox_category(
         } else {
             $page_title = sprintf ('%s ', $category_name);
         }
-		// Meta Tags
-		$headercode=DATABOX_getheadercode(	
-			"category"
-			,$template
-			,$pi_name
-			,$category_id
-			,$category_name
-			,$category_description
-			,$category_name
-			,$category_description);
+        // Meta Tags
+        $headercode=DATABOX_getheadercode(    
+            "category"
+            ,$template
+            ,$pi_name
+            ,$category_id
+            ,$category_name
+            ,$category_description
+            ,$category_name
+            ,$category_description);
         $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
     }
 
@@ -500,107 +500,107 @@ function userbox_category(
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
-	if ($numrows > 0) {
-		
-		$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
-		$templates = new Template($tmplfld);
-		$templates->set_file (array (
-			'list' => 'list_detail.thtml',
-			'nav'   => 'navigation_detail.thtml',
-			'row'   => 'row.thtml',
-			'col'   => "col_detail.thtml",
-			'pagenav'  => 'pagenavigation.thtml'
-			));
-		$languageid=COM_getLanguageId();
-		$language= COM_getLanguage();
-		$templates->set_var ('languageid', $languageid);
-		$templates->set_var ('language', $language);
-		if ($languageid<>"") {
-			$templates->set_var ('_languageid', "_".$languageid);
-		}else{
-			$templates->set_var ('_languageid', "");
-		}
-		
-		$templates->set_var ('site_url',$_CONF['site_url']);
-		$templates->set_var ('this_script',THIS_SCRIPT);
+    if ($numrows > 0) {
+        
+        $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+        $templates = new Template($tmplfld);
+        $templates->set_file (array (
+            'list' => 'list_detail.thtml',
+            'nav'   => 'navigation_detail.thtml',
+            'row'   => 'row.thtml',
+            'col'   => "col_detail.thtml",
+            'pagenav'  => 'pagenavigation.thtml'
+            ));
+        $languageid=COM_getLanguageId();
+        $language= COM_getLanguage();
+        $templates->set_var ('languageid', $languageid);
+        $templates->set_var ('language', $language);
+        if ($languageid<>"") {
+            $templates->set_var ('_languageid', "_".$languageid);
+        }else{
+            $templates->set_var ('_languageid', "");
+        }
+        
+        $templates->set_var ('site_url',$_CONF['site_url']);
+        $templates->set_var ('this_script',THIS_SCRIPT);
 
-		//bread
-		$templates->set_var ('home',$LANG_USERBOX['home']);
+        //bread
+        $templates->set_var ('home',$LANG_USERBOX['home']);
 
-		$url=$_CONF['site_url']."/userbox/category.php";
-		$category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
-		$templates->set_var ('category_top',$category_top);
+        $url=$_CONF['site_url']."/userbox/category.php";
+        $category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
+        $templates->set_var ('category_top',$category_top);
 
-		$templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_list_h2']);
+        $templates->set_var ('lang_category_list_h2',$LANG_USERBOX['category_list_h2']);
 
-		$templates->set_var ('category_name',$category_name);
-		$templates->set_var ('category_code',$category_code);
-		$templates->set_var ('category_description',$category_description);
-	
+        $templates->set_var ('category_name',$category_name);
+        $templates->set_var ('category_code',$category_code);
+        $templates->set_var ('category_description',$category_description);
+    
 
-		//page
-		$templates->set_var ('cnt', $cnt);
-		$lin1=$offset+1;
-		$lin2=$lin1+$perpage - 1;
-		if ($lin2>$cnt){
-			$lin2=$cnt;
-		}
+        //page
+        $templates->set_var ('cnt', $cnt);
+        $lin1=$offset+1;
+        $lin2=$lin1+$perpage - 1;
+        if ($lin2>$cnt){
+            $lin2=$cnt;
+        }
 
-		//summary navigation
-		$templates->set_var ('lang_view', $LANG_USERBOX['view']);
-		$templates->set_var ('lin', $lin1."-".($lin2));
-		$templates->set_var ('cnt', $cnt);
+        //summary navigation
+        $templates->set_var ('lang_view', $LANG_USERBOX['view']);
+        $templates->set_var ('lin', $lin1."-".($lin2));
+        $templates->set_var ('cnt', $cnt);
 
-		$templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
+        $templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
 
-		$templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
-		$templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
-		$templates->set_var ('lang_uid', $LANG28[2]);
-		$templates->set_var ('lang_username', $LANG28[3]);
-		$templates->set_var ('lang_fullname',$LANG28[4]);
+        $templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
+        $templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
+        $templates->set_var ('lang_uid', $LANG28[2]);
+        $templates->set_var ('lang_username', $LANG28[3]);
+        $templates->set_var ('lang_fullname',$LANG28[4]);
 
-		//
-		$templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
-		$templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
-		$templates->set_var ('lang_expired', $LANG_USERBOX_ADMIN['expired']);
-		$templates->set_var ('lang_remaingdays', $LANG_USERBOX_ADMIN['remaingdays']);
-		$templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
-		$templates->set_var ('lang_addfield', $addfield_name);
-		// 追加項目のヘッダ
-		$addition_def=DATABOX_getadditiondef($pi_name);
-		//
+        //
+        $templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
+        $templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
+        $templates->set_var ('lang_expired', $LANG_USERBOX_ADMIN['expired']);
+        $templates->set_var ('lang_remaingdays', $LANG_USERBOX_ADMIN['remaingdays']);
+        $templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
+        $templates->set_var ('lang_addfield', $addfield_name);
+        // 追加項目のヘッダ
+        $addition_def=DATABOX_getadditiondef($pi_name);
+        //
 
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['userbox']['imgfile_frd']);
-		$templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
-		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
+        $templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
+        $templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['userbox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_USERBOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-			
+            
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
-			$A = array_map('stripslashes', $A);
+            $A = array_map('stripslashes', $A);
 
             $description=COM_applyFilter($A['description']);
             $username=COM_applyFilter($A['username']);
             $fullname=COM_applyFilter($A['fullname']);
             $id=COM_applyFilter($A['id']);
-			$datefield=COM_applyFilter($A['datefield']);
-			$released=COM_applyFilter($A['released']);
-			$expired=COM_applyFilter($A['expired']);
-			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
-			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
-			if ($expired==="0000-00-00 00:00:00"){
-				$expired_ary=array();
-			}else{	
-				$expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
-			}
-			$curdate_ary =  COM_getUserDateTimeFormat();
+            $datefield=COM_applyFilter($A['datefield']);
+            $released=COM_applyFilter($A['released']);
+            $expired=COM_applyFilter($A['expired']);
+            $datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
+            $released_ary = COM_getUserDateTimeFormat($A['released_un']);
+            if ($expired==="0000-00-00 00:00:00"){
+                $expired_ary=array();
+            }else{    
+                $expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
+            }
+            $curdate_ary =  COM_getUserDateTimeFormat();
 
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
-			$fieldset_id=COM_applyFilter($A['fieldset_id']);
+            $fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -625,12 +625,12 @@ function userbox_category(
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
             $templates->set_var ('data_url', $url);
-			$templates->set_var ('data_datefield', $datefield_ary[0]);
-			$templates->set_var ('data_value', $value);
-			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
-			$templates->set_var ('data_released', $released_ary[0]);
+            $templates->set_var ('data_datefield', $datefield_ary[0]);
+            $templates->set_var ('data_value', $value);
+            $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-			//公開終了日 Expired to publish
+            //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
@@ -638,70 +638,71 @@ function userbox_category(
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
-            }			$remaingdays="";
-			if ($expired<>"0000-00-00 00:00:00") {
-				if  ($expired_ary[1]>=$curdate_ary[1]){
-					$remaingdays=COM_dateDiff( "d", $expired_ary[1], $curdate_ary[1] ) + 1;
-				}
-			}
-			$templates->set_var ('data_remaingdays', $remaingdays);//@@@@@@
-			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
-				$templates->set_var ('new_img', $new_img);
-			}else{
-				$templates->set_var ('new_img', '');
-			}
-			
-			//
-		    if (isset($A['photo']) && empty($A['photo'])) {
-				$A['photo'] = '(none)'; // user does not have a photo
-				$templates->set_var('data_photo', "");
-			}else{
-				$templates->set_var('data_photo', $A['photo']);
-			}
-			$photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
-			$templates->set_var('data_user_photo', $photo);
+            }
+            $remaingdays="";
+            if ($expired<>"0000-00-00 00:00:00") {
+                if  ($expired_ary[1]>=$curdate_ary[1]){
+                    $remaingdays=COM_dateDiff( "d", $expired_ary[1], $curdate_ary[1] ) + 1;
+                }
+            }
+            $templates->set_var ('data_remaingdays', $remaingdays);//@@@@@@
+            if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
+                $templates->set_var ('new_img', $new_img);
+            }else{
+                $templates->set_var ('new_img', '');
+            }
+            
+            //
+            if (isset($A['photo']) && empty($A['photo'])) {
+                $A['photo'] = '(none)'; // user does not have a photo
+                $templates->set_var('data_photo', "");
+            }else{
+                $templates->set_var('data_photo', $A['photo']);
+            }
+            $photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
+            $templates->set_var('data_user_photo', $photo);
 
             $hits=COM_applyFilter(DB_getItem( $tbl6 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);
-			
-			//カテゴリ@@@@@
-			$templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-			DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
+            
+            //カテゴリ@@@@@
+            $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
+            DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
 
             //追加項目
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-			
-			//管理者の時「編集」
-			$templates->set_var ('data_edit', "");
-			if ( SEC_hasRights('userbox.admin')) {
-				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-				$attr = array('title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
-				$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-				$attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
-				$url = $_CONF['site_admin_url'];
-				$url .= '/plugins/userbox/profile.php';
-				$url .= '?mode=edit';
-				$url .= '&amp;'."id={$id}";
-				$icon = '&nbsp;' ;
-				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-				$templates->set_var ('data_edit', $icon);
-			}else{
-				if ($id===$_USER['uid']){
-					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-					$attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
-					$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-					$attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
-					$url = $_CONF['site_url'];
-					$url .= '/userbox/myprofile/profile.php';
-					$icon = '&nbsp;' ;
-					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-					$templates->set_var ('data_edit', $icon);
-				}
-			}
-			
+            
+            //管理者の時「編集」
+            $templates->set_var ('data_edit', "");
+            if ( SEC_hasRights('userbox.admin')) {
+                $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                $attr = array('title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+                $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                $attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+                $url = $_CONF['site_admin_url'];
+                $url .= '/plugins/userbox/profile.php';
+                $url .= '?mode=edit';
+                $url .= '&amp;'."id={$id}";
+                $icon = '&nbsp;' ;
+                $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                $templates->set_var ('data_edit', $icon);
+            }else{
+                if ($id===$_USER['uid']){
+                    $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                    $attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+                    $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                    $attr = array('class' => 'editlink', 'title' => $username." ".$LANG_USERBOX_ADMIN['edit']);
+                    $url = $_CONF['site_url'];
+                    $url .= '/userbox/myprofile/profile.php';
+                    $icon = '&nbsp;' ;
+                    $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                    $templates->set_var ('data_edit', $icon);
+                }
+            }
+            
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);
@@ -719,17 +720,17 @@ function userbox_category(
             $url.=THIS_SCRIPT;
         }else{
             $url.="userbox/category.php";
-		}
-		$url .= "?";
-		if ($category_code<>""){
-			$url .= "code=".$category_code;
-			$url .= "&amp;m=code";
-		}else{
-			$url .= "id=".$category_id;
-			$url .= "&amp;m=id";
-		}
-		$url .= "&amp;template=".$template;
-		$url .= "&amp;order=";
+        }
+        $url .= "?";
+        if ($category_code<>""){
+            $url .= "code=".$category_code;
+            $url .= "&amp;m=code";
+        }else{
+            $url .= "id=".$category_id;
+            $url .= "&amp;m=id";
+        }
+        $url .= "&amp;template=".$template;
+        $url .= "&amp;order=";
         //-----order navigation
         userbox_order ($url, $templates, $order) ;
         //-----page navigation
@@ -757,32 +758,32 @@ function userbox_category(
 
     }else{
         if ($nohitmsg==="yes"){
-			$tmplfld=DATABOX_templatePath('category',$template,$pi_name);
-			$templates = new Template($tmplfld);
-			$templates->set_file (array (
+            $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
+            $templates = new Template($tmplfld);
+            $templates->set_file (array (
                 'list' => 'nohit.thtml',
-			));
-			
-			$templates->set_var ('home',$LANG_USERBOX['home']);
-			
-			$url=$_CONF['site_url']."/userbox/category.php";
-			$category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
-			$templates->set_var ('category_top',$category_top);
+            ));
+            
+            $templates->set_var ('home',$LANG_USERBOX['home']);
+            
+            $url=$_CONF['site_url']."/userbox/category.php";
+            $category_top=":<a href='".$url."'>".$LANG_USERBOX['category_top']."</a>";
+            $templates->set_var ('category_top',$category_top);
 
-			$templates->set_var ('category_name',$category_name);
-			$templates->set_var ('category_code',$category_code);
-			$templates->set_var ('category_description',$category_description);
-						
-			$templates->set_var('xhtml', XHTML);
-			$templates->set_var('site_url', $_CONF['site_url']);
-			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
-			$templates->set_var('layout_url', $_CONF['layout_url']);
-			
-			$templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
+            $templates->set_var ('category_name',$category_name);
+            $templates->set_var ('category_code',$category_code);
+            $templates->set_var ('category_description',$category_description);
+                        
+            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('site_url', $_CONF['site_url']);
+            $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+            $templates->set_var('layout_url', $_CONF['layout_url']);
+            
+            $templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
 
-			$templates->parse ('output', 'list');
-			$content = $templates->finish ($templates->get_var ('output'));
-			$retval .=$content;
+            $templates->parse ('output', 'list');
+            $content = $templates->finish ($templates->get_var ('output'));
+            $retval .=$content;
         }
     }
 
@@ -798,8 +799,8 @@ function userbox_category(
 
 function userbox_count(
     $category_id =null
-	,$category_code =null
-	,$mode=''
+    ,$category_code =null
+    ,$mode=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示
@@ -817,49 +818,49 @@ function userbox_count(
 {
     global $_TABLES;
 
-	//-----
+    //-----
     $tbl1=$_TABLES['USERBOX_base'] ;
     $tbl2=$_TABLES['USERBOX_category'] ;
-	
-	//カテゴリの指定がなければ全件、あればカテゴリ毎
-	$exp="";
-	if (is_null($category_id) AND is_null($category_code) ){
+    
+    //カテゴリの指定がなければ全件、あればカテゴリ毎
+    $exp="";
+    if (is_null($category_id) AND is_null($category_code) ){
     }else{
-		$ids="";
-		$idsary=array();
-		if (is_null($category_id) OR $category_id==0){
-			if (is_null($category_code)){
-			}else{
-				$w=explode("|",$category_code);
-				foreach( $w as $val ){
-					if ($ids<>""){
-						$ids.=",";
-					}
-					$w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
-					$idsary[]=$w_id;
-					$ids.=$w_id;
-				}
-			}
-		}else{
-			$ids=$category_id;
-			$idsary[]=$category_id;
-		}
-		if (strtoupper($mode)=="AND"){
-			$w="";
-			foreach( $idsary as $val ){
-				if ($w<>""){
-					$w.=" AND ";
-				}
-				$w.=$val." IN (SELECT category_id";
-				$w.=" FROM {$tbl2} AS t2 ";
-				$w.=" WHERE t2.id = t1.id)";
-			}
-		}else{
-			$w= "id IN (SELECT id FROM {$tbl2} ";
-			$w.="WHERE category_id IN ({$ids})) ";
-		}
-		$exp=$w.LB;
-	}
+        $ids="";
+        $idsary=array();
+        if (is_null($category_id) OR $category_id==0){
+            if (is_null($category_code)){
+            }else{
+                $w=explode("|",$category_code);
+                foreach( $w as $val ){
+                    if ($ids<>""){
+                        $ids.=",";
+                    }
+                    $w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
+                    $idsary[]=$w_id;
+                    $ids.=$w_id;
+                }
+            }
+        }else{
+            $ids=$category_id;
+            $idsary[]=$category_id;
+        }
+        if (strtoupper($mode)=="AND"){
+            $w="";
+            foreach( $idsary as $val ){
+                if ($w<>""){
+                    $w.=" AND ";
+                }
+                $w.=$val." IN (SELECT category_id";
+                $w.=" FROM {$tbl2} AS t2 ";
+                $w.=" WHERE t2.id = t1.id)";
+            }
+        }else{
+            $w= "id IN (SELECT id FROM {$tbl2} ";
+            $w.="WHERE category_id IN ({$ids})) ";
+        }
+        $exp=$w.LB;
+    }
 
     //-----
     $sql = "SELECT ".LB;
@@ -872,11 +873,11 @@ function userbox_count(
 
 
     $sql .= " WHERE ".LB;
-	
-	if ($exp<>""){
-		$sql .= $exp. " AND ";
-	}
-	
+    
+    if ($exp<>""){
+        $sql .= $exp. " AND ";
+    }
+    
     //@@@@@@@@@@@------>
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
@@ -1111,17 +1112,17 @@ function userbox_profile(
     global $_USER;
 
     global $LANG28;
-	global $LANG04;
-	
+    global $LANG04;
+    
     global $_USERBOX_CONF;
     global $LANG_USERBOX;
     global $LANG_USERBOX_ADMIN;
-	
-	global $LANG_confignames;
-	
-	$layout=$_DATABOX_CONF['layout'];
+    
+    global $LANG_confignames;
+    
+    $layout=$_DATABOX_CONF['layout'];
 
-	//-----
+    //-----
     if (is_null($id) AND (is_null($code))){
         $id=$_USER['uid'];
     }
@@ -1138,63 +1139,63 @@ function userbox_profile(
 
     $tbl=$_TABLES['USERBOX_base'] ;
     $tbl1=$_TABLES['users'] ;
-	$tbl4=$_TABLES['USERBOX_def_fieldset'];
-	$tbl5=$_TABLES['USERBOX_stats'];
+    $tbl4=$_TABLES['USERBOX_def_fieldset'];
+    $tbl5=$_TABLES['USERBOX_stats'];
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
     //-----
-	$sql = "SELECT t.* ";
-	
-	$sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un";
-	$sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
-	$sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
-	$sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
-	$sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un";
-	$sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
-	
-	$sql .= " ,t.fieldset_id";
+    $sql = "SELECT t.* ";
+    
+    $sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un";
+    $sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
+    $sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
+    $sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
+    $sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un";
+    $sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
+    
+    $sql .= " ,t.fieldset_id";
 
     $sql .= " ,t1.username ";
-	$sql .= " ,t1.fullname ";
-	$sql .= " ,t1.photo ";
+    $sql .= " ,t1.fullname ";
+    $sql .= " ,t1.photo ";
     $sql .= " ,t1.email";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
-	
-	$sql .= " ,t4.name AS set_name";
+    
+    $sql .= " ,t4.name AS set_name";
     $sql .= " ,t4.description AS set_description";
-	$sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
+    $sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
     $sql .= " ,t4.layout AS set_layout";
-	
-	$sql .= " ,t5.hits";
+    
+    $sql .= " ,t5.hits";
 
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";
-	$sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
-	$sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
-	$sql .= " LEFT JOIN  {$tbl5} AS t5 ON t.id=t5.id";
+    $sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
+    $sql .= " JOIN {$tbl1} AS t1       ON t.id=t1.uid";//owner
+    $sql .= " LEFT JOIN  {$tbl5} AS t5 ON t.id=t5.id";
     $sql .= " LEFT JOIN  {$tbl1} AS t3 ON t.uuid=t3.uid";//last_updateowner
 
     $sql .= " WHERE ";
 
 
     if (is_null($id)){//@@@@@
-		$sql .= "1=1";
+        $sql .= "1=1";
     }else{
         $sql .= " t.id=".$id;
     }
 
-	//管理者の時,
+    //管理者の時,
     if ( SEC_hasRights('userbox.admin') OR $m==="view") {
     }else{
-		//下書データはのぞく
+        //下書データはのぞく
        $sql .= " AND t.draft_flag=0".LB;
-		//公開日以前のデータはのぞく
-		$sql .= " AND (released <= NOW())";
+        //公開日以前のデータはのぞく
+        $sql .= " AND (released <= NOW())";
 
-		//公開終了日を過ぎたデータはのぞく
-		$sql .= " AND (expired=0 OR expired > NOW())";
+        //公開終了日を過ぎたデータはのぞく
+        $sql .= " AND (expired=0 OR expired > NOW())";
     }
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
@@ -1210,51 +1211,51 @@ function userbox_profile(
     if ($numrows > 0) {
 
         $A = DB_fetchArray ($result);
-		$A = array_map('stripslashes', $A);
-		
-		if (is_null($template) or ($template==="")){
-			if ($A['defaulttemplatesdirectory']<>""){
+        $A = array_map('stripslashes', $A);
+        
+        if (is_null($template) or ($template==="")){
+            if ($A['defaulttemplatesdirectory']<>""){
                 $template=$A['defaulttemplatesdirectory'];
-			}elseif  ($A['set_defaulttemplatesdirectory']<>""){
+            }elseif  ($A['set_defaulttemplatesdirectory']<>""){
                 $template=$A['set_defaulttemplatesdirectory'];
-			}else{
+            }else{
                 $template="default";
             }
         }
 
 
         $group_id = $A['group_id'];
-		$owner_id = $A['owner_id'];
+        $owner_id = $A['owner_id'];
         $fieldset_id= $A['fieldset_id'];
-		if ($m==="view"){
-			$chk_user=1000;//ログインユーザ
-		}else{
-			$chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
-		}
-			//
+        if ($m==="view"){
+            $chk_user=1000;//ログインユーザ
+        }else{
+            $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
+        }
+            //
         $id=$A['id'];
         $additionfields = DATABOX_getadditiondatas($id,$pi_name);
 
         //ヘッダ、左ブロック start.............
-		if ($m==="page"){
-			if  ($A['set_layout']<>"0") {
-				$layout=$A['set_layout'];
-			}
-			$title= $A['page_title'];
-			if ($title===""){
-				$title =$A['username'];
-			}
-			// Meta Tags
-			$headercode=DATABOX_getheadercode(	
-				"profile"
-				,$template
-				,$pi_name
-				,$A['id']
-				,$title
-				,$A['meta_description']
-				,$A['meta_keywords']
-				,$A['description']);
-		}
+        if ($m==="page"){
+            if  ($A['set_layout']<>"0") {
+                $layout=$A['set_layout'];
+            }
+            $title= $A['page_title'];
+            if ($title===""){
+                $title =$A['username'];
+            }
+            // Meta Tags
+            $headercode=DATABOX_getheadercode(    
+                "profile"
+                ,$template
+                ,$pi_name
+                ,$A['id']
+                ,$title
+                ,$A['meta_description']
+                ,$A['meta_keywords']
+                ,$A['description']);
+        }
 
         $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
         $templates = new Template($tmplfld);
@@ -1267,27 +1268,27 @@ function userbox_profile(
         $language= COM_getLanguage();
         $templates->set_var ('languageid', $languageid);
         $templates->set_var ('language', $language);
-		if ($languageid<>"") {
-			$templates->set_var ('_languageid', "_".$languageid);
-		}else{
-			$templates->set_var ('_languageid', "");
-		}
+        if ($languageid<>"") {
+            $templates->set_var ('_languageid', "_".$languageid);
+        }else{
+            $templates->set_var ('_languageid', "");
+        }
 
         $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
         $templates->set_var ('site_url',$_CONF['site_url']);
-		
-		$templates->set_var('xhtml', XHTML);
-		$templates->set_var('layout_url', $_CONF['layout_url']);
-		
-		$templates->set_var ('site_name', $_CONF['site_name']);
-		$templates->set_var ('site_mail', $_CONF['site_mail']);
-		
-		$currenturl= COM_getCurrentURL();
-		$templates->set_var ('currenturl', $currenturl);
-		//facebook
-		$facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
-		$templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
-		//
+        
+        $templates->set_var('xhtml', XHTML);
+        $templates->set_var('layout_url', $_CONF['layout_url']);
+        
+        $templates->set_var ('site_name', $_CONF['site_name']);
+        $templates->set_var ('site_mail', $_CONF['site_mail']);
+        
+        $currenturl= COM_getCurrentURL();
+        $templates->set_var ('currenturl', $currenturl);
+        //facebook
+        $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
+        $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
+        //
 
         //daft_flag管理者の時
         if ($A['draft_flag']==1){
@@ -1316,24 +1317,24 @@ function userbox_profile(
         $templates->set_var('lang_uid', $LANG28['2']);
         $templates->set_var('lang_username', $LANG28['3']);
         $templates->set_var ('username', $A['username']);
-		$templates->set_var('lang_fullname', $LANG28['4']);
+        $templates->set_var('lang_fullname', $LANG28['4']);
         $templates->set_var ('fullname', $A['fullname']);
-		
+        
         $templates->set_var('lang_photo', $LANG04['77']);
-		if (isset($A['photo']) && empty($A['photo'])) {
-			$A['photo'] = '(none)'; // user does not have a photo
-			$templates->set_var('photo', "");
-		}else{
-			$templates->set_var('photo', $A['photo']);
-		}
-		//$photo = USER_getPhoto($A['id'], $A['photo'], $A['email'], -1);
-		//$templates->set_var('user_photo', $photo);
-		
-		
-		//$_USERBOX_CONF
+        if (isset($A['photo']) && empty($A['photo'])) {
+            $A['photo'] = '(none)'; // user does not have a photo
+            $templates->set_var('photo', "");
+        }else{
+            $templates->set_var('photo', $A['photo']);
+        }
+        //$photo = USER_getPhoto($A['id'], $A['photo'], $A['email'], -1);
+        //$templates->set_var('user_photo', $photo);
+        
+        
+        //$_USERBOX_CONF
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['userbox']['imgfile_frd']);
         $templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
-		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
+        $templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['userbox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_USERBOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_thumb_frd']);
@@ -1348,13 +1349,13 @@ function userbox_profile(
 
         $templates->set_var('lang_description', $LANG_USERBOX_ADMIN['description']);
         $templates->set_var ('description',$A['description']);
-		
+        
         $templates->set_var('lang_draft', $LANG_USERBOX_ADMIN['draft']);
-		if ($A['draft_flag']){
-			$templates->set_var ('draft',$LANG_USERBOX_ADMIN['draft']);
-		}else{
-			$templates->set_var ('draft',"");
-		}
+        if ($A['draft_flag']){
+            $templates->set_var ('draft',$LANG_USERBOX_ADMIN['draft']);
+        }else{
+            $templates->set_var ('draft',"");
+        }
         //hits
         $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
         $templates->set_var ('hits', $A['hits']);
@@ -1370,71 +1371,71 @@ function userbox_profile(
 
         //編集日付
         $templates->set_var('lang_modified', $LANG_USERBOX_ADMIN['modified']);
-		$wary = COM_getUserDateTimeFormat($A['modified_un']);
+        $wary = COM_getUserDateTimeFormat($A['modified_un']);
         $templates->set_var ('modified',$wary[0]);
         $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
         //作成日付
         $templates->set_var('lang_created', $LANG_USERBOX_ADMIN['created']);
-		$wary = COM_getUserDateTimeFormat($A['created_un']);
+        $wary = COM_getUserDateTimeFormat($A['created_un']);
         $templates->set_var ('created', $wary[0]);
         $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
         //公開日
         $templates->set_var('lang_released', $LANG_USERBOX_ADMIN['released']);
-		$wary = COM_getUserDateTimeFormat($A['released_un']);
+        $wary = COM_getUserDateTimeFormat($A['released_un']);
         $templates->set_var ('released', $wary[0]);
         $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
         //公開終了日
-		$templates->set_var('lang_expired', $LANG_USERBOX_ADMIN['expired']);
-		if ($A['expired'] ==="0000-00-00 00:00:00"){
-			$templates->set_var ('expired', "");
-			$templates->set_var ('expired_shortdate', "" );
-		}else{
-			$wary = COM_getUserDateTimeFormat($A['expired_un']);
-			$templates->set_var ('expired', $wary[0]);
-			$templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
-		}
+        $templates->set_var('lang_expired', $LANG_USERBOX_ADMIN['expired']);
+        if ($A['expired'] ==="0000-00-00 00:00:00"){
+            $templates->set_var ('expired', "");
+            $templates->set_var ('expired_shortdate', "" );
+        }else{
+            $wary = COM_getUserDateTimeFormat($A['expired_un']);
+            $templates->set_var ('expired', $wary[0]);
+            $templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+        }
 
         $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
         $templates->set_var ('uuid', $uuid);
 
         $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
-		$wary = COM_getUserDateTimeFormat($A['udatetime_un']);
+        $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
         $templates->set_var ('udatetime', $wary[0]);
         $templates->set_var ('last_modify_uid', $A['uuid']);
         $templates->set_var ('last_modify_name', $A['last_modify_name']);
         $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
 
-		//管理者の時「編集」
+        //管理者の時「編集」
         $templates->set_var ('edit', "");
 
-		if ($m<>"view"){
+        if ($m<>"view"){
 
-			if ( SEC_hasRights('userbox.admin')) {
-				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-				$attr = array('title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-				$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-				$attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-				$url = $_CONF['site_admin_url'];
-				$url .= '/plugins/userbox/profile.php';
-				$url .= '?mode=edit';
-				$url .= '&amp;'."id={$id}";
-				$icon = '&nbsp;' ;
-				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-				$templates->set_var ('edit', $icon);
-			}else{
-				if ($id===$_USER['uid']){
-					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-					$attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
-					$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-					$attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-					$url = $_CONF['site_url'];
-					$url .= '/userbox/myprofile/profile.php';
-					$icon = '&nbsp;' ;
-					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-					$templates->set_var ('edit', $icon);
-				}
-			}
-		}
+            if ( SEC_hasRights('userbox.admin')) {
+                $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                $attr = array('title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
+                $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                $attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
+                $url = $_CONF['site_admin_url'];
+                $url .= '/plugins/userbox/profile.php';
+                $url .= '?mode=edit';
+                $url .= '&amp;'."id={$id}";
+                $icon = '&nbsp;' ;
+                $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                $templates->set_var ('edit', $icon);
+            }else{
+                if ($id===$_USER['uid']){
+                    $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                    $attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+                    $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                    $attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
+                    $url = $_CONF['site_url'];
+                    $url .= '/userbox/myprofile/profile.php';
+                    $icon = '&nbsp;' ;
+                    $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                    $templates->set_var ('edit', $icon);
+                }
+            }
+        }
         // Call to plugins to set template variables in the databox
         PLG_templateSetVars( 'userbox', $templates );
 
@@ -1445,43 +1446,43 @@ function userbox_profile(
         $display=$userbox_content;
 
         if ($A['draft_flag']!==1){
-			if (!SEC_hasRights('userbox.admin')) {
-				$id=$A['id'];
-				$hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
-				if (empty($hits)) {
-					$hits=0;
-				}
-				$fields.="id,hits ";
-				$values.="$id,$hits + 1";
-				DB_save($_TABLES['USERBOX_stats'],$fields,$values);
-			}
+            if (!SEC_hasRights('userbox.admin')) {
+                $id=$A['id'];
+                $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
+                if (empty($hits)) {
+                    $hits=0;
+                }
+                $fields.="id,hits ";
+                $values.="$id,$hits + 1";
+                DB_save($_TABLES['USERBOX_stats'],$fields,$values);
+            }
         }
 
     }else{
         if ($nohitmsg==="yes"){
-			$tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
-			$templates = new Template($tmplfld);
-			$templates->set_file (array (
+            $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
+            $templates = new Template($tmplfld);
+            $templates->set_file (array (
                 'list' => 'nohit.thtml',
-			));
-			$templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
-			$templates->set_var('xhtml', XHTML);
-			$templates->set_var('site_url', $_CONF['site_url']);
-			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
-			$templates->set_var('layout_url', $_CONF['layout_url']);
+            ));
+            $templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
+            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('site_url', $_CONF['site_url']);
+            $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+            $templates->set_var('layout_url', $_CONF['layout_url']);
 
-			$templates->parse ('output', 'list');
-			$databox_content = $templates->finish ($templates->get_var ('output'));
-			$display =$databox_content;
-			
+            $templates->parse ('output', 'list');
+            $databox_content = $templates->finish ($templates->get_var ('output'));
+            $display =$databox_content;
+            
         }
     }
     $display =PLG_replacetags ($display);
 
-	$retval['display']=$display;
-	$retval['layout']=$layout;
-	$retval['headercode']=$headercode;
-	$retval['title']=$title;
+    $retval['display']=$display;
+    $retval['layout']=$layout;
+    $retval['headercode']=$headercode;
+    $retval['title']=$title;
 
 
     return $retval;
@@ -1510,7 +1511,7 @@ function userbox_field(
 // | 引数 $template:使用するテンプレートのフォルダ名
 // | 引数 $nohitmsg      :"yes"の時nohitメッセージ表示
 // | 引数 $perpage       :1pageあたりの件数、0の時改ページなし
-// | 引数 $page      	 :
+// | 引数 $page           :
 // | 引数 $order         :順序
 // | 引数 $field_code    :
 // +---------------------------------------------------------------------------+
@@ -1530,7 +1531,7 @@ function userbox_field(
     global $LANG_USERBOX_ADMIN;
     global $LANG_USERBOX_NOYES;
     global $_IMAGE_TYPE;
-	global $LANG_confignames;
+    global $LANG_confignames;
 
     //ログイン要否チェック
     if (COM_isAnonUser()){
@@ -1542,17 +1543,17 @@ function userbox_field(
     }
     //-----table assign
     $tbl1=$_TABLES['USERBOX_addition'] ;
-	$tbl2=$_TABLES['USERBOX_base'] ;
-	$tbl3=$_TABLES['USERBOX_addition'] ;
+    $tbl2=$_TABLES['USERBOX_base'] ;
+    $tbl3=$_TABLES['USERBOX_addition'] ;
     $tbl4=$_TABLES['users'] ;
-	$tbl5=$_TABLES['USERBOX_stats'];
-	
-	//日付関連
-	$datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
-	$new_img=$_USERBOX_CONF['new_img'];
+    $tbl5=$_TABLES['USERBOX_stats'];
+    
+    //日付関連
+    $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
+    $new_img=$_USERBOX_CONF['new_img'];
     if ($new_img==""){
         $new_img="New!";
-	}
+    }
     $newmarkday=$_USERBOX_CONF['newmarkday'];
     if ($newmarkday==""){
         $newmarkday=3;
@@ -1573,8 +1574,8 @@ function userbox_field(
     }
     if ($field_id===0) {
         return;
-	}
-	
+    }
+    
     if ($field_code===""){
         $field_code=DB_getItem( $_TABLES['USERBOX_def_field']
                  ,"templatesetvar","field_id={$field_id}");
@@ -1597,18 +1598,18 @@ function userbox_field(
 
 
     $w=userbox_orderby($datefield,$order,$orderby,$addfieldorder,$orderfield_id);
-	$field_def[$field_id]['name'];
+    $field_def[$field_id]['name'];
     $field_name=$field_def[$field_id]['name'];
-	$field_templatesetvar=$field_def[$field_id]['templatesetvar'];
-	$field_description=$field_def[$field_id]['description'];
+    $field_templatesetvar=$field_def[$field_id]['templatesetvar'];
+    $field_description=$field_def[$field_id]['description'];
 
     $fieldvalue=DATABOX_getfieldvalue(
           $value
          ,$field_def[$field_id]['type']
          ,$field_def[$field_id]['selectionary']
          ,$LANG_USERBOX_NOYES
-		 ,$field_def[$field_id]['selectlist']
-		 ,$pi_name
+         ,$field_def[$field_id]['selectlist']
+         ,$pi_name
           );
 
 
@@ -1621,24 +1622,24 @@ function userbox_field(
     $sql = "SELECT ";
 
     $sql .= " t2.id ".LB;
-	$sql .= " ,t2.description ".LB;
-	$sql .= " ,t2.released ".LB;
+    $sql .= " ,t2.description ".LB;
+    $sql .= " ,t2.released ".LB;
     $sql .= " ,t2.".$datefield." AS datefield ".LB;
-	$sql .= " ,t2.expired ".LB;
+    $sql .= " ,t2.expired ".LB;
     $sql .= " ,UNIX_TIMESTAMP(t2.".$datefield.") AS datefield_un ".LB;
-	$sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
-	$sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.released ) AS released_un ".LB;
+    $sql .= " ,UNIX_TIMESTAMP(t2.expired ) AS expired_un ".LB;
 
     $sql .= " ,t2.group_id";
-	$sql .= " ,t2.owner_id";
-	$sql .= " ,t2.fieldset_id ".LB;
+    $sql .= " ,t2.owner_id";
+    $sql .= " ,t2.fieldset_id ".LB;
 
     $sql .= " ,t4.username";
-	$sql .= " ,t4.fullname";
+    $sql .= " ,t4.fullname";
     $sql .= " ,t4.photo";
     $sql .= " ,t4.email";
-	
-	if ($addfieldorder){
+    
+    if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
 
@@ -1657,7 +1658,7 @@ function userbox_field(
     $sql .= " AND t1.value = \"".$value."\"".LB;
     $sql .= " AND t2.id=t4.uid ".LB;
     if ($addfieldorder){
-		$sql .= " AND t3.field_id=".$orderfield_id.LB;
+        $sql .= " AND t3.field_id=".$orderfield_id.LB;
         $sql .= " AND t3.id=t2.id".LB;
     }
     //管理者の時,下書データも含む
@@ -1673,7 +1674,7 @@ function userbox_field(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
-	
+    
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
 
@@ -1686,138 +1687,138 @@ function userbox_field(
     }
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
-	
-	//ヘッダ、左ブロック
+    
+    //ヘッダ、左ブロック
     if ($autotag==="notautotag"){
         if ($page > 1) {
             $page_title = sprintf ('%s (%d)', $field_name, $page);
         } else {
             $page_title = sprintf ('%s ', $field_name);
         }
-		$headercode=DATABOX_getheadercode(	
-			"attribute"
-			,$template
-			,$pi_name
-			,$field_id
-			,$field_name
-			,$field_description
-			,$field_name
-			,$field_description);
+        $headercode=DATABOX_getheadercode(    
+            "attribute"
+            ,$template
+            ,$pi_name
+            ,$field_id
+            ,$field_name
+            ,$field_description
+            ,$field_name
+            ,$field_description);
         $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
     }
-	
+    
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
-	$url=$_CONF['site_url']."/userbox/attribute.php";
-	$attribute_top=":<a href='".$url."'>".$LANG_USERBOX['attribute_top']."</a>";
-	$url=$_CONF['site_url']."/userbox/attribute.php";
-	$url.="?";
-	$url.="id=".$field_id;
-	$url.="&amp;m=id";
-	$field_top=":<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
+    $url=$_CONF['site_url']."/userbox/attribute.php";
+    $attribute_top=":<a href='".$url."'>".$LANG_USERBOX['attribute_top']."</a>";
+    $url=$_CONF['site_url']."/userbox/attribute.php";
+    $url.="?";
+    $url.="id=".$field_id;
+    $url.="&amp;m=id";
+    $field_top=":<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
     if ($numrows > 0) {
-		$tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
-		$templates = new Template($tmplfld);
-		$templates->set_file (array (
-			'list' => 'list_detail.thtml',
-			'nav'   => 'navigation_detail.thtml',
-			'row'   => 'row.thtml',
-			'col'   => "col_detail.thtml",
-			'pagenav'  => 'pagenavigation.thtml'
-			));
-		
-		$languageid=COM_getLanguageId();
-		$language= COM_getLanguage();
-		$templates->set_var ('languageid', $languageid);
-		$templates->set_var ('language', $language);
-		if ($languageid<>"") {
-			$templates->set_var ('_languageid', "_".$languageid);
-		}else{
-			$templates->set_var ('_languageid', "");
-		}
-		
-		//
-		$templates->set_var ('site_url',$_CONF['site_url']);
-		$templates->set_var ('this_script',THIS_SCRIPT);
+        $tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
+        $templates = new Template($tmplfld);
+        $templates->set_file (array (
+            'list' => 'list_detail.thtml',
+            'nav'   => 'navigation_detail.thtml',
+            'row'   => 'row.thtml',
+            'col'   => "col_detail.thtml",
+            'pagenav'  => 'pagenavigation.thtml'
+            ));
+        
+        $languageid=COM_getLanguageId();
+        $language= COM_getLanguage();
+        $templates->set_var ('languageid', $languageid);
+        $templates->set_var ('language', $language);
+        if ($languageid<>"") {
+            $templates->set_var ('_languageid', "_".$languageid);
+        }else{
+            $templates->set_var ('_languageid', "");
+        }
+        
+        //
+        $templates->set_var ('site_url',$_CONF['site_url']);
+        $templates->set_var ('this_script',THIS_SCRIPT);
 
-		//bread
-		$templates->set_var ('home',$LANG_USERBOX['home']);
-		$templates->set_var ('attribute_top',$addition_top);
-		$templates->set_var ('field_top',$field_top);
-		
-		$templates->set_var ('field_name',$field_name);
-		$templates->set_var ('field_templatesetvar',$field_templatesetvar);
-		$templates->set_var ('field_description',$field_description);
+        //bread
+        $templates->set_var ('home',$LANG_USERBOX['home']);
+        $templates->set_var ('attribute_top',$addition_top);
+        $templates->set_var ('field_top',$field_top);
+        
+        $templates->set_var ('field_name',$field_name);
+        $templates->set_var ('field_templatesetvar',$field_templatesetvar);
+        $templates->set_var ('field_description',$field_description);
 
-		$templates->set_var ('fieldvalue',$fieldvalue);
+        $templates->set_var ('fieldvalue',$fieldvalue);
 
-		//page
-		$offset = ($page - 1) * $perpage;
-		$templates->set_var ('cnt', $cnt);
-		$lin1=$offset+1;
-		$lin2=$lin1+$perpage - 1;
-		if ($lin2>$cnt){
-			$lin2=$cnt;
-		}
+        //page
+        $offset = ($page - 1) * $perpage;
+        $templates->set_var ('cnt', $cnt);
+        $lin1=$offset+1;
+        $lin2=$lin1+$perpage - 1;
+        if ($lin2>$cnt){
+            $lin2=$cnt;
+        }
 
-		//summary navigation
-		$templates->set_var ('lang_view', $LANG_USERBOX['view']);
-		$templates->set_var ('lin', $lin1."-".($lin2));
-		$templates->set_var ('cnt', $cnt);
+        //summary navigation
+        $templates->set_var ('lang_view', $LANG_USERBOX['view']);
+        $templates->set_var ('lin', $lin1."-".($lin2));
+        $templates->set_var ('cnt', $cnt);
 
-		$templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
+        $templates->set_var ('lang_name', $LANG_USERBOX_ADMIN['name']);
 
-		$templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
-		$templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
-		$templates->set_var ('lang_uid', $LANG28[2]);
-		$templates->set_var ('lang_username', $LANG28[3]);
-		$templates->set_var ('lang_fullname',$LANG28[4]);
+        $templates->set_var ('lang_username', $LANG_USERBOX_ADMIN['username']);
+        $templates->set_var ('lang_id', $LANG_USERBOX_ADMIN['id']);
+        $templates->set_var ('lang_uid', $LANG28[2]);
+        $templates->set_var ('lang_username', $LANG28[3]);
+        $templates->set_var ('lang_fullname',$LANG28[4]);
 
-		//
-		$templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
-		$templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
-		$templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
-		$templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
-		$templates->set_var ('lang_remaingdays', $LANG_DATABOX_ADMIN['remaingdays']);
-		$templates->set_var ('lang_addfield', $addfield_name);
-		
-		//$_USERBOX_CONF
+        //
+        $templates->set_var ('lang_date', $LANG_USERBOX_ADMIN[$datefield]);
+        $templates->set_var ('lang_released', $LANG_USERBOX_ADMIN['released']);
+        $templates->set_var ('lang_description', $LANG_USERBOX_ADMIN['description']);
+        $templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
+        $templates->set_var ('lang_remaingdays', $LANG_DATABOX_ADMIN['remaingdays']);
+        $templates->set_var ('lang_addfield', $addfield_name);
+        
+        //$_USERBOX_CONF
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['userbox']['imgfile_frd']);
-		$templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
-		$templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
+        $templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
+        $templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['userbox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_USERBOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-		
+        
          for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
-			$A = array_map('stripslashes', $A);
+            $A = array_map('stripslashes', $A);
 
             $description=COM_applyFilter($A['description']);
             $username=COM_applyFilter($A['username']);
             $fullname=COM_applyFilter($A['fullname']);
             $id=COM_applyFilter($A['id']);
-			$datefield=COM_applyFilter($A['datefield']);
-			$released=COM_applyFilter($A['released']);
-			$expired=COM_applyFilter($A['expired']);
-			$datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
-			$released_ary = COM_getUserDateTimeFormat($A['released_un']);
-			if ($expired==="0000-00-00 00:00:00"){
-				$expired_ary=array();
-			}else{	
-				$expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
-			}
-			$curdate_ary =  COM_getUserDateTimeFormat();
-			
+            $datefield=COM_applyFilter($A['datefield']);
+            $released=COM_applyFilter($A['released']);
+            $expired=COM_applyFilter($A['expired']);
+            $datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
+            $released_ary = COM_getUserDateTimeFormat($A['released_un']);
+            if ($expired==="0000-00-00 00:00:00"){
+                $expired_ary=array();
+            }else{    
+                $expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
+            }
+            $curdate_ary =  COM_getUserDateTimeFormat();
+            
             $sortvalue=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
-			
-			$fieldset_id=COM_applyFilter($A['fieldset_id']);
+            
+            $fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $url=$_CONF['site_url'] . "/userbox/profile.php";
             $url.="?";
@@ -1841,15 +1842,15 @@ function userbox_field(
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
-			$templates->set_var ('data_url', $url);
-			//data_released
+            $templates->set_var ('data_url', $url);
+            //data_released
             $templates->set_var ('data_datefield', $datefield);
-			$templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
- 			$templates->set_var ('data_value', $sortvalue);
-			
-			$templates->set_var ('data_released', $released_ary[0]);//@@@@@@
+            $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_value', $sortvalue);
+            
+            $templates->set_var ('data_released', $released_ary[0]);//@@@@@@
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-			//公開終了日 Expired to publish
+            //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
@@ -1858,25 +1859,25 @@ function userbox_field(
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
             }
-			$remaingdays="";
-			if ($expired<>"0000-00-00 00:00:00") {
-				if  ($expired_ary[1]>=$curdate_ary[1]){
-					$remaingdays=COM_dateDiff( "d", $expired_ary[1], $curdate_ary[1] ) + 1;
-				}
-			}
-			$templates->set_var ('data_remaingdays', $remaingdays);//@@@@@@
+            $remaingdays="";
+            if ($expired<>"0000-00-00 00:00:00") {
+                if  ($expired_ary[1]>=$curdate_ary[1]){
+                    $remaingdays=COM_dateDiff( "d", $expired_ary[1], $curdate_ary[1] ) + 1;
+                }
+            }
+            $templates->set_var ('data_remaingdays', $remaingdays);//@@@@@@
 
-			if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
-				$templates->set_var ('new_img', $new_img);
-			}else{
-				$templates->set_var ('new_img', '');
-			}
+            if (date("Ymd",strtotime($datefield)) >= date("Ymd",$chkday)){
+                $templates->set_var ('new_img', $new_img);
+            }else{
+                $templates->set_var ('new_img', '');
+            }
             $hits=COM_applyFilter(DB_getItem( $tbl5 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);
-			//カテゴリ categories 
-			$templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-			DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
+            //カテゴリ categories 
+            $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
+            DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
 
             //追加項目 fields
             $group_id = stripslashes($A['group_id']);
@@ -1884,45 +1885,45 @@ function userbox_field(
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-			
-			//管理者の時「編集」
-			if ( SEC_hasRights('databox.admin')) {
-				$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-				$attr = array('title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
-				$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-				
-				$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
-				$url = $_CONF['site_admin_url'];
-				$url .= '/plugins/userbox/profile.php';
-				$url .= '?mode=edit';
-				$url .= '&amp;'."id={$id}";
-				$icon = '&nbsp;' ;
-				$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-				$templates->set_var ('data_edit', $icon);
-			}else{
-				$rt=databox_chk_loaddata($id);
-				//編集権限のあるMyProfile
-				if ( $rt==="OK") {
-					$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-					$attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
-					$editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+            
+            //管理者の時「編集」
+            if ( SEC_hasRights('databox.admin')) {
+                $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                $attr = array('title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+                $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                
+                $attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+                $url = $_CONF['site_admin_url'];
+                $url .= '/plugins/userbox/profile.php';
+                $url .= '?mode=edit';
+                $url .= '&amp;'."id={$id}";
+                $icon = '&nbsp;' ;
+                $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                $templates->set_var ('data_edit', $icon);
+            }else{
+                $rt=databox_chk_loaddata($id);
+                //編集権限のあるMyProfile
+                if ( $rt==="OK") {
+                    $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                    $attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+                    $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
 
-					$attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
+                    $attr = array('class' => 'editlink', 'title' => $title." ".$LANG_USERBOX_ADMIN['edit']);
 
-					$url = $_CONF['site_url'];
-					$url .= '/databox/myprofile/profile.php';
-					$url .= '?mode=edit';
-					$url .= '&amp;'."id={$id}";
+                    $url = $_CONF['site_url'];
+                    $url .= '/databox/myprofile/profile.php';
+                    $url .= '?mode=edit';
+                    $url .= '&amp;'."id={$id}";
 
-					$icon = '&nbsp;' ;
-					$icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                    $icon = '&nbsp;' ;
+                    $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
 
-					$templates->set_var ('data_edit', $icon);
-				}else{
-					$templates->set_var ('data_edit', "");
-				}
-				
-			}
+                    $templates->set_var ('data_edit', $icon);
+                }else{
+                    $templates->set_var ('data_edit', "");
+                }
+                
+            }
 
             //=====
             $templates->parse ('col_var', 'col', true);
@@ -1939,8 +1940,8 @@ function userbox_field(
             $url.=THIS_SCRIPT;
         }else{
             $url.="userbox/field.php";
-		}
-		$url .="?";
+        }
+        $url .="?";
         $url .= "id=".$field_id;
         $url .= "&amp;m=id";
         $url .= "&amp;value=".$value;
@@ -1973,33 +1974,33 @@ function userbox_field(
 
     }else{
         if ($nohitmsg==="yes"){
- 			$tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
-			$templates = new Template($tmplfld);
-			$templates->set_file (array (
+            $tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
+            $templates = new Template($tmplfld);
+            $templates->set_file (array (
                 'list' => 'nohit.thtml',
-			));
-			
-			//bread
-			$templates->set_var ('home',$LANG_USERBOX['home']);
-			$templates->set_var ('attribute_top',$attribute_top);
-			$templates->set_var ('field_top',$field_top);
-			
-			$templates->set_var ('field_name',$field_name);
-			$templates->set_var ('field_templatesetvar',$templatesetvar);
-			$templates->set_var ('field_description',$field_description);
-			
-			$templates->set_var ('fieldvalue',$fieldvalue);
-						
-			$templates->set_var('xhtml', XHTML);
-			$templates->set_var('site_url', $_CONF['site_url']);
-			$templates->set_var('site_admin_url', $_CONF['site_admin_url']);
-			$templates->set_var('layout_url', $_CONF['layout_url']);
-			
-			$templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
+            ));
+            
+            //bread
+            $templates->set_var ('home',$LANG_USERBOX['home']);
+            $templates->set_var ('attribute_top',$attribute_top);
+            $templates->set_var ('field_top',$field_top);
+            
+            $templates->set_var ('field_name',$field_name);
+            $templates->set_var ('field_templatesetvar',$templatesetvar);
+            $templates->set_var ('field_description',$field_description);
+            
+            $templates->set_var ('fieldvalue',$fieldvalue);
+                        
+            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('site_url', $_CONF['site_url']);
+            $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
+            $templates->set_var('layout_url', $_CONF['layout_url']);
+            
+            $templates->set_var ('lang_nohit', $LANG_USERBOX['nohit']);
 
-			$templates->parse ('output', 'list');
-			$content = $templates->finish ($templates->get_var ('output'));
-			$retval .=$content;
+            $templates->parse ('output', 'list');
+            $content = $templates->finish ($templates->get_var ('output'));
+            $retval .=$content;
         }
     }
 
@@ -2012,8 +2013,8 @@ function userbox_orderby(
     $datefield
     ,&$order
     ,&$orderby
-	,&$addfieldorder
-	,&$field_id
+    ,&$addfieldorder
+    ,&$field_id
 
 )
 // +---------------------------------------------------------------------------+
@@ -2257,7 +2258,7 @@ function userbox_newlist(
             $sql.=" AND t3.code IN ($categories)";
         }
     }
-	$sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
+    $sql .= COM_getLangSQL ('username', 'AND', 't4').LB;
 
     $sql.=" ORDER BY ".$datefield ." DESC";
     $sql.=" LIMIT $limitcnt";
@@ -2301,8 +2302,8 @@ function userbox_newlist(
         $n=($i%2)+1;
         $class='class="row'.$n.'"';
         $list->set_var ('class', 'class="row'.$n.'"');
-		
-		//カテゴリ
+        
+        //カテゴリ
         DATABOX_getcategoriesDisp($A['id'],$list,$chk_user,0,$pi_name);
 
         $list->parse ('list_col', 'col', true);
@@ -2443,33 +2444,33 @@ function userbox_msg(
 global $LANG_USERBOX_MSG;
 global $_USER;
 global $_TABLES;
-	
-	$rt="";
-	$uid=$_USER['uid'];
-	
-	switch ($for) {
-		case '':
-		case 'alluser':
-			$rt=$LANG_USERBOX_MSG['alluser'];
-		    break;
-		case 'draftuser':
-			$draft_flag=DB_getItem($_TABLES['USERBOX_base'], 'draft_flag',
-						"id = '{$uid}'");
-			if ($draft_flag==1){
-				$rt=$LANG_USERBOX_MSG['draftuser'];
-			}
-		    break;
-		case 'descriptionempty':
-			if ($uid<>0){
-				if (userbox_descriptionemptycheck($uid)==false){
-					$rt=$LANG_USERBOX_MSG['descriptionempty'];
-				}
-			}
-		    break;
-		default:
-		
-	}
-	
+    
+    $rt="";
+    $uid=$_USER['uid'];
+    
+    switch ($for) {
+        case '':
+        case 'alluser':
+            $rt=$LANG_USERBOX_MSG['alluser'];
+            break;
+        case 'draftuser':
+            $draft_flag=DB_getItem($_TABLES['USERBOX_base'], 'draft_flag',
+                        "id = '{$uid}'");
+            if ($draft_flag==1){
+                $rt=$LANG_USERBOX_MSG['draftuser'];
+            }
+            break;
+        case 'descriptionempty':
+            if ($uid<>0){
+                if (userbox_descriptionemptycheck($uid)==false){
+                    $rt=$LANG_USERBOX_MSG['descriptionempty'];
+                }
+            }
+            break;
+        default:
+        
+    }
+    
     return $rt;
 
 }
