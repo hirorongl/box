@@ -4989,9 +4989,13 @@ function DATABOX_fieldvalue(
         if (is_null($code) OR $code===""){
             $id=0;
         }else{
-            $id=DATABOX_codetoid($code,strtoupper($pi_name).'_base');
+            if ($pi_name=="userbox"){
+                $id=DATABOX_codetoid($code,'users',"uid","username");
+            }else{
+                $id=DATABOX_codetoid($code,strtoupper($pi_name).'_base');
+            }
         }
-    }
+	}
     if ($id===0) {
         return "";
     }
@@ -5007,16 +5011,16 @@ function DATABOX_fieldvalue(
         return "";
     }
     $fieldset_id=DB_getItem( $table_base,"fieldset_id","id=".$id  );
-          if  ($fieldset_id==0){
-          }else{
-              $w=DB_getItem( $table_def_fieldset_assignments
-                  ,"fieldset_id","fieldset_id=$fieldset_id AND field_id=".$field_id );
-              if  ($w==""){
-                  return "";
-              }
-          }
+    if  ($fieldset_id==0){
+    }else{
+        $w=DB_getItem( $table_def_fieldset_assignments
+             ,"fieldset_id","fieldset_id=$fieldset_id AND field_id=".$field_id );
+        if  ($w==""){
+            return "";
+        }
+    }
           
-          //
+    //
     $sql  = "SELECT DISTINCT ".LB;
     $sql  .= " t.value ".LB;
     $sql  .= " ,m.type ".LB;
@@ -5029,12 +5033,10 @@ function DATABOX_fieldvalue(
     $sql  .= "{$table_addition} AS t".LB;
     $sql  .= " , {$table_def_field} AS m".LB;
     
-    if ($fieldset_id<>0){
-        $sql  .= " WHERE  ".LB;
-        $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
-        $sql  .= " AND m.field_id = {$field_id} ".LB;
-        $sql  .= " AND m.allow_display = 0 ".LB;
-    }
+    $sql  .= " WHERE  ".LB;
+    $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
+    $sql  .= " AND m.field_id = {$field_id} ".LB;
+    $sql  .= " AND m.allow_display = 0 ".LB;
     
     $result = DB_query ($sql);
     $num = DB_numRows ($result);

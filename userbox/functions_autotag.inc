@@ -88,6 +88,8 @@ function plugin_autotags_userbox (
         $parm2_ary[]="expired";
         $parm2_ary[]="group_id";
         $parm2_ary[]="group_code";
+        $parm2_ary[]="field_code";
+        $parm2_ary[]="option";
         $p=userbox_parm2($p2,$parm2_ary);
 
         //各処理
@@ -194,6 +196,16 @@ function plugin_autotags_userbox (
                             ,$p['group_id']
                             ,$p['group_code']
                         );
+                        break;
+                    case 'attributevalue':
+                        $rt=DATABOX_fieldvalue(
+                                "userbox"
+                                ,$p['id']
+                                ,$p['code']
+                                ,$p['field_id']
+                                ,$p['field_code']
+                                ,$p['option']
+                            );
                         break;
                 }
 
