@@ -248,6 +248,24 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 例１：[databox:search templatedir=abc&fieldset=10&gor_3=6&gor_3=&gand_8=7&gand_8=&aeq_4=10000&ato_5=&afr_6=&ato_6=&aeq_75=&afr_75=&ato_75=&gor_1=&gand_2=&perpage=4&page=1&nohitmsg=yes]<br />
 <a title="検索リスト引数[]は省いてください"class="note_super" href="#notetext_4">*4</a>
 </tr>
+<tr  class="r2">
+<td>[databox:attributevalue　アトリビュートテーマ変数またはアトリビュートid データidまたはcode option]
+</td>
+
+<td>指定アトリビュートの表示用値等を返す<br /> 
+例１：[databox:attributevalue field_code:pref code=xxx ] <br />
+例２：[databox:attributevalue field_code:pref code=xxx option:value2] <br />
+例３：[databox:attributevalue field_id:1 id=2 option:value2] <br />
+optionなしは、{登録したテーマ変数名} と同等の内容です。 <br />
+option:name　名称 <br />
+option:description 説明 <br />
+option:yes　{登録したテーマ変数名_yes}と同じ <br />
+option:value2　{登録したテーマ変数名_mst_value2}と同じ <br />
+option:disp　{登録したテーマ変数名_mst_disp}と同じ <br />
+option:no　{登録したテーマ変数名_mst_no} と同じ <br />
+<a href="templatesetvars.html#notetext_add">各アトリビュートのテーマ変数</a>参照
+</td>
+</tr>
 </tbody>
 </table>
 <h2>ブロック用関数</h2>
@@ -255,6 +273,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <tr><th style="width:25%">関数名</th>
     <th style="width:75%">説明</th>
 </tr>
+
 <tbody>
 <tr>
   <td>phpblock_shownewdatabox</td>
