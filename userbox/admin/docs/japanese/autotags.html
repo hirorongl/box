@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/autotags.html 20140205 -->
+<!-- admin/plugins/userbox/docs/japanese/autotags.html 20150205 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2013/08/23 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/02/05 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -139,7 +139,24 @@ perpage:(Number) 1ページあたりの表示件数。0のときは改ページ�
 アクセス権のあるデータが登録されていないカテゴリの件数は含みません
 </td>
 </tr>
+<tr  class="r2">
+<td>[databox:attributevalue　アトリビュートテーマ変数またはアトリビュートid データidまたはcode option]
+</td>
 
+<td>指定アトリビュートの表示用値等を返す<br /> 
+例１：[userbox:attributevalue field_code:pref code=Admin ] <br />
+例２：[userbox:attributevalue field_code:pref code=Admin option:value2] <br />
+例３：[userbox:attributevalue field_id:1 id=2 option:value2] <br />
+optionなしは、{登録したテーマ変数名} と同等の内容です。 <br />
+option:name　名称 <br />
+option:description 説明 <br />
+option:yes　{登録したテーマ変数名_yes}と同じ <br />
+option:value2　{登録したテーマ変数名_mst_value2}と同じ <br />
+option:disp　{登録したテーマ変数名_mst_disp}と同じ <br />
+option:no　{登録したテーマ変数名_mst_no} と同じ <br />
+<a href="templatesetvars.html#notetext_add">各アトリビュートのテーマ変数</a>参照
+</td>
+</tr>
 </tbody>
 </table>
 <h2>ブロック用関数</h2>
