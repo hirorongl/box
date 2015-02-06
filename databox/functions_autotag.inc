@@ -3527,43 +3527,43 @@ function databox_searcharg(
     ,$arg
 )
 {
-          if ($autotag==="notautotag"){
-                    foreach((array)$arg as $key => $value){
-                              $key=COM_applyFilter($key);
-                              if  ($key<>""){
-                      if  (is_array($value)  ) {
-                                      foreach($value as $key2 => $value2){
-                                          $argary[$key][]=COM_applyFilter($value2);
-                                      }
-                                        }else{
+    if ($autotag==="notautotag"){
+        foreach((array)$arg as $key => $value){
+            $key=COM_applyFilter($key);
+            if  ($key<>""){
+                if  (is_array($value)  ) {
+                    foreach($value as $key2 => $value2){
+                       $argary[$key][]=COM_applyFilter($value2);
+                    }
+                }else{
                     if  ($key=="fieldset") {
                         $argary['fieldset_id']=COM_applyFilter($value);
                     }
-                                      $argary[$key]=COM_applyFilter($value);
-                                        }
-                              }
-              }
-          }else{
+                    $argary[$key]=COM_applyFilter($value);
+                }
+            }
+        }
+    }else{
         $ary = explode ('&', $arg);
-              $argary = array();
-              foreach($ary as $key => $value){
-                              $k = explode ('=', $value);
-                              $k0= COM_applyFilter($k[0]);
-                              $k1= COM_applyFilter($k[1]);
-                              if  ($k0<>""){
+        $argary = array();
+        foreach($ary as $key => $value){
+            $k = explode ('=', $value);
+            $k0= COM_applyFilter($k[0]);
+            $k1= COM_applyFilter($k[1]);
+            if  ($k0<>""){
                 if  ($k0=="fieldset") {
                     $argary['fieldset']=$k1;
                     $argary['fieldset_id']=$k1;
-                            }else if  ( substr($k0,0,3)=="gor" OR substr($k0,0,4)=="gand" OR substr($k0,0,3)=="ams" ) {
-                                      $argary[$k0][]=$k1;
-                            }else {
-                                      $argary[$k0]=$k1;
-                                        }
-                              }
-                    }
-          }
+                }else if  ( substr($k0,0,3)=="gor" OR substr($k0,0,4)=="gand" OR substr($k0,0,3)=="ams" ) {
+                    $argary[$k0][]=$k1;
+                }else {
+                    $argary[$k0]=$k1;
+                }
+            }
+        }
+    }
 
-          return $argary;
+    return $argary;
 }
 
 
@@ -3592,8 +3592,7 @@ function databox_searchfield(
 {
     global $_TABLES;
           
-          
-          $return=false;
+    $return=false;
           
     $sql="SELECT ";
     $sql.= " field_id ";
@@ -3604,50 +3603,50 @@ function databox_searchfield(
     $sql.=" WHERE field_id=".$field_id;
     // 表示する項目のみ
     $sql.=" AND allow_display='0'";
-          if  ($operate=="ams"){
+    if  ($operate=="ams"){
         //9:オプションリスト（マスター）
         //16:ラジオボタンリスト（マスター）
-                    //18:マルチセレクトリスト（マスター）
-                    $sql.=" AND type IN (9,16,18)";
-          }else{
-         //0: 一行テキストフィールド
-         //1: 複数行テキストフィールド
-         //20:HTML  10:TinyMCE 19:CKEditor
-         //15:数値  21:通貨
-         $sql.=" AND type IN (0,1,10,19,20,15,21)";
-          }
+        //18:マルチセレクトリスト（マスター）
+        $sql.=" AND type IN (9,16,18)";
+    }else{
+        //0: 一行テキストフィールド
+        //1: 複数行テキストフィールド
+        //20:HTML  10:TinyMCE 19:CKEditor
+        //15:数値  21:通貨
+        $sql.=" AND type IN (0,1,10,19,20,15,21)";
+    }
           
-          $result = DB_query ($sql);
+    $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
     if ($numrows>0){
        $A = DB_fetchArray ($result);
        $acnt=$acnt+1;
        $afield[$acnt]=" ,a".$acnt.".value AS value".$acnt;
        $afile[$acnt]=" ,{$_TABLES['DATABOX_addition']} AS a".$acnt;
-             $w="a".$acnt.".field_id=".$field_id;
-             $w.=" AND a".$acnt.".id=t2.id";
-             if  ($operate=="aeq"){
-                 $w.=" AND a".$acnt.".value='".$value."'";
+       $w="a".$acnt.".field_id=".$field_id;
+       $w.=" AND a".$acnt.".id=t2.id";
+       if  ($operate=="aeq"){
+           $w.=" AND a".$acnt.".value='".$value."'";
        }else if ($operate=="a"){
             $w.=" AND a".$acnt.".value LIKE '%".$value."%'";
-             }else if ($operate=="afr"){
-            if  ($A['type']==15  OR $A['type']==21){
+       }else if ($operate=="afr"){
+           if  ($A['type']==15  OR $A['type']==21){
                 $w.=" AND (a".$acnt.".value + 0) >='".$value."'";
-                  }else{
+           }else{
                 $w.=" AND a".$acnt.".value>='".$value."'";
-            }
-             }else if ($operate=="ato"){
-            if  ($A['type']==15  OR $A['type']==21){
-                $w.=" AND (a".$acnt.".value + 0) <='".$value."'";
-            }else{
-                $w.=" AND a".$acnt.".value<='".$value."'";
-            }
+           }
+       }else if ($operate=="ato"){
+           if  ($A['type']==15  OR $A['type']==21){
+               $w.=" AND (a".$acnt.".value + 0) <='".$value."'";
+           }else{
+               $w.=" AND a".$acnt.".value<='".$value."'";
+           }
        }else if ($operate=="ams"){
             $w.=" AND a".$acnt.".value  IN  ({$value})";
-             }
-             $awhere[$acnt]=$w;
+       }
+       $awhere[$acnt]=$w;
        $return=true;
-          }
+    }
 
     return ;
 
