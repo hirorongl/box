@@ -3462,12 +3462,12 @@ function databox_search(
         $url.="?";
         $url.=$arg_sv;
         $url .= "&amp;order=";
-                    //-----order navigation
+        //-----order navigation
         $dummy=databox_order ($url, $templates, $argary['order']) ;
         //-----page navigation
         $url .= $argary['order'];
         $templates->set_var ('page_navigation',
-                COM_printPageNavigation ($url,$argary['page'], $pages));
+        COM_printPageNavigation ($url,$argary['page'], $pages));
         $templates->set_var ( 'pagenavinone', '' );
         //------------
         $templates->parse ('arg_var', 'arg', true);
