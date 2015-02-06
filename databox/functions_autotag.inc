@@ -3563,17 +3563,6 @@ function databox_searcharg(
                     }
           }
 
-          foreach($argary as $key => $value){
-                    if  ( substr($key,0,3)=="gor" OR substr($key,0,4)=="gand" OR substr($key,0,3)=="ams" ) {
-          //                    echo "k: ".$key."<br>";
-                              foreach($value as $key2 => $value2){
-          //                        echo "key2: ".$key2." value2: ".$value2."<br>";
-                              }
-                    }else{
-          //                    echo "k: ".$key." v: ".$value."<br>";
-                    }
-          }
-
           return $argary;
 }
 
