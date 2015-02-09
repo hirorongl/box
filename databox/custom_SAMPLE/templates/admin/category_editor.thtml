@@ -97,9 +97,11 @@
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
     {delete_option} 
 
+{!if lang_delete_help}
 	<dl class="notes">
       <dd>{lang_delete_help}</dd>
 	</dl>
+{!endif}
 
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 	</div>

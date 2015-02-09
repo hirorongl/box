@@ -78,7 +78,13 @@
     <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
     {delete_option} 
-	{lang_delete_help}
+
+{!if lang_delete_help}
+	<dl class="notes">
+      <dd>{lang_delete_help}</dd>
+	</dl>
+{!endif}
+
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 	</div>
   </form>
