@@ -755,18 +755,21 @@ function LIB_Save (
         $sql.=" (`id`,`field_id`,`value`)".LB;
 
         $sql.=" SELECT id";
-        $sql.=" ,".$id;
-        //7 = 'オプションリスト';
-        //8 = 'ラジオボタンリスト';
-        if (($type==7 OR $type==8) AND ($selection<>"")){
-            $sql.=",'0' ";
-        }else{
-            $sql.=",NULL ";
+	    $sql.=" ,".$id;
+	    if  ($initial_value<>""){
+            $sql.=",'".$initial_value."' ";
+		}else{
+            //7 = 'オプションリスト';
+	        //8 = 'ラジオボタンリスト';
+            if (($type==7 OR $type==8) AND ($selection<>"")){
+                $sql.=",'0' ";
+            }else{
+                $sql.=",NULL ";
+	        }
         }
-        $sql.=" FROM " .$table1.LB;
+        $sql.=" FROM " .$table1." AS t1".LB;
 
-
-        $sql.=" where id NOT IN (select id from ".$table2.LB;
+        $sql.=" where  fieldset_id=0 AND id NOT IN (select id from ".$table2.LB;
         $sql.=" where field_id=".$id.")".LB;
 //COM_errorLog( "sql= " . $sql, 1 );
 
