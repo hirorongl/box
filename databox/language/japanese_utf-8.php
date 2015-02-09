@@ -909,8 +909,8 @@ $LANG_configselects['databox'][13] =array('アクセス不可' => 0, '利用す�
 $LANG_configselects['databox'][5] =array(
     '表示しない' => 'hide'
     , '編集日付によって表示する' => 'modified'
-	, '作成日付によって表示する' => 'created'
-	, '公開日によって表示する' => 'released'
+    , '作成日付によって表示する' => 'created'
+    , '公開日によって表示する' => 'released'
 );
 
 //$LANG_configselects['databox'][17] =array('アクセス不可' => 0, '表示' => 2, '表示・編集' => 3);
@@ -923,8 +923,8 @@ $LANG_configselects['databox'][20] =array(
 //@@@@@
 $LANG_configselects['databox'][21] =array(
      '編集日付による' => 'modified'
-	, '作成日付による' => 'created'
-	, '公開日による' => 'released'
+    , '作成日付による' => 'created'
+    , '公開日による' => 'released'
 );
 
 $LANG_configselects['databox'][22] =array(
