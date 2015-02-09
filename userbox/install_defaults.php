@@ -288,243 +288,243 @@ function plugin_initconfig_userbox()
             , 0, 0
             , NULL, 0, true
             , $pi_name);
-		//(0)メイン設定
+        //(0)メイン設定
         $c->add('tab_main', NULL, 'tab', 0, 0, NULL, 0, true, $pi_name, 0);
         $c->add(
             'fs_main'
             , NULL, 'fieldset'
             , 0, 0
             , NULL, 0, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'perpage'
             ,$_USERBOX_DEFAULT['perpage']
             ,'text', 0, 0, NULL, 10, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'loginrequired'
             ,$_USERBOX_DEFAULT['loginrequired']
             ,'select', 0, 0, 23, 20, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'hidemenu'
             ,$_USERBOX_DEFAULT['hidemenu']
             ,'select', 0, 0, 0, 30, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'categorycode'
             , $_USERBOX_DEFAULT['categorycode']
             , 'select',  0, 0, 1, 40, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'datacode'
             , $_USERBOX_DEFAULT['datacode']
             , 'select',  0, 0, 1, 50, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'groupcode'
             , $_USERBOX_DEFAULT['groupcode']
             , 'select',  0, 0, 1, 60, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'top'
             ,$_USERBOX_DEFAULT['top']
             ,'text', 0, 0, NULL, 70, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'templates'
             , $_USERBOX_DEFAULT['templates']
             , 'select',  0, 0, 20, 80, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'templates_admin'
             , $_USERBOX_DEFAULT['templates_admin']
             , 'select',  0, 0, 20, 90, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'themespath'
             ,$_USERBOX_DEFAULT['themespath']
             ,'text', 0, 0, NULL, 100, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'delete_data'
             , $_USERBOX_DEFAULT['delete_data']
             , 'select',  0, 0, 1, 110, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'datefield'
             , $_USERBOX_DEFAULT['datefield']
             , 'select',  0, 0, 21, 120, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
 
         $c->add('meta_tags'
             , $_USERBOX_DEFAULT['meta_tags']
             , 'select',  0, 0, 0, 130, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'layout'
             , $_USERBOX_DEFAULT['layout']
             , 'select',  0, 0, 22, 140, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'layout_admin'
             , $_USERBOX_DEFAULT['layout_admin']
             , 'select',  0, 0, 22, 150, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'mail_to'
             ,array()
             ,'%text', 0, 0, 0, 160, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'mail_to_owner'
             ,$_DATABOX_DEFAULT['mail_to_owner']
             ,'select', 0, 0, 0, 170, true
-			, $pi_name
-			,0);
-		
+            , $pi_name
+            ,0);
+        
         $c->add(
             'mail_to_draft'
             ,$_DATABOX_DEFAULT['mail_to_draft']
             ,'select', 0, 0, 0, 180, true
-			, $pi_name
-			,0);
-		
+            , $pi_name
+            ,0);
+        
         $c->add(
             'user_draft_default'
             ,$_USERBOX_DEFAULT['user_draft_default']
             ,'select', 0, 0, 0, 190, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         //
         $c->add(
             'dateformat'
             ,$_USERBOX_DEFAULT['dateformat']
             ,'text', 0, 0, NULL, 200, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'aftersave'
             ,$_USERBOX_DEFAULT['aftersave']
             ,'select', 0, 0,25, 210, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'aftersave_admin'
             ,$_USERBOX_DEFAULT['aftersave_admin']
             ,'select', 0, 0, 9, 220, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
 
         $c->add(
             'grp_id_default'
             ,$_USERBOX_DEFAULT['grp_id_default']
             ,'select', 0, 0, 24, 230, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'allow_profile_update'
             ,$_USERBOX_DEFAULT['allow_profile_update']
             ,'select', 0, 0, 0, 240, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
         $c->add(
             'allow_group_update'
             ,$_USERBOX_DEFAULT['allow_group_update']
             ,'select', 0, 0, 0, 250, true
-			, $pi_name
-			,0);
-		
-		$c->add(
+            , $pi_name
+            ,0);
+        
+        $c->add(
             'allow_loggedinusers'
             ,$_USERBOX_DEFAULT['allow_loggedinusers']
             ,'select', 0, 0, 0, 260, true
-			, $pi_name
-			,0);
-		
-		$c->add(
+            , $pi_name
+            ,0);
+        
+        $c->add(
             'default_img_url'
             ,$_USERBOX_DEFAULT['default_img_url']
             ,'text', 0, 0, NULL, 270, TRUE
-			, $pi_name
-			,0);
-		
-		$c->add(
+            , $pi_name
+            ,0);
+        
+        $c->add(
             'descriptionemptycheck'
             ,$_USERBOX_DEFAULT['descriptionemptycheck']
             ,'select', 0, 0, 0, 280, true
-			, $pi_name
-			,0);
-		
+            , $pi_name
+            ,0);
+        
         $c->add(
             'maxlength_description'
             ,$_USERBOX_DEFAULT['maxlength_description']
             ,'text', 0, 0, NULL, 290, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'maxlength_meta_description'
             ,$_USERBOX_DEFAULT['maxlength_meta_description']
             ,'text', 0, 0, NULL, 300, TRUE
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
         $c->add(
             'maxlength_meta_keywords'
             ,$_USERBOX_DEFAULT['maxlength_meta_keywords']
             ,'text', 0, 0, NULL, 310, TRUE
-			, $pi_name
-			,0);
-		
-		$c->add(
+            , $pi_name
+            ,0);
+        
+        $c->add(
             'hideuseroption'
             ,$_USERBOX_DEFAULT['hideuseroption']
             ,'select', 0, 0, 0, 320, true
-			, $pi_name
-			,0);
-		
-		$c->add(
+            , $pi_name
+            ,0);
+        
+        $c->add(
             'commentcode'
             ,$_USERBOX_DEFAULT['commentcode']
             ,'select', 0, 0, 26, 330, true
-			, $pi_name
-			,0);
+            , $pi_name
+            ,0);
 
-		$c->add(
+        $c->add(
             'sort_list_by'
             ,$_USERBOX_DEFAULT['sort_list_by']
             ,'select', 0, 0, 27, 340, true
-			, $pi_name
-			,0);
-		
-		//(1)新着
+            , $pi_name
+            ,0);
+        
+        //(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
 
         $c->add(
@@ -532,51 +532,51 @@ function plugin_initconfig_userbox()
             , NULL, 'fieldset'
             , 0, 1
             , NULL, 0, true
-			, $pi_name
-			,1);
+            , $pi_name
+            ,1);
         $c->add(
             'whatsnew_interval'
             ,$_USERBOX_DEFAULT['whatsnew_interval']
             ,'text', 0, 1, NULL, 10, TRUE
-			, $pi_name
-			,1);
+            , $pi_name
+            ,1);
         $c->add(
             'hide_whatsnew'
             ,$_USERBOX_DEFAULT['hide_whatsnew']
             ,'select', 0, 1, 5, 20, true
-			, $pi_name
-			,1);
+            , $pi_name
+            ,1);
         $c->add(
             'title_trim_length'
             ,$_USERBOX_DEFAULT['title_trim_length']
             ,'text', 0, 1, NULL, 30, TRUE
-			, $pi_name
-			,1);
+            , $pi_name
+            ,1);
 
 
-		//(2)検索
+        //(2)検索
         $c->add('tab_search', NULL, 'tab', 0, 2, NULL, 0, true, $pi_name, 2);
 
         $c->add(
             'fs_search'
             , NULL, 'fieldset'
             , 0, 2, NULL, 0, true
-			, $pi_name
-			,2);
+            , $pi_name
+            ,2);
         $c->add(
             'include_search'
             , $_USERBOX_DEFAULT['include_search']
             , 'select',  0, 2, 0, 10, true
-			, $pi_name
-			,2);
+            , $pi_name
+            ,2);
         $c->add(
             'additionsearch'
             , $_USERBOX_DEFAULT['additionsearch']
             ,'text', 0, 2, NULL, 20, TRUE
-			, $pi_name
-			,2);
+            , $pi_name
+            ,2);
 
-		//(3)パーミッション
+        //(3)パーミッション
         $c->add('tab_permissions', NULL, 'tab', 0, 3, NULL, 0, true, $pi_name, 3);
 
         $c->add(
@@ -584,202 +584,202 @@ function plugin_initconfig_userbox()
             , NULL, 'fieldset'
             , 0, 3
             , NULL, 0, true
-			, $pi_name
-			,3);
+            , $pi_name
+            ,3);
         $c->add(
             'default_permissions'
             , $_USERBOX_DEFAULT['default_permissions']
             ,'@select' , 0, 3 , 12, 130, true
-			, $pi_name
-			,3);
+            , $pi_name
+            ,3);
 
-		//(4)自動タグ
+        //(4)自動タグ
         $c->add('tab_autotag', NULL, 'tab', 0, 4, NULL, 0, true, $pi_name, 4);
 
         $c->add(
             'fs_autotag'
             , NULL, 'fieldset'
             , 0, 4, NULL, 0, true
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
 
         $c->add(
             'intervalday'
             ,$_USERBOX_DEFAULT['intervalday']
             ,'text', 0, 4, NULL, 10, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
         $c->add(
             'limitcnt'
             ,$_USERBOX_DEFAULT['limitcnt']
             ,'text', 0, 4, NULL, 20, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
         $c->add(
             'newmarkday'
             ,$_USERBOX_DEFAULT['newmarkday']
             ,'text', 0, 4, NULL, 30, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
         $c->add(
             'categories'
             ,$_USERBOX_DEFAULT['categories']
             ,'text', 0, 4, NULL, 40, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
         $c->add(
             'new_img'
             ,$_USERBOX_DEFAULT['new_img']
             ,'textarea', 0, 4, NULL, 50, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
         $c->add(
             'rss_img'
             ,$_USERBOX_DEFAULT['rss_img']
             ,'textarea', 0, 4, NULL, 60, TRUE
-			, $pi_name
-			,4);
+            , $pi_name
+            ,4);
 
-		//(5)file
+        //(5)file
         $c->add('tab_file', NULL, 'tab', 0, 5, NULL, 0, true, $pi_name, 5);
 
         $c->add(
             'fs_file'
             , NULL, 'fieldset'
             , 0, 5, NULL, 0, true
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
 
         $c->add(
             'imgfile_size'
             ,$_USERBOX_DEFAULT['imgfile_size']
             ,'text', 0, 5, NULL, 10, TRUE
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
         $c->add(
             'imgfile_type'
             ,$_USERBOX_DEFAULT['imgfile_type']
             ,'%text', 0, 5, 0, 20, TRUE
-			, $pi_name
-			,5);
-		
-		
-		
-		
-		$c->add(
+            , $pi_name
+            ,5);
+        
+        
+        
+        
+        $c->add(
             'imgfile_size2'
             ,$_USERBOX_DEFAULT['imgfile_size2']
             ,'text', 0, 5, NULL, 30, TRUE
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
         $c->add(
             'imgfile_type2'
             ,$_USERBOX_DEFAULT['imgfile_type2']
             ,'%text', 0, 5, 0, 40, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'imgfile_frd'
             ,$_USERBOX_DEFAULT['imgfile_frd']
             ,'text', 0, 5, NULL, 50, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'imgfile_thumb_frd'
             ,$_USERBOX_DEFAULT['imgfile_thumb_frd']
             ,'text', 0, 5, NULL, 60, TRUE
-			, $pi_name
-			,5);
-		
-		$c->add(
+            , $pi_name
+            ,5);
+        
+        $c->add(
             'imgfile_thumb_ok'
             ,$_USERBOX_DEFAULT['imgfile_thumb_ok']
             ,'select', 0, 5, 0, 70, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'imgfile_thumb_w'
             ,$_USERBOX_DEFAULT['imgfile_thumb_w']
             ,'text', 0, 5, NULL, 80, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'imgfile_thumb_h'
             ,$_USERBOX_DEFAULT['imgfile_thumb_h']
             ,'text', 0, 5, NULL, 90, TRUE
-			, $pi_name
-			,5);
-		
-		$c->add(
+            , $pi_name
+            ,5);
+        
+        $c->add(
             'imgfile_thumb_w2'
             ,$_USERBOX_DEFAULT['imgfile_thumb_w2']
             ,'text', 0, 5, NULL,100, TRUE
-			, $pi_name
-			,5);
-		
-		$c->add(
+            , $pi_name
+            ,5);
+        
+        $c->add(
             'imgfile_thumb_h2'
             ,$_USERBOX_DEFAULT['imgfile_thumb_h2']
             ,'text', 0, 5, NULL, 110, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'imgfile_smallw'
             ,$_USERBOX_DEFAULT['imgfile_smallw']
             ,'text', 0, 5, NULL, 120, TRUE
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
 
         $c->add(
             'imgfile_subdir'
             ,$_USERBOX_DEFAULT['imgfile_subdir']
             ,'select', 0, 5, 0, 130, TRUE
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
 
 
         $c->add(
             'file_path'
             ,$_USERBOX_DEFAULT['file_path']
             ,'text', 0, 5, NULL, 140, TRUE
-			, $pi_name
-			,5);
-		
-		
-		$c->add(
+            , $pi_name
+            ,5);
+        
+        
+        $c->add(
             'file_size'
             ,$_USERBOX_DEFAULT['file_size']
             ,'text', 0, 5, NULL, 150, TRUE
-			, $pi_name
-			,5);
-		
+            , $pi_name
+            ,5);
+        
         $c->add(
             'file_type'
             ,$_USERBOX_DEFAULT['file_type']
             ,'%text', 0, 5, 0, 160, TRUE
-			, $pi_name
-			,5);
+            , $pi_name
+            ,5);
 
-		//(6)autotag_permissions
+        //(6)autotag_permissions
         $c->add('tab_autotag_permissions', NULL, 'tab', 0, 6, NULL, 0, true, $pi_name, 6);
         $c->add(
             'fs_autotag_permissions'
             , NULL, 'fieldset'
             , 0, 6, NULL, 0, true
-			, $pi_name
-			,6);
+            , $pi_name
+            ,6);
 
         $c->add(
             'autotag_permissions_userbox'
             ,$_USERBOX_DEFAULT['autotag_permissions_userbox']
             ,'@select', 0, 6, 13, 10, TRUE
-			, $pi_name
-			,6);
+            , $pi_name
+            ,6);
 
        //(9)XML
         $c->add('tab_xml', NULL, 'tab', 0, 9, NULL, 0, true, $pi_name, 9);
@@ -787,21 +787,21 @@ function plugin_initconfig_userbox()
             'fs_xml'
             , NULL, 'fieldset'
             , 0, 9, NULL, 0, true
-			, $pi_name
-			,9);
+            , $pi_name
+            ,9);
 
         $c->add(
             'path_xml'
             ,$_USERBOX_DEFAULT['path_xml']
             ,'text', 0, 9, NULL, 10, TRUE
-			, $pi_name
-			,9);
-	   $c->add(
+            , $pi_name
+            ,9);
+       $c->add(
             'path_xml_out'
             ,$_USERBOX_DEFAULT['path_xml_out']
             ,'text', 0, 9, NULL, 20, TRUE
- 			, $pi_name
-			,9);
+            , $pi_name
+            ,9);
 
 
     }
