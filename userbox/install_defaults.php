@@ -205,6 +205,7 @@ $_USERBOX_DEFAULT['imgfile_subdir'] = 0;
 $_USERBOX_DEFAULT['file_path'] = $_CONF['path_data']."userbox_data/";
 $_USERBOX_DEFAULT['file_size'] = "";
 $_USERBOX_DEFAULT['file_type'] = array();
+$_USERBOX_DEFAULT['file_subdir'] = 0;
 
 
 //(6) autotag permissions
@@ -762,6 +763,12 @@ function plugin_initconfig_userbox()
             'file_type'
             ,$_USERBOX_DEFAULT['file_type']
             ,'%text', 0, 5, 0, 160, TRUE
+            , $pi_name
+            ,5);
+        $c->add(
+            'file_subdir'
+            ,$_USERBOX_DEFAULT['file_subdir']
+            ,'select', 0, 5, 0, 170, TRUE
             , $pi_name
             ,5);
 

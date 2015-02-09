@@ -207,6 +207,7 @@ $_DATABOX_DEFAULT['imgfile_subdir'] = 0;
 $_DATABOX_DEFAULT['file_path'] = $_CONF['path_data']."databox_data/";
 $_DATABOX_DEFAULT['file_size'] = "";
 $_DATABOX_DEFAULT['file_type'] = array();
+$_DATABOX_DEFAULT['file_subdir'] = 0;
 
 //(6) autotag permissions
 $_DATABOX_DEFAULT['autotag_permissions_databox'] = array (2, 2, 2, 2);
@@ -804,7 +805,13 @@ function plugin_initconfig_databox()
             ,'%text', 0, 5, 0, 160, TRUE
             , $pi_name
             ,5);
-        
+        $c->add(
+            'file_subdir'
+            ,$_DATABOX_DEFAULT['file_subdir']
+            ,'select', 0, 5, 0, 170, TRUE
+            , $pi_name
+            ,5);
+
         
         //(6)autotag_permissions
         $c->add('tab_autotag_permissions', NULL, 'tab', 0, 6, NULL, 0, true, $pi_name, 6);

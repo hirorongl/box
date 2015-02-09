@@ -693,6 +693,8 @@ $LANG_confignames['userbox']['imgfile_subdir'] = 'use subdirectory for Image Sav
 $LANG_confignames['userbox']['file_path'] = 'File Save Absolute Path';
 $LANG_confignames['userbox']['file_size'] = 'File Size';
 $LANG_confignames['userbox']['file_type'] = 'File Type';
+$LANG_confignames['userbox']['file_subdir'] = 'use subdirectory for File Save Absolute Path';
+
 //---(６)
 $LANG_tab['userbox']['tab_autotag_permissions'] = 'Autotags Permission';
 $LANG_fs['userbox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [1]Group [2]Member [3]Anonimous)';

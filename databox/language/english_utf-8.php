@@ -820,6 +820,7 @@ $LANG_confignames['databox']['imgfile_subdir'] = 'use subdirectory for Image Sav
 $LANG_confignames['databox']['file_path'] = 'File Save Absolute Path';
 $LANG_confignames['databox']['file_size'] = 'File Size';
 $LANG_confignames['databox']['file_type'] = 'File Type';
+$LANG_confignames['databox']['file_subdir'] = 'use subdirectory for File Save Absolute Path';
 
 
 //---(６)
