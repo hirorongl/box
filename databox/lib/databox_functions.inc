@@ -1001,16 +1001,12 @@ function DATABOX_getaddtionfieldsEdit(
     global $_CONF;
     
     if ($pi_name==""){
-        $lang_admin_x="LANG_DATABOX_ADMIN";
-        $lang_admin="LANG_DATABOX_ADMIN";
-        $lang_noyes="LANG_DATABOX_NOYES";
-        $table_def_field=$_TABLES['DATABOX_def_field'];
-    }else{
-        $lang_admin_x="LANG_".strtoupper($pi_name)."_ADMIN";
-        $lang_admin="LANG_".strtoupper($pi_name)."_ADMIN";
-        $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-        $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
+        $pi_name="databox";
     }
+    $lang_admin_x="LANG_".strtoupper($pi_name)."_ADMIN";
+    $lang_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
+    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -1103,6 +1099,12 @@ function DATABOX_getaddtionfieldsEdit(
                         $fvalue_del=$fields_del[$fid];
                         $fieldhtml .=DATABOX_figurehtml
                             ($fid,$fvalue,$fvalue_del);
+                    break;
+                case 13:// 添付ファイル
+                        $fvalue_fnm=$fields_fnm[$fid];
+                        $fvalue_del=$fields_del[$fid];
+                        $fieldhtml .=DATABOX_filehtml
+                            ($pi_name,$fid,$fvalue,$fvalue_del);
                     break;
 
 
@@ -1350,6 +1352,49 @@ function DATABOX_figurehtml(
 
     return $retval;
 }
+function DATABOX_filehtml(
+    $pi_name
+    ,$fid
+    ,$fvalue
+    ,$fvalue_del
+)
+{
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    //
+    $retval .= "        <input ";
+    $retval .= " type=\"hidden\"";
+    $retval .= " name=\"afield[".$fid."]\" ";
+    $retval .= " value=\"".$fvalue."\"";
+    $retval .= " ".XHTML.">".LB;
+    
+    $retval .="<input type=\"file\" dir=\"ltr\"";
+    $retval .= " id=\"afield_fnm[".$fid."]\" ";
+    $retval .= " name=\"afield_fnm[".$fid."]\" ";
+    $retval .="size=\"30\"";
+    $retval .= " ".XHTML.">".LB;
+
+    if ($fvalue<>""){
+
+        $retval .="{$fvalue}";
+        $retval .= '<br' . XHTML . '>' ;
+        $retval .= $lang_box_admin['deletemsg_check'];
+        $retval .= "<input type=\"checkbox\"";
+        $retval .= " name=\"afield_del[".$fid."]\" ";
+        if ($fvalue_del){
+            $retval .= " checked ";
+        }
+        $retval .= " ".XHTML.">".LB;
+
+    }
+
+
+    return $retval;
+}
+
 
 function DATABOX_figurehtml12(
     $fid
@@ -2970,6 +3015,12 @@ function DATABOX_cleanaddtiondatas(
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     break;
+                case 13:// 添付ファイル
+                    $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
+                    $delary[$field_id]=COM_applyFilter($delary[$field_id]);
+                    $wk=COM_applyFilter($wk);
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
+                    break;
                 case 7://オプションリスト（選択肢）
                 case 8://ラジオボタンリスト（選択肢）
                 case 9://オプションリスト（マスター）';
@@ -3268,7 +3319,51 @@ function DATABOX_checkaddtiondatas(
                     }
                 }
             }
-            
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                 $file_path=$box_conf['file_path'];
+                 if  ( $box_conf['file_subdir']==1){
+                    $file_path.=$addition_def[$field_id]['templatesetvar'];
+                 }
+                 if (!is_writable ( $file_path )){
+                    $rt.=$file_path.": ".$lang_box_admin['err_writable'];
+                    $rt.="<br ".XHTML.">".LB;
+                 }
+                 if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                 }else{
+                    if (is_array($fldary_fnm)){
+                        $filename=$_FILES['afield_fnm']['name'][$field_id];
+                        $filetmpname=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $filesize=$_FILES['afield_fnm']['size'][$field_id];
+                        $filetype=$_FILES['afield_fnm']['type'][$field_id];
+
+                        if  ($filetmpname<>""){
+							$err="";
+                            if ($box_conf['file_size']<>"" AND $filesize>$box_conf['file_size']){
+                                $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
+                                $rt.="<br ".XHTML.">".LB;
+;                               $err=1;
+                            }
+                            if (count($box_conf['file_type'])>0){
+                                if  (in_array($filetype,$box_conf['file_type'])){
+                                }else{
+                                    $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type']
+                                        .$_FILES['afield_fnm']['name'][$field_id]."(".$filetype.")";
+                                    $rt.="<br ".XHTML.">".LB;
+                                    $err=1;
+                                }
+                            }
+                            //チェックOK
+                            if  ($err===""){
+                                $fldary[$field_id]=$filename;
+                            }
+                        }
+                    }else{
+                        
+                    }
+                 }
+            }
+
             //range check 範囲チェック
             if  ($addition_def[$field_id]['range_start']=="" AND $addition_def[$field_id]['range_end']=="" ){
             }else{
@@ -3389,7 +3484,45 @@ function DATABOX_uploadaddtiondatas(
                     }
                 }
             }
-        }
+			
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                $imgfld=$box_conf['file_path'];
+                $filename=$fldary[$field_id];
+                $filename_old=$fldary_old[$field_id];
+                
+                if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                    $rt=DATABOX_deleteFile($imgfld.$filename);
+                    $fldary[$field_id]="";
+                }else{
+                    $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                    
+                    if ($imgname<>""){
+                        if  ($imgname_old<>""){
+                            $rt=DATABOX_deleteFile($imgfld.$filename_old);
+                        }
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                        $a=explode(".",$imgname);
+                        $a[1]=strtolower($a[1]);//拡張子を小文字にする
+                        if  ( $box_conf['file_subdir']==1){
+                            $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                        }else{
+                            $newfilename="";
+                        }
+                        $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                        if (DATABOX_uploadImageFile
+                                ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+                            $fldary[$field_id]=$newfilename;
+                        }else{
+                            $fldary[$field_id]="";
+                        }
+                    }
+                }
+            }
+
+		}
     }
 
     return $rt;
@@ -3731,17 +3864,17 @@ function DATABOX_uploadImageFile (
         if(!file_exists($newfile)) {
             $returnMove = move_uploaded_file($imgfile, $newfile); 
             if (!$returnMove) {
-                $logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
+                $logmsg="DataBox File upload error: ".$tmp." to ".$name;
                 COM_errorLOG($logmsg);
                 return false;
              } else {
                 $chown =@chmod ($newfile,$FilePermissions);
-                $logmsg="DataBox ImageFile upload sucsess: ".$imgname;
+                $logmsg="DataBox File upload sucsess: ".$imgname;
                 COM_errorLOG($logmsg);
                 return true;
              }
          }else{
-            COM_errorLOG("Filemgmt upload error: Temporary file does not exist: '".$tmp ."'");
+            COM_errorLOG("DataBox upload error: Temporary file does not exist: '".$tmp ."'");
             return false;
          }
     }

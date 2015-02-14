@@ -101,6 +101,7 @@ $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = '削除';
 $LANG_DATABOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br ".XHTML.">";
+$LANG_DATABOX_ADMIN['deletemsg_check'] = '削除する場合、ここをチェックしてください';
 
 $LANG_DATABOX_ADMIN['idfrom'] = "開始ID";
 $LANG_DATABOX_ADMIN['idto'] = "終了ID";
