@@ -141,29 +141,29 @@ function DATABOX_getFileTypeAry(
 )
 {
     $ary=array();
-    //odt
-	$ary['doc']="application/msword";
-    //docx
-	$ary['html']="text/html";
-    //odb
-    //odf
-    //odg
-    //odm
-    //odp
-    //ods
-    //otg
-    //oth
-    //otp
-    //ots
-    //ott
-    //oxt
-	$ary['pdf']="application/pdf";
-    //ppt
-    //pptx
-	$ary['txt']="text/plain";
-    //xls
-    //xlsx
-	$ary['xml']="text/xml";
+    $ary['odt']="application/vnd.oasis.opendocument.text";//open office writer*
+    $ary['doc']="application/msword";//Microsoft Word
+    $ary['docx']="application/vnd.openxmlformats";// Microsoft Office Word 2007*
+    $ary['html']="text/html";
+    $ary['odb']="application/octet-stream ";//OpenOffice Base*
+    $ary['odf']="application/vnd.oasis.opendocument.formula";//OpenOffice Calc*
+    $ary['odg']="application/vnd.oasis.opendocument.graphics";//OpenOffice Draw*
+    $ary['odm']="application/vnd.oasis.opendocument.text-master";// OpenOffice Writer*
+    $ary['odp']="application/vnd.oasis.opendocument.presentation";//OpenOffice Impress*
+    $ary['ods']="application/vnd.oasis.opendocument.spreadsheet";//OpenOffice Calc*
+    $ary['otg']="application/vnd.oasis.opendocument.graphics-template";//OpenOffice Draw*
+    $ary['oth']="application/octet-stream";// OpenOffice.org Writer*
+    $ary['otp']="application/vnd.oasis.opendocument.presentation-template";//OpenOffice Impress*
+    $ary['ots']="application/octet-stream";//OtsAV*
+    $ary['ott']="application/vnd.oasis.opendocument.formula-template ";//OpenOffice Writer*
+    $ary['oxt']="application/vnd.openofficeorg.extension";//OpenOffice *
+    $ary['pdf']="application/pdf";
+    $ary['ppt']="application/mspowerpoint";//Microsoft PowerPoint*
+    $ary['pptx']="application/vnd.openxmlformats";//Microsoft Office PowerPoint 2007*
+    $ary['txt']="text/plain";
+    $ary['xls']="application/vnd.ms-excel";//Microsoft Excel*
+    $ary['xlsx']="application/vnd.openxmlformats ";//Microsoft Office Excel 2007*
+    $ary['xml']="text/xml";
 	if  ($extention===""){
 		$rt= $ary;
 	}else{
