@@ -1,19 +1,19 @@
 <!-- plugins/userbox/templates/category/default/navigation_detail.thtml 20130204{ -->
 
-<div id="userbox">
-    <div class='order'>
+<div class="userbox">
+    <div class="order">
         {order_date}|{order_orderno}|{order_username}|{order_fullname}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
 {order_tel}|{order_zipcode}
     </div>
-    <div class='order_random'>{order_random}</div>
-    <div class='cur_order'>{cur_order}</div>
-    <div class='pagenav' {pagenavinone}>
+    <div class="order_random">{order_random}</div>
+    <div class="cur_order">{cur_order}</div>
+    <div class="pagenav" {pagenavinone}>
     {page_navigation}
-    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents" id="list">
+  <ul class="contents">
 <li> ({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
 {lang_description}&nbsp;
 {lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
@@ -27,9 +27,9 @@
     {row_var}
   </ul>
 
-  <div class='pagenav' {pagenavinone}>
+  <div class="pagenav" {pagenavinone}>
     {page_navigation}
-    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 

@@ -1,21 +1,21 @@
 <!-- plugins/userbox/templates/attribute/default/navigation.thtml 20121019{ -->
 
-<div id="userbox">
+<div class="userbox">
 
-  <div class='pagenav'>
+  <div class="pagenav">
     {page_navigation}
-    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents" id="list">
+  <ul class="contents">
     <li>{lang_name} ({lang_count})</li>
 {row_var}
   </ul>
 
-  <div class='pagenav'>
+  <div class="pagenav">
     {page_navigation}
-    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 
