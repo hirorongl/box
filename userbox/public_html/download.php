@@ -3,35 +3,35 @@
 // +---------------------------------------------------------------------------+
 // |  download
 // +---------------------------------------------------------------------------+
-// $Id: public_html/databox/download.php
-define ('THIS_SCRIPT', 'databox/download.php');
-//define ('THIS_SCRIPT', 'databox/test.php');
+// $Id: public_html/userbox/download.php
+define ('THIS_SCRIPT', 'userbox/download.php');
+//define ('THIS_SCRIPT', 'userbox/test.php');
 
 //20150220 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 
 require_once ('../lib-common.php');
-if (!in_array('databox', $_PLUGINS)) {
+if (!in_array('userbox', $_PLUGINS)) {
     echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
 
 //debug 時 true
-$_DATABOX_VERBOSE = false;
+$_USERBOX_VERBOSE = false;
 
 // +---------------------------------------------------------------------------+
 // MAIN
 // +---------------------------------------------------------------------------+
 //############################
-$pi_name    = 'databox';
+$pi_name    = 'userbox';
 //############################
 //
 $display = '';
-$page_title=$LANG_DATABOX_ADMIN['piname'];
+$page_title=$LANG_USERBOX_ADMIN['piname'];
 //ログイン要否チェック
 if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
-            OR ($_DATABOX_CONF['loginrequired'] == 3)
-            OR ($_DATABOX_CONF['loginrequired'] == 2 AND $id>0) ){
+            OR ($_USERBOX_CONF['loginrequired'] == 3)
+            OR ($_USERBOX_CONF['loginrequired'] == 2 AND $id>0) ){
         $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
         $display .= DATABOX_siteFooter($pi_name);

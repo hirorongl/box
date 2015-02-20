@@ -1945,7 +1945,6 @@ function DATABOX_getaddtionfieldsDisp(
             $fieldhtml_tn_image="";//サムネイル
             $mstitems=array();
             $fieldhtml_yes="";
-            
             switch ($type) {
                 case 12://画像（外記憶）（準備中）
                     $fieldhtml=$fvalue;//ファイル名
@@ -1991,10 +1990,13 @@ function DATABOX_getaddtionfieldsDisp(
                     }
 
                     break;
-                case 13://添付ファイル （準備中）
-                    $fieldhtml .= $fvalue;//ファイル名
+                case 13://添付ファイル
+                    if  ($fvalue===""){
+                    }else{
+                        $a=explode("|",$fvalue);
+                        $fieldhtml .= $a[1];
+                    }
                     break;
-
                 case 11://画像（DB記憶)
                     if  ($fvalue===""){
                     }else{
@@ -3489,16 +3491,16 @@ function DATABOX_uploadaddtiondatas(
             if ($addition_def[$field_id]['type']==13){
                 $imgfld=$box_conf['file_path'];
                 $filename=$fldary[$field_id];
-                $filename_old=$fldary_old[$field_id];
-                
+                $a=explode("|",$fldary_old[$field_id]);
+                $filename_old=$a[0];
                 if (is_array($fldary_del) AND $fldary_del[$field_id]){
-                    $rt=DATABOX_deleteFile($imgfld.$filename);
+                    $rt=DATABOX_deleteFile($imgfld.$filename_old);
                     $fldary[$field_id]="";
                 }else{
                     $imgname=$_FILES['afield_fnm']['name'][$field_id];
                     
                     if ($imgname<>""){
-                        if  ($imgname_old<>""){
+                        if  ($filename_old<>""){
                             $rt=DATABOX_deleteFile($imgfld.$filename_old);
                         }
                         $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
@@ -3514,7 +3516,7 @@ function DATABOX_uploadaddtiondatas(
                         $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
                         if (DATABOX_uploadImageFile
                                 ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
-                            $fldary[$field_id]=$newfilename;
+                            $fldary[$field_id]=$newfilename."|".$imgname;
                         }else{
                             $fldary[$field_id]="";
                         }
@@ -5194,7 +5196,10 @@ function DATABOX_fieldvalue(
             switch ($type) {
                 case 12://画像（外記憶）
                 case 13://添付ファイル
-                    $rt=$value;
+                    if  ($value===""){
+                    }else{
+                        list($readfile,$rt)=explode("|",$value);
+                    }
                     break;
                 case 11://画像（DB記憶)
                     if  ($value===""){
@@ -5298,4 +5303,197 @@ function DATABOX_fieldvalue(
     return $rt;
 
 }
+function DATABOX_fieldownload(
+    $pi_name
+    ,$id
+    ,$code
+    ,$field_id
+    ,$field_code
+)
+// +---------------------------------------------------------------------------+
+// | 機能  ファイルダウンロード 
+// | 書式 DATABOX_fieldownload($pi_name,$id,$code,$field_id,$field_code)
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $id:
+// | 引数 $code:
+// | 引数 $field_id:
+// | 引数 $field_code:
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+    global $_CONF;
+     
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+          
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+    $separater=$lang_box['field_separater'];
+
+    $table_base=$_TABLES[strtoupper($pi_name).'_base'];
+    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_def_fieldset_assignments
+        =$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+    //-----引数チェック
+    if (is_null($id)  OR $id===""){
+        if (is_null($code) OR $code===""){
+            $id=0;
+        }else{
+            if ($pi_name=="userbox"){
+                $id=DATABOX_codetoid($code,'users',"uid","username");
+            }else{
+                $id=DATABOX_codetoid($code,strtoupper($pi_name).'_base');
+            }
+        }
+	}
+    if ($id===0) {
+        return "download argument error id";
+    }
+    if (is_null($field_id) OR $field_id===""){
+        if (is_null($field_code) OR $field_code===""){
+            $field_id=0;
+        }else{
+            $field_id=DATABOX_codetoid($field_code,strtoupper($pi_name).'_def_field'
+                     ,"field_id","templatesetvar");
+        }
+    }
+    if ($field_id===0) {
+        return "download Argument error field_id";
+    }
+    $fieldset_id=DB_getItem( $table_base,"fieldset_id","id=".$id  );
+    if  ($fieldset_id==0){
+    }else{
+        $w=DB_getItem( $table_def_fieldset_assignments
+             ,"fieldset_id","fieldset_id=$fieldset_id AND field_id=".$field_id );
+        if  ($w==""){
+            return "download drgument error id field_id";
+        }
+	}
+    //
+    $sql  = "SELECT DISTINCT ".LB;
+    $sql  .= " t.value ".LB;
+    $sql  .= " ,m.allow_display ".LB;
+    $sql  .= " ,d.group_id ".LB;
+    $sql  .= " ,d.owner_id ".LB;
+    $sql  .= " FROM ".LB;
+    $sql  .= "{$table_addition} AS t".LB;
+    $sql  .= " , {$table_def_field} AS m".LB;
+    $sql  .= " , {$table_base} AS d".LB;
+    
+    $sql  .= " WHERE  ".LB;
+    $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
+    $sql  .= " AND m.field_id = {$field_id} ".LB;
+    $sql  .= " AND m.type = 13 ".LB;
+    $sql  .= " AND d.id = {$id} ".LB;
+    //下書データはのぞく
+    $sql .= " AND d.draft_flag=0".LB;
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())";
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())";
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND');
+	
+	$result = DB_query ($sql);
+    $num = DB_numRows ($result);
+    $rt="Target file is not found";
+    if ($num<>0){
+        $A = DB_fetchArray ($result);
+        $A = array_map('stripslashes', $A);
+		$value=$A['value'];
+        $group_id = $A['group_id'];
+		$owner_id = $A['owner_id'];
+		$allow_display= $A['allow_display'];
+        $chk_user=DATABOX_chkuser($group_id,$owner_id,$pi_name.".admin");
+		if  ($value<>""){
+			
+            $chk=false;
+            //表示する
+            if  ($allow_display==='0') {
+                $chk=true;
+                //ログインユーザのみ
+            }else if ($allow_display==='1'){
+                if  ($chk_user>=1000) {
+                    $chk=true;
+                }
+            //グループとadmin権のある人のみ表示
+            }else if ($allow_display==='2'){
+                if  ($chk_user>=1010) {
+                    $chk=true;
+                }
+            //所有者とadmin権のある人のみ
+            }else if ($allow_display==='3'){
+                if  ($chk_user>=1011) {
+                    $chk=true;
+                }
+            //admin権のある人のみ
+            }else if ($allow_display==='4'){
+                if  ($chk_user>=1100) {
+                    $chk=true;
+                }
+            }
+			if ($chk) {
+				list($readfile,$filename)=explode("|",$value);
+		        list($dummy,$extention)=explode(".",$filename);
+		        $filetype=DATABOX_getFileTypeAry($extention );
+		        if  ($filetype<>""){
+			        $path=$box_conf['file_path'];
+ 		            if  (file_exists($path.$readfile)){
+		                header('Content-Type: '.$filetype);
+                        header('Content-Disposition: attachment; filename="'.$filename.'"');
+					    readfile($path.$readfile);
+                        //download log
+					    //download count
+					    exit;
+				    }
+				}
+			}
+		}
+	}
+	
+    return $rt;
+
+}
+function DATABOX_getFileTypeAry(
+    $extension 
+)
+{
+    $ary=array();
+    $ary['odt']="application/vnd.oasis.opendocument.text";//open office writer*
+    $ary['doc']="application/msword";//Microsoft Word
+    $ary['docx']="application/vnd.openxmlformats";// Microsoft Office Word 2007*
+    $ary['html']="text/html";
+    $ary['odb']="application/octet-stream ";//OpenOffice Base*
+    $ary['odf']="application/vnd.oasis.opendocument.formula";//OpenOffice Calc*
+    $ary['odg']="application/vnd.oasis.opendocument.graphics";//OpenOffice Draw*
+    $ary['odm']="application/vnd.oasis.opendocument.text-master";// OpenOffice Writer*
+    $ary['odp']="application/vnd.oasis.opendocument.presentation";//OpenOffice Impress*
+    $ary['ods']="application/vnd.oasis.opendocument.spreadsheet";//OpenOffice Calc*
+    $ary['otg']="application/vnd.oasis.opendocument.graphics-template";//OpenOffice Draw*
+    $ary['oth']="application/octet-stream";// OpenOffice.org Writer*
+    $ary['otp']="application/vnd.oasis.opendocument.presentation-template";//OpenOffice Impress*
+    $ary['ots']="application/octet-stream";//OtsAV*
+    $ary['ott']="application/vnd.oasis.opendocument.formula-template ";//OpenOffice Writer*
+    $ary['oxt']="application/vnd.openofficeorg.extension";//OpenOffice *
+    $ary['pdf']="application/pdf";
+    $ary['ppt']="application/mspowerpoint";//Microsoft PowerPoint*
+    $ary['pptx']="application/vnd.openxmlformats";//Microsoft Office PowerPoint 2007*
+    $ary['txt']="text/plain";
+    $ary['xls']="application/vnd.ms-excel";//Microsoft Excel*
+    $ary['xlsx']="application/vnd.openxmlformats ";//Microsoft Office Excel 2007*
+    $ary['xml']="text/xml";
+	if  ($extention===""){
+		$rt= $ary;
+	}else{
+		$rt= $ary[$extension];
+	}
+	return $rt;
+}
+
 ?>
