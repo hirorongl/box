@@ -5309,6 +5309,7 @@ function DATABOX_fieldownload(
     ,$code
     ,$field_id
     ,$field_code
+    ,$mode
 )
 // +---------------------------------------------------------------------------+
 // | 機能  ファイルダウンロード 
@@ -5319,6 +5320,7 @@ function DATABOX_fieldownload(
 // | 引数 $code:
 // | 引数 $field_id:
 // | 引数 $field_code:
+// | 引数 $mode ナシ、display
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:
 // +---------------------------------------------------------------------------+
@@ -5443,20 +5445,30 @@ function DATABOX_fieldownload(
 		        list($dummy,$extention)=explode(".",$filename);
 		        $filetype=DATABOX_getFileTypeAry($extention );
 		        if  ($filetype<>""){
-			        $path=$box_conf['file_path'];
- 		            if  (file_exists($path.$readfile)){
-		                header('Content-Type: '.$filetype);
-                        header('Content-Disposition: attachment; filename="'.$filename.'"');
-					    readfile($path.$readfile);
-                        //download log
-					    //download count
-					    exit;
-				    }
-				}
-			}
-		}
-	}
-	
+                    $path=$box_conf['file_path'];
+                    if  (file_exists($path.$readfile)){
+                        if  ($mode=="display"){
+                            if  ($extention=="pdf"){
+                                header('Content-Type: '.$filetype);
+                                header('Content-Disposition: inline; filename="'.$filename.'"');
+                                readfile($path.$readfile);
+                                //download log
+                                //download count
+                            }
+                        }else{
+                            header('Content-Type: '.$filetype);
+                            header('Content-Disposition: attachment; filename="'.$filename.'"');
+                            readfile($path.$readfile);
+                            //download log
+                            //download count
+                        }
+                        exit;
+                    }
+                }
+            }
+        }
+    }
+    
     return $rt;
 
 }

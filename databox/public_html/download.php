@@ -59,6 +59,10 @@ $field_code = '';
 if (isset ($_REQUEST['field_code'])) {
     $field_id = COM_applyFilter ($_REQUEST['field_code'], false);
 }
-$rt=DATABOX_fieldownload($pi_name,$id,$code,$field_id,$field_code);
+$mode = '';
+if (isset ($_REQUEST['mode'])) {
+    $mode = COM_applyFilter ($_REQUEST['mode'], false);
+}
+$rt=DATABOX_fieldownload($pi_name,$id,$code,$field_id,$field_code,$mode);
 
 ?>
