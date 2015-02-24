@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150209
+# Last Update 20150224
 
 ###############################################################################
 ## 管理画面 menu
@@ -63,6 +63,11 @@ $LANG_DATABOX['search_link']="";
 $LANG_DATABOX['return'] = '戻る';
 $LANG_DATABOX['search'] = '検索';
 
+$LANG_DATABOX['download'] = 'ダウンロード';
+$LANG_DATABOX['downloadrequired'] = 'クリックして、ダウンロードしてください。';
+$LANG_DATABOX['display'] = '表示';
+$LANG_DATABOX['displayrequired'] = 'クリックして、表示してください。';
+
 $LANG_DATABOX['category_separater']=" / "; //テーマ変数でカテゴリ名称を列挙する際の区切
 $LANG_DATABOX['category_separater_code']=" "; //テーマ変数でカテゴリコードを列挙する際の区切
 $LANG_DATABOX['category_separater_text']=", "; //送信メールでカテゴリを列挙する際の区切
@@ -73,6 +78,7 @@ $LANG_DATABOX['loginrequired'] = '(ログインしてください)';
 $LANG_DATABOX['lastmodified'] = '%Y年%B%e日更新';
 $LANG_DATABOX['lastcreated'] = '%Y年%B%e日追加';
 $LANG_DATABOX['deny_msg'] =  'このデータへアクセスできません。(このデータは移動したか削除されているか、あるいはアクセス権がありません。)';
+
 
 ###############################################################################
 # admin/plugins/

@@ -1995,6 +1995,7 @@ function DATABOX_getaddtionfieldsDisp(
                     }else{
                         $a=explode("|",$fvalue);
                         $fieldhtml .= $a[1];
+                        $fieldhtml_readfile = $a[0];
                     }
                     break;
                 case 11://画像（DB記憶)
@@ -2148,6 +2149,16 @@ function DATABOX_getaddtionfieldsDisp(
             
             //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
             //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
+			
+			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(timestamp))
+            $templates->set_var('additionfield'.$fid."_readfile", $fieldhtml_readfile);
+            $templates->set_var($templatesetvar."_readfile", $fieldhtml_readfile);
+			
+            //文言
+            $templates->set_var('lang_download', $lang_box['download']);
+            $templates->set_var('lang_downloadrequired', $lang_box['downloadrequired']);
+            $templates->set_var('lang_display', $lang_box['display']);
+            $templates->set_var('lang_displayrequired', $lang_box['displayrequired']);
             
             //=====
             $templates->parse ('col_var', 'col', true);

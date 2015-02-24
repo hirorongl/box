@@ -68,6 +68,11 @@ $LANG_USERBOX['category_top']="Categories Top";
 $LANG_USERBOX['attribute_top']="Attributes Top";
 $LANG_USERBOX['search_link']="";
 
+$LANG_USERBOX['download'] = 'download';
+$LANG_USERBOX['downloadrequired'] = 'Click, please download';
+$LANG_USERBOX['display'] = 'display';
+$LANG_USERBOX['displayrequired'] = 'Click, please display';
+
 $LANG_USERBOX['category_separater']=" / ";
 $LANG_USERBOX['category_separater_code']=" ";
 

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150209
+# Last Update 20150224
 
 ###############################################################################
 ## 管理画面 menu
@@ -71,6 +71,11 @@ $LANG_USERBOX['category_top']="カテゴリ別件数一覧";
 $LANG_USERBOX['attribute_top']="アトリビュート別件数一覧";
 
 $LANG_USERBOX['search_link']="";
+
+$LANG_USERBOX['download'] = 'ダウンロード';
+$LANG_USERBOX['downloadrequired'] = 'クリックして、ダウンロードしてください。';
+$LANG_USERBOX['display'] = '表示';
+$LANG_USERBOX['displayrequired'] = 'クリックして、表示してください。';
 
 $LANG_USERBOX['category_separater']=" / ";//テーマ変数でカテゴリ名称を列挙する際の区切
 $LANG_USERBOX['category_separater_code']=" ";//テーマ変数でカテゴリコードを列挙する際の区切

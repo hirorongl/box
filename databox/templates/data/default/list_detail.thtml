@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20141014 { -->
+<!-- plugins/databox/templates/data/default/list_detail.thtml 20150224 { -->
 
 <div class="databox">
   <h2>{title}</h2>
@@ -11,6 +11,11 @@
      <span style="color:green"> &#123;username&#125;</span>:{username}
      <span style="color:green"> &#123;fullname&#125;</span>:{fullname}
      <span style="color:green"> &#123;displayname&#125;</span>:{displayname}
+  </p>
+  <p><span style="color:green"> &#123;lang_download&#125;</span>:{lang_download}
+     <span style="color:green"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}
+     <span style="color:green"> &#123;lang_display&#125;</span>:{lang_display}
+     <span style="color:green"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}
   </p>
 <!-- Basic Items -->
   <fieldset style="width:98%">
@@ -526,6 +531,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn_image&#125;</th>
         <td>{fg12_tn_image}</td>
       </tr>
+      <tr>
+		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
+        <th style="width:20%; color:green" class="alignleft">&#123;file_readfile&#125;</th>
+		<td>{file_readfile}
+		<!-- ダウンロードのリンク例 -->
+        <a href="{site_url}/databox/download.php?id=394&field_id=84" 
+         title="{lang_downloadrequired}">{file} {lang_download}</a>
+		<!-- 添付ファイルがpdfの場合の 表示のリンク例-->
+		<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display" 
+         title="{lang_displayrequired}">{file} {lang_display}
+      </td>
+</a>
+
+      </tr>
+
     </table>
   </fieldset>
 
@@ -786,6 +806,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_tn_image}
 		</td>
+      <tr>
+		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
+        <th style="width:20%" class="alignright">84</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield84_readfile&#125
+		</td>
+		<td>{additionfield84_readfile}
+      </tr>
 
 	</table>
   </fieldset>

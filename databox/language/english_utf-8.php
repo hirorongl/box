@@ -60,6 +60,11 @@ $LANG_DATABOX['search_link']="";
 $LANG_DATABOX['return']="return";
 $LANG_DATABOX['search'] = 'search';
 
+$LANG_DATABOX['download'] = 'download';
+$LANG_DATABOX['downloadrequired'] = 'Click, please download';
+$LANG_DATABOX['display'] = 'display';
+$LANG_DATABOX['displayrequired'] = 'Click, please display';
+
 $LANG_DATABOX['category_separater']=" / ";
 $LANG_DATABOX['category_separater_code']=" ";
 $LANG_DATABOX['category_separater_text']=", ";
