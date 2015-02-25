@@ -540,10 +540,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
          title="{lang_downloadrequired}">{file} {lang_download}</a>
 		<!-- 添付ファイルがpdfの場合の 表示のリンク例-->
 		<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display" 
-         title="{lang_displayrequired}">{file} {lang_display}
+         title="{lang_displayrequired}">{file} {lang_display}</a>
       </td>
-</a>
-
       </tr>
 
     </table>
