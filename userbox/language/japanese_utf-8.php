@@ -693,8 +693,8 @@ $LANG_confignames['userbox']['imgfile_size'] = 'イメージファイルの最�
 $LANG_confignames['userbox']['imgfile_type'] = 'イメージファイルのタイプ';
 $LANG_confignames['userbox']['imgfile_size2'] = 'イメージファイル(外部)の最大サイズ';
 $LANG_confignames['userbox']['imgfile_type2'] = 'イメージファイル(外部)のタイプ';
-$LANG_confignames['userbox']['imgfile_frd'] = '画像保存URL';
-$LANG_confignames['userbox']['imgfile_thumb_frd'] = 'サムネイル画像保存URL';
+$LANG_confignames['userbox']['imgfile_frd'] = '画像保存';
+$LANG_confignames['userbox']['imgfile_thumb_frd'] = 'サムネイル';
 
 $LANG_confignames['userbox']['imgfile_thumb_ok'] = 'サムネイルを使用する？';
 $LANG_confignames['userbox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ（w）';

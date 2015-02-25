@@ -93,19 +93,29 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
     <table style="width:98%" class="databox">
 		<tr>
-        <th style="width:20%;" class="alignright">{lang_field}</th>
+        <th style="width:20%;" class="alignright">{lang_field} PATH</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_imgfile_frd}</th>
-        <td style="width:20%; color:green">&#123;imgfile_frd&#125;<br{XHTML}>&#123;data_img_url&#125;</td>
-        <td>{imgfile_frd}<br{XHTML}>{data_img_url}</td>
+        <th style="width:20%" class="alignright">{lang_imgfile_frd} URL</th>
+        <td style="width:20%; color:green">&#123;imgfile_frd&#125;</td>
+        <td>{imgfile_frd}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">{lang_imgfile_frd} PATH</th>
+        <td style="width:20%; color:green">&#123;data_img_url&#125;</td>
+        <td>{data_img_url}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd} URL</th>
+        <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;</td>
+        <td>{imgfile_thumb_frd}</td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd}</th>
-        <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;<br{XHTML}>&#123;data_thumb_img_url&#125;</td>
-        <td>{imgfile_thumb_frd}<br{XHTML}>{data_thumb_img_url}</td>
+        <td style="width:20%; color:green">&#123;data_thumb_img_url&#125;</td>
+        <td>{data_thumb_img_url}</td>
       </tr>
     </table>
   </fieldset>
@@ -136,18 +146,18 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		<td>{categorieslink} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="alignright">CODE形式</th>
 		<td style="width:20%; color:green">
 		&#123;categorieslinkcode&#125
 		</td>
-		<td>{categorieslinkcode} </td>
+		<td>{categorieslinkcode}</td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="alignright">ID形式</th>
 		<td style="width:20%; color:green">
 		&#123;categorieslinkid&#125;
 		</td>
-		<td>{categorieslinkid} </td>
+		<td>{categorieslinkid}</td>
 	  </tr>
 	
 

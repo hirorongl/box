@@ -853,8 +853,8 @@ $LANG_confignames['databox']['imgfile_type'] = 'イメージファイル(DB)の�
 
 $LANG_confignames['databox']['imgfile_size2'] = 'イメージファイル(外部)の最大サイズ';
 $LANG_confignames['databox']['imgfile_type2'] = 'イメージファイル(外部)のタイプ';
-$LANG_confignames['databox']['imgfile_frd'] = '画像保存URL';
-$LANG_confignames['databox']['imgfile_thumb_frd'] = 'サムネイル画像保存URL';
+$LANG_confignames['databox']['imgfile_frd'] = '画像';
+$LANG_confignames['databox']['imgfile_thumb_frd'] = 'サムネイル';
 
 $LANG_confignames['databox']['imgfile_thumb_ok'] = 'サムネイルを使用する？';
 $LANG_confignames['databox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ（w）';
