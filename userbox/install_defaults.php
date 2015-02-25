@@ -205,6 +205,29 @@ $_USERBOX_DEFAULT['imgfile_subdir'] = 0;
 $_USERBOX_DEFAULT['file_path'] = $_CONF['path_data']."userbox_data/";
 $_USERBOX_DEFAULT['file_size'] = "";
 $_USERBOX_DEFAULT['file_type'] = array();
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.text";//odt :open office writer*
+$_USERBOX_DEFAULT['file_type'][] ="application/msword";//doc :Microsoft Word
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats";//docx: Microsoft Office Word 2007*
+$_USERBOX_DEFAULT['file_type'][] ="text/html";//html
+$_USERBOX_DEFAULT['file_type'][] ="application/octet-stream ";//odb :OpenOffice Base*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.formula";//odf:OpenOffice Calc*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.graphics";//odg:OpenOffice Draw*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.text-master";//odm:OpenOffice Writer*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.presentation";//odp:OpenOffice Impress*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.spreadsheet";//ods:OpenOffice Calc*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.graphics-template";//otg:OpenOffice Draw*
+$_USERBOX_DEFAULT['file_type'][] ="application/octet-stream";//oth: OpenOffice.org Writer*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.presentation-template";//otp:OpenOffice Impress*
+$_USERBOX_DEFAULT['file_type'][] ="application/octet-stream";//ots:OtsAV*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.formula-template ";//ott:OpenOffice Writer*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.openofficeorg.extension";//oxt:OpenOffice *
+$_USERBOX_DEFAULT['file_type'][] ="application/pdf";//pdf
+$_USERBOX_DEFAULT['file_type'][] ="application/mspowerpoint";//ppt:Microsoft PowerPoint*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats";//pptx:Microsoft Office PowerPoint 2007*
+$_USERBOX_DEFAULT['file_type'][] ="text/plain";//txt
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.ms-excel";//xls:Microsoft Excel*
+$_USERBOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats ";//xlsx:Microsoft Office Excel 2007*
+$_USERBOX_DEFAULT['file_type'][] ="text/xml";//xml
 $_USERBOX_DEFAULT['file_subdir'] = 0;
 
 
@@ -402,14 +425,14 @@ function plugin_initconfig_userbox()
             ,0);
         $c->add(
             'mail_to_owner'
-            ,$_DATABOX_DEFAULT['mail_to_owner']
+            ,$_USERBOX_DEFAULT['mail_to_owner']
             ,'select', 0, 0, 0, 170, true
             , $pi_name
             ,0);
         
         $c->add(
             'mail_to_draft'
-            ,$_DATABOX_DEFAULT['mail_to_draft']
+            ,$_USERBOX_DEFAULT['mail_to_draft']
             ,'select', 0, 0, 0, 180, true
             , $pi_name
             ,0);
