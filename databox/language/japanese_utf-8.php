@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150224
+# Last Update 20150226
 
 ###############################################################################
 ## 管理画面 menu
@@ -471,11 +471,11 @@ $LANG_DATABOX_ADMIN['config_update'] = '更新';
 $LANG_DATABOX_ADMIN['config_update_help'] = '最新の仕様に更新します ';
 
 //(2)
-$LANG_DATABOX_ADMIN['datamaster'] = 'データ〜マスター';
-$LANG_DATABOX_ADMIN['data_clear'] = 'データクリア実行';
-$LANG_DATABOX_ADMIN['data_allclear'] = 'データ〜マスタークリア実行';
-$LANG_DATABOX_ADMIN['data_backup'] = 'データ〜マスターバックアップ実行';
-$LANG_DATABOX_ADMIN['data_restore'] = 'データ〜マスターリストア実行';
+$LANG_DATABOX_ADMIN['datamaster'] = 'データ、アトリビュート、タイプ、カテゴリー、グループ、マスター';
+$LANG_DATABOX_ADMIN['data_clear'] = 'データを初期化';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'データ, アトリビュート, タイプ, カテゴリー, グループ, マスターを初期化';
+$LANG_DATABOX_ADMIN['data_backup'] = '全データバックアップ　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップする';
+$LANG_DATABOX_ADMIN['data_restore'] = '全データリストア　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップデータからリストアする';
 
 
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
