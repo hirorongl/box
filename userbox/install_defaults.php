@@ -140,6 +140,9 @@ $_USERBOX_DEFAULT['commentcode'] = 0;
 //管理者ページ（プロフィール）の並び替え
 $_USERBOX_DEFAULT['sort_list_by'] = "orderno";
 
+//デフォルトキャッシュタイム
+$_USERBOX_DEFAULT['default_cache_time'] = "0";
+
 //---（１）新着
 // 新着の期間
 $_USERBOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -547,7 +550,13 @@ function plugin_initconfig_userbox()
             ,'select', 0, 0, 27, 340, true
             , $pi_name
             ,0);
-        
+        $c->add(
+            'default_cache_time'
+            ,$_USERBOX_DEFAULT['default_cache_time']
+            ,'text', 0, 0, NULL, 350, TRUE
+            , $pi_name
+            ,0);
+         
         //(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
 

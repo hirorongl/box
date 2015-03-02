@@ -769,6 +769,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 
 $LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['databox']['default_cache_time'] = 'default cache time';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';

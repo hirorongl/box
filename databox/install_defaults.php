@@ -144,6 +144,9 @@ $_DATABOX_DEFAULT['commentcode'] = 0;
 //管理者ページ（データ）の並び替え
 $_DATABOX_DEFAULT['sort_list_by'] = "orderno";
 
+//デフォルトキャッシュタイム
+$_DATABOX_DEFAULT['default_cache_time'] = "0";
+
 //---（１）新着
 // 新着の期間
 $_DATABOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -586,7 +589,13 @@ function plugin_initconfig_databox()
             ,'select', 0, 0, 27, 350, true
             , $pi_name
             ,0);
-        
+        $c->add(
+            'default_cache_time'
+            ,$_DATABOX_DEFAULT['default_cache_time']
+            ,'text', 0, 0, NULL, 360, TRUE
+            , $pi_name
+            ,0);
+         
         //(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
         $c->add(

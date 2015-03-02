@@ -646,6 +646,7 @@ $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 $LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['userbox']['default_cache_time'] = 'default cache time';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
