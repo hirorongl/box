@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150302
+# Last Update 20150304
 
 ###############################################################################
 ## 管理画面 menu
@@ -169,6 +169,11 @@ $LANG_DATABOX_ADMIN['commentcode']='コメント';
 $LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_DATABOX_ADMIN['trackbackcode']='トラックバック';
+
+$LANG_DATABOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_DATABOX_ADMIN['cache_time_desc']='
+このデータはここで指定された秒数以上にキャッシュされることはありません。もしキャッシュが0ならキャッシュ無効 (3600 = 1時間,  86400 = 1日)。
+';
 
 $LANG_DATABOX_ADMIN['group']='グループ';
 $LANG_DATABOX_ADMIN['parent']='親';

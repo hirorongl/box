@@ -172,6 +172,11 @@ $LANG_USERBOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_USERBOX_ADMIN['trackbackcode']='トラックバック';
 
+$LANG_USERBOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_USERBOX_ADMIN['cache_time_desc']='
+このデータはここで指定された秒数以上にキャッシュされることはありません。もしキャッシュが0ならキャッシュ無効 (3600 = 1時間,  86400 = 1日)。
+';
+
 $LANG_USERBOX_ADMIN['group']='グループ';
 $LANG_USERBOX_ADMIN['parent']='親';
 

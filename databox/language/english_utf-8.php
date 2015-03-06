@@ -164,6 +164,10 @@ $LANG_DATABOX_ADMIN['commentcode']='Comment';
 $LANG_DATABOX_ADMIN['comment_expire']='Comment Expiry Date';
 
 $LANG_DATABOX_ADMIN['trackbackcode']='trackback';
+$LANG_DATABOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_DATABOX_ADMIN['cache_time_desc']='
+This DATA content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again.  (3600 = 1 hour,  86400 = 1 day)
+';
 
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';

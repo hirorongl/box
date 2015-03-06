@@ -430,6 +430,7 @@ function plugin_user_create_userbox (
     $sql.=" ,`draft_flag`".LB;
     $sql.=" ,`trackbackcode`".LB;
     $sql.=" ,`commentcode`".LB;
+    $sql.=" ,`cache_time`".LB;
 	
     $sql.=")".LB;
 
@@ -444,6 +445,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$draft_flag.LB ;
 	$sql.=",".$_CONF[trackback_code];
 	$sql.=",".$_USERBOX_CONF['commentcode'];
+	$sql.=",".$_USERBOX_CONF['default_cache_time'];
 
     $sql .= ")";
     DB_query ($sql);
