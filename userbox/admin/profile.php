@@ -1453,6 +1453,8 @@ function fncSave (
 
     $rt=fncsendmail ('data',$id);
 
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
 //exit;// debug 用
 
@@ -1540,6 +1542,9 @@ function fncdelete ()
     }
 
     $rt=fncsendmail ('data_delete',$id,$username,$email);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 
@@ -1574,7 +1579,11 @@ function fncchangeDraft ($id)
     }
     $sql.=",uuid='$uuid' WHERE id=$id";
 
-    DB_query($sql);
+	DB_query($sql);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
+	
     return;
 
 }

@@ -980,6 +980,9 @@ function fncSave (
     }
 
     $rt=fncsendmail ('data',$id);
+    
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
 //exit;//@@@@@debug 用
 
@@ -1057,6 +1060,9 @@ function fncdelete (
 	$rt=databox_deletedata ($id);
 
     $rt=fncsendmail ('data_delete',$id,$title);
+	
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 	

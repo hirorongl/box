@@ -665,6 +665,16 @@ function plugin_getiteminfo_databox(
     return $retval;
 }
 
+function plugin_configchange_databox(
+    $group
+    , $changes = array()
+)
+{
+    $cacheInstance = 'databox__';
+    CACHE_remove_instance($cacheInstance);
+
+}
+
 
 // 20110928
 //function plugin_user_delete_userbox ($uid)

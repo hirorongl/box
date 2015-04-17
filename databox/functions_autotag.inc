@@ -1868,7 +1868,30 @@ function databox_data(
 
         $A = DB_fetchArray ($result);
         $A = array_map('stripslashes', $A);
-        
+		
+		$cache_time=$A['cache_time'];
+		if  ($cache_time===0){
+		}else{
+		    if  ($m==="page"){
+                if ($cache_time > -1 ) {
+                    // Don't need to cache per theme since not rendered in a block yet 
+                    $cacheInstance = 'databox__' . $id . '__' . CACHE_security_hash();
+                    $retval = CACHE_check_instance($cacheInstance);
+                    if ($retval AND $cache_time == -1) {
+                        return $retval;
+                    } elseif ($retval AND $cache_time > 0) {        
+                        $lu = CACHE_get_instance_update($cacheInstance);
+                        $now = time();
+                        if (($now - $lu) < $cache_time) {
+                            return $retval;
+                        } else {
+                            $retval = '';
+                        }
+                   }    
+	            }
+		    }
+	    }
+		
         if (is_null($template) or ($template==="")){
             if ($A['defaulttemplatesdirectory']<>""){
                 $template=$A['defaulttemplatesdirectory'];
