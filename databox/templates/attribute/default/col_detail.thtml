@@ -1,6 +1,7 @@
-<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140114 { -->
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20150511 { -->
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
+<span style="color:green">&#123;data_url&#125;</span>{data_url}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
 (id: <span style="color:green">&#123;data_id&#125;</span>{data_id})(code: <span style="color:green">&#123;data_code&#125;</span>{data_code})&nbsp;
 <span style="color:green">&#123;data_description&#125;</span>{data_description}&nbsp;

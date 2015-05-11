@@ -225,7 +225,8 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             break;
         case 'code':
             $name=COM_stripslashes($A['code']);
-            $retval= databox_detail_link(0,$A['code'],$name);
+            $rt= databox_detail_link(0,$A['code'],$name);
+            $retval= $rt['link'];
             break;
         //属性セット名
 		case 'fieldset_name':

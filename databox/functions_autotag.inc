@@ -671,14 +671,14 @@ function databox_category(
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
 
-            $link= databox_detail_link($id,$code,$title);
+            $rt= databox_detail_link($id,$code,$title);
 
-            $templates->set_var ('data_link', $link);
+            $templates->set_var ('data_link', $rt['link']);
             $templates->set_var ('data_title', $title);
             $templates->set_var ('data_code', $code);
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
-            $templates->set_var ('data_url', $url);
+            $templates->set_var ('data_url', $rt['url']);
 
             $templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
@@ -1278,14 +1278,14 @@ function databox_field(
             
             $fieldset_id=COM_applyFilter($A['fieldset_id']);
 
-            $link=databox_detail_link($id,$code,$title);
+            $rt=databox_detail_link($id,$code,$title);
             
-            $templates->set_var ('data_link', $link);
+            $templates->set_var ('data_link', $rt['link']);
             $templates->set_var ('data_title', $title);
             $templates->set_var ('data_code', $code);
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
-            $templates->set_var ('data_url', $url);
+            $templates->set_var ('data_url', $rt['url']);
             
             $templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
@@ -1390,7 +1390,7 @@ function databox_field(
         $mkidary=array();
         $mkid_ary=split(" " , $mkids);
         $selectedMarkers="";
-        if (function_exists("MAPS_selectedMarkers")) {
+        if (function_exists("MAPS_selectedMarkers") AND $mkids<>"") {
             $selectedMarkers=MAPS_selectedMarkers(
               $_MAPS_CONF['map_width']
              ,$_MAPS_CONF['map_height']
@@ -2569,7 +2569,7 @@ function databox_newlist(
         $title= COM_truncate( $A['title'], $title_trim_length,'...' );
         $description = stripslashes($A['description']);
 
-        $link= databox_detail_link($id,$code,$title);;
+        $rt= databox_detail_link($id,$code,$title);;
 
 
         $list->set_var ('site_url', $_CONF['site_url']);
@@ -2582,9 +2582,9 @@ function databox_newlist(
         }else{
             $list->set_var ('new_img', '');
         }
-        $list->set_var ('link', $link);//@@@@@
+        $list->set_var ('link', $rt['link']);//@@@@@
 
-        $list->set_var ('url', $url);
+        $list->set_var ('url', $rt['url']);
         $list->set_var ('title', $title);
 
         $list->set_var ('description', $description);
@@ -2925,22 +2925,23 @@ function databox_detail_link(
 // | 引数 $code          :
 // | 引数 $title         :
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:link
+// | 戻値 nomal:$return['link'] $return['url']
 // +---------------------------------------------------------------------------+
 {
     global $_CONF;
     global $_DATABOX_CONF;
     
+    $return['link']="" ;
+    $return['url']="" ;
+    
     if  ($id==0  AND $code==""){
-        return "";
+        return $return;
     }
     if  ($_DATABOX_CONF['detail']==""){
         $prg="data.php";
     }else{
         $prg=$_DATABOX_CONF['detail'];
     }
-    
-    $link="";
     
     $url=$_CONF['site_url'] . "/databox/".$_DATABOX_CONF['detail'];
     $url.="?";
@@ -2957,10 +2958,10 @@ function databox_detail_link(
         if  ($code<>""){
             $url.="code=".$code;
         }
-    }
-    $url = COM_buildUrl( $url );
-    $link= COM_createLink($title, $url);
-    return $link;
+	}
+    $return['url']=  COM_buildUrl( $url );
+    $return['link']= COM_createLink($title, $url);
+    return $return;
 }
 
 function databox_search(
