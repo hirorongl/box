@@ -2565,12 +2565,14 @@ function databox_newlist(
     $i=0;
 
     while( $A = DB_fetchArray( $result ) )    {
+        $A = array_map('stripslashes', $A);
 
         $title= COM_truncate( $A['title'], $title_trim_length,'...' );
-        $description = stripslashes($A['description']);
+        $description = $A['description'];
+        $id = $A['id'];
+        $code = $A['code'];
 
-        $rt= databox_detail_link($id,$code,$title);;
-
+        $rt= databox_detail_link($id,$code,$title);
 
         $list->set_var ('site_url', $_CONF['site_url']);
 
