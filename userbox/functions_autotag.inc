@@ -631,8 +631,10 @@ function userbox_category(
             $templates->set_var ('data_link', $link);
 
             $templates->set_var ('data_fullname', $A['fullname']);
+            $templates->set_var ('data_title', $A['fullname']);
 
             $templates->set_var ('data_username', $username);
+            $templates->set_var ('data_code', $username);
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
@@ -1886,8 +1888,10 @@ function userbox_field(
             $templates->set_var ('data_link', $link);
 
             $templates->set_var ('data_fullname', $fullname);
+            $templates->set_var ('data_title', $fullname);
 
             $templates->set_var ('data_username', $username);
+            $templates->set_var ('data_code', $username);
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
