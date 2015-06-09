@@ -2601,7 +2601,6 @@ function DATABOX_getcategoriesinp(
 )
 {
 global $_TABLES;
-
     if ($pi_name==""){
         $table_def_category=$_TABLES['DATABOX_def_category'];
         $table_def_group=$_TABLES['DATABOX_def_group'];
@@ -2672,8 +2671,10 @@ global $_TABLES;
         
             if  ($A['input_type']==1){
                 $retval .='<select name="category[]" multiple style="height:10em">'.LB;
+            }else if ($A['input_type']==3){
+                $retval .='<select name="category[]" >'.LB;
             }
-        
+            
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
                 $A2 = DB_fetchArray( $result2, true );
@@ -2681,7 +2682,7 @@ global $_TABLES;
                 $checked=" ";
                 for( $x = 0; $x < sizeof( $S ); $x++ )            {
                     if( $A2['category_id'] == $S[$x] )                {
-                        if  ($A['input_type']==0){
+                        if  ($A['input_type']==0 OR $A['input_type']==2){
                             $checked= ' checked="checked" ';
                         }else{
                             $checked= ' selected ';
@@ -2695,7 +2696,17 @@ global $_TABLES;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
-                }else{
+                }else  if  ($A['input_type']==1){
+                    $retval .= '<option value="' . $A2['category_id'] . '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) ;
+                    $retval .= '</option>' . LB;
+                }else  if  ($A['input_type']==2){
+                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                }else  if  ($A['input_type']==3){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
@@ -2703,7 +2714,7 @@ global $_TABLES;
                 }
             }
         
-            if  ($A['input_type']==1){
+            if  ($A['input_type']==1  OR  $A['input_type']==3  ){
                 $retval .='</select>';
             }
         }

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150302
+# Last Update 2015609
 
 ###############################################################################
 ## 管理画面 menu
@@ -502,6 +502,8 @@ $LANG_USERBOX_NOYES = array(
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'チェックボックス',
     1 => 'マルチセレクトリスト'
+    ,2 => 'ラジオボタンリスト'
+    ,3 => 'オプションリスト'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
 $LANG_USERBOX_ALLOW_DISPLAY[0] ='表示する（一覧表示可能）';
