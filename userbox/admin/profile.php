@@ -1542,10 +1542,15 @@ function fncdelete ()
 
     }
 
+//    if (!USER_deleteAccount ($id)) {
+//        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=3';
+//    }else{
+//        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=2';
+//    }
     if (!USER_deleteAccount ($id)) {
-        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=3';
+        $msg=3;
     }else{
-        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=2';
+        $msg=2;
     }
 
     $rt=fncsendmail ('data_delete',$id,$username,$email);
@@ -1555,7 +1560,13 @@ function fncdelete ()
 
     //exit;// debug 用
 
-    return COM_refresh ($return_page);
+	//return COM_refresh ($return_page);
+	
+    $retval['title']=$LANG_USERBOX_ADMIN['piname'];
+    $retval['display']= COM_showMessage ($msg,'userbox');
+    $retval['display'].= fncList();
+
+    return $retval;
 
 
 }
