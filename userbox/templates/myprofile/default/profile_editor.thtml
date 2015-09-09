@@ -58,7 +58,7 @@
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_draft}{help_draft}</th>
             <td class="admin-list-field">
-              <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><br{xhtml}>draft_msg}</td>
+              <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><br{xhtml}>{draft_msg}</td>
           </tr>
           <!-- page title -->
           <tr class="pluginRow1">  
