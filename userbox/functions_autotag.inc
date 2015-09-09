@@ -74,7 +74,7 @@ function plugin_autotags_userbox (
         $parm2_ary[]="limitcnt";
         $parm2_ary[]="newmarkday";
         $parm2_ary[]="templatedir";
-        //$parm2_ary[]="id";
+        $parm2_ary[]="id";
         $parm2_ary[]="uid";
         $parm2_ary[]="username";
         $parm2_ary[]="code";
