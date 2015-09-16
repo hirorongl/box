@@ -2164,9 +2164,13 @@ function DATABOX_getaddtionfieldsDisp(
             //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
             //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
 			
-			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(timestamp))
+			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(readfile))
             $templates->set_var('additionfield'.$fid."_readfile", $fieldhtml_readfile);
             $templates->set_var($templatesetvar."_readfile", $fieldhtml_readfile);
+			
+			//必須チェック(templatesetvar_(id)_(requied))
+            $templates->set_var('additionfield'.$fid."_requried", $checkrequried);
+            $templates->set_var($templatesetvar."_requried", $checkrequried);
 			
             //文言
             $templates->set_var('lang_download', $lang_box['download']);
