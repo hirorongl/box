@@ -1184,6 +1184,13 @@ function userbox_profile(
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
+    
+    if  ($m==="page"  OR  $m==="view"){
+        if ($numrows <= 0) {
+            COM_handle404();
+            exit;
+        }
+    }
 
     if ($numrows > 0) {
 
