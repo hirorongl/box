@@ -18,6 +18,8 @@ define ('THIS_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 
 require_once('databox_functions.php');
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
+
 
 function fncList()
 // +---------------------------------------------------------------------------+
@@ -34,8 +36,6 @@ function fncList()
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX;
     global $_DATABOX_CONF;
-
-    require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
 	
@@ -65,37 +65,6 @@ function fncList()
                 , 'fieldset_id,name', $filter_val,0,"fieldset_id<>0");
 
     $filter .="</select>";
-	
-    //MENU1:管理画面
-    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
-    $url2=$_CONF['site_url'] . '/databox/list.php';
-    $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
-	$url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
-	$url8=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=hitsclear';
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
-    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-    $url9=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=datadelete';
-	
-	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
-    $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["registset"]);
-    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
-    $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
-    $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
-    $menu_arr[]=array('url' => $url8,'text' => $LANG_DATABOX_ADMIN['hitsclear']);
-	$menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
-	$menu_arr[]=array('url' => $url9,'text' => $LANG_DATABOX_ADMIN['datadelete']);
-	
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-	
-    $retval .= COM_startBlock($LANG_DATABOX_ADMIN['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions'],
-        plugin_geticon_databox()
-    );
-
 
 	//ヘッダ：編集～
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -180,8 +149,6 @@ function fncList()
 			, true
 			);
 	}
-	
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -334,7 +301,6 @@ function fncEdit(
     $delflg=false;
 
     $addition_def=DATABOX_getadditiondef();
-
     //メッセージ表示
     if (!empty ($msg)) {
         $retval .= COM_showMessage ($msg,'databox');
@@ -695,10 +661,6 @@ function fncEdit(
         $old_mode="copy";
     }
 
-    //-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['edit'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-
     //template フォルダ
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
@@ -709,26 +671,32 @@ function fncEdit(
                 'col'   => "data_col_detail.thtml",
             ));
 	
-	
-    // Loads jQuery UI datepicker
-	if (version_compare(VERSION, '2.0.0') >= 0) {
-		$_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
-		$_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
-		$_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
-		$langCode = COM_getLangIso639Code();
-		$toolTip  = 'Click and select a date';	// Should be translated
-		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+    // Add JavaScript geeklog >=2.1.0
+    // Loads jQuery UI datepicker and timepicker-addon
+    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.slider');
+//    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.button');
+    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
+//    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-slideraccess');
+    $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
 
-		$_SCRIPTS->setJavaScript(
-			"jQuery(function () {"
-			. "  geeklog.datepicker.set('comment_expire', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-			. "  geeklog.datepicker.set('modified', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-			. "  geeklog.datepicker.set('released', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-			. "  geeklog.datepicker.set('expired', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-			. "});", TRUE, TRUE
-		);
-	}
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = $MESSAGE[118];
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+    $_SCRIPTS->setJavaScript(
+        "jQuery(function () {"
+        . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
+        . "  geeklog.datetimepicker.set('comment_expire', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datetimepicker.set('modified', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datetimepicker.set('released', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datetimepicker.set('expired', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "});", TRUE, TRUE
+    );
+
 
     //--
     if (($_CONF['meta_tags'] > 0) && ($_DATABOX_CONF['meta_tags'] > 0)) {
@@ -1004,7 +972,6 @@ function fncEdit(
     //
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -1854,10 +1821,7 @@ function fncimport ()
     $import = $tmpl->finish ($tmpl->get_var ('output'));
 
     $retval="";
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['import'], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
     $retval .= $import;
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
 
     return $retval;
@@ -2030,9 +1994,6 @@ function fncNew (
     $retval = '';
 	
 	//-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["new"], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
     $templates->set_file('editor',"selectset.thtml");
@@ -2061,7 +2022,6 @@ function fncNew (
 
 	$templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 	
 	return $retval;
 }
@@ -2087,12 +2047,10 @@ function fncChangeSet (
 	$id = COM_applyFilter ($_REQUEST['id'], true);
 	//-----
 	if  ($id==0){
-		$starttitle=$LANG_DATABOX_ADMIN['registset'];
+		$actionname=$LANG_DATABOX_ADMIN['registset'];
 	}else{
-		$starttitle=$LANG_DATABOX_ADMIN["changeset"];
+		$actionname=$LANG_DATABOX_ADMIN["changeset"];
 	}
-	$retval .= COM_startBlock ($starttitle, '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
 	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
@@ -2109,6 +2067,7 @@ function fncChangeSet (
 
     $templates->set_var('script', THIS_SCRIPT);
 	
+    $templates->set_var('actionname', $actionname);
 	$templates->set_var('id', $id);
 	if  ($id==0){
 		$inst=$LANG_DATABOX_ADMIN['inst_changeset0'];
@@ -2118,7 +2077,7 @@ function fncChangeSet (
 		$inst.=$LANG_DATABOX_ADMIN['inst_changesetx'];
 		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
 	}
-	$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
+	//$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
 	$templates->set_var ('lang_inst_changeset', $inst);
 	
 	//fieldset_id
@@ -2131,7 +2090,6 @@ function fncChangeSet (
 
 	$templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 	
 	return $retval;
 }
@@ -2194,10 +2152,6 @@ function fncexportform (
 	$pi_name="databox";
 	
 	//-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["export"], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-	
-	//-----
 	$tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
     $tmpl->set_file(array('exportform' => 'exportform.thtml'));
 
@@ -2211,6 +2165,7 @@ function fncexportform (
  
     $tmpl->set_var('script', THIS_SCRIPT);
 	
+    $tmpl->set_var('actionname', $LANG_DATABOX_ADMIN['export']);
     $tmpl->set_var('lang_inst', $LANG_DATABOX_ADMIN['inst_dataexport']);
 	
 	//fieldset_id
@@ -2226,9 +2181,6 @@ function fncexportform (
     $tmpl->parse ('output', 'exportform');
     $exportform = $tmpl->finish ($tmpl->get_var ('output'));
     $retval .= $exportform;
-	
-	//-----
-	$retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
 	return $retval;
 }
@@ -2286,6 +2238,57 @@ function fncdatadeleteExec (
 	}
 	
     return ;
+}
+function fncMenu(
+    $pi_name
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 fncMenu("databox")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    global $LANG_DATABOX_ADMIN;
+
+    global $LANG_DATABOX;
+
+    $retval = '';
+    //MENU1:管理画面
+    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
+    $url7=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=changeset';
+    $url2=$_CONF['site_url'] . '/databox/list.php';
+    $url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
+	$url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
+	$url8=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=hitsclear';
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=exportform';
+    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
+    $url9=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=datadelete';
+	
+	$menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
+    $menu_arr[]=array('url' => $url7,'text' => $LANG_DATABOX_ADMIN["registset"]);
+    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
+    $menu_arr[]=array('url' => $url3,'text' => $LANG_DATABOX_ADMIN['drafton']);
+    $menu_arr[]=array('url' => $url4,'text' => $LANG_DATABOX_ADMIN['draftoff']);
+    $menu_arr[]=array('url' => $url8,'text' => $LANG_DATABOX_ADMIN['hitsclear']);
+	$menu_arr[]=array('url' => $url5,'text' => $LANG_DATABOX_ADMIN['export']);
+	$menu_arr[]=array('url' => $url9,'text' => $LANG_DATABOX_ADMIN['datadelete']);
+	
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+	
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $LANG_DATABOX_ADMIN['instructions'],
+        plugin_geticon_databox()
+    );
+
+    return $retval;
 }
 
 // +---------------------------------------------------------------------------+
@@ -2457,8 +2460,16 @@ switch ($mode) {
         }
         $display .= fncList();
 }
-$display=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]).$display;
+
+$display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
+            ,COM_getBlockTemplate('_admin_block', 'header'))
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .fncMenu($pi_name)
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
+
 
 
 COM_output($display);
