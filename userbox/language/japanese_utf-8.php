@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 2015609
+# Last Update 20151005
 
 ###############################################################################
 ## 管理画面 menu
@@ -193,12 +193,12 @@ $LANG_USERBOX_ADMIN['fieldsetlist']='タイプ一覧';
 
 $LANG_USERBOX_ADMIN['registset']='タイプ登録';
 $LANG_USERBOX_ADMIN['changeset']='タイプ変更';
-$LANG_USERBOX_ADMIN['inst_changeset0']='タイプが登録されていないデータのタイプを登録します。<'.XHTML.'br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='のタイプを変更します。<'.XHTML.'br>';
+$LANG_USERBOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを登録します。<br".XHTML.">";
+$LANG_USERBOX_ADMIN['inst_changesetx']="のタイプを変更します。<br".XHTML.">";
 
-$LANG_DATABOX_ADMIN['inst_changeset'] = 
-'タイプを選んでください。<'.XHTML.'br>
-';
+$LANG_USERBOX_ADMIN['inst_changeset'] = 
+"タイプを選んでください。<br".XHTML.">
+";
 
 $LANG_USERBOX_ADMIN['inst_dataexport'] = 
 "
