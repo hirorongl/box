@@ -999,7 +999,8 @@ function DATABOX_getaddtionfieldsEdit(
     global $_TABLES;
     global $_SCRIPTS;
     global $_CONF;
-    
+    global $MESSAGE;
+	
     if ($pi_name==""){
         $pi_name="databox";
     }
@@ -1017,11 +1018,9 @@ function DATABOX_getaddtionfieldsEdit(
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
     
-    if (version_compare(VERSION, '2.0.0') >= 0) {
-        $langCode = COM_getLangIso639Code();
-        $toolTip  = 'Click and select a date';    // Should be translated
-        $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-    }
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = $MESSAGE[118];
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
     
     $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
     
@@ -1192,8 +1191,7 @@ function DATABOX_getaddtionfieldsEdit(
                     
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "  geeklog.datepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
                             . "});", TRUE, TRUE
                             );
                         if  (is_array($fields_date)){
@@ -1218,10 +1216,11 @@ function DATABOX_getaddtionfieldsEdit(
                     
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
+                            . "  geeklog.datetimepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
                             . "});", TRUE, TRUE
                             );
+					
                         if  (is_array($fields_date)){
                             $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
                         }else{
@@ -1491,203 +1490,6 @@ function DATABOX_imagehtml(
 
     return $retval;
 }
-
-
-function DATABOX_getaddtionfieldsJS(
-    $fields
-    ,$addition_def
-    ,$chk_user
-    ,$pi_name=""
-)
-// +---------------------------------------------------------------------------+
-// | 機能  追加項目入力用JavaScript作成
-// | 書式 DATABOX_getaddtionfieldsJS
-//          ($additionfields,$addition_def,$templates,$chk_user)
-// +---------------------------------------------------------------------------+
-// | 引数 $fields:
-// | 引数 $addition_def:
-// | 引数 $templates:
-// | 引数 $chk_user:
-// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:追加項目入力用 JavaScript (DatePicker )
-// +---------------------------------------------------------------------------+
-// 20101206 日付
-{
-    global $_CONF;
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '1.8.0') >= 0) {
-    }else{
-        return ;
-    }
-    $scriptclass=$_CONF['path_system'] .'classes/scripts.class.php';
-    if  (!file_exists($scriptclass) ){
-        return;
-    }
-    
-    global $_SCRIPTS;
-    global $_TABLES;
-
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-
-    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
-    global $$lang_box_admin;
-    $lang_box_admin=$$lang_box_admin;
-
-    $box_conf="_".strtoupper($pi_name)."_CONF";
-    global $$box_conf;
-    $box_conf=$$box_conf;
-    
-    $dateformat=$box_conf['dateformat'];
-
-    $js= '';
-
-    if (is_array($fields)){
-            $S = $fields;
-    }else{
-        if( !empty( $selected ))    {
-            $S = explode( ' ', $fields );
-        }else {
-            $S = array();
-        }
-    }
-    foreach( $S as $fid => $fvalue ){
-        $name=$addition_def[$fid]['name'];
-        $checkrequried=$addition_def[$fid]['checkrequried'];
-        $type=$addition_def[$fid]['type'];
-        $selectionary=$addition_def[$fid]['selectionary'];
-
-        $size=$addition_def[$fid]['size'];
-        $maxlength=$addition_def[$fid]['maxlength'];
-        $rows=$addition_def[$fid]['rows'];
-        $br=$addition_def[$fid]['br'];
-
-        $templatesetvar=$addition_def[$fid]['templatesetvar'];
-
-        $description=$addition_def[$fid]['description'];
-
-        $chk=false;
-        $disabled="disabled";
-        if ($chk_user===9999){
-            $chk=true;
-            $disabled="";
-        }else{
-            //編集可能
-            if  ($addition_def[$fid]['allow_edit']==='0') {
-                $chk=true;
-                $disabled="";
-            //グループとadmin権のある人のみ表示
-            }else if ($addition_def[$fid]['allow_edit']==='2'){
-                if  ($chk_user>=1010) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //所有者とadmin権のある人のみ
-            }else if ($addition_def[$fid]['allow_edit']==='3'){
-                if  ($chk_user>=1011) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //編集不可表示のみ
-            }else if ($addition_def[$fid]['allow_edit']==='4'){
-                $chk=true;
-            }
-        }
-
-        if ($chk) {
-
-            switch ($type) {
-
-                case 3://日付（DatePicker 対応）
-                    if ($disabled===""){
-                        $js.=DATABOX_getaddtionfieldsJS_date($fid,$dateformat);
-                    }
-                    break;
-            }
-            //=====
-        }
-    }
-    
-    
-    $_SCRIPTS->setJavaScript($js, true);
-
-    return ;
-}
-
-function DATABOX_getaddtionfieldsJS_date(
-    $fid
-    ,$dateformat
-){
-    global $_SCRIPTS;
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '1.8.0') >= 0) {
-    }else{
-        return ;
-    }
-    $jquery="";
-    if (function_exists('plugin_chkVersion_jquery')) {
-        $jquery=plugin_chkVersion_jquery();
-    }
-    if ($jquery==="") {
-        return;
-    }
-    $jsfooter=$_SCRIPTS->getFooter();
-    $datepicker=mb_strpos($jsfooter,"datepicker");
-    if (!$datepicker) {
-        return;
-    }
-    
-    $str="".LB;
-    $str .= "    jQuery(function() {".LB;
-    $str .= "        jQuery('#afield{$fid}').DatePicker({".LB;
-    $str .= "            format:'{$dateformat}',".LB;
-    $str .= "            date: jQuery('#afield{$fid}').val(),".LB;
-    $str .= "            current: jQuery('#afield{$fid}').val(),".LB;
-    $str .= "            starts: 1,".LB;
-    $str .= "            position: 'top',".LB;
-    
-//    $str .= "            onBeforeShow: function(){".LB;
-//    $str .= "                    jQuery('#afield{$fid}').DatePickerSetDate(jQuery('#afield{$fid}').val(), true);".LB;
-//    $str .= "            },".LB;
-    
-    $str .= "            onChange: function(formated){".LB;
-    $str .= "                    jQuery('#afield{$fid}').val(formated);".LB;
-    $str .= "                    jQuery('#afield{$fid}').DatePickerHide();".LB;
-    $str .= "            }".LB;
-    $str .= "        });".LB;
-    $str .= "   });".LB;
-    
-    
-    return $str;
-}
-
-function DATABOX_getenableexpired(
-    $field
-    ,$flg
-    ,$pi_name
-){
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '2.0.0') >= 0) {
-    }else{
-        return ;
-    }
-    
-    global $_CONF;
-    global $_SCRIPTS;
-    
-    $langCode = COM_getLangIso639Code();
-    $toolTip  = 'Click and select a date';    // Should be translated
-    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-
-    $_SCRIPTS->setJavaScript(
-        "jQuery(function () {"
-        . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-        . "});", TRUE, TRUE
-    );
-    
-    return ;
-}
-
 
 function DATABOX_getaddtionfieldsText(
     $fields

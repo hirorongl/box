@@ -682,6 +682,7 @@ function fncEdit(
     $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
 //    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-slideraccess');
     $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
+    $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
     $langCode = COM_getLangIso639Code();
     $toolTip  = $MESSAGE[118];
@@ -696,7 +697,6 @@ function fncEdit(
         . "  geeklog.datetimepicker.set('expired', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
         . "});", TRUE, TRUE
     );
-
 
     //--
     if (($_CONF['meta_tags'] > 0) && ($_DATABOX_CONF['meta_tags'] > 0)) {
@@ -857,7 +857,6 @@ function fncEdit(
         );
     $datetime_comment_expire=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","comment_expire");
     $templates->set_var('datetime_comment_expire', $datetime_comment_expire);
-	$dummy=DATABOX_getenableexpired('comment_expire',$comment_expire_flag,$pi_name);
 
     //編集日
     $templates->set_var ('lang_modified_autoupdate', $LANG_DATABOX_ADMIN['modified_autoupdate']);
@@ -894,7 +893,6 @@ function fncEdit(
         );
     $datetime_expired=DATABOX_datetimeedit($w,"LANG_DATABOX_ADMIN","expired");
 	$templates->set_var('datetime_expired', $datetime_expired);
-	$dummy=DATABOX_getenableexpired('expired',$expired_flag,$pi_name);
 	
     //順序
     $templates->set_var('lang_orderno', $LANG_DATABOX_ADMIN['orderno']);
@@ -918,8 +916,6 @@ function fncEdit(
 		,$fieldset_id
 		,$additionfields_date
 		);
-		
-    $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,9999,$pi_name);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
