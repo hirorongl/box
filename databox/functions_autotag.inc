@@ -2937,7 +2937,7 @@ function databox_detail_link(
         }
 	}
     $return['url']=  COM_buildUrl( $url );
-    $return['link']= COM_createLink($title, $url);
+    $return['link']= COM_createLink($title, $return['url']);
     return $return;
 }
 
