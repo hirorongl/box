@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/category/default/list_detail.thtml 20140328{ -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/category/default/list_detail.thtml 20151106 #}
 
 <div id="databox_outer">
 
@@ -32,5 +33,4 @@
   </ul>
 
 </div>
-
-<!-- } plugins/databox/templates/category/default/list_detail.thtml -->
+{# end {templatelocation} #}
