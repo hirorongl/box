@@ -611,7 +611,6 @@ function databox_category(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
 
         $languageid=COM_getLanguageId();
@@ -1224,7 +1223,6 @@ function databox_field(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
         
         $languageid=COM_getLanguageId();
