@@ -1228,6 +1228,41 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
+                case 22://日付（ui date picker対応）
+                if ($disabled===""){
+                        $filedname="afield".$fid;
+                    
+                        $_SCRIPTS->setJavaScript(
+                            "$(function() {
+                            $( \"#afield".$fid."\" ).datepicker();
+                            });"
+                            , TRUE, TRUE
+                            );
+                        //http://getuikit.com/docs/datepicker.html
+                        //<input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+                        //http://jqueryui.com/datepicker/
+                        //<input class="hasDatepicker" id="from" name="from" type="text">
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"".$fvalue."\"";
+                        $fieldhtml .= " ".XHTML.">";
+
+                        $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+
                 case 17://フラグ
                     if ($disabled===""){
                         $wk =" <input ";
@@ -1615,6 +1650,7 @@ function DATABOX_getaddtionfieldsText(
                         $w=COM_getUserDateTimeFormat($fvalue);
                         $retval .= $w[0];
                         break;
+                    case 22://日付
                     case 3://日付
                         if  ($fvalue<>""){
                             $retval .=strftime( $_CONF['shortdate'], $fvalue );
@@ -2636,6 +2672,7 @@ function DATABOX_getfieldvalue(
             $w=COM_getUserDateTimeFormat($value);
             $fieldvalue= $w[0];
             break;
+        case 22://日付
         case 3://日付
             $fieldvalue=strftime( $_CONF['shortdate'], $value );
             break;

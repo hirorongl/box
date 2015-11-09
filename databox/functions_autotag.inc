@@ -3240,7 +3240,6 @@ function databox_search(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
         
         $dummy=databox_searchargedit($argary,$templates);
