@@ -723,8 +723,6 @@ $LANG_DATABOX_TYPE[11] = '画像（DB保存）';
 $LANG_DATABOX_TYPE[12] = '画像（ファイル保存）';
 $LANG_DATABOX_TYPE[13] = '添付ファイル';
 
-$LANG_DATABOX_TYPE[22] = 'date (Uikit datepicker)';//@@@@@
-
 ###############################################################################
 #
 $LANG_DATABOX_SEARCH['type'] = 'DataBox';
