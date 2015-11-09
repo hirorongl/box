@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20150916 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/data/default/list_detail.thtml 20151109 #}
 <div class="databox">
   <h2>{title}</h2>
   <p>{lang_id}: {id}</p>
@@ -17,7 +17,7 @@
      <span style="color:green"> &#123;lang_display&#125;</span>:{lang_display}
      <span style="color:green"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}
   </p>
-<!-- Basic Items -->
+{# Basic Items #}
   <fieldset style="width:98%">
     <legend>{lang_basicfields}</legend>
     <table style="width:98%" class="databox">
@@ -120,7 +120,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- Category -->
+{# Category #}
   <fieldset style="width:98%">
     <legend>{lang_category} </legend>
     <table style="width:98%" class="databox">
@@ -129,13 +129,13 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
-	  <!--  カテゴリ名称列挙 -->
+	  {# カテゴリ名称列挙 #}
       <tr>
         <th style="width:20%" class="alignright">{lang_category}</th>
 		<td style="width:20%; color:green">&#123;categories&#125;<br{xhtml}></td>
         <td>{categories}</td>
       </tr>
-	  <!--  カテゴリ名称列挙リンク付 -->
+	  {# カテゴリ名称列挙リンク付 #}
       <tr>
         <th style="width:20%" class="alignright">
 		{lang_category} {lang_withlink}
@@ -164,7 +164,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- Additional Items -->
+{# Additional Items #}
   <fieldset style="width:98%">
     <legend>{lang_additionfields} </legend>
     <table style="width:98%" class="databox">
@@ -187,9 +187,9 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 
 <h3 style="margin-top:10em">* Example *</h3> 
-<!-- 以下は参考例です 登録されていない場合表示されません -->
+{# 以下は参考例です 登録されていない場合表示されません #}
 
-<!-- グループ別カテゴリ　グループコードを使用する -->
+{# グループ別カテゴリ　グループコードを使用する #}
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
     <table style="width:98%" class="databox">
@@ -199,7 +199,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th class="alignleft">{lang_content}</th>
       </tr>
 	
-	  <!-- city -->
+	  {# city #}
 	  <tr>
         <th style="width:20%" class="alignright">city</th>
 		<td style="width:20%; color:green">
@@ -221,7 +221,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{group_city_pipeline} </td>
 	  </tr>
-	  <!-- country -->
+	  {# country #}
 	  <tr>
         <th style="width:20%" class="alignright">country</th>
 		<td style="width:20%; color:green">
@@ -243,7 +243,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{group_country_pipeline} </td>
 	    </tr>
-	  <!-- team -->
+	  {# team #}
 	  <tr>
         <th style="width:20%" class="alignright">team</th>
 		<td style="width:20%; color:green">
@@ -268,7 +268,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
+{# グループ別カテゴリ列挙リンク付き　グループコードを使用する #}
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
     <table style="width:98%" class="databox">
@@ -278,7 +278,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th class="alignleft">{lang_content}</th>
       </tr>
 	
-	  <!-- city -->
+	  {# city #}
 	  <tr>
         	<th style="width:20%" class="alignright">city</th>
 		<td style="width:20%; color:green">
@@ -293,7 +293,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{grouplink_city_code} </td>
 	  </tr>
-	  <!-- country -->
+	  {# country #}
 	  <tr>
         	<th style="width:20%" class="alignright">country</th>
 		<td style="width:20%; color:green">
@@ -308,7 +308,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{grouplink_country_code} </td>
 	  </tr>
-	  <!-- team -->
+	  {# team #}
 	  <tr>
         	<th style="width:20%" class="alignright">team</th>
 		<td style="width:20%; color:green">
@@ -327,7 +327,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- グループ別カテゴリ　グループIDを使用する -->
+{# グループ別カテゴリ　グループIDを使用する #}
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
@@ -336,7 +336,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
-	  <!-- 1 -->
+	  {# 1 #}
 	  <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green">
@@ -358,7 +358,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{group_1_pipeline} </td>
 	  </tr>
-	  <!-- 2 -->
+	  {# 2 #}
 	  <tr>
         <th style="width:20%" class="alignright">2</th>
 		<td style="width:20%; color:green">
@@ -380,7 +380,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{group_2_pipeline} </td>
 	    </tr>
-	  <!-- 3 -->
+	  {# 3 #}
 	  <tr>
         <th style="width:20%" class="alignright">3</th>
 		<td style="width:20%; color:green">
@@ -407,7 +407,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
   </fieldset>
 
 
-<!-- グループ別カテゴリ リンク付　グループIDを使用する -->
+{# グループ別カテゴリ リンク付　グループIDを使用する #}
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
@@ -431,7 +431,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{grouplink_1_code} </td>
 	  </tr>
-	  <!-- 2 -->
+	  {# 2 #}
 	  <tr>
         <th style="width:20%" class="alignright">2</th>
 		<td style="width:20%; color:green">
@@ -446,7 +446,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{grouplink_2_code} </td>
 	  </tr>
-	  <!-- 3 -->
+	  {# 3 #}
 	  <tr>
         <th style="width:20%" class="alignright">3</th>
 		<td style="width:20%; color:green">
@@ -475,7 +475,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 
 
-<!-- アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例-->
+{# アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例 #}
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
     <table style="width:98%" class="databox">
@@ -546,13 +546,13 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <td>{fg12_tn_image}</td>
       </tr>
       <tr>
-		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
+		{# タイプが添付ファイルの場合表示されます　記憶ファイル名 #}
         <th style="width:20%; color:green" class="alignleft">&#123;file_readfile&#125;</th>
 		<td>{file_readfile}
-		<!-- ダウンロードのリンク例 -->
+		{# ダウンロードのリンク例 #}
         <a href="{site_url}/databox/download.php?id=394&field_id=84" 
          title="{lang_downloadrequired}">{file} {lang_download}</a>
-		<!-- 添付ファイルがpdfの場合の 表示のリンク例-->
+		{# 添付ファイルがpdfの場合の 表示のリンク例 #}
 		<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display" 
          title="{lang_displayrequired}">{file} {lang_display}</a>
       </td>
@@ -561,7 +561,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     </table>
   </fieldset>
 
-<!-- アトリビュート（追加項目） IDを使用する　テーマ変数 例-->
+{# アトリビュート（追加項目） IDを使用する　テーマ変数 例 #}
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingid}</legend>
     <table style="width:98%" class="databox">
@@ -605,7 +605,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:2&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
+		{# タイプが既定リストの場合表示されます　マスタのvalue2　の値 #}
 		</td>
         <td>{additionfield1:2}</td>
       </tr>
@@ -613,7 +613,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:disp&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
+		{# タイプが既定リストの場合表示されます　マスタのdisp　の値 例 #}
 		</td>
         <td>{additionfield1:disp}</td>
       </tr>
@@ -621,7 +621,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:no&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
+		{# タイプが既定リストの場合表示されます　マスタno　の値 例 #}
 		</td>
         <td>{additionfield1:no}</td>
       </tr>
@@ -629,7 +629,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_value2&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
+		{# タイプが既定リストの場合表示されます　マスタのvalue2　の値 #}
 		</td>
         <td>{additionfield1_mst_value2}</td>
       </tr>
@@ -637,7 +637,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_disp&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
+		{# タイプが既定リストの場合表示されます　マスタのdisp　の値 例 #}
 		</td>
         <td>{additionfield1_mst_disp}</td>
       </tr>
@@ -645,7 +645,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
       <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_no&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
+		{# タイプが既定リストの場合表示されます　マスタno　の値 例 #}
 		</td>
         <td>{additionfield1_mst_no}</td>
       </tr>
@@ -824,7 +824,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		<td>{additionfield18_tn_image}
 		</td>
       <tr>
-		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
+		{# タイプが添付ファイルの場合表示されます　記憶ファイル名 #}
         <th style="width:20%" class="alignright">84</th>
 		<td style="width:20%; color:green" class="alignleft">
 		&#123;additionfield84_readfile&#125
@@ -837,5 +837,4 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 
 </div>
-
-<!-- } plugins/databox/templates/data/default/list_detail.thtml -->
+{# end {templatelocation} #}
