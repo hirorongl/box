@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/admin/selectset.thtml 20130219 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/selectset.thtml 20151109 #}
 <form action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset" class="basic">
 
   <p class="message">{lang_inst_newdata}</p>
@@ -9,5 +9,4 @@
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 
 </form>
-
-<!-- } plugins/databox/templates/admin/selectset.thtml -->
+{# end {templatelocation} #}

@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/admin/confirmation.thtml  20140917 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/confirmation.thtml  20140917 #}
 <h3>{actionname}</h3>
 <form action="{actionprg}" method="post">
   <div>
@@ -15,5 +15,4 @@
     {help}
   </div>
 </form>
-
-<!-- } plugins/databox/templates/admin/confirmation.thtml -->
+{# end {templatelocation} #}

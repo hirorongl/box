@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/admin/fieldset_fields.thtml 20131025 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/fieldset_fields.thtml 20151109 { -->
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
 <script type="text/javascript">
@@ -73,5 +73,4 @@ head.appendChild(lnk);
     </ul>
   </div>
 </form>
-
-<!-- } plugins/databox/templates/admin/fieldset_fields.thtml -->
+{# end {templatelocation} #}
