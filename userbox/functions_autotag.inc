@@ -1098,7 +1098,6 @@ function userbox_profile(
     global $LANG_confignames;
     
     $layout=$_DATABOX_CONF['layout'];
-
     //-----
     if (is_null($id) AND (is_null($code))){
         $id=$_USER['uid'];
