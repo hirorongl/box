@@ -558,8 +558,10 @@ $LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@
 
 $LANG_USERBOX_TYPE[11] = '画像（DB保存）';
 $LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';
-$LANG_USERBOX_TYPE[13] = '添付ファイル（準備中）';
+$LANG_USERBOX_TYPE[13] = '添付ファイル';
 
+$LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
+//$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #

@@ -1228,6 +1228,42 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
+                case 22://日付
+				case 23://日付
+                    if ($disabled===""){
+                        $filedname="afield".$fid;
+                    
+                        $_SCRIPTS->setJavaScript(
+                            "$(function() {
+                            $( \"#afield".$fid."\" ).datepicker();
+                            });"
+                            , TRUE, TRUE
+                            );
+                        //http://getuikit.com/docs/datepicker.html
+                        //<input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+                        //http://jqueryui.com/datepicker/
+                        //<input class="hasDatepicker" id="from" name="from" type="text">
+					
+    					$wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+                        
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"".$fvalue."\"";
+                        $fieldhtml .= " ".XHTML.">";
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
                 case 17://フラグ
                     if ($disabled===""){
                         $wk =" <input ";
@@ -1615,6 +1651,8 @@ function DATABOX_getaddtionfieldsText(
                         $w=COM_getUserDateTimeFormat($fvalue);
                         $retval .= $w[0];
                         break;
+                    case 22://日付
+                    case 23://日付
                     case 3://日付
                         if  ($fvalue<>""){
                             $retval .=strftime( $_CONF['shortdate'], $fvalue );
@@ -1864,7 +1902,9 @@ function DATABOX_getaddtionfieldsDisp(
                         $fieldhtml .= $w[0];
                     }
                     break;
-                case 3://日付（準備中）
+                case 22://日付
+                case 23://日付
+                case 3://日付
                     if  ($fvalue<>""){
                         $fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
                     }
@@ -2819,6 +2859,20 @@ function DATABOX_cleanaddtiondatas(
                     $dateary[$field_id]['month']=$wk_month;//@@@@@
                     $dateary[$field_id]['day']=$wk_day;//@@@@@
                     break;
+                case 22://日付
+                case 23://日付
+                    $ary_wk=date_parse( $wk);
+                    if  ($ary_wk[error_count]==0){
+                        $dateary[$field_id]['month']= $ary_wk[month];
+                        $dateary[$field_id]['day']= $ary_wk[day];
+                        $dateary[$field_id]['year']= $ary_wk[year];
+                    }else{
+                        $wk="";
+                        $dateary[$field_id]['month']= "";
+                        $dateary[$field_id]['day']= "";
+                        $dateary[$field_id]['year']= "";
+                    }
+                    break;
                 case 4://日時
                     $wk_year=$_POST['afield'.$field_id.'_year'];
                     $wk_month=$_POST['afield'.$field_id.'_month'];
@@ -3041,7 +3095,8 @@ function DATABOX_checkaddtiondatas(
             }
 
             //日付 日時
-            if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4){//日付
+            if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4
+                     OR $addition_def[$field_id]['type']==22 OR $addition_def[$field_id]['type']==23){//日付
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
