@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/admin/fieldset_fields.thtml 20151109 { -->
+{# plugins/databox/templates/admin/fieldset_fields.thtml 20151130 #}
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
 <script type="text/javascript">
