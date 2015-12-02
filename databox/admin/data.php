@@ -656,6 +656,22 @@ function fncEdit(
         $id=0;
         //作成日付
         $created=0;
+        $created_un=0;
+        //公開日
+        $released_month=$modified_month;
+        $released_day = $modified_day;
+        $released_year = $modified_year;
+        $released_hour = $modified_hour;
+        $released_minute = $modified_minute;
+        //公開終了日
+        $expired_flag=0;
+        $w = mktime(0, 0, 0, date('m'),
+             date('d') + $_CONF['article_comment_close_days'], date('Y'));
+        $expired_year=date('Y', $w);
+        $expired_month=date('m', $w);
+        $expired_day=date('d', $w);
+        $expired_hour=0;
+        $expired_minute=0;
         //
         $delflg=false;
         $old_mode="copy";
