@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150729
+# Last Update 20151209
 
 ###############################################################################
 ## 管理画面 menu
@@ -724,7 +724,7 @@ $LANG_DATABOX_TYPE[12] = '画像（ファイル保存）';
 $LANG_DATABOX_TYPE[13] = '添付ファイル';
 
 $LANG_DATABOX_TYPE[22] = 'date (jquery ui datepicker)';
-//$LANG_DATABOX_TYPE[23] = 'date (Uikit datepicker)';
+$LANG_DATABOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20151005
+# Last Update 20151209
 
 ###############################################################################
 ## 管理画面 menu
@@ -561,7 +561,7 @@ $LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';
 $LANG_USERBOX_TYPE[13] = '添付ファイル';
 
 $LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
-//$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
+$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #

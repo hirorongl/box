@@ -1229,22 +1229,18 @@ function DATABOX_getaddtionfieldsEdit(
                     }
                     break;
                 case 22://日付
-				case 23://日付
                     if ($disabled===""){
+                        $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+
                         $filedname="afield".$fid;
-                    
+
                         $_SCRIPTS->setJavaScript(
                             "$(function() {
                             $( \"#afield".$fid."\" ).datepicker();
                             });"
                             , TRUE, TRUE
                             );
-                        //http://getuikit.com/docs/datepicker.html
-                        //<input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">
-                        //http://jqueryui.com/datepicker/
-                        //<input class="hasDatepicker" id="from" name="from" type="text">
-					
-    					$wk =  " <input ";
+                        $wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
@@ -1258,7 +1254,34 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"max-width:95%\"";
-                        $fieldhtml .= " value=\"".$fvalue."\"";
+                        $fieldhtml .= " value=\"".$fvalue_date."\"";
+                        $fieldhtml .= " ".XHTML.">";
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+                case 23://日付
+                    if ($disabled===""){
+                        $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+
+                        $filedname="afield".$fid;
+                        
+                        $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"". $fvalue_date."\"";
                         $fieldhtml .= " ".XHTML.">";
                     }else{
                         $fieldhtml .=$fvalue;
