@@ -1229,9 +1229,12 @@ function DATABOX_getaddtionfieldsEdit(
                     }
                     break;
                 case 22://日付
-                    if ($disabled===""){
-                        $fvalue_date=date( $box_conf['dateformat'], $fvalue );
-
+                if ($disabled===""){
+                        if  ($fvalue=="")  {
+                            $fvalue_date="";
+                        }else{
+                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                        }
                         $filedname="afield".$fid;
 
                         $_SCRIPTS->setJavaScript(
@@ -1262,8 +1265,11 @@ function DATABOX_getaddtionfieldsEdit(
                     break;
                 case 23://日付
                     if ($disabled===""){
-                        $fvalue_date=date( $box_conf['dateformat'], $fvalue );
-
+                        if  ($fvalue=="")  {
+                            $fvalue_date="";
+                        }else{
+                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                        }
                         $filedname="afield".$fid;
                         
                         $wk =  " <input ";
