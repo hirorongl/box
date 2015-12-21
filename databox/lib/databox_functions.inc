@@ -5106,6 +5106,7 @@ function DATABOX_fieldvalue(
 {
     global $_TABLES;
     global $_CONF;
+    global $_PLUGINS;
     
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
@@ -5185,6 +5186,14 @@ function DATABOX_fieldvalue(
             $rt=$A['name'];
         }else if ($option=="description"){
             $rt=$A['description'];
+        }else if ($option=="datatitle"){
+            if (in_array('databox', $_PLUGINS)) {
+                $rt=COM_applyFilter(DB_getItem( $_TABLES['DATABOX_base'] ,"title","code='{$A['value']}'"));
+            }
+        }else if ($option=="datadescription"){
+            if (in_array('databox', $_PLUGINS)) {
+				$rt=COM_applyFilter(DB_getItem( $_TABLES['DATABOX_base'] ,"description","code='{$A['value']}'"));
+            }
         }else{
             $selectionary=DATABOX_getselectionary($A['selection']);
             $selectlist=$A['selectlist'];
