@@ -1866,7 +1866,7 @@ function DATABOX_getaddtionfieldsDisp(
 
                     break;
                 case 13://添付ファイル
-                    if  ($fvalue===""){
+                    if  ($fvalue==""){
                     }else{
                         $a=explode("|",$fvalue);
                         $fieldhtml .= $a[1];
@@ -1874,7 +1874,7 @@ function DATABOX_getaddtionfieldsDisp(
                     }
                     break;
                 case 11://画像（DB記憶)
-                    if  ($fvalue===""){
+                    if  ($fvalue==""){
                     }else{
                         $fieldhtml .="<img src=\"data:image/jpg;base64,";
                         $fieldhtml .="{$fvalue}\"".XHTML.">";
@@ -5412,7 +5412,6 @@ function DATABOX_fieldownload(
     $sql .= " AND (expired=0 OR expired > NOW())";
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
-	
 	$result = DB_query ($sql);
     $num = DB_numRows ($result);
     $rt="Target file is not found";

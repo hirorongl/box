@@ -550,10 +550,10 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; color:green" class="alignleft">&#123;file_readfile&#125;</th>
 		<td>{file_readfile}
 		{# ダウンロードのリンク例 #}
-        <a href="{site_url}/databox/download.php?id=394&field_id=84" 
+        <a href="{site_url}/databox/download.php?id={id}&field_code=file" 
          title="{lang_downloadrequired}">{file} {lang_download}</a>
 		{# 添付ファイルがpdfの場合の 表示のリンク例 #}
-		<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display" 
+		<a href="{site_url}/databox/download.php?id={id}&field_code=file&mode=display" 
          title="{lang_displayrequired}">{file} {lang_display}</a>
       </td>
       </tr>
