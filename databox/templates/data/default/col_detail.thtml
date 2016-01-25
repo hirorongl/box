@@ -28,6 +28,11 @@
 {# (b_3) additionfield_value_mst_no #}
 <dt style="color:green; {display_b}">&#123;additionfield{field_id}_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>{additionfield_value_mst_no}</dd>
 
+
+{# (c) additionfield_value_readfile #}
+<dt style="color:green; {display_c}">&#123;additionfield{field_id}_readfile&#125; or &#123;{additionfield_templatesetvar}_readfile&#125;</dt><dd>{additionfield_value_readfile} </dd>
+
+
 </dl>
         </td>
 <td style="width:10%; background:#f8f8f8">
