@@ -1,6 +1,6 @@
-<!-- plugins/databox/templates/mydata/default/selectset.thtml 20130621 { -->
+{# begin {templatelocation} #}
 
-<form action="{site_url}/{script}" method="post" id="admin-selectset" class="basic">
+<form class="uk-form" action="{site_url}/{script}" method="post" id="admin-selectset" class="basic">
   <p class="message">{lang_inst_newdata}</p>
   {lang_fieldset} {list_fieldset}
   <input type="submit" value="{lang_new}" name="mode" class="submit"{xhtml}>
@@ -8,4 +8,4 @@
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
 
-<!-- } plugins/databox/templates/mydata/default/selectset.thtml -->
+{# end {templatelocation} #}

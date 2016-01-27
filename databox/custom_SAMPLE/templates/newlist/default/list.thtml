@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/newlist/default/list.thtml  { -->
+{# begin {templatelocation} #}
 
 <dl class="uk-description-list-horizontal">
 {list_col}
@@ -7,4 +7,4 @@
 <p class="databox_rss"><a href="{rss_url}">{rss_title}</a></p>
 <p class="databox_more"><a href="{more_url}">{more_title}</a></p>
 
-<!-- } plugins/databox/templates/newlist/default/list.thtml -->
+{# end {templatelocation} #}
