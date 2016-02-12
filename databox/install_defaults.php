@@ -143,6 +143,8 @@ $_DATABOX_DEFAULT['commentcode'] = 0;
 
 //管理者ページ（データ）の並び替え
 $_DATABOX_DEFAULT['sort_list_by'] = "orderno";
+//マイデータの並び替え
+$_DATABOX_DEFAULT['sort_list_by_my'] = "orderno";
 
 //デフォルトキャッシュタイム
 $_DATABOX_DEFAULT['default_cache_time'] = "0";
@@ -590,9 +592,16 @@ function plugin_initconfig_databox()
             , $pi_name
             ,0);
         $c->add(
+            'sort_list_by_my'
+            ,$_DATABOX_DEFAULT['sort_list_by_my']
+            ,'select', 0, 0, 30, 360, true
+            , $pi_name
+            ,0);
+			
+        $c->add(
             'default_cache_time'
             ,$_DATABOX_DEFAULT['default_cache_time']
-            ,'text', 0, 0, NULL, 360, TRUE
+            ,'text', 0, 0, NULL, 370, TRUE
             , $pi_name
             ,0);
          
