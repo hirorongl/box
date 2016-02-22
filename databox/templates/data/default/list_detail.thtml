@@ -169,11 +169,11 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
     <legend>{lang_additionfields} </legend>
     <table style="width:98%" class="databox">
       <tr>
-	<th style="width:20%;" class="alignright">{lang_field}<br{XHTML}>&#123;additionfield_name&#125;</th>
-        <th style="width:40%; text-align:left" class="alignleft">
+	<th style="width:20%;" class="alignright">{lang_field}</th>
+    <th style="width:40%; text-align:left" class="alignleft">
 	  <dl class="databox_col_detail">
-	    <dt style=color:green;>{lang_templatesetvar} &#123;additionfield_templatesetvar&#125;</dt>
-	    <dd>{lang_content} &#123;additionfield_value&#125;</dd>
+	    <dt style=color:green;>{lang_templatesetvar} </dt>
+	    <dd>{lang_content} </dd>
 	  </dl>
 	</th>
         <th class="alignleft">{lang_type}</th>
@@ -701,6 +701,12 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	    <td>{additionfield1_description}</td>
       </tr>
       <tr>
+        <th style="width:20%" class="alignright">1</th>
+		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_value&#125;
+		</td>
+	    <td>{additionfield1_value}</td>
+      </tr>
+      <tr>
         <th style="width:20%" class="alignright">11</th>
 		<td style="width:20%; color:green" class="alignleft">
 		&#123;additionfield11&#125;
@@ -762,6 +768,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		<td>{additionfield11_mst_no}
 		</td>
 	  </tr>
+      <tr>
+        <th style="width:20%" class="alignright">11</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield11_value&#125
+		</td>
+		<td>{additionfield11_value}
+		</td>
+	  </tr>
 
       <tr>
         <th style="width:20%" class="alignright">16</th>
@@ -778,7 +792,15 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield16_yes}
 		</td>
-	
+	  </tr>
+      <tr>
+        <th style="width:20%" class="alignright">16</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield16_value&#125
+		</td>
+		<td>{additionfield16_value}
+		</td>
+	  </tr>
       <tr>
         <th style="width:20%" class="alignright">18</th>
 		<td style="width:20%; color:green" class="alignleft">
@@ -794,6 +816,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_tn}
 		</td>
+	  </tr>
       <tr>
         <th style="width:20%" class="alignright">18</th>
 		<td style="width:20%; color:green" class="alignleft">
@@ -801,6 +824,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_noimage}
 		</td>
+	  </tr>
       <tr>
         <th style="width:20%" class="alignright">18</th>
 		<td style="width:20%; color:green" class="alignleft">
@@ -808,6 +832,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_tn_noimage}
 		</td>
+	  </tr>
 
       <tr>
         <th style="width:20%" class="alignright">18</th>
@@ -816,6 +841,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_disp}
 		</td>
+	  </tr>
       <tr>
         <th style="width:20%" class="alignright">18</th>
 		<td style="width:20%; color:green" class="alignleft">
@@ -823,6 +849,15 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield18_tn_image}
 		</td>
+	  </tr>
+      <tr>
+        <th style="width:20%" class="alignright">18</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield18_value&#125
+		</td>
+		<td>{additionfield18_value}
+		</td>
+	  </tr>
       <tr>
 		{# タイプが添付ファイルの場合表示されます　記憶ファイル名 #}
         <th style="width:20%" class="alignright">84</th>
@@ -831,6 +866,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		</td>
 		<td>{additionfield84_readfile}
       </tr>
+      <tr>
+        <th style="width:20%" class="alignright">84</th>
+		<td style="width:20%; color:green" class="alignleft">
+		&#123;additionfield84_value&#125
+		</td>
+		<td>{additionfield84_value}
+		</td>
+	  </tr>
 
 	</table>
   </fieldset>
