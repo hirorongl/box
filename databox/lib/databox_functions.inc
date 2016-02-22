@@ -1971,6 +1971,9 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value', $fieldhtml);
             $templates->set_var('additionfield'.$fid, $fieldhtml);
             $templates->set_var($templatesetvar, $fieldhtml);
+            $templates->set_var('additionfield_fvalue', $fvalue);
+            $templates->set_var('additionfield'.$fid."_value", $fvalue);
+            $templates->set_var($templatesetvar."_value", $fvalue);
             
             if  ($type==12){
                 $templates->set_var('display_a', 'display:');
