@@ -1883,9 +1883,6 @@ function DATABOX_getaddtionfieldsDisp(
                     break;
                 case 2://いいえ/はい
                     $fieldhtml .= $lang_noyes[$fvalue];
-                    if  ($fvalue==1){
-                        $fieldhtml_yes=1;
-                    }
                     break;
                 case 7://オプションリスト（選択肢）//@@@@@@
                 case 8://ラジオボタンリスト（選択肢）//@@@@@
