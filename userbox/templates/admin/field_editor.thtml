@@ -78,7 +78,7 @@
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_initial_value} {help_initial_value}</th>
             <td class="admin-list-field" colspan="2">
-               <textarea name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
+               <textarea name="initial_value" style="width:95%" rows="2" id="userbox_initial_value">{initial_value}</textarea>
             </td>
           </tr>
           {# 範囲 range #}
