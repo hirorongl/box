@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20151209
+# Last Update 20160310
 
 ###############################################################################
 ## 管理画面 menu
@@ -152,7 +152,7 @@ $LANG_USERBOX_ADMIN['title']='タイトル';
 $LANG_USERBOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_USERBOX_ADMIN['description']='説明';
-$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='テーマ';
+$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
 $LANG_USERBOX_ADMIN['layout']='レイアウト';
 
 $LANG_USERBOX_ADMIN['category']='カテゴリ';

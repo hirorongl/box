@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/admin/group_editor.thtml 20151109 #}
+{# plugins/databox/templates/admin/group_editor.thtml 20160310 #}
 <div id="databox_admin">
   {about_thispage}
   <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
@@ -61,6 +61,29 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_input_type} {help_input_type}</th>
             <td class="admin-list-field">{list_input_type}</td>
+          </tr>
+
+          {# defaulttemplatesdirectory #}
+          <tr class="pluginRow1">
+            <th style="width:30%"  class="alignright">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
+            <td class="admin-list-field">
+                {select_defaulttemplatesdirectory}
+            </td>
+          </tr>
+          {# allow_display #}
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_allow_display}{help_allow_display}</th>
+            <td class="admin-list-field" colspan="2">
+              {list_allow_display}
+            </td>
+          </tr>
+
+          {# allow_edit #}
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_allow_edit}{help_allow_edit}</th>
+            <td class="admin-list-field" colspan="2">
+              {list_allow_edit}
+            </td>
           </tr>
 
           {# 保存日 #}
