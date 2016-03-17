@@ -676,6 +676,84 @@
     <udatetime>2016-01-20 13:12:12</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
+  <gl211_databox_def_field>
+    <field_id>27</field_id>
+    <name>メンバー</name>
+    <templatesetvar>member</templatesetvar>
+    <description>Option SEL で使用</description>
+    <type>0</type>
+    <selection></selection>
+    <selectlist>0</selectlist>
+    <checkrequried>0</checkrequried>
+    <size>60</size>
+    <maxlength>500</maxlength>
+    <rows>3</rows>
+    <br>0</br>
+    <orderno>260</orderno>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
+    <textcheck>0</textcheck>
+    <textconv>0</textconv>
+    <searchtarget>0</searchtarget>
+    <initial_value></initial_value>
+    <range_start></range_start>
+    <range_end></range_end>
+    <dfid>0</dfid>
+    <udatetime>2016-03-16 12:21:30</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_field>
+  <gl211_databox_def_field>
+    <field_id>28</field_id>
+    <name>チェックボックス１</name>
+    <templatesetvar>chkbox1</templatesetvar>
+    <description></description>
+    <type>24</type>
+    <selection>りんご&#13;いちご&#13;バナナ&#13;オレンジ&#13;はっさく&#13;いよかん&#13;</selection>
+    <selectlist>0</selectlist>
+    <checkrequried>0</checkrequried>
+    <size>60</size>
+    <maxlength>500</maxlength>
+    <rows>3</rows>
+    <br>0</br>
+    <orderno>270</orderno>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
+    <textcheck>0</textcheck>
+    <textconv>0</textconv>
+    <searchtarget>0</searchtarget>
+    <initial_value></initial_value>
+    <range_start></range_start>
+    <range_end></range_end>
+    <dfid>0</dfid>
+    <udatetime>2016-03-16 14:09:11</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_field>
+  <gl211_databox_def_field>
+    <field_id>29</field_id>
+    <name>チェックボックス２</name>
+    <templatesetvar>chkbox2</templatesetvar>
+    <description></description>
+    <type>25</type>
+    <selection></selection>
+    <selectlist>prefect</selectlist>
+    <checkrequried>0</checkrequried>
+    <size>60</size>
+    <maxlength>500</maxlength>
+    <rows>3</rows>
+    <br>0</br>
+    <orderno>280</orderno>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
+    <textcheck>0</textcheck>
+    <textconv>0</textconv>
+    <searchtarget>0</searchtarget>
+    <initial_value></initial_value>
+    <range_start></range_start>
+    <range_end></range_end>
+    <dfid>0</dfid>
+    <udatetime>2016-03-16 13:13:10</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_field>
   <gl211_databox_def_category>
     <category_id>1</category_id>
     <code>JAPAN</code>
@@ -923,6 +1001,19 @@
     <udatetime>2015-05-13 14:48:25</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>20</category_id>
+    <code></code>
+    <name>AAA</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>0</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-01-26 13:46:06</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
   <gl211_databox_def_group>
     <group_id>0</group_id>
     <code></code>
@@ -931,6 +1022,9 @@
     <orderno></orderno>
     <parent_flg>0</parent_flg>
     <input_type>0</input_type>
+    <defaulttemplatesdirectory>''</defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
     <udatetime>2015-05-13 14:10:29</udatetime>
     <uuid>0</uuid>
   </gl211_databox_def_group>
@@ -941,8 +1035,11 @@
     <description></description>
     <orderno>0</orderno>
     <parent_flg>1</parent_flg>
-    <input_type>0</input_type>
-    <udatetime>2015-05-13 14:15:18</udatetime>
+    <input_type>3</input_type>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <allow_display>1</allow_display>
+    <allow_edit>2</allow_edit>
+    <udatetime>2016-03-16 12:28:21</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_group>
   <gl211_databox_def_group>
@@ -952,8 +1049,11 @@
     <description></description>
     <orderno>0</orderno>
     <parent_flg>0</parent_flg>
-    <input_type>0</input_type>
-    <udatetime>2015-05-13 14:17:14</udatetime>
+    <input_type>1</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
+    <udatetime>2016-03-16 12:26:52</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_group>
   <gl211_databox_def_group>
@@ -963,8 +1063,11 @@
     <description></description>
     <orderno>0</orderno>
     <parent_flg>0</parent_flg>
-    <input_type>0</input_type>
-    <udatetime>2015-05-13 14:19:42</udatetime>
+    <input_type>2</input_type>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <allow_display>1</allow_display>
+    <allow_edit>2</allow_edit>
+    <udatetime>2016-03-16 12:27:20</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_group>
   <gl211_databox_mst>
@@ -972,12 +1075,12 @@
     <kind>prefect</kind>
     <no>1</no>
     <value>北海道</value>
-    <value2></value2>
-    <disp></disp>
+    <value2>hokkaido</value2>
+    <disp>ほっかいどう</disp>
     <orderno>10</orderno>
     <relno></relno>
-    <udatetime>2015-05-13 14:10:54</udatetime>
-    <uuid>0</uuid>
+    <udatetime>2016-02-23 00:40:11</udatetime>
+    <uuid>2</uuid>
   </gl211_databox_mst>
   <gl211_databox_mst>
     <id>2</id>
@@ -1284,12 +1387,12 @@
     <kind>prefect</kind>
     <no>27</no>
     <value>大阪府</value>
-    <value2></value2>
-    <disp></disp>
+    <value2>osaka</value2>
+    <disp>おおさか</disp>
     <orderno>270</orderno>
     <relno></relno>
-    <udatetime>2015-05-13 14:10:54</udatetime>
-    <uuid>0</uuid>
+    <udatetime>2016-02-23 00:41:46</udatetime>
+    <uuid>2</uuid>
   </gl211_databox_mst>
   <gl211_databox_mst>
     <id>28</id>
@@ -1542,6 +1645,18 @@
     <relno></relno>
     <udatetime>2015-05-13 14:10:54</udatetime>
     <uuid>0</uuid>
+  </gl211_databox_mst>
+  <gl211_databox_mst>
+    <id>49</id>
+    <kind> fieldgroup</kind>
+    <no>0</no>
+    <value></value>
+    <value2></value2>
+    <disp></disp>
+    <orderno></orderno>
+    <relno></relno>
+    <udatetime>2016-03-16 13:13:43</udatetime>
+    <uuid>2</uuid>
   </gl211_databox_mst>
   <gl211_databox_def_fieldset>
     <fieldset_id>0</fieldset_id>

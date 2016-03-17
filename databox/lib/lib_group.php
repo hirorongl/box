@@ -235,8 +235,9 @@ function LIB_Edit(
             $allow_edit="";
 
             $orderno ="";
-            $parent_flg =0;
-
+            $parent_flg ="0";
+			$input_type="0";
+			
             $uuid=0;
             $udatetime="";//"";
 
