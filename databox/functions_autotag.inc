@@ -1208,10 +1208,10 @@ function databox_field(
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
     $url=$_CONF['site_url']."/databox/attribute.php";
-    $attribute_top=":<a href='".$url."'>".$LANG_DATABOX['attribute_top']."</a>";
+    $attribute_top="<a href='".$url."'>".$LANG_DATABOX['attribute_top']."</a>";
     $url=$_CONF['site_url']."/databox/attribute.php?";
     $url.="m=id&amp;id=".$field_id;
-    $field_top=":<a href='".$url."'>".$field_name.$LANG_DATABOX['countlist']."</a>";
+    $field_top="<a href='".$url."'>".$field_name.$LANG_DATABOX['countlist']."</a>";
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
