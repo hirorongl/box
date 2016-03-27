@@ -846,7 +846,7 @@ function databox_category(
             $templates->set_var ('home',$LANG_DATABOX['home']);
             
             $url=$_CONF['site_url']."/databox/category.php";
-            $category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
+            $category_top="<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
             $templates->set_var ('category_top',$category_top);
 
             $templates->set_var ('category_name',$category_name);
