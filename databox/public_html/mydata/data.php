@@ -621,7 +621,7 @@ function fncEdit(
 	
 	//カテゴリ
     $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
-    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox");
+    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,"databox",$chk_user);
     $templates->set_var('checklist_category', $checklist_category);
 
     //追加項目
@@ -963,7 +963,7 @@ function fncSave (
 
     //カテゴリ
     //$rt=DATABOX_savedatas("category_id",$_TABLES['DATABOX_category'],$id,$category);
-    $rt=DATABOX_savecategorydatas($id,$category);
+    $rt=DATABOX_savecategorydatas($id,$category,'databox','mydata');
 
 	//追加項目
 	if  ($old_mode=="copy"){
@@ -1259,6 +1259,7 @@ function fncMenu(
 {
 
     global $_CONF;
+    global $_DATABOX_CONF;
     global $LANG_ADMIN;
 
     global $LANG_DATABOX_ADMIN;

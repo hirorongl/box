@@ -578,10 +578,11 @@ function DATABOX_savecategorydatas(
     $id
     ,$fldary
     ,$pi_name=""
+    ,$mydata=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  複数データ書込(カテゴリ)
-// | 書式 DATABOX_savecategorydatas($fld,$tbl,$id,$fldary)
+// | 書式 DATABOX_savecategorydatas($id,$category,'databox','mydata')
 // +---------------------------------------------------------------------------+
 // | 引数 $id:
 // | 引数 $fldary:データ配列
@@ -601,9 +602,21 @@ function DATABOX_savecategorydatas(
         $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
         $table_category=$_TABLES[strtoupper($pi_name).'_category'];
     }
-
-    $rt=DB_delete($table_category,"id",$id);
-
+	
+	if  ($mydata==""){
+        $rt=DB_delete($table_category,"id",$id);
+	}else{
+		$categories=COM_applyFilter($_POST['categories']);
+		if  ($categories=="" ){
+		}else{
+            $categories=str_replace("|", ',', $categories);
+		    $sql="DELETE FROM {$table_category} WHERE ";
+	        $sql .="  id = ".$id ;
+	        $sql .="  AND category_id IN (".$categories.")";
+		    DB_query($sql);
+		}
+	}
+	
     if (is_array($fldary)){
         for ($i = 1; $i <= count($fldary); $i++) {
             $val=current($fldary);
@@ -2492,6 +2505,7 @@ function DATABOX_getcategoriesinp(
     $selected = ""
     ,$fieldset_id=""
     ,$pi_name=""
+    ,$chk_user=9999
 )
 {
 global $_TABLES;
@@ -2525,6 +2539,7 @@ global $_TABLES;
     $sql .= "m2.group_id".LB;
     $sql .= ",m2.name AS group_name".LB;
     $sql .= ",m2.input_type".LB;
+    $sql .= ",m2.allow_edit".LB;
     $sql .= " FROM ".LB;
     $sql .= " {$table_def_group} AS m2".LB;
     if  ($fieldset_id<>0){
@@ -2540,11 +2555,43 @@ global $_TABLES;
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
 
-    
+    $categoryids="";
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
         
+        $chk=false;
+        $disabled="disabled";
+        
+        if ($chk_user===9999){
+            $chk=true;
+            $disabled="";
+        }else{
+            //編集可能
+            if  ($A['allow_edit']==='0') {
+                $chk=true;
+                $disabled="";
+            //グループとadmin権のある人のみ表示
+            }else if ($A['allow_edit']==='2'){
+                if  ($chk_user>=1010) {
+                    $chk=true;
+                    $disabled="";
+                }
+                //所有者とadmin権のある人のみ
+            }else if ($A['allow_edit']==='3'){
+                if  ($chk_user>=1011) {
+                    $chk=true;
+                    $disabled="";
+                }
+            //編集不可表示のみ
+            }else if ($A['allow_edit']==='4'){
+                $chk=true;
+            }
+        }
+        if ($chk==false) {
+            continue;
+        }
+		
         $sql2 = "SELECT ";
         $sql2 .= " m1.category_id".LB;
         $sql2 .= ",m1.name".LB;
@@ -2564,15 +2611,19 @@ global $_TABLES;
             $retval .="</div>".LB;
         
             if  ($A['input_type']==1){
-                $retval .='<select name="category[]" multiple style="height:10em">'.LB;
+                $retval .='<select name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
-                $retval .='<select name="category[]" >'.LB;
+                $retval .='<select name="category[]" '. $disabled .' >'.LB;
             }
             
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
                 $A2 = DB_fetchArray( $result2, true );
-        
+                
+				if  ($disabled==""){
+					$categoryids.=$A2['category_id']."|";
+                }
+                
                 $checked=" ";
                 for( $x = 0; $x < sizeof( $S ); $x++ )            {
                     if( $A2['category_id'] == $S[$x] )                {
@@ -2589,7 +2640,7 @@ global $_TABLES;
                     $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
-                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                    $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
                 }else  if  ($A['input_type']==1){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
@@ -2599,7 +2650,7 @@ global $_TABLES;
                     $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
-                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                    $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
                 }else  if  ($A['input_type']==3){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
@@ -2613,8 +2664,12 @@ global $_TABLES;
             }
         }
         
+	}
+	if  ($categoryids==""){
+	}else{
+		$categoryids=substr($categoryids,0,strlen($categoryids)-1);
+        $retval .= "  <input type='hidden' name='categories' value='{$categoryids}'>";
     }
-
     return $retval;
 }
 function DATABOX_getaddtionfields(
