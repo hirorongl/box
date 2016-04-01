@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160316
+# Last Update 20160401
 
 ###############################################################################
 ## 管理画面 menu
@@ -551,7 +551,8 @@ $LANG_DATABOX_ADMIN['err_expired'] = '公開終了日が不正です';
 
 $LANG_DATABOX_ADMIN['err_checkrequried'] = ' 必ず入力してください';
 
-$LANG_DATABOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
+$LANG_DATABOX_ADMIN['err_date'] = '日付が不正です';
+$LANG_DATABOX_ADMIN['err_time'] = '時刻が不正です';
 $LANG_DATABOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
@@ -709,6 +710,7 @@ $LANG_DATABOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
 $LANG_DATABOX_TYPE[23] = '日付 (Uikit datepicker)';
 $LANG_DATABOX_TYPE[4] = '日時';
+$LANG_DATABOX_TYPE[26] = '時刻 (Uikit timepicker)';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';

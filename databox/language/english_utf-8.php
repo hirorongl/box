@@ -514,7 +514,8 @@ $LANG_DATABOX_ADMIN['err_expired'] = 'Publish date is not valid.';
 
 $LANG_DATABOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
-$LANG_DATABOX_ADMIN['err_date'] = 'Date is invalid.';//@@@@@
+$LANG_DATABOX_ADMIN['err_date'] = 'Date is invalid.';
+$LANG_DATABOX_ADMIN['err_time'] = 'Time is invalid.';
 $LANG_DATABOX_ADMIN['err_writable'] = ' is not writable';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'Size is invalid.';//@@@@@
@@ -670,7 +671,8 @@ $LANG_DATABOX_TYPE[2] = 'Yes/No';
 $LANG_DATABOX_TYPE[3] = 'Date (Date Picker)';
 $LANG_DATABOX_TYPE[22] = 'date (jquery ui datepicker)';
 $LANG_DATABOX_TYPE[23] = 'date (Uikit datepicker)';
-$LANG_DATABOX_TYPE[4] = 'Time (In preparation)';
+$LANG_DATABOX_TYPE[4] = 'Date & time (In preparation)';
+$LANG_DATABOX_TYPE[26] = 'time (Uikit timepicker)';
 $LANG_DATABOX_TYPE[5] = 'Mail Address';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'Option List';

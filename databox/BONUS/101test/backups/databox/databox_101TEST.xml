@@ -754,6 +754,32 @@
     <udatetime>2016-03-16 13:13:10</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
+  <gl211_databox_def_field>
+    <field_id>30</field_id>
+    <name>時刻</name>
+    <templatesetvar>jikoku1</templatesetvar>
+    <description></description>
+    <type>26</type>
+    <selection></selection>
+    <selectlist>0</selectlist>
+    <checkrequried>0</checkrequried>
+    <size>60</size>
+    <maxlength>500</maxlength>
+    <rows>3</rows>
+    <br>0</br>
+    <orderno>290</orderno>
+    <allow_display>0</allow_display>
+    <allow_edit>0</allow_edit>
+    <textcheck>0</textcheck>
+    <textconv>0</textconv>
+    <searchtarget>0</searchtarget>
+    <initial_value></initial_value>
+    <range_start>9</range_start>
+    <range_end>17</range_end>
+    <dfid>0</dfid>
+    <udatetime>2016-04-01 23:27:29</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_field>
   <gl211_databox_def_category>
     <category_id>1</category_id>
     <code>JAPAN</code>
@@ -1002,16 +1028,211 @@
     <uuid>2</uuid>
   </gl211_databox_def_category>
   <gl211_databox_def_category>
-    <category_id>20</category_id>
-    <code></code>
-    <name>AAA</name>
+    <category_id>21</category_id>
+    <code>mAA1</code>
+    <name>管理１１</name>
     <description></description>
     <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
     <orderno>0</orderno>
     <parent_id>0</parent_id>
-    <categorygroup_id>0</categorygroup_id>
+    <categorygroup_id>4</categorygroup_id>
+    <allow_display>5</allow_display>
+    <udatetime>2016-03-24 15:43:34</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>22</category_id>
+    <code>mAA2</code>
+    <name>管理１２</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>4</categorygroup_id>
+    <allow_display>5</allow_display>
+    <udatetime>2016-03-24 15:43:50</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>23</category_id>
+    <code>mAB1</code>
+    <name>管理AB1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>5</categorygroup_id>
     <allow_display>0</allow_display>
-    <udatetime>2016-01-26 13:46:06</udatetime>
+    <udatetime>2016-03-24 15:44:35</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>24</category_id>
+    <code>mAB2</code>
+    <name>管理AB2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>5</categorygroup_id>
+    <allow_display>5</allow_display>
+    <udatetime>2016-03-24 15:45:05</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>25</category_id>
+    <code>mAC1</code>
+    <name>管理AC１</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>6</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:50:19</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>26</category_id>
+    <code>mAC２</code>
+    <name>管理AC２</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>6</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:50:51</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>27</category_id>
+    <code>mAD1</code>
+    <name>管理AD1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>7</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:51:35</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>28</category_id>
+    <code>mAD2</code>
+    <name>管理AD2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>7</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:51:51</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>29</category_id>
+    <code>mBA1</code>
+    <name>管理BA1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>8</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:52:33</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>30</category_id>
+    <code>mBA2</code>
+    <name>管理BA2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>8</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:52:51</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>31</category_id>
+    <code>mBB1</code>
+    <name>管理BB1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>9</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:53:18</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>32</category_id>
+    <code>mBB2</code>
+    <name>管理BB2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>9</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 15:53:34</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>33</category_id>
+    <code>mBC1</code>
+    <name>管理BC1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>10</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 16:02:03</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>34</category_id>
+    <code>mBC2</code>
+    <name>管理BC2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>10</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 16:02:39</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>35</category_id>
+    <code>mBD1</code>
+    <name>管理BD1</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>11</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 16:03:03</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_category>
+  <gl211_databox_def_category>
+    <category_id>36</category_id>
+    <code>mBD2</code>
+    <name>管理BD2</name>
+    <description></description>
+    <defaulttemplatesdirectory>default</defaulttemplatesdirectory>
+    <orderno>0</orderno>
+    <parent_id>0</parent_id>
+    <categorygroup_id>11</categorygroup_id>
+    <allow_display>0</allow_display>
+    <udatetime>2016-03-24 16:09:45</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_category>
   <gl211_databox_def_group>
@@ -1068,6 +1289,118 @@
     <allow_display>1</allow_display>
     <allow_edit>2</allow_edit>
     <udatetime>2016-03-16 12:27:20</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>4</group_id>
+    <code>manageAA</code>
+    <name>管理者用表示のみAA</name>
+    <description></description>
+    <orderno>11</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>0</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>4</allow_edit>
+    <udatetime>2016-03-24 16:07:07</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>5</group_id>
+    <code>manageAB</code>
+    <name>管理者用表示のみAB</name>
+    <description></description>
+    <orderno>12</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>1</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>4</allow_edit>
+    <udatetime>2016-03-24 16:07:20</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>6</group_id>
+    <code>manageAC</code>
+    <name>管理者用表示のみAC</name>
+    <description></description>
+    <orderno>13</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>0</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>4</allow_edit>
+    <udatetime>2016-03-29 11:07:30</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>7</group_id>
+    <code>manageAD</code>
+    <name>管理者用表示のみAD</name>
+    <description></description>
+    <orderno>14</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>3</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>4</allow_edit>
+    <udatetime>2016-03-24 16:07:42</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>8</group_id>
+    <code>manageBA</code>
+    <name>管理者用表示しないBA</name>
+    <description></description>
+    <orderno>21</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>0</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>5</allow_edit>
+    <udatetime>2016-03-24 16:07:55</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>9</group_id>
+    <code>manageBB</code>
+    <name>管理者用表示しないBB</name>
+    <description></description>
+    <orderno>22</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>1</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>5</allow_edit>
+    <udatetime>2016-03-24 16:08:06</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>10</group_id>
+    <code>manageBC</code>
+    <name>管理者用表示しないBC</name>
+    <description></description>
+    <orderno>23</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>0</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>5</allow_edit>
+    <udatetime>2016-03-29 11:07:42</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_def_group>
+  <gl211_databox_def_group>
+    <group_id>11</group_id>
+    <code>manageBD</code>
+    <name>管理者用表示しないBD</name>
+    <description></description>
+    <orderno>24</orderno>
+    <parent_flg>0</parent_flg>
+    <input_type>3</input_type>
+    <defaulttemplatesdirectory></defaulttemplatesdirectory>
+    <allow_display>0</allow_display>
+    <allow_edit>5</allow_edit>
+    <udatetime>2016-03-24 16:08:25</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_group>
   <gl211_databox_mst>

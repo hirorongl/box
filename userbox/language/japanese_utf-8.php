@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160316
+# Last Update 20160401
 
 ###############################################################################
 ## 管理画面 menu
@@ -388,7 +388,8 @@ $LANG_USERBOX_ADMIN['err_expired'] = '公開終了日が不正です';
 
 $LANG_USERBOX_ADMIN['err_checkrequried'] = ' 必ず入力してください';
 
-$LANG_USERBOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
+$LANG_USERBOX_ADMIN['err_date'] = '日付が不正です';
+$LANG_USERBOX_ADMIN['err_time'] = '時刻が不正です';
 $LANG_USERBOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 
 $LANG_USERBOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@

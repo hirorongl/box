@@ -381,7 +381,8 @@ $LANG_USERBOX_ADMIN['err_expired'] = 'Publish date is not valid.';
 
 $LANG_USERBOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
-$LANG_USERBOX_ADMIN['err_date'] = 'Date is invalid.';//@@@@@
+$LANG_USERBOX_ADMIN['err_date'] = 'Date is invalid.';
+$LANG_USERBOX_ADMIN['err_time'] = 'Time is invalid.';
 $LANG_USERBOX_ADMIN['err_writable'] = ' is not writable';
 
 $LANG_USERBOX_ADMIN['err_size'] = 'Size is invalid.';//@@@@@

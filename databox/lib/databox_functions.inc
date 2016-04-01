@@ -1230,7 +1230,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
-                case 4://日時（date picker対応）
+                case 4://日時（datetime picker対応）
                     if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
@@ -1257,6 +1257,42 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
+                case 26://時刻（UI time picker対応）
+                    if ($disabled===""){
+                         $fvalue_time=DATABOX_getTimeformat($fvalue);
+                         $filedname="afield".$fid;
+                         
+                         $wk =  " <input ";
+                         $wk .= " type=\"hidden\"";
+                         $wk .= " name=\"afield[".$fid."]\" ";
+                         $wk .= " value=\"".$fvalue."\"";
+                         $wk .= " ".XHTML.">";
+                         $fieldhtml.=$wk;
+
+                         $fieldhtml .= "        <input ";
+                         $fieldhtml .= " data-uk-timepicker=\"{format:'".$_CONF['hour_mode']."h'";
+                         if  ($addition_def[$fid]['range_start']==""){
+                         }else{
+                             $fieldhtml .= ",start:".$addition_def[$fid]['range_start'] ;
+                         }
+                         if  ($addition_def[$fid]['range_end']==""){
+                         }else{
+                             $fieldhtml .= ",end:".$addition_def[$fid]['range_end'] ;
+                         }
+                         $fieldhtml .= " }\"";
+                         $fieldhtml .= " class=\"uk-form-width-small\"";
+                         $fieldhtml .= " type=\"text\"";
+                         $fieldhtml .= "  id=\"afield".$fid."\"";
+                         $fieldhtml .= " size=\"".$size."\"";
+                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                         $fieldhtml .= " style=\"max-width:95%\"";
+                         $fieldhtml .= " value=\"". $fvalue_time."\"";
+                         $fieldhtml .= " ".XHTML.">";
+                     }else{
+                        $fieldhtml .=$fvalue;
+                     }
+                     break;
                 case 22://日付
                 if ($disabled===""){
                         if  ($fvalue=="")  {
@@ -1960,6 +1996,11 @@ function DATABOX_getaddtionfieldsDisp(
                     if  ($fvalue<>""){
                         $w=DATABOX_getDateTimeFormat($fvalue,$format);
                         $fieldhtml .= $w[0];
+                    }
+                    break;
+                case 26://時刻
+                    if  ($fvalue<>""){
+                        $fieldhtml .= DATABOX_getTimeformat($fvalue);
                     }
                     break;
                 case 22://日付
@@ -3007,6 +3048,10 @@ function DATABOX_cleanaddtiondatas(
                     }
                     $wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
                     break;
+                case 26://時刻
+                    $wk=COM_applyFilter($wk);
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
+                    break;
                 case 24://チェックボックス（選択肢）
                 case 25://チェックボックス（マスター）
                 case 14://マルチセレクトリスト（選択肢）
@@ -3249,6 +3294,32 @@ function DATABOX_checkaddtiondatas(
                     }
                 }
             }
+            //時刻
+            if ($addition_def[$field_id]['type']==26){
+                if ($value ===""){
+                }else{
+                    $w=strtotime("1970-1-1 ".$value);
+                    if  ($addition_def[$field_id]['range_start']=="" 
+                         AND $addition_def[$field_id]['range_end']=="" ){
+                    }else{
+                        $w_start=strtotime("1970-1-1 ".$addition_def[$field_id]['range_start'].":00");
+                        $w_end=strtotime("1970-1-1 ".$addition_def[$field_id]['range_end'].":00");
+                        if  ($w <$w_start OR $w >$w_end){
+                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
+                                  ."(".$addition_def[$field_id]['range_start'] 
+                                  ."-".$addition_def[$field_id]['range_end'].")" ;
+                                 $rt.="<br ".XHTML.">".LB;
+                        }
+                    }
+                    if ($w=="") {
+                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_time'] ;
+                        $rt.="<br ".XHTML.">".LB;
+                    }else{
+                        $w_time=date("H:i",$w)."::00";
+                        $fldary[$field_id]=COM_convertDate2Timestamp("1970-1-1",$w_time);
+                    }
+                }
+            }
             //メールアドレス
             if ($addition_def[$field_id]['type']==5){
                 if ($value ===""){
@@ -3355,7 +3426,7 @@ function DATABOX_checkaddtiondatas(
                             if ($box_conf['file_size']<>"" AND $filesize>$box_conf['file_size']){
                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
                                 $rt.="<br ".XHTML.">".LB;
-;                               $err=1;
+                                $err=1;
                             }
 							if (count($box_conf['file_type'])>0){
                                 if  (in_array($filetype,$box_conf['file_type'])){
@@ -5174,6 +5245,25 @@ function DATABOX_getDateTimeFormat( $date,$format )
     }
     $date = strftime( $format, $stamp );
     return array( $date, $stamp );
+}
+function DATABOX_getTimeFormat( $value )
+{
+    $rt="";
+    if  ($value==""){
+        $rt="";
+    }else{
+        if  ($_CONF['hour_mode']=='24'){
+            $rt=date('H:i', $value );
+        }else{
+            $rt=date('h:i', $value );
+            if  (date('H',$value)>=12){
+                $rt.=" PM";
+            }else{
+                $rt.=" AM";
+            }
+        }
+    }
+    return $rt;
 }
 
 function DATABOX_fieldvalue(
