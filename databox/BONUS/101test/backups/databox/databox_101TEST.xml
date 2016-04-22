@@ -23,7 +23,9 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
-    <udatetime>2015-12-10 12:32:59</udatetime>
+    <description2>説明</description2>
+    <fieldgroupno>1</fieldgroupno>
+    <udatetime>2016-04-22 13:44:03</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
   <gl211_databox_def_field>
@@ -49,6 +51,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:41:03</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -75,6 +79,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:37:26</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -101,6 +107,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:34:09</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -127,6 +135,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:34:33</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -153,6 +163,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:35:26</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -179,6 +191,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:35:05</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -205,6 +219,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:36:12</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -231,6 +247,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:36:46</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -257,6 +275,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:38:14</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -283,6 +303,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:38:26</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -309,6 +331,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:39:36</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -335,6 +359,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:39:50</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -361,6 +387,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:43:13</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -387,6 +415,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:41:15</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -413,6 +443,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:45:47</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -439,6 +471,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 13:12:47</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -465,6 +499,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:43:41</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -491,6 +527,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 14:07:11</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -517,6 +555,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:39:03</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -543,6 +583,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:40:27</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -569,6 +611,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:40:39</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -595,6 +639,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 13:29:32</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -621,6 +667,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2015-12-10 12:42:02</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -647,6 +695,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2016-01-20 12:31:33</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -673,7 +723,9 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
-    <udatetime>2016-01-20 13:12:12</udatetime>
+    <description2></description2>
+    <fieldgroupno>1</fieldgroupno>
+    <udatetime>2016-04-22 13:44:39</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
   <gl211_databox_def_field>
@@ -699,6 +751,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2016-03-16 12:21:30</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -725,6 +779,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2016-03-16 14:09:11</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -751,6 +807,8 @@
     <range_start></range_start>
     <range_end></range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2016-03-16 13:13:10</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -777,6 +835,8 @@
     <range_start>9</range_start>
     <range_end>17</range_end>
     <dfid>0</dfid>
+    <description2></description2>
+    <fieldgroupno>0</fieldgroupno>
     <udatetime>2016-04-01 23:27:29</udatetime>
     <uuid>2</uuid>
   </gl211_databox_def_field>
@@ -1981,14 +2041,26 @@
   </gl211_databox_mst>
   <gl211_databox_mst>
     <id>49</id>
-    <kind> fieldgroup</kind>
-    <no>0</no>
-    <value></value>
+    <kind>fieldgroup</kind>
+    <no>1</no>
+    <value>Aグループ</value>
     <value2></value2>
     <disp></disp>
-    <orderno></orderno>
+    <orderno>1000</orderno>
     <relno></relno>
-    <udatetime>2016-03-16 13:13:43</udatetime>
+    <udatetime>2016-04-22 13:42:33</udatetime>
+    <uuid>2</uuid>
+  </gl211_databox_mst>
+  <gl211_databox_mst>
+    <id>50</id>
+    <kind>fieldgroup</kind>
+    <no>2</no>
+    <value>Bグループ</value>
+    <value2></value2>
+    <disp></disp>
+    <orderno>1010</orderno>
+    <relno></relno>
+    <udatetime>2016-04-22 13:42:58</udatetime>
     <uuid>2</uuid>
   </gl211_databox_mst>
   <gl211_databox_def_fieldset>

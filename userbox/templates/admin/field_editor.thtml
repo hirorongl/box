@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/admin/field_editor.thtml  20151111 #}
+{# plugins/userbox/templates/admin/field_editor.thtml  20160422 #}
 <div id="userbox_admin">
   {about_thispage}
   <form name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
@@ -40,6 +40,20 @@
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field" colspan="2">
               <textarea name="description" style="width:95%" rows="2" id="userbox_description">{description}</textarea>
+            </td>
+          </tr>
+          {# description2 #}
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_description2} {help_description2}</th>
+            <td class="admin-list-field" colspan="2">
+               <textarea name="description2" style="width:95%" rows="2" id="databox_description">{description2}</textarea>
+            </td>
+          </tr>
+          {# fieldgroupno #}
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_fieldgroupno} {help_fieldgroupno}</th>
+            <td class="admin-list-field" colspan="2">
+                {list_fieldgroupno}
             </td>
           </tr>
 

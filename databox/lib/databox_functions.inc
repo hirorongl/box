@@ -718,13 +718,15 @@ function DATABOX_getadditiondef(
     
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_def_field'];
+        $table2=$_TABLES['DATABOX_mst'];
     }else{
-        $table=$_TABLES[$pi_name.'_def_field'];
         $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+        $table2=$_TABLES[strtoupper($pi_name).'_mst'];
     }
 
     $rt=array();
-
+	$fieldgroupno_old="";
+	
     $sql="SELECT ";
     $sql.= " field_id ";
     $sql.= ",name ";
@@ -751,7 +753,9 @@ function DATABOX_getadditiondef(
     $sql.= ",range_start";
     $sql.= ",range_end";
     $sql.= ",dfid";
-
+    $sql.= ",description2";
+    $sql.= ",fieldgroupno";
+	
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
     $sql.= " ORDER BY orderno,field_id";
@@ -806,6 +810,15 @@ function DATABOX_getadditiondef(
             $rt[$field_id]['format'] = $format;
         }
 
+        $rt[$field_id]['description2']= COM_stripslashes($A['description2']);
+        $fieldgroupno=COM_stripslashes($A['fieldgroupno']);
+        if  ($fieldgroupno_old==$fieldgroupno){
+		}else{
+            $fieldgroup_name=DB_getItem($table2,"value","kind='fieldgroup' AND no=".$fieldgroupno);
+            $fieldgroupno_old=$fieldgroupno;
+        }
+        $rt[$field_id]['fieldgroup_name']=$fieldgroup_name;
+        $rt[$field_id]['fieldgroupno']= $fieldgroupno;
 
     }
     return $rt;
@@ -943,6 +956,7 @@ function DATABOX_getadditiondatas(
     
     $sql="SELECT ";
     $sql.=" m.field_id";
+    $sql.=" ,m.fieldgroupno";
     if ($id==0){
         $sql.=",initial_value AS value  ";
     }else{
@@ -956,7 +970,7 @@ function DATABOX_getadditiondatas(
     }
     $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
-    $sql.=" order by m.orderno ,m.field_id";
+    $sql.=" order by m.fieldgroupno,m.orderno ,m.field_id";
     
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -1040,6 +1054,7 @@ function DATABOX_getaddtionfieldsEdit(
             $S = array();
         }
     }
+    $fieldgroup_old="";
     foreach( $S as $fid => $fvalue ){
         $name=$addition_def[$fid]['name'];
         $checkrequried=$addition_def[$fid]['checkrequried'];
@@ -1055,7 +1070,8 @@ function DATABOX_getaddtionfieldsEdit(
         $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
         $description=$addition_def[$fid]['description'];
-
+        $description2=$addition_def[$fid]['description2'];
+        $fieldgroup_name=$addition_def[$fid]['fieldgroup_name'];
         $chk=false;
         $disabled="disabled";
         
@@ -1407,7 +1423,14 @@ function DATABOX_getaddtionfieldsEdit(
             $templates->set_var('additionfield_value', $fieldhtml);
 
             $templates->set_var('additionfield_description', $description);
-
+            $templates->set_var('additionfield_description2', $description2);
+            $templates->set_var('fieldgroup_name', $fieldgroup_name);
+			if  ($fieldgroup_old==$fieldgroup_name){
+                $templates->set_var('fieldgroup', "");
+            }else{
+                $templates->set_var('fieldgroup', $fieldgroup_name);
+                $fieldgroup_old=$fieldgroup_name;
+            }
             $templates->set_var('additionfield'.$fid, $fieldhtml);
             $templates->set_var($templatesetvar, $fieldhtml);
 
@@ -4434,6 +4457,10 @@ global $LANG_configselects;
             $where="kind='{$selectlist}'";
             if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
+        }else if ($kind=="fieldgroupno"){
+            $where="kind='fieldgroup'";
+            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $fields= 'DISTINCT no,value,no';
         }else if ($kind=="csvsel"){
             $where="";
             $table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];

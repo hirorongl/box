@@ -146,6 +146,8 @@ $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
+$LANG_DATABOX_ADMIN['description2']='Description2';
+$LANG_DATABOX_ADMIN['fieldgroupno']='Field group';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_DATABOX_ADMIN['layout']='Layout';
 

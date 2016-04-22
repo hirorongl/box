@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160401
+# Last Update 20160422
 
 ###############################################################################
 ## 管理画面 menu
@@ -151,6 +151,8 @@ $LANG_DATABOX_ADMIN['title']='タイトル';
 $LANG_DATABOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_DATABOX_ADMIN['description']='説明';
+$LANG_DATABOX_ADMIN['description2']='説明2';
+$LANG_DATABOX_ADMIN['fieldgroupno']='フィールドグループ';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
 $LANG_DATABOX_ADMIN['layout']='レイアウト';
 
