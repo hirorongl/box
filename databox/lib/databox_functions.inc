@@ -2280,8 +2280,8 @@ function DATABOX_getcategoriesText(
             $categories_group ="";
             $old_group_id=$A['group_id'];
         }
-        $categories.=$A['category_name']." ".$separater;
-        $categories_group.=$A['category_name']." ".$separater;
+        $categories.=$A['category_name'].$separater;
+        $categories_group.=$A['category_name'].$separater;
 
     }
 
@@ -2490,9 +2490,9 @@ function DATABOX_getcategoriesDisp(
             $old_group_id=$A['group_id'];
             $old_group_code=$A['group_code'];
         }
-        $categories.=$A['category_name']." ".$separater;
-        $categories_group.=$A['category_name']." ".$separater;
-        $categories_group2.=$A['category_code']." ".$separater_code;
+        $categories.=$A['category_name'].$separater;
+        $categories_group.=$A['category_name'].$separater;
+        $categories_group2.=$A['category_code'].$separater_code;
         $categories_group_pipeline.=$A['category_code'].$separater_pipeline;
         
 
@@ -2512,12 +2512,12 @@ function DATABOX_getcategoriesDisp(
         $category_link_id2= COM_createLink($code, $url_id);
         $category_link_code2= COM_createLink($code, $url_code);
 
-        $categories_link_id.=$category_link_id." ".$separater;
-        $categories_link_id_group.=$category_link_id." ".$separater;
-        $categories_link_id_group2.=$category_link_id2." ".$separater_code;//@@
-        $categories_link_code.=$category_link_code." ".$separater;
-        $categories_link_code_group.=$category_link_code." ".$separater;
-        $categories_link_code_group2.=$category_link_code2." ".$separater_code;//@@
+        $categories_link_id.=$category_link_id.$separater;
+        $categories_link_id_group.=$category_link_id.$separater;
+        $categories_link_id_group2.=$category_link_id2.$separater_code;//@@
+        $categories_link_code.=$category_link_code.$separater;
+        $categories_link_code_group.=$category_link_code.$separater;
+        $categories_link_code_group2.=$category_link_code2.$separater_code;//@@
     }
 
     $categories=rtrim($categories,$separater);
