@@ -79,7 +79,7 @@
     <div class="uk-form-row"{hide_meta}>
         <label class="uk-form-label" for="">{lang_meta_description} {help_meta_description}</label>
         <div class="uk-form-controls">
-			<textarea name="meta_description" style="width:95%" rows="2" id="databox_description"
+			<textarea name="meta_description" style="width:95%" rows="2" id="databox_meta_description"
 		onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
 			<span class="uk-form-help-inline"><strong><span id='meta_description_cnt'></span></strong></span>
         </div>

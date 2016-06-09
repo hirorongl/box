@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/admin/profile_editor.thtml 20151111 #}
+{# plugins/userbox/templates/admin/profile_editor.thtml 20160609 #}
 <div id="userbox_admin">
   {about_thispage}
     | <a href="{site_admin_url}/plugins/userbox/view.php?id={id}">{lang_view}</a>
@@ -92,7 +92,7 @@
           <tr{hide_meta}>
           <th class="admin-list-field">{lang_meta_description}{help_meta_description}</th>
             <td class="admin-list-field">
-              <textarea name="meta_description" style="width:95%" rows="2" id="userbox_description" onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
+              <textarea name="meta_description" style="width:95%" rows="2" id="userbox_meta_description" onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
               <br {xhtml}><span style="font-weight:bold" id='meta_description_cnt'></span>
             </td>
           </tr>

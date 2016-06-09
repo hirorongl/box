@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/admin/field_editor.thtml  20160413 #}
+{# plugins/databox/templates/admin/field_editor.thtml  201600609 #}
 <div id="databox_admin">
   {about_thispage}
   <a href="{document_url}input_field.html" target="_blank">{lang_document}</a>
@@ -48,7 +48,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description2} {help_description2}</th>
             <td class="admin-list-field" colspan="2">
-               <textarea name="description2" style="width:95%" rows="2" id="databox_description">{description2}</textarea>
+               <textarea name="description2" style="width:95%" rows="2" id="databox_description2">{description2}</textarea>
             </td>
           </tr>
           {# fieldgroupno #}
