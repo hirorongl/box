@@ -708,17 +708,41 @@ function databox_category(
             $templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
             $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_date', strftime( $_CONF['date'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_daytime', strftime( $_CONF['daytime'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_dateonly', strftime( $_CONF['dateonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_timeonly', strftime( $_CONF['timeonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_b', strftime( "%b" , $A['datefield_un']));
+            $templates->set_var ('data_datefield_B', strftime( "%B" , $A['datefield_un']));
             
             $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('data_released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('data_released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
+                $templates->set_var ('data_expired_date', "" );
+                $templates->set_var ('data_expired_daytime', "" );
+                $templates->set_var ('data_expired_dateonly', "" );
+                $templates->set_var ('data_expired_timeonly', "" );
+                $templates->set_var ('data_expired_b', "" );
+                $templates->set_var ('data_expired_B', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('data_expired_B', strftime( "%B" , $A['expired_un']));
             }
             $remaingdays="";
             if ($expired<>"0000-00-00 00:00:00") {
@@ -1323,20 +1347,44 @@ function databox_field(
             $templates->set_var ('data_url', $rt['url']);
             
             $templates->set_var ('data_datefield', $datefield_ary[0]);
-            $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
             $templates->set_var ('data_value', $sortvalue);
+            $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_date', strftime( $_CONF['date'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_daytime', strftime( $_CONF['daytime'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_dateonly', strftime( $_CONF['dateonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_timeonly', strftime( $_CONF['timeonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_b', strftime( "%b" , $A['datefield_un']));
             
             $templates->set_var ('data_released', $released_ary[0]);//@@@@@@
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('data_released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('data_released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
             
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
+                $templates->set_var ('data_expired_date', "" );
+                $templates->set_var ('data_expired_daytime', "" );
+                $templates->set_var ('data_expired_dateonly', "" );
+                $templates->set_var ('data_expired_timeonly', "" );
+                $templates->set_var ('data_expired_b', "" );
+                $templates->set_var ('data_expired_B', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('data_expired_B', strftime( "%B" , $A['expired_un']));
             }
             
             $remaingdays="";
@@ -3376,17 +3424,41 @@ function databox_search(
             $templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $value);
             $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_date', strftime( $_CONF['date'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_daytime', strftime( $_CONF['daytime'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_dateonly', strftime( $_CONF['dateonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_timeonly', strftime( $_CONF['timeonly'], $A['datefield_un'] ));
+            $templates->set_var ('data_datefield_b', strftime( "%b" , $A['datefield_un']));
+            $templates->set_var ('data_datefield_B', strftime( "%B" , $A['datefield_un']));
             
             $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('data_released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('data_released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
+                $templates->set_var ('data_expired_date', "" );
+                $templates->set_var ('data_expired_daytime', "" );
+                $templates->set_var ('data_expired_dateonly', "" );
+                $templates->set_var ('data_expired_timeonly', "" );
+                $templates->set_var ('data_expired_b', "" );
+                $templates->set_var ('data_expired_B', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('data_expired_B', strftime( "%B" , $A['expired_un']));
             }
             $remaingdays="";
             if ($expired<>"0000-00-00 00:00:00") {
