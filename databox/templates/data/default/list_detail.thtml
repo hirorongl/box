@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/data/default/list_detail.thtml 20160616 #}
+{# plugins/databox/templates/data/default/list_detail.thtml 20160621 #}
 <div class="databox">
   <h2>{title}</h2>
   <p>{lang_id}: {id}</p>
@@ -55,6 +55,8 @@
         <br{xhtml}>&nbsp;&#123;modified_timeonly&#125;
         <br{xhtml}>&nbsp;&#123;modified_b&#125;
         <br{xhtml}>&nbsp;&#123;modified_B&#125;
+        <br{xhtml}>&nbsp;&#123;modified_d&#125;
+        <br{xhtml}>&nbsp;&#123;modified_e&#125;
         </td>
         <td>{modified}&nbsp;{modified_shortdate}
         <br{xhtml}>&nbsp;{modified_date}
@@ -63,6 +65,8 @@
         <br{xhtml}>&nbsp;{modified_timeonly}
         <br{xhtml}>&nbsp;{modified_b}
         <br{xhtml}>&nbsp;{modified_B}
+        <br{xhtml}>&nbsp;{modified_d}
+        <br{xhtml}>&nbsp;{modified_e}
         </td>
       </tr>
       <tr>
@@ -74,6 +78,8 @@
         <br{xhtml}>&nbsp;&#123;created_timeonly&#125;
         <br{xhtml}>&nbsp;&#123;created_b&#125;
         <br{xhtml}>&nbsp;&#123;created_B&#125;
+        <br{xhtml}>&nbsp;&#123;created_d&#125;
+        <br{xhtml}>&nbsp;&#123;created_e&#125;
         </td>
         <td>{created}&nbsp;{created_shortdate}
         <br{xhtml}>&nbsp;{created_date}
@@ -82,6 +88,8 @@
         <br{xhtml}>&nbsp;{created_timeonly}
         <br{xhtml}>&nbsp;{created_b}
         <br{xhtml}>&nbsp;{created_B}
+        <br{xhtml}>&nbsp;{created_d}
+        <br{xhtml}>&nbsp;{created_e}
         </td>
       </tr>
       <tr>
@@ -93,6 +101,8 @@
         <br{xhtml}>&nbsp;&#123;released_timeonly&#125;
         <br{xhtml}>&nbsp;&#123;released_b&#125;
         <br{xhtml}>&nbsp;&#123;released_B&#125;
+        <br{xhtml}>&nbsp;&#123;released_d&#125;
+        <br{xhtml}>&nbsp;&#123;released_e&#125;
         </td>
         <td>{released}&nbsp;{released_shortdate}
         <br{xhtml}>&nbsp;{released_date}
@@ -101,6 +111,8 @@
         <br{xhtml}>&nbsp;{released_timeonly}
         <br{xhtml}>&nbsp;{released_b}
         <br{xhtml}>&nbsp;{released_B}
+        <br{xhtml}>&nbsp;{released_d}
+        <br{xhtml}>&nbsp;{released_e}
         </td>
         </tr>
       <tr>
@@ -112,6 +124,8 @@
         <br{xhtml}>&nbsp;&#123;expired_timeonly&#125;
         <br{xhtml}>&nbsp;&#123;expired_b&#125;
         <br{xhtml}>&nbsp;&#123;expired_B&#125;
+        <br{xhtml}>&nbsp;&#123;expired_d&#125;
+        <br{xhtml}>&nbsp;&#123;expired_e&#125;
         </td>
         <td>{expired}&nbsp;{expired_shortdate}
         <br{xhtml}>&nbsp;{expired_date}
@@ -120,6 +134,8 @@
         <br{xhtml}>&nbsp;{expired_timeonly}
         <br{xhtml}>&nbsp;{expired_b}
         <br{xhtml}>&nbsp;{expired_B}
+        <br{xhtml}>&nbsp;{expired_d}
+        <br{xhtml}>&nbsp;{expired_e}
         </td>
 		</tr>
 

@@ -23,6 +23,8 @@
 <span style="color:green">&#123;data_released_timeonly&#125;</span>{data_released_timeonly} &nbsp;
 <span style="color:green">&#123;data_released_b&#125;</span>{data_released_b} &nbsp;
 <span style="color:green">&#123;data_released_B&#125;</span>{data_released_B} &nbsp;
+<span style="color:green">&#123;data_released_d&#125;</span>{data_released_d} &nbsp;
+<span style="color:green">&#123;data_released_e&#125;</span>{data_released_e} &nbsp;
 
 <span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;
 <span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
@@ -32,6 +34,8 @@
 <span style="color:green">&#123;data_expired_timeonly&#125;</span>{data_expired_timeonly} &nbsp;
 <span style="color:green">&#123;data_expired_b&#125;</span>{data_expired_b} &nbsp;
 <span style="color:green">&#123;data_expired_B&#125;</span>{data_expired_B} &nbsp;
+<span style="color:green">&#123;data_expired_d&#125;</span>{data_expired_d} &nbsp;
+<span style="color:green">&#123;data_expired_e&#125;</span>{data_expired_e} &nbsp;
 
 <span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
 <span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
