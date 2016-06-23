@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/profile/default/list_detail.thtml 20160223 #}
+{# plugins/userbox/templates/profile/default/list_detail.thtml 20160623 #}
 <div class="userbox">
 	<h2>{title}</h2>
 	<dl class="uk-description-list-horizontal">
@@ -11,18 +11,18 @@
 		<dl>
 			{# uid #}
 			<dt>{lang_id}{help_uid}</dt>
-			<dd style="width:100px;height:1.5em">&#123;id&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;id&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{id}</dd>
 			{# code #}
 			<dt>{lang_code}</dt>
-			<dd style="width:100px;height:1.5em">&#123;code&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;code&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{code}</dd>
 			{# title -->
 			<dt>{lang_title}</dt>
-			<dd style="width:100px;height:1.5em">&#123;title&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;title&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{title}</dd>
 			<dt>{lang_uuid}</dt>
-			<dd style="width:100px;height:1.5em">&#123;uuid&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;uuid&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{uuid}</dd>
 		</dl>
 	</fieldset>
@@ -32,12 +32,12 @@
 		<dl>
 			{# login user's username #}
 			<dt>{lang_username}{help_username}</dt>
-			<dd style="width:100px;height:1.5em">&#123;username&#125;</dd>
-			<dd style="margin-left:100px;margin-top:-1.5em">{username}</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;username&#125;</dd>
+			<dd style="margin-left:140px;margin-top:-1.5em">{username}</dd>
 			<!--login user's fullname -->
 			<dt>{lang_fullname}{help_fullname}</dt>
-			<dd style="width:100px;height:1.5em">&#123;fullname&#125;</dd>
-			<dd style="margin-left:100px;margin-top:-1.5em">{fullname}</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;fullname&#125;</dd>
+			<dd style="margin-left:140px;margin-top:-1.5em">{fullname}</dd>
 		</dl>
 	</fieldset>
 	{# Basic Items #}
@@ -45,28 +45,35 @@
 		<legend>{lang_basicfields}</legend>
 		<dl>
 			<dt>{lang_description}</dt>
-			<dd>&#123;description&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;description&#125;</dd>
 			<dd>{description}</dd>
 			<dt>{lang_hits}</dt>
-			<dd>&#123;hits&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;hits&#125;</dd>
 			<dd>{hits}</dd>
 			<dt>{lang_modified}</dt>
-			<dd>&#123;modified&#125;&nbsp;&#123modified_shortdate&#125;</dd>
-			<dd>{modified}&nbsp;{modified_shortdate}</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;modified&#125;&nbsp;&#123modified_shortdate&#125;</dd>
+            <dd>{modified}&nbsp;{modified_shortdate}</dd>
+
+	
+	
+	
+	
+	
+	
 			<dt>{lang_created}</dt>
-			<dd>&#123;created&#125;&nbsp;&#123;created_shortdate&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;created&#125;&nbsp;&#123;created_shortdate&#125;</dd>
 			<dd>{created}&nbsp;{created_shortdate}</dd>
 			<dt>{lang_released}</dt>
-			<dd>&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</dd>
 			<dd>{released}&nbsp;{released_shortdate}</dd>
 			<dt>{lang_expired}</dt>
-			<dd>&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</dd>
 			<dd>{expired}&nbsp;{expired_shortdate}</dd>
 			{# @@@@@@ #}
 			<dt>
 			{lang_udatetime}
 			</dd>
-			<dd>&#123;udatetime&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;udatetime&#125;</dd>
 			<dd>
 				{udatetime}
 				( UID:
@@ -81,7 +88,7 @@
 				)
 			</dd>
 			<dt>{lang_draft}</dt>
-			<dd>&#123;draft&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;draft&#125;</dd>
 			<dd>{draft}</dd>
 			<dd>{edit}</dd>
 		</dl>
@@ -90,16 +97,16 @@
 			<dd>{lang_templatesetvar}</dd>
 			<dd>{lang_content}</dd>
 			<dt>{lang_imgfile_frd} PATH</dt>
-			<dd>&#123;imgfile_frd&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;imgfile_frd&#125;</dd>
 			<dd>{imgfile_frd}</dd>
 			<dt>{lang_imgfile_frd} URL</dt>
-			<dd>&#123;data_img_url&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;data_img_url&#125;</dd>
 			<dd>{data_img_url}</dd>
 			<dt>{lang_imgfile_thumb_frd} PATH</dt>
-			<dd>&#123;imgfile_thumb_frd&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;imgfile_thumb_frd&#125;</dd>
 			<dd>{imgfile_thumb_frd}</dd>
 			<dt>{lang_imgfile_thumb_frd} URL</dt>
-			<dd>&#123;data_thumb_img_url&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;data_thumb_img_url&#125;</dd>
 			<dd>{data_thumb_img_url}</dd>
 		</dl>
 	</fieldset>
@@ -112,17 +119,17 @@
 			<dd>{lang_content}</dd>
 			{# カテゴリ名称列挙 -->
 			<dt>{lang_category}</dt>
-			<dd>&#123;categories&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;categories&#125;</dd>
 			<dd>{categories}</dd>
 			{# カテゴリ名称列挙リンク付 -->
 			<dt>{lang_category} {lang_withlink}</dt>
-			<dd>&#123;categorieslink&#125;</dd>
-			<dd>{categorieslink}</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;categorieslink&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">{categorieslink}</dd>
 			<dt>CODE形式</dt>
-			<dd>&#123;categorieslinkcode&#125</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;categorieslinkcode&#125</dd>
 			<dd>{categorieslinkcode}</dd>
 			<dt>ID形式</dt>
-			<dd>&#123;categorieslinkid&#125;</dd>
+			<dd style="width:100px;height:1.5em;color:green">&#123;categorieslinkid&#125;</dd>
 			<dd>{categorieslinkid}</dd>
 		</dl>
 	</fieldset>
