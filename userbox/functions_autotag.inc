@@ -1408,7 +1408,7 @@ function userbox_profile(
             }
 
             $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
-            $templates->set_var ('uuid', $uuid);
+            $templates->set_var ('uuid', $A['uuid']);
 
             $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
             $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
