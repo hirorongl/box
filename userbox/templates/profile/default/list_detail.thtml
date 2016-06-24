@@ -56,29 +56,89 @@
 
             <dd style="width:220px;height:1.5em;color:green">&#123;modified_shortdate&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{modified_shortdate}</dd>
-    
-    
-    
-    
-    
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_date&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_date}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_daytime&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_daytime}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_dateonly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_dateonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_timepnly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_timeonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_b&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_b}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_B&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_B}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_d&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_d}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_e&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{modified_e}</dd>
     
             <dt>{lang_created}</dt>
             <dd style="width:220px;height:1.5em;color:green">&#123;created&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{created}</dd>
             <dd style="width:220px;height:1.5em;color:green">&#123;created_shortdate&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{created_shortdate}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_date&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_date}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_daytime&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_daytime}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_dateonly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_dateonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_timepnly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_timeonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_b&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_b}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_B&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_B}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_d&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_d}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;created_e&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{created_e}</dd>
 
             <dt>{lang_released}</dt>
             <dd style="width:220px;height:1.5em;color:green">&#123;released&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{released}</dd>
             <dd style="width:200px;height:1.5em;color:green">&#123;released_shortdate&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{released_shortdate}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_date&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_date}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_daytime&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_daytime}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_dateonly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_dateonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_timepnly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_timeonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_b&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_b}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_B&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_B}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;modified_d&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_d}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;released_e&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{released_e}</dd>
 
             <dt>{lang_expired}</dt>
             <dd style="width:220px;height:1.5em;color:green">&#123;expired&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{expired}</dd>
             <dd style="width:220px;height:1.5em;color:green">&#123;expired_shortdate&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{expired_shortdate}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_date&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_date}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_daytime&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_daytime}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_dateonly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_dateonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_timepnly&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_timeonly}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_b&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_b}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_B&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_B}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_d&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_d}</dd>
+            <dd style="width:220px;height:1.5em;color:green">&#123;expired_e&#125;</dd>
+            <dd style="margin-left:220px;margin-top:-1.5em">{expired_e}</dd>
+
             {# @@@@@@ #}
             <dt>
             {lang_udatetime}

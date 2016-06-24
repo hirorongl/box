@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/category/default/col_detail.thtml 20160122 #}
+{# plugins/userbox/templates/category/default/col_detail.thtml 20160623 #}
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
 <span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
@@ -12,10 +12,38 @@
 <span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
 <span style= "color:green" > &#123;data_description&#125;</span>{data_description}&nbsp;
 <span style= "color:green" > &#123;data_datefield&#125;</span>{data_datefield}{new_img}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 #}
-<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 --><span style= "color:green" > &#123;data_released&#125;</span>{data_released}&nbsp;
+<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} &nbsp;
+<span style="color:green">&#123;data_datefield_date&#125;</span>{data_datefield_date} &nbsp;
+<span style="color:green">&#123;data_datefield_daytime&#125;</span>{data_datefield_daytime} &nbsp;
+<span style="color:green">&#123;data_datefield_dateonly&#125;</span>{data_datefield_dateonly} &nbsp;
+<span style="color:green">&#123;data_datefield_timeonly&#125;</span>{data_datefield_timeonly} &nbsp;
+<span style="color:green">&#123;data_datefield_b&#125;</span>{data_datefield_b} &nbsp;
+<span style="color:green">&#123;data_datefield_B&#125;</span>{data_datefield_B} &nbsp;
+<span style="color:green">&#123;data_datefield_d&#125;</span>{data_datefield_d} &nbsp;
+<span style="color:green">&#123;data_datefield_e&#125;</span>{data_datefield_e} &nbsp;
+
+<span style= "color:green" > &#123;data_released&#125;</span>{data_released}&nbsp;
 <span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
+<span style="color:green">&#123;data_released_date&#125;</span>{data_released_date} &nbsp;
+<span style="color:green">&#123;data_released_daytime&#125;</span>{data_released_daytime} &nbsp;
+<span style="color:green">&#123;data_released_dateonly&#125;</span>{data_released_dateonly} &nbsp;
+<span style="color:green">&#123;data_released_timeonly&#125;</span>{data_released_timeonly} &nbsp;
+<span style="color:green">&#123;data_released_b&#125;</span>{data_released_b} &nbsp;
+<span style="color:green">&#123;data_released_B&#125;</span>{data_released_B} &nbsp;
+<span style="color:green">&#123;data_released_d&#125;</span>{data_released_d} &nbsp;
+<span style="color:green">&#123;data_released_e&#125;</span>{data_released_e} &nbsp;
+
 <span style= "color:green" > &#123;data_expired&#125;</span>{data_expired}&nbsp;
 <span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
+<span style="color:green">&#123;data_expired_date&#125;</span>{data_expired_date} &nbsp;
+<span style="color:green">&#123;data_expired_daytime&#125;</span>{data_expired_daytime} &nbsp;
+<span style="color:green">&#123;data_expired_dateonly&#125;</span>{data_expired_dateonly} &nbsp;
+<span style="color:green">&#123;data_expired_timeonly&#125;</span>{data_expired_timeonly} &nbsp;
+<span style="color:green">&#123;data_expired_b&#125;</span>{data_expired_b} &nbsp;
+<span style="color:green">&#123;data_expired_B&#125;</span>{data_expired_B} &nbsp;
+<span style="color:green">&#123;data_expired_d&#125;</span>{data_expired_d} &nbsp;
+<span style="color:green">&#123;data_expired_e&#125;</span>{data_expired_e} &nbsp;
+
 <span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
 <span style= "color:green" > &#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
 
