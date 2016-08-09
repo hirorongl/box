@@ -3070,7 +3070,9 @@ function databox_search(
         }
     }
           
-          
+    if (! defined('THIS_SCRIPT')) {
+        define ('THIS_SCRIPT', 'databox/search.php');
+    }
           
     //-----テーブル
     $tbl1=$_TABLES['DATABOX_category'] ;
