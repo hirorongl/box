@@ -127,6 +127,7 @@ function plugin_autotags_databox (
                             ,$p['limitcnt']
                             ,$p['newmarkday']
                             ,$p['templatedir']
+                            ,$p['permission']
                             );
                         break;
                     case 'data':
@@ -2486,7 +2487,7 @@ function databox_newlist(
     ,$limitcnt=""
     ,$newmarkday=""
     ,$thtml=null
-)
+    ,$permission=null)
 {
 
     $pi_name="databox";
@@ -2613,7 +2614,10 @@ function databox_newlist(
        $sql .= " AND t1.draft_flag=0".LB;
     //}
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  ($_DATABOX_CONF['disable_permission_ignore']=="0" AND strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
 

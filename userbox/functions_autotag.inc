@@ -129,6 +129,7 @@ function plugin_autotags_userbox (
                             ,$p['limitcnt']
                             ,$p['newmarkday']
                             ,$p['templatedir']
+                            ,$p['permission']
                             );
                         break;
 
@@ -2213,6 +2214,7 @@ function userbox_newlist(
     ,$limitcnt=""
     ,$newmarkday=""
     ,$thtml=null
+    ,$permission=null
 )
 // +---------------------------------------------------------------------------+
 // | 機能  ブロック用 新着user一覧出力                                         |
@@ -2360,7 +2362,10 @@ function userbox_newlist(
        $sql .= " AND t1.draft_flag=0".LB;
     //}
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  ($_USERBOX_CONF['disable_permission_ignore']=="0" AND strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
 
