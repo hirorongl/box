@@ -1,7 +1,11 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/newlist/default/list_col.thtml  20151111 #}
+{# plugins/userbox/templates/newlist/default/list_col.thtml  20160819 #}
 <dt class="userbox_date">{day}</dt>
-<dd class="userbox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
+<dd class="userbox_list"><a  {class_a} style="cursor: pointer; " href="{url}">{title}<span {class_c} style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
+
+{#  
+permission:{permission}</br>
+#}
 
 {# カテゴリ名称列挙 #}
 		<span style="color:green">&#123;categories&#125;</span>{categories}

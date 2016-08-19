@@ -1,7 +1,14 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/newlist/default/list_col.thtml 201501109 #}
+{# plugins/databox/templates/newlist/default/list_col.thtml 20160819 #}
 <dt class="databox_date">{day}</dt>
-<dd class="databox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
+<dd class="databox_list"><a  {class_a} style="cursor: pointer; " href="{url}">{title}<span  {class_c} style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
+
+
+{#  
+permission:{permission}</br>
+#}
+
+
 
 <span style="color:green">&#123;link&#125;</span>{link}
 <span style="color:green">&#123;url&#125;</span>{url}

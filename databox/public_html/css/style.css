@@ -1,5 +1,14 @@
 @charset "utf-8";
 
+
+.databox_nolink{
+    pointer-events: none;
+    cursor: default;
+    text-decoration:none;
+}
+.databox_displaynon {
+    display:none;  
+}
 /*--------------------------------------
   For Data
 --------------------------------------*/

@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+.userbox_nolink{
+    pointer-events: none;
+    cursor: default;
+    text-decoration:none;
+}
+.userbox_displaynon {
+    display:none;  
+}
 /*--------------------------------------
   For Data
 --------------------------------------*/

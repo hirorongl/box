@@ -2592,6 +2592,13 @@ function databox_newlist(
     $sql.=" , t1.code".LB;
     $sql.=" , t1.description".LB;
 
+    $sql.=" ,t1.owner_id".LB;
+    $sql.=" ,t1.group_id".LB;
+    $sql.=" ,t1.perm_owner".LB;
+    $sql.=" ,t1.perm_group".LB;
+    $sql.=" ,t1.perm_members".LB;
+    $sql.=" ,t1.perm_anon".LB;
+
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
 
@@ -2670,7 +2677,18 @@ function databox_newlist(
         $list->set_var ('url', $rt['url']);
         $list->set_var ('title', $title);
 
-        $list->set_var ('description', $description);
+		$list->set_var ('description', $description);
+
+        $permission=SEC_hasAccess2($A);
+        $list->set_var ('permission',$permission);
+        if  ($permission>=2){
+            $list->set_var ('class_a', 'class="gl-tooltip"');
+            $list->set_var ('class_c', 'class="classic"');
+        }else{
+            $list->set_var ('class_a', 'class="databox_nolink"');
+            $list->set_var ('class_c', 'class="databox_displaynon"');
+        }
+
 
         $n=($i%2)+1;
         $class='class="row'.$n.'"';

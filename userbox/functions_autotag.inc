@@ -2336,7 +2336,14 @@ function userbox_newlist(
     $sql.=" t4.fullname".LB;
     $sql.=" , UNIX_TIMESTAMP(t1.".$datefield .") AS day".LB;
     $sql.=" , t1.id".LB;
-    $sql.=" , t4.username".LB;
+	$sql.=" , t4.username".LB;
+
+    $sql.=" ,t1.owner_id".LB;
+    $sql.=" ,t1.group_id".LB;
+    $sql.=" ,t1.perm_owner".LB;
+    $sql.=" ,t1.perm_group".LB;
+    $sql.=" ,t1.perm_members".LB;
+    $sql.=" ,t1.perm_anon".LB;
 
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
@@ -2423,7 +2430,18 @@ function userbox_newlist(
         $list->set_var ('link', $link);//@@@@@
 
         $list->set_var ('url', $url);
-        $list->set_var ('title', $title);
+		$list->set_var ('title', $title);
+
+        $permission=SEC_hasAccess2($A);
+        $list->set_var ('permission',$permission);
+        if  ($permission>=2){
+            $list->set_var ('class_a', 'class="gl-tooltip"');
+            $list->set_var ('class_c', 'class="classic"');
+        }else{
+            $list->set_var ('class_a', 'class="userbox_nolink"');
+            $list->set_var ('class_c', 'class="userbox_displaynon"');
+        }
+
         $n=($i%2)+1;
         $class='class="row'.$n.'"';
         $list->set_var ('class', 'class="row'.$n.'"');
