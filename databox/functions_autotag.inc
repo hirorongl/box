@@ -2016,7 +2016,7 @@ function databox_data(
             $templates->set_var ('site_mail', $_CONF['site_mail']);
         
             $currenturl= COM_getCurrentURL();
-            $templates->set_var ('currenturl', $currenturl);
+            $templates->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
             //facebook
             $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
             $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
