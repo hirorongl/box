@@ -3147,7 +3147,12 @@ function databox_search(
                 $arg_sv.=$key."=".$value;
             }
         }
+	}
+    if  ($argary['fieldset_id']==""){
+        $argary['fieldset_id']=0;
     }
+
+
     $fieldset_name=COM_applyFilter(DB_getItem( $tbl7 ,"name","fieldset_id={$argary['fieldset_id']}"));
 
     if ($argary['perpage']===0 OR is_null($argary['perpage'])){
