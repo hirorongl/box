@@ -3714,7 +3714,7 @@ function databox_searcharg(
             if  ($key<>""){
                 if  (is_array($value)  ) {
                     foreach($value as $key2 => $value2){
-                       $argary[$key][]=COM_applyFilter($value2,true);
+                        $argary[$key][]=Ltrim(COM_applyFilter($value2,true),0);
                     }
                 }else{
                     if  ($key=="fieldset") {
@@ -3742,7 +3742,7 @@ function databox_searcharg(
                 }else if  ($k0=="page"  OR  $k0=="perpage") {
                     $argary[$k0]=COM_applyFilter($k[1],true);
                 }else if  ( substr($k0,0,3)=="gor" OR substr($k0,0,4)=="gand" OR substr($k0,0,3)=="ams" ) {
-                    $argary[$k0][]=COM_applyFilter($k[1],true);
+                    $argary[$k0][]=ltrim(COM_applyFilter($k[1],true),0);
                 }else {
                     $argary[$k0]=COM_applyFilter($k[1]);
                 }
