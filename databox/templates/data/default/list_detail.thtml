@@ -488,7 +488,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</td>
         <th class="alignleft">{lang_content}</th>
       </tr>
-	  <!-- 1 -->
+	  {# 1 #}
 	  <tr>
         <th style="width:20%" class="alignright">1</th>
 		<td style="width:20%; color:green">

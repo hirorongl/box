@@ -46,7 +46,7 @@
             </td>
           </tr>
 
-          <!-- page title #}
+          {# page title #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
             <td class="admin-list-field">
