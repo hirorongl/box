@@ -6024,5 +6024,19 @@ function DATABOX_getcheckboxary(
     }
     return $retval;
 }
+function DATABOX_isExcepted(
+$code
+,$excepts) 
+{
 
+	foreach ($excepts as $except) {
+		if (strlen($except) > 0) {
+			if (preg_match('/' . $except . '/' , $code)) {
+				return TRUE;
+			}
+		}
+	}
+	
+	return FALSE;
+}
 ?>
