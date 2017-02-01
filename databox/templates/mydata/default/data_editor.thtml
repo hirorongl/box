@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/mydata/default/data_editor.thtml 20170201 { -->
+{# plugins/databox/templates/mydata/default/data_editor.thtml 20170201 #}
 
 <div id="databox_admin">
   {about_thispage}
