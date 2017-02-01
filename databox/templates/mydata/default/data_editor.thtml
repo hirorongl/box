@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/mydata/default/data_editor.thtml 20140414 { -->
+{# plugins/databox/templates/mydata/default/data_editor.thtml 20170201 { -->
 
 <div id="databox_admin">
   {about_thispage}
@@ -14,7 +14,7 @@
       <legend>{lang_basicfields}</legend>
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
-          {# id -->
+          {# id  #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_id} {help_id}</th>
             <td class="admin-list-field">
@@ -29,7 +29,7 @@
           <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>{draft_msg}</td>
           </tr>
 
-          {# code -->
+          {# code #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
             <td class="admin-list-field">
