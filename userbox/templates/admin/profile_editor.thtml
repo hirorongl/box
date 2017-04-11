@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/admin/profile_editor.thtml 20160609 #}
+{# plugins/userbox/templates/admin/profile_editor.thtml 20170411 #}
 <div id="userbox_admin">
   {about_thispage}
     | <a href="{site_admin_url}/plugins/userbox/view.php?id={id}">{lang_view}</a>
@@ -34,7 +34,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
             <td class="admin-list-field">
-              <input type="fullname" size="48" maxlength="160" name="fullname" value="{fullname}" style="width:95%"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="fullname" value="{fullname}" style="width:95%"{xhtml}>
             </td>
           </tr>
         </table>
