@@ -153,7 +153,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-            COM_handle404();
+            COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
+            COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
             exit;
         }
     }else if  ($conf_templates==="custom"){
@@ -169,7 +170,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)){
 
         }else{
-            COM_handle404();
+            COM_errorLog ("[$pi_name $kind] Not found custom template:$template");
+            COM_handleError(1,"[$pi_name $kind] Not found custom template:$template");
             exit;
         }
     }else{
