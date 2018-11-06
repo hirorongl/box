@@ -360,11 +360,13 @@ function fncSave (
 	$id=$uid;
     if ($_USERBOX_CONF['aftersave']==='no'){
         $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+        $retval .= $profile_menu_top;
         //$retval .= fncEdit($id, $edt_flg,1,$err);
         $retval .= fncEdit(1);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
 
         return $retval;
     }else if ($_USERBOX_CONF['aftersave']==='list'

@@ -578,10 +578,12 @@ function fncSave (
     //errorのあるとき
     if ($err<>"") {
         $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+        $retval .= $profile_menu_top;
         $retval .= fncEdit($id, $edt_flg,3,$err);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
 
         return $retval;
 
@@ -776,10 +778,12 @@ function fncSave (
 
     if ($_USERBOX_CONF['aftersave']==='no'){
         $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//        $retval .=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+        $retval .= $profile_menu_top;
         $retval .= fncEdit($id, $edt_flg,1,$err);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
 
         return $retval;
 
@@ -850,12 +854,13 @@ function fncdelete ()
     $err="";
     if ($err<>"") {
         $page_title=$LANG_DATABOX_ADMIN['err'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
         $retval .= COM_startBlock ($LANG_USERBOX_ADMIN['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
         return $retval;
     }
 

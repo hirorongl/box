@@ -1,10 +1,11 @@
 <?php
 // +---------------------------------------------------------------------------+
-// | userbox_function 共通＆navbarMenu設定
+// | userbox_function 共通＆profile用TOPMenu設定
 // +---------------------------------------------------------------------------+
 // $Id: userbox_function.php
 // public_html/userbox/mydata/userbox_function.php
 // 20101118 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_PLUGIN', 'userbox');
 
@@ -21,18 +22,20 @@ $edt_flg=FALSE;
 
 // 権限チェック
 if  ($_USER['uid']<2 ) {
-    $page_title= $LANG_USERBOX['myprofile'];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
+//    $page_title= $LANG_USERBOX['myprofile'];
+//    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
     $display .= SEC_loginRequiredForm();
+    $retval = DATABOX_displaypage('USERBOX','',$retval,array('pagetitle'=>$LANG_USERBOX['myprofile']));
     echo $display;
     exit;
 }
 
 if (SEC_hasRights('userbox.user') OR ($_USERBOX_CONF['allow_loggedinusers']==1)){
 }else{
-    $page_title= $LANG_USERBOX['myprofile'];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
+//    $page_title= $LANG_USERBOX['myprofile'];
+//    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
     $display .= $LANG_USERBOX['nohit'];
+    $retval = DATABOX_displaypage('USERBOX','',$retval,array('pagetitle'=>$LANG_USERBOX['myprofile']));
     echo $display;
     exit;
 }
