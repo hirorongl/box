@@ -4781,7 +4781,7 @@ function DATABOX_getheadercode(
             'tpl' => 'headercode.thtml',
             ));
     
-        $tpl->set_var('xhtml', XHTML);
+        $tpl->set_var('XHTML', XHTML);
         $tpl->set_var('site_url', $_CONF['site_url']);
         $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
         $tpl->set_var('layout_url', $_CONF['layout_url']);
@@ -5020,7 +5020,7 @@ function DATABOX_Confirmation(
     $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
 
     //
     $actionname=$lang_box_admin[$mode];
@@ -5043,9 +5043,9 @@ function DATABOX_Confirmation(
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
         $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
-             ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
+             ." onclick=\"return confirm('{$confirm_value2}');\"".XHTML.">".LB;
         $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
-             ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
+             ." onclick=\"return confirm('{$confirm_value3}');\"".XHTML.">".LB;
     }
 
     // SAVE、CANCEL ボタン

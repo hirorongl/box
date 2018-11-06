@@ -7,6 +7,7 @@
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
 // | Authors    : Tetsuko Komma/Ivy - komma AT ivywe DOT co DOT jp             |
 // +---------------------------------------------------------------------------+
+//last update 20181103 hiroron AT hiroron DOT COM
 
 ###############################################################################
 # plugins/userbox/language/english.php
@@ -104,7 +105,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'Path';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = 'Delete';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br {xhtml}>";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br {XHTML}>";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "From ID";
 $LANG_USERBOX_ADMIN['idto'] = "To ID";
@@ -563,7 +564,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count] <br{xhtml}>	
+[userbox:count] <br{XHTML}>	
 More, see UserBox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";
@@ -578,8 +579,8 @@ $LANG_configsections['userbox']['title'] = 'UserBox Setting';
 //----------
 $LANG_configsubgroups['userbox']['sg_main'] = 'Main';
 //--(0)
-$LANG_tab['userbox'][tab_main] = 'MainSetting';
-$LANG_fs['userbox'][fs_main] = 'UserBox MainSetting';
+$LANG_tab['userbox']['tab_main'] = 'MainSetting';
+$LANG_fs['userbox']['fs_main'] = 'UserBox MainSetting';
 $LANG_confignames['userbox']['perpage'] = 'Date Number by Page';
 $LANG_confignames['userbox']['loginrequired'] = 'Login Required';
 $LANG_confignames['userbox']['hidemenu'] = 'Hide Menu';
@@ -625,27 +626,27 @@ $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示し
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 
 //--(1)
-$LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
-$LANG_fs['userbox'][fs_whatsnew] = 'Whats new Block';
+$LANG_tab['userbox']['tab_whatsnew'] = 'Whats new Block';
+$LANG_fs['userbox']['fs_whatsnew'] = 'Whats new Block';
 $LANG_confignames['userbox']['whatsnew_interval'] = 'New Period';
 $LANG_confignames['userbox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['userbox']['title_trim_length'] = 'Title of Max Length';
 
 //---(2)
-$LANG_tab['userbox'][tab_search] = 'Search';
+$LANG_tab['userbox']['tab_search'] = 'Search';
 
-$LANG_fs['userbox'][fs_search] = 'Search Results';
+$LANG_fs['userbox']['fs_search'] = 'Search Results';
 $LANG_confignames['userbox']['include_search'] = 'Data Search';
 $LANG_confignames['userbox']['additionsearch'] = 'Attributes number for Search';
 
 //---(3)
-$LANG_tab['userbox'][tab_permissions] = 'Permission';
-$LANG_fs['userbox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
+$LANG_tab['userbox']['tab_permissions'] = 'Permission';
+$LANG_fs['userbox']['fs_permissions'] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['userbox']['default_permissions'] = 'Permissions';
 
 //---(4)
-$LANG_tab['userbox'][tab_autotag] = 'Autotags';
-$LANG_fs['userbox'][fs_autotag] = 'Autotags';
+$LANG_tab['userbox']['tab_autotag'] = 'Autotags';
+$LANG_fs['userbox']['fs_autotag'] = 'Autotags';
 $LANG_confignames['userbox']['intervalday']="Display Period(Day)";
 $LANG_confignames['userbox']['limitcnt']="Display Number";//@@@@@
 $LANG_confignames['userbox']['newmarkday']="New Mark Display Period(Day)";//@@@@@

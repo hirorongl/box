@@ -1,4 +1,5 @@
 <?php
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'lib_field.php') !== false) {
     die ('This file can not be used on its own.');
@@ -418,7 +419,7 @@ function LIB_Edit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -1005,7 +1006,7 @@ function LIB_import (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -1159,8 +1160,7 @@ function LIB_Menu(
     $icon=$function();
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
+        $lang_box_admin['instructions']
     );
 
     return $retval;
