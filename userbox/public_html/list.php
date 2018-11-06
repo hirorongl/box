@@ -7,10 +7,10 @@
 // $Id: list.php
 // public_html/userbox/list.php
 // 2012/11/29 tsuchitani AT ivywe DOT co DOT jp profile.php より分離
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'userbox/list.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
-
 
 require_once('../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
@@ -27,9 +27,10 @@ if (COM_isAnonUser()){
             OR ($_USERBOX_CONF['loginrequired'] == "3")
             OR ($_USERBOX_CONF['loginrequired'] == "2")
             ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage('USERBOX','',$display,array('pagetitle'=>$LANG_PROFILE[4]));
         COM_output($display);
         exit;
     }
@@ -75,10 +76,10 @@ function fncList()
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $LANG28['2'], 'field' => 'id', 'sort' => true);
-    $header_arr[]=array('text' => $LANG28['3'], 'field' => 'username', 'sort' => username);
+    $header_arr[]=array('text' => $LANG28['3'], 'field' => 'username', 'sort' => 'username');
     $header_arr[]=array('text' => $LANG_USERBOX_ADMIN[$datecolumn], 'field' => $datecolumn, 'sort' => true);
 
-    $header_arr[]=array('text' => $LANG28['4'], 'field' => 'fullname', 'sort' => fullname);
+    $header_arr[]=array('text' => $LANG28['4'], 'field' => 'fullname', 'sort' => 'fullname');
 
     //
     $text_arr = array('has_menu' =>  true,

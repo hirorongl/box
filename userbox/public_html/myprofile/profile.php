@@ -7,6 +7,7 @@
 // $Id: profile.php
 // public_html/userbox/myprofile/profile.php
 // 20101129 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 //@@@@@@追加予定　メールにカテゴリ
 //--------------------------------
@@ -35,10 +36,11 @@ require_once $_CONF['path_system'] . 'lib-user.php';
 //ログイン要チェック
 
 if (empty ($_USER['username'])) {
-    $page_title= $LANG_PROFILE[4];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
+//    $page_title= $LANG_PROFILE[4];
+//    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
     $display .= SEC_loginRequiredForm();
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+//    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+    $display = DATABOX_displaypage('USERBOX','',$display,array('pagetitle'=>$LANG_PROFILE[4]));
     echo $display;
     exit;
 }
@@ -1071,14 +1073,15 @@ switch ($mode) {
 
     default:// 初期表示、一覧表示
         if (!empty ($id) ) {
-            $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-            $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//            $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
+//            $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
             if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+//                $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+                $display .= $profile_menu_top;
             }
             $display .= fncEdit($id, $edt_flg,$msg,"",$mode);
-            $display .= DATABOX_siteFooter($pi_name,'_admin');
-
+//            $display .= DATABOX_siteFooter($pi_name,'_admin');
+            $display = DATABOX_displaypage($pi_name,'_admin',$display,array('pagetitle'=>$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit']));
         }
 
 }

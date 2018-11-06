@@ -6,6 +6,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/lib/databox_functions.inc
 //20100818 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'databox_functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -187,6 +188,8 @@ function DATABOX_templatePath (
     return $tmplfld;
 }
 
+
+
 function DATABOX_siteHeader (
     $pi_name= 'databox'
     ,$kind = ''
@@ -317,6 +320,21 @@ function DATABOX_siteFooter (
 
 //$retval = SP_returnStaticpage($page, $display_mode, $comment_order, $comment_mode, $comment_page, $msg, $query);
 
+// +---------------------------------------------------------------------------+
+// | 機能 HTMLドキュメントを作成
+// | 書式 DATABOX_displaypage($pi_name,'_admin',$content,$information)
+// |   COM_createHTMLDocumentのDatabox用関数
+// +---------------------------------------------------------------------------+
+// | 引数  string  $pi_name : 'databox' 'userbox' 'formbox'
+// | 引数  string  $kind    : '' '_admin'
+// | 引数  string  $content : htmlのメインの内容
+// | 引数  array   $information : 配列で出力を作成するときに使用する変数を定義
+// |                              string 'pagetitle'   <title>文字列
+// |                              string 'headercode'  <head>に出すcode
+// |                              array  'custom'      右ブロックのフォーマットに使用するカスタム関数を定義する配列
+// +---------------------------------------------------------------------------+
+// | 戻値  string           : フォーマットされたHTMLドキュメント
+// +---------------------------------------------------------------------------+
 function DATABOX_displaypage (
     $pi_name= 'databox'
     ,$kind = ''
@@ -399,7 +417,6 @@ function DATABOX_displaypage (
             $display .= COM_siteFooter($information['rightblock']);
         }
     }
-
 
     return $display;
 }

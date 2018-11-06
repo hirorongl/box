@@ -6,6 +6,7 @@
 // $Id: profile.php
 // public_html/userbox/profile.php
 // 20110203 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'userbox/profile.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
@@ -18,8 +19,6 @@ if (!in_array('userbox', $_PLUGINS)) {
 
 //debug 時 true
 $_USERBOX_VERBOSE = false;
-
-
 
 
 function fncComment(
@@ -156,9 +155,10 @@ if (COM_isAnonUser()){
 			OR ($_USERBOX_CONF['loginrequired'] == "1" AND $id>0)
 			OR ($_USERBOX_CONF['loginrequired'] == "1" AND $code<>"")
 		){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$page_title));
         COM_output($display);
         exit;
     }

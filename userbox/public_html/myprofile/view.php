@@ -7,6 +7,7 @@
 // $Id: view.php
 // public_html/userbox/myprofile/view.php
 // 20110627 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'userbox/myprofile/view.php');
 //define ('THIS_SCRIPT', 'userbox/myprofile/test.php');
@@ -16,10 +17,11 @@ include_once('userbox_functions.php');
 //ログイン要チェック
 
 if (empty ($_USER['username'])) {
-    $page_title= $LANG_PROFILE[4];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
+//    $page_title= $LANG_PROFILE[4];
+//    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
     $display .= SEC_loginRequiredForm();
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+//    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+    $display = DATABOX_displaypage('USERBOX','',array('pagetitle'=>$LANG_PROFILE[4]));
     echo $display;
     exit;
 }
@@ -82,11 +84,13 @@ $pi_name    = 'userbox';
 $menuno=1;
 $display="";
 
-$page_title=$LANG_USERBOX_ADMIN['piname'];
-$display .= DATABOX_siteHeader($pi_name,'',$page_title);
-$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+//$page_title=$LANG_USERBOX_ADMIN['piname'];
+//$display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+$display.=$profile_menu_top;
 $display .= fncview();
-$display .= DATABOX_siteFooter($pi_name);
+//$display .= DATABOX_siteFooter($pi_name);
+$display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$LANG_USERBOX_ADMIN['piname']));
 
 echo $display;
 

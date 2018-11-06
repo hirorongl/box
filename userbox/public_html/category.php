@@ -4,12 +4,14 @@
 // |  グループ別カテゴリ別件数一覧、カテゴリ別一覧
 // +---------------------------------------------------------------------------+
 // $Id: public_html/userbox/category.php
+//20110927 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181106 hiroron AT hiroron DOT COM
+
 define ('THIS_SCRIPT', 'userbox/category.php');
 //define ('THIS_SCRIPT', 'userbox/category_test.php');
 
 define ('NEXT_SCRIPT', 'userbox/profile.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
-//20110927 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 
 require_once ('../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
@@ -141,7 +143,7 @@ function fnclist(
 		,$_CONF['meta_description']
 		,$_CONF['smeta_keywords']
 		,$_CONF['meta_description']);
-    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+//    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
 
     $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
     $templates = new Template($tmplfld);
@@ -277,6 +279,8 @@ function fnclist(
 
     $retval =PLG_replacetags ($retval);
 
+    $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title, 'headercode'=>$headercode));
+
     return $retval;
 }
 
@@ -361,9 +365,10 @@ if (COM_isAnonUser()){
 			OR ($_USERBOX_CONF['loginrequired'] == 2 AND $id>0	) 
 			OR ($_USERBOX_CONF['loginrequired'] == 2 AND $code<>""	) 
 			){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$page_title));
         COM_output($display);
         exit;
     }
@@ -407,7 +412,7 @@ if ($id===0) { //一覧
 		);
 }
 
-$display .= DATABOX_siteFooter($pi_name);
+//$display .= DATABOX_siteFooter($pi_name);
 
 //---
 

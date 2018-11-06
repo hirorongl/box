@@ -4,10 +4,11 @@
 // |  download
 // +---------------------------------------------------------------------------+
 // $Id: public_html/userbox/download.php
+//20150220 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181106 hiroron AT hiroron DOT COM
+
 define ('THIS_SCRIPT', 'userbox/download.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
-
-//20150220 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 
 require_once ('../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
@@ -32,9 +33,10 @@ if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
             OR ($_USERBOX_CONF['loginrequired'] == 3)
             OR ($_USERBOX_CONF['loginrequired'] == 2 AND $id>0) ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage('USERBOX','',$display,array('pagetitle'=>$LANG_PROFILE[4]));
         COM_output($display);
         exit;
     }
