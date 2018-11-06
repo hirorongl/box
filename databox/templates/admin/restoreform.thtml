@@ -6,10 +6,10 @@
 <td class="admin-list-field">
 {select_filename}
 </td>
-<input type='submit' name='action' value='{lang_submit}'{xhtml}>
-<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
-<input type="hidden" name="mode" value="{mode}" {xhtml}>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type='submit' name='action' value='{lang_submit}'{XHTML}>
+<input type='submit' name='action' value='{lang_cancel}'{XHTML}>
+<input type="hidden" name="mode" value="{mode}" {XHTML}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 </div>
 <div>
 {help}

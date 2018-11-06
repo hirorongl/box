@@ -1,13 +1,13 @@
 {# begin {templatelocation} #}
 
-<meta property="og:type" content="{og_type}"{xhtml}>
-<meta property="og:title" content="{og_title}"{xhtml}>
-<meta property="og:image" content="{og_image}"{xhtml}>
-<meta property="og:url" content="{currenturl}"{xhtml}>
-<meta property="og:site_name" content="{site_name}"{xhtml}>
-<meta property="og:description" content="{og_description}"{xhtml}>
+<meta property="og:type" content="{og_type}"{XHTML}>
+<meta property="og:title" content="{og_title}"{XHTML}>
+<meta property="og:image" content="{og_image}"{XHTML}>
+<meta property="og:url" content="{currenturl}"{XHTML}>
+<meta property="og:site_name" content="{site_name}"{XHTML}>
+<meta property="og:description" content="{og_description}"{XHTML}>
 
-<meta property="fb:app_id" content="{facebook_consumer_key}"{xhtml}>
+<meta property="fb:app_id" content="{facebook_consumer_key}"{XHTML}>
 <meta name="twitter:card" content="summary">
 
 {# end {templatelocation} #}

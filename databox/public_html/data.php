@@ -6,6 +6,7 @@
 // $Id: data.php
 // public_html/databox/data.php
 // 2010/07/30 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
@@ -72,9 +73,10 @@ if (COM_isAnonUser()){
             OR ($_DATABOX_CONF['loginrequired'] == 1 AND $id>0) 
             OR ($_DATABOX_CONF['loginrequired'] == 1 AND $code<>"") 
 			){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$page_title));
         COM_output($display);
         exit;
     }

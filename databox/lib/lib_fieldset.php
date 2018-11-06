@@ -343,7 +343,7 @@ function LIB_Edit(
 function LIB_Save (
     $pi_name
     ,$edt_flg
-    ,$navbarMenu
+    ,$admin_menu_top
     ,$menuno
 )
 // +---------------------------------------------------------------------------+
@@ -446,11 +446,13 @@ function LIB_Save (
     //errorのあるとき
     if ($err<>"") {
         $page_title=$lang_box_admin['piname'].$lang_box_admin['edit'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+//        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
+        $retval .= $admin_menu_top;
 
         $retval .= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
 
         return $retval;
 
@@ -557,13 +559,14 @@ function LIB_delete (
     $err="";
     //category addtionfield check!!!
     if ($err<>"") {
-        $pagetitle = $lang_box_admin['err'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $page_title = $lang_box_admin['err'];
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
         $retval .= COM_startBlock ($lang_box_admin['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
         return $retval;
     }
 

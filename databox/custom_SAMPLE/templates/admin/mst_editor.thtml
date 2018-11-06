@@ -13,7 +13,7 @@
         <label class="uk-form-label" for="">{lang_id}</label>
         <div class="uk-form-controls">
 			{id}
-            <input type="hidden" name="id" value="{id}"{xhtml}>
+            <input type="hidden" name="id" value="{id}"{XHTML}>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_kind} {help_kind}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-			<input type="text" size="16" maxlength="16" name="kind" value="{kind}"{xhtml}>
+			<input type="text" size="16" maxlength="16" name="kind" value="{kind}"{XHTML}>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_no}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-			<input type="text" size="16" maxlength="6" name="no" value="{no}"{xhtml}>
+			<input type="text" size="16" maxlength="6" name="no" value="{no}"{XHTML}>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_value}</label>
         <div class="uk-form-controls">
-			<input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+			<input type="text" size="48" maxlength="160" name="value" value="{value}"{XHTML}>
         </div>
     </div>
 
@@ -45,7 +45,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_value2}</label>
         <div class="uk-form-controls">
-			<input type="text" size="48" maxlength="160" name="value2" value="{value2}"{xhtml}>
+			<input type="text" size="48" maxlength="160" name="value2" value="{value2}"{XHTML}>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_disp}</label>
         <div class="uk-form-controls">
-			<input type="text" size="48" maxlength="160" name="disp" value="{disp}"{xhtml}>
+			<input type="text" size="48" maxlength="160" name="disp" value="{disp}"{XHTML}>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_orderno}</label>
         <div class="uk-form-controls">
-			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{XHTML}>
         </div>
     </div>
 
@@ -69,7 +69,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_relno}</label>
         <div class="uk-form-controls">
-			<input type="text" size="48" maxlength="160" name="relno" value="{relno}"{xhtml}>
+			<input type="text" size="48" maxlength="160" name="relno" value="{relno}"{XHTML}>
         </div>
     </div>
 
@@ -86,16 +86,16 @@
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+		    <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+		    <input type="hidden" value="{code}" name="old_code"{XHTML}>
         </div>
     </div>
     <div class="uk-form-row">
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    {delete_option} {lang_delete_help}
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
         </div>
     </div>
   </form>

@@ -4,11 +4,13 @@
 // |  アトリビュート別件数一覧、アトリビュート項目別一覧
 // +---------------------------------------------------------------------------+
 // $Id: public_html/databox/attribute.php
+//20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181106 hiroron AT hiroron DOT COM
+
 define ('THIS_SCRIPT', 'databox/attribute.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 define ('NEXT_SCRIPT', 'databox/data.php');
 //define ('NEXT_SCRIPT', 'databox/test.php');
-//20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 
 
 require_once ('../lib-common.php');
@@ -151,7 +153,7 @@ function fnclist(
 		,$_CONF['meta_description']
 		,$_CONF['meta_keywords']
 		,$_CONF['meta_description']);
-    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
+//    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
     //
 
     $tmplfld=DATABOX_templatePath('attribute',$template,$pi_name);
@@ -290,6 +292,8 @@ function fnclist(
 
     $retval =PLG_replacetags ($retval);
 
+    $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
+
     return $retval;
 }
 
@@ -373,9 +377,10 @@ if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
             OR ($_DATABOX_CONF['loginrequired'] == 3)
             OR ($_DATABOX_CONF['loginrequired'] == 2 AND $value<>"") ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$page_title));
         COM_output($display);
         exit;
     }
@@ -401,7 +406,7 @@ if ($value==="") {
         );
 }
 
-$display .= DATABOX_siteFooter($pi_name);
+//$display .= DATABOX_siteFooter($pi_name);
 //---
 COM_output($display);
 

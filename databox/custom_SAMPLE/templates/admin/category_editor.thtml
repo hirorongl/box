@@ -14,7 +14,7 @@
         <label class="uk-form-label" for="">{lang_category_id}</label>
         <div class="uk-form-controls">
               {id}
-              <input type="hidden" name="id" value="{id}"{xhtml}>
+              <input type="hidden" name="id" value="{id}"{XHTML}>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_code} {help_code}</label>
         <div class="uk-form-controls">
-              <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="code" value="{code}"{XHTML}>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-              <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="name" value="{name}"{XHTML}>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_orderno}</label>
         <div class="uk-form-controls">
-			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{XHTML}>
         </div>
     </div>
 
@@ -95,11 +95,11 @@
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+		    <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+		    <input type="hidden" value="{code}" name="old_code"{XHTML}>
 		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
         </div>
     </div>
   </form>

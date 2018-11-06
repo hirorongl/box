@@ -13,7 +13,7 @@
 {config_restore_help}</li>
 <li><a href="{site_admin_url}/plugins/{script}?mode=configupdate">{config_update}</a>
 {config_update_help}</li>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 </blockquote>
 </fieldset>
 
@@ -24,7 +24,7 @@
 <li><a href="{site_admin_url}/plugins/{script}?mode=allclear">{data_allclear}</a></li>
 <li><a href="{site_admin_url}/plugins/{script}?mode=backupform">{data_backup}</a></li>
 <li><a href="{site_admin_url}/plugins/{script}?mode=restoreform">{data_restore}</a></li>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 </blockquote>
 </fieldset>
 {# end {templatelocation} #}

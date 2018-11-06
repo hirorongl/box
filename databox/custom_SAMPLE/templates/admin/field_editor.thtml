@@ -17,7 +17,7 @@
         <label class="uk-form-label" for="">{lang_field_id}</label>
         <div class="uk-form-controls">
               {id}
-              <input type="hidden" name="id" value="{id}"{xhtml}>
+              <input type="hidden" name="id" value="{id}"{XHTML}>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-              <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="name" value="{name}"{XHTML}>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_templatesetvar}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-              <input type="text" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}"{XHTML}>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_orderno}</label>
         <div class="uk-form-controls">
-              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{XHTML}>
         </div>
     </div>
 
@@ -103,8 +103,8 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_range}</label>
         <div class="uk-form-controls">
-              <input type="text" size="40" maxlength="160" name="range_start" value="{range_start}"{xhtml}>
-              - <input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+              <input type="text" size="40" maxlength="160" name="range_start" value="{range_start}"{XHTML}>
+              - <input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{XHTML}>
         </div>
     </div>
 
@@ -144,7 +144,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_size}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
+        	<input type="text" size="48" maxlength="160" name="size" value="{size}"{XHTML}>
         </div>
     </div>
 
@@ -152,7 +152,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_maxlength}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+        	<input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{XHTML}>
         </div>
     </div>
 
@@ -160,7 +160,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_rows}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
+        	<input type="text" size="48" maxlength="160" name="rows" value="{rows}"{XHTML}>
         </div>
     </div>
 
@@ -168,7 +168,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_br}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+        	<input type="text" size="1" maxlength="1" name="br" value="{br}"{XHTML}>{help_br}
         </div>
     </div>
 
@@ -192,15 +192,15 @@
     <div class="uk-form-row uk-margin-large-top">
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+		    <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+		    <input type="hidden" value="{code}" name="old_code"{XHTML}>
         </div>
     </div>
     <div class="uk-form-row uk-margin-large-top uk-text-danger">
         <div class="uk-form-controls">
 		    {delete_option}<span class="uk-text-danger uk-margin-left">{lang_delete_help}</span>
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 		</div>
 	</div>
   </form>

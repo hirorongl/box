@@ -4,9 +4,9 @@
 
   <p class="message">{lang_inst_newdata}</p>
   {list_fieldset}
-  <input type="submit" value="{lang_new}" name="mode" class="submit"{xhtml}>
-  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+  <input type="submit" value="{lang_new}" name="mode" class="submit"{XHTML}>
+  <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 
 </form>
 {# end {templatelocation} #}

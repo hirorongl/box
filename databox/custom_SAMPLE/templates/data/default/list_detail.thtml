@@ -60,7 +60,7 @@
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_owner}</th>
         <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
-        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{XHTML}>
         ( UID: <span  class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
 	　</tr>
 	
@@ -127,7 +127,7 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 	  <!--  カテゴリ名称列挙 -->
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_category}</th>
-		<td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
+		<td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{XHTML}></td>
         <td>{categories}</td>
       </tr>
 	  <!--  カテゴリ名称列挙リンク付 -->

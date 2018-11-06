@@ -626,14 +626,15 @@ function LIB_delete (
     $err="";
     //category addtionfield check!!!
     if ($err<>"") {
-        $pagetitle = $lang_box_admin['err'];
-        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $page_title = $lang_box_admin['err'];
+//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
 
         $retval .= COM_startBlock ($lang_box_admin['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
+        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
         return $retval;
     }
 

@@ -6,6 +6,7 @@
 // $Id: list.php
 // public_html/databox/list.php
 // 2012/11/29 tsuchitani AT ivywe DOT co DOT jp data.php より分離
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'databox/list.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
@@ -25,9 +26,10 @@ if (COM_isAnonUser()){
             OR ($_DATABOX_CONF['loginrequired'] == 3)
             OR ($_DATABOX_CONF['loginrequired'] == 2)
             ){
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$LANG_DATABOX['data']));
         COM_output($display);
         exit;
     }

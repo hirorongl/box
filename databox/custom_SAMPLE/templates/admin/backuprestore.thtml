@@ -16,7 +16,7 @@
 <li><a href="{site_admin_url}/plugins/{script}?mode=configupdate">{config_update}</a>
  ...{config_update_help}</li>
 </ul>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 </fieldset>
 
 <fieldset class="uk-margin-large-top">
@@ -27,7 +27,7 @@
 <li><a href="{site_admin_url}/plugins/{script}?mode=backupform">{data_backup}</a></li>
 <li><a href="{site_admin_url}/plugins/{script}?mode=restoreform">{data_restore}</a></li>
 </ul>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
 </fieldset>
 
 </div>

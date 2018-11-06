@@ -15,7 +15,7 @@
             <th class="admin-list-field">{lang_group_id}</th>
             <td class="admin-list-field">
               {id}
-              <input type="hidden" name="id" value="{id}"{xhtml}>
+              <input type="hidden" name="id" value="{id}"{XHTML}>
             </td>
           </tr>
 
@@ -23,7 +23,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_code} {help_code}</th>
             <td class="admin-list-field">
-              <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="code" value="{code}"{XHTML}>
             </td>
           </tr>
 
@@ -31,7 +31,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field">
-              <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="name" value="{name}"{XHTML}>
             </td>
           </tr>
 
@@ -47,7 +47,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field">
-              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{XHTML}>
             </td>
           </tr>
 
@@ -96,11 +96,11 @@
     </fieldset>
 
     {# 【保存 キャンセル  削除】 #}
-    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+    <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+    <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+    <input type="hidden" value="{code}" name="old_code"{XHTML}>
     {delete_option} {lang_delete_help}
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
   </form>
 </div>
 {# end {templatelocation} #}

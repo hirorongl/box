@@ -8,6 +8,7 @@
 // public_html/databox/mydata/data.php
 // 20101208 tsuchitani AT ivywe DOT co DOT jp
 // 20120416 fncsave hits
+//last update 20181106 hiroron AT hiroron DOT COM
 
 //@@@@@@追加予定　メールにカテゴリ
 
@@ -540,7 +541,7 @@ function fncEdit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 	
 	$script=THIS_SCRIPT;
 	$script.="?template=".$template;
@@ -1050,12 +1051,13 @@ function fncdelete (
     $err="";
     if ($err<>"") {
         $page_title=$LANG_DATABOX_ADMIN['err'];
-        $retval .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
+//        $retval .= DATABOX_siteHeader('DATABOX','_admin',$page_title);
         $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-        $retval .= DATABOX_siteFooter('DATABOX','_admin');
+//        $retval .= DATABOX_siteFooter('DATABOX','_admin');
+        $retval = DATABOX_displaypage('DATABOX','_admin',$retval,array('pagetitle'=>$page_title));
         return $retval;
     }
 
@@ -1221,7 +1223,7 @@ function fncNew (
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 	
 	$script=THIS_SCRIPT;
 	if  ($template<>""){
@@ -1368,9 +1370,10 @@ if (COM_isAnonUser()){
     $loginrequired=$_CONF['loginrequired'];
 
     if ($loginrequired>0) {
-        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
+//        $display .= DATABOX_siteHeader($pi_name,'',$page_title);
         $display .= SEC_loginRequiredForm();
-        $display .= DATABOX_siteFooter($pi_name);
+//        $display .= DATABOX_siteFooter($pi_name);
+        $display = DATABOX_displaypage($pi_name,'',$display,array('pagetitle'=>$page_title));
         COM_output($display);
         exit;
     }
@@ -1441,7 +1444,8 @@ switch ($mode) {
 }
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+//         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .$data_menu_top
          .fncMenu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

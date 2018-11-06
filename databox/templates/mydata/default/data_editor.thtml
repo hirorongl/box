@@ -6,8 +6,8 @@
   <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
   {lang_fieldset} {fieldset_name}(Type id:{fieldset_id})
   <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
-    <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
-    <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+    <input type="hidden" name="fieldset" value="{fieldset_id}"{XHTML}>
+    <input type="hidden" name="fieldset_name" value="{fieldset_name}"{XHTML}>
 
     {# data #}
     <fieldset style="width:98%">
@@ -19,14 +19,14 @@
             <th class="admin-list-field">{lang_id} {help_id}</th>
             <td class="admin-list-field">
               {id}
-              <input type="hidden" name="id" value="{id}"{xhtml}></td>
+              <input type="hidden" name="id" value="{id}"{XHTML}></td>
           </tr>
 
           {# DRAFT #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_draft} {help_draft}</th>
             <td class="admin-list-field">
-          <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>{draft_msg}</td>
+          <input type="checkbox" name="draft_flag" value="1" {draft_flag} {XHTML} disabled>{draft_msg}</td>
           </tr>
 
           {# code #}
@@ -34,7 +34,7 @@
             <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
             <td class="admin-list-field">
               {code}
-              <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+              <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{XHTML}>
             </td>
           </tr>
 
@@ -42,7 +42,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field">
-              <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="title" value="{title}"{XHTML}>
             </td>
           </tr>
 
@@ -50,7 +50,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
             <td class="admin-list-field">
-              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{XHTML}>
             </td>
           </tr>
 
@@ -60,7 +60,7 @@
             <td class="admin-list-field">
               <textarea name="description" style="width:95%" rows="2" id="databox_description"
                 onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-                <br{xhtml}><strong><span id='description_cnt'></span><strong>
+                <br{XHTML}><strong><span id='description_cnt'></span><strong>
             </td>
           </tr>
 
@@ -76,13 +76,13 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_udatetime}</th>
             <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
-              <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+              <input type="hidden" name="udatetime" value="{udatetime}"{XHTML}>
           </tr>
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_created}</th>
             <td class="admin-list-field">{created}</td>
-            <input type="hidden" name="created" value="{created}"{xhtml}>
-            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+            <input type="hidden" name="created" value="{created}"{XHTML}>
+            <input type="hidden" name="created_un" value="{created_un}"{XHTML}>
           </tr>
         </table>
       </div>
@@ -112,12 +112,12 @@
     </fieldset>
 
     {# 【保存 キャンセル  削除】 #}
-    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-    <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
+    <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+    <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+    <input type="hidden" value="{code}" name="old_code"{XHTML}>
+    <input type="hidden" value="{old_mode}" name="old_mode"{XHTML}>
     {delete_option}
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
   </form>
 </div>
 {# end {templatelocation} #}

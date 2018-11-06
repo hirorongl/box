@@ -7,7 +7,7 @@
 // $Id: data.php
 // public_html/admin/plugins/databox/data.php
 // 2010818 tsuchitani AT ivywe DOT co DOT jp
-// 20101207
+//last update 20181106 hiroron AT hiroron DOT COM
 
 // @@@@@追加予定：import
 // @@@@@追加予定：export に category
@@ -747,7 +747,7 @@ function fncEdit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -1830,7 +1830,7 @@ function fncimport ()
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -2026,7 +2026,7 @@ function fncNew (
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -2084,7 +2084,7 @@ function fncChangeSet (
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 	
@@ -2182,7 +2182,7 @@ function fncexportform (
     $retval .= SEC_getTokenExpiryNotice($token);
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', $token);
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
  
     $tmpl->set_var('script', THIS_SCRIPT);
 	
@@ -2305,8 +2305,7 @@ function fncMenu(
 	
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions'],
-        plugin_geticon_databox()
+        $LANG_DATABOX_ADMIN['instructions']
     );
 
     return $retval;
@@ -2484,7 +2483,8 @@ switch ($mode) {
 
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+//         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .$admin_menu_top
          .fncMenu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

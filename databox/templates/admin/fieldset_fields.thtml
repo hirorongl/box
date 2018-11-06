@@ -39,12 +39,12 @@ head.appendChild(lnk);
         <input type="button" name="right" 
                         value="{LANG_add}" 
                         onclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                         
-                        class="submit"{xhtml}></li>
+                        class="submit"{XHTML}></li>
       <li>
         <input type="button" name="left"  
                         value="{LANG_remove}" 
                         onclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)"                 
-                        class="submit"{xhtml}></li>
+                        class="submit"{XHTML}></li>
     </ul>
 
     <dl class="fieldlist">
@@ -62,13 +62,13 @@ head.appendChild(lnk);
     <ul class="submit">
       <li>
         <input type="submit" value="{lang_save}" 
-                onclick="return setUsers(this.form)" class="submit"{xhtml}>
+                onclick="return setUsers(this.form)" class="submit"{XHTML}>
         <input type="button" value="{lang_cancel}" 
-                onclick="javascript:history.go(-1)" class="submit"{xhtml}>
-        <input type="hidden" name="mode" value="savefieldsetfields"{xhtml}>
-        <input type="hidden" name="groupmembers"{xhtml}>
-        <input type="hidden" name="id" value="{id}"{xhtml}>
-        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+                onclick="javascript:history.go(-1)" class="submit"{XHTML}>
+        <input type="hidden" name="mode" value="savefieldsetfields"{XHTML}>
+        <input type="hidden" name="groupmembers"{XHTML}>
+        <input type="hidden" name="id" value="{id}"{XHTML}>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
       </li>
     </ul>
   </div>

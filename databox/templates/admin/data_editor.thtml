@@ -8,8 +8,8 @@
 	
   <form enctype="multipart/form-data" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
     <div class="admin_basic">
-      <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
-      <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+      <input type="hidden" name="fieldset" value="{fieldset_id}"{XHTML}>
+      <input type="hidden" name="fieldset_name" value="{fieldset_name}"{XHTML}>
 
       {# data #}
       <fieldset style="width:98%">
@@ -21,7 +21,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_id} {help_id}</th>
               <td class="admin-list-field">{id}
-                <input type="hidden" name="id" value="{id}"{xhtml}>
+                <input type="hidden" name="id" value="{id}"{XHTML}>
               </td>
             </tr>
 
@@ -29,7 +29,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_draft} {help_draft}</th>
               <td class="admin-list-field">
-                <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml}>
+                <input type="checkbox" name="draft_flag" value="1" {draft_flag} {XHTML}>
               </td>
             </tr>
 
@@ -37,7 +37,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_code} {help_code}<span class="must">{lang_must_code}</span>{help_code}</th>
               <td class="admin-list-field">
-                <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+                <input type="text" size="48" maxlength="160" name="code" value="{code}"{XHTML}>
               </td>
             </tr>
 
@@ -45,7 +45,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
               <td class="admin-list-field">
-                <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
+                <input type="text" size="48" maxlength="160" name="title" value="{title}"{XHTML}>
               </td>
             </tr>
 
@@ -53,7 +53,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
               <td class="admin-list-field">
-                <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+                <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{XHTML}>
               </td>
             </tr>
 
@@ -63,7 +63,7 @@
               <td class="admin-list-field">
 		<textarea name="description" style="width:95%" rows="2" id="databox_description"
 		onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-		<br{xhtml}><strong><span id='description_cnt'></span></strong>
+		<br{XHTML}><strong><span id='description_cnt'></span></strong>
               </td>
             </tr>
 
@@ -81,7 +81,7 @@
               <td class="admin-list-field">
 		<textarea name="meta_description" style="width:95%" rows="2" id="databox_meta_description"
 		onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
-		<br{xhtml}><strong><span id='meta_description_cnt'></span><strong>
+		<br{XHTML}><strong><span id='meta_description_cnt'></span><strong>
               </td>
             </tr>
 
@@ -91,7 +91,7 @@
               <td class="admin-list-field">
 		<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
 		onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
-		<br{xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
+		<br{XHTML}><strong><span id='meta_keywords_cnt'></span><strong>
               </td>
 	    </tr>
 
@@ -104,14 +104,14 @@
             {# hits #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_hits} {help_hits}</th>
-              <td class="admin-list-field"><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
+              <td class="admin-list-field"><input type="hidden" name="hits" value="{hits}"{XHTML}>{hits}
               </td>
             </tr>
 
             {# comments #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_comments} {help_comments}</th>
-              <td class="admin-list-field"><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
+              <td class="admin-list-field"><input type="hidden" name="comments" value="{comments}"{XHTML}>{comments}
               </td>
             </tr>
 
@@ -128,12 +128,12 @@
             {# comment_expire #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_comment_expire} {help_comment_expire}</th>
-              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
+              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{XHTML}>{datetime_comment_expire}</td>
             </tr>
             {# 編集日付 #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_modified} {help_modified}</th>
-              <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
+              <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {XHTML}>
 {datetime_modified} </td>
             </tr>
 
@@ -146,14 +146,14 @@
             {# 公開終了日 #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_expired} {help_expire}</th>
-              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
+              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{XHTML}>{datetime_expired}</td>
             </tr>
 
             {# order #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_orderno} {help_orderno}</th>
               <td class="admin-list-field">
-                <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+                <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{XHTML}>
               </td>
             </tr>
 
@@ -170,7 +170,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_cache_time} {help_cache_time}</th>
               <td class="admin-list-field">
-                <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}>{lang_cache_time_desc}
+                <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{XHTML}>{lang_cache_time_desc}
               </td>
             </tr>
 
@@ -208,7 +208,7 @@
           <table class="admin-list-table">
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_owner}</th>
-              <td class="admin-list-field">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+              <td class="admin-list-field">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{XHTML}>
           ( UID: {owner_id} )</td>
             </tr>
             <tr class="pluginRow1">
@@ -233,25 +233,25 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_udatetime}</th>
               <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
-                <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+                <input type="hidden" name="udatetime" value="{udatetime}"{XHTML}>
             </tr>
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_created}</th>
               <td class="admin-list-field">{created}</td>
-                <input type="hidden" name="created" value="{created}"{xhtml}>
-                <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+                <input type="hidden" name="created" value="{created}"{XHTML}>
+                <input type="hidden" name="created_un" value="{created_un}"{XHTML}>
             </tr>
           </table>
         </div>
       </fieldset>
 
       {# 保存 キャンセル  削除】 #}
-      <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-      <input type="hidden" value="{code}" name="old_code"{xhtml}>
-      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode"{XHTML}>
+      <input type="submit" value="{lang_cancel}" name="mode"{XHTML}>
+      <input type="hidden" value="{code}" name="old_code"{XHTML}>
+      <input type="hidden" value="{old_mode}" name="old_mode"{XHTML}>
       {delete_option}
-      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
       {view}
     </div>
   </form>

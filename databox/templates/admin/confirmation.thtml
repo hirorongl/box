@@ -4,12 +4,12 @@
 <form action="{actionprg}" method="post">
   <div>
     <div>{lang_checklist} {checklist}</div>
-    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
+    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{XHTML}>
     {btn2}
     {btn3}
-	<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-    <input type="hidden" value="{mode}" name="mode"{xhtml}>
+	<input type='submit' name='action' value='{lang_cancel}'{XHTML}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
+    <input type="hidden" value="{mode}" name="mode"{XHTML}>
   </div>
   <div>
     {help}

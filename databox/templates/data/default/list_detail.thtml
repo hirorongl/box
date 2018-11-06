@@ -49,100 +49,100 @@
       <tr>
         <th style="width:20%" class="alignright">{lang_modified}</th>
         <td style="width:20%; color:green">&#123;modified&#125;&nbsp;&#123;modified_shortdate&#125;
-        <br{xhtml}>&nbsp;&#123;modified_date&#125;
-        <br{xhtml}>&nbsp;&#123;modified_daytime&#125;
-        <br{xhtml}>&nbsp;&#123;modified_dateonly&#125;
-        <br{xhtml}>&nbsp;&#123;modified_timeonly&#125;
-        <br{xhtml}>&nbsp;&#123;modified_b&#125;
-        <br{xhtml}>&nbsp;&#123;modified_B&#125;
-        <br{xhtml}>&nbsp;&#123;modified_d&#125;
-        <br{xhtml}>&nbsp;&#123;modified_e&#125;
+        <br{XHTML}>&nbsp;&#123;modified_date&#125;
+        <br{XHTML}>&nbsp;&#123;modified_daytime&#125;
+        <br{XHTML}>&nbsp;&#123;modified_dateonly&#125;
+        <br{XHTML}>&nbsp;&#123;modified_timeonly&#125;
+        <br{XHTML}>&nbsp;&#123;modified_b&#125;
+        <br{XHTML}>&nbsp;&#123;modified_B&#125;
+        <br{XHTML}>&nbsp;&#123;modified_d&#125;
+        <br{XHTML}>&nbsp;&#123;modified_e&#125;
         </td>
         <td>{modified}&nbsp;{modified_shortdate}
-        <br{xhtml}>&nbsp;{modified_date}
-        <br{xhtml}>&nbsp;{modified_daytime}
-        <br{xhtml}>&nbsp;{modified_dateonly}
-        <br{xhtml}>&nbsp;{modified_timeonly}
-        <br{xhtml}>&nbsp;{modified_b}
-        <br{xhtml}>&nbsp;{modified_B}
-        <br{xhtml}>&nbsp;{modified_d}
-        <br{xhtml}>&nbsp;{modified_e}
+        <br{XHTML}>&nbsp;{modified_date}
+        <br{XHTML}>&nbsp;{modified_daytime}
+        <br{XHTML}>&nbsp;{modified_dateonly}
+        <br{XHTML}>&nbsp;{modified_timeonly}
+        <br{XHTML}>&nbsp;{modified_b}
+        <br{XHTML}>&nbsp;{modified_B}
+        <br{XHTML}>&nbsp;{modified_d}
+        <br{XHTML}>&nbsp;{modified_e}
         </td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_created}</th>
 		<td style="width:20%; color:green">&#123;created&#125;&nbsp;&#123;created_shortdate&#125;
-        <br{xhtml}>&nbsp;&#123;created_date&#125;
-        <br{xhtml}>&nbsp;&#123;created_daytime&#125;
-        <br{xhtml}>&nbsp;&#123;created_dateonly&#125;
-        <br{xhtml}>&nbsp;&#123;created_timeonly&#125;
-        <br{xhtml}>&nbsp;&#123;created_b&#125;
-        <br{xhtml}>&nbsp;&#123;created_B&#125;
-        <br{xhtml}>&nbsp;&#123;created_d&#125;
-        <br{xhtml}>&nbsp;&#123;created_e&#125;
+        <br{XHTML}>&nbsp;&#123;created_date&#125;
+        <br{XHTML}>&nbsp;&#123;created_daytime&#125;
+        <br{XHTML}>&nbsp;&#123;created_dateonly&#125;
+        <br{XHTML}>&nbsp;&#123;created_timeonly&#125;
+        <br{XHTML}>&nbsp;&#123;created_b&#125;
+        <br{XHTML}>&nbsp;&#123;created_B&#125;
+        <br{XHTML}>&nbsp;&#123;created_d&#125;
+        <br{XHTML}>&nbsp;&#123;created_e&#125;
         </td>
         <td>{created}&nbsp;{created_shortdate}
-        <br{xhtml}>&nbsp;{created_date}
-        <br{xhtml}>&nbsp;{created_daytime}
-        <br{xhtml}>&nbsp;{created_dateonly}
-        <br{xhtml}>&nbsp;{created_timeonly}
-        <br{xhtml}>&nbsp;{created_b}
-        <br{xhtml}>&nbsp;{created_B}
-        <br{xhtml}>&nbsp;{created_d}
-        <br{xhtml}>&nbsp;{created_e}
+        <br{XHTML}>&nbsp;{created_date}
+        <br{XHTML}>&nbsp;{created_daytime}
+        <br{XHTML}>&nbsp;{created_dateonly}
+        <br{XHTML}>&nbsp;{created_timeonly}
+        <br{XHTML}>&nbsp;{created_b}
+        <br{XHTML}>&nbsp;{created_B}
+        <br{XHTML}>&nbsp;{created_d}
+        <br{XHTML}>&nbsp;{created_e}
         </td>
       </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_released}</th>
         <td style="width:20%; color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;
-        <br{xhtml}>&nbsp;&#123;released_date&#125;
-        <br{xhtml}>&nbsp;&#123;released_daytime&#125;
-        <br{xhtml}>&nbsp;&#123;released_dateonly&#125;
-        <br{xhtml}>&nbsp;&#123;released_timeonly&#125;
-        <br{xhtml}>&nbsp;&#123;released_b&#125;
-        <br{xhtml}>&nbsp;&#123;released_B&#125;
-        <br{xhtml}>&nbsp;&#123;released_d&#125;
-        <br{xhtml}>&nbsp;&#123;released_e&#125;
+        <br{XHTML}>&nbsp;&#123;released_date&#125;
+        <br{XHTML}>&nbsp;&#123;released_daytime&#125;
+        <br{XHTML}>&nbsp;&#123;released_dateonly&#125;
+        <br{XHTML}>&nbsp;&#123;released_timeonly&#125;
+        <br{XHTML}>&nbsp;&#123;released_b&#125;
+        <br{XHTML}>&nbsp;&#123;released_B&#125;
+        <br{XHTML}>&nbsp;&#123;released_d&#125;
+        <br{XHTML}>&nbsp;&#123;released_e&#125;
         </td>
         <td>{released}&nbsp;{released_shortdate}
-        <br{xhtml}>&nbsp;{released_date}
-        <br{xhtml}>&nbsp;{released_daytime}
-        <br{xhtml}>&nbsp;{released_dateonly}
-        <br{xhtml}>&nbsp;{released_timeonly}
-        <br{xhtml}>&nbsp;{released_b}
-        <br{xhtml}>&nbsp;{released_B}
-        <br{xhtml}>&nbsp;{released_d}
-        <br{xhtml}>&nbsp;{released_e}
+        <br{XHTML}>&nbsp;{released_date}
+        <br{XHTML}>&nbsp;{released_daytime}
+        <br{XHTML}>&nbsp;{released_dateonly}
+        <br{XHTML}>&nbsp;{released_timeonly}
+        <br{XHTML}>&nbsp;{released_b}
+        <br{XHTML}>&nbsp;{released_B}
+        <br{XHTML}>&nbsp;{released_d}
+        <br{XHTML}>&nbsp;{released_e}
         </td>
         </tr>
       <tr>
         <th style="width:20%" class="alignright">{lang_expired}</th>
 		<td style="width:20%; color:green">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;
-        <br{xhtml}>&nbsp;&#123;expired_date&#125;
-        <br{xhtml}>&nbsp;&#123;expired_daytime&#125;
-        <br{xhtml}>&nbsp;&#123;expired_dateonly&#125;
-        <br{xhtml}>&nbsp;&#123;expired_timeonly&#125;
-        <br{xhtml}>&nbsp;&#123;expired_b&#125;
-        <br{xhtml}>&nbsp;&#123;expired_B&#125;
-        <br{xhtml}>&nbsp;&#123;expired_d&#125;
-        <br{xhtml}>&nbsp;&#123;expired_e&#125;
+        <br{XHTML}>&nbsp;&#123;expired_date&#125;
+        <br{XHTML}>&nbsp;&#123;expired_daytime&#125;
+        <br{XHTML}>&nbsp;&#123;expired_dateonly&#125;
+        <br{XHTML}>&nbsp;&#123;expired_timeonly&#125;
+        <br{XHTML}>&nbsp;&#123;expired_b&#125;
+        <br{XHTML}>&nbsp;&#123;expired_B&#125;
+        <br{XHTML}>&nbsp;&#123;expired_d&#125;
+        <br{XHTML}>&nbsp;&#123;expired_e&#125;
         </td>
         <td>{expired}&nbsp;{expired_shortdate}
-        <br{xhtml}>&nbsp;{expired_date}
-        <br{xhtml}>&nbsp;{expired_daytime}
-        <br{xhtml}>&nbsp;{expired_dateonly}
-        <br{xhtml}>&nbsp;{expired_timeonly}
-        <br{xhtml}>&nbsp;{expired_b}
-        <br{xhtml}>&nbsp;{expired_B}
-        <br{xhtml}>&nbsp;{expired_d}
-        <br{xhtml}>&nbsp;{expired_e}
+        <br{XHTML}>&nbsp;{expired_date}
+        <br{XHTML}>&nbsp;{expired_daytime}
+        <br{XHTML}>&nbsp;{expired_dateonly}
+        <br{XHTML}>&nbsp;{expired_timeonly}
+        <br{XHTML}>&nbsp;{expired_b}
+        <br{XHTML}>&nbsp;{expired_B}
+        <br{XHTML}>&nbsp;{expired_d}
+        <br{XHTML}>&nbsp;{expired_e}
         </td>
 		</tr>
 
       <tr>
         <th style="width:20%" class="alignright">{lang_owner}</th>
         <td style="width:20%; color:green">&#123;owner_name&#125;</td>
-        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{XHTML}>
         ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
 	　</tr>
 	
@@ -204,7 +204,7 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  {# カテゴリ名称列挙 #}
       <tr>
         <th style="width:20%" class="alignright">{lang_category}</th>
-		<td style="width:20%; color:green">&#123;categories&#125;<br{xhtml}></td>
+		<td style="width:20%; color:green">&#123;categories&#125;<br{XHTML}></td>
         <td>{categories}</td>
       </tr>
 	  {# カテゴリ名称列挙リンク付 #}
